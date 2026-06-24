@@ -5,7 +5,11 @@ draft: false
 toc: true
 ---
 
-{{< callout emoji="&#x1f52e;" >}}
+<style>details summary { color: green; }</style>
+
+<style>details .details { color: blue; }</style>
+
+{{< callout emoji="🔮" >}}
 "But needless to say, Leonardo never finished executing his plan. Coming up with the conception was enough for him."
 Walter Isaacson, *Leonardo da Vinci*
 {{< /callout >}}
