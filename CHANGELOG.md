@@ -5,6 +5,8 @@ CalVer snapshots (`vYYYY.M.D[-suffix]`) of the homepage repo. Past tense — wha
 
 ## Unreleased
 
+## v2026.6.24 — homepage 이주 + 문서 세트
+
 ### Migration — junghanacs.github.io → junghan0611/homepage
 
 - Created `junghan0611/homepage` (public) on the personal account; pushed full history.

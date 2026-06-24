@@ -5,8 +5,8 @@ live plan and the next concrete move.
 
 ## NOW — the next concrete move
 
-**Migration to `junghan0611/homepage` is functionally complete** — repo created, history
-pushed, Netlify relinked to the new repo, build green, `www.junghanacs.com` serving from
+**Migration to `junghan0611/homepage` complete and tagged `v2026.6.24`** — repo created,
+history + doc set pushed, Netlify relinked, build green, `www.junghanacs.com` serving from
 here. The remaining moves are cleanup, not blockers:
 
 1. **Rename the local folder** `~/repos/gh/blog` → `~/repos/gh/homepage` (GLG does this last,
@@ -38,12 +38,4 @@ curl -sI https://www.junghanacs.com | grep -i server   # Netlify serving
 
 ## Done
 
-- hextra `v0.12.1 → v0.12.3`; `netlify.toml` HUGO `0.152.2 → 0.156.0` (hextra recommended).
-- about page: callout emoji + details color style.
-- **Repo migration**: created `junghan0611/homepage` (public); `origin` → homepage,
-  `oldorg` → junghanacs.github.io (retained); full history pushed.
-- Removed `.github/workflows/pages.yaml` — Netlify-only deploy, no GitHub Actions.
-- Netlify site source repo relinked junghanacs.github.io → homepage; domain/SSL/env
-  carried over; build green.
-- Doc set established: `README.md` (was `README.org`), `AGENTS.md`, `NEXT.md`,
-  `ROADMAP.md`, `CHANGELOG.md`.
+See `CHANGELOG.md` `v2026.6.24` for the closed migration + doc-set work.
