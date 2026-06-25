@@ -235,7 +235,7 @@ params:
 
   editURL:
     enable: true
-    base: "https://github.com/junghanacs/junghanacs.github.io/edit/main/content"
+    base: "https://github.com/junghan0611/homepage/edit/main/content"
 
   blog:
     list:

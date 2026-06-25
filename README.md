@@ -54,3 +54,11 @@ go.mod / go.sum hextra module pin
 Pushes to `main` on [`junghan0611/homepage`](https://github.com/junghan0611/homepage)
 trigger a Netlify build that serves `www.junghanacs.com`. No GitHub Actions — deploy is
 Netlify-only.
+
+## History
+
+This repo was migrated from
+[`junghanacs/junghanacs.github.io`](https://github.com/junghanacs/junghanacs.github.io)
+→ `junghan0611/homepage`. The move consolidates development and deployment repos under
+the `junghan0611` account for consistency. The old repo is being set to **ARCHIVE** and
+is no longer the source of truth — all source, edit, and deploy links now point here.
