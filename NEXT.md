@@ -31,6 +31,22 @@ here. The remaining moves are cleanup, not blockers:
   커밋 → 발행(Netlify 자동 빌드).
 - 번역은 직역이 아니라 의미·톤을 살린 영어 면으로. 한국어 면이 원본(canonical)이다.
 
+## JSON-LD 시맨틱 신원층 — 설계 잠금, 미구현
+
+**가든은 출하했는데 homepage엔 JSON-LD가 전무.** 대문(`www.junghanacs.com`)에도 같은
+신원 토대를 이식해 "한/영 듀얼 원석 모음" 정체성을 기계가 읽게 한다. 설계는 Claude+GPT
+공동 숙론으로 1차 잠금(2026-06-25) → **SSOT는 `docs/semantic-jsonld.md`** (기본 구조 +
+Hugo 경험치 + 불변식 7 + 검증 루프). 디테일은 구현하며 더 채운다.
+
+다음 한 걸음:
+
+1. `docs/semantic-jsonld.md` 따라 `layouts/partials/custom/head-end.html`에 ld+json 주입
+   Go 템플릿 초안.
+2. `.Translations`/`translationKey` 실측(sample-template ko/en 쌍).
+3. 검증 루프 통과(validator 오류0, Rich Results sanity) 후 GPT schema 리뷰.
+
+참고 구현: `git -C ~/repos/gh/notes show f4d26d06 -- quartz/components/Head.tsx`.
+
 ## Verify
 
 ```bash
