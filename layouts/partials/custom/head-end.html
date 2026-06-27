@@ -1,2 +1,125 @@
 <meta name="naver-site-verification" content="24d83611013a4fbee878beb7eee92dcd5e2db8a1" />
 <meta name="google-site-verification" content="GiBZQcfsQXZXV7jvSAPYT6zq6ARofIZbSyddRFd8j-I" />
+
+{{/* ── JSON-LD 시맨틱 신원층 — SSOT: docs/semantic-jsonld.md ──────────────
+     @graph + 안정 @id. 공통 노드(Person/WebSite/Blog)는 origin fragment를
+     전 언어에서 공유, 페이지 노드는 언어별 .Permalink 기반 @id.
+     화이트리스트: 홈 / blog 목록 / blog 글. taxonomy·term·404 등은 제외. */}}
+{{ $origin := "https://www.junghanacs.com" }}
+{{ $isHome := .IsHome }}
+{{ $isBlogList := and (eq .Section "blog") (eq .Kind "section") }}
+{{ $isBlogPost := and (eq .Section "blog") (eq .Kind "page") }}
+{{ if or $isHome $isBlogList $isBlogPost }}
+  {{ $personId := printf "%s/#person" $origin }}
+  {{ $websiteId := printf "%s/#website" $origin }}
+  {{ $blogId := printf "%s/#blog" $origin }}
+
+  {{/* 공통 노드 1 — Person (크로스도메인 신원의 축, sameAs로 인물 동일성 고정) */}}
+  {{ $person := dict
+    "@type" "Person"
+    "@id" $personId
+    "name" "Junghan Kim"
+    "givenName" "Junghan"
+    "familyName" "Kim"
+    "alternateName" (slice "GLG" "GLGMAN" "힣" "힣맨")
+    "url" $origin
+    "image" "https://notes.junghanacs.com/static/profile.jpg"
+    "jobTitle" "Software Engineer"
+    "description" "Polymath engineer and digital gardener. Curates a bilingual (Korean/English) collection of original writings, and builds a reproducible knowledge environment with NixOS, Emacs, and Org-mode."
+    "knowsLanguage" (slice "ko" "en")
+    "knowsAbout" (slice "Emacs" "Org-mode" "Denote" "Personal Knowledge Management" "Digital Gardens" "NixOS" "AI agents" "Large Language Models" "Clojure" "Python" "Philosophy" "Syntopical Reading" "Korean language" "Logic")
+    "sameAs" (slice
+      "https://notes.junghanacs.com/"
+      "https://github.com/junghan0611"
+      "https://github.com/junghanacs"
+      "https://www.linkedin.com/in/junghan-kim-1489a4306"
+      "https://bsky.app/profile/junghanacs.bsky.social"
+      "https://fosstodon.org/@junghanacs"
+      "https://www.threads.net/@junghanacs")
+  }}
+
+  {{/* 공통 노드 2 — WebSite (name은 전 언어 고정 클린명, 변형은 alternateName) */}}
+  {{ $website := dict
+    "@type" "WebSite"
+    "@id" $websiteId
+    "name" "Authology"
+    "alternateName" (slice "authology" "어쏠로지" "junghanacs")
+    "url" $origin
+    "inLanguage" (slice "en" "ko")
+    "description" "A bilingual (Korean/English) curated collection of original writings by Junghan Kim on knowledge, engineering, and contemplative practice."
+    "publisher" (dict "@id" $personId)
+  }}
+
+  {{/* 공통 노드 3 — Blog (원작 글 컬렉션의 안정 노드) */}}
+  {{ $blog := dict
+    "@type" "Blog"
+    "@id" $blogId
+    "name" "Authology"
+    "url" (printf "%s/blog/" $origin)
+    "inLanguage" (slice "en" "ko")
+    "isPartOf" (dict "@id" $websiteId)
+    "publisher" (dict "@id" $personId)
+  }}
+
+  {{ $graph := slice $person $website $blog }}
+
+  {{/* 페이지 노드 — 언어별 .Permalink 기반 @id (절대 origin fragment 공유 금지) */}}
+  {{ if $isHome }}
+    {{ $homeDesc := or .Description .Site.Params.description }}
+    {{ $graph = $graph | append (dict
+      "@type" "ProfilePage"
+      "@id" (printf "%s#profilepage" .Permalink)
+      "url" .Permalink
+      "name" .Title
+      "inLanguage" .Lang
+      "description" $homeDesc
+      "isPartOf" (dict "@id" $websiteId)
+      "about" (dict "@id" $personId)
+      "mainEntity" (dict "@id" $personId)
+      "primaryImageOfPage" (dict
+        "@type" "ImageObject"
+        "url" "https://notes.junghanacs.com/static/profile.jpg"
+        "width" 640
+        "height" 640))
+    }}
+  {{ else if $isBlogList }}
+    {{ $graph = $graph | append (dict
+      "@type" "CollectionPage"
+      "@id" (printf "%s#collectionpage" .Permalink)
+      "url" .Permalink
+      "name" .Title
+      "inLanguage" .Lang
+      "isPartOf" (dict "@id" $websiteId)
+      "mainEntity" (dict "@id" $blogId))
+    }}
+  {{ else if $isBlogPost }}
+    {{ $post := dict
+      "@type" "BlogPosting"
+      "@id" (printf "%s#article" .Permalink)
+      "url" .Permalink
+      "headline" .Title
+      "inLanguage" .Lang
+      "isPartOf" (dict "@id" $blogId)
+      "author" (dict "@id" $personId)
+      "publisher" (dict "@id" $personId)
+      "mainEntityOfPage" .Permalink
+      "datePublished" (.Date.Format "2006-01-02T15:04:05-07:00")
+      "dateModified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")
+    }}
+    {{ with .Description }}{{ $post = merge $post (dict "description" .) }}{{ end }}
+    {{/* 번역 관계 — .Translations(자기 제외)가 있을 때만 emit. KO-only 글은 생략. */}}
+    {{ if .Translations }}
+      {{ $t := index .Translations 0 }}
+      {{ $other := dict "@id" (printf "%s#article" $t.Permalink) "@type" "BlogPosting" "url" $t.Permalink "inLanguage" $t.Lang }}
+      {{ if eq .Lang "ko" }}
+        {{ $post = merge $post (dict "workTranslation" $other) }}
+      {{ else }}
+        {{ $post = merge $post (dict "translationOfWork" $other) }}
+      {{ end }}
+    {{ end }}
+    {{ $graph = $graph | append $post }}
+  {{ end }}
+
+  {{ $jsonld := dict "@context" "https://schema.org" "@graph" $graph }}
+  <script type="application/ld+json">{{ $jsonld | jsonify | safeJS }}</script>
+{{ end }}
