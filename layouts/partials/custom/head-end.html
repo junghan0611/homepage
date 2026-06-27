@@ -5,7 +5,7 @@
      @graph + 안정 @id. 공통 노드(Person/WebSite/Blog)는 origin fragment를
      전 언어에서 공유, 페이지 노드는 언어별 .Permalink 기반 @id.
      화이트리스트: 홈 / blog 목록 / blog 글. taxonomy·term·404 등은 제외. */}}
-{{ $origin := "https://www.junghanacs.com" }}
+{{ $origin := strings.TrimSuffix "/" .Site.BaseURL }}
 {{ $isHome := .IsHome }}
 {{ $isBlogList := and (eq .Section "blog") (eq .Kind "section") }}
 {{ $isBlogPost := and (eq .Section "blog") (eq .Kind "page") }}
