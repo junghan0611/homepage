@@ -6,12 +6,12 @@ live plan and the next concrete move.
 ## NOW — the next concrete move
 
 **Migration to `junghan0611/homepage` complete and tagged `v2026.6.24`** — repo created,
-history + doc set pushed, Netlify relinked, build green, `www.junghanacs.com` serving from
-here. The remaining moves are cleanup, not blockers:
+history + doc set pushed, Netlify relinked, build green, `junghanacs.com` (apex; `www`→301)
+serving from here. The remaining moves are cleanup, not blockers:
 
 1. **Rename the local folder** `~/repos/gh/blog` → `~/repos/gh/homepage` (GLG does this last,
    once confident — no git impact, only the working-dir name).
-2. **Verify the live cutover** — confirm a fresh deploy of `www.junghanacs.com` reflects a
+2. **Verify the live cutover** — confirm a fresh deploy of `junghanacs.com` reflects a
    commit that only exists on `junghan0611/homepage` (e.g. this doc set), proving Netlify
    builds from the new repo, not the old one.
 3. **Decide `oldorg` fate** — `junghanacs/junghanacs.github.io` is kept as a rollback safety
@@ -53,7 +53,7 @@ SSOT는 `docs/semantic-jsonld.md`. 남은 후속:
 ```bash
 git remote -v                       # origin=homepage, oldorg=junghanacs.github.io
 hugo --gc --minify                  # local prod build sanity
-curl -sI https://www.junghanacs.com | grep -i server   # Netlify serving
+curl -sI https://junghanacs.com | grep -i server       # Netlify serving (apex canonical, www→301)
 ```
 
 ## Blockers / open decisions

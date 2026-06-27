@@ -5,6 +5,25 @@ CalVer snapshots (`vYYYY.M.D[-suffix]`) of the homepage repo. Past tense — wha
 
 ## Unreleased
 
+## v2026.6.27-fix.1 — 라이브 호스트 apex `junghanacs.com` 통일
+
+### Fixes
+
+- 라이브 사이트의 3-호스트 불일치를 apex `junghanacs.com`으로 통일. 출하 직후 실측에서
+  canonical·og:url·`.Permalink`(→ JSON-LD 페이지 노드 `@id`)가 `main--junghanacs.netlify.app`
+  으로 새고, JSON-LD 공통 노드 `@id`는 `www.junghanacs.com`이라 같은 `@graph` 안에서 호스트가
+  갈라져 불변식 #2가 깨지던 것을 바로잡음.
+  - `netlify.toml`: production 빌드의 `-b ${DEPLOY_PRIME_URL}` override 제거(hugo.yaml의 고정
+    `baseURL` 사용). 동적 deploy URL은 `[context.deploy-preview]`/`[context.branch-deploy]`에만.
+  - `hugo.yaml` `baseURL`: `www.junghanacs.com` → `junghanacs.com`(apex가 정본, `www`는 301→apex).
+  - `head-end.html` `$origin`: 하드코딩 상수 → `strings.TrimSuffix "/" .Site.BaseURL` 도출
+    (production·deploy-preview 양쪽에서 공통/페이지 노드 호스트 자기일관).
+- `docs/semantic-jsonld.md`: 정본 호스트 apex 명시, Netlify baseURL override 함정 경험치 추가,
+  `$origin` 도출 방식 정정.
+
+검증: production 빌드 8페이지 전부 공통+페이지 노드 `@id`·canonical·og:url이 `junghanacs.com`,
+`netlify.app` 잔재 0, `Person.sameAs`의 가든 크로스도메인(`notes.junghanacs.com`) 보존.
+
 ## v2026.6.27 — JSON-LD 시맨틱 신원층 출하
 
 ### Features
