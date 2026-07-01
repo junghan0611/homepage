@@ -21,4 +21,5 @@ Life is always as-it-is. This one tool is all there is — nothing to add, nothi
 <br>
 {{< card link="blog" title="Blog" icon="pencil" >}}
 {{< card link="https://notes.junghanacs.com" title="Digital Garden" icon="library" >}}
+{{< card link="https://agenda.junghanacs.com" title="Live Agenda" icon="clock" subtitle="geworfen — existence-data dashboard" >}}
 {{< card link="about" title="About" icon="user" >}}

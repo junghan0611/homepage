@@ -21,4 +21,5 @@ toc: false
 <br>
 {{< card link="blog" title="블로그" icon="pencil" >}}
 {{< card link="https://notes.junghanacs.com" title="디지털 가든" icon="library" >}}
+{{< card link="https://agenda.junghanacs.com" title="라이브 어젠다" icon="clock" subtitle="geworfen — 존재 데이터 대시보드" >}}
 {{< card link="about" title="소개" icon="user" >}}
