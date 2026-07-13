@@ -58,10 +58,11 @@ curl -sI https://junghanacs.com | grep -i server       # Netlify serving (apex c
 
 ## Blockers / open decisions
 
-- **Domain timing vs garden**: `notes.junghanacs.com` (garden) still points at the
-  `junghanacs/notes.junghanacs.com` repo and is mid-migration to `junghan0611/garden`. That
-  is a *separate* Netlify site — homepage cutover does not touch it. Do not remove the
-  `junghanacs` org connection until garden's own migration lands.
+- ~~**Domain timing vs garden**~~ **해소(2026-07-13)**: 가든이 `junghan0611/garden`으로
+  이관되고 Netlify 소스도 relink됐다(`notes.junghanacs.com` 도메인은 그대로). 옛
+  `junghanacs/notes.junghanacs.com`은 "MOVED" read-only. 이에 따라 `junghanacs` 조직은
+  활성 저장소 0(MOVED/archived/fork뿐) → **`Person.sameAs`에서 조직 링크 제거**, GitHub
+  축은 `junghan0611` 하나로 일원화했다. 근거는 `docs/semantic-jsonld.md` 신원 절.
 - **Build WARN (non-blocking)**: `tabs` shortcode `items` / `defaultIndex` params are
   deprecated → use `name` on `tab` / `selected`. Content-side fix, not theme-version. Find
   and migrate the offending pages when convenient.
