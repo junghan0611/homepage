@@ -14,9 +14,10 @@ serving from here. The remaining moves are cleanup, not blockers:
 2. **Verify the live cutover** — confirm a fresh deploy of `junghanacs.com` reflects a
    commit that only exists on `junghan0611/homepage` (e.g. this doc set), proving Netlify
    builds from the new repo, not the old one.
-3. **Decide `oldorg` fate** — `junghanacs/junghanacs.github.io` is kept as a rollback safety
-   net. Archive it on GitHub once the cutover is trusted for a while; keep the `oldorg`
-   remote locally regardless.
+3. ~~**Decide `oldorg` fate**~~ **닫힘(2026-07-13)** — `junghanacs/junghanacs.github.io`는
+   GitHub에서 **archive** 했다. README.org와 repo description을 "MOVED → junghan0611/homepage
+   (같은 저자·같은 히스토리, 복사가 아니라 이관)" 공지로 갈아끼운 뒤 읽기 전용 전환.
+   `oldorg` 리모트는 로컬에 그대로 둔다 — archived 레포도 fetch는 된다.
 
 ## 포스팅 리듬 — 주 1편 (cutover 이후의 진짜 일)
 
