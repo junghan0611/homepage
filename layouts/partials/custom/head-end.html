@@ -63,6 +63,48 @@
 
   {{ $graph := slice $person $website $blog }}
 
+  {{/* 발행 자산 등록부 — 홈에서만. junghanacs 이름으로 발행되는 면의 발행 권한과
+       정본↔미러 관계를 그래프로 고정한다. Person.sameAs에 넣지 않는 이유: 이 사이트의
+       Person.sameAs 배열은 인물 프로필 URL만 담고, 이 노드들은 사이트/저작물이다
+       (docs/semantic-jsonld.md 발행 자산 등록부 절).
+       가든 @id는 가든이 emit하는 값과 동일 → 병합해도 무모순.
+       사람이 읽는 정본은 /llms.txt. */}}
+  {{ $gardenId := "https://notes.junghanacs.com/#website" }}
+  {{ if $isHome }}
+    {{ $graph = $graph | append (dict
+      "@type" "WebSite"
+      "@id" $gardenId
+      "url" "https://notes.junghanacs.com/"
+      "name" "junghanacs digital garden"
+      "description" "Canonical and latest source for the author's Denote notes — 2,200+ interconnected notes on engineering, philosophy, and contemplative practice."
+      "inLanguage" (slice "ko" "en")
+      "author" (dict "@id" $personId)
+      "publisher" (dict "@id" $personId))
+    }}
+    {{ $graph = $graph | append (dict
+      "@type" "WebSite"
+      "@id" "https://agenda.junghanacs.com/#website"
+      "url" "https://agenda.junghanacs.com/"
+      "name" "geworfen"
+      "description" "Existence-data dashboard operated by the author — org-agenda, health, and git timeline."
+      "author" (dict "@id" $personId)
+      "publisher" (dict "@id" $personId))
+    }}
+    {{/* 위키독스 미러 — 우리가 생성·소유하지만 정본이 아니다. isBasedOn이 파생 방향을
+         명시한다(HTML canonical 지시가 아니라 의미 관계). */}}
+    {{ $graph = $graph | append (dict
+      "@type" "Book"
+      "@id" "https://wikidocs.net/book/20676#book"
+      "url" "https://wikidocs.net/book/20676"
+      "name" "Digital Garden🏡 — WikiDocs mirror"
+      "description" "Generated Korean-language discovery mirror of the junghanacs digital garden. Owned and published by the author; not the canonical or latest source."
+      "inLanguage" "ko"
+      "author" (dict "@id" $personId)
+      "publisher" (dict "@id" $personId)
+      "isBasedOn" (dict "@id" $gardenId))
+    }}
+  {{ end }}
+
   {{/* 페이지 노드 — 언어별 .Permalink 기반 @id (절대 origin fragment 공유 금지) */}}
   {{ if $isHome }}
     {{ $homeDesc := or .Description .Site.Params.description }}

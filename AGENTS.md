@@ -12,11 +12,12 @@ repo and site.
 
 | Repo | Role | Site |
 |------|------|------|
-| `junghan0611/homepage` (this) | **대문 / blog** — curated, bilingual landing + posts | [www.junghanacs.com](https://www.junghanacs.com) |
+| `junghan0611/homepage` (this) | **대문 / blog** — curated, bilingual landing + posts | [junghanacs.com](https://junghanacs.com) (apex canonical; `www` → 301) |
 | [`junghan0611/garden`](https://github.com/junghan0611/garden) | **digital garden** — Quartz, raw networked notes | [notes.junghanacs.com](https://notes.junghanacs.com) |
 
-Account consolidation: both moved from the `junghanacs` org to the `junghan0611` personal
-account. One person, one account. The published **domains stay on `junghanacs.com`**
+Account consolidation: both moved from the legacy `junghanacs` account to `junghan0611`.
+(`junghanacs` is a separate GitHub **user** account, not an organization — `gh api
+users/junghanacs` → `"type": "User"`. Do not describe it as an org.) One person, one account. The published **domains stay on `junghanacs.com`**
 (bought independently of any host) — `homepage` / `garden` are only repo names, never URLs.
 
 Migration heritage: this repo's history came from `junghanacs/junghanacs.github.io` (now
