@@ -3,34 +3,24 @@
 Disposable handoff. Read at session start. `AGENTS.md` holds durable facts; this holds the
 live plan and the next concrete move.
 
-## NOW — the next concrete move
+## NOW — 기술 하네스 글쓰기의 첫 판본
 
-**Migration to `junghan0611/homepage` complete and tagged `v2026.6.24`** — repo created,
-history + doc set pushed, Netlify relinked, build green, `junghanacs.com` (apex; `www`→301)
-serving from here. The remaining moves are cleanup, not blockers:
+**Stem:** 홈페이지를 다시 글이 쌓이는 대문으로 만든다. 초반 연재는 이직 시장에서도
+GLG를 정확히 소개할 수 있도록, 삶 일반론보다 **직접 만든 AI 기술 하네스와 그 설계 판단**을
+먼저 다룬다.
 
-1. **Rename the local folder** `~/repos/gh/blog` → `~/repos/gh/homepage` (GLG does this last,
-   once confident — no git impact, only the working-dir name).
-2. **Verify the live cutover** — confirm a fresh deploy of `junghanacs.com` reflects a
-   commit that only exists on `junghan0611/homepage` (e.g. this doc set), proving Netlify
-   builds from the new repo, not the old one.
-3. ~~**Decide `oldorg` fate**~~ **닫힘(2026-07-13)** — `junghanacs/junghanacs.github.io`는
-   GitHub에서 **archive** 했다. README.org와 repo description을 "MOVED → junghan0611/homepage
-   (같은 저자·같은 히스토리, 복사가 아니라 이관)" 공지로 갈아끼운 뒤 읽기 전용 전환.
-   `oldorg` 리모트는 로컬에 그대로 둔다 — archived 레포도 fetch는 된다.
+- **바로 다음:** `~/sync/org/posts/20260804T094556--힣-글쓰기를-시작하기-전에-왜-지금-기술-하네스부터-쓰는가__autholog_blogging_career_harness_posts_writing.org`의 한국어 원본을 GLG와 대화하며 다듬는다.
+- **연재 우선순위:** (1) 이 메타 블로깅 글 — 왜 하네스부터 쓰는가 → (2) `이름 없는 군단` — 세션의 생애주기·기억·정체성 경계 → (3) `Entwurf는 모두를 지원하지 않는다` — PI 코어·ACP 레일·얇은 mux의 의도된 경계.
+- **검증:** 각 글은 가든의 어쏠로그 여러 편을 재료로 삼되, 홈페이지 본문에는 메타노트·그래프 연결을 넣지 않는 독립 에세이여야 한다. 기술 주장에는 실제 설계 선택과 그 대가를 남긴다.
+- **가드레일:** 가든을 단순 홍보하거나 기술 스택 목록으로 축소하지 않는다. 의식·인격을 증명한다고 주장하지 않으며, 세션/에이전트의 관계를 관찰과 설계의 언어로 쓴다.
 
-## 포스팅 리듬 — 주 1편 (cutover 이후의 진짜 일)
+## 포스팅 흐름 — 한국어 원본에서 영문판까지
 
-이주는 끝났다. 이제 홈페이지에 **글이 쌓일 때**다. 목표는 **매주 1편** 발행.
-
-- **작성**: 힣(GLG)이 한국어로 초안을 쓴다 → `content/blog/<DenoteID>.ko.md`.
-- **번역**: 에이전트가 영어로 옮긴다 → `content/blog/<DenoteID>.md`. 이 홈페이지는
-  bilingual(`en` 기본 / `ko`, in-tree i18n)이라 두 파일이 한 글의 두 언어 면이 된다.
-- **파일 규칙**: `<slug>.md` = 영어(default), `<slug>.ko.md` = 한국어. slug은 Denote ID
-  (`YYYYMMDDTHHMMSS`) 관례. front matter의 `title` / `description` / `date`도 언어별로 맞춘다.
-- **흐름**: 한국어 초안 → 영어 번역 → `hugo server -D`로 두 언어 면 확인 → `commit` 스킬로
-  커밋 → 발행(Netlify 자동 빌드).
-- 번역은 직역이 아니라 의미·톤을 살린 영어 면으로. 한국어 면이 원본(canonical)이다.
+- **원석과 원본:** GLG와 어쏠로그 중심으로 대화해 `~/sync/org/posts/`에 한국어 원본을 쓴다. 지금의 대화도 메타 블로깅 원석으로 보존한다.
+- **내보내기:** `doomemacs-config` 담당자가 Org → Markdown 내보내기 흐름을 마련한다. 그 전에는 `posts/` Org가 원본 SSOT다.
+- **영문판:** 한국어 본문이 닫힌 뒤, 에이전트가 의미·톤을 살린 영어판을 만든다. 영어는 직역이 아니라 같은 글의 두 번째 입구다.
+- **홈페이지 반영:** `<slug>.ko.md` = 한국어 원본, `<slug>.md` = 영어(default). front matter의 title / description / date를 언어별로 맞춘 뒤 `hugo server -D`와 production build로 확인하고 발행한다.
+- **리듬:** 주 1편을 목표로 하되, 기술 하네스 연재의 첫 세 편은 완결도와 구체성을 우선한다.
 
 ## JSON-LD 시맨틱 신원층 — 출하 완료, 후속 2건
 

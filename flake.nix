@@ -2,7 +2,7 @@
   description = "junghanacs.github.io - Hugo Homepage";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -16,7 +16,7 @@
           buildInputs = [
             pkgs.hugo
             pkgs.go
-            pkgs.nodejs_22
+            pkgs.nodejs
             pkgs.gitleaks
           ];
 

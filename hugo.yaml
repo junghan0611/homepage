@@ -75,6 +75,12 @@ menu:
     - name: Notes ↗
       weight: 4
       url: "https://notes.junghanacs.com"
+    - name: AX ↗
+      weight: 5
+      url: "https://ax.junghanacs.com"
+    - name: Agenda ↗
+      weight: 6
+      url: "https://agenda.junghanacs.com"
     - name: Search
       weight: 7
       params:
