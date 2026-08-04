@@ -90,6 +90,15 @@
       "author" (dict "@id" $personId)
       "publisher" (dict "@id" $personId))
     }}
+    {{ $graph = $graph | append (dict
+      "@type" "WebSite"
+      "@id" "https://ax.junghanacs.com/#website"
+      "url" "https://ax.junghanacs.com/"
+      "name" "AX"
+      "description" "Public evidence record for PKM-native agent engineering, read at four depths from claim through evidence to ledger."
+      "author" (dict "@id" $personId)
+      "publisher" (dict "@id" $personId))
+    }}
     {{/* 위키독스 미러 — 우리가 생성·소유하지만 정본이 아니다. isBasedOn이 파생 방향을
          명시한다(HTML canonical 지시가 아니라 의미 관계). */}}
     {{ $graph = $graph | append (dict
@@ -102,6 +111,25 @@
       "author" (dict "@id" $personId)
       "publisher" (dict "@id" $personId)
       "isBasedOn" (dict "@id" $gardenId))
+    }}
+    {{ $graph = $graph | append (dict
+      "@type" "Blog"
+      "@id" "https://wikidocs.net/blog/@junghanacs/#blog"
+      "url" "https://wikidocs.net/blog/@junghanacs/"
+      "name" "Junghanacs WikiDocs Blog"
+      "description" "Korean-language syndication and discovery blog for the author's public writing; not a canonical source."
+      "inLanguage" "ko"
+      "author" (dict "@id" $personId)
+      "publisher" (dict "@id" $personId))
+    }}
+    {{ $graph = $graph | append (dict
+      "@type" "Blog"
+      "@id" "https://junghanacs.blogspot.com/#blog"
+      "url" "https://junghanacs.blogspot.com/"
+      "name" "Junghanacs Blogger"
+      "description" "Syndication and discovery blog for the author's public writing; not a canonical source."
+      "author" (dict "@id" $personId)
+      "publisher" (dict "@id" $personId))
     }}
   {{ end }}
 

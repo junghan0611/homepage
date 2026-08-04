@@ -92,11 +92,12 @@ sameAs: [
 > 이 문서와 `AGENTS.md`가 오래 "조직"으로 불러온 것은 오기다. 결론(축을 `junghan0611`로
 > 일원화)은 그대로지만, 외부 문서에 "organization"으로 쓰지 않는다.
 
-### 발행 자산 등록부 — 홈 전용 노드 3개 (2026-07-18)
+### 발행 자산 등록부 — 홈 전용 노드 6개 (2026-08-04)
 
-위키독스 미러가 한국어 검색의 첫 입구가 되면서, **junghanacs 이름 아래 무엇을 우리가
-발행하고 그중 무엇이 정본인지**를 기계가 읽을 자리가 필요해졌다. 홈(`ProfilePage`)
-그래프에만 자산 노드를 얹는다 — 전 페이지 반복은 노이즈다.
+위키독스 미러가 한국어 검색의 첫 입구가 되고, AX·위키독스 블로그·Blogger까지 독립된
+공개면이 되면서, **junghanacs 이름 아래 무엇을 우리가 발행하고 그중 무엇이 정본인지**를
+기계가 읽을 자리가 필요해졌다. 홈(`ProfilePage`) 그래프에만 자산 노드를 얹는다 — 전 페이지
+반복은 노이즈다.
 
 용어 주의: 여기서 다루는 것은 **발행 권한(publication authority)과 출처(provenance)**다.
 schema.org `author`/`publisher`는 저작·발행 관계이지 법적 소유권 증명이 아니다. 문서와
@@ -106,11 +107,16 @@ schema.org `author`/`publisher`는 저작·발행 관계이지 법적 소유권 
 |---|---|---|
 | `WebSite` | `https://notes.junghanacs.com/#website` | 가든 — 노트의 정본·최신본 |
 | `WebSite` | `https://agenda.junghanacs.com/#website` | geworfen 대시보드 |
-| `Book` | `https://wikidocs.net/book/20676#book` | 위키독스 미러 — 소유하되 정본 아님 |
+| `WebSite` | `https://ax.junghanacs.com/#website` | AX — 깊이별 PKM-native agent engineering 공개 증거 기록 |
+| `Book` | `https://wikidocs.net/book/20676#book` | 위키독스 책 미러 — 소유하되 정본 아님 |
+| `Blog` | `https://wikidocs.net/blog/@junghanacs/#blog` | 위키독스 블로그 — 한국어 신디케이션·발견면, 정본 아님 |
+| `Blog` | `https://junghanacs.blogspot.com/#blog` | Blogger — 신디케이션·발견면, 정본 아님 |
 
-세 노드 모두 `author`/`publisher` → `#person`. **소유권은 이 역참조로 표현한다.**
-미러는 `isBasedOn → 가든 #website` 로 파생 방향을 명시한다(의미 관계지 HTML canonical
-지시가 아니다 — 가든 쪽 `WIKIDOCS_MIRROR.md`의 경계와 동일).
+여섯 노드 모두 `author`/`publisher` → `#person`. **발행 권한은 이 역참조로 표현한다.**
+위키독스 책 미러는 `isBasedOn → 가든 #website` 로 파생 방향을 명시한다(의미 관계지 HTML
+canonical 지시가 아니다 — 가든 쪽 `WIKIDOCS_MIRROR.md`의 경계와 동일). 두 블로그는 서로
+다른 원문을 싣는 신디케이션면이므로 하나의 `isBasedOn`으로 단정하지 않고, `llms.txt`에서
+정본이 아님을 같은 값으로 밝힌다.
 
 **왜 `Person.sameAs`가 아닌가.** `sameAs` 자체는 저작물에도 정당하게 쓰인다 — 가든은
 per-page `Article.sameAs`로 위키독스 미러를 가리킨다. 제약은 좁다: **이 사이트의
