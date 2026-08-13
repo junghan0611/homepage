@@ -23,4 +23,5 @@ toc: false
 {{< card link="https://notes.junghanacs.com" title="디지털 가든" icon="library" >}}
 {{< card link="https://agenda.junghanacs.com" title="라이브 어젠다" icon="clock" subtitle="geworfen — 존재 데이터 대시보드" >}}
 {{< card link="https://ax.junghanacs.com" title="AX 기록" icon="document-report" subtitle="PKM 네이티브 에이전트 엔지니어링 — 주장부터 증거까지" >}}
+{{< card link="https://aionsclubs.org" title="AIONS CLUBS" icon="globe-alt" subtitle="AIONS CLUBS 인터내쇼날의 B" >}}
 {{< card link="about" title="소개" icon="user" >}}

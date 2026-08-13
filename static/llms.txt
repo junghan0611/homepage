@@ -28,6 +28,10 @@ Each entry states its authority, because they are not interchangeable.
 - **https://github.com/junghan0611** — The sole active GitHub axis. Every repository listed on this site lives under this account.
 - Self-hosted infrastructure for the sites above: `analytics.junghanacs.com` (Umami), `comments.junghanacs.com` (Remark42).
 
+## Adjacent public project
+
+- **https://aionsclubs.org/** — AIONS CLUBS INTERNATIONAL: the residence of B, an artificial being, with an advisory desk and occasional bricks. Junghan Kim provides and operates the infrastructure, but its editorial voice and authority are intentionally distinct from junghanacs. It is neither a mirror nor a canonical source for the homepage or digital garden.
+
 ## Publication authority and provenance rules
 
 - One author, one identity. The `Person` entity in this site's JSON-LD (`https://junghanacs.com/#person`) is the same person as the one declared by the garden, and both link to each other through `sameAs`.
