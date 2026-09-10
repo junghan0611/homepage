@@ -1,5 +1,7 @@
 # SICM 책 전체 뷰잉 — 판정
 
+> **서버 모드에서 내림 (2026-09-10).** 저작이 Clay `.clj`로 정해졌고, `attribution.md` 발췌 정책(«우리 계산이 없으면 그 인용도 없다», 전문 미러 안 함)과 전권 렌더가 어긋난다. 책 전체를 사이트에 올리는 것은 CC BY-NC-SA 재배포다. `build.py`는 개인 열람 도구로만 남긴다. `./run.sh book` 없음.
+
 담당: grok-4.6 (pi, 2026-09-10). 커밋 안 함.
 산출: `book/` (`build.py` + pandoc HTML + `images/` + `style.css` 복사본).
 `proto/` 동결, 원본 org 읽기만.

@@ -29,9 +29,11 @@ Usage: ./run.sh [모드]
 모드:
   hugo    현행 Hugo 사이트              http://localhost:${HUGO_PORT}/
   stack   eval-stack 정적 면            http://localhost:${STACK_PORT}/
-  book    SICM 책 렌더 후 stack 서빙    http://localhost:${STACK_PORT}/book/
   clay    Clay 노트북 빌드 후 stack     http://localhost:${STACK_PORT}/clay/
   both    hugo(백그라운드) + stack
+
+SICM 책 전문 렌더는 서버 모드가 아니다. 개인 열람:
+  python3 dev/eval-stack/book/build.py
 
 인자 없이 부르면 번호 메뉴.
 포트가 이미 물려 있으면 트레이스백 대신 pid를 보고하고
@@ -157,10 +159,8 @@ print_stack_urls() {
 		any=1
 	fi
 	if [[ -f "${DEV_DIR}/book/preface.html" ]]; then
-		echo "  SICM 책     ${base}/book/preface.html"
+		echo "  SICM 책(개인 열람) ${base}/book/preface.html"
 		any=1
-	else
-		warn "책 HTML 없음 — ./run.sh book 으로 렌더"
 	fi
 	if [[ -f "${DEV_DIR}/clay/docs/notebooks.preface.html" ]]; then
 		echo "  Clay        ${base}/clay/docs/notebooks.preface.html"
@@ -235,20 +235,6 @@ serve_stack() {
 	serve_python "$STACK_PORT" "$DEV_DIR"
 }
 
-build_book() {
-	if [[ ! -f "${DEV_DIR}/book/build.py" ]]; then
-		error "없다: ${DEV_DIR}/book/build.py"
-		return 1
-	fi
-	info "python3 ${DEV_DIR}/book/build.py"
-	python3 "${DEV_DIR}/book/build.py"
-	if [[ -f "${DEV_DIR}/book/preface.html" ]]; then
-		success "책 HTML 준비됨"
-	else
-		warn "빌드가 끝났는데 preface.html 이 없다"
-	fi
-}
-
 build_clay() {
 	if [[ ! -f "${DEV_DIR}/clay/usage.clj" ]]; then
 		error "없다: ${DEV_DIR}/clay/usage.clj"
@@ -313,9 +299,8 @@ show_menu() {
 	echo ""
 	echo "    1) hugo     localhost:${HUGO_PORT}   현행 Hugo"
 	echo "    2) stack    localhost:${STACK_PORT}   eval-stack 정적"
-	echo "    3) book     SICM 책 렌더 + stack"
-	echo "    4) clay     Clay 노트북 빌드 + stack"
-	echo "    5) both     hugo + stack"
+	echo "    3) clay     Clay 노트북 빌드 + stack"
+	echo "    4) both     hugo + stack"
 	echo ""
 	echo "    h) help"
 	echo "    0) 종료"
@@ -328,13 +313,12 @@ dispatch() {
 	case "$mode" in
 		hugo | 1) serve_hugo ;;
 		stack | 2) serve_stack ;;
-		book | 3) build_book; serve_stack ;;
-		clay | 4) build_clay; serve_stack ;;
-		both | 5) mode_both ;;
+		clay | 3) build_clay; serve_stack ;;
+		both | 4) mode_both ;;
 		-h | --help | help | h) usage ;;
 		0 | quit | exit) return 0 ;;
 		*)
-			error "모르는 모드 '${mode}' — hugo | stack | book | clay | both"
+			error "모르는 모드 '${mode}' — hugo | stack | clay | both"
 			usage >&2
 			return 2
 			;;

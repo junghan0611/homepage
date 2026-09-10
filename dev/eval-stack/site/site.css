@@ -6,6 +6,11 @@
  *
  * proto/style.css 를 @import 해서 쓴다 — 복사하지 않는다. 복사하면 드리프트한다.
  * 그 파일이 이미 WebTUI(@webtui/css@0.1.9)와 catppuccin 테마를 불러온다.
+ *
+ * 읽기 품질 (2026-09-10): Clay 산출(Bootswatch Cosmo + Source Sans 16/24,
+ * 본문폭 ~666px, h1 ~30px)의 *읽기 리듬*을 가져오고, 색·크롬은 WebTUI/
+ * Catppuccin 에 둔다. Clay CSS 전체를 추출하지 않는다 — 그건 남의 룩이다.
+ * 산문은 sans + 한글 스택, 내비/브랜드는 모노스페이스.
  */
 
 @import url("../proto/style.css");
@@ -18,9 +23,27 @@
  * 코드에는 맞지만 한국어·영어 산문에서는 단어를 아무 데서나 자른다.
  * 셸은 산문을 담으므로 되돌린다. 코드/셀은 proto 규칙이 계속 관장한다. */
 html, body { word-break: normal; }
-.prose, .post-body, .post-summary, .hero-lede, .page-lede, .card-sub {
+.prose, .post-body, .post-summary, .hero-lede, .page-lede, .card-sub,
+.hero-bullets, .post-title, .page-title, .hero-title, .section-title {
   overflow-wrap: anywhere;
   word-break: keep-all;   /* 한국어: 어절 단위로 끊는다 */
+}
+
+/* ── 읽기 면: Clay 가 주던 리듬, 우리 미학 ─────────────────────────
+ * Clay 실측 (Chrome 151, preface.html): body Source Sans 16px/24px(1.5),
+ * h1 29.6px, 본문폭 666px, 코드 SFMono 14px. 사이트 실측: 전면 monospace
+ * 16px/20.8px(1.3), h1=본문, 본문폭 720px. 한글 글리프는 모노 폴백.
+ * 산문만 sans 로 올리고 행간을 1.7 로 연다. 색은 Catppuccin 변수. */
+:root {
+  --read-font: ui-sans-serif, system-ui, "Noto Sans KR", "Noto Sans CJK KR",
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --read-measure: 42rem; /* Clay 본문 ~666px 에 맞춤 */
+  --read-leading: 1.7;
+}
+.hero-title, .page-title, .post-title, .section-title,
+.hero-lede, .page-lede, .hero-bullets, .post-summary,
+.post-body, .prose, .card-title, .card-sub {
+  font-family: var(--read-font);
 }
 
 body {
@@ -108,32 +131,43 @@ body {
 /* ── 본문 틀 ──────────────────────────────────────────────────────── */
 .site-main {
   flex: 1;
-  max-width: 90ch;
+  max-width: var(--read-measure);
   width: 100%;
   margin: 0 auto;
-  padding: 1lh 2ch 2lh;
+  padding: 1.5rem 2ch 2.5rem;
 }
 
 .page-title, .hero-title {
   color: var(--green);
   font-weight: 700;
-  margin-bottom: 0.3lh;
+  font-size: 1.85em;   /* Clay h1 ~29.6px at 16px */
+  line-height: 1.25;
+  margin-bottom: 0.4em;
 }
-.page-title::before, .hero-title::before {
-  content: "#+title: ";
-  color: var(--overlay1);
-  font-weight: 400;
+/* #+title: 접두는 proto 문서면의 것. 사이트 셸은 hextra 식 제목. */
+.section-title {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.25em;
+  line-height: 1.3;
+  margin: 1.5em 0 0.5em;
 }
-.section-title { color: var(--text); font-weight: 700; margin: 1.5lh 0 0.5lh; }
-.section-title::before { content: "* "; color: var(--overlay1); }
+.section-title::before { content: "* "; color: var(--overlay1); font-family: monospace; }
 
-.page-lede, .hero-lede { color: var(--subtext0); margin: 0.5lh 0 1lh; }
+.page-lede, .hero-lede {
+  color: var(--subtext0);
+  margin: 0.5em 0 1em;
+  line-height: var(--read-leading);
+}
 
 /* ── 대문 히어로 ──────────────────────────────────────────────────── */
-.hero { margin-bottom: 1lh; }
-.hero-bullets { list-style: none; margin: 0.5lh 0; padding: 0; }
-.hero-bullets li { color: var(--subtext0); }
-.hero-bullets li::before { content: "- "; color: var(--overlay1); }
+.hero { margin-bottom: 1.5em; }
+.hero-bullets { list-style: none; margin: 0.5em 0; padding: 0; }
+.hero-bullets li {
+  color: var(--subtext0);
+  line-height: var(--read-leading);
+}
+.hero-bullets li::before { content: "- "; color: var(--overlay1); font-family: monospace; }
 
 /* ── 카드 격자 (hextra {{< card >}} 대응물) ──────────────────────── */
 .card-grid {
@@ -181,17 +215,35 @@ body {
 .tag::before { content: ":"; color: var(--overlay1); }
 .tag::after  { content: ":"; color: var(--overlay1); }
 
-.post-title { color: var(--text); font-weight: 700; margin: 0.2lh 0; }
+.post-title {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.25em;
+  line-height: 1.3;
+  margin: 0.2em 0;
+}
 .post-title a { color: inherit; text-decoration: none; }
 .post-title a:hover { color: var(--green); }
 .post-summary { color: var(--subtext0); margin: 0.2lh 0; }
 .read-more { color: var(--green); text-decoration: none; font-size: 0.9em; }
 
 /* ── 글 본문 ──────────────────────────────────────────────────────── */
-.post .post-title { color: var(--green); }
-.post .post-title::before { content: "#+title: "; color: var(--overlay1); font-weight: 400; }
-.post-body, .prose { color: var(--subtext0); margin-top: 1lh; line-height: 1.6; }
-.post-body p, .prose p { margin-bottom: 0.7lh; }
+.post .post-title {
+  color: var(--green);
+  font-size: 1.85em;
+  line-height: 1.25;
+}
+.post-body, .prose {
+  color: var(--subtext0);
+  margin-top: 1.2em;
+  line-height: var(--read-leading);
+}
+.post-body p, .prose p,
+.hero-lede, .page-lede, .post-summary, .card-sub, .hero-bullets li {
+  font-family: var(--read-font);
+  line-height: var(--read-leading);
+}
+.post-body p, .prose p { margin-bottom: 0.9em; }
 .post-back { margin-top: 1.5lh; }
 .post-back a { color: var(--overlay1); text-decoration: none; }
 .post-back a:hover { color: var(--text); }
