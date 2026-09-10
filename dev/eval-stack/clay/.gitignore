@@ -1,0 +1,4 @@
+# Clay 산출물 — `clj -M usage.clj` 로 재생성된다. 698KB 단일 HTML 이라 커밋하지 않는다.
+docs/
+docs-look/
+.cpcache/
