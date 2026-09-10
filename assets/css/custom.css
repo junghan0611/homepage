@@ -82,6 +82,15 @@ html,
 /* } */
 
 
+/* 한글 행간 보정 — Tailwind의 text-* 페어드 line-height(예: text-xl → 28px/20px = 1.4)는
+   라틴 x-height 기준이라 한글 완성형 음절의 시각적 밀도엔 빡빡하다. hero subtitle(`p.not-prose`
+   — Tailwind Typography 리셋이라 prose 기본 leading을 안 받음)과 feature-card 본문에서
+   실측 확인(2026-09-10, GLG 지적). 테마를 벤더링하지 않고 이 오버라이드에서만 :lang(ko)로 편다. */
+:lang(ko) p.not-prose,
+:lang(ko) .hextra-feature-card p {
+  line-height: 1.75;
+}
+
 .sidenote {
     font-size: 80%;
     position: relative;
