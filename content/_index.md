@@ -8,13 +8,18 @@ toc: false
 
 ## Authology: One Life, One Tool
 
-- Authological Thinking
-- Productivity & Digital Minimalism
-- Hyper-focus & Meaningful Life
-- Personalized AI
-- One Shot Publishing
+The archival discipline for an age in which everyone is an author — how a self is
+constituted through the traces it leaves: journals, bibliographies, commits, and
+writing done alongside AI.
 
-Life is always as-it-is. This one tool is all there is — nothing to add, nothing to remove.
+Life is always just so. This one — nothing to add, nothing to take away.
+
+> [!NOTE] Under construction
+>
+> This site is being rebuilt. The next version keeps Org as the single source and adds
+> pages that **evaluate**: Lisp forms running in the browser, formulas that are computed
+> rather than typeset, and figures redrawn from the computation itself. Terminal-shaped,
+> all text. Coming soon.
 
 ## Explore
 
