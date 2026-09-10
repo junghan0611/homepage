@@ -2,3 +2,4 @@
 # 소스가 이 리포 밖이라 Netlify 빌드에서는 재생성이 불가능하다 (issue #1 열린 결정).
 *.html
 images/
+.tmp.org

@@ -1,0 +1,112 @@
+/* site/read.css — 사이트 셸과 Clay 산출이 같이 쓰는 읽기 면.
+ *
+ * 서체: 전부 모노. GLG Mono (라틴) + 한글 모노 폴백.
+ * homepage assets/css/custom.css 는 폴백이 ui-sans-serif 라
+ * 한글이 비례폭으로 떨어진다. 여기는 그 함정을 닫는다.
+ *
+ * 경로: 이 파일을 /site/read.css 로 서빙할 때 폰트는 /site/fonts/…
+ * (site/fonts → ../../../static/fonts 심볼릭).
+ */
+
+@font-face {
+  font-family: "GLG Mono";
+  src: url("/site/fonts/GLG-Mono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GLG Mono";
+  src: url("/site/fonts/GLG-Mono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GLG Mono";
+  src: url("/site/fonts/GLG-Mono-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GLG Mono";
+  src: url("/site/fonts/GLG-Mono-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* 한글 글리프는 GLG Mono 에 없다. 비례폭(Noto Sans CJK)으로 떨어지면
+   * 라틴만 모노인 상태가 된다. Sarasa Fixed K 가 2:1 폭으로 짝이 맞음. */
+  --read-font: "GLG Mono", "Sarasa Fixed K", "D2Coding", "Noto Sans Mono CJK KR",
+    ui-monospace, monospace;
+  --read-measure: 70ch; /* 모노 재측정 후 맞춤. sans 42rem 은 폐기 */
+  --read-leading: 1.6;
+}
+
+html, body, :host {
+  font-family: var(--read-font) !important;
+  word-break: normal;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, li, blockquote, td, th, label,
+.hero-title, .page-title, .post-title, .section-title,
+.hero-lede, .page-lede, .hero-bullets, .post-summary,
+.post-body, .prose, .card-title, .card-sub,
+.container, .source-clojure, .printed-clojure {
+  font-family: var(--read-font) !important;
+}
+
+.prose, .post-body, .post-summary, .hero-lede, .page-lede, .card-sub,
+.hero-bullets, .post-title, .page-title, .hero-title, .section-title,
+p, li {
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.hero-title, .page-title, .post .post-title, h1 {
+  font-size: 1.85em;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+h2, .section-title, .post-title {
+  font-size: 1.25em;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+p, .post-body, .prose, .hero-lede, .page-lede, .post-summary, li {
+  line-height: var(--read-leading);
+}
+
+/* Clay Bootswatch 를 누른다 — 색은 Catppuccin 변수, 폭은 읽기 면 */
+html[data-webtui-theme] body {
+  background: var(--base, #1e1e2e) !important;
+  color: var(--text, #cdd6f4) !important;
+  max-width: none;
+  margin: 0;
+}
+html[data-webtui-theme] .container {
+  max-width: var(--read-measure);
+  margin: 1.5rem auto 2.5rem;
+  padding: 0 2ch;
+}
+html[data-webtui-theme] h1 {
+  color: var(--green, #a6e3a1);
+}
+html[data-webtui-theme] .bg-light,
+html[data-webtui-theme] pre,
+html[data-webtui-theme] code {
+  background: var(--surface0, #313244) !important;
+  color: var(--text, #cdd6f4) !important;
+  font-family: var(--read-font) !important;
+}
+
+/* KaTeX 는 자체 세리프. 모노 본문 옆 이질감은 실측만 하고 결정은 GLG. */
+.katex, .katex-display {
+  font-size: 1.05em;
+}

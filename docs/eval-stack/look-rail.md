@@ -115,9 +115,47 @@ sans를 **한 단계 더 특정**해야 했다. 제목만 바뀌고 본문이 �
 
 ---
 
-## 남은 것 (이 레일이 안 닫는 것)
+## 6. 전부 모노 — GLG Mono (2026-09-10 2홉)
 
-- Clay 페이지 자체는 여전히 Cosmo. 두 면이 *완전히* 한 물건이 되려면 Clay
-  `:post-process`로 같은 `--read-*` 토큰을 심어야 한다. 노트북 동결이라 오늘은
-  사이트 셸만.
-- hextra 카드/목록의 세부(배지 간격)는 손대지 않았다. 리듬이 우선이었다.
+산문 sans 절충 폐기. GLG: «나는 모노스페이스가 편하다.»
+
+**함정:** `fc-match "GLG Mono:lang=ko"` → Noto Sans CJK KR (비례폭).
+`font-family: "GLG Mono", monospace` 만 쓰면 한글이 조용히 비례로 떨어진다.
+homepage `assets/css/custom.css:41` 이 그 패턴이다 (`ui-sans-serif` 폴백).
+
+**스택 (실측 후 채택):** `"GLG Mono", "Sarasa Fixed K", "D2Coding", "Noto Sans Mono CJK KR", monospace`
+
+폭 측정 16px `[실측 KO 글, Chrome 151]`:
+
+| 글자 | px | 비고 |
+|---|---|---|
+| `M` / `0` | 8.45 | GLG Mono 모노 |
+| `가` | 16.91 | **2.00 × M** — Sarasa Fixed K 2:1. 비례폭이면 이 비가 안 나온다 |
+
+**로드:** `document.fonts.check('16px "GLG Mono"') === true`.
+`GLG-Mono-Regular.woff2` transferSize 2 644 320. `/site/fonts/` → `static/fonts` 심볼릭.
+
+**리듬 재측정** (모노는 sans보다 글자폭이 넓다. 42rem=672px 폐기 → **70ch**):
+
+| | KO 글 | EN 대문 | Clay preface |
+|---|---|---|---|
+| 본문 | 16 / 25.6 (1.6) | 같음 | 같음 |
+| h1 | 29.6 / 37 | 같음 | 같음 |
+| 폭 | 591px (70ch) | 591px | 591px `.container` |
+| 배경 | mocha `#1e1e2e` | 같음 | **같음** (Cosmo 흰 배경 눌림) |
+| 서체 | GLG Mono 스택 | 같음 | 같음 |
+
+70ch × 8.45px = 591.5px. 66ch면 557px로 좁다. 70ch를 유지.
+행간 1.6: 한글 keep-all 본문에서 1.5는 붙고 1.7은 헐거웠던 중간. 1.6으로 닫음.
+
+**한 물건:** Clay `:post-process`가 `/site/read.css` + webtui/catppuccin 을 싣고
+`data-webtui-theme=catppuccin-mocha`. 본문·h1·폭·색이 사이트와 같다.
+`notebooks/preface.clj` 내용은 안 바꿈.
+
+**KaTeX** `[실측 Clay preface]`: `KaTeX_Main, Times New Roman, serif` 17.64px.
+모노 본문 16px 옆에 세리프 수식. 이질감은 있다. **그대로 둘지 손댈지는 GLG.**
+
+**11MB 웹폰트:** Regular+Bold+Italic+BoldItalic ≈ 10.98MB. 로컬은 블로커 아님.
+발행 때 서브셋 필요.
+
+심볼릭: `dev/eval-stack/site/fonts` → `../../../static/fonts`.

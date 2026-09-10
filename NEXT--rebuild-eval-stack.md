@@ -65,7 +65,11 @@ GLG 가 처음부터 지목한 자리다: *"hextra 스타일로 webtui css 를 �
 ## 열린 결정
 
 **결정났음** — 저작은 `.clj`(결정 5) · kindly 어휘 채택 + Clay 저작기까지(결정 1) ·
-사이트 셸은 Hugo 유지(유력, GLG 확인 대기).
+사이트 셸은 Hugo 유지(유력, GLG 확인 대기) · **수식 엔진은 KaTeX 하나**(2026-09-10,
+GLG «katex로 하면 된다. 하나만 하자»). MathJax 는 후보에서 내림 — Clay 산출과 현행
+hextra(`math: true`)가 이미 둘 다 KaTeX 라 바꿀 근거가 없다. 다시 열려면 «Emmy `->TeX`
+가 뱉은 표현을 KaTeX 가 못 조판한다»는 실측이 선행 조건이다. · **서체는 전부 모노**
+(GLG Mono + 한글 모노 fallback) — 산문 sans 절충은 폐기.
 
 **남은 것**
 1. **껍데기 결합 방식** — Clay 산출을 Hugo `static/` 에 그냥 둘지, soupault 후처리로 nav ·
