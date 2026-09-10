@@ -172,3 +172,23 @@ homepage `assets/css/custom.css:41` 이 그 패턴이다 (`ui-sans-serif` 폴백
   KO 마지막 줄 한 글자 안 바꿈. `[실측]`
 - 토글: `[ EN | KO ]` `[ lt | dk ]` 각 칸 33.8px 동일 (2글자 모노).
   KO 면에서 KO=current, dk=pressed. `[실측 /site/ko/]`
+
+## 8. 격자 · dev 바 (2026-09-10 4홉)
+
+칸이 안 맞던 원인: `.seg-bar` 폭 없음(`|` 자연폭) + `height: 1.5lh`와 `line-height: 1` 혼용.
+조치: 단위를 `ch`만. 셀 4ch, 막대 1ch, 높이 2.5ch.
+
+실측 EN/KO 대문, 1ch=8.45px `[실측]`:
+
+| | 폭 | 높이 | top |
+|---|---|---|---|
+| EN\|KO | 78px (4+1+4 ch + 테두리 2px) | 21.11 (2.5ch) | 52.88 |
+| lt\|dk | 78px | 21.11 | 52.88 |
+| 셀 | 33.78 = **4.00ch** | 19.11 | |
+| \| | 8.44 = **1.00ch** | 19.11 | |
+
+두 `.seg` 가 같은 top·같은 박스. 안쪽은 ch 격자.
+
+**dev 바:** footer 아래 `← eval-stack`. 본문 nav 아님.
+`_generate.py` `DEV_BAR = True` — 발행 시 False. `SLOT: DEV_BAR` 주석.
+실측 href: EN `/` → `../`, KO `/site/ko/` → `../../`.

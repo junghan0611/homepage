@@ -20,6 +20,8 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 LANGS = ("en", "ko")
+# SLOT: DEV_BAR — 발행 시 False. 개발용 입구 링크만. 본문 nav 에 넣지 않는다.
+DEV_BAR = True
 
 # ─────────────────────────────────────────────────────────────────────
 # STRINGS ↔ homepage/i18n/{en,ko}.yaml
@@ -295,6 +297,17 @@ def nav(lang, route):
 """
 
 
+def dev_bar(lang, route):
+	"""발행면 크롬 밖. DEV_BAR=False 면 빈 문자열."""
+	if not DEV_BAR:
+		return ""
+	gate = "../" * depth_of(lang, route) + "../"
+	return f"""<!-- SLOT: DEV_BAR — 발행 시 _generate.py 의 DEV_BAR = False.
+     본문 nav 가 아니다. eval-stack 입구로만 돌아간다. -->
+<p class="dev-bar"><a href="{gate}">← eval-stack</a></p>
+"""
+
+
 def footer(lang, route):
 	s = STRINGS[lang]
 	links = []
@@ -314,7 +327,7 @@ def footer(lang, route):
   </div>
   <a class="to-top" href="#top">{s['backToTop']}</a>
 </footer>
-</body>
+{dev_bar(lang, route)}</body>
 </html>
 """
 

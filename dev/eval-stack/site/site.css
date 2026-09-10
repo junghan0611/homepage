@@ -97,29 +97,54 @@ body {
 .site-menu a[aria-current="page"]::before { content: "["; color: var(--overlay1); }
 .site-menu a[aria-current="page"]::after  { content: "]"; color: var(--overlay1); }
 
-.site-tools { margin-left: auto; display: flex; gap: 1ch; align-items: baseline; }
-/* [ EN | KO ] [ lt | dk ] — 라벨 전부 2글자라 모노 격자에서 폭이 같다. */
+.site-tools {
+  margin-left: auto;
+  display: flex;
+  gap: 1ch;
+  align-items: center;
+  flex-shrink: 0;
+}
+/* 격자: 4ch + 1ch + 4ch. 단위는 ch 만. | 자연폭·lh 혼용을 버린다. */
 .seg {
   display: inline-flex;
-  align-items: baseline;
+  align-items: stretch;
+  box-sizing: border-box;
+  height: 2.5ch;
   border: 1px solid var(--surface2);
-  line-height: 1lh;
   font-family: var(--read-font);
+  font-size: 1em;
 }
 .seg a, .seg button {
-  display: inline-block;
-  min-width: 4ch;
-  padding: 0 0.5ch;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 4ch;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   color: var(--subtext0);
   background: transparent;
   border: 0;
+  border-radius: 0;
   font: inherit;
+  font-size: inherit;
+  line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  line-height: 1lh;
+  appearance: none;
+  -webkit-appearance: none;
 }
-.seg-bar { color: var(--overlay1); user-select: none; }
+.seg-bar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 1ch;
+  color: var(--overlay1);
+  user-select: none;
+  line-height: 1;
+}
 .seg a:hover, .seg button:hover { color: var(--text); }
 .seg a[aria-current="page"],
 .seg button[aria-pressed="true"] {
@@ -286,6 +311,17 @@ body {
 }
 .to-top { text-decoration: none; }
 .to-top:hover { color: var(--text); }
+
+/* SLOT: DEV_BAR — 발행 크롬 아님. 점선으로 구분. */
+.dev-bar {
+  max-width: var(--read-measure);
+  margin: 0 auto;
+  padding: 0.5em 2ch 1.2em;
+  font-size: 0.85em;
+  border-top: 1px dashed var(--surface2);
+}
+.dev-bar a { color: var(--overlay1); text-decoration: none; }
+.dev-bar a:hover { color: var(--text); }
 
 /* ── 좁은 화면 ────────────────────────────────────────────────────── */
 @media (max-width: 60ch) {
