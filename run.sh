@@ -139,6 +139,10 @@ print_stack_urls() {
 	local base="http://localhost:${port}"
 	local any=0
 	echo ""
+	if [[ -f "${DEV_DIR}/index.html" ]]; then
+		echo "  입구        ${base}/"
+		any=1
+	fi
 	if [[ -f "${DEV_DIR}/site/index.html" ]]; then
 		echo "  새 스택      ${base}/site/"
 		echo "    ko        ${base}/site/ko/"
