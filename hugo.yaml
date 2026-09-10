@@ -26,12 +26,12 @@ languages:
     languageName: English
     weight: 1
     languageCode: en
-    title: "#authology @junghanacs"
+    title: "Authology"
   ko:
     languageName: 한국어
     weight: 2
     languageCode: ko
-    title: "#어쏠로지 @junghanacs"
+    title: "어쏠로지"
 
 markup:
   goldmark:
@@ -60,6 +60,10 @@ menu:
     #   name: Docs
     #   pageRef: /docs
     #   weight: 1
+    - identifier: projects
+      name: Projects
+      pageRef: /projects
+      weight: 1
     - identifier: blog
       name: Blog
       pageRef: /blog
@@ -81,30 +85,30 @@ menu:
     - name: Agenda ↗
       weight: 6
       url: "https://agenda.junghanacs.com"
-    - name: Search
-      weight: 7
-      params:
-        type: search
+   # - name: Search
+   #   weight: 7
+   #   params:
+   #     type: search
     # - name: Bluesky ↗
     #   weight: 8
     #   url: "https://bsky.app/profile/junghanacs.bsky.social"
     #   params:
     #     icon: bluesky
-    - name: Threads ↗
-      weight: 7
-      url: "https://www.threads.net/@junghanacs"
-      params:
-        icon: threads
     - name: GitHub
-      weight: 8
+      weight: 7
       url: "https://github.com/junghan0611"
       params:
         icon: github
     - name: LinkedIn
-      weight: 9
+      weight: 8
       url: "https://www.linkedin.com/in/junghan-kim-1489a4306"
       params:
         icon: linkedin
+    - name: Threads ↗
+      weight: 9
+      url: "https://www.threads.net/@junghanacs"
+      params:
+        icon: threads
     # - name: Allmylinks
     #   weight: 8
     #   url: "https://allmylinks.com/junghanacs"
@@ -134,9 +138,9 @@ menu:
       - name: Notes ↗
         weight: 2
         url: "https://notes.junghanacs.com"
-      - name: All Links ↗
-        weight: 8
-        url: "https://allmylinks.com/junghanacs"
+     # - name: All Links ↗
+     #   weight: 8
+     #   url: "https://allmylinks.com/junghanacs"
         # - name: Threads ↗
         #   weight: 4
         #   url: "https://www.threads.net/@junghanacs"
