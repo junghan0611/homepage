@@ -98,17 +98,34 @@ body {
 .site-menu a[aria-current="page"]::after  { content: "]"; color: var(--overlay1); }
 
 .site-tools { margin-left: auto; display: flex; gap: 1ch; align-items: baseline; }
-.lang-switch, .theme-toggle {
+/* [ EN | KO ] [ lt | dk ] — 라벨 전부 2글자라 모노 격자에서 폭이 같다. */
+.seg {
+  display: inline-flex;
+  align-items: baseline;
+  border: 1px solid var(--surface2);
+  line-height: 1lh;
+  font-family: var(--read-font);
+}
+.seg a, .seg button {
+  display: inline-block;
+  min-width: 4ch;
+  padding: 0 0.5ch;
+  text-align: center;
   color: var(--subtext0);
   background: transparent;
-  border: 1px solid var(--surface2);
-  padding: 0 0.8ch;
+  border: 0;
   font: inherit;
-  cursor: pointer;
   text-decoration: none;
+  cursor: pointer;
   line-height: 1lh;
 }
-.lang-switch:hover, .theme-toggle:hover { color: var(--text); border-color: var(--overlay1); }
+.seg-bar { color: var(--overlay1); user-select: none; }
+.seg a:hover, .seg button:hover { color: var(--text); }
+.seg a[aria-current="page"],
+.seg button[aria-pressed="true"] {
+  color: var(--green);
+  background: var(--surface0);
+}
 
 /* ── 본문 틀 ──────────────────────────────────────────────────────── */
 .site-main {
@@ -136,20 +153,33 @@ body {
 }
 .section-title::before { content: "* "; color: var(--overlay1); font-family: monospace; }
 
-.page-lede, .hero-lede {
+.page-lede, .hero-lede, .hero-def {
   color: var(--subtext0);
   margin: 0.5em 0 1em;
   line-height: var(--read-leading);
 }
+.hero-lede { color: var(--text); }
 
 /* ── 대문 히어로 ──────────────────────────────────────────────────── */
 .hero { margin-bottom: 1.5em; }
-.hero-bullets { list-style: none; margin: 0.5em 0; padding: 0; }
-.hero-bullets li {
+.callout {
+  border-left: 2px solid var(--yellow);
+  padding: 0.6em 1.5ch;
+  margin: 1.2em 0;
+  background: var(--surface0);
+}
+.callout-title {
+  display: block;
+  color: var(--yellow);
+  font-weight: 700;
+  margin-bottom: 0.3em;
+}
+.callout-title::before { content: "[!] "; color: var(--overlay1); }
+.callout p {
+  margin: 0;
   color: var(--subtext0);
   line-height: var(--read-leading);
 }
-.hero-bullets li::before { content: "- "; color: var(--overlay1); font-family: monospace; }
 
 /* ── 카드 격자 (hextra {{< card >}} 대응물) ──────────────────────── */
 .card-grid {

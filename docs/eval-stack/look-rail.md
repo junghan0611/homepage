@@ -152,10 +152,23 @@ homepage `assets/css/custom.css:41` 이 그 패턴이다 (`ui-sans-serif` 폴백
 `data-webtui-theme=catppuccin-mocha`. 본문·h1·폭·색이 사이트와 같다.
 `notebooks/preface.clj` 내용은 안 바꿈.
 
-**KaTeX** `[실측 Clay preface]`: `KaTeX_Main, Times New Roman, serif` 17.64px.
-모노 본문 16px 옆에 세리프 수식. 이질감은 있다. **그대로 둘지 손댈지는 GLG.**
+**KaTeX 확정 (GLG 2026-09-10: «katex로 하면 된다. 하나만 하자.»).** MathJax는 후보에서 내림. 엔진을 늘리지 않는다. 폰트는 안 건드렸다.
+
+실측 Clay preface, mocha 본문 옆 `[실측]`:
+- 인라인 `.katex`: **KaTeX_Main** 17.64px / 21.2px, 색 `rgb(205, 214, 244)` — 본문과 같은 잉크.
+- 디스플레이 수식은 본문 폭(528px) 안에 앉는다. 14곳 조판.
+- 본문 GLG Mono 16px 모노 옆에 세리프 수식이 조금 크고, 획이 다르다. 색이 같아서 같은 문단의 다른 소리로 읽힌다. 깨지거나 칸 밖으로 넘치지는 않았다.
 
 **11MB 웹폰트:** Regular+Bold+Italic+BoldItalic ≈ 10.98MB. 로컬은 블로커 아님.
 발행 때 서브셋 필요.
 
 심볼릭: `dev/eval-stack/site/fonts` → `../../../static/fonts`.
+
+## 7. 입구 · 히어로 · 토글 (2026-09-10 3홉)
+
+- `dev/eval-stack/index.html` — `localhost:2342/` 개발 입구. site / clay / proto / book.
+  clay·book 은 HEAD 로 없으면 링크를 내지 않는다. `[실측: clay·book 있을 때 링크 13개, missing 0]`
+- 히어로: `_index.md` / `_index.ko.md` (6febb5c) 그대로. 불릿 0.
+  KO 마지막 줄 한 글자 안 바꿈. `[실측]`
+- 토글: `[ EN | KO ]` `[ lt | dk ]` 각 칸 33.8px 동일 (2글자 모노).
+  KO 면에서 KO=current, dk=pressed. `[실측 /site/ko/]`

@@ -123,19 +123,30 @@ HOME_CARDS = [
 ]
 
 HOME_HERO = {
+	# 정본: homepage/content/_index.md · _index.ko.md (커밋 6febb5c).
+	# 한국어 마지막 줄은 한 글자도 바꾸지 않는다.
 	"en": {
 		"h": "Authology: One Life, One Tool",
-		"bullets": ["Authological Thinking", "Productivity & Digital Minimalism",
-		            "Hyper-focus & Meaningful Life", "Personalized AI", "One Shot Publishing"],
-		"lede": "Life is always as-it-is. This one tool is all there is — "
-		        "nothing to add, nothing to remove.",
+		"def": "The archival discipline for an age in which everyone is an author — how a self is "
+		       "constituted through the traces it leaves: journals, bibliographies, commits, and "
+		       "writing done alongside AI.",
+		"last": "Life is always just so. This one — nothing to add, nothing to take away.",
+		"noteTitle": "Under construction",
+		"noteBody": "This site is being rebuilt. The next version keeps Org as the single source and adds "
+		            "pages that evaluate: Lisp forms running in the browser, formulas that are computed "
+		            "rather than typeset, and figures redrawn from the computation itself. Terminal-shaped, "
+		            "all text. Coming soon.",
 		"explore": "Explore",
 	},
 	"ko": {
 		"h": "어쏠로지: 원라이프 인생도구",
-		"bullets": ["어쏠로지컬 사유", "생산성과 디지털 미니멀리즘",
-		            "초집중과 의미 있는 삶", "개인화된 AI", "원샷 퍼블리싱"],
-		"lede": "삶은 언제나 여여(如如)하다. 이 녀석 하나 뿐이지만 더할 것도 뺄 것도 없다.",
+		"def": "모두가 저자인 시대의 기록학. 남긴 자취로 자아가 어떻게 세워지는가를 다룬다 — "
+		       "저널, 서지, 커밋, 그리고 AI와 나란히 쓴 글.",
+		"last": "삶은 언제나 여여(如如)하다. 이 녀석 하나 뿐이지만 더할 것도 뺄 것도 없다.",
+		"noteTitle": "공사중",
+		"noteBody": "이 사이트는 새로 짓는 중이다. 다음 판본은 Org를 원본으로 그대로 두고 평가되는 "
+		            "페이지를 더한다 — 브라우저 안에서 도는 Lisp, 조판이 아니라 계산되는 수식, 그 계산으로 "
+		            "다시 그린 그림. 터미널 모양이고 전부 텍스트다. 곧 온다.",
 		"explore": "둘러보기",
 	},
 }
@@ -261,7 +272,10 @@ def nav(lang, route):
 			href, ext = rel(lang, route, lang, m["route"]), ""
 		cur = ' aria-current="page"' if m.get("route") == route and route else ""
 		items.append(f'      <li><a href="{href}"{ext}{cur}>{m["label"][lang]}</a></li>')
-	twin = rel(lang, route, other(lang), route)
+	en_href = rel(lang, route, "en", route)
+	ko_href = rel(lang, route, "ko", route)
+	en_cur = ' aria-current="page"' if lang == "en" else ""
+	ko_cur = ' aria-current="page"' if lang == "ko" else ""
 	return f"""<header class="site-head">
   <nav class="site-nav" aria-label="main">
     <a class="site-brand" href="{home}">{s['siteTitle']}</a>
@@ -269,11 +283,12 @@ def nav(lang, route):
 {chr(10).join(items)}
     </ul>
     <div class="site-tools">
-      <a class="lang-switch" href="{twin}" hreflang="{other(lang)}"
-         lang="{other(lang)}" title="{s['changeLanguage']}">{s['otherLangName']}</a>
-      <button class="theme-toggle" type="button"
-              title="{s['changeTheme']}" aria-label="{s['changeTheme']}"
-              data-label-light="{s['light']}" data-label-dark="{s['dark']}"></button>
+      <nav class="seg" aria-label="{s['changeLanguage']}">
+        <a href="{en_href}" hreflang="en" lang="en"{en_cur}>EN</a><span class="seg-bar" aria-hidden="true">|</span><a href="{ko_href}" hreflang="ko" lang="ko"{ko_cur}>KO</a>
+      </nav>
+      <div class="seg" role="group" aria-label="{s['changeTheme']}">
+        <button type="button" class="theme-btn" data-theme="catppuccin-latte" aria-pressed="false">lt</button><span class="seg-bar" aria-hidden="true">|</span><button type="button" class="theme-btn" data-theme="catppuccin-mocha" aria-pressed="false">dk</button>
+      </div>
     </div>
   </nav>
 </header>
@@ -322,7 +337,6 @@ def card(href, title, sub, ext):
 
 def render_home(lang):
 	s, h = STRINGS[lang], HOME_HERO[lang]
-	bullets = "\n".join(f"    <li>{b}</li>" for b in h["bullets"])
 	cards = []
 	for c in HOME_CARDS:
 		if "url" in c:
@@ -331,10 +345,12 @@ def render_home(lang):
 			cards.append(card(rel(lang, "", lang, c["route"]), c["title"][lang], c["sub"][lang], False))
 	main = f"""<section class="hero">
   <h1 class="hero-title">{h['h']}</h1>
-  <ul class="hero-bullets">
-{bullets}
-  </ul>
-  <p class="hero-lede">{h['lede']}</p>
+  <p class="hero-def">{h['def']}</p>
+  <p class="hero-lede">{h['last']}</p>
+  <aside class="callout" role="note">
+    <strong class="callout-title">{h['noteTitle']}</strong>
+    <p>{h['noteBody']}</p>
+  </aside>
 </section>
 
 <section class="cards-section">

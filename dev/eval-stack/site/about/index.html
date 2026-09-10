@@ -30,11 +30,12 @@
       <li><a href="https://github.com/junghan0611" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
     <div class="site-tools">
-      <a class="lang-switch" href="../ko/about/" hreflang="ko"
-         lang="ko" title="Change language">한국어</a>
-      <button class="theme-toggle" type="button"
-              title="Change theme" aria-label="Change theme"
-              data-label-light="Light" data-label-dark="Dark"></button>
+      <nav class="seg" aria-label="Change language">
+        <a href="../about/" hreflang="en" lang="en" aria-current="page">EN</a><span class="seg-bar" aria-hidden="true">|</span><a href="../ko/about/" hreflang="ko" lang="ko">KO</a>
+      </nav>
+      <div class="seg" role="group" aria-label="Change theme">
+        <button type="button" class="theme-btn" data-theme="catppuccin-latte" aria-pressed="false">lt</button><span class="seg-bar" aria-hidden="true">|</span><button type="button" class="theme-btn" data-theme="catppuccin-mocha" aria-pressed="false">dk</button>
+      </div>
     </div>
   </nav>
 </header>

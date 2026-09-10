@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" data-webtui-theme="catppuccin-mocha">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eval-stack — local gate</title>
+<meta name="description" content="Local quality gate. Not a public page.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@webtui/css@0.1.9/dist/full.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@webtui/theme-catppuccin@0.0.5/dist/index.css">
+<link rel="stylesheet" href="site/read.css">
+<style>
+  body { max-width: 70ch; margin: 1.5rem auto 3rem; padding: 0 2ch; }
+  h1 { color: var(--green); font-size: 1.85em; line-height: 1.25; }
+  .gate-kicker { color: var(--overlay1); font-size: 0.85em; margin: 0 0 1em; }
+  h2 { color: var(--text); font-size: 1.15em; margin: 1.4em 0 0.4em; }
+  h2::before { content: "* "; color: var(--overlay1); }
+  dl { margin: 0 0 1em; }
+  dt { margin-top: 0.6em; }
+  dt a { color: var(--blue); text-decoration: none; }
+  dt a:hover { color: var(--text); }
+  dd { margin: 0 0 0 2ch; color: var(--subtext0); line-height: 1.6; }
+  .missing { color: var(--overlay1); }
+  .missing dt { color: var(--overlay1); }
+</style>
+</head>
+<body>
+<p class="gate-kicker">localhost:2342 — 개발용 입구. 발행면이 아니다.</p>
+<h1>eval-stack</h1>
+<p>오늘 판의 면들. 없는 산출은 링크로 내지 않는다.</p>
+
+<h2>site</h2>
+<p>Hugo 구성을 재현한 셸. EN=루트, KO=/ko/.</p>
+<dl>
+  <dt><a href="site/">EN 대문</a></dt>
+  <dd>Authology 히어로 · 카드</dd>
+  <dt><a href="site/ko/">KO 대문</a></dt>
+  <dd>어쏠로지 히어로 · 카드</dd>
+  <dt><a href="site/projects/">projects</a> · <a href="site/ko/projects/">KO</a></dt>
+  <dd>프로젝트 목록</dd>
+  <dt><a href="site/blog/">blog</a> · <a href="site/ko/blog/">KO</a></dt>
+  <dd>글 목록</dd>
+  <dt><a href="site/about/">about</a> · <a href="site/ko/about/">KO</a></dt>
+  <dd>소개</dd>
+</dl>
+
+<h2>clay</h2>
+<dl id="clay-slot">
+  <dt class="pending">notebooks.preface.html</dt>
+  <dd>저작 경로의 실물 — SICM 서문 노트북. <code>./run.sh clay</code> 로 빌드.</dd>
+</dl>
+
+<h2>proto</h2>
+<p>eval 원형. 첫 영수증. 동결.</p>
+<dl>
+  <dt><a href="proto/index.html">index.html</a></dt>
+  <dd>셀 계약 · 4상태</dd>
+  <dt><a href="proto/sicm.html">sicm.html</a></dt>
+  <dd>Fig 1.1 오차 재현</dd>
+  <dt><a href="proto/look.html">look.html</a></dt>
+  <dd>룩 목업</dd>
+</dl>
+
+<h2>book</h2>
+<dl id="book-slot">
+  <dt class="pending">preface.html</dt>
+  <dd>개인 열람용 전권 렌더. 발행 대상 아님. <code>python3 dev/eval-stack/book/build.py</code></dd>
+</dl>
+
+<script>
+(function () {
+	function fill(id, href, label, okNote, missNote) {
+		var slot = document.getElementById(id);
+		if (!slot) return;
+		fetch(href, { method: "HEAD" }).then(function (r) {
+			if (!r.ok) throw r;
+			slot.innerHTML = "<dt><a href=\"" + href + "\">" + label + "</a></dt><dd>" + okNote + "</dd>";
+		}).catch(function () {
+			slot.className = "missing";
+			slot.innerHTML = "<dt>" + label + "</dt><dd>" + missNote + "</dd>";
+		});
+	}
+	fill("clay-slot", "clay/docs/notebooks.preface.html", "notebooks.preface.html",
+		"저작 경로의 실물 — SICM 서문 노트북.",
+		"아직 안 만듦. <code>./run.sh clay</code> 로 만든다.");
+	fill("book-slot", "book/preface.html", "preface.html",
+		"개인 열람용 전권 렌더. 발행 대상 아님.",
+		"아직 안 만듦. <code>python3 dev/eval-stack/book/build.py</code>");
+})();
+</script>
+</body>
+</html>
