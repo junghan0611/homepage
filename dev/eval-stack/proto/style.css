@@ -1,0 +1,145 @@
+/* proto/style.css — UI 축 소유.
+   eval 축(proto/index.html, proto/eval.js)과 이 파일을 공유한다.
+   계약: JS가 건드리는 것은 [data-state] 값과 .org-cell-out 텍스트뿐.
+   이 파일은 그 계약을 CSS만으로 완전히 그려낸다. */
+
+@layer base, utils, components;
+@import "https://cdn.jsdelivr.net/npm/@webtui/css@0.1.9/dist/full.css";
+@import "https://cdn.jsdelivr.net/npm/@webtui/theme-catppuccin@0.0.5/dist/index.css";
+
+body {
+  max-width: 90ch;
+  margin: 1lh auto;
+  padding: 0 2ch;
+}
+
+/* ── org 문서 골격 ── */
+.doc { display: block; }
+
+.org-title {
+  color: var(--green);
+  font-weight: 700;
+}
+.org-title::before { content: "#+title: "; color: var(--overlay1); font-weight: 400; }
+
+.org-section[data-level="1"] { margin-top: 1.5lh; }
+.org-section[data-level="2"] { margin-top: 1lh; margin-left: 2ch; }
+
+.org-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1ch;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+}
+.org-heading::-webkit-details-marker { display: none; }
+.org-heading::marker { content: ""; }
+.org-section[data-level="1"] > .org-heading::before { content: "* "; color: var(--overlay1); font-weight: 700; }
+.org-section[data-level="2"] > .org-heading::before { content: "** "; color: var(--overlay1); font-weight: 700; }
+
+/* 태그 pill — org 줄끝 :tag1:tag2: 표기를 그대로 살리되 pill로 강조 */
+.org-tags { margin-left: auto; display: flex; gap: 0.3ch; font-size: 0.85em; }
+.org-tag {
+  color: var(--blue);
+  background: var(--surface0);
+  padding: 0 0.6ch;
+  border-radius: 2px;
+}
+.org-tag::before { content: ":"; color: var(--overlay1); }
+.org-tag:last-child::after { content: ":"; color: var(--overlay1); }
+
+/* 드로어 — PROPERTIES 등. accordion 컴포넌트가 아니라 고정 표시(아래 3번 항목 참조) */
+.org-drawer {
+  color: var(--overlay1);
+  font-size: 0.85em;
+  padding: 0.2lh 0 0.2lh 2ch;
+  white-space: pre-wrap;
+}
+.org-drawer::before { content: ":PROPERTIES:\A"; white-space: pre; display: block; }
+.org-drawer::after { content: "\A:END:"; white-space: pre; display: block; }
+
+.org-body { color: var(--subtext0); }
+.org-body blockquote {
+  border-left: 2px solid var(--surface2);
+  padding-left: 1ch;
+  margin: 0.5lh 0;
+  color: var(--subtext0);
+}
+
+/* ── eval 셀: data-state 하나로 idle/running/ok/error 4상태 전부 결정 ── */
+.org-cell {
+  border: 1px solid var(--surface2);
+  padding: 0.6lh 1ch;
+  margin: 1lh 0;
+  background: var(--surface0);
+}
+.org-cell-src {
+  width: 100%;
+  background: transparent;
+  color: var(--text);
+  border: none;
+  resize: vertical;
+  font-family: inherit;
+  font-size: inherit;
+}
+.org-cell-src::before { content: "› "; } /* textarea 안에는 실제로 안 먹지만 의도 표시 */
+
+.org-cell-actions { margin-top: 0.4lh; }
+.org-cell-eval {
+  font-size: 0.85em;
+}
+
+.org-cell-out {
+  margin-top: 0.4lh;
+  padding-left: 2ch;
+  min-height: 1lh;
+  white-space: pre-wrap;
+  font-family: inherit;
+}
+
+/* idle: 출력 없음, 버튼만 활성 */
+.org-cell[data-state="idle"] .org-cell-out { display: none; }
+.org-cell[data-state="idle"] { border-color: var(--surface2); }
+
+/* running: 노란 테두리 + 출력 자리에 진행 표시 */
+.org-cell[data-state="running"] { border-color: var(--yellow); }
+.org-cell[data-state="running"] .org-cell-out { color: var(--yellow); }
+.org-cell[data-state="running"] .org-cell-out::before { content: "… evaluating"; }
+.org-cell[data-state="running"] .org-cell-eval { opacity: 0.5; pointer-events: none; }
+
+/* ok: 초록 테두리 + ⇒ 접두 */
+.org-cell[data-state="ok"] { border-color: var(--green); }
+.org-cell[data-state="ok"] .org-cell-out { color: var(--peach); }
+.org-cell[data-state="ok"] .org-cell-out::before { content: "⇒ "; color: var(--overlay1); }
+
+/* error: 빨강 테두리 + ✗ 접두 */
+.org-cell[data-state="error"] { border-color: var(--red); }
+.org-cell[data-state="error"] .org-cell-out { color: var(--red); }
+.org-cell[data-state="error"] .org-cell-out::before { content: "✗ "; color: var(--red); }
+
+/* ── 접힘: .org-section 은 <details>. open 속성이 시작 상태, 클릭은 브라우저 몫.
+   예전 data-fold-demo 정적 스냅샷 CSS 는 계약 변경 후 삭제. */
+.org-section > .org-heading::after {
+  content: "  ▽";
+  color: var(--overlay1);
+  font-size: 0.8em;
+}
+.org-section:not([open]) > .org-heading::after {
+  content: "  ▷";
+}
+
+/* ── 스트레스 테스트: 셀 안 긴 산문 / TeX 결과 / SVG ── */
+.stress-prose { line-height: 1.6; }
+.stress-tex { line-height: 1.6; }
+.stress-svg-wrap svg { display: block; max-width: 100%; }
+
+/* KaTeX 는 자기 세리프 스택을 쓴다. 모노스페이스를 .katex 에 강요하지 않는다. */
+.katex, .katex-display {
+  font-size: 1.05em;
+}
+.org-cell-out .katex-display {
+  margin: 0.2lh 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}

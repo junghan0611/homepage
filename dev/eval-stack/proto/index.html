@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" data-webtui-theme="catppuccin-mocha">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>proto v2 — org-cell 계약 + scittle eval</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css">
+</head>
+<body>
+<article class="doc">
+  <h1 class="org-title">eval 축 최소 실증 — 셀 셋</h1>
+
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">셀 1 — 기본 산술 <span class="org-tags"><span class="org-tag">lisp</span></span></summary>
+    <div class="org-drawer" data-name="PROPERTIES">:ID: 20260910T-cell1</div>
+    <div class="org-body"><p>보이는 textarea 그대로 scittle로 넘어간다. 고쳐서 다시 눌러도 된다.</p></div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle">
+      <textarea class="org-cell-src">(+ 1 2 3)</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+    </div>
+  </details>
+
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">셀 2 — 여기서 def <span class="org-tags"><span class="org-tag">lisp</span></span></summary>
+    <div class="org-drawer" data-name="PROPERTIES">:ID: 20260910T-cell2</div>
+    <div class="org-body"><p>이 셀에서 <code>x</code>를 정의한다.</p></div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle">
+      <textarea class="org-cell-src">(def x 42)</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+    </div>
+  </details>
+
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">셀 3 — 앞 셀 상태를 보는가 <span class="org-tags"><span class="org-tag">lisp</span></span></summary>
+    <div class="org-drawer" data-name="PROPERTIES">:ID: 20260910T-cell3</div>
+    <div class="org-body"><p>셀 2를 먼저 눌러야 <code>x</code>가 보인다면, SCI 컨텍스트가 <strong>셀끼리 공유</strong>된다는
+    뜻이다 (scittle.core.eval_string은 전역 컨텍스트 하나를 쓴다 — 실측 대상).</p></div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle">
+      <textarea class="org-cell-src">(* x 2)</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+    </div>
+  </details>
+
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">셀 4 — 일부러 틀린 form <span class="org-tags"><span class="org-tag">lisp</span></span></summary>
+    <div class="org-drawer" data-name="PROPERTIES">:ID: 20260910T-cell4</div>
+    <div class="org-body"><p>존재하지 않는 심볼을 불러 에러 경로를 본다. 페이지가 죽지 않고
+    <code>data-state="error"</code>로 그 자리에 메시지가 떠야 한다.</p></div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle">
+      <textarea class="org-cell-src">(this-symbol-does-not-exist 1 2)</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+    </div>
+  </details>
+
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">셀 5 — Emmy가 여기 실리는가 <span class="org-tags"><span class="org-tag">lisp</span></span></summary>
+    <div class="org-drawer" data-name="PROPERTIES">:ID: 20260910T-cell5</div>
+    <div class="org-body"><p>공식 scittle CDN에는 Emmy가 없다. 교차검수에서
+    <code>scittle-kitchen@0.8.33-105</code>의 <code>scittle.emmy.js</code>가 jsdelivr에
+    있음을 확인했다(GPL, gzip ≈ 672KiB). 이 셀은 그 플러그인이 실제로
+    <code>emmy.env</code>를 여는지 본다.</p></div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle">
+      <textarea class="org-cell-src">(require '[emmy.env :as e])
+(e/->TeX (e/simplify (e/+ 'x 'x)))</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+    </div>
+  </details>
+
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">수식 표기 — KaTeX 실측 <span class="org-tags"><span class="org-tag">tex</span></span></summary>
+    <div class="org-body stress-tex">
+      <p>아래는 KaTeX가 조판한 수식이다. 모노스페이스 문서·셀 옆에서 폰트가
+      어떻게 앉는지를 잰다. (셀 평가 결과가 아니라 정적 LaTeX 문자열.)</p>
+      <p class="tex-sample">\[\sin^{2}(a+3)+\Theta+\alpha=\frac{1}{2}(1-\cos 2(a+3))+\Theta+\alpha\]</p>
+    </div>
+  </details>
+</article>
+
+<script src="https://cdn.jsdelivr.net/npm/scittle-kitchen@0.8.33-105/dist/scittle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scittle-kitchen@0.8.33-105/dist/scittle.emmy.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/contrib/auto-render.min.js"></script>
+<script src="eval.js"></script>
+<script>
+	if (window.renderMathInElement) {
+		renderMathInElement(document.body, {
+			delimiters: [
+				{left: '$$', right: '$$', display: true},
+				{left: '\\[', right: '\\]', display: true},
+				{left: '$', right: '$', display: false},
+				{left: '\\(', right: '\\)', display: false}
+			],
+			throwOnError: false
+		});
+	}
+</script>
+</body>
+</html>

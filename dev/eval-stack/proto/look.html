@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ko" data-webtui-theme="catppuccin-mocha">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>look — UI 축 정적 목업 (eval 없음)</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css">
+</head>
+<body>
+
+<article class="doc">
+  <h1 class="org-title">평가되는 페이지 — UI 목업</h1>
+  <p style="color: var(--overlay1); font-size: 0.85em;">
+    이 파일에는 eval 스크립트가 없다. 아래 셀 4개는 JS로 상태가 바뀐 게 아니라
+    <code>data-state</code>를 손으로 다르게 박아 4상태를 동시에 보여주는 정적 스냅샷이다.
+    섹션 접힘은 네이티브 <code>&lt;details&gt;</code>라 클릭하면 실제로 접힌다.
+    KaTeX는 수식 실측용으로만 실렸다.
+  </p>
+
+  <!-- ═══ 1. org 헤딩 계층 + 태그 + 드로어 + 인용 ═══ -->
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">1. org 문서처럼 보이는가
+      <span class="org-tags"><span class="org-tag">lichtung</span><span class="org-tag">proto</span></span>
+    </summary>
+    <div class="org-drawer" data-name="PROPERTIES">:ID: 20260910T000000
+:CREATED: [2026-09-10 Thu]</div>
+    <div class="org-body">
+      <p>헤딩 접두(<code>*</code>/<code>**</code>), 태그 pill, 드로어, 인용 블록 — 넷 다
+      WebTUI 컴포넌트가 아니라 <b>이 style.css가 손으로 짠 것</b>이다. WebTUI가 공짜로
+      주는 것은 색 변수(<code>--green</code> 등)와 <code>box-=</code> 유틸, 그리고
+      <code>details[is-="accordion"]</code> 화살표 마커뿐이다. 이 페이지의 접힘은
+      그 accordion 마커가 아니라 브라우저 네이티브 <code>&lt;details&gt;</code>다.</p>
+      <blockquote>[!NOTE] 이 인용은 org <code>#+begin_quote</code>를 흉내낸 것 —
+      순수 <code>border-left</code> CSS, WebTUI 프리미티브 아님.</blockquote>
+    </div>
+  </details>
+
+  <details class="org-section" data-level="2" open>
+    <summary class="org-heading">1.1 중첩 섹션도 같은 방식</summary>
+    <div class="org-body"><p>레벨별 <code>data-level</code> 속성으로 들여쓰기만 CSS가
+    담당. Hugo/hextra의 목차 자동생성 같은 건 여기 없다 — 정적 마크업 그대로다.
+    이 섹션은 형제 <code>&lt;details&gt;</code>이지 1번 안에 중첩된 게 아니다
+    (org 접힘과 1:1은 아님).</p></div>
+  </details>
+
+  <!-- ═══ 2. 접힘 — 승인된 계약 변경 후 네이티브 토글 ═══ -->
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">2. 접힘(fold) — 헤딩을 클릭해 보라</summary>
+    <div class="org-body">
+      <p><b>계약 변경(승인됨):</b> <code>.org-section</code>은
+      <code>&lt;details class="org-section" data-level="N" open&gt;</code> +
+      <code>&lt;summary class="org-heading"&gt;</code>다. JS 없이 접힌다.
+      아래 두 블록도 같은 엘리먼트다 — 하나는 펼친 채, 하나는 접힌 채로 시작한다.</p>
+    </div>
+  </details>
+
+  <details class="org-section" data-level="2" open>
+    <summary class="org-heading">펼친 채로 시작</summary>
+    <div class="org-body"><p>이 문단이 보인다 — <code>open</code> 속성. 헤딩을 클릭하면 접힌다.</p></div>
+  </details>
+
+  <details class="org-section" data-level="2">
+    <summary class="org-heading">접힌 채로 시작</summary>
+    <div class="org-body"><p>이 문단은 <code>open</code>이 없어 시작 시 숨는다.
+    헤딩을 클릭하면 펼쳐진다. 정적 스냅샷이 아니라 진짜 토글이다.</p></div>
+  </details>
+
+  <!-- ═══ 3. eval 셀 4상태 ═══ -->
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">3. eval 셀 — data-state 4종
+      <span class="org-tags"><span class="org-tag">idle</span><span class="org-tag">running</span><span class="org-tag">ok</span><span class="org-tag">error</span></span>
+    </summary>
+    <div class="org-body"><p>넷 다 같은 마크업, <code>data-state</code>만 다르다 —
+    JS는 이 속성값과 <code>.org-cell-out</code> 텍스트만 바꾸면 된다. 이 목업은
+    하드코딩 스냅샷이지 버튼을 눌러도 상태가 바뀌지 않는다.</p></div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle">
+      <textarea class="org-cell-src" readonly>(+ 1 2 3)</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+    </div>
+
+    <div class="org-cell" data-lang="clojure" data-state="running">
+      <textarea class="org-cell-src" readonly>(Thread/sleep 5000)</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+    </div>
+
+    <div class="org-cell" data-lang="clojure" data-state="ok">
+      <textarea class="org-cell-src" readonly>(+ 40 2)</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out">42</pre>
+    </div>
+
+    <div class="org-cell" data-lang="clojure" data-state="error">
+      <textarea class="org-cell-src" readonly>(/ 1 0)</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out">ArithmeticException: Divide by zero</pre>
+    </div>
+  </details>
+
+  <!-- ═══ 4. 스트레스 테스트: 긴 산문 + 실제 KaTeX + SVG ═══ -->
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">4. 모노스페이스 그리드가 깨지는 지점</summary>
+
+    <div class="org-body stress-prose">
+      <p>긴 산문 스트레스: 이 문단은 일부러 길게 늘여 셀 바깥 본문에서 줄바꿈이
+      가변폭 텍스트답게 자연스러운지 본다. WebTUI 기본 폰트는 모노스페이스지만
+      본문 <code>.org-body</code>는 이 목업에서 상속만 받을 뿐 별도로 가변폭으로
+      바꾸지 않았다 — 결과: <b>본문도 모노스페이스로 남는다.</b> 긴 에세이를 이
+      룩 그대로 쓰면 가독성이 코드처럼 딱딱해진다. 가변폭으로 바꾸려면
+      <code>.org-body { font-family: sans-serif }</code> 한 줄이면 되지만, 그 순간
+      "터미널 미학"과는 멀어진다 — 이게 취향 결정이지 기술적 강제가 아니다.</p>
+    </div>
+
+    <div class="org-cell" data-lang="text" data-state="ok">
+      <textarea class="org-cell-src" readonly>;; 셀 안에 KaTeX 결과와 SVG를 넣으면?</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out">결과 아래 참고 — auto-render는 pre를 건너뛴다</pre>
+      <div class="tex-sample">\[\displaystyle E=mc^{2},\quad \int_{0}^{1} x^{2}\,dx=\tfrac{1}{3},\quad \sqrt{a^{2}+b^{2}}\]</div>
+    </div>
+
+    <div class="org-body stress-tex">
+      <p>TeX 스트레스(실제 KaTeX 0.18.7): 셀 출력 칸과 본문 양쪽에 같은 렌더러를 얹었다.
+      세리프 흉내가 아니다.</p>
+      <p class="tex-sample">\[\sin^{2}(a+3)+\Theta+\alpha\]</p>
+    </div>
+
+    <div class="stress-svg-wrap" box-="square" pad-="1 1">
+      <svg width="280" height="70" viewBox="0 0 280 70">
+        <polyline points="0,60 40,45 80,50 120,15 160,30 200,8 240,22 280,4"
+          style="stroke: var(--green); stroke-width:2; fill:none"/>
+      </svg>
+    </div>
+    <p style="color: var(--overlay1); font-size: 0.85em;">SVG는 <code>box-="square"</code>
+    테두리 안에서 안 깨진다(로컬 브라우저 실측, style 속성으로 stroke 지정 시
+    <code>var(--green)</code> 정상 반영 확인됨).</p>
+  </details>
+
+</article>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/contrib/auto-render.min.js"></script>
+<script>
+	if (window.renderMathInElement) {
+		renderMathInElement(document.body, {
+			delimiters: [
+				{left: '$$', right: '$$', display: true},
+				{left: '\\[', right: '\\]', display: true},
+				{left: '$', right: '$', display: false},
+				{left: '\\(', right: '\\)', display: false}
+			],
+			throwOnError: false
+		});
+	}
+</script>
+</body>
+</html>

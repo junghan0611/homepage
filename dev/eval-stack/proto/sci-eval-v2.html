@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>proto v2: 보이는 소스 = 평가되는 소스</title>
+<style>
+  body { font-family: monospace; max-width: 40rem; margin: 2rem auto; }
+  textarea { width: 100%; height: 4rem; font-family: inherit; font-size: 1rem; }
+  #out { white-space: pre-wrap; padding: 0.5rem; background: #eee; }
+  #out.err { background: #fdd; color: #900; }
+</style>
+</head>
+<body>
+<h1>v2 — DOM에서 읽은 소스를 그대로 평가</h1>
+<p>아래 textarea를 고치고 [평가]를 누르면, <strong>화면에 보이는 바로 그 텍스트</strong>가
+scittle(SCI)로 넘어간다. v1처럼 결과 스크립트 안에 하드코딩된 사본이 없다.</p>
+
+<textarea id="src">(+ 1 2 3)</textarea>
+<div>
+  <button id="run">평가</button>
+</div>
+<p>결과:</p>
+<div id="out">(평가 전)</div>
+
+<script src="https://cdn.jsdelivr.net/npm/scittle@0.8.33/dist/scittle.js"></script>
+<script>
+  document.getElementById('run').addEventListener('click', function () {
+    var src = document.getElementById('src').value;
+    var out = document.getElementById('out');
+    try {
+      var result = scittle.core.eval_string(src);
+      out.classList.remove('err');
+      out.textContent = String(result);
+    } catch (e) {
+      out.classList.add('err');
+      out.textContent = 'ERROR: ' + (e && e.message ? e.message : String(e));
+    }
+  });
+</script>
+</body>
+</html>

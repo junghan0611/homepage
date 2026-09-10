@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko" data-webtui-theme="catppuccin-latte">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>어쏠로지 — 어쏠로지</title>
+<meta name="description" content="기술과 배움, 삶, 그리고 텍스트 에디터에 관한 명상">
+<link rel="alternate" hreflang="en" href="../">
+<link rel="alternate" hreflang="ko" href="./">
+<!-- SLOT: JSON-LD @graph 신원층 — Hugo가 낸다.
+     homepage/layouts/partials/custom/head-end.html (195행) 이 자리를 메운다.
+     화이트리스트: 홈 / blog 목록 / blog 글. 여기서 재구현하지 않는다. -->
+<!-- SLOT: RSS <link rel="alternate" type="application/rss+xml"> — Hugo가 낸다. -->
+<!-- SLOT: Umami(셀프호스팅) 스니펫 — 발행면에서만. 제3자 트래커 금지(homepage/AGENTS.md). -->
+<link rel="stylesheet" href="../site.css">
+<script src="../shell.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="site-head">
+  <nav class="site-nav" aria-label="main">
+    <a class="site-brand" href="../ko/">어쏠로지</a>
+    <ul class="site-menu">
+      <li><a href="../ko/projects/">프로젝트</a></li>
+      <li><a href="../ko/blog/">블로그</a></li>
+      <li><a href="../ko/about/">소개</a></li>
+      <li><a href="https://notes.junghanacs.com" target="_blank" rel="noopener noreferrer">노트 ↗</a></li>
+      <li><a href="https://ax.junghanacs.com" target="_blank" rel="noopener noreferrer">AX ↗</a></li>
+      <li><a href="https://agenda.junghanacs.com" target="_blank" rel="noopener noreferrer">어젠다 ↗</a></li>
+      <li><a href="https://github.com/junghan0611" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    </ul>
+    <div class="site-tools">
+      <a class="lang-switch" href="../" hreflang="en"
+         lang="en" title="언어변경">English</a>
+      <button class="theme-toggle" type="button"
+              title="테마변경" aria-label="테마변경"
+              data-label-light="밝은 테마" data-label-dark="어두운 테마"></button>
+    </div>
+  </nav>
+</header>
+<main id="main" class="site-main">
+<section class="hero">
+  <h1 class="hero-title">어쏠로지: 원라이프 인생도구</h1>
+  <ul class="hero-bullets">
+    <li>어쏠로지컬 사유</li>
+    <li>생산성과 디지털 미니멀리즘</li>
+    <li>초집중과 의미 있는 삶</li>
+    <li>개인화된 AI</li>
+    <li>원샷 퍼블리싱</li>
+  </ul>
+  <p class="hero-lede">삶은 언제나 여여(如如)하다. 이 녀석 하나 뿐이지만 더할 것도 뺄 것도 없다.</p>
+</section>
+
+<section class="cards-section">
+  <h2 class="section-title">둘러보기</h2>
+  <div class="card-grid">
+  <a class="card" href="../ko/blog/">
+    <span class="card-title">블로그</span>
+  </a>
+  <a class="card" href="https://notes.junghanacs.com" target="_blank" rel="noopener noreferrer">
+    <span class="card-title">디지털 가든</span>
+  </a>
+  <a class="card" href="https://agenda.junghanacs.com" target="_blank" rel="noopener noreferrer">
+    <span class="card-title">라이브 어젠다</span>
+    <span class="card-sub">geworfen — 존재 데이터 대시보드</span>
+  </a>
+  <a class="card" href="https://ax.junghanacs.com" target="_blank" rel="noopener noreferrer">
+    <span class="card-title">AX 기록</span>
+    <span class="card-sub">PKM 네이티브 에이전트 엔지니어링 — 주장부터 증거까지</span>
+  </a>
+  <a class="card" href="https://aionsclubs.org" target="_blank" rel="noopener noreferrer">
+    <span class="card-title">AIONS CLUBS</span>
+    <span class="card-sub">AIONS CLUBS 인터내쇼날의 B</span>
+  </a>
+  <a class="card" href="../ko/about/">
+    <span class="card-title">소개</span>
+  </a>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="foot-links">
+    <a href="https://github.com/junghan0611" target="_blank" rel="noopener noreferrer">@junghan0611</a>
+    <a href="https://www.threads.net/@junghanacs" target="_blank" rel="noopener noreferrer">Threads</a>
+    <a href="https://bsky.app/profile/junghanacs.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
+    <a href="https://fosstodon.org/@junghanacs" target="_blank" rel="noopener noreferrer">Mastodon</a>
+    <!-- SLOT: RSS — Hugo가 낸다 (blog/index.xml) -->
+    <a href="https://github.com/junghan0611/homepage" target="_blank" rel="noopener noreferrer">Source</a>
+    <a href="https://notes.junghanacs.com" target="_blank" rel="noopener noreferrer">Garden</a>
+    <a href="https://agenda.junghanacs.com" target="_blank" rel="noopener noreferrer">Agenda</a>
+    <a href="https://ax.junghanacs.com" target="_blank" rel="noopener noreferrer">AX</a>
+    <a href="https://aionsclubs.org" target="_blank" rel="noopener noreferrer">AIONS</a>
+  </div>
+  <div class="foot-meta">
+    <span>© 2026 junghanacs</span>
+    <!-- SLOT: llms.txt / sitemap.xml — Hugo·static 이 낸다. -->
+  </div>
+  <a class="to-top" href="#top">맨위로 스크롤</a>
+</footer>
+</body>
+</html>

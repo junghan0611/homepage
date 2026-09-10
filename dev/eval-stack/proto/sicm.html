@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko" data-webtui-theme="catppuccin-mocha">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sicm 샘플 — 표기가 아니라 값</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css">
+</head>
+<body>
+<article class="doc">
+  <h1 class="org-title">SICM preface · 유도된 값</h1>
+  <p style="color: var(--overlay1); font-size: 0.85em;">
+    SSOT는 웹이 아니라 <code>~/sync/code/junghan0611/sicm-book/org/</code>.
+    emmy = sicm-utils 개명 (v0.30.0, 「rename sicmutils to emmy everywhere」).
+    룩은 <code>style.css</code> 재사용. 조판은 <code>.org-cell-out</code> 옆 별도 div
+    — 계약(<code>data-state</code> + out 텍스트)을 안 넘긴 우회.
+  </p>
+
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">1. 같은 식, 세 표기 <span class="org-tags"><span class="org-tag">preface</span></span></summary>
+    <div class="org-drawer" data-name="PROPERTIES">:SOURCE: preface.org:51-66
+:NOTES: 수식 이상하다. 그럼에도 가자.</div>
+    <div class="org-body">
+      <p>전통 표기는 문맥에 기대고, 함수 표기는 컴퓨터가 읽게 쓰여 있다.
+      로컬 org는 그 둘을 <b>다른 문법으로</b> 적는다. 흔들림이 샘플의 논지다.</p>
+      <p><b>전통 (preface.org:54, LaTeX):</b></p>
+      <p class="tex-sample">\[\frac{d}{dt}\frac{\partial L}{\partial{\overset{\dot}{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0\]</p>
+      <p><b>함수 표기 (preface.org:66, org 아래첨자 평문):</b>
+      <code>D(∂_{2}L ∘ Γ[q]) − ∂_{1}L ∘ Γ[q] = 0</code></p>
+      <blockquote>손으로 적은 표기는 파일마다 흔들린다. 유도된 값은 안 흔들린다.
+      아래 셀이 그 잔차를 계산한다.</blockquote>
+    </div>
+  </details>
+
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">2. Emmy가 유도한다 <span class="org-tags"><span class="org-tag">emmy</span></span></summary>
+    <div class="org-body">
+      <p>조화진동자 라그랑지안
+      \(L=\tfrac12 m v^{2}-\tfrac12 k q^{2}\)
+      (책 식 1.10, 라이브러리에 <code>L-harmonic</code>은 없음 — 페이지 로드 때 정의).
+      cljs 기본 <code>*</code>는 심볼에 NaN. <code>e/*</code> / <code>e//</code>가 필요하다.
+      그건 「안 됨」이 아니라 「연산자를 가려야 함」.</p>
+    </div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle" id="cell-gamma">
+      <textarea class="org-cell-src">(e/->TeX (e/simplify ((e/Gamma (e/literal-function 'q)) 't)))</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+      <div class="tex-sample tex-render"></div>
+    </div>
+
+    <div class="org-body"><p>Γ[q](t) = (t, q(t), Dq(t)). 그 다음 서문의 함수 표기 그대로:</p></div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle" id="cell-el">
+      <textarea class="org-cell-src">(let [L (L-harmonic 'm 'k)
+      q (e/literal-function 'q)
+      lhs (e/D (e/compose ((e/partial 2) L) (e/Gamma q)))
+      rhs (e/compose ((e/partial 1) L) (e/Gamma q))]
+  (e/->TeX (e/simplify ((e/- lhs rhs) 't))))</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+      <div class="tex-sample tex-render"></div>
+    </div>
+
+    <div class="org-body"><p>잔차가 0이어야 하는 참 경로 \(q=\cos\) (m=k=1). 숫자는 조판하지 않는다.</p></div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle" id="cell-zero">
+      <textarea class="org-cell-src">(e/simplify (((e/Lagrange-equations (L-harmonic 1 1)) e/cos) 't))</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+    </div>
+  </details>
+
+  <details class="org-section" data-level="1" open>
+    <summary class="org-heading">3. Figure 1.1 — 이미지가 아니라 계산 <span class="org-tags"><span class="org-tag">ch1</span></span></summary>
+    <div class="org-drawer" data-name="PROPERTIES">:SOURCE: chapter001.org:756-788
+:IMAGE: org/images/Art_P19.jpg</div>
+    <div class="org-body">
+      <p>웹 chapter001 「중간 그래프」는 <b>Figure 1.1</b>이다:
+      작용을 최소화한 다항 경로와 조화진동자 참 경로 \(q=\cos t\) 의 오차
+      (횡축 시간 0…π/2, 종축 오차). 책은 중간점 3개에서 최대 오차
+      &lt; 1.7×10⁻⁴ 라고 적는다. <code>e/find-path</code> 가 그 절차다.</p>
+    </div>
+
+    <div class="org-cell" data-lang="clojure" data-state="idle" id="fig11-cell">
+      <textarea class="org-cell-src">(def q3 (e/find-path (L-harmonic 1.0 1.0) 0.0 1.0 1.5707963267948966 0.0 3))
+(apply max (map (fn [i]
+                  (let [t (* i 0.01)]
+                    (js/Math.abs (- (q3 t) (js/Math.cos t)))))
+                (range 158)))</textarea>
+      <div class="org-cell-actions"><button class="org-cell-eval">eval</button></div>
+      <pre class="org-cell-out"></pre>
+      <div class="stress-svg-wrap" box-="square" pad-="1 1" id="fig11-svg"></div>
+    </div>
+  </details>
+</article>
+
+<script src="https://cdn.jsdelivr.net/npm/scittle-kitchen@0.8.33-105/dist/scittle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scittle-kitchen@0.8.33-105/dist/scittle.emmy.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/contrib/auto-render.min.js"></script>
+<script src="eval.js"></script>
+<script type="application/x-scittle">
+(require '[emmy.env :as e])
+(defn L-harmonic [m k]
+  (fn [local]
+    (let [q (e/coordinate local)
+          v (e/velocity local)]
+      (e/- (e/* (e// 1 2) m (e/square v))
+           (e/* (e// 1 2) k (e/square q))))))
+</script>
+<script>
+	if (window.renderMathInElement) {
+		renderMathInElement(document.body, {
+			delimiters: [
+				{left: '$$', right: '$$', display: true},
+				{left: '\\[', right: '\\]', display: true},
+				{left: '$', right: '$', display: false},
+				{left: '\\(', right: '\\)', display: false}
+			],
+			throwOnError: false,
+			ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		});
+	}
+
+	function renderSibling(cell) {
+		var out = cell.querySelector('.org-cell-out');
+		var tex = cell.querySelector('.tex-render');
+		if (tex && out && out.textContent && cell.dataset.state === 'ok') {
+			try {
+				katex.render(out.textContent, tex, {throwOnError: false, displayMode: true});
+			} catch (err) {
+				tex.textContent = out.textContent;
+			}
+		}
+		if (cell.id === 'fig11-cell' && cell.dataset.state === 'ok') {
+			drawFig11();
+		}
+	}
+
+	function drawFig11() {
+		var host = document.getElementById('fig11-svg');
+		if (!host || typeof scittle === 'undefined') return;
+		var pts;
+		try {
+			pts = scittle.core.eval_string(
+				'(clj->js (mapv (fn [i] (let [t (* i 0.02)] [t (- (q3 t) (js/Math.cos t))])) (range 80)))'
+			);
+		} catch (err) {
+			host.textContent = 'SVG skip: ' + (err && err.message ? err.message : err);
+			return;
+		}
+		if (!pts || !pts.length) return;
+		var W = 520, H = 160, pl = 36, pr = 12, pt = 12, pb = 28;
+		var t0 = 0, t1 = 1.5708, yMax = 0.0002;
+		function x(t) { return pl + (t - t0) / (t1 - t0) * (W - pl - pr); }
+		function y(e) { return pt + (yMax - e) / (2 * yMax) * (H - pt - pb); }
+		var d = [];
+		for (var i = 0; i < pts.length; i++) {
+			d.push((i ? 'L' : 'M') + x(pts[i][0]).toFixed(1) + ' ' + y(pts[i][1]).toFixed(1));
+		}
+		host.innerHTML =
+			'<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '">' +
+			'<line x1="' + pl + '" y1="' + y(0) + '" x2="' + (W-pr) + '" y2="' + y(0) + '" style="stroke:var(--overlay1);stroke-width:1"/>' +
+			'<polyline points="" style="fill:none"/>' +
+			'<path d="' + d.join(' ') + '" style="stroke:var(--green);stroke-width:2;fill:none"/>' +
+			'<text x="' + (W/2) + '" y="' + (H-6) + '" text-anchor="middle" fill="var(--overlay1)" font-size="11">t (0 … π/2)</text>' +
+			'<text x="8" y="' + (H/2) + '" fill="var(--overlay1)" font-size="11" transform="rotate(-90 8 ' + (H/2) + ')">q₃(t) − cos t</text>' +
+			'</svg>';
+	}
+
+	document.querySelectorAll('.org-cell').forEach(function (cell) {
+		var btn = cell.querySelector('.org-cell-eval');
+		if (!btn) return;
+		btn.addEventListener('click', function () {
+			renderSibling(cell);
+		});
+	});
+
+	window.addEventListener('load', function () {
+		['cell-gamma', 'cell-el', 'cell-zero', 'fig11-cell'].forEach(function (id) {
+			var b = document.querySelector('#' + id + ' .org-cell-eval');
+			if (b) b.click();
+		});
+	});
+</script>
+</body>
+</html>

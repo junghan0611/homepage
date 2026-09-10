@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-webtui-theme="catppuccin-latte">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog — Authology</title>
+<meta name="description" content="Meditations on Technology, Learning, Life, and Text-editor">
+<link rel="alternate" hreflang="ko" href="../ko/blog/">
+<link rel="alternate" hreflang="en" href="./">
+<!-- SLOT: JSON-LD @graph 신원층 — Hugo가 낸다.
+     homepage/layouts/partials/custom/head-end.html (195행) 이 자리를 메운다.
+     화이트리스트: 홈 / blog 목록 / blog 글. 여기서 재구현하지 않는다. -->
+<!-- SLOT: RSS <link rel="alternate" type="application/rss+xml"> — Hugo가 낸다. -->
+<!-- SLOT: Umami(셀프호스팅) 스니펫 — 발행면에서만. 제3자 트래커 금지(homepage/AGENTS.md). -->
+<link rel="stylesheet" href="../site.css">
+<script src="../shell.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-head">
+  <nav class="site-nav" aria-label="main">
+    <a class="site-brand" href="../">Authology</a>
+    <ul class="site-menu">
+      <li><a href="../projects/">Projects</a></li>
+      <li><a href="../blog/" aria-current="page">Blog</a></li>
+      <li><a href="../about/">About</a></li>
+      <li><a href="https://notes.junghanacs.com" target="_blank" rel="noopener noreferrer">Notes ↗</a></li>
+      <li><a href="https://ax.junghanacs.com" target="_blank" rel="noopener noreferrer">AX ↗</a></li>
+      <li><a href="https://agenda.junghanacs.com" target="_blank" rel="noopener noreferrer">Agenda ↗</a></li>
+      <li><a href="https://github.com/junghan0611" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    </ul>
+    <div class="site-tools">
+      <a class="lang-switch" href="../ko/blog/" hreflang="ko"
+         lang="ko" title="Change language">한국어</a>
+      <button class="theme-toggle" type="button"
+              title="Change theme" aria-label="Change theme"
+              data-label-light="Light" data-label-dark="Dark"></button>
+    </div>
+  </nav>
+</header>
+<main id="main" class="site-main">
+<h1 class="page-title">Blog</h1>
+<!-- SLOT: taxonomy 배지(Series/Categories/Tags) — Hugo taxonomy 가 낸다.
+     실물은 지금 꺼져 있다: EN 이 루트라 /en/series 같은 경로가 404 였다.
+     (homepage/content/blog/_index.md 주석) 되살릴 때 EN 루트 기준으로. -->
+<!-- SLOT: RSS 배지 — index.xml, Hugo 가 낸다. -->
+<div class="post-list">
+  <article class="post-item">
+    <div class="post-meta"><time datetime="2026-09-10">2026-09-10</time>
+      <span class="post-tags"><a class="tag" href="#" is-="badge" variant-="background2">clojure</a><a class="tag" href="#" is-="badge" variant-="background2">org-mode</a><a class="tag" href="#" is-="badge" variant-="background2">emacs</a></span></div>
+    <h2 class="post-title"><a href="../blog/evaluated-page/">A page that evaluates</a></h2>
+    <p class="post-summary">The publishing surface is the only dead thing in my workflow. Everything else — Emacs, org, the REPL — is alive.</p>
+    <a class="read-more" href="../blog/evaluated-page/">Read more →</a>
+  </article>
+</div>
+</main>
+<footer class="site-foot">
+  <div class="foot-links">
+    <a href="https://github.com/junghan0611" target="_blank" rel="noopener noreferrer">@junghan0611</a>
+    <a href="https://www.threads.net/@junghanacs" target="_blank" rel="noopener noreferrer">Threads</a>
+    <a href="https://bsky.app/profile/junghanacs.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
+    <a href="https://fosstodon.org/@junghanacs" target="_blank" rel="noopener noreferrer">Mastodon</a>
+    <!-- SLOT: RSS — Hugo가 낸다 (blog/index.xml) -->
+    <a href="https://github.com/junghan0611/homepage" target="_blank" rel="noopener noreferrer">Source</a>
+    <a href="https://notes.junghanacs.com" target="_blank" rel="noopener noreferrer">Garden</a>
+    <a href="https://agenda.junghanacs.com" target="_blank" rel="noopener noreferrer">Agenda</a>
+    <a href="https://ax.junghanacs.com" target="_blank" rel="noopener noreferrer">AX</a>
+    <a href="https://aionsclubs.org" target="_blank" rel="noopener noreferrer">AIONS</a>
+  </div>
+  <div class="foot-meta">
+    <span>© 2026 junghanacs</span>
+    <!-- SLOT: llms.txt / sitemap.xml — Hugo·static 이 낸다. -->
+  </div>
+  <a class="to-top" href="#top">Scroll to top</a>
+</footer>
+</body>
+</html>

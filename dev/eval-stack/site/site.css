@@ -1,0 +1,231 @@
+/* site/site.css — 사이트 셸(대문·메뉴·목록·푸터) 소유.
+ *
+ * 층 관계:
+ *   proto/style.css  = org 문서면 + eval 셀 (동결. 여기서 건드리지 않는다)
+ *   site/site.css    = 그 문서를 감싸는 사이트 껍데기 ← 이 파일
+ *
+ * proto/style.css 를 @import 해서 쓴다 — 복사하지 않는다. 복사하면 드리프트한다.
+ * 그 파일이 이미 WebTUI(@webtui/css@0.1.9)와 catppuccin 테마를 불러온다.
+ */
+
+@import url("../proto/style.css");
+
+/* proto/style.css 가 @layer base, utils, components 를 선언한다.
+ * 아래 규칙은 전부 **레이어 밖**이라 WebTUI 기본값을 !important 없이 이긴다. */
+
+/* ── WebTUI base 수선 ────────────────────────────────────────────────
+ * WebTUI 는 html,body 에 word-break:break-all 을 건다(측정: dist/full.css @layer base).
+ * 코드에는 맞지만 한국어·영어 산문에서는 단어를 아무 데서나 자른다.
+ * 셸은 산문을 담으므로 되돌린다. 코드/셀은 proto 규칙이 계속 관장한다. */
+html, body { word-break: normal; }
+.prose, .post-body, .post-summary, .hero-lede, .page-lede, .card-sub {
+  overflow-wrap: anywhere;
+  word-break: keep-all;   /* 한국어: 어절 단위로 끊는다 */
+}
+
+body {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 1ch;
+  top: 0;
+  z-index: 10;
+  background: var(--surface0);
+  padding: 0 1ch;
+}
+
+/* ── 머리: 브랜드 · 메뉴 · 도구 ───────────────────────────────────── */
+.site-head {
+  border-bottom: 1px solid var(--surface1);
+  background: var(--mantle, var(--background1));
+}
+.site-nav {
+  /* 본문은 90ch(가독 폭)지만 머리띠는 그보다 넓다.
+   * 측정(KO 블로그 목록, 1280px): 브랜드 80 + 메뉴 592 + 도구 166 = 838px 필요,
+   * 90ch(=720px)에서는 도구가 다음 줄로 밀린다. 한국어 라벨이 영어보다 넓어서다. */
+  max-width: 110ch;
+  margin: 0 auto;
+  padding: 0.5lh 2ch;
+  display: flex;
+  align-items: baseline;
+  gap: 2ch;
+  flex-wrap: wrap;
+}
+.site-brand {
+  color: var(--green);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-brand::before { content: "$ "; color: var(--overlay1); font-weight: 400; }
+
+.site-menu {
+  display: flex;
+  gap: 1.5ch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  /* 한국어 라벨은 모노스페이스에서 영어보다 넓다. min-width:0 이 없으면 메뉴가
+   * 줄지 않고 .site-tools 를 다음 줄로 밀어낸다(측정: KO 블로그 목록에서 발생). */
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.site-menu li::before { content: none; }
+.site-menu a {
+  color: var(--subtext0);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-menu a:hover { color: var(--text); }
+.site-menu a[aria-current="page"] { color: var(--blue); }
+.site-menu a[aria-current="page"]::before { content: "["; color: var(--overlay1); }
+.site-menu a[aria-current="page"]::after  { content: "]"; color: var(--overlay1); }
+
+.site-tools { margin-left: auto; display: flex; gap: 1ch; align-items: baseline; }
+.lang-switch, .theme-toggle {
+  color: var(--subtext0);
+  background: transparent;
+  border: 1px solid var(--surface2);
+  padding: 0 0.8ch;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1lh;
+}
+.lang-switch:hover, .theme-toggle:hover { color: var(--text); border-color: var(--overlay1); }
+
+/* ── 본문 틀 ──────────────────────────────────────────────────────── */
+.site-main {
+  flex: 1;
+  max-width: 90ch;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1lh 2ch 2lh;
+}
+
+.page-title, .hero-title {
+  color: var(--green);
+  font-weight: 700;
+  margin-bottom: 0.3lh;
+}
+.page-title::before, .hero-title::before {
+  content: "#+title: ";
+  color: var(--overlay1);
+  font-weight: 400;
+}
+.section-title { color: var(--text); font-weight: 700; margin: 1.5lh 0 0.5lh; }
+.section-title::before { content: "* "; color: var(--overlay1); }
+
+.page-lede, .hero-lede { color: var(--subtext0); margin: 0.5lh 0 1lh; }
+
+/* ── 대문 히어로 ──────────────────────────────────────────────────── */
+.hero { margin-bottom: 1lh; }
+.hero-bullets { list-style: none; margin: 0.5lh 0; padding: 0; }
+.hero-bullets li { color: var(--subtext0); }
+.hero-bullets li::before { content: "- "; color: var(--overlay1); }
+
+/* ── 카드 격자 (hextra {{< card >}} 대응물) ──────────────────────── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(34ch, 1fr));
+  gap: 1ch;
+  margin: 0.5lh 0;
+}
+.card {
+  display: block;
+  padding: 0.5lh 1.5ch;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--surface0);
+  /* 테두리는 WebTUI box-= 유틸이 아니라 직접 그린다 — box-= 는 의사요소로
+   * 프레임을 그려서 이 카드의 padding 과 높이가 어긋난다(측정: 짧은 카드 아래
+   * 여분의 선). proto/style.css 의 .org-cell 도 같은 방식(1px solid)이다. */
+  border: 1px solid var(--surface2);
+}
+.card:hover { background: var(--surface1); border-color: var(--blue); }
+.card-title { display: block; color: var(--blue); font-weight: 700; }
+.card-title::before { content: "▸ "; color: var(--overlay1); font-weight: 400; }
+.card-sub { display: block; color: var(--subtext0); font-size: 0.85em; margin-top: 0.2lh; }
+
+/* ── 글 목록 ──────────────────────────────────────────────────────── */
+.post-list { margin-top: 1lh; }
+.post-item {
+  border-left: 2px solid var(--surface2);
+  padding-left: 1.5ch;
+  margin-bottom: 1.5lh;
+}
+.post-item:hover { border-left-color: var(--green); }
+.post-meta {
+  color: var(--overlay1);
+  font-size: 0.85em;
+  display: flex;
+  gap: 1.5ch;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.post-meta time::before { content: "<"; }
+.post-meta time::after  { content: ">"; }
+.post-tags { display: inline-flex; gap: 0.5ch; }
+.tag { color: var(--blue); text-decoration: none; }
+.tag::before { content: ":"; color: var(--overlay1); }
+.tag::after  { content: ":"; color: var(--overlay1); }
+
+.post-title { color: var(--text); font-weight: 700; margin: 0.2lh 0; }
+.post-title a { color: inherit; text-decoration: none; }
+.post-title a:hover { color: var(--green); }
+.post-summary { color: var(--subtext0); margin: 0.2lh 0; }
+.read-more { color: var(--green); text-decoration: none; font-size: 0.9em; }
+
+/* ── 글 본문 ──────────────────────────────────────────────────────── */
+.post .post-title { color: var(--green); }
+.post .post-title::before { content: "#+title: "; color: var(--overlay1); font-weight: 400; }
+.post-body, .prose { color: var(--subtext0); margin-top: 1lh; line-height: 1.6; }
+.post-body p, .prose p { margin-bottom: 0.7lh; }
+.post-back { margin-top: 1.5lh; }
+.post-back a { color: var(--overlay1); text-decoration: none; }
+.post-back a:hover { color: var(--text); }
+
+/* ── 꼬리 ─────────────────────────────────────────────────────────── */
+.site-foot {
+  border-top: 1px solid var(--surface1);
+  background: var(--mantle, var(--background1));
+  padding: 0.8lh 2ch;
+  font-size: 0.85em;
+}
+.foot-links {
+  max-width: 90ch;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5ch;
+  justify-content: center;
+}
+.foot-links a { color: var(--subtext0); text-decoration: none; }
+.foot-links a:hover { color: var(--text); }
+.foot-meta, .to-top {
+  max-width: 90ch;
+  margin: 0.4lh auto 0;
+  display: block;
+  text-align: center;
+  color: var(--overlay1);
+}
+.to-top { text-decoration: none; }
+.to-top:hover { color: var(--text); }
+
+/* ── 좁은 화면 ────────────────────────────────────────────────────── */
+@media (max-width: 60ch) {
+  .site-nav { gap: 1ch; }
+  .site-tools { margin-left: 0; width: 100%; }
+  .card-grid { grid-template-columns: 1fr; }
+}

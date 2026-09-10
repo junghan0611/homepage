@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>proto: 정적 HTML + scittle(SCI) 브라우저 평가</title>
+</head>
+<body>
+<h1>정적 파일 하나, 브라우저 안 Lisp 평가</h1>
+
+<pre id="src">(+ 1 2 3)</pre>
+<p>결과: <span id="out">(평가 전)</span></p>
+
+<script src="https://cdn.jsdelivr.net/npm/scittle@0.8.33/dist/scittle.js" type="application/javascript"></script>
+<script type="application/x-scittle">
+(set! (.-innerText (js/document.getElementById "out"))
+      (str (+ 1 2 3)))
+</script>
+</body>
+</html>
