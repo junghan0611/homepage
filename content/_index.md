@@ -16,14 +16,16 @@ Life is always just so. This one — nothing to add, nothing to take away.
 
 > [!NOTE] Under construction
 >
-> This site is being rebuilt. The next version keeps Org as the single source and adds
+> This site is being rebuilt. The next version keeps source documents primary and adds
 > pages that **evaluate**: Lisp forms running in the browser, formulas that are computed
-> rather than typeset, and figures redrawn from the computation itself. Terminal-shaped,
-> all text. Coming soon.
+> rather than merely typeset, and figures redrawn from the computation itself. The first
+> public shelf is now open under [Eval](/eval/).
 
 ## Explore
 
 <br>
+{{< card link="projects" title="Projects" icon="collection" subtitle="Open source tools for garden-native, agent-driven work" >}}
+{{< card link="/eval/" title="Eval" icon="beaker" subtitle="Executable writing, computational books, and browser experiments" >}}
 {{< card link="blog" title="Blog" icon="pencil" >}}
 {{< card link="https://notes.junghanacs.com" title="Digital Garden" icon="library" >}}
 {{< card link="https://agenda.junghanacs.com" title="Live Agenda" icon="clock" subtitle="geworfen — existence-data dashboard" >}}

@@ -1,0 +1,112 @@
+#!/usr/bin/env node
+import { createHash } from "node:crypto";
+import { access, readFile, readdir } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const read = (path) => readFile(resolve(root, path), "utf8");
+const sha256 = (value) => createHash("sha256").update(value).digest("hex");
+const fail = (message) => { console.error(`eval verification failed: ${message}`); process.exit(1); };
+const exists = async (path) => { try { await access(resolve(root, path)); return true; } catch { return false; } };
+
+const generated = spawnSync(process.execPath, ["scripts/build-eval-runtime.mjs", "--check"], { cwd: root, encoding: "utf8" });
+if (generated.status !== 0) {
+	process.stderr.write(generated.stderr || generated.stdout);
+	fail("generated runtime receipts are missing or stale");
+}
+
+const spec = JSON.parse(await read("data/eval/runtime.json"));
+const cells = JSON.parse(await read("data/eval/cells.json"));
+const rails = JSON.parse(await read("data/eval/rails.json"));
+const cellsLicense = JSON.parse(await read("data/eval/cells_license.json"));
+const runtime = spec.runtime;
+const manifest = JSON.parse(await read("static/eval/runtime/manifest.json"));
+const sbom = JSON.parse(await read("static/eval/runtime/sbom.json"));
+
+if (manifest.package !== runtime.package || manifest.npmIntegrity !== runtime.npmIntegrity || manifest.kitchenGitHead !== runtime.kitchenGitHead) fail("runtime manifest does not match data/eval/runtime.json");
+if (sbom.package !== runtime.package || sbom.npmIntegrity !== runtime.npmIntegrity || sbom.kitchenGitHead !== runtime.kitchenGitHead || JSON.stringify(sbom.components) !== JSON.stringify(runtime.components)) fail("runtime SBOM does not match data/eval/runtime.json");
+
+const requiredComponents = ["scittle-kitchen", "scittle", "SCI", "ClojureScript runtime", "Closure Library", "Emmy", "fraction.js", "odex", "Reagent"];
+if (sbom.components.length !== requiredComponents.length || requiredComponents.some((name) => !sbom.components.some((component) => component.name === name))) fail("runtime SBOM component inventory is incomplete");
+
+for (const asset of [runtime.scittle, runtime.emmy]) {
+	const bytes = await readFile(resolve(root, asset.file));
+	if (sha256(bytes) !== asset.sha256) fail(`runtime hash mismatch: ${asset.file}`);
+	if (!asset.file.includes(asset.sha256)) fail(`runtime filename is not full-hash pinned: ${asset.file}`);
+}
+const expectedRuntimeFiles = new Set([runtime.scittle.file.split("/").at(-1), runtime.emmy.file.split("/").at(-1)]);
+for (const name of await readdir(resolve(root, "static/eval/runtime"))) {
+	if (name.endsWith(".js") && !expectedRuntimeFiles.has(name)) fail(`obsolete or unpinned runtime file remains: static/eval/runtime/${name}`);
+}
+
+const requiredFiles = [
+	"content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm.md", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md",
+	"data/eval/runtime.json", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json",
+	"layouts/eval/list.html", "layouts/eval/single.html", "layouts/eval/license.html",
+	"layouts/shortcodes/eval-cell.html", "layouts/shortcodes/eval-rails.html", "layouts/shortcodes/eval-attribution.html",
+	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html",
+	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js",
+	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
+	"scripts/build-eval-runtime.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
+	"static/eval/licenses/GPL-3.0.txt", "static/eval/licenses/EPL-1.0.txt", "static/eval/licenses/Apache-2.0.txt", "static/eval/licenses/MIT-fraction.js.txt", "static/eval/licenses/BSD-2-Clause-odex.txt",
+];
+for (const path of requiredFiles) if (!(await exists(path))) fail(`required source or notice missing: ${path}`);
+
+for (const obsolete of [
+	"static/eval/index.html", "static/eval/proto", "static/eval/sicm", "static/eval/clay", "static/eval/canary",
+	"static/eval/eval.css", "static/eval/eval.js", "static/javascript.html", "dev/eval-stack",
+]) if (await exists(obsolete)) fail(`obsolete HTML-first surface remains: ${obsolete}`);
+
+const requiredCells = ["hub-canary", "proto-arithmetic", "proto-definition", "proto-shared-state", "proto-error-state", "proto-emmy", "sicm-harmonic", "clay-emmy", "runtime-canary"];
+if (Object.keys(cells).length !== requiredCells.length || requiredCells.some((id) => !cells[id]?.source || !cells[id]?.label)) fail("Eval cell inventory is incomplete");
+if (rails.length !== 4 || ["proto", "sicm", "clay", "canary"].some((id) => !rails.some((rail) => rail.id === id && rail.route === `/eval/${id}/`))) fail("Eval rail inventory is incomplete");
+if (cellsLicense.spdx !== "GPL-3.0-only" || cellsLicense.sourcePath !== "data/eval/cells.json" || cellsLicense.correspondingSourceUrl !== "/eval/source/cells.json" || cellsLicense.declarationUrl !== "/eval/source/cells-license.json" || cellsLicense.licenseUrl !== "/eval/licenses/GPL-3.0.txt") fail("Eval cell corresponding-source declaration is incomplete");
+const sicmAttribution = rails.find((rail) => rail.id === "sicm")?.attribution;
+for (const field of ["work", "edition", "authors", "publisher", "copyright", "license", "licenseUrl", "canonicalOriginalUrl", "exactSourceUrl", "orgSourceUrl", "sourceChain", "adaptation", "noEndorsement"]) if (!sicmAttribution?.[field] || (Array.isArray(sicmAttribution[field]) && !sicmAttribution[field].length)) fail(`SICM attribution field missing: ${field}`);
+if (sicmAttribution.licenseUrl !== "https://creativecommons.org/licenses/by-nc-sa/3.0/" || !sicmAttribution.exactSourceUrl.includes("/sicm/preface.html")) fail("SICM license or exact source-chain URL drifted");
+
+const contentPaths = ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm.md", "content/eval/clay.md", "content/eval/canary.md"];
+const referencedCells = new Set();
+for (const path of [...contentPaths, "content/javascript.md"]) {
+	const source = await read(path);
+	for (const marker of ["type: eval", "noindex: true", "comments: false", "toc: false"]) if (!source.includes(marker)) fail(`${path} is missing Eval publication front matter: ${marker}`);
+	for (const match of source.matchAll(/eval-cell id="([^"]+)"/g)) referencedCells.add(match[1]);
+}
+if (requiredCells.some((id) => !referencedCells.has(id)) || [...referencedCells].some((id) => !cells[id])) fail("Markdown cell references and data/eval/cells.json disagree");
+if (!(await read("content/eval/sicm.md")).includes('{{< eval-attribution rail="sicm" >}}')) fail("SICM page does not render the structured attribution record");
+const sourceReceipt = await read("layouts/_partials/eval/page.html");
+const licenseSurface = await read("layouts/eval/license.html");
+for (const surface of [sourceReceipt, licenseSurface]) if (!surface.includes("cellSource") || !surface.includes("evalSource")) fail("Eval corresponding-source links are missing from a public surface");
+
+const headers = await read("static/_headers");
+for (const asset of [runtime.scittle, runtime.emmy]) {
+	const publicPath = asset.file.replace(/^static/, "");
+	if (!headers.includes(`${publicPath}\n  Cache-Control: public, max-age=31536000, immutable`)) fail(`immutable runtime header missing: ${publicPath}`);
+	if (headers.indexOf("/eval/*") > headers.indexOf(publicPath)) fail(`generic Eval cache rule must precede immutable runtime override: ${publicPath}`);
+}
+if (!headers.includes("/eval/*\n  Cache-Control: public, max-age=0\n  Content-Security-Policy:")) fail("Eval HTML revalidation/CSP header rule is missing");
+const evalHeaderBlock = headers.slice(headers.indexOf("/eval/*"), headers.indexOf("/javascript/*"));
+if (evalHeaderBlock.includes("script-src 'self' 'unsafe-inline'")) fail("Eval CSP permits unnecessary inline scripts");
+if (!headers.includes("/javascript/*") || !headers.slice(headers.indexOf("/javascript/*")).includes("Content-Security-Policy:")) fail("JavaScript license CSP header rule is missing");
+
+for (const [path, notice] of [
+	["static/eval/licenses/GPL-3.0.txt", "GNU GENERAL PUBLIC LICENSE"],
+	["static/eval/licenses/EPL-1.0.txt", "Eclipse Public License - v 1.0"],
+	["static/eval/licenses/Apache-2.0.txt", "Apache License"],
+	["static/eval/licenses/MIT-fraction.js.txt", "Copyright (c) 2017 Robert Eisele"],
+	["static/eval/licenses/BSD-2-Clause-odex.txt", "Copyright (c) 2016, Colin Smith"],
+]) if (!(await read(path)).includes(notice)) fail(`invalid license notice: ${path}`);
+
+const authoredPaths = [...contentPaths, "content/javascript.md", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "assets/js/eval.js", "assets/css/eval.css", "layouts/_partials/eval/scripts.html", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj"];
+for (const path of authoredPaths) {
+	const source = await read(path);
+	for (const forbidden of ["cdn.jsdelivr.net", "unpkg.com", "daslu.github.io", "/home/", "~/", "dev/eval-stack/"]) {
+		if (source.includes(forbidden)) fail(`${path} contains forbidden publication dependency or private path: ${forbidden}`);
+	}
+}
+if (!(await read("assets/js/eval.js")).includes("SPDX-License-Identifier: GPL-3.0-only")) fail("Eval evaluator license marker is missing");
+if (!(await read("layouts/_partials/components/analytics/analytics.html")).includes('(ne .Type "eval")')) fail("Eval analytics suppression is missing");
+
+console.log("eval verified: Hugo sources, cells, runtime hashes, SBOM, licenses, CSP, and publication boundaries are current");

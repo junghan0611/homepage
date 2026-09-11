@@ -6,7 +6,31 @@
 /*   font-size: 1.8rem; */
 /* } */
 
-/* GLG Mono — 힣(glg) custom font */
+/* Shared site/Eval foundation.  These are local Catppuccin Mocha tokens, not a
+   WebTUI import: Hugo chrome and the browser evaluator therefore share one palette. */
+:root {
+  color-scheme: dark;
+  --ctp-rosewater: #f5e0dc;
+  --ctp-red: #f38ba8;
+  --ctp-peach: #fab387;
+  --ctp-yellow: #f9e2af;
+  --ctp-green: #a6e3a1;
+  --ctp-teal: #94e2d5;
+  --ctp-blue: #89b4fa;
+  --ctp-mauve: #cba6f7;
+  --ctp-text: #cdd6f4;
+  --ctp-subtext: #a6adc8;
+  --ctp-overlay: #7f849c;
+  --ctp-surface: #45475a;
+  --ctp-surface-raised: #313244;
+  --ctp-base: #1e1e2e;
+  --ctp-mantle: #181825;
+  --ctp-crust: #11111b;
+  --glg-font-family: "GLG Mono", "Sarasa Fixed K", "D2Coding", "Noto Sans Mono CJK KR", ui-monospace, monospace;
+}
+
+/* GLG Mono is declared once here. Eval inherits this face and its fallback stack;
+   the static /fonts/ files are the only bundled font bytes. */
 @font-face {
   font-family: "GLG Mono";
   src: url("/fonts/GLG-Mono-Regular.woff2") format("woff2");
@@ -38,7 +62,86 @@
 
 html,
 :host {
-  font-family: "GLG Mono", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background: var(--ctp-base);
+  color: var(--ctp-text);
+  font-family: var(--glg-font-family);
+}
+
+body {
+  background: var(--ctp-base);
+  color: var(--ctp-text);
+}
+
+/* Hextra keeps its layout and dark-mode class; this layer maps its outer chrome
+   and common content surfaces onto the same Mocha depth as Eval. */
+.hextra-nav-container-blur,
+.hextra-footer {
+  background: var(--ctp-mantle);
+  color: var(--ctp-subtext);
+}
+.hextra-nav-container .hextra-nav-container-blur {
+  /* Hextra's dark utility adds an 80% transparent neutral background; the
+     compound selector deliberately keeps the fixed Mocha mantle opaque. */
+  background-color: var(--ctp-mantle) !important;
+  box-shadow: 0 1px 0 var(--ctp-surface-raised);
+}
+.hextra-nav-container a,
+.hextra-footer a,
+.hextra-custom-footer {
+  color: var(--ctp-subtext);
+}
+.hextra-nav-container a:hover,
+.hextra-footer a:hover {
+  color: var(--ctp-text);
+}
+.site-stack {
+  border-top: 1px solid var(--ctp-surface-raised);
+  color: var(--ctp-subtext);
+  font-size: .8rem;
+  line-height: 1.65;
+  margin: 0 auto;
+  max-width: 76ch;
+  padding: .9rem 0 .2rem;
+  text-align: center;
+}
+.site-stack p { margin: .2rem 0; }
+.site-stack a { color: var(--ctp-blue); }
+.site-stack a:hover { color: var(--ctp-text); }
+.site-stack span { margin-left: .5ch; }
+
+.hextra-language-options {
+  background: var(--ctp-mantle);
+  border-color: var(--ctp-surface);
+}
+.hextra-language-options a:hover,
+.hextra-language-switcher:hover {
+  background: var(--ctp-surface-raised);
+  color: var(--ctp-text);
+}
+.hextra-card {
+  background: var(--ctp-mantle);
+  border-color: var(--ctp-surface);
+}
+.hextra-card:hover {
+  background: var(--ctp-surface-raised);
+  border-color: var(--ctp-blue);
+}
+.hextra-card-icon { color: var(--ctp-text); }
+.hextra-card-subtitle { color: var(--ctp-subtext); }
+
+.content a,
+.content a:visited {
+  color: var(--ctp-blue);
+}
+.content blockquote {
+  border-color: var(--ctp-surface);
+  color: var(--ctp-subtext);
+}
+.content code,
+.content pre {
+  background: var(--ctp-mantle);
+  border-color: var(--ctp-surface);
+  color: var(--ctp-text);
 }
 
 .org-todo,
@@ -46,7 +149,7 @@ html,
 .org-done,
 .done,
 .timestamp {
-  font-family: "GLG Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: var(--glg-font-family);
   font-feature-settings: normal;
   font-variation-settings: normal;
   font-size: 1em;
@@ -150,48 +253,24 @@ body {
 @media (min-width: 1400px) {
     /* Highlight the sidenote when mouse hovers on the sidenote number in body. */
     .sidenote-number:hover .sidenote {
-        background-color: #f8f0d0;
+        background-color: var(--ctp-surface-raised);
     }
 }
 
-/* h1 제목 */
-.content h1 {
-  color: #005f5f; /* 라이트 모드 색상 (진한 파랑) */
-}
-.dark .content h1 {
-  color: #6ae4b9; /* 다크 모드 색상 (밝은 파랑) */
-}
-
+/* General Hugo headings use the same semantic accents as Eval. */
+#content > h1,
+.content h1 { color: var(--ctp-green); }
 .content h2 {
-  color: #000000;
-  border-bottom-color: #000000;
+  border-bottom-color: var(--ctp-surface);
+  color: var(--ctp-blue);
 }
-.dark .content h2 {
-  color: #ffffff;
-  border-bottom-color: #ffffff;
-}
-
 .content h3 {
-  color: #624416;
-  border-bottom-color: #624416;
+  border-bottom-color: var(--ctp-surface);
+  color: var(--ctp-yellow);
 }
-.dark .content h3 {
-  color: #d2b580;
-}
-
 .content h4 {
-  color: #193668;
-  border-bottom-color: #193668;
+  border-bottom-color: var(--ctp-surface);
+  color: var(--ctp-teal);
 }
-.dark .content h4 {
-  color: #c6daff;
-}
-
-.content h5 {
-  color: #721045;
-  border-bottom-color: #721045;
-}
-.dark .content h5 {
-  color: #feacd0;
-}
+.content h5 { color: var(--ctp-mauve); }
 

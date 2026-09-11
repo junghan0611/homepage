@@ -1,0 +1,123 @@
+{
+  "format": 1,
+  "package": "scittle-kitchen@0.8.33-105",
+  "npmIntegrity": "sha512-091BkX2J6/VWT7uqFqgd3clWvYE/7TBGswsdtBvz9D0ehSa0VEM4liM7UUZV2x6BbqeVBapRQ1a8bu6lRX5aqQ==",
+  "kitchenGitHead": "f1e206c94310fd75e1cb6f1f58833631217763e3",
+  "kitchenPluginTemplates": "https://github.com/timothypratley/scittle-kitchen/blob/f1e206c94310fd75e1cb6f1f58833631217763e3/plugin-templates.edn",
+  "runtimeFiles": [
+    {
+      "file": "static/eval/runtime/scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js",
+      "origin": "https://cdn.jsdelivr.net/npm/scittle-kitchen@0.8.33-105/dist/scittle.js",
+      "sha256": "d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6"
+    },
+    {
+      "file": "static/eval/runtime/scittle.emmy.427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c.js",
+      "origin": "https://cdn.jsdelivr.net/npm/scittle-kitchen@0.8.33-105/dist/scittle.emmy.js",
+      "sha256": "427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c"
+    }
+  ],
+  "components": [
+    {
+      "name": "scittle-kitchen",
+      "version": "0.8.33-105",
+      "includedIn": [
+        "scittle.js",
+        "scittle.emmy.js"
+      ],
+      "license": "EPL-1.0",
+      "licenseFile": "/eval/licenses/EPL-1.0.txt",
+      "source": "https://github.com/timothypratley/scittle-kitchen/tree/f1e206c94310fd75e1cb6f1f58833631217763e3",
+      "evidence": "npm package gitHead and package integrity; plugin-templates.edn is the build input"
+    },
+    {
+      "name": "scittle",
+      "version": "0.8.33",
+      "includedIn": [
+        "scittle.js",
+        "scittle.emmy.js"
+      ],
+      "license": "EPL-1.0",
+      "licenseFile": "/eval/licenses/EPL-1.0.txt",
+      "source": "https://github.com/babashka/scittle/tree/v0.8.33",
+      "evidence": "kitchen revision submodule scittle=6008412a0a2b438a08399ef865f89a02bd62b2a5"
+    },
+    {
+      "name": "SCI",
+      "version": "6790624776b09297a22100438f05b6555a4ff56d",
+      "includedIn": [
+        "scittle.js",
+        "scittle.emmy.js"
+      ],
+      "license": "EPL-1.0",
+      "licenseFile": "/eval/licenses/EPL-1.0.txt",
+      "source": "https://github.com/babashka/sci/tree/6790624776b09297a22100438f05b6555a4ff56d",
+      "evidence": "scittle v0.8.33 deps.edn pins io.github.babashka/sci to this git SHA"
+    },
+    {
+      "name": "ClojureScript runtime",
+      "version": "not separately versioned in this release artifact",
+      "includedIn": [
+        "scittle.js",
+        "scittle.emmy.js"
+      ],
+      "license": "EPL-1.0",
+      "licenseFile": "/eval/licenses/EPL-1.0.txt",
+      "source": "https://github.com/clojure/clojurescript",
+      "evidence": "compiled bundle contains cljs.core; exact version is not claimed because the package manifest does not record it"
+    },
+    {
+      "name": "Closure Library",
+      "version": "not separately versioned in this release artifact",
+      "includedIn": [
+        "scittle.js",
+        "scittle.emmy.js"
+      ],
+      "license": "Apache-2.0",
+      "licenseFile": "/eval/licenses/Apache-2.0.txt",
+      "source": "https://github.com/google/closure-library",
+      "evidence": "both runtime files contain Copyright The Closure Library Authors and SPDX-License-Identifier: Apache-2.0 (scittle.js lines 6-7; scittle.emmy.js lines 2193-2194)"
+    },
+    {
+      "name": "Emmy",
+      "version": "0.32.0",
+      "includedIn": [
+        "scittle.emmy.js"
+      ],
+      "license": "GPL-3.0-only",
+      "licenseFile": "/eval/licenses/GPL-3.0.txt",
+      "source": "https://github.com/mentat-collective/emmy/tree/v0.32.0",
+      "evidence": "kitchen plugin-templates.edn :emmy deps org.mentat/emmy 0.32.0"
+    },
+    {
+      "name": "fraction.js",
+      "version": "4.2.1",
+      "includedIn": [
+        "scittle.emmy.js"
+      ],
+      "license": "MIT",
+      "licenseFile": "/eval/licenses/MIT-fraction.js.txt",
+      "source": "https://registry.npmjs.org/fraction.js/-/fraction.js-4.2.1.tgz",
+      "evidence": "Emmy v0.32.0 src/deps.cljs npm-deps; npm tarball is the exact source package; bundle contains emmy.bigfraction"
+    },
+    {
+      "name": "odex",
+      "version": "3.0.0-rc.4",
+      "includedIn": [
+        "scittle.emmy.js"
+      ],
+      "license": "BSD-2-Clause",
+      "licenseFile": "/eval/licenses/BSD-2-Clause-odex.txt",
+      "source": "https://registry.npmjs.org/odex/-/odex-3.0.0-rc.4.tgz",
+      "evidence": "Emmy v0.32.0 src/deps.cljs npm-deps; npm tarball is the exact source package; bundle contains ODEX Solver state markers"
+    },
+    {
+      "name": "Reagent",
+      "version": "1.2.0",
+      "includedIn": [],
+      "license": "EPL-1.0",
+      "licenseFile": "/eval/licenses/EPL-1.0.txt",
+      "source": "https://github.com/reagent-project/reagent/tree/v1.2.0",
+      "evidence": "explicitly excluded: kitchen :emmy has no depends-on reagent; package ships separate scittle.reagent.js; no reagent.core/reagent.dom marker in this bundle"
+    }
+  ]
+}

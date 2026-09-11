@@ -64,10 +64,14 @@ menu:
       name: Projects
       pageRef: /projects
       weight: 1
+    - identifier: eval
+      name: Eval
+      pageRef: /eval
+      weight: 2
     - identifier: blog
       name: Blog
       pageRef: /blog
-      weight: 2
+      weight: 3
     # - identifier: talks
     #   name: Talks
     #   pageRef: /talks
@@ -75,15 +79,15 @@ menu:
     - identifier: about
       name: About
       pageRef: /about
-      weight: 3
-    - name: Notes ↗
       weight: 4
+    - name: Notes ↗
+      weight: 5
       url: "https://notes.junghanacs.com"
     - name: AX ↗
-      weight: 5
+      weight: 6
       url: "https://ax.junghanacs.com"
     - name: Agenda ↗
-      weight: 6
+      weight: 7
       url: "https://agenda.junghanacs.com"
    # - name: Search
    #   weight: 7
@@ -95,17 +99,17 @@ menu:
     #   params:
     #     icon: bluesky
     - name: GitHub
-      weight: 7
+      weight: 8
       url: "https://github.com/junghan0611"
       params:
         icon: github
     - name: LinkedIn
-      weight: 8
+      weight: 9
       url: "https://www.linkedin.com/in/junghan-kim-1489a4306"
       params:
         icon: linkedin
     - name: Threads ↗
-      weight: 9
+      weight: 10
       url: "https://www.threads.net/@junghanacs"
       params:
         icon: threads
@@ -217,8 +221,8 @@ params:
     width: wide
 
   theme:
-    default: light
-    displayToggle: true
+    default: dark
+    displayToggle: false
 
   footer:
     enable: true

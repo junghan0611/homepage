@@ -3,7 +3,9 @@ publish = "public"
 # production: use the canonical baseURL from hugo.yaml (https://junghanacs.com/).
 # Do NOT override with $DEPLOY_PRIME_URL here — that leaks the netlify.app deploy
 # host into canonical/og:url/permalinks (and JSON-LD @id) on the live site.
-command = "hugo --gc --minify"
+# The verifier rejects stale runtime receipts, hash drift, and HTML-first Eval remnants.
+# Hugo remains the only document generator in Netlify; no Clojure/Python build runs there.
+command = "node scripts/verify-eval-runtime.mjs && hugo --gc --minify && node scripts/verify-eval-output.mjs"
 
 [build.environment]
 HUGO_VERSION = "0.156.0"
@@ -11,7 +13,7 @@ NODE_VERSION = "22"
 
 # Preview/branch builds get the dynamic deploy URL so their links are self-consistent.
 [context.deploy-preview]
-command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+command = "node scripts/verify-eval-runtime.mjs && hugo --gc --minify -b $DEPLOY_PRIME_URL && node scripts/verify-eval-output.mjs"
 
 [context.branch-deploy]
-command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+command = "node scripts/verify-eval-runtime.mjs && hugo --gc --minify -b $DEPLOY_PRIME_URL && node scripts/verify-eval-output.mjs"

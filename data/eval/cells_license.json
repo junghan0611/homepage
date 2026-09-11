@@ -1,0 +1,8 @@
+{
+  "spdx": "GPL-3.0-only",
+  "scope": "Clojure forms embedded into Eval pages and executed by the browser runtime",
+  "sourcePath": "data/eval/cells.json",
+  "correspondingSourceUrl": "/eval/source/cells.json",
+  "declarationUrl": "/eval/source/cells-license.json",
+  "licenseUrl": "/eval/licenses/GPL-3.0.txt"
+}

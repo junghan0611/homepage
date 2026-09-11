@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "package": "scittle-kitchen@0.8.33-105",
+  "npmIntegrity": "sha512-091BkX2J6/VWT7uqFqgd3clWvYE/7TBGswsdtBvz9D0ehSa0VEM4liM7UUZV2x6BbqeVBapRQ1a8bu6lRX5aqQ==",
+  "kitchenGitHead": "f1e206c94310fd75e1cb6f1f58833631217763e3",
+  "kitchenPluginTemplates": "https://github.com/timothypratley/scittle-kitchen/blob/f1e206c94310fd75e1cb6f1f58833631217763e3/plugin-templates.edn",
+  "sbom": "/eval/runtime/sbom.json",
+  "files": [
+    {
+      "path": "scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js",
+      "publicPath": "/eval/runtime/scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js",
+      "origin": "https://cdn.jsdelivr.net/npm/scittle-kitchen@0.8.33-105/dist/scittle.js",
+      "sha256": "d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6",
+      "license": "EPL-1.0",
+      "source": "https://github.com/babashka/scittle/tree/v0.8.33"
+    },
+    {
+      "path": "scittle.emmy.427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c.js",
+      "publicPath": "/eval/runtime/scittle.emmy.427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c.js",
+      "origin": "https://cdn.jsdelivr.net/npm/scittle-kitchen@0.8.33-105/dist/scittle.emmy.js",
+      "sha256": "427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c",
+      "license": "GPL-3.0-only",
+      "source": "https://github.com/mentat-collective/emmy/tree/v0.32.0"
+    }
+  ]
+}

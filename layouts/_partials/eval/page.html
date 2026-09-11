@@ -1,0 +1,39 @@
+{{- $cellSource := resources.FromString "eval/source/cells.json" (readFile "data/eval/cells.json") -}}
+{{- $cellLicense := resources.FromString "eval/source/cells-license.json" (readFile "data/eval/cells_license.json") -}}
+{{- $evalSource := resources.Copy "eval/source/eval.js" (resources.Get "js/eval.js") -}}
+<div class="eval-page">
+  <main id="content" class="eval-shell">
+    <p class="eval-eyebrow">{{ .Params.eyebrow | default "Eval" }}</p>
+    <nav class="eval-nav" aria-label="Eval">
+      <a href="/eval/">Eval home</a><span aria-hidden="true">/</span>
+      <a href="/eval/proto/">Proto</a><span aria-hidden="true">/</span>
+      <a href="/eval/sicm/">SICM Book</a><span aria-hidden="true">/</span>
+      <a href="/eval/clay/">Clay</a><span aria-hidden="true">/</span>
+      <a href="/eval/canary/">Canary</a>
+    </nav>
+    <article class="eval-content">
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+    </article>
+    {{ with .File }}
+      <aside class="source-receipt">
+        <strong>Document source</strong><br>
+        <a href="https://github.com/junghan0611/homepage/blob/main/content/{{ .Path }}">content/{{ .Path }}</a>
+        {{ if $.Params.runtime }}
+          <br><strong>Executable cell source</strong><br>
+          <a href="{{ $cellSource.RelPermalink }}">{{ site.Data.eval.cells_license.sourcePath }}</a>
+          · <a href="{{ site.Data.eval.cells_license.licenseUrl }}">{{ site.Data.eval.cells_license.spdx }}</a>
+          · <a href="{{ $cellLicense.RelPermalink }}">license declaration</a>
+          <br><strong>Evaluator source</strong><br>
+          <a href="{{ $evalSource.RelPermalink }}">assets/js/eval.js</a>
+        {{ end }}
+      </aside>
+    {{ end }}
+    <footer class="eval-footer">
+      <a href="/javascript/" rel="jslicense">JavaScript license information and corresponding source</a>
+      <span aria-hidden="true"> · </span><a href="/eval/runtime/sbom.json">SBOM</a>
+      <span aria-hidden="true"> · </span><a href="/eval/runtime/manifest.json">runtime manifest</a>
+    </footer>
+  </main>
+</div>
+{{ if .Params.runtime }}{{ partial "eval/scripts.html" . }}{{ end }}

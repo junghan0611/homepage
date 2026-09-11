@@ -1,0 +1,7 @@
+{{- $runtime := site.Data.eval.runtime.runtime -}}
+{{- $scittle := strings.TrimPrefix "static" $runtime.scittle.file -}}
+{{- $emmy := strings.TrimPrefix "static" $runtime.emmy.file -}}
+{{- $evalJS := resources.Get "js/eval.js" | minify | fingerprint "sha384" -}}
+<script src="{{ $scittle }}" data-sha256="{{ $runtime.scittle.sha256 }}"></script>
+<script src="{{ $emmy }}" data-sha256="{{ $runtime.emmy.sha256 }}"></script>
+<script src="{{ $evalJS.RelPermalink }}" integrity="{{ $evalJS.Data.Integrity }}"></script>

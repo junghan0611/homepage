@@ -1,0 +1,15 @@
+{{- $railID := .Get "rail" -}}
+{{- $rail := false -}}
+{{- range site.Data.eval.rails -}}
+  {{- if eq .id $railID -}}{{- $rail = . -}}{{- end -}}
+{{- end -}}
+{{- if not $rail -}}{{ errorf "unknown Eval rail %q in %s" $railID .Page.File.Path }}{{- end -}}
+{{- with $rail.attribution }}
+<aside class="eval-attribution">
+  <h2>Source and attribution</h2>
+  <p><strong>Original work.</strong> <cite>{{ .work }}</cite>, {{ .edition }}, by {{ delimit .authors " and " }} ({{ .publisher }}, {{ .copyright }}), licensed <a href="{{ .licenseUrl }}">{{ .license }}</a>.</p>
+  <p><strong>Source chain.</strong> <a href="{{ .canonicalOriginalUrl }}">Official second-edition source package</a> → <a href="{{ .exactSourceUrl }}">exact HTML preface source</a> → <a href="{{ .orgSourceUrl }}">org-mode port</a>. {{ .sourceChain }}</p>
+  <p><strong>Adaptation.</strong> {{ .adaptation }}</p>
+  <p><strong>No endorsement.</strong> {{ .noEndorsement }}</p>
+</aside>
+{{- end }}

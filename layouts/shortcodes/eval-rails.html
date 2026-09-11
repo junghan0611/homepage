@@ -1,0 +1,9 @@
+<div class="eval-card-grid">
+  {{- range site.Data.eval.rails }}
+    <a class="eval-card" href="{{ .route }}">
+      <strong>{{ .title }}</strong>
+      <span>{{ .subtitle }}</span>
+      <small>Source authority: {{ .authority }}</small>
+    </a>
+  {{- end }}
+</div>

@@ -1,0 +1,37 @@
+{{ define "main" }}
+{{- $runtime := site.Data.eval.runtime.runtime -}}
+{{- $cellsLicense := site.Data.eval.cells_license -}}
+{{- $scittle := strings.TrimPrefix "static" $runtime.scittle.file -}}
+{{- $emmy := strings.TrimPrefix "static" $runtime.emmy.file -}}
+{{- $evalJSOriginal := resources.Get "js/eval.js" -}}
+{{- $evalJS := $evalJSOriginal | minify | fingerprint "sha384" -}}
+{{- $evalSource := resources.Copy "eval/source/eval.js" $evalJSOriginal -}}
+{{- $cellSource := resources.FromString "eval/source/cells.json" (readFile "data/eval/cells.json") -}}
+{{- $cellLicense := resources.FromString "eval/source/cells-license.json" (readFile "data/eval/cells_license.json") -}}
+<div class="eval-page">
+  <main id="content" class="eval-shell">
+    <p class="eval-eyebrow">{{ .Params.eyebrow }}</p>
+    <nav class="eval-nav" aria-label="Eval"><a href="/">Authology</a><span aria-hidden="true">/</span><a href="/eval/">Eval</a></nav>
+    <article class="eval-content">
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+      <table id="jslicense-labels1">
+        <thead><tr><th>Executable</th><th>License</th><th>Corresponding source</th></tr></thead>
+        <tbody>
+          <tr><td><a href="{{ $scittle }}">scittle.js</a></td><td><a href="/eval/licenses/EPL-1.0.txt">EPL-1.0</a></td><td><a href="https://github.com/babashka/scittle/tree/v0.8.33">Scittle v0.8.33</a> and <a href="{{ $runtime.kitchenPluginTemplates }}">kitchen build input</a></td></tr>
+          <tr><td><a href="{{ $emmy }}">scittle.emmy.js</a></td><td><a href="/eval/licenses/GPL-3.0.txt">GPL-3.0-only</a></td><td><a href="https://github.com/mentat-collective/emmy/tree/v0.32.0">Emmy v0.32.0</a> and <a href="{{ $runtime.kitchenPluginTemplates }}">kitchen build input</a></td></tr>
+          <tr><td><a href="{{ $evalJS.RelPermalink }}">eval.js</a></td><td><a href="/eval/licenses/GPL-3.0.txt">GPL-3.0-only</a></td><td><a href="{{ $evalSource.RelPermalink }}">assets/js/eval.js</a></td></tr>
+          <tr><td><a href="{{ $cellSource.RelPermalink }}">Embedded Eval cell programs</a></td><td><a href="{{ $cellsLicense.licenseUrl }}">{{ $cellsLicense.spdx }}</a></td><td><a href="{{ $cellSource.RelPermalink }}">{{ $cellsLicense.sourcePath }}</a> · <a href="{{ $cellLicense.RelPermalink }}">license declaration</a></td></tr>
+        </tbody>
+      </table>
+      <h2>Runtime component inventory</h2>
+      <p><a href="/eval/runtime/sbom.json">Machine-readable SBOM</a> · <a href="/eval/runtime/manifest.json">Runtime manifest</a></p>
+      <table><thead><tr><th>Component</th><th>Version</th><th>License</th><th>Evidence</th></tr></thead><tbody>
+        {{- range $runtime.components }}
+          <tr><td><a href="{{ .source }}">{{ .name }}</a></td><td>{{ .version }}</td><td><a href="{{ .licenseFile }}">{{ .license }}</a></td><td>{{ .evidence }}</td></tr>
+        {{- end }}
+      </tbody></table>
+    </article>
+  </main>
+</div>
+{{ end }}

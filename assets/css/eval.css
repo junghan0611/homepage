@@ -1,0 +1,93 @@
+/* Eval consumes the shared local Mocha tokens and GLG Mono declaration from
+   assets/css/custom.css.  Do not add WebTUI, Catppuccin, or font imports here. */
+.eval-page {
+	background: var(--ctp-base);
+	color: var(--ctp-text);
+	font-family: var(--glg-font-family);
+	min-height: calc(100vh - var(--navbar-height));
+}
+
+.eval-shell {
+	box-sizing: border-box;
+	line-height: 1.65;
+	margin: 0 auto;
+	max-width: 76ch;
+	padding: 2.5rem 2ch 4rem;
+}
+
+.eval-shell a { color: var(--ctp-blue); }
+.eval-shell nav { color: var(--ctp-subtext); display: flex; flex-wrap: wrap; font-size: .86rem; gap: .55ch; }
+.eval-nav { border-bottom: 1px solid var(--ctp-surface); margin-bottom: 1.5rem; padding-bottom: .8rem; }
+.eval-eyebrow, .source-receipt, .eval-footer { color: var(--ctp-subtext); font-size: .86rem; }
+.eval-content > h1 { color: var(--ctp-green); font-size: clamp(1.65rem, 4vw, 2.25rem); line-height: 1.2; margin: .75rem 0 1.25rem; }
+.eval-content h2 { color: var(--ctp-blue); font-size: 1.15rem; margin-top: 2.4rem; }
+.eval-content p { margin: 1rem 0; }
+.eval-content code { background: var(--ctp-mantle); border-radius: .2rem; color: var(--ctp-yellow); padding: .08rem .3rem; }
+.eval-content blockquote { border-left: 3px double var(--ctp-blue); color: var(--ctp-text); margin: 1rem 0; padding-left: 1rem; }
+.eval-content blockquote p { margin: .35rem 0; }
+
+.eval-card-grid {
+	display: grid;
+	gap: .8rem;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	margin: 1.25rem 0;
+}
+.eval-card {
+	background: var(--ctp-mantle);
+	border: 1px solid var(--ctp-surface-raised);
+	border-radius: .35rem;
+	color: var(--ctp-text) !important;
+	display: grid;
+	gap: .4rem;
+	padding: 1rem;
+	text-decoration: none;
+}
+.eval-card:hover { border-color: var(--ctp-blue); }
+.eval-card span, .eval-card small { color: var(--ctp-subtext); font-size: .86rem; }
+
+.eval-cell {
+	background: var(--ctp-mantle);
+	border: 1px solid var(--ctp-surface-raised);
+	border-radius: .35rem;
+	margin: 1rem 0;
+	padding: .85rem;
+}
+.eval-cell[data-state="pass"] { border-color: var(--ctp-green); }
+.eval-cell[data-state="error"] { border-color: var(--ctp-red); }
+.eval-cell-head { display: flex; gap: 1rem; justify-content: space-between; }
+.eval-status { color: var(--ctp-subtext); font-size: .8rem; }
+.eval-cell[data-state="pass"] .eval-status { color: var(--ctp-green); }
+.eval-cell[data-state="error"] .eval-status { color: var(--ctp-red); }
+.eval-cell textarea, .eval-cell pre {
+	background: var(--ctp-crust);
+	border: 1px solid var(--ctp-surface);
+	border-radius: .25rem;
+	box-sizing: border-box;
+	color: var(--ctp-text);
+	font: inherit;
+	margin: .75rem 0;
+	padding: .75rem;
+	width: 100%;
+}
+.eval-cell textarea { min-height: 4.7rem; resize: vertical; }
+.eval-cell button {
+	background: var(--ctp-blue);
+	border: 0;
+	border-radius: .25rem;
+	color: var(--ctp-crust);
+	cursor: pointer;
+	font: inherit;
+	padding: .45rem .75rem;
+}
+
+.source-receipt, .eval-attribution {
+	background: var(--ctp-surface-raised);
+	border: 1px solid var(--ctp-surface);
+	border-radius: .4rem;
+	margin: 2rem 0 1rem;
+	padding: 1rem;
+}
+.eval-attribution h2 { margin-top: 0; }
+.eval-footer { border-top: 1px solid var(--ctp-surface); margin-top: 2rem; padding-top: 1rem; }
+.eval-shell table { border-collapse: collapse; display: block; overflow-x: auto; width: 100%; }
+.eval-shell th, .eval-shell td { border: 1px solid var(--ctp-surface); padding: .55rem; text-align: left; vertical-align: top; }

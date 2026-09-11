@@ -1,0 +1,60 @@
+{
+  "hub-canary": {
+    "label": "Emmy: x + x",
+    "source": "(do (require '[emmy.env :as e]) (e/->TeX (e/simplify (e/+ 'x 'x))))",
+    "expected": "2\\,x",
+    "auto": true,
+    "editable": false
+  },
+  "proto-arithmetic": {
+    "label": "Basic arithmetic",
+    "source": "(+ 1 2 3)",
+    "expected": "6",
+    "editable": true
+  },
+  "proto-definition": {
+    "label": "Define x",
+    "source": "(def x 42)",
+    "expected": "user/x",
+    "editable": true
+  },
+  "proto-shared-state": {
+    "label": "Use x from the preceding cell",
+    "source": "(* x 2)",
+    "expected": "84",
+    "editable": true
+  },
+  "proto-error-state": {
+    "label": "Deliberate error",
+    "source": "(this-symbol-does-not-exist 1 2)",
+    "editable": true,
+    "expectError": true
+  },
+  "proto-emmy": {
+    "label": "Emmy simplifies x + x",
+    "source": "(do (require '[emmy.env :as e]) (e/->TeX (e/simplify (e/+ 'x 'x))))",
+    "expected": "2\\,x",
+    "editable": true
+  },
+  "sicm-harmonic": {
+    "label": "Harmonic-oscillator Lagrange residual",
+    "source": "(do\n  (require '[emmy.env :as e])\n  (defn L-harmonic [m k]\n    (fn [local]\n      (let [q (e/coordinate local)\n            v (e/velocity local)]\n        (e/- (e/* (e// 1 2) m (e/square v))\n             (e/* (e// 1 2) k (e/square q))))))\n  (e/simplify\n   (((e/Lagrange-equations (L-harmonic 1 1)) e/cos) 't)))",
+    "expected": "0",
+    "auto": true,
+    "editable": false
+  },
+  "clay-emmy": {
+    "label": "The browser half of the Clay receipt",
+    "source": "(do (require '[emmy.env :as e]) (e/->TeX (e/simplify (e/+ 'x 'x))))",
+    "expected": "2\\,x",
+    "auto": true,
+    "editable": false
+  },
+  "runtime-canary": {
+    "label": "Pinned runtime check",
+    "source": "(do (require '[emmy.env :as e]) (e/->TeX (e/simplify (e/+ 'x 'x))))",
+    "expected": "2\\,x",
+    "auto": true,
+    "editable": false
+  }
+}

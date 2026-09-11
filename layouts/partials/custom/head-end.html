@@ -193,3 +193,8 @@
   {{ $jsonld := dict "@context" "https://schema.org" "@graph" $graph }}
   <script type="application/ld+json">{{ $jsonld | jsonify | safeJS }}</script>
 {{ end }}
+
+{{- if eq .Type "eval" -}}
+  {{- $evalCSS := resources.Get "css/eval.css" | minify | fingerprint "sha384" -}}
+  <link rel="stylesheet" href="{{ $evalCSS.RelPermalink }}" integrity="{{ $evalCSS.Data.Integrity }}">
+{{- end -}}

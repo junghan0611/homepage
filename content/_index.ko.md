@@ -15,13 +15,15 @@ toc: false
 
 > [!NOTE] 공사중
 >
-> 이 사이트는 새로 짓는 중이다. 다음 판본은 Org를 원본으로 그대로 두고 **평가되는**
-> 페이지를 더한다 — 브라우저 안에서 도는 Lisp, 조판이 아니라 계산되는 수식, 그 계산으로
-> 다시 그린 그림. 터미널 모양이고 전부 텍스트다. 곧 온다.
+> 이 사이트는 새로 짓는 중이다. 다음 판본은 문서 원본을 앞에 두고 **평가되는** 페이지를
+> 더한다 — 브라우저 안에서 도는 Lisp, 조판을 넘어 계산되는 수식, 그 계산으로 다시 그린
+> 그림. 첫 공개 선반은 [Eval](/eval/)에서 열렸다.
 
 ## 둘러보기
 
 <br>
+{{< card link="projects" title="Projects" icon="collection" subtitle="가든 네이티브·에이전트 주도 작업을 위한 오픈소스 도구" >}}
+{{< card link="/eval/" title="Eval" icon="beaker" subtitle="실행되는 글, 계산하는 책, 브라우저 실험" >}}
 {{< card link="blog" title="블로그" icon="pencil" >}}
 {{< card link="https://notes.junghanacs.com" title="디지털 가든" icon="library" >}}
 {{< card link="https://agenda.junghanacs.com" title="라이브 어젠다" icon="clock" subtitle="geworfen — 존재 데이터 대시보드" >}}

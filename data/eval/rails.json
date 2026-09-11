@@ -1,0 +1,45 @@
+[
+  {
+    "id": "proto",
+    "title": "Proto",
+    "route": "/eval/proto/",
+    "subtitle": "Editable browser cells, shared state, and visible errors",
+    "authority": "Markdown and data"
+  },
+  {
+    "id": "sicm",
+    "title": "SICM Book",
+    "route": "/eval/sicm/",
+    "subtitle": "A curated calculation—not a mirror of the book",
+    "authority": "External Org and upstream edition",
+    "attribution": {
+      "work": "Structure and Interpretation of Classical Mechanics",
+      "edition": "Second edition",
+      "authors": ["Gerald Jay Sussman", "Jack Wisdom"],
+      "publisher": "The MIT Press",
+      "copyright": "© 2014 Massachusetts Institute of Technology",
+      "license": "CC BY-NC-SA 3.0 Unported",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "canonicalOriginalUrl": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/9579/sicm_edition_2.zip",
+      "exactSourceUrl": "https://tgvaughan.github.io/sicm/preface.html",
+      "orgSourceUrl": "https://github.com/mentat-collective/sicm-book",
+      "sourceChain": "The quoted sentence follows Tim Vaughan’s HTML port of the second edition; Sam Ritchie’s org-mode port documents the local authoring lineage.",
+      "adaptation": "The quote remains the authors’ text. The commentary and Emmy/Clojure calculation are a new adaptation and are not copied from the book’s program text.",
+      "noEndorsement": "The original authors, port authors, and publisher have not reviewed or endorsed this page."
+    }
+  },
+  {
+    "id": "clay",
+    "title": "Clay",
+    "route": "/eval/clay/",
+    "subtitle": "JVM notebook source and its publication boundary",
+    "authority": "Clojure notebook"
+  },
+  {
+    "id": "canary",
+    "title": "Runtime Canary",
+    "route": "/eval/canary/",
+    "subtitle": "Pinned runtime, expected value, and release receipts",
+    "authority": "Markdown and data"
+  }
+]
