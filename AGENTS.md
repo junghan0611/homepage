@@ -7,8 +7,9 @@ universe — the curated, bilingual homepage published at `www.junghanacs.com`.
 
 `junghan0611/homepage` — a [Hugo](https://gohugo.io) site built on the
 [hextra](https://github.com/imfing/hextra) theme (consumed as a Hugo module, not vendored).
-Curated long-form + landing surface. The raw, networked digital garden is a **separate**
-repo and site.
+Curated long-form + landing surface, including the source-first **Eval** shelf for
+reviewed browser computation. The raw, networked digital garden is a **separate** repo
+and site; homepage never mirrors it wholesale.
 
 | Repo | Role | Site |
 |------|------|------|
@@ -57,13 +58,24 @@ surface. This repo is public; the global commit/push hook scans added lines unde
   `_index.md` / `_index.ko.md` siblings, not separate content roots.
 - **Comments**: remark42 (self-hosted). **Analytics**: Umami (self-hosted) — switched off
   Google Analytics deliberately; do not reintroduce third-party trackers.
-- **Content**: `content/{about,blog,cv,docs,meta,projects,talks,temp}`.
+- **Content**: `content/{about,blog,cv,docs,eval,meta,projects,talks,temp}`. Eval
+  remains Hugo content: its editable browser cells, runtime receipts, corresponding
+  source, licenses, and CSP are maintained under `assets/`, `data/eval/`, `static/eval/`,
+  and `scripts/`; do not replace this with a separately deployed application or an
+  unpublished Clay-rendered document.
+- **Presentation**: local Catppuccin Mocha tokens in `assets/css/custom.css` are shared
+  by normal Hugo chrome and `assets/css/eval.css`. The custom footer already names
+  Hugo + Hextra in its publication stack, so `footer.displayPoweredBy` stays false.
+- **Verification**: `./run.sh v` is the release gate: it verifies Eval source/runtime
+  receipts, builds with Hugo, and verifies rendered URL/source/CSP boundaries. Netlify
+  runs the same gate with pinned Hugo `0.156.0`.
 
 ## Deploy
 
-- **Netlify only.** Push to `main` → Netlify build (`hugo --gc --minify`) → serves
-  `www.junghanacs.com`. Netlify site id `03636ee7-adf3-4993-af03-75907d1f5d14`, under
-  the `junghanacs` Netlify team.
+- **Netlify only.** Push to `main` → the source/runtime verifier + Hugo production
+  build + rendered-output verifier → serves apex `junghanacs.com` (`www` redirects).
+  Netlify site id `03636ee7-adf3-4993-af03-75907d1f5d14`, under the `junghanacs`
+  Netlify team.
 - **No GitHub Actions.** The old `pages.yaml` Pages workflow was removed — never re-add a
   CI build/deploy here; it only causes duplicate (failing) runs.
 - The Netlify site's source repo was relinked from `junghanacs.github.io` → this repo, so

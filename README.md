@@ -2,39 +2,47 @@
 
 # homepage — junghanacs.com
 
-> **Meditations on Knowledge and Knowing** — the front gate (대문) of the junghanacs
-> universe. Curated, bilingual, publishing-grade. The raw digital garden lives next door
-> at [`junghan0611/garden`](https://github.com/junghan0611/garden) →
-> [notes.junghanacs.com](https://notes.junghanacs.com).
+> **Authology** — the curated, bilingual front gate (대문) of the junghanacs universe.
+> It publishes independent writing and the source-first **Eval** shelf; the raw, networked
+> digital garden remains next door at [`junghan0611/garden`](https://github.com/junghan0611/garden)
+> → [notes.junghanacs.com](https://notes.junghanacs.com).
 
-🔗 **Live:** https://www.junghanacs.com
+🔗 **Live:** https://junghanacs.com (`www` redirects to the apex)
 
 ## Stack
 
 | Layer | Choice |
 |---|---|
 | SSG | [Hugo](https://gohugo.io) `0.156.0` (extended) |
-| Theme | [hextra](https://github.com/imfing/hextra) `v0.12.3` (Hugo module) |
+| Theme | [hextra](https://github.com/imfing/hextra) `v0.12.3` (Hugo module), locally styled with Catppuccin Mocha |
 | Languages | bilingual — `en` (default) / `ko`, in-tree i18n |
+| Eval | Hugo content with a self-hosted, hash-pinned browser runtime; source, licenses, SBOM, and CSP travel with it |
 | Comments | [remark42](https://remark42.com) (self-hosted) |
-| Analytics | [Umami](https://umami.is) (self-hosted) |
-| Host | Netlify → `www.junghanacs.com` |
+| Analytics | [Umami](https://umami.is) (self-hosted; omitted from Eval) |
+| Host | Netlify → `junghanacs.com` (apex canonical) |
 
 ## Develop
 
 ```bash
-hugo mod get -u            # update theme module
-hugo server -D             # http://localhost:1313  (-D = include drafts)
-hugo --gc --minify         # production build → ./public
+./run.sh 1                 # source/runtime receipts, then Hugo dev server on :2341
+./run.sh v                 # release gate: receipts + production build + rendered-output graph
+hugo mod get -u            # update the Hugo module deliberately
 ```
 
 Hugo is pinned to `0.156.0` in `netlify.toml` (matches hextra's recommended version).
-The local Nix-provided Hugo may differ; hextra `theme.toml` `min_version` is `0.146.0`.
+`./run.sh v` is the deployment contract: it verifies the self-hosted Eval runtime,
+corresponding source, URL graph, CSP boundary, and rendered Hugo output. The local
+Nix-provided Hugo may differ; hextra `theme.toml` `min_version` is `0.146.0`. Use the
+pinned binary for an exact release check when necessary.
 
 ## Structure
 
 ```
-content/        about · blog · cv · docs · meta · projects · talks   (en + .ko in-tree)
+content/        about · blog · cv · docs · eval · meta · projects · talks   (en + .ko in-tree)
+data/eval/      reviewed browser-cell, runtime, rail, and license declarations
+assets/         shared Catppuccin/GLG Mono CSS and the evaluator source
+static/eval/    self-hosted runtime bundles, notices, manifest, and SBOM
+scripts/        runtime and rendered-output verification gates
 hugo.yaml       site config (baseURL, languages, modules, menus)
 netlify.toml    build command + HUGO_VERSION / NODE_VERSION
 go.mod / go.sum hextra module pin
@@ -52,8 +60,8 @@ go.mod / go.sum hextra module pin
 ## Deploy
 
 Pushes to `main` on [`junghan0611/homepage`](https://github.com/junghan0611/homepage)
-trigger a Netlify build that serves `www.junghanacs.com`. No GitHub Actions — deploy is
-Netlify-only.
+trigger Netlify's source/runtime verification → Hugo build → rendered-output verification
+pipeline, serving `junghanacs.com`. No GitHub Actions — deploy is Netlify-only.
 
 ## History
 

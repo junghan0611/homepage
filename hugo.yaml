@@ -227,7 +227,9 @@ params:
   footer:
     enable: true
     displayCopyright: false
-    displayPoweredBy: true
+    # The custom footer names Hugo + Hextra in the publication stack; suppress
+    # Hextra's redundant generic "Powered by" line.
+    displayPoweredBy: false
     width: normal
 
   displayUpdatedDate: true
