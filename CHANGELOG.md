@@ -5,6 +5,35 @@ CalVer snapshots (`vYYYY.M.D[-suffix]`) of the homepage repo. Past tense — wha
 
 ## Unreleased
 
+## v2026.9.11 — Authology and Eval source-first pages
+
+### Features
+
+- Reframed the homepage as **Authology**: refreshed the home statement, Projects
+  surface, AX and agenda navigation, and the public publication-authority record
+  (`llms.txt` + JSON-LD assets).
+- Published the first **Eval** shelf inside Hugo: source-first Markdown/Org/Clojure
+  documents, self-hosted pinned browser runtime, editable evaluated cells,
+  corresponding-source and license surfaces, SBOM/manifest receipts, and a
+  restricted Eval CSP with analytics suppressed.
+- Unified Hugo chrome and Eval with local Catppuccin Mocha tokens, a single GLG Mono
+  font declaration, and a footer that distinguishes source-first authoring,
+  Hugo/Hextra publishing, and browser evaluation without presenting unpublished
+  Clay output as a released document.
+
+### Fixes
+
+- Retired empty taxonomy badges that linked to nonexistent `/en/*` routes and loosened
+  Korean home-page line height.
+- Kept production canonical verification on `junghanacs.com` while allowing preview
+  builds to verify against their dynamic deploy origin.
+
+### Verification
+
+- Exact Hugo 0.156 production build, Netlify production build, URL-graph verifier,
+  self-hosted Eval cell E2E, CSP/cache headers, source links, and GitHub main-source
+  links passed after deployment.
+
 ## v2026.6.27-fix.1 — 라이브 호스트 apex `junghanacs.com` 통일
 
 ### Fixes
