@@ -27,7 +27,8 @@ const attribute = (tag, name) => {
 	const match = tag.match(new RegExp(`\\b${name}=(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`));
 	return match?.[1] ?? match?.[2] ?? match?.[3];
 };
-const expectedOrigin = new URL(process.env.DEPLOY_PRIME_URL || "https://junghanacs.com").origin;
+const isPreview = ["deploy-preview", "branch-deploy"].includes(process.env.CONTEXT);
+const expectedOrigin = new URL(isPreview && process.env.DEPLOY_PRIME_URL || "https://junghanacs.com").origin;
 const outputPages = new Map([
 	["public/eval/index.html", "/eval/"], ["public/eval/proto/index.html", "/eval/proto/"],
 	["public/eval/sicm/index.html", "/eval/sicm/"], ["public/eval/clay/index.html", "/eval/clay/"],
