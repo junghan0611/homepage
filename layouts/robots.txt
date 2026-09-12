@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Content-Signal: search=yes, ai-input=yes
 
 Sitemap: {{ "sitemap.xml" | absURL }}
 
@@ -13,10 +13,22 @@ Sitemap: {{ "sitemap.xml" | absURL }}
 # Content-Signal (Cloudflare proposal, 2024-09):
 #   search=yes   — traditional search indexing welcome
 #   ai-input=yes — inference-time context use (RAG/citation) welcome
-#   ai-train=yes — training-time weight inclusion welcome
 #   Rationale: this site is an invitation, not an exhibit. The Eval shelf in
-#   particular is published to be read, run, and adopted. Citation with
-#   attribution preferred, but anonymous weight diffusion is also accepted.
+#   particular is published to be read, run, and adopted.
+#
+# ai-train is deliberately absent, and its absence is not a refusal.
+# This site carries layers under different terms, and the author cannot
+# re-license the ones he does not own:
+#   - original writing        CC BY-NC-SA 4.0   (the author's own)
+#   - Eval engine releases    GPL-3.0-only
+#   - SICM reading edition    CC BY-NC-SA 3.0   (upstream; NonCommercial)
+#   - runtime components      Apache-2.0 / BSD-2-Clause / EPL-1.0 / MIT
+# A single site-wide training grant would purport to license third-party
+# work, so none is made here. Training on the author's own writing is
+# welcome on the terms that writing already carries — attribution,
+# non-commercial, share-alike. The digital garden, which holds only the
+# author's own notes, states ai-train=yes for exactly that reason.
+# Per-layer terms: {{ "llms.txt" | absURL }}
 
 # LLM context: {{ "llms.txt" | absURL }}
 # Digital garden: https://notes.junghanacs.com/llms.txt

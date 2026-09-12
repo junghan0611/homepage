@@ -10,7 +10,10 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const origin = "https://junghanacs.com";
+/* Netlify previews build with -b $DEPLOY_PRIME_URL, so every permalink-based @id moves.
+   Same origin calculation as verify-eval-output.mjs, or this verifier fails every preview. */
+const isPreview = ["deploy-preview", "branch-deploy"].includes(process.env.CONTEXT);
+const origin = new URL((isPreview && process.env.DEPLOY_PRIME_URL) || "https://junghanacs.com").origin;
 const failures = [];
 const fail = (message) => failures.push(message);
 
