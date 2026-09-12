@@ -14,8 +14,11 @@ Eval 엔진 — 두 번째 릴리즈 생애주기 (이 세션의 workstream). �
 - [x] **5. Phase 3 문서 입구**
 - [x] **6. Phase 4 릴리즈 id 문법** — `YYYY.M.D[-<label>.<n>]`, `n`은 그날 통산 순번 (라벨별 카운터 아님)
 - [x] **7. Sol HOLD A–C** — 발견 링크, fail-closed shared validator, append-only 피드
+- [x] **8. Sol HOLD 재검수 A·B** — strict prefix append-only + rendered robots/sitemap
 
-현재 좌표: 1–7 완료. 다음: Sol 재검수 → GLG 태그·푸시. 발행 후 feed cache/CORS 실측.
+현재 좌표: 1–8 완료. 다음: Sol 짧은 판정 → GLG 태그·푸시. 발행 후 feed cache/CORS 실측.
+
+P2 (지금 안 함): `inspectRelease`가 named entry를 `lstat`하지 않아 safe leaf symlink가 밖을 가리킬 수 있다. trusted git source라 이번 태그 blocker 아님.
 
 # NOW — Eval 엔진, 두 번째 릴리즈를 낼 자리
 

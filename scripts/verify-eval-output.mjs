@@ -16,7 +16,7 @@ const currentReleaseFiles = [
 ];
 const required = [
 	"public/_headers",
-	"public/eval/index.html", "public/eval/proto/index.html", "public/eval/sicm/index.html", "public/eval/sicm/preface/index.html", "public/eval/sicm/chapter-1/index.html", "public/ko/eval/sicm/index.html", "public/ko/eval/sicm/preface/index.html", "public/ko/eval/sicm/chapter-1/index.html", "public/eval/clay/index.html", "public/eval/engine/index.html", "public/ko/eval/engine/index.html", "public/eval/canary/index.html",
+	"public/eval/index.html", "public/ko/eval/index.html", "public/eval/proto/index.html", "public/eval/sicm/index.html", "public/eval/sicm/preface/index.html", "public/eval/sicm/chapter-1/index.html", "public/ko/eval/sicm/index.html", "public/ko/eval/sicm/preface/index.html", "public/ko/eval/sicm/chapter-1/index.html", "public/eval/clay/index.html", "public/eval/engine/index.html", "public/ko/eval/engine/index.html", "public/eval/canary/index.html",
 	"public/eval/runtime/manifest.json", "public/eval/runtime/sbom.json",
 	"public/eval/engine/releases.json",
 	...currentReleaseFiles,
@@ -89,7 +89,7 @@ const attribute = (tag, name) => {
 const isPreview = ["deploy-preview", "branch-deploy"].includes(process.env.CONTEXT);
 const expectedOrigin = new URL(isPreview && process.env.DEPLOY_PRIME_URL || "https://junghanacs.com").origin;
 const outputPages = new Map([
-	["public/eval/index.html", "/eval/"], ["public/eval/proto/index.html", "/eval/proto/"],
+	["public/eval/index.html", "/eval/"], ["public/ko/eval/index.html", "/ko/eval/"], ["public/eval/proto/index.html", "/eval/proto/"],
 	["public/eval/sicm/index.html", "/eval/sicm/"], ["public/eval/sicm/preface/index.html", "/eval/sicm/preface/"],
 	["public/eval/sicm/chapter-1/index.html", "/eval/sicm/chapter-1/"], ["public/ko/eval/sicm/index.html", "/ko/eval/sicm/"],
 	["public/ko/eval/sicm/preface/index.html", "/ko/eval/sicm/preface/"], ["public/ko/eval/sicm/chapter-1/index.html", "/ko/eval/sicm/chapter-1/"],
@@ -103,6 +103,9 @@ const externalURLs = new Set();
 for (const [file, route] of outputPages) {
 	const html = await readFile(resolve(root, file), "utf8");
 	if (/https?:\/\/[^"'\s>]*netlify\.app|deploy-preview/i.test(html)) fail(`${file} contains a fixed Netlify preview URL`);
+	const robotsTag = (html.match(/<meta\b[^>]*>/g) || []).find((tag) => (attribute(tag, "name") || "").toLowerCase() === "robots");
+	const robots = robotsTag && attribute(robotsTag, "content") || "";
+	if (/noindex|nofollow/i.test(robots)) fail(`${file} robots meta forbids indexing: ${robots}`);
 	const canonicalTag = (html.match(/<link\b[^>]*>/g) || []).find((tag) => attribute(tag, "rel") === "canonical");
 	const canonical = canonicalTag && attribute(canonicalTag, "href");
 	if (!canonical || canonical !== `${expectedOrigin}${route}`) fail(`${file} canonical is not ${expectedOrigin}${route}`);
@@ -133,6 +136,15 @@ for (const [file, route] of outputPages) {
 			}
 		}
 	}
+}
+const sitemapLocs = new Set();
+for (const path of ["public/en/sitemap.xml", "public/ko/sitemap.xml"]) {
+	const xml = await readFile(resolve(root, path), "utf8");
+	for (const match of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) sitemapLocs.add(match[1]);
+}
+for (const [, route] of outputPages) {
+	const canonical = `${expectedOrigin}${route}`;
+	if (!sitemapLocs.has(canonical)) fail(`${route} is missing from public/en/sitemap.xml and public/ko/sitemap.xml`);
 }
 for (const path of ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/engine.md", "content/eval/engine.ko.md", "content/eval/canary.md", "content/javascript.md", "data/eval/rails.json", "data/eval/runtime.json", "data/eval/engine.json", "data/eval/sicm.json", "layouts/_partials/eval/page.html", "layouts/eval/license.html"]) {
 	if (/https?:\/\/[^"'\s>]*netlify\.app|deploy-preview/i.test(await readFile(resolve(root, path), "utf8"))) fail(`${path} hardcodes a Netlify preview URL`);
