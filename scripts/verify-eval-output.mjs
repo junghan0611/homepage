@@ -1,15 +1,25 @@
 #!/usr/bin/env node
-import { access, readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { access, readFile, readdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const fail = (message) => { console.error(`Eval Hugo output verification failed: ${message}`); process.exit(1); };
+const sha256 = (value) => createHash("sha256").update(value).digest("hex");
+const engineSpec = JSON.parse(await readFile(resolve(root, "data/eval/engine.json"), "utf8"));
+const currentReleasePublic = `public${engineSpec.basePath}`.replace(/\/$/, "");
+const currentReleaseFiles = [
+	`${currentReleasePublic}/manifest.json`,
+	`${currentReleasePublic}/SHA256SUMS`,
+	...engineSpec.modules.map((module) => `${currentReleasePublic}/${module.artifact}`),
+	`${currentReleasePublic}/${engineSpec.conformance.artifact}`,
+];
 const required = [
 	"public/_headers",
 	"public/eval/index.html", "public/eval/proto/index.html", "public/eval/sicm/index.html", "public/eval/sicm/preface/index.html", "public/eval/sicm/chapter-1/index.html", "public/ko/eval/sicm/index.html", "public/ko/eval/sicm/preface/index.html", "public/ko/eval/sicm/chapter-1/index.html", "public/eval/clay/index.html", "public/eval/engine/index.html", "public/ko/eval/engine/index.html", "public/eval/canary/index.html",
 	"public/eval/runtime/manifest.json", "public/eval/runtime/sbom.json",
-	"public/eval/engine/releases/2026.9.12/manifest.json", "public/eval/engine/releases/2026.9.12/SHA256SUMS", "public/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js", "public/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js", "public/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json",
+	...currentReleaseFiles,
 	"public/eval/source/sicm/LICENSE", "public/eval/source/sicm/en/preface.org", "public/eval/source/sicm/en/chapter001.org", "public/eval/source/sicm/ko/preface.ko.org", "public/eval/source/sicm/ko/chapter001.ko.org", "public/eval/source/sicm/images/Art_P19.jpg",
 	"public/eval/runtime/scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js",
 	"public/eval/runtime/scittle.emmy.427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c.js",
@@ -25,15 +35,76 @@ for (const [source, published] of [
 	["assets/js/eval.js", "public/eval/source/eval.js"],
 	["assets/js/eval-sicm.js", "public/eval/source/eval-sicm.js"],
 	["assets/js/eval-engine-conformance.js", "public/eval/source/eval-engine-conformance.js"],
-	["assets/js/eval.js", "public/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js"],
-	["assets/js/eval-claim-v1.js", "public/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js"],
-	["dev/eval/engine/conformance-v1.json", "public/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json"],
+	...engineSpec.modules.map((module) => [module.source, `${currentReleasePublic}/${module.artifact}`]),
+	[engineSpec.conformance.source, `${currentReleasePublic}/${engineSpec.conformance.artifact}`],
 	["static/eval/source/sicm/LICENSE", "public/eval/source/sicm/LICENSE"],
 	["static/eval/source/sicm/en/preface.org", "public/eval/source/sicm/en/preface.org"],
 	["static/eval/source/sicm/en/chapter001.org", "public/eval/source/sicm/en/chapter001.org"],
 	["static/eval/source/sicm/ko/preface.ko.org", "public/eval/source/sicm/ko/preface.ko.org"],
 	["static/eval/source/sicm/ko/chapter001.ko.org", "public/eval/source/sicm/ko/chapter001.ko.org"],
 ]) if ((await readFile(resolve(root, source))).compare(await readFile(resolve(root, published))) !== 0) fail(`${published} differs from ${source}`);
+
+const frozenCellStatus = "frozen compatibility module";
+const claimV1Modes = JSON.stringify(["scalar-exact", "field", "fragment"]);
+const parseSums = (text, releaseId) => {
+	const sums = new Map();
+	for (const line of text.replace(/\n$/, "").split("\n")) {
+		const match = /^(?<hash>[0-9a-f]{64})  (?<name>.+)$/.exec(line);
+		if (!match) fail(`${releaseId} SHA256SUMS has a malformed line: ${line}`);
+		sums.set(match.groups.name, match.groups.hash);
+	}
+	return sums;
+};
+const verifyPublishedRelease = async (releaseId) => {
+	const dir = resolve(root, "public/eval/engine/releases", releaseId);
+	const manifestBytes = await readFile(resolve(dir, "manifest.json"));
+	const manifest = JSON.parse(manifestBytes.toString("utf8"));
+	const manifestSha256 = sha256(manifestBytes);
+	if (manifest.release !== releaseId) fail(`release directory ${releaseId} does not match manifest.release ${manifest.release}`);
+	if (manifest.basePath !== `/eval/engine/releases/${releaseId}/`) fail(`release ${releaseId} basePath drifted`);
+	const expectedSums = new Map();
+	for (const module of manifest.modules || []) {
+		if (!module.path?.startsWith(manifest.basePath)) fail(`release ${releaseId} module ${module.id} path is outside basePath`);
+		const name = module.path.slice(manifest.basePath.length);
+		const bytes = await readFile(resolve(dir, name));
+		if (sha256(bytes) !== module.sha256) fail(`release ${releaseId} module ${module.id} sha256 mismatch`);
+		expectedSums.set(name, module.sha256);
+		if (module.id === "cell-v1" && module.status !== frozenCellStatus) fail(`release ${releaseId} cell-v1 is not a frozen compatibility module`);
+		if (module.id === "claim-v1" && JSON.stringify(module.modes) !== claimV1Modes) fail(`release ${releaseId} claim-v1 modes drifted`);
+	}
+	const conformance = manifest.conformance;
+	if (!conformance?.path?.startsWith(manifest.basePath)) fail(`release ${releaseId} conformance path is outside basePath`);
+	const conformanceName = conformance.path.slice(manifest.basePath.length);
+	const conformanceBytes = await readFile(resolve(dir, conformanceName));
+	if (sha256(conformanceBytes) !== conformance.sha256) fail(`release ${releaseId} conformance sha256 mismatch`);
+	expectedSums.set(conformanceName, conformance.sha256);
+	const sums = parseSums(await readFile(resolve(dir, "SHA256SUMS"), "utf8"), releaseId);
+	if (sums.size !== expectedSums.size) fail(`release ${releaseId} SHA256SUMS entry count drifted`);
+	for (const [name, hash] of expectedSums) {
+		if (sums.get(name) !== hash) fail(`release ${releaseId} SHA256SUMS mismatch for ${name}`);
+		if (sha256(await readFile(resolve(dir, name))) !== hash) fail(`release ${releaseId} ${name} bytes do not match SHA256SUMS`);
+	}
+	return { manifest, manifestSha256 };
+};
+const staticReleaseRoot = resolve(root, "static/eval/engine/releases");
+const publicReleaseRoot = resolve(root, "public/eval/engine/releases");
+const releaseIdsFrom = async (dir) => {
+	const ids = [];
+	for (const entry of await readdir(dir, { withFileTypes: true })) {
+		if (!entry.isDirectory()) fail(`unexpected non-directory in ${dir}: ${entry.name}`);
+		ids.push(entry.name);
+	}
+	return ids.sort();
+};
+const staticReleaseIds = await releaseIdsFrom(staticReleaseRoot);
+const publicReleaseIds = await releaseIdsFrom(publicReleaseRoot);
+if (staticReleaseIds.join("\0") !== publicReleaseIds.join("\0")) fail(`published engine releases ${publicReleaseIds.join(", ")} do not match static ledger ${staticReleaseIds.join(", ")}`);
+if (!publicReleaseIds.includes(engineSpec.release)) fail(`current spec release ${engineSpec.release} is missing from published releases`);
+const publishedReleases = [];
+for (const releaseId of publicReleaseIds) publishedReleases.push(await verifyPublishedRelease(releaseId));
+for (const path of ["content/eval/engine.md", "content/eval/engine.ko.md"]) {
+	if ((await readFile(resolve(root, path), "utf8")).includes(engineSpec.release)) fail(`${path} still hardcodes release ${engineSpec.release}`);
+}
 
 const attribute = (tag, name) => {
 	const match = tag.match(new RegExp(`\\b${name}=(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`));
@@ -91,14 +162,16 @@ for (const path of ["content/eval/_index.md", "content/eval/proto.md", "content/
 	if (/https?:\/\/[^"'\s>]*netlify\.app|deploy-preview/i.test(await readFile(resolve(root, path), "utf8"))) fail(`${path} hardcodes a Netlify preview URL`);
 }
 
+const currentPublished = publishedReleases.find((entry) => entry.manifest.release === engineSpec.release);
+if (!currentPublished || currentPublished.manifest.basePath !== engineSpec.basePath) fail("current spec release is missing from published manifests");
+const claimPath = currentPublished.manifest.modules?.find((module) => module.id === "claim-v1")?.path;
+if (!claimPath) fail("current spec is missing claim-v1");
 const license = await readFile(resolve(root, "public/javascript/index.html"), "utf8");
-for (const needle of ["jslicense-labels1", "/eval/source/cells.json", "/eval/source/cells-license.json", "/eval/source/eval.js", "/eval/source/eval-sicm.js", "/eval/source/eval-engine-conformance.js", "/eval/engine/releases/2026.9.12/claim-v1.", "/eval/runtime/sbom.json"]) if (!license.includes(needle)) fail(`/javascript/ missing ${needle}`);
+for (const needle of ["jslicense-labels1", "/eval/source/cells.json", "/eval/source/cells-license.json", "/eval/source/eval.js", "/eval/source/eval-sicm.js", "/eval/source/eval-engine-conformance.js", claimPath, "/eval/runtime/sbom.json"]) if (!license.includes(needle)) fail(`/javascript/ missing ${needle}`);
 const home = await readFile(resolve(root, "public/index.html"), "utf8");
 const homeKo = await readFile(resolve(root, "public/ko/index.html"), "utf8");
 if (home.includes("Under construction") || homeKo.includes("공사중")) fail("root construction marker remains after the production Eval gate");
 for (const [route, html, needles] of [["/", home, ["The executable shelf is open", "/eval/engine/", "/eval/sicm/"]], ["/ko/", homeKo, ["실행되는 선반", "/ko/eval/engine/", "/ko/eval/sicm/"]]]) for (const needle of needles) if (!html.includes(needle)) fail(`${route} missing current Eval promise ${needle}`);
-const engineManifest = JSON.parse(await readFile(resolve(root, "public/eval/engine/releases/2026.9.12/manifest.json"), "utf8"));
-if (engineManifest.release !== "2026.9.12" || engineManifest.modules?.find((module) => module.id === "cell-v1")?.status !== "frozen compatibility module" || JSON.stringify(engineManifest.modules?.find((module) => module.id === "claim-v1")?.modes) !== JSON.stringify(["scalar-exact", "field", "fragment"])) fail("published Eval engine manifest contract drifted");
 for (const route of ["public/eval/engine/index.html", "public/ko/eval/engine/index.html"]) {
 	const html = await readFile(resolve(root, route), "utf8");
 	for (const needle of ["scalar-exact", "structured", "fragment", "claim-v1", "cell-v1", "unobserved", "data-engine-conformance", "eval-engine-conformance.min."]) if (!html.toLowerCase().includes(needle)) fail(`${route} missing ${needle}`);

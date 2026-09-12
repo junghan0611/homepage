@@ -9,17 +9,17 @@ Eval 엔진 — 두 번째 릴리즈 생애주기 (이 세션의 workstream). �
 
 - [x] **1. v2026.9.12 production** — 불변 릴리즈 1개 · claim-v1 3-mode · fixture 12-case · production receipt
 - [x] **2. Phase 0 NEXT 레인**
-- [ ] **3. Phase 1 버전 하드코딩 → 파생** ← CURRENT: verifier·푸터·content 링크를 `data/eval/engine.json`에서 도출
-- [ ] **4. Phase 2 발견면(`/eval/engine/releases.json`) + 캐시 도메인**
+- [x] **3. Phase 1 버전 하드코딩 → 파생**
+- [ ] **4. Phase 2 발견면(`/eval/engine/releases.json`) + 캐시 도메인** ← CURRENT: 피드 + `_headers` + 두 릴리즈 rehearsal fixture
 - [ ] **5. Phase 3 문서 입구** — 계약 정본은 `docs/eval-engine-contract.md`만. README는 입구. AGENTS는 겹치면 안 건드림.
 
-현재 좌표: 1–2 완료 → 3 진행 → 4–5 대기
+현재 좌표: 1–3 완료 → 4 진행 → 5 대기
 
 # NOW — Eval 엔진, 두 번째 릴리즈를 낼 자리
 
 - Stem: 홈페이지를 다시 글이 쌓이는 대문으로 만든다 (아래 글쓰기 절). 이 세션은 그 stem을 바꾸지 않는다.
 - Detour: Eval 엔진에 "두 번째 릴리즈를 낼 자리"를 만든다. 소비자 사이트 요구와 무관 — 우리 리포를 위해 한다.
-- Next: (1) Phase 1 파생 → (2) Phase 2 발견면+rehearsal fixture → (3) Phase 3 문서 입구. 각 단계 끝 `./run.sh v` + `commit` 스킬. 푸시·태그 없음.
+- Next: (1) Phase 2 발견면+rehearsal fixture → (2) Phase 3 문서 입구. 각 단계 끝 `./run.sh v` + `commit` 스킬. 푸시·태그 없음.
 - Return: Phase 3 커밋 후 GLG가 다음을 정한다. 글쓰기 stem으로 복귀.
 - Blocker: 없음
 - Read: `docs/eval-engine-contract.md`, `data/eval/engine.json`, `static/_headers`, `scripts/build-eval-engine.mjs`

@@ -71,19 +71,21 @@ const expectedRuntimeFiles = new Set([runtime.scittle.file.split("/").at(-1), ru
 for (const name of await readdir(resolve(root, "static/eval/runtime"))) {
 	if (name.endsWith(".js") && !expectedRuntimeFiles.has(name)) fail(`obsolete or unpinned runtime file remains: static/eval/runtime/${name}`);
 }
+const engineReleaseDir = `static${engineSpec.basePath}`.replace(/\/$/, "");
+const engineReleaseFiles = [`${engineReleaseDir}/manifest.json`, `${engineReleaseDir}/SHA256SUMS`, ...engineSpec.modules.map((module) => `${engineReleaseDir}/${module.artifact}`), `${engineReleaseDir}/${engineSpec.conformance.artifact}`];
 
 const requiredFiles = [
 	"content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/engine.md", "content/eval/engine.ko.md", "content/eval/canary.md", "content/javascript.md",
 	"data/eval/runtime.json", "data/eval/engine.json", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json",
 	"layouts/eval/list.html", "layouts/eval/single.html", "layouts/eval/license.html",
-	"layouts/shortcodes/eval-cell.html", "layouts/shortcodes/eval-rails.html", "layouts/shortcodes/eval-attribution.html", "layouts/shortcodes/sicm-math.html",
+	"layouts/shortcodes/eval-cell.html", "layouts/shortcodes/eval-rails.html", "layouts/shortcodes/eval-attribution.html", "layouts/shortcodes/eval-engine-release.html", "layouts/shortcodes/sicm-math.html",
 	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/cell.html", "assets/js/eval-claim-v1.js", "assets/js/eval-engine-conformance.js", "layouts/_partials/eval/engine-conformance.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html",
 	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js", "assets/js/eval-sicm.js",
 	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
 	"scripts/build-eval-runtime.mjs", "scripts/build-eval-engine.mjs", "scripts/verify-eval-claim-v1.mjs", "scripts/build-sicm-reading.py", "scripts/build-sicm-translation.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
 	"dev/eval/receipts/20260912T143700-production-gate.json", "dev/eval/receipts/20260912T143722-production-claim-v1.png", "dev/eval/receipts/20260912T143639-production-sicm-figure-1-1-ko.png",
 	"dev/eval/engine/conformance-v1.json", "dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json", "dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.png", "docs/eval-engine-contract.md",
-	"static/eval/engine/releases/2026.9.12/manifest.json", "static/eval/engine/releases/2026.9.12/SHA256SUMS", "static/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js", "static/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js", "static/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json",
+	...engineReleaseFiles,
 	"dev/eval/sicm/translation/manifest.json", "dev/eval/sicm/translation/REVIEW.md", "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.json", "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.png", "dev/eval/sicm/translation/chapter001/ch1-00-04.ko.org", "dev/eval/sicm/translation/chapter001/ch1-05.ko.org", "dev/eval/sicm/translation/chapter001/ch1-06.ko.org", "dev/eval/sicm/translation/chapter001/ch1-07-09.ko.org", "dev/eval/sicm/translation/chapter001/ch1-10-12.ko.org",
 	"static/eval/source/sicm/LICENSE", "static/eval/source/sicm/en/preface.org", "static/eval/source/sicm/en/chapter001.org", "static/eval/source/sicm/ko/preface.ko.org", "static/eval/source/sicm/ko/chapter001.ko.org",
 	"static/eval/licenses/GPL-3.0.txt", "static/eval/licenses/EPL-1.0.txt", "static/eval/licenses/Apache-2.0.txt", "static/eval/licenses/MIT-fraction.js.txt", "static/eval/licenses/BSD-2-Clause-odex.txt",

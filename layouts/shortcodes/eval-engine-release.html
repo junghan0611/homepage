@@ -1,0 +1,12 @@
+{{- $engine := site.Data.eval.engine -}}
+{{- if not $engine -}}{{ errorf "missing site.Data.eval.engine in %s" .Page.File.Path }}{{- end -}}
+{{- $lang := .Page.Language.Lang -}}
+<h2>Release {{ $engine.release }}</h2>
+<ul>
+  <li><a href="{{ $engine.basePath }}manifest.json">Manifest</a></li>
+  <li><a href="{{ $engine.basePath }}SHA256SUMS">SHA256SUMS</a></li>
+  {{- range $engine.modules }}
+  <li><a href="{{ $engine.basePath }}{{ .artifact }}">{{- if eq .id "cell-v1" -}}<code>cell-v1</code> {{ if eq $lang "ko" }}동결 evaluator{{ else }}frozen evaluator{{ end }}{{- else if eq .id "claim-v1" -}}<code>claim-v1</code> assertion module{{- else -}}{{ .id }}{{- end -}}</a></li>
+  {{- end }}
+  <li><a href="{{ $engine.basePath }}{{ $engine.conformance.artifact }}">Conformance fixture</a></li>
+</ul>

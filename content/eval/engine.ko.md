@@ -16,13 +16,8 @@ eyebrow: "Eval / Engine"
 박자로 공개하고, 다른 사이트는 가져갈지와 시점을 스스로 고른다. 배포를 공유하거나
 조용히 복사본을 만들 필요가 없다.
 
-## Release 2026.9.12
+{{< eval-engine-release >}}
 
-- [Manifest](/eval/engine/releases/2026.9.12/manifest.json)
-- [SHA256SUMS](/eval/engine/releases/2026.9.12/SHA256SUMS)
-- [`cell-v1` 동결 evaluator](/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js)
-- [`claim-v1` assertion module](/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js)
-- [Conformance fixture](/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json)
 - [계약과 채택 경계](https://github.com/junghan0611/homepage/blob/main/docs/eval-engine-contract.md)
 - [Homepage candidate-browser 영수증](https://github.com/junghan0611/homepage/blob/main/dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json)
 - [Production browser gate](https://github.com/junghan0611/homepage/blob/main/dev/eval/receipts/20260912T143700-production-gate.json)
