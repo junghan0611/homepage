@@ -21,6 +21,11 @@ if (sicmGenerated.status !== 0) {
 	process.stderr.write(sicmGenerated.stderr || sicmGenerated.stdout);
 	fail("generated SICM reading pages are missing or stale");
 }
+const sicmViewer = spawnSync(process.execPath, ["scripts/verify-eval-sicm-viewer.mjs"], { cwd: root, encoding: "utf8" });
+if (sicmViewer.status !== 0) {
+	process.stderr.write(sicmViewer.stderr || sicmViewer.stdout);
+	fail("SICM SVG viewer protocol failed");
+}
 
 const spec = JSON.parse(await read("data/eval/runtime.json"));
 const cells = JSON.parse(await read("data/eval/cells.json"));
@@ -55,7 +60,7 @@ const requiredFiles = [
 	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/cell.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html",
 	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js", "assets/js/eval-sicm.js",
 	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
-	"scripts/build-eval-runtime.mjs", "scripts/build-sicm-reading.py", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
+	"scripts/build-eval-runtime.mjs", "scripts/build-sicm-reading.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
 	"static/eval/source/sicm/LICENSE", "static/eval/source/sicm/en/preface.org", "static/eval/source/sicm/en/chapter001.org", "static/eval/source/sicm/ko/preface.ko.org",
 	"static/eval/licenses/GPL-3.0.txt", "static/eval/licenses/EPL-1.0.txt", "static/eval/licenses/Apache-2.0.txt", "static/eval/licenses/MIT-fraction.js.txt", "static/eval/licenses/BSD-2-Clause-odex.txt",
 ];
