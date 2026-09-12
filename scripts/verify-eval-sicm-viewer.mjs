@@ -14,7 +14,7 @@ class Node {
 }
 
 const output = new Node("output");
-output.textContent = "0.00016772069029036274";
+output.textContent = "0.00016772069029036274 | book-bound=true";
 const cell = new Node("cell");
 cell.dataset = { state: "pass" };
 cell.querySelector = (selector) => selector === ".eval-output" ? output : null;

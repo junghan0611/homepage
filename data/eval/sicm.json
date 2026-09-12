@@ -57,7 +57,7 @@
       "sourceFigure": "Art_P19.jpg",
       "cell": "sicm-figure-1-1",
       "method": "Emmy find-path with three intermediate points; SVG samples q3(t) - cos(t)",
-      "expectedMaximumErrorPrefix": "0.000167",
+      "acceptance": "computed maximum error < 0.00017; cell output must include book-bound=true",
       "status": "computational adaptation, not a replacement source image"
     }
   }
