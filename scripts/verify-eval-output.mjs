@@ -93,7 +93,13 @@ const sicmChapter = await readFile(resolve(root, "public/eval/sicm/chapter-1/ind
 const sicmChapterKo = await readFile(resolve(root, "public/ko/eval/sicm/chapter-1/index.html"), "utf8");
 for (const [route, html] of [["/eval/sicm/chapter-1/", sicmChapter], ["/ko/eval/sicm/chapter-1/", sicmChapterKo]]) {
 	for (const needle of ["computed-figure-1-1", "sicm-figure-1-1", "Art_P19.jpg", "eval-sicm.min."]) if (!html.includes(needle)) fail(`${route} missing ${needle}`);
+	if ((html.match(/<math(?:\s|>)/g) || []).length < 500) fail(`${route} must contain the complete build-time MathML layer`);
+	if (html.includes("$")) fail(`${route} contains an unrendered dollar-math delimiter`);
 	for (const marker of ["f또는", "co또는", "transf또는", "만일ied", "또는igin"]) if (html.includes(marker)) fail(`${route} contains retired translation corruption marker ${marker}`);
+}
+for (const route of ["public/eval/sicm/preface/index.html", "public/ko/eval/sicm/preface/index.html"]) {
+	const html = await readFile(resolve(root, route), "utf8");
+	if ((html.match(/<math(?:\s|>)/g) || []).length < 4 || html.includes("$")) fail(`${route} is missing its complete build-time MathML layer`);
 }
 for (const [file, route] of outputPages) {
 	if (!route.startsWith("/eval/") && !route.startsWith("/ko/eval/")) continue;

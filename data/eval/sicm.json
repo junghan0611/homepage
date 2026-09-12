@@ -52,6 +52,11 @@
       "Rewrite source-relative links to pinned Homepage or canonical upstream routes"
     ]
   },
+  "rendering": {
+    "mathEngine": "Hugo transform.ToMath (embedded KaTeX)",
+    "output": "build-time MathML",
+    "browserMathScripts": 0
+  },
   "computedViews": {
     "figure-1-1": {
       "sourceFigure": "Art_P19.jpg",

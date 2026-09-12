@@ -56,11 +56,11 @@ sicmTranslation: true
 주어진 문맥 안에서도 뜻이 바뀐다.@@html:<sup><a id="endnote_ref_1" href="#endnote_1">1</a></sup>@@ 예를 들어 역학의
 기본 결과인 라그랑주 방정식은 전통 표기에서 다음과 같이 쓴다.
 
-$\frac{d}{dt}\frac{\partial L}{\partial{\overset{˙}{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0.$
+{{< sicm-math >}}\frac{d}{dt}\frac{\partial L}{\partial{\dot{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0.{{< /sicm-math >}}
 
 라그랑지언 /L/은 위치와 속도 성분 /q^{i}/ 및
 
-${\overset{˙}{q}}^{i}$
+{{< sicm-math >}}{\dot{q}}^{i}{{< /sicm-math >}}
 
 의 함수로 해석되어야 편미분이 뜻을 갖는다. 그러나 시간미분 /d/dt/가 뜻을
 가지려면, 라그랑지언의 편미분에 해 경로가 삽입되어 시간의 함수가 되어야 한다.
@@ -205,13 +205,13 @@ __________________
 
 /f/(/u, v/)가 함수이고 /u/ = /g/(/x, y/)이고 /v/ = /h/(/x, y/)이면
 
-$\frac{\partial f(g(x,y),h(x,y)}{\partial x} = \frac{\partial f(u,v)}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f(u,v)}{\partial v}\frac{\partial v}{\partial x}$
+{{< sicm-math >}}\frac{\partial f(g(x,y),h(x,y)}{\partial x} = \frac{\partial f(u,v)}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f(u,v)}{\partial v}\frac{\partial v}{\partial x}{{< /sicm-math >}}
 
 [기호 ∂/u//∂/x/는 ∂///∂/x g/(/x, y/)를 뜻하고, ∂///∂/u f/(/u, v/)는
 /D/_{1}/f/(/u, v/) = /D/_{1}/f/(/g/(/x, y/), /h/(/x, y/))를 뜻한다.] 이
 방정식은 흔히 간단히 다음처럼 쓴다.
 
-$\frac{\partial f}{\partial x} = \frac{\partial f}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f}{\partial v}\frac{\partial v}{\partial x}.$
+{{< sicm-math >}}\frac{\partial f}{\partial x} = \frac{\partial f}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f}{\partial v}\frac{\partial v}{\partial x}.{{< /sicm-math >}}
 
 양변에서 /f/는 서로 다른 것을 뜻한다는 점에 유의하라!
 

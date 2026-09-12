@@ -187,9 +187,9 @@ strategy)/이다. 각 물리계에 대해, 각 실현 가능한 경로에서 정
   따라서 당분간 배치 좌표 수가 자유도 수와 같은 정식화만 고려할 것이다. 뒤에는
   중복 좌표와 명시적 구속조건을 지닌 계를 다루는 법을 배운다.
 
-  일반적으로 배치는 어떤 차원 $n$의 공간 $M$을 이룬다. $n$차원 배치공간은
-  배치공간의 원소를 실수의 $n$-튜플로 사상하는 좌표 함수 $\chi$를 선택하여
-  매개변수화할 수 있다.[fn:5] 차원이 하나보다 크면 함수 $\chi$는 $n$개의 독립
+  일반적으로 배치는 어떤 차원 {{< sicm-math >}}n{{< /sicm-math >}}의 공간 {{< sicm-math >}}M{{< /sicm-math >}}을 이룬다. {{< sicm-math >}}n{{< /sicm-math >}}차원 배치공간은
+  배치공간의 원소를 실수의 {{< sicm-math >}}n{{< /sicm-math >}}-튜플로 사상하는 좌표 함수 {{< sicm-math >}}\chi{{< /sicm-math >}}를 선택하여
+  매개변수화할 수 있다.[fn:5] 차원이 하나보다 크면 함수 {{< sicm-math >}}\chi{{< /sicm-math >}}는 {{< sicm-math >}}n{{< /sicm-math >}}개의 독립
   좌표 함수[fn:6] /χ^{i}, i/ = 0, ..., /n/ − 1의 튜플이며, 각 /χ^{i}/는
   배치공간의 어떤 영역에서 정의된 실숫값 함수다.[fn:7] 배치공간 /M/ 안의 주어진
   배치 /m/에 대해 좌표 함수의 값 /χ^{i}/(/m/)는 그 배치의 일반화 좌표다. 이
@@ -200,12 +200,12 @@ strategy)/이다. 각 물리계에 대해, 각 실현 가능한 경로에서 정
 
   계의 운동은 시간을 배치공간 점으로 사상하는 배치 경로 /γ/로 기술할 수 있다.
   배치 경로에 대응하는 것은 시간을 일반화 좌표의 튜플로 사상하는 /좌표 경로/
-  $q = $\chi \circ \gamma$다.[fn:9] 자유도가 하나보다 크면 좌표 경로는 구조화된
-  객체다. $q$는 성분 좌표 경로 함수 $q^i = \chi^i \circ \gamma$의 튜플이다. 각
-  순간 $t$에서 값 $q(t) = \left(q^0(t),\, \ldots,\, q^{n−1}(t) \right)$은 배치의
+  {{< sicm-math >}}q = \chi \circ \gamma{{< /sicm-math >}}다.[fn:9] 자유도가 하나보다 크면 좌표 경로는 구조화된
+  객체다. {{< sicm-math >}}q{{< /sicm-math >}}는 성분 좌표 경로 함수 {{< sicm-math >}}q^i = \chi^i \circ \gamma{{< /sicm-math >}}의 튜플이다. 각
+  순간 {{< sicm-math >}}t{{< /sicm-math >}}에서 값 {{< sicm-math >}}q(t) = \left(q^0(t),\, \ldots,\, q^{n−1}(t) \right){{< /sicm-math >}}은 배치의
   일반화 좌표다.
 
-  좌표 경로 $q$의 도함수 $Dq$는 주어진 순간에 배치 좌표의 변화율을 주는
+  좌표 경로 {{< sicm-math >}}q{{< /sicm-math >}}의 도함수 {{< sicm-math >}}Dq{{< /sicm-math >}}는 주어진 순간에 배치 좌표의 변화율을 주는
   함수[fn:10]다. /Dq/(/t/) = (/Dq/^{0}(/t/), ..., /Dq/^{/n/−1}(/t/)). 일반화
   좌표의 변화율을 /일반화 속도(generalized velocity)/라 한다.
 
@@ -281,9 +281,9 @@ strategy)/이다. 각 물리계에 대해, 각 실현 가능한 경로에서 정
    시간 구간에서 경로 한 구간의 작용은[fn:15]
 
    @@html:<span id="disp_1.1"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{F\lbrack q\rbrack.}}} & {(1.1)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이다. 여기서 /F/[/q/]는 경로의 어떤 국소 성질을 측정하는 시간의 함수다.
    이는 그 시각 함수 /q/의 값과 그 시각 /q/의 어떤 도함수 값에 의존할 수
    있다.[fn:16]
@@ -300,17 +300,17 @@ $$\begin{aligned}
    계에서나 같다. /F/[/q/]를 이 두 함수의 합성으로 쓸 수 있다:[fn:18]
 
    @@html:<span id="disp_1.2"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {F\lbrack q\rbrack = L \circ \Gamma\lbrack q\rbrack.} & {(1.2)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    함수 Γ는 좌표 경로를 받아 시간의 함수를 만들며, 그 값은 시간, 그 시간의
    좌표, 그 시간의 좌표 변화율, 그 시간에 평가한 좌표의 고계 도함수 값을 담은
    순서 있는 튜플이다. 경로 /q/와 시간 /t/에 대해:
 
    @@html:<span id="disp_1.3"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Gamma\lbrack q\rbrack(t) = (t,q(t),Dq(t),\ldots).} & {(1.3)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    필요한 만큼의 도함수를 포함하는 이 튜플을 /국소 튜플(local tuple)/이라
    부른다. 함수 Γ[/q/]는 좌표 경로 /q/와 그 도함수에만 의존한다. 함수 Γ[/q/]는
    /χ/나 /q/가 /χ/와 /γ/를 합성하여 만들어졌다는 사실에 의존하지 않는다.
@@ -329,16 +329,16 @@ $$\begin{aligned}
    작용
 
    @@html:<span id="disp_1.4"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack,}}} & {(1.4)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    을 /라그랑지언 작용(Lagrangian action)/이라 한다. 시간, 위치, 속도에만
    의존하는 라그랑지언의 경우 작용은 다음처럼도 쓸 수 있다.
 
    @@html:<span id="disp_1.5"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L(t,q(t),Dq(t))\, dt.}}} & {(1.5)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    매우 다양한 계에서 라그랑지언을 찾을 수 있다. 많은 계에서 라그랑지언을
    운동 에너지와 퍼텐셜 에너지의 차로 잡을 수 있음을 보게 될 것이다. 이러한
    라그랑지언은 시간, 배치, 배치 변화율에만 의존한다. 이 부류의 계에 초점을
@@ -381,24 +381,24 @@ $$\begin{aligned}
   발견했다. 라그랑지언을 운동 에너지로 잡으면 자유 입자는 정지 작용 원리에
   따라 움직인다. 질량 /m/과 속도
 
-  $\overset{\rightarrow}{v}$
+  {{< sicm-math >}}\overset{\rightarrow}{v}{{< /sicm-math >}}
 
   를 지닌 입자의 운동 에너지는
 
-  $\frac{1}{2}mv^{2}$
+  {{< sicm-math >}}\frac{1}{2}mv^{2}{{< /sicm-math >}}
 
   이며, 여기서 /v/는
 
-  $\overset{\rightarrow}{v}$
+  {{< sicm-math >}}\overset{\rightarrow}{v}{{< /sicm-math >}}
 
   의 크기다. 이 경우 일반화 좌표를 보통의 직교 좌표로 선택할 수 있다.
 
   Euler와 Lagrange를 따라 자유 입자의 라그랑지언은[fn:24]
 
   @@html:<span id="disp_1.6"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = \frac{1}{2}m(v \cdot v),} & {(1.6)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   이다. 여기서 형식 매개변수 /x/는 주어진 직교 좌표계에 대한 위치 성분의
   튜플을 가리키고, 형식 매개변수 /v/는 속도 성분의 튜플을 가리킨다.[fn:25]
 
@@ -417,9 +417,9 @@ $$\begin{aligned}
   시간을 위치 성분으로 사상하는 좌표 경로 함수를 /q/로 나타내자:[fn:27]
 
   @@html:<span id="disp_1.7"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {q(t) = (x(t),y(t),z(t)).} & {(1.7)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   다음 정의를 만들 수 있다[fn:28]
 
   #+begin_src scheme
@@ -441,7 +441,7 @@ $$\begin{aligned}
 
   좌표 경로 /Dq/의 도함수는 시간을 속도 성분으로 사상하는 함수다:
 
-  $Dq(t) = (Dx(t),Dy(t),Dz(t)).$
+  {{< sicm-math >}}Dq(t) = (Dx(t),Dy(t),Dz(t)).{{< /sicm-math >}}
 
   함수의 도함수를 만들고 사용할 수 있다.[fn:29] 예를 들어 다음처럼 쓸 수 있다:
 
@@ -522,35 +522,35 @@ z) t) 2)))
     자유 입자에 적절한 라그랑지언은[fn:36]
 
     @@html:<span id="disp_1.8"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = \frac{1}{2}mv^{2}.} & {(1.8)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이다. /x/가 자유 입자의 일정 속도 직선 경로이고, /x/_{/a/} = /x/(/t/_{/a/})와
     /x/_{/b/} = /x/(/t/_{/b/})라 하자. 해 경로에서의 작용이 다음과 같음을 보여라.
 
     @@html:<span id="disp_1.9"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\frac{m}{2}\frac{{(x_{b} - x_{a})}^{2}}{t_{b} - t_{a}}.} & {(1.9)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
 ** 최소 작용 경로
    :PROPERTIES:
    :CUSTOM_ID: paths-of-minimum-action
    :CLASS:    level2
    :END:
    우리는 자유 입자의 실제 경로가 직선 위의 등속 운동임을 이미 안다. Euler와
-   Lagrange에 따르면 작용은 가까운 경로보다 직선 시험 경로에서 더 작다. $q$를
-   작용 $S\left[q\right](t_1, t_2)$을 갖는 직선 시험 경로라 하자. $q + \varepsilon \eta$를
-   실수 매개변수 $\varepsilon$로 크기를 조절한 경로 변분 $\eta$를 $q$에 더하여 얻은
+   Lagrange에 따르면 작용은 가까운 경로보다 직선 시험 경로에서 더 작다. {{< sicm-math >}}q{{< /sicm-math >}}를
+   작용 {{< sicm-math >}}S\left[q\right](t_1, t_2){{< /sicm-math >}}을 갖는 직선 시험 경로라 하자. {{< sicm-math >}}q + \varepsilon \eta{{< /sicm-math >}}를
+   실수 매개변수 {{< sicm-math >}}\varepsilon{{< /sicm-math >}}로 크기를 조절한 경로 변분 {{< sicm-math >}}\eta{{< /sicm-math >}}를 {{< sicm-math >}}q{{< /sicm-math >}}에 더하여 얻은
    가까운 경로라 하자.[fn:37] 변분 경로의 작용은
-   $S\left[q + \varepsilon \eta\right](t_1, t_2)$다. Euler와 Lagrange는 끝점에서
-   영인 모든 $\eta$와 작은 영 아닌 모든
-   $\eta$에 대해
-   $S\left[q + \varepsilon \eta\right](t_1, t_2) > S\left[q\right](t_1, t_2)$임을
+   {{< sicm-math >}}S\left[q + \varepsilon \eta\right](t_1, t_2){{< /sicm-math >}}다. Euler와 Lagrange는 끝점에서
+   영인 모든 {{< sicm-math >}}\eta{{< /sicm-math >}}와 작은 영 아닌 모든
+   {{< sicm-math >}}\eta{{< /sicm-math >}}에 대해
+   {{< sicm-math >}}S\left[q + \varepsilon \eta\right](t_1, t_2) > S\left[q\right](t_1, t_2){{< /sicm-math >}}임을
    발견했다.
 
-   끝점 $t = t_1$, $t = t_2$에서 영이 되는 시험 함수의 어떤 양을 더하여 시험
+   끝점 {{< sicm-math >}}t = t_1{{< /sicm-math >}}, {{< sicm-math >}}t = t_2{{< /sicm-math >}}에서 영이 되는 시험 함수의 어떤 양을 더하여 시험
    경로를 변분시켜, 이를 수치적으로 확인해 보자. 충분히 잘 거동하는 함수 /ν/가
-   주어졌을 때 끝점에서 영인 함수 $\eta$를 만들려면 /η/(/t/) = (/t/ − /t/_{1})(/t/ −
+   주어졌을 때 끝점에서 영인 함수 {{< sicm-math >}}\eta{{< /sicm-math >}}를 만들려면 /η/(/t/) = (/t/ − /t/_{1})(/t/ −
    /t/_{2})/ν/(/t/)를 쓸 수 있다. 이를 구현하면 다음과 같다.
 
    #+begin_src scheme
@@ -646,9 +646,9 @@ $$\begin{aligned}
    이 전략의 사용을 예시하기 위해 라그랑지언이[fn:44]
 
    @@html:<span id="disp_1.10"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,q,v) = \frac{1}{2}mv^{2} - \frac{1}{2}kq^{2},} & {(1.10)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    인 조화 진동자의 궤적을 찾는다. 여기서 /m/은 질량이고 /k/는 용수철
    상수다. 이 라그랑지언은 다음으로 구현한다.[fn:45]
 
@@ -677,9 +677,9 @@ $$\begin{aligned}
    /m/ = 1, /k/ = 1일 때 이 조화 진동자의 궤적은 다음과 같음을 안다.
 
    @@html:<span id="disp_1.11"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {q(t) = A\,\,\text{cos}(t + \varphi)} & {(1.11)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    여기서 진폭 /A/와 위상 /φ/는 초기 조건으로 결정된다. 선택한 끝점 조건에서는
    해가 /q/(/t/) = cos(/t/)다. 근사 경로는 0에서 /π//2까지 범위에서 코사인의
    근사여야 한다. [[#Fig_1-1][그림 1.1]]은 이 과정이 만든 다항식 근사의 오차를
@@ -738,9 +738,9 @@ $$\begin{aligned}
    고정하는 임의의 경로 변분에 관하여), 다음이 성립함을 보게 될 것이다.
 
    @@html:<span id="disp_1.12"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack = 0.} & {(1.12)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    여기서 /L/은 국소 튜플의 실숫값 함수이고, ∂_{1}/L/과 ∂_{2}/L/은 각각 /L/의
    일반화 위치 인수와 일반화 속도 인수에 대한 편미분을 나타낸다.[fn:47] 함수
    ∂_{2}/L/은 국소 튜플을, 일반화 속도의 각 성분에 대한 /L/의 도함수를
@@ -753,11 +753,11 @@ $$\begin{aligned}
 
    라그랑주 방정식은 전통적으로 /q/의 각 성분마다 하나씩 따로 쓴다:
 
-   $$\begin{aligned}
+   {{< sicm-math display >}}\begin{aligned}
 {\frac{d}{dt}\frac{\partial
-   L}{\partial{\overset{˙}{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0} &
+   L}{\partial{\dot{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0} &
    {i = 0,\ldots,n - 1.}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
    라그랑주 방정식을 이렇게 쓰는 방식에서는, 이 표기가 세 변수 (/t/, /q/,
 
@@ -776,7 +776,7 @@ $$\begin{aligned}
    를 /t/의 함수로 보아야 한다. 마찬가지로 ∂/L//∂/q/도 세 변수의 함수이고,
    이것을 다음과 같이 놓기 전에 /t/의 함수로 보아야 한다
 
-   $d/dt\left( {\partial L/\partial\overset{˙}{q}} \right)$
+   {{< sicm-math >}}d/dt\left( {\partial L/\partial\dot{q}} \right){{< /sicm-math >}}
 
    .
 
@@ -784,10 +784,10 @@ $$\begin{aligned}
 
    전통적 표기를 올바르게 쓰면 더 명시적이다:
 
-   $\frac{d}{dt}\left( \left. \frac{\partial L\left( {t,w,\overset{˙}{w}}
-   \right)}{\partial{\overset{˙}{w}}^{i}} \right|_{\begin{array}{l} {w = q{(t)}} \\ {\overset{˙}{w} = \frac{dq{(t)}}{dt}} \end{array}} \right) - \left.
-   \frac{\partial L\left( {t,w,\overset{˙}{w}} \right)}{\partial w^{i}}
-   \right|_{\begin{array}{l} {w = q{(t)}} {\overset{˙}{w} = \frac{dq{(t)}}{dt}} \end{array}} = 0,$
+   {{< sicm-math >}}\frac{d}{dt}\left( \left. \frac{\partial L\left( {t,w,\dot{w}}
+   \right)}{\partial{\dot{w}}^{i}} \right|_{\begin{array}{l} {w = q{(t)}} \\ {\dot{w} = \frac{dq{(t)}}{dt}} \end{array}} \right) - \left.
+   \frac{\partial L\left( {t,w,\dot{w}} \right)}{\partial w^{i}}
+   \right|_{\begin{array}{l} {w = q{(t)}} {\dot{w} = \frac{dq{(t)}}{dt}} \end{array}} = 0,{{< /sicm-math >}}
 
    여기서 /i/ = 0, ..., /n/ − 1이다. 이 식들에서 우리는 먼저 라그랑지언 함수의
    편미분을 취하고, 그런 다음 라그랑지언의 위치 인수와 속도 인수에 경로와 그
@@ -811,42 +811,42 @@ $$\begin{aligned}
    /ϵη/를 생각하자. 다음과 같이 두자.
 
    @@html:<span id="disp_1.13"></span>@@
-$$\begin{array}{lll} {g(\mathit{\epsilon})} & {= S\lbrack q + \mathit{\epsilon}\eta\rbrack(t_{1},\,\, t_{2})} & \\ & {= {\int_{t_{1}}^{t_{2}}{L(t,q(t) + \mathit{\epsilon}\eta(t),Dq(t) + \mathit{\epsilon}D\eta(t))dt.}}} & {(1.13)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {g(\mathit{\epsilon})} & {= S\lbrack q + \mathit{\epsilon}\eta\rbrack(t_{1},\,\, t_{2})} & \\ & {= {\int_{t_{1}}^{t_{2}}{L(t,q(t) + \mathit{\epsilon}\eta(t),Dq(t) + \mathit{\epsilon}D\eta(t))dt.}}} & {(1.13)}\end{array}{{< /sicm-math >}}
    /ϵ/에 대한 거듭제곱 급수로 전개하면
 
    @@html:<span id="disp_1.14"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {g(\mathit{\epsilon}) = g(0) + \mathit{\epsilon}Dg(0) + \cdots} & {(1.14)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    연쇄 법칙을 쓰면 다음을 얻는다.
 
    @@html:<span id="disp_1.15"></span>@@
-$$\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{(\partial_{2}L(t,q(t),Dq(t))D\eta(t))\,\, dt.}}} & {(1.15)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{(\partial_{2}L(t,q(t),Dq(t))D\eta(t))\,\, dt.}}} & {(1.15)}\end{array}{{< /sicm-math >}}
    두 번째 항을 부분적분하면 다음을 얻는다.
 
    @@html:<span id="disp_1.16"></span>@@
-$$\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ \,\partial_{2}L(t,q(t),Dq(t)D\eta(t))\eta(t)|_{t_{1}}^{t_{2}}} & \\ & {- {\int_{t_{1}}^{t_{2}}{\frac{d}{dt}(\partial_{2}L(t,q(t),Dq(t)))\eta(t)dt}}.} & {(1.16)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ \,\partial_{2}L(t,q(t),Dq(t)D\eta(t))\eta(t)|_{t_{1}}^{t_{2}}} & \\ & {- {\int_{t_{1}}^{t_{2}}{\frac{d}{dt}(\partial_{2}L(t,q(t),Dq(t)))\eta(t)dt}}.} & {(1.16)}\end{array}{{< /sicm-math >}}
    경로의 변분으로 인한 작용의 증분 Δ/S/는 /ϵ/의 1차까지 /ϵDg/(0)이다.
-   $\eta$가 양 끝점에서 0이므로 적분된 항은 0이다. 나머지 두 항을 모으고 함수
+   {{< sicm-math >}}\eta{{< /sicm-math >}}가 양 끝점에서 0이므로 적분된 항은 0이다. 나머지 두 항을 모으고 함수
    표기로 되돌리면 증분은 다음과 같다.
 
    @@html:<span id="disp_1.17"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Delta S = \mathit{\epsilon}{\int_{t_{1}}^{t_{2}}\left\{ \partial_{1}L \circ \Gamma\lbrack q\rbrack\, - \, D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}}\eta.} & {(1.17)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Δ/S/가 0이면 작용은 정지이다. 우리는 변분을 고르는 데 충분한 자유를 남겨
-   두었으므로, 피적분 함수에서 $\eta$에 곱해지는 인자는 경로를 따라 각 점에서
+   두었으므로, 피적분 함수에서 {{< sicm-math >}}\eta{{< /sicm-math >}}에 곱해지는 인자는 경로를 따라 각 점에서
    0이 되도록 강제된다. 귀류법으로 논증한다. 이 인자가 어떤 특정한 시각에 0이
    아니라고 하자. 그러면 그 성분 가운데 적어도 하나에서 0이 아니어야 한다.
-   그런데 $\eta$를 그 시각의 근방에서 그 성분에서만 0이 아니고 나머지 모든
+   그런데 {{< sicm-math >}}\eta{{< /sicm-math >}}를 그 시각의 근방에서 그 성분에서만 0이 아니고 나머지 모든
    곳에서는 0인 융기(bump) 함수로 잡으면 적분은 0이 아니게 된다. 따라서 중괄호
    안의 인자는 항등적으로 0이라고 결론지을 수 있고, 이로써 라그랑주 방정식을
    얻는다:[fn:48]
 
    @@html:<span id="disp_1.18"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, - \,\partial_{1}L \circ \Gamma\lbrack q\rbrack = 0.} & {(1.18)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
 ** 변분 연산자
    :PROPERTIES:
    :CUSTOM_ID: the-variation-operator
@@ -858,16 +858,16 @@ $$\begin{aligned}
 
    경로 /q/에 의존하는 함수 /f/[/q/]가 있다고 하자. 경로를 변화시키면 이
    함수는 어떻게 변하는가? /q/를 좌표 경로라 하고 /q/ + /ϵη/를 변화된 경로라
-   하자. 여기서 함수 $\eta$는 경로 /q/에 더할 수 있는 경로 같은 함수이고, 인자
+   하자. 여기서 함수 {{< sicm-math >}}\eta{{< /sicm-math >}}는 경로 /q/에 더할 수 있는 경로 같은 함수이고, 인자
    /ϵ/는 크기 배율이다. 경로 /q/ 위에서 함수 /f/의 /변분 δ_{η}f/[/q/]를 다음과
    같이 정의한다.[fn:49]
 
    @@html:<span id="disp_1.19"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}f\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{f\lbrack q + \mathit{\epsilon}\eta\rbrack - f\lbrack q\rbrack}{\mathit{\epsilon}} \right).} & {(1.19)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    /f/의 변분은 경로의 작은 변분에 대한 함수 /f/의 변화의 선형 근사이다. /f/의
-   변분은 $\eta$에 의존한다.
+   변분은 {{< sicm-math >}}\eta{{< /sicm-math >}}에 의존한다.
 
 
 
@@ -875,59 +875,59 @@ $$\begin{aligned}
    다음을 얻는다.
 
    @@html:<span id="disp_1.20"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}I\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{(q + \mathit{\epsilon}\eta) - q}{\mathit{\epsilon}} \right) = \eta.} & {(1.20)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    /δ_{η}I/[/q/]는 전통적으로 그냥 /δq/라고 쓴다. 또 다른 예는 경로의 도함수를
    돌려주는 경로 함수의 변분이다. 다음이 성립한다.[fn:50]
 
    @@html:<span id="disp_1.21"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}g\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{D(q + \mathit{\epsilon}\eta) - Dq}{\mathit{\epsilon}} \right) = D\eta\,\,\,\,\text{with}\,\,\,\, g\lbrack q\rbrack = Dq.} & {(1.21)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    /δ_{η}g/[/q/]는 전통적으로 /δDq/라고 쓴다.
 
    변분은 도함수로 나타낼 수 있다. /g/(/ϵ/) = /f/[/q/ + /ϵη/]라 하자. 그러면
 
    @@html:<span id="disp_1.22"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}f\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{g(\mathit{\epsilon}) - g(0)}{\mathit{\epsilon}} \right) = Dg(0).} & {(1.22)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    변분은 다음과 같은 도함수 비슷한 성질을 갖는다. 경로 의존 함수 /f/와 /g/,
    그리고 상수 /c/에 대하여:
 
    @@html:<span id="disp_1.23"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}(f\, g)\lbrack q\rbrack = \delta_{\eta}f\lbrack q\rbrack\,\, g\lbrack q\rbrack + f\lbrack q\rbrack\,\,\delta_{\eta}g\lbrack q\rbrack} & {(1.23)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.24"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}(f + g)\lbrack q\rbrack = \delta_{\eta}f\lbrack q\rbrack\, + \,\,\delta_{\eta}g\lbrack q\rbrack} & {(1.24)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.25"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}(cf)\lbrack q\rbrack = c\,\,\delta_{\eta}f\lbrack q\rbrack.} & {(1.25)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    /F/를 경로에 무관한 함수라 하고 /g/를 경로 의존 함수라 하자. 그러면
 
    @@html:<span id="disp_1.26"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}h\lbrack q\rbrack = (DF \circ g\lbrack q\rbrack)\,\,\delta_{\eta}g\lbrack q\rbrack\,\,\,\text{with}\,\,\,\, h\lbrack q\rbrack = F \circ g\lbrack q\rbrack.} & {(1.26)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    연산자 /D/(미분)와 /δ/(변분)는 다음과 같은 뜻에서 교환한다:
 
    @@html:<span id="disp_1.27"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 D{\delta_{\eta}f\lbrack q\rbrack = \delta_{\eta}g\lbrack
    q\rbrack\,\,\,\text{with}\,\,\,\, g\lbrack q\rbrack = D(f\lbrack q\rbrack).}
    & {(1.27)}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
    변분은 비슷한 뜻에서 적분과도 교환한다.
 
    경로 의존 함수 /f/가 어떤 특정 경로 /q/에 대해 그 경로의 작은 변화에 관하여
-   정지라면, /q/에 특정한 함수 $\eta$의 작은 배수를 더해 얻는 변분의
-   부분집합에 대해서도 정지여야 한다. 그러므로 임의의 $\eta$에 대하여
+   정지라면, /q/에 특정한 함수 {{< sicm-math >}}\eta{{< /sicm-math >}}의 작은 배수를 더해 얻는 변분의
+   부분집합에 대해서도 정지여야 한다. 그러므로 임의의 {{< sicm-math >}}\eta{{< /sicm-math >}}에 대하여
    /δ_{η}f/[/q/] = 0이라는 진술은 함수 /f/가 /q/ 주위 경로의 작은 변분에
    대하여 정지임을 함의한다.
 
@@ -974,58 +974,58 @@ D{\delta_{\eta}f\lbrack q\rbrack = \delta_{\eta}g\lbrack
    작용은 경로를 따라 라그랑지언을 적분한 것이다:
 
    @@html:<span id="disp_1.28"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack.}}} & {(1.28)}
-   \end{aligned}$$
-   실현 가능한 경로 /q/에 대해, 끝점을 보존하는 임의의 변분 $\eta$, 곧
+   \end{aligned}{{< /sicm-math >}}
+   실현 가능한 경로 /q/에 대해, 끝점을 보존하는 임의의 변분 {{< sicm-math >}}\eta{{< /sicm-math >}}, 곧
    /η/(/t/_{1}) = /η/(/t/_{2}) = 0인 변분에 관한 작용의 변분은 0이다:
 
    @@html:<span id="disp_1.29"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) = 0.} & {(1.29)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    변분은 적분과 교환하므로 작용의 변분은 다음과 같다.
 
    @@html:<span id="disp_1.30"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{\delta_{\eta}h\lbrack q\rbrack\,\,\,\,\text{where}\,\,\,\, h\lbrack q\rbrack = L \circ \Gamma\lbrack q\rbrack.}}} & {(1.30)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    다음 사실을 쓰면
 
    @@html:<span id="disp_1.31"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}\Gamma\lbrack q\rbrack(t) = (0,\eta(t),D\eta(t)),} & {(1.31)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    ---이는 식 ([[/ko/eval/sicm/chapter-1/#disp_1.20][1.20]])과
    ([[/ko/eval/sicm/chapter-1/#disp_1.21][1.21]])에서 따라 나온다---그리고 변분에
    대한 연쇄 법칙 ([[/ko/eval/sicm/chapter-1/#disp_1.26][1.26]])을 쓰면 다음을
    얻는다.[fn:52]
 
    @@html:<span id="disp_1.32"></span>@@
-$$\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{(D\, L \circ \Gamma\lbrack q\rbrack)\delta_{\eta}\Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{((\partial_{1}L \circ \Gamma\lbrack q\rbrack)\eta + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D\eta).}}} & {(1.32)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{(D\, L \circ \Gamma\lbrack q\rbrack)\delta_{\eta}\Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{((\partial_{1}L \circ \Gamma\lbrack q\rbrack)\eta + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D\eta).}}} & {(1.32)}\end{array}{{< /sicm-math >}}
    식 ([[/ko/eval/sicm/chapter-1/#disp_1.32][1.32]])의 마지막 항을 부분적분하면
    다음을 얻는다.
 
    @@html:<span id="disp_1.33"></span>@@
-$$\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) =} & {(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\eta|_{t_{1}}^{t_{2}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\eta.}}} & {(1.33)}\end{array}$$
-   우리의 변분 $\eta$에 대해서는 /η/(/t/_{1}) = /η/(/t/_{2}) = 0이므로 첫 항은
+{{< sicm-math display >}}\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) =} & {(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\eta|_{t_{1}}^{t_{2}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\eta.}}} & {(1.33)}\end{array}{{< /sicm-math >}}
+   우리의 변분 {{< sicm-math >}}\eta{{< /sicm-math >}}에 대해서는 /η/(/t/_{1}) = /η/(/t/_{2}) = 0이므로 첫 항은
    사라진다.
 
    따라서 작용의 변분이 0인 것은 다음과 필요충분이다.
 
    @@html:<span id="disp_1.34"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {0 = {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\,\eta.}}} & {(1.34)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    가정에 의해 /q/는 실현 가능한 경로이므로 작용의 변분은 0이다. 따라서
    ([[/ko/eval/sicm/chapter-1/#disp_1.34][1.34]])는 끝점에서 0인 /임의의/ 함수
-   $\eta$에 대해 참이어야 한다. $\eta$는 끝점에서 0이라는 것 말고는
+   {{< sicm-math >}}\eta{{< /sicm-math >}}에 대해 참이어야 한다. {{< sicm-math >}}\eta{{< /sicm-math >}}는 끝점에서 0이라는 것 말고는
    임의이므로, 피적분 함수에서 괄호로 묶인 인자는 0이다. 그러므로
 
    @@html:<span id="disp_1.35"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - (\partial_{1}L \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.35)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이것이 바로 우리가 얻고자 했던 것, 곧 라그랑주 방정식이다.
 
    라그랑주 방정식을 만족하는 경로는 작용이 정지인 경로이며, 작용이 정지라는
@@ -1043,15 +1043,15 @@ $$\begin{aligned}
    예로 조화 진동자를 생각하자. 하나의 라그랑지언은 다음과 같다.
 
    @@html:<span id="disp_1.36"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = \frac{1}{2}mv^{2} - \frac{1}{2}kx^{2}.} & {(1.36)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    그러면
 
    @@html:<span id="disp_1.37"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{1}L(t,x,v) = - kx\,\,\,\,\,\,\text{and}\,\,\,\,\partial_{2}L(t,x,v) = mv.} & {(1.37)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    라그랑지언은 시간, 좌표, 속도로 이루어진 튜플에 적용된다. 기호 /t/, /x/,
    /v/는 임의이며, 라그랑지언의 형식 매개변수를 지정하는 데 쓰인다.
 
@@ -1059,29 +1059,29 @@ $$\begin{aligned}
    있다고 하자. 시각 /t/에서 대응하는 국소 튜플의 처음 부분은 다음과 같다.
 
    @@html:<span id="disp_1.38"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Gamma\lbrack y\rbrack(t) = (t,y(t),Dy(t)).} & {(1.38)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    그러므로
 
    @@html:<span id="disp_1.39"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\partial_{1}L \circ \Gamma\lbrack y\rbrack)(t) = - ky(t)\,\,\,\,\,\text{and}\,\,\,\,\,(\partial_{2}L \circ \Gamma\lbrack y\rbrack)(t) = mDy(t),} & {(1.39)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    그리고
 
    @@html:<span id="disp_1.40"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack y\rbrack)(t) = mD^{2}y(t),} & {(1.40)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    따라서 라그랑주 방정식은
 
 
 
    @@html:<span id="disp_1.41"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}y(t) + ky(t) = 0,} & {(1.41)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이며, 이것이 조화 진동자의 운동방정식이다.
 
 ** 궤도 운동
@@ -1096,46 +1096,46 @@ $$\begin{aligned}
    이 문제에 대한 하나의 라그랑지언은 다음과 같다.[fn:53]
 
    @@html:<span id="disp_1.42"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t;\xi,\eta;v_{\xi},v_{\eta}) = \frac{1}{2}m(v_{\xi}^{2} + v_{\eta}^{2}) + \frac{\mu}{\sqrt{\xi^{2} + \eta^{2}}},} & {(1.42)}
-   \end{aligned}$$
-   여기서 $\xi$와 $\eta$는 입자의 직각 좌표에 대한 형식 매개변수이고,
+   \end{aligned}{{< /sicm-math >}}
+   여기서 {{< sicm-math >}}\xi{{< /sicm-math >}}와 {{< sicm-math >}}\eta{{< /sicm-math >}}는 입자의 직각 좌표에 대한 형식 매개변수이고,
    /v_{ξ}/와 /v_{η}/는 대응하는 직각 속도 성분에 대한 형식 매개변수이다.
    그러면
 
    @@html:<span id="disp_1.43"></span>@@
-$$\begin{array}{lll} {\partial_{1}L(t;\xi,\eta;v_{\xi},v_{\eta})} & {= \lbrack\partial_{1,0}L(t;\xi,\eta;v_{\xi},v_{\eta}),\partial_{1,1}L(t;\xi,\eta;v_{\xi},v_{\eta})\rbrack} & \\ & {{= \left\lbrack {\frac{- \mu\xi}{{(\xi^{2} + \eta^{2})}^{3/2}},\frac{- \mu\eta}{{(\xi^{2} + \eta^{2})}^{3/2}}} \right\rbrack}.} & {(1.43)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {\partial_{1}L(t;\xi,\eta;v_{\xi},v_{\eta})} & {= \lbrack\partial_{1,0}L(t;\xi,\eta;v_{\xi},v_{\eta}),\partial_{1,1}L(t;\xi,\eta;v_{\xi},v_{\eta})\rbrack} & \\ & {{= \left\lbrack {\frac{- \mu\xi}{{(\xi^{2} + \eta^{2})}^{3/2}},\frac{- \mu\eta}{{(\xi^{2} + \eta^{2})}^{3/2}}} \right\rbrack}.} & {(1.43)}\end{array}{{< /sicm-math >}}
    마찬가지로,
 
    @@html:<span id="disp_1.44"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{2}L(t;\xi,\eta;v_{\xi},v_{\eta}) = \lbrack mv_{\xi},mv_{\eta}\rbrack.} & {(1.44)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이제 배치 경로 /q/ = (/x/, /y/)가 있어서 시각 /t/에서 좌표 튜플이 /q/(/t/)
    = (/x/(/t/), /y/(/t/))라 하자. 시각 /t/에서 국소 튜플의 처음 부분은 다음과
    같다.
 
    @@html:<span id="disp_1.45"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Gamma\lbrack q\rbrack(t) = (t;x(t),y(t);Dx(t),Dy(t)).} & {(1.45)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    그러므로
 
    @@html:<span id="disp_1.46"></span>@@
-$$\begin{array}{lll} {(\partial_{1}L \circ \Gamma\lbrack q\rbrack)(t)} & {= \left\lbrack {\frac{- \mu x(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}},\frac{- \mu y(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}}} \right\rbrack} & \\ {(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t)} & {= \lbrack mDx(t),mDy(t)\rbrack} & {(1.46)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {(\partial_{1}L \circ \Gamma\lbrack q\rbrack)(t)} & {= \left\lbrack {\frac{- \mu x(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}},\frac{- \mu y(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}}} \right\rbrack} & \\ {(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t)} & {= \lbrack mDx(t),mDy(t)\rbrack} & {(1.46)}\end{array}{{< /sicm-math >}}
    그리고
 
    @@html:<span id="disp_1.47"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t) = \lbrack mD^{2}x(t),mD^{2}y(t)\rbrack.} & {(1.47)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    시각 /t/에서 성분별 라그랑주 방정식은 다음과 같다.
 
    @@html:<span id="disp_1.48"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}x(t) + \frac{\mu x(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}} = 0} & \\
    {mD^{2}y(t) + \frac{\mu y(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}} = 0.} & {(1.48)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="Exe_1-9"></span>@@
    *연습문제 1.9: 라그랑주 방정식*
 
@@ -1145,16 +1145,16 @@ $$\begin{aligned}
    *a.* 이상적인 평면 진자는 길이 /l/인 질량 없는 막대로 회전축에 이어진 질량
    /m/인 추로 이루어지며, 균일한 중력 가속도 /g/를 받는다. 하나의 라그랑지언은
 
-   $L(t,\theta,\overset{˙}{\theta}) =
-   \frac{1}{2}ml^{2}{\overset{˙}{\theta}}^{2} + mgl\,\,\cos\theta$
+   {{< sicm-math >}}L(t,\theta,\dot{\theta}) =
+   \frac{1}{2}ml^{2}{\dot{\theta}}^{2} + mgl\,\,\cos\theta{{< /sicm-math >}}
 
    이다. /L/의 형식 매개변수는 /t/, /θ/, 그리고
 
-   $\overset{˙}{\theta}$
+   {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
    이며, /θ/는 진자 막대가 연직선과 이루는 각을 재고,
 
-   $\overset{˙}{\theta}$
+   {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
    는 막대의 각속도이다.[fn:54]
 
@@ -1162,16 +1162,16 @@ $$\begin{aligned}
    + /x/^{2}/y/ − /y/^{3}/3 속에서 움직인다. 여기서 /x/와 /y/는 입자의 직각
    좌표이다. 하나의 라그랑지언은
 
-   $L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
-   V(x,y)$
+   {{< sicm-math >}}L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
+   V(x,y){{< /sicm-math >}}
 
    이다.
 
    *c.* 반지름 /R/인 구면 위에서 움직이도록 구속된 질량 /m/인 입자에 대한
    하나의 라그랑지언은
 
-   $L(t;\theta,\varphi;\alpha,\beta) = \frac{1}{2}mR^{2}{({\alpha^{2} +
-   {(\beta\,\sin\theta)}^{2}})}$
+   {{< sicm-math >}}L(t;\theta,\varphi;\alpha,\beta) = \frac{1}{2}mR^{2}{({\alpha^{2} +
+   {(\beta\,\sin\theta)}^{2}})}{{< /sicm-math >}}
 
    이다. 각 /θ/는 입자의 여위도(colatitude)이고 /φ/는 경도이다. 여위도의
    변화율은 /α/이고 경도의 변화율은 /β/이다.
@@ -1197,9 +1197,9 @@ $$\begin{aligned}
    보여라.[fn:55]
 
    @@html:<span id="disp_1.49"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}(\partial_{3}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) + \partial_{1}L \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.49)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    일반적으로 Poisson이 처음 유도한 이 방정식들은 /q/의 4계 도함수를 포함하게
    된다. 이 유도가 가속도가 없는 라그랑주 방정식의 유도와 완전히 유사하며 다만
    더 길 뿐임에 유의하라. 임계 경로가 미분방정식을 만족하도록 하려면 변분에
@@ -1269,7 +1269,7 @@ $$\begin{aligned}
 (* (((expt D 2) x) t) m)
    #+end_src
 
-   $$mD^{2}x(t)$$
+   {{< sicm-math display >}}mD^{2}x(t){{< /sicm-math >}}
 
    결과는 임의의 시간 /t/와 질량 /m/을 포함하는 식이므로, 정확히 /D/^{2}/x/ =
    0일 때 0이 되며, 이것이 자유 입자에 대해 기대되는 방정식이다.
@@ -1284,9 +1284,9 @@ $$\begin{aligned}
    사인꼴임을 우리는 알고 있다:
 
    @@html:<span id="disp_1.50"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x(t) = a\,\,\cos(\omega t + \varphi).} & {(1.50)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    해에 나오는 상수들이 진동자의 질량 /m/과 용수철 상수 /k/에 어떻게
    관계되는지 잊어버렸다고 하자. 제안된 해를 대입하여 잔차를 살펴보자:
 
@@ -1298,12 +1298,12 @@ $$\begin{aligned}
 't))
     #+end_src
 
-   $$\cos\,(\omega t + \varphi)\, A\,(k - m\omega^{2})$$
+   {{< sicm-math display >}}\cos\,(\omega t + \varphi)\, A\,(k - m\omega^{2}){{< /sicm-math >}}
 
    여기서의 잔차는, 진폭이 0이 아닐 때 허용되는 유일한 해가 (/k/ − /mω/^{2}) =
    0인 경우, 곧
 
-   $\omega = \sqrt{k/m}.$
+   {{< sicm-math >}}\omega = \sqrt{k/m}.{{< /sicm-math >}}
 
    @@html:<span id="Exe_1-11"></span>@@
 
@@ -1326,9 +1326,9 @@ $$\begin{aligned}
    인수 m은 계의 /환산 질량(reduced mass)/이다.
 
    @@html:<span id="disp_1.51"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {m = \frac{m_{1}m_{2}}{m_{1} + m_{2}}.} & {(1.51)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    중력의 경우 퍼텐셜 에너지 함수는 다음과 같다.
 
     #+begin_src scheme
@@ -1342,9 +1342,9 @@ $$\begin{aligned}
    준다는 것을 보여라:
 
    @@html:<span id="disp_1.52"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {n^{2}a^{3} = G(m_{1} + m_{2})} & {(1.52)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    여기서 /n/은 궤도의 각진동수이고 /a/는 두 입자 사이의 거리이다.
 
 
@@ -1374,7 +1374,7 @@ $$\begin{aligned}
    *b.* 여러분의 절차를 써서 다음 라그랑지언에 대한 라그랑주 방정식을
    계산하라.
 
-   $L(t,x,v,a) = - \frac{1}{2}mxa - \frac{1}{2}kx^{2}.$
+   {{< sicm-math >}}L(t,x,v,a) = - \frac{1}{2}mxa - \frac{1}{2}kx^{2}.{{< /sicm-math >}}
 
    결과로 나온 운동방정식을 알아보겠는가?
 
@@ -1391,56 +1391,56 @@ $$\begin{aligned}
   방법은 없지만, 운동 에너지와 퍼텐셜 에너지로 라그랑지언을 간단히 알아낼 수 있는
   중요한 계의 부류가 있다. 핵심 생각은 라그랑주 방정식이 뉴턴 방정식
 
-  $\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}$
+  {{< sicm-math >}}\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}{{< /sicm-math >}}
 
   이 되도록 라그랑지언 /L/을 구성하는 것이다.
 
   우리 계가 첨자 /α/로 색인되는 /N/개의 입자로 이루어져 있고, 각 입자는 질량 /m_{α}/과
   벡터 위치
 
-  ${\overset{\rightarrow}{x}}_{\alpha}(t)$
+  {{< sicm-math >}}{\overset{\rightarrow}{x}}_{\alpha}(t){{< /sicm-math >}}
 
   를 가진다고 하자. 나아가 입자들에 작용하는 힘은 입자들의 위치와 어쩌면 시간의
   함수이지만 속도에는 의존하지 않는 퍼텐셜 에너지
 
-  $\mathcal{V}$
+  {{< sicm-math >}}\mathcal{V}{{< /sicm-math >}}
 
   의 그래디언트로 쓸 수 있다고 가정하자. 다시 말해 입자 /α/에 작용하는 힘은
 
-  ${\overset{\rightarrow}{F}}_{\alpha} = -
-  {\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}$
+  {{< sicm-math >}}{\overset{\rightarrow}{F}}_{\alpha} = -
+  {\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}{{< /sicm-math >}}
 
   이며, 여기서
 
-  ${\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}$
+  {{< sicm-math >}}{\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}{{< /sicm-math >}}
 
   는
 
-  $\mathcal{V}$
+  {{< sicm-math >}}\mathcal{V}{{< /sicm-math >}}
 
   의 첨자 /α/ 입자 위치에 대한 그래디언트다. 뉴턴 방정식을 다음과 같이 쓸 수 있다.
 
   @@html:<span id="disp_1.53"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(m_{\alpha}\, D{\overset{\rightarrow}{x}}_{\alpha})(t) + {\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)) = 0.} & {(1.53)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   벡터는 직교 기저 위에서 벡터 성분들의 튜플로 나타낼 수 있다. 따라서
 
-  ${\overset{\rightarrow}{x}}_{1}(t)$
+  {{< sicm-math >}}{\overset{\rightarrow}{x}}_{1}(t){{< /sicm-math >}}
 
   은 튜플 *x*_{1}(/t/)로 나타내진다. /V/를 성분들로 표현한 퍼텐셜 에너지 함수라
   하자:
 
   @@html:<span id="disp_1.54"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {V(t;\mathbf{x}_{0}(t),\ldots,\mathbf{x}_{N - 1}(t)) = \mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)).} & {(1.54)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   뉴턴 방정식은
 
   @@html:<span id="disp_1.55"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(m_{\alpha}\, D\mathbf{x}_{\alpha})(t) + \partial_{1,\alpha}V(t;\mathbf{x}_{0}(t),\ldots,\mathbf{x}_{\alpha}(t),\ldots,\mathbf{x}_{N - 1}(t)) = 0,} & {(1.55)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   이며 여기서 ∂_{1,/α/}/V/는 /V/의 *x*_{/α/}(/t/) 인수 슬롯에 대한 편미분이다.
 
   라그랑주 방정식을 세우기 위해 모든 입자의 모든 위치 성분을 하나의 튜플 /x/(/t/)로
@@ -1448,15 +1448,15 @@ $$\begin{aligned}
   대한 라그랑주 방정식은
 
   @@html:<span id="disp_1.56"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack x\rbrack) - \partial_{1}L \circ \Gamma\lbrack x\rbrack = 0.} & {(1.56)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   뉴턴 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.55][1.55]])은 /L/이 다음 성질들을
   갖도록 고르면 라그랑주 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.56][1.56]])의 각
   성분에 지나지 않음을 보라:
 
   @@html:<span id="disp_1.57"></span>@@
-$$\begin{array}{lll} {(\partial_{2}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack m_{0}D\mathbf{x}_{0}(t),\ldots,m_{N - 1}D\mathbf{x}_{N - 1}(t)\rbrack} & \\ {(\partial_{1}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack - \partial_{1,0}V(t,x(t)),\ldots, - \partial_{1,N - 1}V(t,x(t))\rbrack;} & {(1.57)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {(\partial_{2}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack m_{0}D\mathbf{x}_{0}(t),\ldots,m_{N - 1}D\mathbf{x}_{N - 1}(t)\rbrack} & \\ {(\partial_{1}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack - \partial_{1,0}V(t,x(t)),\ldots, - \partial_{1,N - 1}V(t,x(t))\rbrack;} & {(1.57)}\end{array}{{< /sicm-math >}}
   여기서 /V/ (/t/, /x/(/t/)) = /V/ (/t/; *x*_{0}(/t/), ..., *x*_{/N/−1}(/t/))이고,
   ∂_{1,/α/}/V/ (/t/, /x/(/t/))는 시각 /t/와 좌표 /x/(/t/)에서 평가한, /V/의 첨자
   /α/ 입자 좌표들에 대한 도함수 성분들의 튜플이다. 이 조건들은 모든 *x*_{/α/}와
@@ -1465,30 +1465,30 @@ $$\begin{array}{lll} {(\partial_{2}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbr
 
 
   @@html:<span id="disp_1.58"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{2}L(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N -
   1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})} & \\ {\,\,\,\,\,\,\,\,\,\,{=
   \lbrack m_{0}\mathbf{v}_{0},\ldots,m_{N - 1}\mathbf{v}_{N - 1}\rbrack}} &
   {(1.58)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   과
 
   @@html:<span id="disp_1.59"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{1}L(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})} & \\
-  {\text{           } = \lbrack - \partial_{1,0}V(t,x),\ldots, - \partial_{1,N - 1}V(t,x)\rbrack,} & {(1.59)}
-  \end{aligned}$$
+  {\text{} = \lbrack - \partial_{1,0}V(t,x),\ldots, - \partial_{1,N - 1}V(t,x)\rbrack,} & {(1.59)}
+  \end{aligned}{{< /sicm-math >}}
   가 만족되면 성립한다. 여기서 /x/ = (*x*_{0}, ..., *x*_{/N/−1})이다. 요구된 성질
   ([[/ko/eval/sicm/chapter-1/#disp_1.58][1.58]]--[[/ko/eval/sicm/chapter-1/#disp_1.59][1.59]])을
   가진 /L/의 한 선택은
 
   @@html:<span id="disp_1.60"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = \frac{1}{2}{\sum\limits_{\alpha}{m_{\alpha}v_{\alpha}^{2} - V(t,x),}}} & {(1.60)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   이고 여기서
 
-  $v_{\alpha}^{2}$
+  {{< sicm-math >}}v_{\alpha}^{2}{{< /sicm-math >}}
 
   는 *v*_{/α/}의 성분들의 제곱의 합이다.[fn:59]
 
@@ -1509,8 +1509,8 @@ $$\begin{aligned}
    principle)로 알려져 있다: 힘이 속도에 무관한 퍼텐셜 에너지에서 유도되는 점입자계는,
    작용
 
-   $S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack
-   q\rbrack}}$
+   {{< sicm-math >}}S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack
+   q\rbrack}}{{< /sicm-math >}}
 
 
 
@@ -1519,12 +1519,12 @@ $$\begin{aligned}
 
    라그랑주 방정식을
 
-   $\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}$
+   {{< sicm-math >}}\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}{{< /sicm-math >}}
 
    이상으로 축소한 것처럼 보일 수 있고, 실제로 이 원리는 이 특수한 부류의 계에 대해
    두 방정식을 비교하는 데서 동기가 생겼다. 그러나 운동 방정식의 라그랑지언 정식화는
 
-   $\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}$
+   {{< sicm-math >}}\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}{{< /sicm-math >}}
 
    에 대해 중요한 이점을 가진다. 우리의 유도는 일반화 좌표로 구성 입자들의 위치의
    직교 성분 *x*_{/α/}를 썼지만, 계의 경로가 어떤 특정 좌표계에서 라그랑주 방정식을
@@ -1533,11 +1533,11 @@ $$\begin{aligned}
    변분 역학의 방정식은 어떤 배치공간과 어떤 좌표계에서도 같은 방식으로 유도된다.
    이와 대조적으로 뉴턴 정식화는 초등 기하학에 기초한다:
 
-   $D^{2}\overset{\rightarrow}{x}(t)$
+   {{< sicm-math >}}D^{2}\overset{\rightarrow}{x}(t){{< /sicm-math >}}
 
    이 가속도로서 의미를 가지려면
 
-   $\overset{\rightarrow}{x}(t)$
+   {{< sicm-math >}}\overset{\rightarrow}{x}(t){{< /sicm-math >}}
 
    은 물리 공간의 벡터여야 한다. 라그랑주 방정식은 좌표 /q/의 의미에 이런 제한이
    없다. 일반화 좌표는 계의 배치를 편리하게 기술하는 임의의 매개변수면 된다.
@@ -1552,13 +1552,13 @@ $$\begin{aligned}
    가속도 /g/인 균일 중력장 속 질량 /m/의 입자를 생각하자. 퍼텐셜 에너지는 /mgh/이고
    여기서 /h/는 입자의 높이다. 운동 에너지는 그저
 
-   $\frac{1}{2}mv^{2}$
+   {{< sicm-math >}}\frac{1}{2}mv^{2}{{< /sicm-math >}}
 
    일 뿐이다. 이 계의 라그랑지언은 운동 에너지와 퍼텐셜 에너지의 차이다. 직교좌표에서
    /y/는 수직 위치를, /x/는 수평 위치를 잰다고 하면 라그랑지언은
 
-   $L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
-   mgy$
+   {{< sicm-math >}}L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
+   mgy{{< /sicm-math >}}
 
    이다. 다음을 얻는다[fn:62]
 
@@ -1570,7 +1570,7 @@ $$\begin{aligned}
 'y))) 't))
     #+end_src
 
-   $$\begin{bmatrix} {mD^{2}x\,(t)} {gm + mD^{2}y\,(t)} \end{bmatrix}$$
+   {{< sicm-math display >}}\begin{bmatrix} {mD^{2}x\,(t)} {gm + mD^{2}y\,(t)} \end{bmatrix}{{< /sicm-math >}}
 
    이 방정식은 수평 방향으로는 무가속도 운동(/mD/^{2}/x/(/t/) = 0), 수직 방향으로는
    일정한 가속도(/mD/^{2}/y/(/t/) = −/gm/)를 기술한다.
@@ -1586,18 +1586,18 @@ $$\begin{aligned}
 
    원점을 인력 중심에 둔 직교좌표 (/x/, /y/)에서 퍼텐셜 에너지는
 
-   $V(t;x,y) = U(\sqrt{x^{2} + y^{2}})$
+   {{< sicm-math >}}V(t;x,y) = U(\sqrt{x^{2} + y^{2}}){{< /sicm-math >}}
 
    이고 운동 에너지는
 
-   $T(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right)$
+   {{< sicm-math >}}T(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right){{< /sicm-math >}}
 
    이다. 이 계의 라그랑지언은 /L/ = /T/ − /V/다:
 
    @@html:<span id="disp_1.61"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) - U(\sqrt{x^{2} + y^{2}}).} & {(1.61)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    절차로 나타내면:
 
     #+begin_src scheme
@@ -1614,22 +1614,22 @@ $$\begin{aligned}
    (literal-function 'y))) 't))
     #+end_src
 
-   $$\left\lbrack \begin{array}{l} {mD^{2}x(t) + \frac{DU\left( \sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}} \right)\, x(t)}{\sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}}}} {mD^{2}y(t) + \frac{DU\left( \sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}} \right)\, y(t)}{\sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}}}} \end{array}
-   \right\rbrack$$
+   {{< sicm-math display >}}\left\lbrack \begin{array}{l} {mD^{2}x(t) + \frac{DU\left( \sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}} \right)\, x(t)}{\sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}}}} {mD^{2}y(t) + \frac{DU\left( \sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}} \right)\, y(t)}{\sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}}}} \end{array}
+   \right\rbrack{{< /sicm-math >}}
 
    이 라그랑주 방정식들을 다음과 같이 다시 쓸 수 있다:
 
    @@html:<span id="disp_1.62"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}x(t) = - \frac{x(t)}{r(t)}DU(r(t))} & {(1.62)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.63"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}y(t) = - \frac{y(t)}{r(t)}DU(r(t)),} & {(1.63)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    여기서
 
-   $r(t) = \sqrt{{(x(t))}^{2} + {(y(t))}^{2}}$
+   {{< sicm-math >}}r(t) = \sqrt{{(x(t))}^{2} + {(y(t))}^{2}}{{< /sicm-math >}}
 
    이다. 이렇게 해석할 수 있다. 입자는 크기 −/DU/(/r/)의 반경 방향 힘을 받는다.
    뉴턴 방정식은 힘을 질량과 가속도의 곱과 동치로 놓는다. 두 라그랑주 방정식은 뉴턴
@@ -1637,73 +1637,73 @@ $$\begin{aligned}
 
 
 
-   같은 계를 극좌표로 기술할 수 있다. 직교좌표 $(x, y)$와 극좌표 $(r, \varphi)$의 관계는
+   같은 계를 극좌표로 기술할 수 있다. 직교좌표 {{< sicm-math >}}(x, y){{< /sicm-math >}}와 극좌표 {{< sicm-math >}}(r, \varphi){{< /sicm-math >}}의 관계는
 
    @@html:<span id="disp_1.64"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 \begin{aligned}
    {x = r\cos \varphi} & \\
    {y = r\sin \varphi} & {(1.64)}
    \end{aligned}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    일반화 속도의 관계는 좌표 변환으로부터 유도된다. 직교좌표와 극좌표 양쪽으로
-   표현되는 배치 경로를 생각하자. $\widetilde{x}$과 $\widetilde{y}$을 직교좌표 경로의 성분이라 하고,
-   $\widetilde{r}$과 $\widetilde{\varphi}$을 대응하는 극좌표 경로의 성분이라 하자. 시각 /t/에서의 직교 성분은
+   표현되는 배치 경로를 생각하자. {{< sicm-math >}}\widetilde{x}{{< /sicm-math >}}과 {{< sicm-math >}}\widetilde{y}{{< /sicm-math >}}을 직교좌표 경로의 성분이라 하고,
+   {{< sicm-math >}}\widetilde{r}{{< /sicm-math >}}과 {{< sicm-math >}}\widetilde{\varphi}{{< /sicm-math >}}을 대응하는 극좌표 경로의 성분이라 하자. 시각 /t/에서의 직교 성분은
 
-   $(\widetilde{x}(t),\widetilde{y}(t))$
+   {{< sicm-math >}}(\widetilde{x}(t),\widetilde{y}(t)){{< /sicm-math >}}
 
    이고 시각 /t/에서의 극좌표는
 
-   $(\widetilde{r}(t),\widetilde{\varphi}(t))$
+   {{< sicm-math >}}(\widetilde{r}(t),\widetilde{\varphi}(t)){{< /sicm-math >}}
 
    이다. 이들은 ([[/ko/eval/sicm/chapter-1/#disp_1.64][1.64]])로 연결된다:
 
    @@html:<span id="disp_1.65"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\widetilde{x}(t) = \widetilde{r}(t)\cos\widetilde{\varphi}(t)} & \\
    {\widetilde{y}(t) = \widetilde{r}(t)\sin\widetilde{\varphi}(t).} & {(1.65)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    시각 /t/에서의 직교 속도는
 
-   $(D\widetilde{x}(t),\,\, D\widetilde{y}(t))$
+   {{< sicm-math >}}(D\widetilde{x}(t),\,\, D\widetilde{y}(t)){{< /sicm-math >}}
 
    이다. ([[/ko/eval/sicm/chapter-1/#disp_1.65][1.65]])를 미분하면 속도들 사이의 관계를 얻는다
 
    @@html:<span id="disp_1.66"></span>@@
-$$\begin{array}{lll} {D\widetilde{x}(t)} & {= D\widetilde{r}(t)\,\cos\,\widetilde{\varphi}(t) - \widetilde{r}(t)D\widetilde{\varphi}(t)\,\sin\,\widetilde{\varphi}(t)} & \\ {D\widetilde{y}(t)} & {= D\widetilde{r}(t)\,\sin\,\widetilde{\varphi}(t) + \widetilde{r}(t)D\widetilde{\varphi}(t)\,\cos\,\widetilde{\varphi}(t).} & {(1.66)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {D\widetilde{x}(t)} & {= D\widetilde{r}(t)\,\cos\,\widetilde{\varphi}(t) - \widetilde{r}(t)D\widetilde{\varphi}(t)\,\sin\,\widetilde{\varphi}(t)} & \\ {D\widetilde{y}(t)} & {= D\widetilde{r}(t)\,\sin\,\widetilde{\varphi}(t) + \widetilde{r}(t)D\widetilde{\varphi}(t)\,\cos\,\widetilde{\varphi}(t).} & {(1.66)}\end{array}{{< /sicm-math >}}
    이 관계들은 임의의 순간의 임의의 배치 경로에 대해 성립하므로, 이를 임의의 속도의
    좌표 표현들 사이의 관계로 추상화할 수 있다. /v_{x}/와 /v_{y}/를 속도의 직교
    성분이라 하고
 
-   $\overset{˙}{r}$
+   {{< sicm-math >}}\dot{r}{{< /sicm-math >}}
 
    과
 
-   $\overset{˙}{\varphi}$
+   {{< sicm-math >}}\dot{\varphi}{{< /sicm-math >}}
 
    을 /r/과 /φ/의 변화율이라 하자. 그러면
 
    @@html:<span id="disp_1.67"></span>@@
-$$\begin{aligned}
-{v_{x} = \overset{˙}{r}\cos\varphi - r\overset{˙}{\varphi}\sin\varphi} & \\
-   {v_{y} = \overset{˙}{r}\sin\varphi + r\overset{˙}{\varphi}\cos\varphi.} & {(1.67)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{v_{x} = \dot{r}\cos\varphi - r\dot{\varphi}\sin\varphi} & \\
+   {v_{y} = \dot{r}\sin\varphi + r\dot{\varphi}\cos\varphi.} & {(1.67)}
+   \end{aligned}{{< /sicm-math >}}
    운동 에너지는
 
-   $\frac{1}{2}m(v_{x}^{2} + v_{y}^{2})$
+   {{< sicm-math >}}\frac{1}{2}m(v_{x}^{2} + v_{y}^{2}){{< /sicm-math >}}
 
    다:
 
    @@html:<span id="disp_1.68"></span>@@
-$$\begin{aligned}
-{T(t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}) = \frac{1}{2}m\left( {{\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\varphi}}^{2}} \right),} & {(1.68)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{T(t;r,\varphi;\dot{r},\dot{\varphi}) = \frac{1}{2}m\left( {{\dot{r}}^{2} + r^{2}{\dot{\varphi}}^{2}} \right),} & {(1.68)}
+   \end{aligned}{{< /sicm-math >}}
    그리고 라그랑지언은
 
    @@html:<span id="disp_1.69"></span>@@
-$$\begin{aligned}
-{L(t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}) = \frac{1}{2}m\left( {{\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\varphi}}^{2}} \right) - U(r).} & {(1.69)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L(t;r,\varphi;\dot{r},\dot{\varphi}) = \frac{1}{2}m\left( {{\dot{r}}^{2} + r^{2}{\dot{\varphi}}^{2}} \right) - U(r).} & {(1.69)}
+   \end{aligned}{{< /sicm-math >}}
    이 라그랑지언을 다음과 같이 표현한다:
 
     #+begin_src scheme
@@ -1729,8 +1729,8 @@ $$\begin{aligned}
        (literal-function 'phi))) 't))
     #+end_src
 
-   $$\left\lbrack \begin{array}{l} {mD^{2}r\,(t) - mr\,(t)\,{(D\varphi\,\,(t))}^{2} + DU\,(r\,(t))} {2mDr\,(t)\, r\,(t)\, D\varphi\,(t) + mD^{2}\varphi\,(t)\,{(r\,(t))}^{2}} \end{array}
-   \right\rbrack$$
+   {{< sicm-math display >}}\left\lbrack \begin{array}{l} {mD^{2}r\,(t) - mr\,(t)\,{(D\varphi\,\,(t))}^{2} + DU\,(r\,(t))} {2mDr\,(t)\, r\,(t)\, D\varphi\,(t) + mD^{2}\varphi\,(t)\,{(r\,(t))}^{2}} \end{array}
+   \right\rbrack{{< /sicm-math >}}
 
    첫째 방정식은 질량과 반경 방향 가속도의 곱이 퍼텐셜에 의한 힘과 원심력의 합이라는
    뜻으로 해석할 수 있다. 둘째 방정식은 각운동량 /mr/^{2}/Dφ/의 도함수가 0, 즉
@@ -1768,9 +1768,9 @@ $$\begin{aligned}
     대응하는 경로이면, 두 라그랑지언은 다음을 만족해야 한다:
 
     @@html:<span id="disp_1.70"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime \circ \Gamma\lbrack q\prime\rbrack = L \circ \Gamma\lbrack q\rbrack.} & {(1.70)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     직교좌표에서 극좌표로의 변환이 일반화 속도를 특정한 방식으로 변환함을 이미 보았다.
     속도 변환은 극좌표의 한 경로와 대응하는 직교좌표 경로가 좌표 변환과 모순되지
     않는다는 요구로부터 유도할 수 있다. 일반적으로, 서로 다른 두 좌표계의 경로들이
@@ -1780,9 +1780,9 @@ $$\begin{aligned}
     하자:
 
     @@html:<span id="disp_1.71"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {C \circ \Gamma\lbrack q\prime\rbrack = \Gamma\lbrack q\rbrack.} & {(1.71)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     아래에서 /C/의 일반형을 유도할 것이다.
 
 
@@ -1791,51 +1791,51 @@ $$\begin{aligned}
     ([[/ko/eval/sicm/chapter-1/#disp_1.70][1.70]])을 만족하는 라그랑지언 /L/′은
 
     @@html:<span id="disp_1.72"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime = L \circ C} & {(1.72)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.70][1.70]])에 /L/′을 대입하면 이를 알 수
     있다:
 
     @@html:<span id="disp_1.73"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime \circ \Gamma\lbrack q\prime\rbrack = L \circ C \circ \Gamma\lbrack q\prime\rbrack = L \circ \Gamma\lbrack q\rbrack.} & {(1.73)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     좌표 변환 /F/가 주어졌을 때 국소 튜플 변환 /C/를 찾으려면, 국소 튜플의 각 성분이
     어떻게 변환되는지 유도한다. 좌표 변환은 국소 튜플의 좌표 성분이 어떻게 변환되는지
     정한다
 
     @@html:<span id="disp_1.74"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x = F(t,x\prime).} & {(1.74)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     국소 튜플 변환의 일반화 속도 성분은 다음과 같이 유도할 수 있다. /q/와 /q/′를 두
     좌표계로 표현한 같은 배치 경로라 하자. 이 경로들을 좌표 변환에 대입하고 도함수를
     계산하면
 
     @@html:<span id="disp_1.75"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {Dq(t) = \partial_{0}F(t,q\prime(t)) + \partial_{1}F(t,q\prime(t))Dq\prime(t).} & {(1.75)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     임의의 점을 통과하며 임의의 주어진 속도를 가진 경로는 항상 존재하므로, 일반화하여
     대응하는 좌표 경로를 따라 일반화 속도가 다음을 만족한다고 결론 내려도 된다
 
     @@html:<span id="disp_1.76"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {v = \partial_{0}F(t,x\prime) + \partial_{1}F(t,x\prime)v\prime.} & {(1.76)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     필요하다면 국소 튜플의 고계 도함수 성분에 대한 규칙도 비슷한 방식으로 정할 수
     있다. 프라임 좌표계의 국소 튜플을 비프라임 좌표계의 국소 튜플로 가져가는 국소
     튜플 변환은 성분 변환들로 구성된다:
 
     @@html:<span id="disp_1.77"></span>@@
-$$\begin{array}{lll} {(t,x,v,\ldots)} & {= C(t,x\prime,v\prime,\ldots)} & \\ & {= (t,F(t,x\prime),\,\,\partial_{0}F(t,x\prime) + \partial_{1}F(t,x\prime)v\prime,\ldots).} & {(1.77)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {(t,x,v,\ldots)} & {= C(t,x\prime,v\prime,\ldots)} & \\ & {= (t,F(t,x\prime),\,\,\partial_{0}F(t,x\prime) + \partial_{1}F(t,x\prime)v\prime,\ldots).} & {(1.77)}\end{array}{{< /sicm-math >}}
     따라서 라그랑지언 /L/′을 다음으로 취하면
 
     @@html:<span id="disp_1.78"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime = L \circ C,} & {(1.78)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     작용은 그것을 계산하는 데 쓰인 좌표계와 무관한 값을 가진다. 정지 작용의 배치
     경로는 경로를 기술하는 데 어느 좌표계가 쓰였는지에 의존하지 않는다. 이
     라그랑지언들에서 유도된 라그랑주 방정식들은 일반적으로 서로 매우 달라 보이지만
@@ -1875,9 +1875,9 @@ polar-tuple 0)) (phi (ref polar-tuple 1))) (let ((x
 'phidot)))))
      #+end_src
 
-    $$\begin{pmatrix} {- \overset{˙}{\varphi}r\sin\,(\varphi) +
-    \overset{˙}{r}\cos\,(\varphi)} {\overset{˙}{\varphi}r\cos\,(\varphi) +
-    \overset{˙}{r}\sin\,(\varphi)} \end{pmatrix}$$
+    {{< sicm-math display >}}\begin{pmatrix} {- \dot{\varphi}r\sin\,(\varphi) +
+    \dot{r}\cos\,(\varphi)} {\dot{\varphi}r\cos\,(\varphi) +
+    \dot{r}\sin\,(\varphi)} \end{pmatrix}{{< /sicm-math >}}
 
     방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.72][1.72]])을 써서 F->C로 직교 성분의
     라그랑지언으로부터 중심력 운동의 극좌표 라그랑지언을 구할 수 있다:
@@ -1889,8 +1889,8 @@ polar-tuple 0)) (phi (ref polar-tuple 1))) (let ((x
 
         #+end_src
 
-    $$\frac{1}{2}m{\overset{˙}{\varphi}}^{2}r^{2} +
-    \frac{1}{2}m{\overset{˙}{r}}^{2} - U(r)$$
+    {{< sicm-math display >}}\frac{1}{2}m{\dot{\varphi}}^{2}r^{2} +
+    \frac{1}{2}m{\dot{r}}^{2} - U(r){{< /sicm-math >}}
 
     결과는 라그랑지언 ([[/ko/eval/sicm/chapter-1/#disp_1.69][1.69]])과 같다.
 
@@ -1994,43 +1994,43 @@ x_r) (* 1/2 m (expt xdot_r 2)) (* 1/2 m (expt ydot_r 2)))
    기술하는 것이다. 일반화 좌표로 나타낸 입자 /α/의 직교좌표는
 
    @@html:<span id="disp_1.79"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathbf{x}_{\alpha} = f_{\alpha}(t,q).} & {(1.79)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    비잉여 좌표 /q/에 대해서는 모든 좌표 구속조건이 함수 /f_{α}/에 내장되어 있다.
    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.79][1.79]])에 경로 함수들을 대입하고, 미분하고,
    임의의 속도로 추상화하여([[/ko/eval/sicm/chapter-1/#h3_1-6-1][1.6.1절]] 참조) 일반화
    속도 /v/와 구성 입자들의 속도 *v*_{/α/}의 관계를 유도한다. 다음을 얻는다
 
    @@html:<span id="disp_1.80"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v.} & {(1.80)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.79][1.79]])과
    ([[/ko/eval/sicm/chapter-1/#disp_1.80][1.80]])을 써서 운동 에너지를 일반화 좌표와
-   속도로 표현한다. $\widetilde{T}$을 직교좌표와 속도의 함수로서의 운동 에너지라 하자:
+   속도로 표현한다. {{< sicm-math >}}\widetilde{T}{{< /sicm-math >}}을 직교좌표와 속도의 함수로서의 운동 에너지라 하자:
 
    @@html:<span id="disp_1.81"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\widetilde{T}(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1}) = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{v}_{\alpha}^{2},}}} & {(1.81)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    여기서
 
-   $\mathbf{v}_{\alpha}^{2}$
+   {{< sicm-math >}}\mathbf{v}_{\alpha}^{2}{{< /sicm-math >}}
 
    는 *v*_{/α/}의 크기의 제곱이다. 일반화 좌표 튜플 /q/와 일반화 속도 튜플 /v/의
    함수로서 운동 에너지는
 
    @@html:<span id="disp_1.82"></span>@@
-$$\begin{array}{lll} {T(t,q,v)} & {= \widetilde{T}(t,f(t,q),\partial_{0}f(t,q) + \partial_{1}f(t,q)v)} & \\ & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v)}^{2}.}}} & {(1.82)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {T(t,q,v)} & {= \widetilde{T}(t,f(t,q),\partial_{0}f(t,q) + \partial_{1}f(t,q)v)} & \\ & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v)}^{2}.}}} & {(1.82)}\end{array}{{< /sicm-math >}}
    비슷하게, 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.79][1.79]])을 써서 퍼텐셜 에너지를
-   일반화 좌표로 다시 표현한다. $\widetilde{V}(t,x)$를 직교좌표 튜플 /x/가 지정하는 배치에서 시각
+   일반화 좌표로 다시 표현한다. {{< sicm-math >}}\widetilde{V}(t,x){{< /sicm-math >}}를 직교좌표 튜플 /x/가 지정하는 배치에서 시각
    /t/의 퍼텐셜 에너지라 하자. 일반화 좌표로 표현하면 퍼텐셜 에너지는
 
    @@html:<span id="disp_1.83"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {V(t,q,v) = \widetilde{V}(t,f(t,q)).} & {(1.83)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    라그랑지언을 운동 에너지와 퍼텐셜 에너지의 차이로 취한다: /L/ = /T/ − /V/.
 
 ** 피벗에서 구동되는 진자
@@ -2048,11 +2048,11 @@ $$\begin{aligned}
    직교좌표에서 추(bob)의 위치는 다음으로 주어진다
 
    @@html:<span id="disp_1.84"></span>@@
-$$\begin{array}{llll} {x = l\sin\theta} & \text{and} & {y = y_{s}(t) - l\cos\theta.} & {(1.84)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{llll} {x = l\sin\theta} & \text{and} & {y = y_{s}(t) - l\cos\theta.} & {(1.84)}\end{array}{{< /sicm-math >}}
    속도는
 
    @@html:<span id="disp_1.85"></span>@@
-$$\begin{array}{llll} {v_{x} = l\overset{˙}{\theta}\cos\theta} & \text{and} & {v_{y} = Dy_{s}(t) + l\overset{˙}{\theta}\sin\theta,} & {(1.85)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{llll} {v_{x} = l\dot{\theta}\cos\theta} & \text{and} & {v_{y} = Dy_{s}(t) + l\dot{\theta}\sin\theta,} & {(1.85)}\end{array}{{< /sicm-math >}}
    @@html:<span id="Fig_1-2"></span>@@
    #+caption: *그림 1.2* 진자는 피벗의 수직 운동으로 구동된다. 피벗은 /y/축을 따라
    미끄러진다. 추는 얼룩으로 그려져 있지만 점 질량으로 모델링된다. 추는 음의 /ŷ/
@@ -2062,28 +2062,28 @@ $$\begin{array}{llll} {v_{x} = l\overset{˙}{\theta}\cos\theta} & \text{and} & {
 
    운동 에너지는
 
-   $\widetilde{T}(t;x,y;v_{x},v_{y}) = \frac{1}{2}m(v_{x}^{2} + v_{y}^{2})$
+   {{< sicm-math >}}\widetilde{T}(t;x,y;v_{x},v_{y}) = \frac{1}{2}m(v_{x}^{2} + v_{y}^{2}){{< /sicm-math >}}
 
    이다. 일반화 좌표로 표현한 운동 에너지는
 
    @@html:<span id="disp_1.86"></span>@@
-$$\begin{aligned}
-{T(t,\theta,\overset{˙}{\theta}) = \frac{1}{2}m(l^{2}{\overset{˙}{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2lDy_{s}(t)\overset{˙}{\theta}\sin\theta).} & {(1.86)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{T(t,\theta,\dot{\theta}) = \frac{1}{2}m(l^{2}{\dot{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2lDy_{s}(t)\dot{\theta}\sin\theta).} & {(1.86)}
+   \end{aligned}{{< /sicm-math >}}
    퍼텐셜 에너지는
 
-   $\widetilde{V}(t;x,y) = mgy$
+   {{< sicm-math >}}\widetilde{V}(t;x,y) = mgy{{< /sicm-math >}}
 
    이다. 일반화 좌표로 표현한 퍼텐셜 에너지는
 
    @@html:<span id="disp_1.87"></span>@@
-$$\begin{aligned}
-{V(t,\theta,\overset{˙}{\theta}) = gm(y_{s}(t) - l\cos\theta).} & {(1.87)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{V(t,\theta,\dot{\theta}) = gm(y_{s}(t) - l\cos\theta).} & {(1.87)}
+   \end{aligned}{{< /sicm-math >}}
    라그랑지언은 /L/ = /T/ − /V/다:
 
    @@html:<span id="disp_1.88"></span>@@
-$$\begin{array}{lll} {L(t,\theta,\overset{˙}{\theta})} & {= \frac{1}{2}m(l^{2}{\overset{˙}{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2l\, Dy_{s}(t)\overset{˙}{\theta}\sin\theta)} & \\ & {\text{   } - gm(y_{s}(t) - l\cos\theta).} & {(1.88)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {L(t,\theta,\dot{\theta})} & {= \frac{1}{2}m(l^{2}{\dot{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2l\, Dy_{s}(t)\dot{\theta}\sin\theta)} & \\ & {\text{} - gm(y_{s}(t) - l\cos\theta).} & {(1.88)}\end{array}{{< /sicm-math >}}
    라그랑지언은 다음과 같이 표현된다
 
     #+begin_src scheme
@@ -2101,8 +2101,8 @@ local)) (theta (coordinate local))) (* m g (- (ys t) (* l (cos theta))))))
 (literal-function 'y_s))) (literal-function 'theta)) 't))
 
   #+end_src
-   $$D^{2}\theta\,(t)\, l^{2}m + D^{2}y_{s}\,(t)\,\,\sin\,(\theta(t))lm +
-   \sin\,(\theta(t))\, glm$$
+   {{< sicm-math display >}}D^{2}\theta\,(t)\, l^{2}m + D^{2}y_{s}\,(t)\,\,\sin\,(\theta(t))lm +
+   \sin\,(\theta(t))\, glm{{< /sicm-math >}}
 
    @@html:<span id="Exe_1-17"></span>@@
 
@@ -2120,9 +2120,9 @@ local)) (theta (coordinate local))) (* m g (- (ys t) (* l (cos theta))))))
    질량 /m/의 구슬이 삼축 타원체면 위를 마찰 없이 움직인다. 직교좌표에서 이 표면은
 
    @@html:<span id="disp_1.89"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} = 1} & {(1.89)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    을 만족한다. 여기서 /a/, /b/, /c/는 상수들이다. 적합한 일반화 좌표를 정하고,
    라그랑지언을 세우고, 라그랑주 방정식을 구하라.
 
@@ -2175,31 +2175,31 @@ $$\begin{aligned}
 
    입자계를 고려하자. 첨자 /α/인 입자는 질량 /m_{α}/과 시각 /t/의 위치
 
-   ${\overset{\rightarrow}{x}}_{\alpha}(t)$
+   {{< sicm-math >}}{\overset{\rightarrow}{x}}_{\alpha}(t){{< /sicm-math >}}
 
    를 가진다. 이 입자들은 매우 많을 수도 있고 몇 개뿐일 수도 있다. 어떤 위치들은
    구동 진자의 피벗 위치처럼 주어진 시간의 함수일 수도 있다. 일부 입자들 사이에는
    강체 위치 구속조건이 있다. 이 구속조건들이 모두 다음 형태라고 가정한다
 
    @@html:<span id="disp_1.90"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {({\overset{\rightarrow}{x}}_{\alpha}(t) - {\overset{\rightarrow}{x}}_{\beta}(t)) \cdot ({\overset{\rightarrow}{x}}_{\alpha}(t) - {\overset{\rightarrow}{x}}_{\beta}(t)) = l_{\alpha\beta}^{2};} & {(1.90)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    다시 말해 입자 /α/와 입자 /β/ 사이의 거리는 /l_{αβ}/이다.
 
    입자 /α/에 대한 뉴턴 운동 방정식은 입자 /α/의 질량 곱하기 가속도가 퍼텐셜 힘과
    구속 힘의 합과 같다고 말한다. 퍼텐셜 힘은 퍼텐셜 에너지의 음의 그래디언트로
    유도되며, 다른 입자들의 위치와 시간에 의존할 수 있다. 구속 힘
 
-   ${\overset{\rightarrow}{F}}_{\alpha\beta}$
+   {{< sicm-math >}}{\overset{\rightarrow}{F}}_{\alpha\beta}{{< /sicm-math >}}
 
    은 입자 /α/와 입자 /β/ 사이의 강체 구속조건에 결부된 벡터 구속 힘이다. 따라서
 
    @@html:<span id="disp_1.91"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(m_{\alpha}D{\overset{\rightarrow}{x}}_{\alpha})(t)} & \\
-   {\text{       } = - {\overset{\rightarrow}{\nabla}}_{\overset{\rightarrow}{x}\alpha}\mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)) + {\sum\limits_{\{\beta|\beta\leftrightarrow\alpha\}}{{\overset{\rightarrow}{F}}_{\alpha\beta}(t),}}} & {(1.91)}
-   \end{aligned}$$
+   {\text{} = - {\overset{\rightarrow}{\nabla}}_{\overset{\rightarrow}{x}\alpha}\mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)) + {\sum\limits_{\{\beta|\beta\leftrightarrow\alpha\}}{{\overset{\rightarrow}{F}}_{\alpha\beta}(t),}}} & {(1.91)}
+   \end{aligned}{{< /sicm-math >}}
    여기서 합에서 /β/는 첨자 /α/인 입자와 강체 구속조건을 가지는 입자 첨자들만을
    순회한다. 표시된 입자들 사이에 강체 구속조건이 있다는 관계에 /β/ ↔ /α/ 표기를
    쓴다.
@@ -2209,45 +2209,45 @@ $$\begin{aligned}
    구속 힘은 입자들 사이의 선을 따라 향하므로 다음과 같이 쓸 수 있다
 
    @@html:<span id="disp_1.92"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {{\overset{\rightarrow}{F}}_{\alpha\beta}(t) = F_{\alpha\beta}(t)\frac{{\overset{\rightarrow}{x}}_{\beta}(t) - {\overset{\rightarrow}{x}}_{\alpha}(t)}{l_{\alpha\beta}}} & {(1.92)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    여기서 /F_{αβ}/(/t/)는 시각 /t/에서 구속조건의 장력의 스칼라 크기다.
 
-   ${\overset{\rightarrow}{F}}_{\alpha\beta} = -
-   {\overset{\rightarrow}{F}}_{\beta\alpha}$
+   {{< sicm-math >}}{\overset{\rightarrow}{F}}_{\alpha\beta} = -
+   {\overset{\rightarrow}{F}}_{\beta\alpha}{{< /sicm-math >}}
 
    임에 유의하라. 일반적으로 스칼라 구속 힘은 계가 시간 발전함에 따라 변한다.
 
    형식적으로, 뉴턴 방정식을 다음 라그랑지언으로 재현할 수 있다[fn:66]
 
    @@html:<span id="disp_1.93"></span>@@
-$$\begin{array}{lll} {L(t;x,F;\overset{˙}{x},\overset{˙}{F}) =} & {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{\overset{˙}{x}}_{\alpha}^{2} - V(t,x)}} & \\ & {- {\sum\limits_{\{\alpha,\beta|\alpha < \beta,\alpha\leftrightarrow\beta\}}{\frac{F_{\alpha\beta}}{2l_{\alpha\beta}}\lbrack{(\mathbf{x}_{\beta} - \mathbf{x}_{\alpha})}^{2} - l_{\alpha\beta}^{2}\rbrack}}} & {(1.93)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {L(t;x,F;\dot{x},\dot{F}) =} & {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{\dot{x}}_{\alpha}^{2} - V(t,x)}} & \\ & {- {\sum\limits_{\{\alpha,\beta|\alpha < \beta,\alpha\leftrightarrow\beta\}}{\frac{F_{\alpha\beta}}{2l_{\alpha\beta}}\lbrack{(\mathbf{x}_{\beta} - \mathbf{x}_{\alpha})}^{2} - l_{\alpha\beta}^{2}\rbrack}}} & {(1.93)}\end{array}{{< /sicm-math >}}
    여기서 구속 힘들은 추가 일반화 좌표로 취급된다. 여기서 /x/는 모든
 
-   ${\overset{\rightarrow}{x}}_{\alpha},\overset{˙}{x}$
+   {{< sicm-math >}}{\overset{\rightarrow}{x}}_{\alpha},\dot{x}{{< /sicm-math >}}
 
    의 모든 직교 성분 *x*_{/α/}들로 이루어진 구조이고,
 
-   $\mathbf{\overset{˙}{x}}_{\alpha}$
+   {{< sicm-math >}}\mathbf{\dot{x}}_{\alpha}{{< /sicm-math >}}
 
    는 모든 속도 벡터
 
-   ${\overset{\rightarrow}{v}}_{\alpha}$
+   {{< sicm-math >}}{\overset{\rightarrow}{v}}_{\alpha}{{< /sicm-math >}}
 
    의 모든 직교 성분으로 이루어진 구조이며, /F/는 모든 /F_{αβ}/로 이루어진 구조다.
    /F/의 속도는 라그랑지언에 나타나지 않고 /F/ 자체는 선형으로만 나타난다. 따라서
    /F/에 대응하는 라그랑주 방정식은
 
    @@html:<span id="disp_1.94"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {{(\mathbf{x}_{\beta}(t) - \mathbf{x}_{\alpha}(t))}^{2} - l_{\alpha\beta}^{2} = 0} & {(1.94)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    인데 이것은 구속조건들의 재진술일 뿐이다. 입자들의 좌표에 대한 라그랑주 방정식은
    뉴턴 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.91][1.91]])이다
 
    @@html:<span id="disp_1.95"></span>@@
-$$\begin{array}{lll} {D(mD\mathbf{x}_{\alpha})(t)} & {= - \partial_{1,\alpha}V(t,x(t))} & \\ & {\,\,\,\,\,\,\,\, + {\sum\limits_{\{\beta|\alpha\leftrightarrow\beta\}}{F_{\alpha\beta}(t)\frac{\mathbf{x}_{\beta}(t) - \mathbf{x}_{\alpha}(t)}{l_{\alpha\beta}}}}.} & {(1.95)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {D(mD\mathbf{x}_{\alpha})(t)} & {= - \partial_{1,\alpha}V(t,x(t))} & \\ & {\,\,\,\,\,\,\,\, + {\sum\limits_{\{\beta|\alpha\leftrightarrow\beta\}}{F_{\alpha\beta}(t)\frac{\mathbf{x}_{\beta}(t) - \mathbf{x}_{\alpha}(t)}{l_{\alpha\beta}}}}.} & {(1.95)}\end{array}{{< /sicm-math >}}
    적합한 라그랑지언을 얻었으므로, 라그랑지언을 임의의 일반화 좌표로 다시 표현할 수
    있다는 사실을 써서 더 간단한 라그랑지언을 찾을 수 있다. 전략은 좌표 상당수가
    상수가 되고 나머지 좌표들은 비잉여가 되는 새 좌표 집합을 고르는 것이다.
@@ -2261,9 +2261,9 @@ $$\begin{array}{lll} {D(mD\mathbf{x}_{\alpha})(t)} & {= - \partial_{1,\alpha}V(t
    /q/와 /c/로 구성 입자들의 직교좌표를 주는 함수들 /f_{α}/가 존재한다:
 
    @@html:<span id="disp_1.96"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathbf{x}_{\alpha} = f_{\alpha}(t,q,c).} & {(1.96)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    라그랑지언을 /q/, /c/, /F/로 다시 표현하려면, 일반화 속도
 
    q˙
@@ -2276,23 +2276,23 @@ $$\begin{aligned}
    추상화하여 한다([[/ko/eval/sicm/chapter-1/#h3_1-6-1][1.6.1절]] 참조):
 
    @@html:<span id="disp_1.97"></span>@@
-$$\begin{aligned}
-{\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\overset{˙}{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\overset{˙}{c}.} & {(1.97)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\dot{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\dot{c}.} & {(1.97)}
+   \end{aligned}{{< /sicm-math >}}
    이것들을 라그랑지언 ([[/ko/eval/sicm/chapter-1/#disp_1.93][1.93]])에 대입하고
 
    @@html:<span id="disp_1.98"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {c_{\alpha\beta}^{2} = {(\mathbf{x}_{\beta} - \mathbf{x}_{\alpha})}^{2},} & {(1.98)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    를 쓰면
 
    @@html:<span id="disp_1.99"></span>@@
-$$\begin{aligned}
-{L\prime(t;q,c,F;\overset{˙}{q},\overset{˙}{c},\overset{˙}{F})} & \\
-   {\,\,\,\,\,\,\,\,\,\, = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\overset{˙}{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\overset{˙}{c})}^{2}}}} & \\
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t;q,c,F;\dot{q},\dot{c},\dot{F})} & \\
+   {\,\,\,\,\,\,\,\,\,\, = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\dot{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\dot{c})}^{2}}}} & \\
    {\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, - V(t,f(t,q,c)) - {\sum\limits_{\{\alpha,\beta|\alpha < \beta,\alpha\leftrightarrow\beta\}}{\frac{F_{\alpha\beta}}{2l_{\alpha\beta}}\lbrack c_{\alpha\beta}^{2} - l_{\alpha\beta}^{2}\rbrack.}}} & {(1.99)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    을 얻는다.
 
    라그랑주 방정식은 통상의 절차로 유도된다. 자질구레한 세부 사항을 전부 적는 대신,
@@ -2301,16 +2301,16 @@ $$\begin{aligned}
    /F/에 대응하는 라그랑주 방정식은 구속조건들을 그저 재진술한다:
 
    @@html:<span id="disp_1.100"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {0 = c_{\alpha\beta}^{2}(t) - l_{\alpha\beta}^{2}} & {(1.100)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    따라서 해 경로를 따라 /c/(/t/) = /l/이고 /Dc/(/t/) = /D/^{2}/c/(/t/) = 0임을 안다.
    이 결과를 써서 /q/와 /c/에 대응하는 라그랑주 방정식을 단순화할 수 있다.
 
    /q/에 대응하는 라그랑주 방정식은 다음 라그랑지언에서 유도된 것과 같다[fn:68]
 
    @@html:<span id="disp_1.101"></span>@@
-$$\begin{array}{lll} {L''(t,q,\overset{˙}{q})} & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,l) + \partial_{1}f_{\alpha}(t,q,l)\,\,\overset{˙}{q})}^{2}}}} & \\ & {\,\,\, - V(t,f(t,q,l)),} & {(1.101)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {L''(t,q,\dot{q})} & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,l) + \partial_{1}f_{\alpha}(t,q,l)\,\,\dot{q})}^{2}}}} & \\ & {\,\,\, - V(t,f(t,q,l)),} & {(1.101)}\end{array}{{< /sicm-math >}}
    그런데 이것은 정확히, 고정된 구속조건 아래에서 일반화 좌표 /q/로부터 계산된 /T/와
    /V/에 대한 /T/ − /V/다. 해 경로에서 항등적으로 0이 되는 항이 곱해지기 때문에 구속
    힘들은 /q/에 대한 라그랑주 방정식에 나타나지 않음을 알아차려라. 따라서 비잉여
@@ -2336,7 +2336,7 @@ $$\begin{array}{lll} {L''(t,q,\overset{˙}{q})} & {= {\sum\limits_{\alpha}{\frac
    입자간 거리 구속조건에 지정된 길이 /l_{αβ}/가 시간의 함수이더라도 같은 유도가
    통한다. 또한 일부 입자의 위치
 
-   ${\overset{\rightarrow}{x}}_{\beta}$
+   {{< sicm-math >}}{\overset{\rightarrow}{x}}_{\beta}{{< /sicm-math >}}
 
    를 주어진 시간의 함수로 만들어, 거리 구속조건이 시간 의존 위치를 향하도록
    일반화할 수도 있다.
@@ -2364,7 +2364,7 @@ $$\begin{array}{lll} {L''(t,q,\overset{˙}{q})} & {= {\sum\limits_{\alpha}{\frac
    *b.* 라그랑주 방정식이 부분 *a*에서 유도한 뉴턴 방정식을 산출하도록, 형식적
    라그랑지언
 
-   $L(t;x_{0},y_{0},x_{1},y_{1},F;{\overset{˙}{x}}_{0},{\overset{˙}{y}}_{0},{\overset{˙}{x}}_{1},{\overset{˙}{y}}_{1},\overset{˙}{F})$
+   {{< sicm-math >}}L(t;x_{0},y_{0},x_{1},y_{1},F;{\dot{x}}_{0},{\dot{y}}_{0},{\dot{x}}_{1},{\dot{y}}_{1},\dot{F}){{< /sicm-math >}}
 
    을 써라.
 
@@ -2434,10 +2434,10 @@ $$\begin{array}{lll} {L''(t,q,\overset{˙}{q})} & {= {\sum\limits_{\alpha}{\frac
     하자. 라그랑지언
 
     @@html:<span id="disp_1.102"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L_{f}(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})} & \\
     {\,\,\,\,\,\,\, = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{v}_{\alpha}^{2} - V(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})}}} & {(1.102)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     은 구성 입자들의 운동 에너지와 퍼텐셜 에너지의 차이다. 이것은 퍼텐셜 에너지 /V/를
     가진 비구속 자유 입자들의 집합에 적합한 라그랑지언이다.
 
@@ -2449,16 +2449,16 @@ $$\begin{aligned}
     있다([[/ko/eval/sicm/chapter-1/#h3_1-6-1][1.6.1절]] 참조)
 
     @@html:<span id="disp_1.103"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1}) = C(t,q,v).} & {(1.103)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     구속계의 라그랑지언은 구속 좌표에서 비구속 좌표로 가는 국소 튜플 변환 함수와
     비구속계의 라그랑지언을 합성하여 얻을 수 있다:
 
     @@html:<span id="disp_1.104"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L = L_{f} \circ C.} & {(1.104)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     구속조건은 변환에만 들어간다.
 
     이를 예시하기 위해 [[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]]에서 도입한 구동 진자의
@@ -2466,9 +2466,9 @@ $$\begin{aligned}
     중력 퍼텐셜을 받는 수직 평면 속 질량 /m/의 자유 입자에 대한 /T/ − /V/ 라그랑지언은
 
     @@html:<span id="disp_1.105"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L_{f}\left( {t;x,y;v_{x},v_{y}} \right) = \frac{1}{2}m(v_{x}^{2} + v_{y}^{2}) - mgy,} & {(1.105)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이고 여기서 /y/는 점 질량의 높이를 잰다. 이 라그랑지언을 계산하는 프로그램은
 
      #+begin_src scheme
@@ -2501,10 +2501,10 @@ y))))
 'thetadot)))
      #+end_src
 
-    $$glm\,\cos\,(\theta) - gmy_{s}\,(t) +
-    \frac{1}{2}l^{2}m{\overset{˙}{\theta}}^{2} +
-    lm\overset{˙}{\theta}Dy_{s}\,(t)\sin\left( \theta \right) +
-    \frac{1}{2}m{(Dy_{s}(t))}^{2}$$
+    {{< sicm-math display >}}glm\,\cos\,(\theta) - gmy_{s}\,(t) +
+    \frac{1}{2}l^{2}m{\dot{\theta}}^{2} +
+    lm\dot{\theta}Dy_{s}\,(t)\sin\left( \theta \right) +
+    \frac{1}{2}m{(Dy_{s}(t))}^{2}{{< /sicm-math >}}
 
     이것은 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.88][1.88]])의 라그랑지언과
     같다([[https://tgvaughan.github.io/sicm/chapter001.html#p51][51쪽]] 참조).
@@ -2540,7 +2540,7 @@ y))))
     다음으로, 진자를 여위도 /ϕ/의 실제 위치로 회전시킨다. 경도를 0으로 택할 수 있으므로
     추 지지대의 각위치는 Ω/t/만큼 회전된다. 좌표 변환은 다음과 같다:[fn:69]
 
-    $(x,y,z) = R_{z}(\Omega t)R_{y}(\phi)(x_{0},y_{0},z_{0}).$
+    {{< sicm-math >}}(x,y,z) = R_{z}(\Omega t)R_{y}(\phi)(x_{0},y_{0},z_{0}).{{< /sicm-math >}}
 
 
 
@@ -2578,57 +2578,57 @@ phi))))
    시각 /t/에서 경로 위의 함수 /F/는
 
    @@html:<span id="disp_1.106"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(F \circ \Gamma\lbrack q\rbrack)(t) = F(t,q(t)).} & {(1.106)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    따라서 연쇄 법칙에 의해
 
    @@html:<span id="disp_1.107"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(F \circ \Gamma\lbrack q\rbrack)(t) = \partial_{0}F(t,q(t)) + \partial_{1}F(t,q(t))Dq(t).} & {(1.107)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    더 형식적으로, 경로 /q/를 따르는 /F/의 시간 도함수는
 
    @@html:<span id="disp_1.108"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(F \circ \Gamma\lbrack q\rbrack) = (DF \circ \Gamma\lbrack q\rbrack)\, D\Gamma\lbrack q\rbrack.} & {(1.108)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    /F/는 시간과 좌표에만 의존하므로
 
    @@html:<span id="disp_1.109"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {DF \circ \Gamma\lbrack q\rbrack = \lbrack\partial_{0}F \circ \Gamma\lbrack q\rbrack,\partial_{1}F \circ \Gamma\lbrack q\rbrack\rbrack.} & {(1.109)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    따라서 /D/Γ[/q/]의 첫 두 성분만으로 곱
 
    @@html:<span id="disp_1.110"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(D\Gamma\lbrack q\rbrack)(t) = (1,Dq(t),D^{2}q(t),\ldots),} & {(1.110)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    을 만들 수 있다:
 
    @@html:<span id="disp_1.111"></span>@@
-$$\begin{array}{lll} {D(F \circ \Gamma\lbrack q\rbrack)} & {= \partial_{0}F \circ \Gamma\lbrack q\rbrack + (\partial_{1}F \circ \Gamma\lbrack q\rbrack)Dq} & \\ & {= (\partial_{0}F + (\partial_{1}F)\overset{˙}{Q}) \circ \Gamma\lbrack q\rbrack,} & {(1.111)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {D(F \circ \Gamma\lbrack q\rbrack)} & {= \partial_{0}F \circ \Gamma\lbrack q\rbrack + (\partial_{1}F \circ \Gamma\lbrack q\rbrack)Dq} & \\ & {= (\partial_{0}F + (\partial_{1}F)\dot{Q}) \circ \Gamma\lbrack q\rbrack,} & {(1.111)}\end{array}{{< /sicm-math >}}
    여기서
 
-   $\overset{˙}{Q} = I_{2}$
+   {{< sicm-math >}}\dot{Q} = I_{2}{{< /sicm-math >}}
 
    는 선택 함수다:[fn:70]
 
-   $c = \overset{˙}{Q}(a,b,c)$
+   {{< sicm-math >}}c = \dot{Q}(a,b,c){{< /sicm-math >}}
 
    이므로
 
-   $Dq = \overset{˙}{Q} \circ \Gamma\lbrack q\rbrack$
+   {{< sicm-math >}}Dq = \dot{Q} \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
    이다.
 
    함수
 
    @@html:<span id="disp_1.112"></span>@@
-$$\begin{aligned}
-{D_{t}F = \partial_{0}F + (\partial_{1}F)\overset{˙}{Q}} & {(1.112)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{D_{t}F = \partial_{0}F + (\partial_{1}F)\dot{Q}} & {(1.112)}
+   \end{aligned}{{< /sicm-math >}}
    를 /F/의 /전시간 미분/(total time derivative)이라 부른다. 이것은 세 인수의 함수다:
    시간, 일반화 좌표들, 일반화 속도들.
 
@@ -2636,13 +2636,13 @@ $$\begin{aligned}
    /F/를 같은 국소 튜플 경로와 합성한 것의 시간 도함수가 되는 그런 함수 /D_{t}F/다:
 
    @@html:<span id="disp_1.113"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D_{t}F \circ \Gamma\lbrack q\rbrack = D(F \circ \Gamma\lbrack q\rbrack).} & {(1.113)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    전시간 미분 /D_{t}F/는 명시적으로 다음과 같다
 
    @@html:<span id="disp_1.114"></span>@@
-$$\begin{array}{lll} {D_{t}F(t,q,v,a,\ldots) =} & {\partial_{0}F(t,q,v,a,\ldots)} & \\ & {+ \partial_{1}F(t,q,v,a,\ldots)v} & \\ & {+ \partial_{2}F(t,q,v,a,\ldots)a + \cdots,} & {(1.114)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {D_{t}F(t,q,v,a,\ldots) =} & {\partial_{0}F(t,q,v,a,\ldots)} & \\ & {+ \partial_{1}F(t,q,v,a,\ldots)v} & \\ & {+ \partial_{2}F(t,q,v,a,\ldots)a + \cdots,} & {(1.114)}\end{array}{{< /sicm-math >}}
    여기서 /F/의 인수들이 소진될 때까지 필요한 만큼의 항들을 취한다.
 
    @@html:<span id="Exe_1-26"></span>@@
@@ -2672,21 +2672,21 @@ $$\begin{array}{lll} {D_{t}F(t,q,v,a,\ldots) =} & {\partial_{0}F(t,q,v,a,\ldots)
    라그랑지언 /L/과 /L/′을 생각하자
 
    @@html:<span id="disp_1.115"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime = L + D_{t}F.} & {(1.115)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    대응하는 작용 적분은
 
    @@html:<span id="disp_1.116"></span>@@
-$$\begin{array}{lll} {S\prime\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{L\prime \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{(L + D_{t}F) \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack + {\int_{t_{1}}^{t_{2}}{D(F \circ \Gamma\lbrack q\rbrack)}}}}} & \\ & {= S\lbrack q\rbrack(t_{1},t_{2}) + (F \circ \Gamma\lbrack q\rbrack)|_{t_{1}}^{t_{2}}.} & {(1.116)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {S\prime\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{L\prime \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{(L + D_{t}F) \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack + {\int_{t_{1}}^{t_{2}}{D(F \circ \Gamma\lbrack q\rbrack)}}}}} & \\ & {= S\lbrack q\rbrack(t_{1},t_{2}) + (F \circ \Gamma\lbrack q\rbrack)|_{t_{1}}^{t_{2}}.} & {(1.116)}\end{array}{{< /sicm-math >}}
    변분 원리는, 실현 가능한 궤적을 따르는 작용 적분이 끝점에서 배치를 고정하는 궤적의
    변분에 대해 정지라고 말한다. 작용 적분 /S/[/q/](/t/_{1}, /t/_{2})와
    /S/′[/q/](/t/_{1}, /t/_{2})는 항
 
    @@html:<span id="disp_1.117"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(F \circ \Gamma\lbrack q\rbrack)|_{t_{1}}^{t_{2}} = F(t_{2},q(t_{2})) - F(t_{1},q(t_{1}))} & {(1.117)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    만큼 차이 나는데, 이 항은 끝점에서의 좌표와 시간에만 의존하고 이것들은 변할 수
    없다. 따라서 /S/[/q/](/t/_{1}, /t/_{2})가 어떤 경로에 대해 정지이면
    /S/′[/q/](/t/_{1}, /t/_{2})도 정지일 것이다. 그러므로 두 라그랑지언 중 어느
@@ -2706,9 +2706,9 @@ $$\begin{aligned}
    /F/ (/t/, /q/)를 /t/와 /q/만의 함수라 하자. 그 전시간 미분은
 
    @@html:<span id="disp_1.118"></span>@@
-$$\begin{aligned}
-{D_{t}F = \partial_{0}F + (\partial_{1}F)\overset{˙}{Q}.} & {(1.118)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{D_{t}F = \partial_{0}F + (\partial_{1}F)\dot{Q}.} & {(1.118)}
+   \end{aligned}{{< /sicm-math >}}
    이다. /D_{t}F/에 대한 라그랑주 방정식이 항등적으로 0임을 명시적으로 보이고, 따라서
    라그랑지언에 /D_{t}F/를 더해도 라그랑주 방정식에 영향을 주지 않음을 보여라.
 
@@ -2716,9 +2716,9 @@ $$\begin{aligned}
    운동 방정식([[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]] 참조)
 
    @@html:<span id="disp_1.119"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {ml^{2}D^{2}\theta(t) + ml(g + D^{2}y_{s}(t))\,\sin\theta(t) = 0,} & {(1.119)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    은 흥미롭고 시사적인 해석을 가진다: 중력 가속도 /g/가 피벗의 가속도
    /D/^{2}/y_{s}/만큼 증폭되었다는 점만 빼면, 이것은 구동되지 않은 진자의 운동
    방정식과 같다. 이 직관적 해석은 [[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]]에서 운동
@@ -2726,23 +2726,23 @@ $$\begin{aligned}
    운동 방정식만큼 해석이 쉬운, 같은 운동 방정식을 가진 대안 라그랑지언을 쓸 수 있다:
 
    @@html:<span id="disp_1.120"></span>@@
-$$\begin{aligned}
-{L\prime(t,\theta,\overset{˙}{\theta}) = \frac{1}{2}ml^{2}{\overset{˙}{\theta}}^{2} + ml(g + D^{2}y_{s}(t))\,\cos\theta.} & {(1.120)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t,\theta,\dot{\theta}) = \frac{1}{2}ml^{2}{\dot{\theta}}^{2} + ml(g + D^{2}y_{s}(t))\,\cos\theta.} & {(1.120)}
+   \end{aligned}{{< /sicm-math >}}
    이 라그랑지언에서는 가속하는 피벗의 효과가 중력 가속도를 수정하는 것임이 분명하다.
    다만 이것은 운동 에너지와 퍼텐셜 에너지의 차이가 아님에 유의하라. 구동 진자의 두
    라그랑지언을 비교해 보자. 차 Δ/L/ = /L/ − /L/′은
 
    @@html:<span id="disp_1.121"></span>@@
-$$\begin{array}{lll} {\Delta L(t,\theta,\overset{˙}{\theta}) =} & {\frac{1}{2}m{(Dy_{s}(t))}^{2} + mlDy_{s}(t)\overset{˙}{\theta}\,\sin\theta} & \\ & {- gmy_{s}(t) - mlD^{2}y_{s}(t)\,\cos\theta.} & {(1.121)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {\Delta L(t,\theta,\dot{\theta}) =} & {\frac{1}{2}m{(Dy_{s}(t))}^{2} + mlDy_{s}(t)\dot{\theta}\,\sin\theta} & \\ & {- gmy_{s}(t) - mlD^{2}y_{s}(t)\,\cos\theta.} & {(1.121)}\end{array}{{< /sicm-math >}}
    Δ/L/에서 /θ/에도
 
-   $\overset{˙}{\theta}$
+   {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
    에도 의존하지 않는 두 항은 운동 방정식에 영향을 주지 않는다. 나머지 두 항은 함수
    /F/ (/t/, /θ/) = −/mlDy_{s}/(/t/) cos /θ/의 전시간 미분이고, 이 함수는
 
-   $\overset{˙}{\theta}$
+   {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
    에 의존하지 않는다. 이런 항들을 라그랑지언에 더해도 운동 방정식에 영향을 주지
    않는다.
@@ -2759,32 +2759,32 @@ $$\begin{array}{lll} {\Delta L(t,\theta,\overset{˙}{\theta}) =} & {\frac{1}{2}m
    선형이어야 함을 알 수 있다
 
    @@html:<span id="disp_1.122"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {G(t,q,v) = G_{0}(t,q,v) + G_{1}(t,q,v)\, v} & {(1.122)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    여기서 /G/_{1}도 /G/_{0}도 일반화 속도들에 의존하지 않는다: ∂_{2}/G/_{1} =
    ∂_{2}/G/_{0} = 0.
 
    /G/가 /F/의 전시간 미분이면 /G/_{1} = ∂_{1}/F/이고 /G/_{0} = ∂_{0}/F/이므로
 
    @@html:<span id="disp_1.123"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{0}G_{1} = \partial_{0}\partial_{1}F} & \\
    {\partial_{1}G_{0} = \partial_{1}\partial_{0}F.} & {(1.123)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    시간 인수에 대한 편미분은 구조를 가지지 않으므로 ∂_{0}∂_{1}/F/ = ∂_{1}∂_{0}/F/다.
    따라서 /G/가 /F/의 전시간 미분이면
 
    @@html:<span id="disp_1.124"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{0}G_{1} = \partial_{1}G_{0}.} & {(1.124)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    더 나아가 /G/_{1} = ∂_{1}/F/이므로
 
    @@html:<span id="disp_1.125"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{1}G_{1} = \partial_{1}\partial_{1}F.} & {(1.125)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    자유도가 둘 이상이면 이 편미분들은 사실 각 좌표에 대한 편미분들의 구조다. 서로
    다른 두 좌표에 대한 편미분들은 미분 순서와 무관하게 같아야 한다. 그러므로
    ∂_{1}/G/_{1}은 대칭이어야 한다.
@@ -2823,34 +2823,34 @@ $$\begin{aligned}
 
    우리는 첨자 /α/로 색인되는 입자 집합의 운동 에너지를
 
-   $\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}$
+   {{< sicm-math >}}\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}{{< /sicm-math >}}
 
    로 취해 왔다. 이 형태는 갈릴레이 불변(Galilean invariant)이다.
 
    *a.* 자유 입자들의 라그랑지언, 즉 그들 운동 에너지들의 단순한 합에서 시작하자:
 
    @@html:<span id="disp_1.126"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}.}}} & {(1.126)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이동과 균일 병진으로 이루어진, 옛 좌표에서 새 좌표로 가는 좌표 변환을 수행하라
 
    @@html:<span id="disp_1.127"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x_{\alpha} = x_{\alpha}^{\prime} + \Delta x + \Delta vt.} & {(1.127)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    새 좌표에서의 라그랑지언을 유도하라.
 
    *b.* 새 라그랑지언은
 
-   $\sum_{\alpha}{\frac{1}{2}m_{\alpha}{(v_{\alpha}^{\prime})}^{2}}$
+   {{< sicm-math >}}\sum_{\alpha}{\frac{1}{2}m_{\alpha}{(v_{\alpha}^{\prime})}^{2}}{{< /sicm-math >}}
 
    형태에 몇 가지 추가 항들을 더한 것으로 놓을 수 있다. 추가 항들이 전시간 미분임을
    보여라.
 
    따라서 운동 에너지는 균일하게 움직이는 어떤 좌표계에서든
 
-   $\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}$
+   {{< sicm-math >}}\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}{{< /sicm-math >}}
 
    로 취할 수 있다.
 * 1.7 동역학적 상태의 전개
@@ -2887,18 +2887,18 @@ $$\begin{aligned}
   /a/ = /A/(/t/, /q/, /v/)를 계산하는 처방이 주어지면
 
   @@html:<span id="disp_1.128"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}q = A \circ \Gamma\lbrack q\rbrack,} & {(1.128)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   이고, 그 결과로
 
   @@html:<span id="disp_1.129"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{3}q = D(A \circ \Gamma\lbrack q\rbrack) = D_{t}A \circ \Gamma\lbrack q\rbrack,} & {(1.129)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   등을 얻는다. 따라서 국소 튜플의 고차 도함수 성분은 함수
 
-  $D_{t}A,\,\,\, D_{t}^{2}A,\ldots$
+  {{< sicm-math >}}D_{t}A,\,\,\, D_{t}^{2}A,\ldots{{< /sicm-math >}}
 
   로 주어진다. 이 함수 각각은 국소 튜플의 저차 도함수 성분에 의존한다. 상태에서
   경로를 이끌어 내는 데 필요한 것은, 상태에서 국소 기술의 다음 고차 도함수
@@ -2906,25 +2906,25 @@ $$\begin{aligned}
 
   먼저 라그랑주 방정식
 
-  $\partial_{1}L \circ \Gamma\lbrack q\rbrack = D(\partial_{2}L \circ
-  \Gamma\lbrack q\rbrack)$
+  {{< sicm-math >}}\partial_{1}L \circ \Gamma\lbrack q\rbrack = D(\partial_{2}L \circ
+  \Gamma\lbrack q\rbrack){{< /sicm-math >}}
 
   을 전개하여 이계 도함수가 명시적으로 나타나게 한다.
 
-  $$\begin{array}{l} {\partial_{1}L \circ \Gamma\lbrack q\rbrack} \\ {\,\,\,\,\,\,\,\,\, = \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack + (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq + (\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, D^{2}q.} \\\end{array}$$
+  {{< sicm-math display >}}\begin{array}{l} {\partial_{1}L \circ \Gamma\lbrack q\rbrack} \\ {\,\,\,\,\,\,\,\,\, = \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack + (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq + (\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, D^{2}q.} \\\end{array}{{< /sicm-math >}}
   이 계를 /D/^{2}/q/에 대해 풀면, 해 경로 /q/를 따른 일반화 가속도를 얻는다.
 
-  $$\begin{array}{l} {D^{2}q =} \\ {\,\,\,\,\,\,\,\,\,{\lbrack\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}^{- 1}\lbrack\partial_{1}L \circ \Gamma\lbrack q\rbrack - (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq - \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}\end{array}$$
+  {{< sicm-math display >}}\begin{array}{l} {D^{2}q =} \\ {\,\,\,\,\,\,\,\,\,{\lbrack\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}^{- 1}\lbrack\partial_{1}L \circ \Gamma\lbrack q\rbrack - (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq - \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}\end{array}{{< /sicm-math >}}
   여기서 [∂_{2}∂_{2}/L/ ∘ Γ]는 대칭 정사각 행렬로 나타낼 수 있는 구조이므로
   그 역을 계산할 수 있다.[fn:73] 가속도를 주는 함수는
 
   @@html:<span id="disp_1.130"></span>@@
-$$\begin{aligned}
-{A = {(\partial_{2}\partial_{2}L)}^{- 1}\lbrack\partial_{1}L - \partial_{0}\partial_{2}L - (\partial_{1}\partial_{2}L)\overset{˙}{Q}\rbrack,} & {(1.130)}
-  \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{A = {(\partial_{2}\partial_{2}L)}^{- 1}\lbrack\partial_{1}L - \partial_{0}\partial_{2}L - (\partial_{1}\partial_{2}L)\dot{Q}\rbrack,} & {(1.130)}
+  \end{aligned}{{< /sicm-math >}}
   이고, 여기서
 
-  $\overset{˙}{Q} = I_{2}$
+  {{< sicm-math >}}\dot{Q} = I_{2}{{< /sicm-math >}}
 
   는 속도 성분 선택자이다.
 
@@ -2989,9 +2989,9 @@ t) (up t (q t) (v t)))
   (literal-function 'v_x) (literal-function 'v_y))) 't))
    #+end_src
 
-  $$\begin{pmatrix} 0 \\ \begin{pmatrix} {Dx(t) - v_{x}(t)} {Dy(t) - v_{y}(t)}
+  {{< sicm-math display >}}\begin{pmatrix} 0 \\ \begin{pmatrix} {Dx(t) - v_{x}(t)} {Dy(t) - v_{y}(t)}
   \end{pmatrix} \begin{pmatrix} {\frac{kx(t)}{m} + Dv_{x}(t)}
-  \\ {\frac{ky(t)}{m} + Dv_{y}(t)} \end{pmatrix} \end{pmatrix}$$
+  \\ {\frac{ky(t)}{m} + Dv_{y}(t)} \end{pmatrix} \end{pmatrix}{{< /sicm-math >}}
 
 
 
@@ -3059,8 +3059,8 @@ omega 0))) (L-pend m l g ys)))
 'theta)) 't))
     #+end_src
 
-   $$D^{2}\theta(t)l^{2}m - \cos(\omega t)\,\sin\,(\theta(t))\, Alm\omega^{2} +
-   \sin\,(\theta(t))\, glm$$
+   {{< sicm-math display >}}D^{2}\theta(t)l^{2}m - \cos(\omega t)\,\sin\,(\theta(t))\, Alm\omega^{2} +
+   \sin\,(\theta(t))\, glm{{< /sicm-math >}}
 
    주기 구동 진자의 매개변수 상태 도함수는
 
@@ -3071,8 +3071,8 @@ omega))) (show-expression ((pend-state-derivative 'm 'l 'g 'A 'omega) (up 't
 'theta 'thetadot)))
     #+end_src
 
-   $$\begin{pmatrix} 1 \\ \overset{˙}{\theta} {\frac{A\omega^{2}\cos\,(\omega
-   t)\,\sin\,(\theta)}{l} - \frac{g\sin\,(\theta)}{l}} \end{pmatrix}$$
+   {{< sicm-math display >}}\begin{pmatrix} 1 \\ \dot{\theta} {\frac{A\omega^{2}\cos\,(\omega
+   t)\,\sin\,(\theta)}{l} - \frac{g\sin\,(\theta)}{l}} \end{pmatrix}{{< /sicm-math >}}
 
    구동 진자의 전개를 살펴보려면, 어떤 구간 동안 계를 전개하면서 전개되는
    동안 계의 측면을 감시하는 메커니즘이 필요하다. 절차 evolve는 state-advancer를
@@ -3108,9 +3108,9 @@ omega))) (show-expression ((pend-state-derivative 'm 'l 'g 'A 'omega) (up 't
 
    #+caption: *그림 1.7* 구동 진자의 궤도. 각 /θ/를
    시간에 대해 그렸다. 각은 주기적이므로, 이 플롯은 원기둥에 감긴 것으로
-   생각할 수 있다. 위 플롯은 초기조건 /θ/ = 1과 ¶ $\overset{˙}{\theta} = 0$ ¶
+   생각할 수 있다. 위 플롯은 초기조건 /θ/ = 1과 ¶ {{< sicm-math >}}\dot{\theta} = 0{{< /sicm-math >}} ¶
    인 시뮬레이션 결과를 보인다. 궤도는 한동안 진동하다 순환한 뒤 다시
-   진동한다. 아래 플롯은 조금 다른 초기 각속도 ¶ $\overset{˙}{\theta} = 10^{- 10}$ ¶
+   진동한다. 아래 플롯은 조금 다른 초기 각속도 ¶ {{< sicm-math >}}\dot{\theta} = 10^{- 10}{{< /sicm-math >}} ¶
    에 대한 결과를 보인다. 초기 거동은 위 그림과 구별할 수 없으나, 두 궤적은
    진동과 순환 사이 전이 뒤에 상관을 잃는다. 초기조건에 대한 이 극단적
    민감성은 혼돈 거동을 가진 계의 특징이다. [[/eval/source/sicm/images/Art_P211.jpg]]
@@ -3126,8 +3126,8 @@ omega))) (show-expression ((pend-state-derivative 'm 'l 'g 'A 'omega) (up 't
    퍼텐셜 에너지 /V/ (/r/) = −/βr^{α}/인 중심장에서 질량 /m/인 입자의 평면
    운동에 대한 라그랑지언은
 
-   $L(t;r,\theta;\overset{˙}{r},\overset{˙}{\theta}) =
-   \frac{1}{2}m({\overset{˙}{r}}^{2} + {(r\overset{˙}{\theta})}^{2}) + V(r).$
+   {{< sicm-math >}}L(t;r,\theta;\dot{r},\dot{\theta}) =
+   \frac{1}{2}m({\dot{r}}^{2} + {(r\dot{\theta})}^{2}) + V(r).{{< /sicm-math >}}
 
    이다.
 
@@ -3172,9 +3172,9 @@ omega))) (show-expression ((pend-state-derivative 'm 'l 'g 'A 'omega) (up 't
   대해
 
   @@html:<span id="disp_1.131"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(C \circ \Gamma\lbrack q\rbrack) = D_{t}C \circ \Gamma\lbrack q\rbrack = 0} & {(1.131)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   이다. 이 절에서는 대칭이 있는 계를 조사하고, 대칭이 보존량에 연관됨을
   찾는다. 예를 들어 병진 대칭이 있는 계에서는 선운동량이 보존되고, 회전
   대칭이 있으면 각운동량이 보존되며, 계가 시간의 원점에 의존하지 않으면
@@ -3190,30 +3190,30 @@ $$\begin{aligned}
     라그랑지언 /L/(/t/, /q/, /v/)가 어떤 특정 좌표 /q^{i}/에 의존하지 않으면
 
     @@html:<span id="disp_1.132"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {{(\partial_{1}L)}_{i} = 0,} & {(1.132)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이고, 대응하는 라그랑주 방정식의 /i/번째 성분은
 
     @@html:<span id="disp_1.133"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {{(D(\partial_{2}L \circ \Gamma\lbrack q\rbrack))}_{i} = 0.} & {(1.133)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이다. 성분의 도함수는 도함수의 성분과 같으므로, 이는
 
     @@html:<span id="disp_1.134"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D({(\partial_{2}L)}_{i} \circ \Gamma\lbrack q\rbrack) = 0,} & {(1.134)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     과 같고,
 
     @@html:<span id="disp_1.135"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{P}_{i} = {(\partial_{2}L)}_{i}} & {(1.135)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     가 보존량임을 볼 수 있다. 함수
 
-    $\mathcal{P}$
+    {{< sicm-math >}}\mathcal{P}{{< /sicm-math >}}
 
     를 /운동량 상태 함수(momentum state function)/라 부른다. 운동량 상태
     함수의 값이 /일반화 운동량/이다. 일반화 운동량의 /i/번째 성분을 /i/번째
@@ -3227,22 +3227,22 @@ $$\begin{aligned}
     좌표 경로 /q/와 라그랑지언 /L/이 주어지면, 운동량 경로 /p/는
 
     @@html:<span id="disp_1.136"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {p = \partial_{2}L \circ \Gamma\lbrack q\rbrack = \mathcal{P} \circ \Gamma\lbrack q\rbrack,} & {(1.136)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이고 성분은
 
     @@html:<span id="disp_1.137"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {p_{i} = \mathcal{P}_{i} \circ \Gamma\lbrack q\rbrack.} & {(1.137)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이다. 운동량 경로는 임의의 경로 /q/에 대해 잘 정의된다. 경로가 실현
     가능하고 라그랑지언이 /q^{i}/에 의존하지 않으면 /p_{i}/는 상수 함수이다.
 
     @@html:<span id="disp_1.138"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {Dp_{i} = 0.} & {(1.138)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     /p_{i}/의 상수값은 궤적마다 다를 수 있다.
 
 ** 보존 운동량의 예
@@ -3252,16 +3252,16 @@ $$\begin{aligned}
    :END:
    자유 입자 라그랑지언
 
-   $L(t,x,v) = \frac{1}{2}mv^{2}$
+   {{< sicm-math >}}L(t,x,v) = \frac{1}{2}mv^{2}{{< /sicm-math >}}
 
    은 /x/에 무관하다. 따라서 운동량 상태 함수
 
-   $\mathcal{P}(t,q,v) = mv$
+   {{< sicm-math >}}\mathcal{P}(t,q,v) = mv{{< /sicm-math >}}
 
    는 실현 가능한 경로를 따라 보존된다. 좌표 경로 /q/에 대한 운동량 경로
    /p/는
 
-   $p(t) = \mathcal{P} \circ \Gamma\lbrack q\rbrack(t) = m\, Dq(t)$
+   {{< sicm-math >}}p(t) = \mathcal{P} \circ \Gamma\lbrack q\rbrack(t) = m\, Dq(t){{< /sicm-math >}}
 
    이다. 실현 가능한 경로에 대해 /Dp/(/t/) = 0이다. 자유 입자에서는 보통의
    선운동량이 실현 가능한 경로에 대해 보존된다.
@@ -3269,13 +3269,13 @@ $$\begin{aligned}
    중심력장 안의 입자에 대해 ([[/ko/eval/sicm/chapter-1/#h1-6a][1.6절]]),
    라그랑지언
 
-   $L(t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}) =
-   \frac{1}{2}m({\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\varphi}}^{2}) - V(r)$
+   {{< sicm-math >}}L(t;r,\varphi;\dot{r},\dot{\varphi}) =
+   \frac{1}{2}m({\dot{r}}^{2} + r^{2}{\dot{\varphi}}^{2}) - V(r){{< /sicm-math >}}
 
    은 /r/에 의존하지만 /φ/에는 무관하다. 운동량 상태 함수는
 
-   $\mathcal{P}\left( {t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}} \right)
-   = \lbrack m\overset{˙}{r},mr^{2}\overset{˙}{\varphi}\rbrack.$
+   {{< sicm-math >}}\mathcal{P}\left( {t;r,\varphi;\dot{r},\dot{\varphi}} \right)
+   = \lbrack m\dot{r},mr^{2}\dot{\varphi}\rbrack.{{< /sicm-math >}}
 
    이다. 성분이 둘이다. 첫째 성분, “반지름 운동량”은 보존되지 않는다. 둘째
    성분, “각운동량”은 임의의 해 궤적을 따라 보존된다.
@@ -3298,7 +3298,7 @@ $$\begin{aligned}
     라그랑지언이 대응하는 좌표에 의존하지 않으면 운동량은 운동에 의해
     보존된다. 라그랑지언
 
-    $L(t,q,\overset{˙}{q})$
+    {{< sicm-math >}}L(t,q,\dot{q}){{< /sicm-math >}}
 
     가 시간에 명시적으로 의존하지 않으면, ∂_{0}/L/ = 0이면, 또 하나의 운동
     상수인 에너지가 있다.
@@ -3306,29 +3306,29 @@ $$\begin{aligned}
     해 경로 /q/를 따른 라그랑지언의 시간 미분을 생각하자.
 
     @@html:<span id="disp_1.139"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(L \circ \Gamma\lbrack q\rbrack) = \partial_{0}L \circ \Gamma\lbrack q\rbrack + (\partial_{1}L \circ \Gamma\lbrack q\rbrack)Dq + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D^{2}q.} & {(1.139)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     둘째 항을 라그랑주 방정식으로 다시 쓰면
 
     @@html:<span id="disp_1.140"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(L \circ \Gamma\lbrack q\rbrack) = (\partial_{0}L) \circ \Gamma\lbrack q\rbrack + D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)Dq + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D^{2}q.} & {(1.140)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이 된다. ∂_{0}/L/을 분리하고 다른 항을 결합하면
 
     @@html:<span id="disp_1.141"></span>@@
-$$\begin{array}{lll} {(\partial_{0}L) \circ \Gamma\lbrack q\rbrack} & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)Dq)} & \\ & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)(\overset{˙}{Q} \circ \Gamma\lbrack q\rbrack))} & \\ & {= D((L - \mathcal{P}\overset{˙}{Q}) \circ \Gamma\lbrack q\rbrack),} & {(1.141)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {(\partial_{0}L) \circ \Gamma\lbrack q\rbrack} & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)Dq)} & \\ & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)(\dot{Q} \circ \Gamma\lbrack q\rbrack))} & \\ & {= D((L - \mathcal{P}\dot{Q}) \circ \Gamma\lbrack q\rbrack),} & {(1.141)}\end{array}{{< /sicm-math >}}
     을 얻으며, 앞에서와 같이
 
-    $\overset{˙}{Q}$
+    {{< sicm-math >}}\dot{Q}{{< /sicm-math >}}
 
     는 상태에서 속도를 고른다. 따라서 ∂_{0}/L/ = 0이면
 
     @@html:<span id="disp_1.142"></span>@@
-$$\begin{aligned}
-{\mathcal{E} = \mathcal{P}\overset{˙}{Q} - L} & {(1.142)}
-    \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathcal{E} = \mathcal{P}\dot{Q} - L} & {(1.142)}
+    \end{aligned}{{< /sicm-math >}}
     이 실현 가능한 경로를 따라 보존됨을 본다. 함수 /ℰ/를 /에너지 상태
     함수(energy state function)/라 부른다.[fn:83] 계의 에너지 상태 함수는
     계를 기술하는 데 쓴 라그랑지언의 선택에 의존한다.[fn:84] /E/ = /ℰ/ ∘
@@ -3357,15 +3357,15 @@ $$\begin{aligned}
    /q/로 계산한다.
 
    @@html:<span id="disp_1.143"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v.} & {(1.143)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    운동 에너지는
 
    @@html:<span id="disp_1.144"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {T\left( {t,q,v} \right) = \frac{1}{2}{\sum_{\alpha}{m_{\alpha}v_{\alpha}^{2},}}} & {(1.144)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이고, 여기서 /v_{α}/는 *v*_{/α/}의 크기이다.
 
    /f/_{/α/} 함수가 시간에 명시적으로 의존하지 않으면 (∂_{0}/f_{α}/ =
@@ -3374,22 +3374,22 @@ $$\begin{aligned}
    함수이다. /T/가 일반화 속도에 대해 차수 2의 동차 함수이면
 
    @@html:<span id="disp_1.145"></span>@@
-$$\begin{aligned}
-{\mathcal{P}\overset{˙}{Q} = \left( {\partial_{2}T} \right)\overset{˙}{Q} = 2T,} & {(1.145)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathcal{P}\dot{Q} = \left( {\partial_{2}T} \right)\dot{Q} = 2T,} & {(1.145)}
+   \end{aligned}{{< /sicm-math >}}
    이고, 둘째 등식은 동차 함수에 대한 Euler의 정리에서 따른다.[fn:85] 에너지
    상태 함수는
 
    @@html:<span id="disp_1.146"></span>@@
-$$\begin{aligned}
-{\mathcal{E} = \mathcal{P}\overset{˙}{Q} - L = 2T - T + V.} & {(1.146)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathcal{E} = \mathcal{P}\dot{Q} - L = 2T - T + V.} & {(1.146)}
+   \end{aligned}{{< /sicm-math >}}
    이다. 따라서 /f_{α}/가 시간에 무관하면 에너지 함수를
 
    @@html:<span id="disp_1.147"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E} = 2T - T + V = T + V.} & {(1.147)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    로 다시 쓸 수 있다. /V/가 시간에 의존해도 에너지는 여전히 운동 에너지와
    퍼텐셜 에너지의 합이지만, 에너지는 보존되지 않음에 주목하라.
 
@@ -3437,9 +3437,9 @@ $$\begin{aligned}
     기술한다. 여기서 /θ/는 여위이고 /φ/는 경도이다. 운동 에너지에는 세 항이
     있다.
 
-    $$T(t;r,\theta,\varphi;\overset{˙}{r},\overset{˙}{\theta},\overset{˙}{\varphi})
-    = \frac{1}{2}m({\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\theta}}^{2} +
-    r^{2}{(\sin\theta)}^{2}{\overset{˙}{\varphi}}^{2}).$$
+    {{< sicm-math display >}}T(t;r,\theta,\varphi;\dot{r},\dot{\theta},\dot{\varphi})
+    = \frac{1}{2}m({\dot{r}}^{2} + r^{2}{\dot{\theta}}^{2} +
+    r^{2}{(\sin\theta)}^{2}{\dot{\varphi}}^{2}).{{< /sicm-math >}}
 
     절차로는 다음과 같다.
 
@@ -3468,10 +3468,10 @@ state))) (let ((r (ref q 0)) (theta (ref q 1)) (rdot
 'phidot))))
      #+end_src
 
-    $$\begin{bmatrix} {m{\overset{˙}{\varphi}}^{2}r\,{(\sin\,(\theta))}^{2} +
-    mr{\overset{˙}{\theta}}^{2} - DV\,(r)}
-    \\ {m{\overset{˙}{\varphi}}^{2}r^{2}\cos\,(\theta)\,\sin\,(\theta)} 0
-    \\ \end{bmatrix}$$
+    {{< sicm-math display >}}\begin{bmatrix} {m{\dot{\varphi}}^{2}r\,{(\sin\,(\theta))}^{2} +
+    mr{\dot{\theta}}^{2} - DV\,(r)}
+    \\ {m{\dot{\varphi}}^{2}r^{2}\cos\,(\theta)\,\sin\,(\theta)} 0
+    \\ \end{bmatrix}{{< /sicm-math >}}
 
     /φ/ 성분의 힘은 영이다. /φ/가 라그랑지언에 나타나지 않기 때문이다 (순환
     좌표이다). 대응하는 운동량 성분은 보존된다. 운동량을 계산하라.
@@ -3482,20 +3482,20 @@ state))) (let ((r (ref q 0)) (theta (ref q 1)) (rdot
 'phidot))))
      #+end_src
 
-    $$\begin{bmatrix} {m\overset{˙}{r}} {mr^{2}\overset{˙}{\theta}}
-    \\ {mr^{2}\overset{˙}{\varphi}{(\sin\,(\theta))}^{2}} \end{bmatrix}$$
+    {{< sicm-math display >}}\begin{bmatrix} {m\dot{r}} {mr^{2}\dot{\theta}}
+    \\ {mr^{2}\dot{\varphi}{(\sin\,(\theta))}^{2}} \end{bmatrix}{{< /sicm-math >}}
 
     /φ/에 켤레인 운동량은 보존된다. 이는 각운동량
 
-    $\overset{\rightarrow}{r} \times (m\overset{\rightarrow}{v})$
+    {{< sicm-math >}}\overset{\rightarrow}{r} \times (m\overset{\rightarrow}{v}){{< /sicm-math >}}
 
     의 /z/ 성분이다. 벡터 위치
 
-    $\overset{\rightarrow}{r}$
+    {{< sicm-math >}}\overset{\rightarrow}{r}{{< /sicm-math >}}
 
     와 선운동량
 
-    $m\overset{\rightarrow}{v}$
+    {{< sicm-math >}}m\overset{\rightarrow}{v}{{< /sicm-math >}}
 
     에 대한 것이다. 각운동량의 /z/ 성분을 구면 좌표로 써서 이를 보일 수
     있다.
@@ -3515,19 +3515,19 @@ phi))) (z (* r (cos theta)))) (up x y z)))))
 
         #+end_src
 
-    $$mr^{2}\overset{˙}{\varphi}{(\sin\,(\theta))}^{2}$$
+    {{< sicm-math display >}}mr^{2}\dot{\varphi}{(\sin\,(\theta))}^{2}{{< /sicm-math >}}
 
     /z/축의 선택은 임의이므로, 각운동량의 임의의 성분이 보존되면 모든 성분이
     보존된다. 따라서 총 각운동량은 보존된다. /z/축을 골라 각운동량 전부가
     /z/ 성분에 있게 할 수 있다.
 
-    $\overset{\rightarrow}{x} \cdot (\overset{\rightarrow}{x} \times
+    {{< sicm-math >}}\overset{\rightarrow}{x} \cdot (\overset{\rightarrow}{x} \times
     \overset{\rightarrow}{v}) = \overset{\rightarrow}{v} \cdot
-    (\overset{\rightarrow}{x} \times \overset{\rightarrow}{x}) = 0$
+    (\overset{\rightarrow}{x} \times \overset{\rightarrow}{x}) = 0{{< /sicm-math >}}
 
     이므로, 운동은 각운동량에 수직인 평면에 갇힌다. /θ/ = /π//2이고
 
-    $\overset{˙}{\theta} = 0$
+    {{< sicm-math >}}\dot{\theta} = 0{{< /sicm-math >}}
 
     이다. 중심력장에서의 평면 운동은 [[/ko/eval/sicm/chapter-1/#h1-6a][1.6절]]에서
     논의했다.
@@ -3541,9 +3541,9 @@ phi))) (z (* r (cos theta)))) (up x y z)))))
 'phidot))))
      #+end_src
 
-    $$\frac{1}{2}m{\overset{˙}{\varphi}}^{2}r^{2}{(\sin\,(\theta))}^{2} +
-    \frac{1}{2}mr^{2}{\overset{˙}{\theta}}^{2} +
-    \frac{1}{2}m{\overset{˙}{r}}^{2} + V\,(r)$$
+    {{< sicm-math display >}}\frac{1}{2}m{\dot{\varphi}}^{2}r^{2}{(\sin\,(\theta))}^{2} +
+    \frac{1}{2}mr^{2}{\dot{\theta}}^{2} +
+    \frac{1}{2}m{\dot{r}}^{2} + V\,(r){{< /sicm-math >}}
 
     라그랑지언에 명시적 시간 의존이 없으므로 에너지는 보존된다.
 
@@ -3580,23 +3580,23 @@ q))))
     입자의 원점으로부터의 거리는 다음과 같다.
 
     @@html:<span id="disp_1.148"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {a_{0} = \frac{M_{1}}{M_{0} + M_{1}}a\,\,\text{and}\,\, a_{1} = \frac{M_{0}}{M_{0} + M_{1}}a} & {(1.148)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     각 무거운 입자는 각진동수 Ω로 공통 질량중심 둘레의 원을 돈다. 원의
     반지름은 위에 주어진 거리이다. Kepler의 법칙이 궤도의 각진동수를 준다.
 
     @@html:<span id="disp_1.149"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Omega^{2}a^{3} = G(M_{0} + M_{1})} & {(1.149)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     /t/ = 0에서 질량 /M/_{1}인 물체가 양의
 
-    $\widehat{x}$
+    {{< sicm-math >}}\widehat{x}{{< /sicm-math >}}
 
     축 위에, 질량 /M/_{0}인 물체가 음의
 
-    $\widehat{x}$
+    {{< sicm-math >}}\widehat{x}{{< /sicm-math >}}
 
     축 위에 있도록 축을 고른다. 중력 퍼텐셜 에너지 함수는 다음과 같다.
 
@@ -3615,7 +3615,7 @@ $$\begin{aligned}
    무거운 입자가 고정된 회전 좌표계에서 셋째 입자의 운동을 살펴보는 것이
    편리하다. 두 무거운 입자가
 
-   $\widehat{x}\prime$
+   {{< sicm-math >}}\widehat{x}\prime{{< /sicm-math >}}
 
    축 위에 있도록 회전 축을 둘 수 있고, /t/ = 0에서 회전 축과 비회전 축이
    일치하도록 고를 수 있다. [[https://tgvaughan.github.io/sicm/chapter001.html#p48][48쪽]]에서처럼 회전
@@ -3623,15 +3623,15 @@ $$\begin{aligned}
    중력 퍼텐셜 에너지 항을 더한 것이다.
 
     @@html:<span id="disp_1.150"></span>@@
-$$\begin{aligned}
-{L_{r}(t;x_{r},y_{r};{\overset{˙}{x}}_{r},{\overset{˙}{y}}_{r})} & \\
-    {\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\left( {{\overset{˙}{x}}_{r}^{2} + {\overset{˙}{y}}_{r}^{2}} \right) + \frac{1}{2}m\Omega^{2}(x_{r}^{2} + y_{r}^{2}) + m\Omega(x_{r}{\overset{˙}{y}}_{r} - {\overset{˙}{x}}_{r}y_{r})} & \\
+{{< sicm-math display >}}\begin{aligned}
+{L_{r}(t;x_{r},y_{r};{\dot{x}}_{r},{\dot{y}}_{r})} & \\
+    {\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\left( {{\dot{x}}_{r}^{2} + {\dot{y}}_{r}^{2}} \right) + \frac{1}{2}m\Omega^{2}(x_{r}^{2} + y_{r}^{2}) + m\Omega(x_{r}{\dot{y}}_{r} - {\dot{x}}_{r}y_{r})} & \\
     {\,\,\,\,\,\,\,\,\,\,\,\,\,\, + \frac{GM_{0}m}{r_{0}} + \frac{GM_{1}m}{r_{1}}} & {(1.150)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
    여기서 이제
 
-    $r_{0}^{2} = {(x_{r} + a_{0})}^{2} + y_{r}^{2}\,\,\text{and}\,\, r_{1}^{2} =
-    \left( {x_{r} - a_{1}} \right)^{2} + y_{r}^{2}$
+    {{< sicm-math >}}r_{0}^{2} = {(x_{r} + a_{0})}^{2} + y_{r}^{2}\,\,\text{and}\,\, r_{1}^{2} =
+    \left( {x_{r} - a_{1}} \right)^{2} + y_{r}^{2}{{< /sicm-math >}}
 
    이다. 프로그램으로는 다음처럼 쓸 수 있다.
 
@@ -3675,25 +3675,25 @@ m) r1))))))
    이를 속도 의존 부분과 속도에 무관한 부분으로 나누면
 
     @@html:<span id="disp_1.151"></span>@@
-$$\begin{aligned}
-{\mathcal{E}(t;x_{r},y_{r};{\overset{˙}{x}}_{r},{\overset{˙}{y}}_{r}) = \frac{1}{2}m({\overset{˙}{x}}_{r}^{2} + {\overset{˙}{y}}_{r}^{2}) + mU_{r}(x_{r},y_{r})} & {(1.151)}
-    \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathcal{E}(t;x_{r},y_{r};{\dot{x}}_{r},{\dot{y}}_{r}) = \frac{1}{2}m({\dot{x}}_{r}^{2} + {\dot{y}}_{r}^{2}) + mU_{r}(x_{r},y_{r})} & {(1.151)}
+    \end{aligned}{{< /sicm-math >}}
    을 얻고, 여기서
 
     @@html:<span id="disp_1.152"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {U_{r}(x_{r},y_{r}) = - \left( {\frac{GM_{0}}{r_{0}} + \frac{GM_{1}}{r_{1}} + \frac{1}{2}\Omega^{2}(x_{r}^{2} + y_{r}^{2})} \right).} & {(1.152)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
    이다. 제한 삼체 문제의 이 운동 상수를 /Jacobi 상수(Jacobi constant)/라
    부른다.[fn:86] 에너지 함수가 (회전 좌표에서) 속도 성분의 양의 정부호
    이차 형식에, 회전 좌표에만 의존하는 함수를 더한 것임에 주목하라. 에너지
    상태 함수에는 속도
 
-    ${\overset{˙}{x}}_{r}$
+    {{< sicm-math >}}{\dot{x}}_{r}{{< /sicm-math >}}
 
    와
 
-    ${\overset{˙}{y}}_{r}$
+    {{< sicm-math >}}{\dot{y}}_{r}{{< /sicm-math >}}
 
    에 선형인 항이 없으나, 그런 항은 라그랑지언
    ([[/ko/eval/sicm/chapter-1/#disp_1.150][1.150]])에 나타남에 유의하라.
@@ -3726,53 +3726,53 @@ $$\begin{aligned}
 
     매개변수 /s/를 가진 매개변수 좌표 변환
 
-    $\widetilde{F}$
+    {{< sicm-math >}}\widetilde{F}{{< /sicm-math >}}
 
     를 생각하라.
 
     @@html:<span id="disp_1.153"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x = \widetilde{F}(s)(t,x\prime).} & {(1.153)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이 매개변수 좌표 변환에 대응하는 매개변수 상태 변환
 
-    $\widetilde{C}$
+    {{< sicm-math >}}\widetilde{C}{{< /sicm-math >}}
 
     가 있다.
 
     @@html:<span id="disp_1.154"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(t,x,v) = \widetilde{C}(s)(t,x\prime,v\prime).} & {(1.154)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     변환
 
-    $\widetilde{F}(0)$
+    {{< sicm-math >}}\widetilde{F}(0){{< /sicm-math >}}
 
     이 항등 좌표 변환
 
-    $x\prime = \widetilde{F}(0)(t,x\prime)$
+    {{< sicm-math >}}x\prime = \widetilde{F}(0)(t,x\prime){{< /sicm-math >}}
 
     이기를 요구하며, 그 결과
 
-    $\widetilde{C}(0)$
+    {{< sicm-math >}}\widetilde{C}(0){{< /sicm-math >}}
 
     는 항등 상태 변환
 
-    $(t,x\prime,v\prime) = \widetilde{C}(0)(t,x\prime,v\prime)$
+    {{< sicm-math >}}(t,x\prime,v\prime) = \widetilde{C}(0)(t,x\prime,v\prime){{< /sicm-math >}}
 
     이다. 라그랑지언 /L/은, 임의의 /s/에 대해 변환
 
     @@html:<span id="disp_1.155"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\widetilde{L}(s) = L \circ \widetilde{C}(s) = L} & {(1.155)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     아래 불변이면
 
-    $\widetilde{F}$
+    {{< sicm-math >}}\widetilde{F}{{< /sicm-math >}}
 
     에 대응하는 연속 대칭을 가진다. 라그랑지언 /L/은 변환된 라그랑지언
 
-    $\widetilde{L}(s)$
+    {{< sicm-math >}}\widetilde{L}(s){{< /sicm-math >}}
 
     와 같은 함수이다.
 
@@ -3780,63 +3780,63 @@ $$\begin{aligned}
 
     임의의 /s/에 대해
 
-    $\widetilde{L}(s) = L$
+    {{< sicm-math >}}\widetilde{L}(s) = L{{< /sicm-math >}}
 
     이라는 것은
 
-    $D\widetilde{L}(s) = 0$
+    {{< sicm-math >}}D\widetilde{L}(s) = 0{{< /sicm-math >}}
 
     을 함의한다. 명시적으로
 
-    $\widetilde{L}(s)$
+    {{< sicm-math >}}\widetilde{L}(s){{< /sicm-math >}}
 
     는
 
     @@html:<span id="disp_1.156"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\widetilde{L}(s)(t,x\prime,v\prime) = L(t,\widetilde{F}(s)(t,x\prime),D_{t}(\widetilde{F}(s))(t,x\prime,v\prime)),} & {(1.156)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이고, 여기서
 
-    $\widetilde{C}(s)$
+    {{< sicm-math >}}\widetilde{C}(s){{< /sicm-math >}}
 
     의 속도 성분을 전시간 미분으로 다시 썼다.
 
-    $\widetilde{L}$
+    {{< sicm-math >}}\widetilde{L}{{< /sicm-math >}}
 
     의 도함수는 영이다.
 
     @@html:<span id="disp_1.157"></span>@@
-$$\begin{array}{lll} 0 & {= D\widetilde{L}(s)(t,x\prime,v\prime)} & \\ & {= \partial_{1}L(t,x,v)\,\,(D\widetilde{F})(s)(t,x\prime) + \partial_{2}L(t,x,v)\,\, D_{t}(D\widetilde{F}(s))(t,x\prime),} & {(1.157)} \\\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} 0 & {= D\widetilde{L}(s)(t,x\prime,v\prime)} & \\ & {= \partial_{1}L(t,x,v)\,\,(D\widetilde{F})(s)(t,x\prime) + \partial_{2}L(t,x,v)\,\, D_{t}(D\widetilde{F}(s))(t,x\prime),} & {(1.157)} \\\end{array}{{< /sicm-math >}}
     여기서 다음 사실을 썼다.[fn:87]
 
     @@html:<span id="disp_1.158"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D_{t}(D\widetilde{F}(s)) = DG(s)\,\,\,\text{with}\,\,\, G\left( s \right) = D_{t}(\widetilde{F}(s)).} & {(1.158)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     실현 가능한 경로 /q/에서 라그랑주 방정식을 써서 방정식
     ([[/ko/eval/sicm/chapter-1/#disp_1.157][1.157]])의 첫째 항을 다시 쓸 수 있다.
 
     @@html:<span id="disp_1.159"></span>@@
-$$\begin{array}{lll} {0 =} & {(D_{t}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,((D\widetilde{F})(s) \circ \Gamma\lbrack q\prime\rbrack)} & \\ & {\, + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,(D_{t}(D\widetilde{F}(s)) \circ \Gamma\lbrack q\prime\rbrack).} & {(1.159)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {0 =} & {(D_{t}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,((D\widetilde{F})(s) \circ \Gamma\lbrack q\prime\rbrack)} & \\ & {\, + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,(D_{t}(D\widetilde{F}(s)) \circ \Gamma\lbrack q\prime\rbrack).} & {(1.159)}\end{array}{{< /sicm-math >}}
     /s/ = 0에서 경로 /q/와 /q/′는 같다.
 
-    $\widetilde{F}(0)$
+    {{< sicm-math >}}\widetilde{F}(0){{< /sicm-math >}}
 
     가 항등이므로 Γ[/q/] = Γ[/q/′]이고, 이 방정식은
 
     @@html:<span id="disp_1.160"></span>@@
-$$\begin{array}{lll} 0 & {= ((D_{t}\partial_{2}L)\,\,((D\widetilde{F})(0)) + (\partial_{2}L)\,\,(D_{t}(D\widetilde{F}(0)))) \circ \Gamma\lbrack q\rbrack} & \\ & {= D_{t}((\partial_{2}L)\,\,(D\widetilde{F}(0))) \circ \Gamma\lbrack q\rbrack.} & {(1.160)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} 0 & {= ((D_{t}\partial_{2}L)\,\,((D\widetilde{F})(0)) + (\partial_{2}L)\,\,(D_{t}(D\widetilde{F}(0)))) \circ \Gamma\lbrack q\rbrack} & \\ & {= D_{t}((\partial_{2}L)\,\,(D\widetilde{F}(0))) \circ \Gamma\lbrack q\rbrack.} & {(1.160)}\end{array}{{< /sicm-math >}}
     이 된다. 따라서 상태 함수
 
-    $\mathcal{I}$
+    {{< sicm-math >}}\mathcal{I}{{< /sicm-math >}}
 
     ,
 
     @@html:<span id="disp_1.161"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{I} = (\partial_{2}L)(D\widetilde{F}(0)),} & {(1.161)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     는 해 궤적을 따라 보존된다. 이 보존량을 /Noether 적분(Noether's integral)/이라
     부른다. 그것은 운동량과 대칭에 연관된 벡터의 곱이다.
 
@@ -3850,64 +3850,64 @@ $$\begin{aligned}
    예를 들어 직각 좌표에서의 중심 퍼텐셜 라그랑지언
 
    @@html:<span id="disp_1.162"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t;x,y,z;v_{x}.v_{y},v_{z})} & \\
    {\,\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\,\left( v_{x}^{2} + v_{y}^{2} + v_{z}^{2} \right) - U\left( \sqrt{x^{2} + y^{2} + z^{2}} \right),} & {(1.162)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    과 /z/축 둘레의 매개변수 회전 /R_{z}/(/s/)
 
    @@html:<span id="disp_1.163"></span>@@
-$$\begin{matrix} {\begin{pmatrix} x \\ y \\ z \\ \end{pmatrix} =
+{{< sicm-math display >}}\begin{matrix} {\begin{pmatrix} x \\ y \\ z \\ \end{pmatrix} =
    R_{z}(s)\,\begin{pmatrix} {x\prime} {y\prime} {z\prime} \\ \end{pmatrix}
    = \begin{pmatrix} {x\prime\cos s - y\prime\sin s} \\ {x\prime\sin s +
-   y\prime\cos s} {z\prime} \end{pmatrix}.} & {(1.163)} \end{matrix}$$
+   y\prime\cos s} {z\prime} \end{pmatrix}.} & {(1.163)} \end{matrix}{{< /sicm-math >}}
 
    를 생각하라. 회전은 직교 변환이므로
 
    @@html:<span id="disp_1.164"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x^{2} + y^{2} + z^{2} = {(x\prime)}^{2} + {(y\prime)}^{2} + {(z\prime)}^{2}.} & {(1.164)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이다. 경로를 따라 미분하면
 
    @@html:<span id="disp_1.165"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(v_{x},v_{y},v_{z}) = R_{z}(s)(v_{x}^{\prime},v_{y}^{\prime},v_{z}^{\prime}),} & {(1.165)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이므로 속도 또한 직교 변환으로 변환되고
 
-   $v_{x}^{2} + v_{y}^{2} + v_{z}^{2} = {(v_{x}^{\prime})}^{2} +
-   {(v_{y}^{\prime})}^{2} + {(v_{z}^{\prime})}^{2}$
+   {{< sicm-math >}}v_{x}^{2} + v_{y}^{2} + v_{z}^{2} = {(v_{x}^{\prime})}^{2} +
+   {(v_{y}^{\prime})}^{2} + {(v_{z}^{\prime})}^{2}{{< /sicm-math >}}
 
    이다. 따라서
 
    @@html:<span id="disp_1.166"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime(t;x\prime,y\prime,z\prime;v_{x}^{\prime},v_{y}^{\prime},v_{z}^{\prime})} & \\
    {\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\,\left( {{(v_{x}^{\prime})}^{2} + {(v_{y}^{\prime})}^{2} + {(v_{z}^{\prime})}^{2}} \right)} & \\
    {\,\,\,\,\,\,\,\,\,\,\,\,\,\, - U\left( \sqrt{{(x\prime)}^{2} + {(y\prime)}^{2} + {(z\prime)}^{2}} \right),} & {(1.166)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이고 /L/′가 /L/과 정확히 같은 함수임을 본다.
 
    운동량은
 
    @@html:<span id="disp_1.167"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{2}L(t;x,y,z;v_{x},v_{y},v_{z}) = \lbrack mv_{x},mv_{y},mv_{z}\rbrack} & {(1.167)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이고
 
    @@html:<span id="disp_1.168"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D\widetilde{F}(0)(t;x,y,z) = D{\widetilde{R}}_{z}(0)(x,y,z) = (y, - x,0).} & {(1.168)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이다. 따라서 Noether 적분은
 
    @@html:<span id="disp_1.169"></span>@@
-$$\begin{array}{lll} {\mathcal{I}(t;x,y,z;v_{x},v_{y},v_{z})} & {= ((\partial_{2}L)(D\widetilde{F}(0)))(t;x,y,z;v_{x},v_{y},v_{z})} & \\ & {= m(yv_{x} - xv_{y}),} & {(1.169)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {\mathcal{I}(t;x,y,z;v_{x},v_{y},v_{z})} & {= ((\partial_{2}L)(D\widetilde{F}(0)))(t;x,y,z;v_{x},v_{y},v_{z})} & \\ & {= m(yv_{x} - xv_{y}),} & {(1.169)}\end{array}{{< /sicm-math >}}
    이고, 이를 각운동량
 
-   $\overset{\rightarrow}{x} \times (m\overset{\rightarrow}{v})$
+   {{< sicm-math >}}\overset{\rightarrow}{x} \times (m\overset{\rightarrow}{v}){{< /sicm-math >}}
 
    의 /z/ 성분의 부호를 바꾼 것으로 알아본다. 라그랑지언이 임의의 연속 회전
    대칭에 의해 보존되므로, 중심 퍼텐셜 문제에서 벡터 각운동량의 모든 성분이
@@ -3952,18 +3952,18 @@ vx y) (* -1 m vy x)))
 
    타원면 위의 운동을 생각하라. 곡면은 다음으로 지정된다.
 
-   $x^{2}/a^{2} + y^{2}/b^{2} + z^{2}/c^{2} = 1$
+   {{< sicm-math >}}x^{2}/a^{2} + y^{2}/b^{2} + z^{2}/c^{2} = 1{{< /sicm-math >}}
 
    이 곡면 위 마찰 없는 운동의 라그랑지언을 정식화하라. 타원의 축 둘이
    같다고 가정하라. /b/ = /c/.
 
    각좌표 (/θ/, /ϕ/)를 쓰되, /θ/는 /ẑ/축으로부터의 여위이고 /ϕ/는
 
-   $\widehat{x}$
+   {{< sicm-math >}}\widehat{x}{{< /sicm-math >}}
 
    축에서 잰 경도이다. 이 타원면의 대칭, 곧
 
-   $\widehat{x}$
+   {{< sicm-math >}}\widehat{x}{{< /sicm-math >}}
 
    축 둘레의 회전 대칭을 담아내는 라그랑지언을 정식화하라. 이 대칭을 나타내는
    매개변수 변환을 정식화하고, 당신이 정식화한 라그랑지언이 이 변환 아래
@@ -3983,30 +3983,30 @@ vx y) (* -1 m vy x)))
   추상화하는 더 일반적인 문제의 한 예이다. 국소 튜플의 함수 /f/가 주어지면,
   대응하는 경로 의존 함수는
 
-  $\overline{f}\lbrack q\rbrack\,\text{is}\,\overline{f}\lbrack q\rbrack = f
-  \circ \Gamma\lbrack q\rbrack$
+  {{< sicm-math >}}\overline{f}\lbrack q\rbrack\,\text{is}\,\overline{f}\lbrack q\rbrack = f
+  \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
   이다.
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   가 주어졌을 때 /f/를 어떻게 재구성하는가? 국소 튜플 함수 /f/는 국소 튜플의
   유한한 수의 성분에만 의존하고,
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   는 경로의 대응하는 국소 성분에만 의존한다. 따라서
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   는 그 수의 국소 튜플 성분을 공유하는 모든 경로에 대해 같은 값을 가진다.
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   가 주어지면, /f/의 인수인 국소 튜플의 유한 초기 조각을 취해, 이 국소 기술을
   가진 경로를 구성하고, 이 경로에 대한
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   의 값을 찾아 /f/를 재구성할 수 있다.
 
@@ -4019,49 +4019,49 @@ vx y) (* -1 m vy x)))
   ...))(/t/) = /v/이고, 일반적으로
 
   @@html:<span id="disp_1.170"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(t,q,v,\ldots) = \Gamma\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.170)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   이다. 필요한 국소 튜플 성분의 수는 유한하나 지정되지 않았다. /O/를 구성하는
   한 방법은 절단 거듭제곱 급수를 통하는 것이다.
 
   @@html:<span id="disp_1.171"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {O(t,q,v,a,\ldots)(t\prime) = q + v(t\prime - t) + \frac{1}{2}a{(t\prime - t)}^{2} + \cdots,} & {(1.171)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   항의 수는 지정된 국소 튜플 성분의 수와 같다.
 
   경로 함수
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   가 주어지면 /f/ 함수를 다음과 같이 재구성한다. /f/의 인수를 취해 이 국소
   기술로 접촉 경로를 구성한다. 그러면 /f/의 값은 이 접촉 경로에 대한
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   의 값이다.
 
   @@html:<span id="disp_1.172"></span>@@
-$$\begin{array}{lll} {f(t,q,v,\ldots)} & {= (f \circ \Gamma\lbrack O(t,q,v,\ldots)\rbrack)(t)} & \\ & {= \overline{f}\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.172)}\end{array}$$
-  $\overline{\Gamma}$
+{{< sicm-math display >}}\begin{array}{lll} {f(t,q,v,\ldots)} & {= (f \circ \Gamma\lbrack O(t,q,v,\ldots)\rbrack)(t)} & \\ & {= \overline{f}\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.172)}\end{array}{{< /sicm-math >}}
+  {{< sicm-math >}}\overline{\Gamma}{{< /sicm-math >}}
 
   를 경로 함수를 받아 대응하는 국소 튜플 함수를 돌려주는 함수라 하자.[fn:89]
 
   @@html:<span id="disp_1.173"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {f = \overline{\Gamma}(\overline{f}).} & {(1.173)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.172][1.172]])에서
 
   @@html:<span id="disp_1.174"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\overline{\Gamma}(\overline{f})(t,q,v,\ldots) = \overline{f}\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.174)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   임을 본다. 절차 Gamma-bar는 경로 의존 함수를 국소 튜플 함수로 재구성하는
   함수
 
-  $\overline{\Gamma}$
+  {{< sicm-math >}}\overline{\Gamma}{{< /sicm-math >}}
 
   를 구현한다.
 
@@ -4088,10 +4088,10 @@ q-prime))) (Gamma q n)) ((Gamma-bar f-bar) local))) C) (show-expression ((F->C
 p->r) (up 't (up 'r 'theta) (up 'rdot 'thetadot))))
    #+end_src
 
-  $$\begin{pmatrix} t \\ \begin{pmatrix} {r\cos\,(\theta)} {r\sin\,(\theta)}
-  \\ \end{pmatrix} \begin{pmatrix} {- r\overset{˙}{\theta}\sin\,(\theta) +
-  \overset{˙}{r}\cos\,(\theta)} {r\overset{˙}{\theta}\cos\,(\theta) +
-  \overset{˙}{r}\sin\,(\theta)} \end{pmatrix} \end{pmatrix}$$
+  {{< sicm-math display >}}\begin{pmatrix} t \\ \begin{pmatrix} {r\cos\,(\theta)} {r\sin\,(\theta)}
+  \\ \end{pmatrix} \begin{pmatrix} {- r\dot{\theta}\sin\,(\theta) +
+  \dot{r}\cos\,(\theta)} {r\dot{\theta}\cos\,(\theta) +
+  \dot{r}\sin\,(\theta)} \end{pmatrix} \end{pmatrix}{{< /sicm-math >}}
 
 
 
@@ -4101,13 +4101,13 @@ p->r) (up 't (up 'r 'theta) (up 'rdot 'thetadot))))
 
   또한
 
-  $\overline{\Gamma}$
+  {{< sicm-math >}}\overline{\Gamma}{{< /sicm-math >}}
 
   를 써서 함수 /F/의 전시간 미분 /D_{t}F/를 계산하는 우아한 공식을 만들 수
   있다.
 
   @@html:<span id="disp_1.175"></span>@@
-$$\begin{array}{llll} {D_{t}F = \overline{\Gamma}(\overline{G}),} & \text{with} & {\overline{G}\lbrack q\rbrack = D(F \circ \Gamma\lbrack q\rbrack).} & {(1.175)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{llll} {D_{t}F = \overline{\Gamma}(\overline{G}),} & \text{with} & {\overline{G}\lbrack q\rbrack = D(F \circ \Gamma\lbrack q\rbrack).} & {(1.175)}\end{array}{{< /sicm-math >}}
   전시간 미분은 프로그램으로 표현할 수 있다.
 
    #+begin_src scheme
@@ -4140,51 +4140,51 @@ $$\begin{array}{llll} {D_{t}F = \overline{\Gamma}(\overline{G}),} & \text{with} 
    추상화하여 실현 가능한 경로의 국소 튜플 성분 사이의 관계로 쓸 수 있음을
    시사한다.
 
-   $\overline{\mathcal{E}}$
+   {{< sicm-math >}}\overline{\mathcal{E}}{{< /sicm-math >}}
 
    [/L/]를 라그랑지언 /L/에 대한 라그랑주 방정식
    ([[/ko/eval/sicm/chapter-1/#disp_1.12][1.12]])의 잔차를 만드는 경로 의존 함수라
    하자.
 
    @@html:<span id="disp_1.176"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\overline{\mathcal{E}}\lbrack L\rbrack\lbrack q\rbrack = D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack.} & {(1.176)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    실현 가능한 경로 /q/는 라그랑주 방정식
 
    @@html:<span id="disp_1.177"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\overline{\mathcal{E}}\lbrack L\rbrack\lbrack q\rbrack = 0.} & {(1.177)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    을 만족한다. 경로 의존 라그랑주 방정식은
 
-   $\overline{\Gamma}$
+   {{< sicm-math >}}\overline{\Gamma}{{< /sicm-math >}}
 
    를 써서 국소 라그랑주 방정식으로 변환할 수 있다.
 
    @@html:<span id="disp_1.178"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack = \overline{\Gamma}(\overline{\mathcal{E}}\lbrack L\rbrack).} & {(1.178)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    연산자
 
-   $\mathcal{E}$
+   {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
    를 /오일러--라그랑주 연산자/라 부른다. 이 연산자로 라그랑주 방정식은
 
    @@html:<span id="disp_1.179"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = 0.} & {(1.179)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이다. 오일러--라그랑주 연산자는 명시적으로
 
    @@html:<span id="disp_1.180"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack = D_{t}\partial_{2}L - \partial_{1}L.} & {(1.180)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이다. 절차 Euler-Lagrange-operator는
 
-   $\mathcal{E}$
+   {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
    를 구현한다.
 
@@ -4220,24 +4220,24 @@ x))
 
    *a.*
 
-   $\mathcal{E}\lbrack F + G\rbrack = \mathcal{E}\lbrack F\rbrack +
-   \mathcal{E}\lbrack G\rbrack$
+   {{< sicm-math >}}\mathcal{E}\lbrack F + G\rbrack = \mathcal{E}\lbrack F\rbrack +
+   \mathcal{E}\lbrack G\rbrack{{< /sicm-math >}}
 
 
 
    *b.*
 
-   $\mathcal{E}\lbrack cF\rbrack = c\mathcal{E}\lbrack F\rbrack$
+   {{< sicm-math >}}\mathcal{E}\lbrack cF\rbrack = c\mathcal{E}\lbrack F\rbrack{{< /sicm-math >}}
 
    *c.*
 
-   $\mathcal{E}\lbrack FG\rbrack = \mathcal{E}\lbrack F\rbrack G +
-   F\mathcal{E}\lbrack G\rbrack + (D_{t}F)\partial_{2}G + \partial_{2}F(D_{t}G)$
+   {{< sicm-math >}}\mathcal{E}\lbrack FG\rbrack = \mathcal{E}\lbrack F\rbrack G +
+   F\mathcal{E}\lbrack G\rbrack + (D_{t}F)\partial_{2}G + \partial_{2}F(D_{t}G){{< /sicm-math >}}
 
    *d.*
 
-   $\mathcal{E}\lbrack F \circ C\rbrack = D_{t}(DF \circ C)\partial_{2}C + DF
-   \circ C\mathcal{E}\lbrack C\rbrack$
+   {{< sicm-math >}}\mathcal{E}\lbrack F \circ C\rbrack = D_{t}(DF \circ C)\partial_{2}C + DF
+   \circ C\mathcal{E}\lbrack C\rbrack{{< /sicm-math >}}
 * 1.10 구속 운동
   :PROPERTIES:
   :CUSTOM_ID: h1-6e
@@ -4259,9 +4259,9 @@ x))
   다음 꼴의 어떤 관계를 만족하도록 구속되어 있다고 하자.
 
   @@html:<span id="disp_1.181"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\varphi(t,q(t),Dq(t)) = 0.} & {(1.181)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   운동방정식을 어떻게 정식화하는가? 한 접근은 구속조건 방정식을 써서 좌표
   하나를 나머지 좌표로 소거하는 것이다. 그러면 축소된 일반화 좌표 집합의
   전개는 보통의 라그랑주 방정식으로 기술된다. 완전히 독립이지 않은 좌표의
@@ -4282,44 +4282,44 @@ $$\begin{aligned}
   ([[/ko/eval/sicm/chapter-1/#disp_1.17][1.17]]) 또는 ([[/ko/eval/sicm/chapter-1/#disp_1.34][1.34]])로 줄어든다.
 
   @@html:<span id="disp_1.182"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {0 = {\int_{t_{1}}^{t_{2}}{\left\{ {(\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)} \right\}\eta.}}} & {(1.182)}
-  \end{aligned}$$
-  이 지점에서 우리는, 변분 $\eta$가 (끝점 조건을 제외하면) 임의이므로 적분이
-  영이 되는 유일한 길은 피적분 함수가 영인 것이라고 주장했다. 나아가 $\eta$를
-  고르는 자유 덕분에 피적분 함수에서 $\eta$를 곱하는 인자가 항등적으로 영이어야
+  \end{aligned}{{< /sicm-math >}}
+  이 지점에서 우리는, 변분 {{< sicm-math >}}\eta{{< /sicm-math >}}가 (끝점 조건을 제외하면) 임의이므로 적분이
+  영이 되는 유일한 길은 피적분 함수가 영인 것이라고 주장했다. 나아가 {{< sicm-math >}}\eta{{< /sicm-math >}}를
+  고르는 자유 덕분에 피적분 함수에서 {{< sicm-math >}}\eta{{< /sicm-math >}}를 곱하는 인자가 항등적으로 영이어야
   함을 이끌어 내, 라그랑주 방정식을 유도했다.
 
-  이제 $\eta$의 선택은 완전히 자유롭지 않다. $\eta$의 임의성으로부터 피적분
-  함수가 영이어야 함은 여전히 이끌어 낼 수 있지만,[fn:91] $\eta$를 곱하는
+  이제 {{< sicm-math >}}\eta{{< /sicm-math >}}의 선택은 완전히 자유롭지 않다. {{< sicm-math >}}\eta{{< /sicm-math >}}의 임의성으로부터 피적분
+  함수가 영이어야 함은 여전히 이끌어 낼 수 있지만,[fn:91] {{< sicm-math >}}\eta{{< /sicm-math >}}를 곱하는
   인자가 영이라고는 더 이상 이끌어 낼 수 없다 (그 인자를 허용되는 변분 위로
   사영한 것이 영일 뿐이다). 따라서 다음을 얻는다.
 
   @@html:<span id="disp_1.183"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\left\{ {(\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)} \right\}\eta = 0,} & {(1.183)}
-  \end{aligned}$$
-  여기서 $\eta$는 구속조건의 지배를 받는다.
+  \end{aligned}{{< /sicm-math >}}
+  여기서 {{< sicm-math >}}\eta{{< /sicm-math >}}는 구속조건의 지배를 받는다.
 
   경로 /q/는 다음이면 구속조건을 만족한다.
 
-  $\overline{\varphi}\lbrack q\rbrack = \varphi \circ \Gamma\lbrack q\rbrack =
-  0$
+  {{< sicm-math >}}\overline{\varphi}\lbrack q\rbrack = \varphi \circ \Gamma\lbrack q\rbrack =
+  0{{< /sicm-math >}}
 
   . 변분된 경로에 대해서도 구속조건이 만족되어야 하므로, 구속조건의 변분이
-  영인 변분 $\eta$만 허용한다.
+  영인 변분 {{< sicm-math >}}\eta{{< /sicm-math >}}만 허용한다.
 
   @@html:<span id="disp_1.184"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}(\overline{\varphi}) = 0.} & {(1.184)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   변분이 구속조건 곡면에 “접해야” 한다고 말할 수 있다. 연쇄법칙으로 이를
-  전개하면, 변분 $\eta$는 다음일 때 구속조건 곡면 /φ/에 접한다.
+  전개하면, 변분 {{< sicm-math >}}\eta{{< /sicm-math >}}는 다음일 때 구속조건 곡면 /φ/에 접한다.
 
   @@html:<span id="disp_1.185"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack)\,\eta + (\partial_{2}\varphi \circ \Gamma\lbrack q\rbrack)\, D\eta = 0.} & {(1.185)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   이들은 시간의 함수임에 유의하라. 주어진 시각의 변분은 그 시각의 구속조건에
   접한다.
 
@@ -4330,24 +4330,24 @@ $$\begin{aligned}
     :END:
     속도에 의존하지 않는 구속조건을 생각하자.
 
-    $\partial_{2}\varphi = 0.$
+    {{< sicm-math >}}\partial_{2}\varphi = 0.{{< /sicm-math >}}
 
     이 경우 변분은 다음이면 구속조건 곡면에 접한다.
 
     @@html:<span id="disp_1.186"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\partial_{1}\varphi \circ \Gamma)\,\,\,\eta = 0.} & {(1.186)}
-    \end{aligned}$$
-    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.183][1.183]])과 ([[/ko/eval/sicm/chapter-1/#disp_1.186][1.186]])이 함께 운동을 결정해야 하지만, $\eta$를
+    \end{aligned}{{< /sicm-math >}}
+    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.183][1.183]])과 ([[/ko/eval/sicm/chapter-1/#disp_1.186][1.186]])이 함께 운동을 결정해야 하지만, {{< sicm-math >}}\eta{{< /sicm-math >}}를
     어떻게 소거하는가? 라그랑주 방정식의 잔차는 구속조건 곡면의 법선에 직교하는
-    임의의 $\eta$에 직교한다[fn:92]. 주어진 벡터에 직교하는 모든 벡터에 직교하는
+    임의의 {{< sicm-math >}}\eta{{< /sicm-math >}}에 직교한다[fn:92]. 주어진 벡터에 직교하는 모든 벡터에 직교하는
     벡터는 그 주어진 벡터에 평행하다. 따라서 라그랑주 방정식의 잔차는 구속조건
     곡면의 법선에 평행하다. 둘은 비례해야 한다.
 
     @@html:<span id="disp_1.187"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack).} & {(1.187)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     경로를 따라 모든 곳에서 두 벡터가 평행하다는 것이, 경로를 따라 매 순간
     비례 인자가 같음을 보장하지는 않으므로, 비례 인자 /λ/는 어떤 시간의
     함수이며 고려 중인 경로에 의존할 수 있다. 이 방정식들과 구속조건 방정식
@@ -4365,14 +4365,14 @@ $$\begin{aligned}
    만든다고 하자.
 
    @@html:<span id="disp_1.188"></span>@@
-$$\begin{aligned}
-{L\prime(t;q,\lambda;\overset{˙}{q},\overset{˙}{\lambda}) = L(t,q,\overset{˙}{q}) + \lambda\varphi(t,q,\overset{˙}{q}).} & {(1.188)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t;q,\lambda;\dot{q},\dot{\lambda}) = L(t,q,\dot{q}) + \lambda\varphi(t,q,\dot{q}).} & {(1.188)}
+   \end{aligned}{{< /sicm-math >}}
    좌표 /q/에 연관된 라그랑주 방정식은 바로 수정된 라그랑주 방정식
    ([[/ko/eval/sicm/chapter-1/#disp_1.187][1.187]])이고, /λ/에 연관된 라그랑주 방정식은 바로 구속조건 방정식이다.
    (
 
-   $\overset{˙}{\lambda}$
+   {{< sicm-math >}}\dot{\lambda}{{< /sicm-math >}}
 
    는 확대 라그랑지언에 나타나지 않음에 유의하라.) 따라서 이 확대 라그랑지언의
    라그랑주 방정식은, 추가 자유도를 도입하는 대가를 치르고, 명시적 좌표
@@ -4395,21 +4395,21 @@ $$\begin{aligned}
    그것은 자유도로서 잉여다. 다음 라그랑지언을 생각하자.
 
    @@html:<span id="disp_1.189"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L'' = L + \Lambda\varphi.} & {(1.189)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이 새 라그랑지언에는 추가 자유도가 없다. /L/″의 라그랑주 방정식은 /L/의
    라그랑주 방정식에 곱 Λ/φ/에서 생기는 추가 항이 더해진 것이다. 오일러--라그랑주
    연산자
 
-   $\mathcal{E}$
+   {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
    를 이 라그랑지언에 적용하면 ([[/ko/eval/sicm/chapter-1/#h1-6d][1.9절]] 참조)
    다음을 얻는다[fn:93]
 
    @@html:<span id="disp_1.190"></span>@@
-$$\begin{array}{lll} {\mathcal{E}\lbrack L''\rbrack} & {= \mathcal{E}\lbrack L\rbrack + \mathcal{E}\lbrack\Lambda\varphi\rbrack} & \\ & {= \mathcal{E}\lbrack L\rbrack + \Lambda\mathcal{E}\lbrack\varphi\rbrack + \mathcal{E}\lbrack\Lambda\rbrack\varphi + D_{t}\Lambda\partial_{2}\varphi + \partial_{2}\Lambda D_{t}\varphi.} & {(1.190)}\end{array}$$
-   $\mathcal{E}$
+{{< sicm-math display >}}\begin{array}{lll} {\mathcal{E}\lbrack L''\rbrack} & {= \mathcal{E}\lbrack L\rbrack + \mathcal{E}\lbrack\Lambda\varphi\rbrack} & \\ & {= \mathcal{E}\lbrack L\rbrack + \Lambda\mathcal{E}\lbrack\varphi\rbrack + \mathcal{E}\lbrack\Lambda\rbrack\varphi + D_{t}\Lambda\partial_{2}\varphi + \partial_{2}\Lambda D_{t}\varphi.} & {(1.190)}\end{array}{{< /sicm-math >}}
+   {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
    [/L/″]를 Γ[/q/]와 합성하면 경로 /q/에 대한 라그랑주 방정식이 나온다. 경로
    위에서 구속조건이 만족되어 /φ/ ∘ Γ[/q/] = 0이고 따라서 /D_{t}φ/ ∘ Γ[/q/] = 0
@@ -4418,20 +4418,20 @@ $$\begin{array}{lll} {\mathcal{E}\lbrack L''\rbrack} & {= \mathcal{E}\lbrack L\r
 
 
    @@html:<span id="disp_1.191"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L''\rbrack \circ \Gamma\lbrack q\rbrack}
-   & \\ {\text{       } = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack
+   & \\ {\text{} = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack
    q\rbrack + \lambda(\mathcal{E}\lbrack\varphi\rbrack \circ \Gamma\lbrack
    q\rbrack) + D\lambda(\partial_{2}\varphi \circ \Gamma\lbrack q\rbrack),} &
    {(1.191)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    여기서 /λ/ = Λ ∘ Γ[/q/]를 썼다. 이제 좌표 구속조건만 다루고 있어 ∂_{2}/φ/ = 0
    이라는 사실을 쓰면
 
    @@html:<span id="disp_1.192"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L''\rbrack \circ \Gamma\lbrack q\rbrack = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack + \lambda(\mathcal{E}\lbrack\varphi\rbrack \circ \Gamma\lbrack q\rbrack).} & {(1.192)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    라그랑주 방정식은 확대 라그랑지언 /L/′에서 유도한 것과 같다. 차이는 이제
    /λ/ = Λ ∘ Γ[/q/]가 확대하지 않은 상태로 결정됨을 본다는 것이다. 이는 /λ/를
    소거할 수 있다는 말과 같다.
@@ -4456,68 +4456,68 @@ $$\begin{aligned}
    아래 구속되지 않은 입자의 것이다. 구속되지 않은 입자의 라그랑지언은
 
    @@html:<span id="disp_1.193"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( v_{x}^{2} + v_{y}^{2} \right) - mgy.} & {(1.193)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이다. 진자가 피벗 둘레 반지름 /l/의 원 위에서 움직인다는 구속조건은[fn:94]
 
    @@html:<span id="disp_1.194"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x^{2} + y^{2} - l^{2} = 0.} & {(1.194)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    확대 라그랑지언은
 
    @@html:<span id="disp_1.195"></span>@@
-$$\begin{aligned}
-{L\prime(t;x,y,\lambda;v_{x},v_{y},\overset{˙}{\lambda}) = \frac{1}{2}m\left( v_{x}^{2} + v_{y}^{2} \right) - mgy + \lambda\left( x^{2} + y^{2} - l^{2} \right).} & {(1.195)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t;x,y,\lambda;v_{x},v_{y},\dot{\lambda}) = \frac{1}{2}m\left( v_{x}^{2} + v_{y}^{2} \right) - mgy + \lambda\left( x^{2} + y^{2} - l^{2} \right).} & {(1.195)}
+   \end{aligned}{{< /sicm-math >}}
    이다. 확대 라그랑지언의 라그랑주 방정식은
 
    @@html:<span id="disp_1.196"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}x - 2\lambda x = 0} & {(1.196)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.197"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}y + mg - 2\lambda y = 0} & {(1.197)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.198"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x^{2} + y^{2} - l^{2} = 0.} & {(1.198)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이다. 이 방정식들은 진자의 운동을 풀기에 충분하다.
 
    “극” 좌표로 바꾸면 이 방정식들이 단순해지는 것은 놀랍지 않다.
 
    @@html:<span id="disp_1.199"></span>@@
-$$\begin{aligned}
-{x = r\sin\theta\text{       }y = - r\cos\theta.} & {(1.199)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{x = r\sin\theta\text{}y = - r\cos\theta.} & {(1.199)}
+   \end{aligned}{{< /sicm-math >}}
    이를 구속조건 방정식에 대입하면 /r/ = /l/, 곧 상수임을 정한다. 미분을 만들어
    나머지 두 방정식에 대입하면
 
    @@html:<span id="disp_1.200"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {ml(\cos\theta\, D^{2}\theta - \sin\theta\,{(D\theta)}^{2}) - 2\lambda\sin\theta = 0} & {(1.200)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.201"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {ml(\sin\theta\, D^{2}\theta + \cos\theta\,{(D\theta)}^{2}) + mg + 2\lambda\cos\theta = 0.} & {(1.201)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    을 얻는다. 첫째에 cos /θ/를, 둘째에 sin /θ/를 곱해 더하면
 
    @@html:<span id="disp_1.202"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mlD^{2}\theta + mg\sin\theta = 0,} & {(1.202)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    을 얻고, 이를 진자의 올바른 방정식으로 알아본다. 이는 구속되지 않은 일반화
    좌표 /θ/를 쓰는 진자의 라그랑주 방정식과 같다. 완전성을 위해, 다른 변수로
    /λ/를 구할 수 있다.
 
    @@html:<span id="disp_1.203"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\lambda = \frac{mD^{2}x}{2x} = - \frac{1}{2l}(mg\cos\theta + ml{(D\theta)}^{2}).} & {(1.203)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이는 /λ/가 정말로 상태의 함수와 상태 경로의 합성임을 확인한다. 2/lλ/가 힘임에
    주목하라---그것은 중력의 바깥쪽 성분과 원심력의 합이다. 이 해석을 두 좌표
    운동방정식에 쓰면, /λ/가 들어 있는 항은 구속되지 않은 입자가 구속조건이
@@ -4544,9 +4544,9 @@ $$\begin{aligned}
 
    다른 절차는 계를 여러 부분으로 나누는 것이다. 우리의 용수철-질량 계에서는
    두 부분을 고를 수 있다. 하나는 벽에 붙은 용수철과 질량이고, 다른 하나는
-   부착점이 추가 배치 좌표 $\xi$에 있는 용수철과 질량이다. 각 부분에 대해
+   부착점이 추가 배치 좌표 {{< sicm-math >}}\xi{{< /sicm-math >}}에 있는 용수철과 질량이다. 각 부분에 대해
    따로 라그랑지언을 정식화할 수 있다. 그런 다음 합성 계의 라그랑지언을 두
-   성분 라그랑지언의 합으로 고르고, 결합을 이루도록 구속조건 $\xi$ =
+   성분 라그랑지언의 합으로 고르고, 결합을 이루도록 구속조건 {{< sicm-math >}}\xi{{< /sicm-math >}} =
    /X/_{1} + /x/_{1}을 둔다.
 
 
@@ -4554,54 +4554,54 @@ $$\begin{aligned}
    이것이 어떻게 작동하는지 보자. 벽에 붙은 부분계의 라그랑지언은
 
    @@html:<span id="disp_1.204"></span>@@
-$$\begin{aligned}
-{L_{1}(t,x_{1},{\overset{˙}{x}}_{1}) = \frac{1}{2}m_{1}{\overset{˙}{x}}_{1}^{2} - \frac{1}{2}k_{1}x_{1}^{2}} & {(1.204)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L_{1}(t,x_{1},{\dot{x}}_{1}) = \frac{1}{2}m_{1}{\dot{x}}_{1}^{2} - \frac{1}{2}k_{1}x_{1}^{2}} & {(1.204)}
+   \end{aligned}{{< /sicm-math >}}
    이고, 그에 붙는 부분계의 라그랑지언은
 
    @@html:<span id="disp_1.205"></span>@@
-$$\begin{aligned}
-{L_{2}(t;\xi,x_{2};\overset{˙}{\xi},{\overset{˙}{x}}_{2}) = \frac{1}{2}m_{2}{(\overset{˙}{\xi} + {\overset{˙}{x}}_{2})}^{2} - \frac{1}{2}k_{2}x_{2}^{2}.} & {(1.205)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L_{2}(t;\xi,x_{2};\dot{\xi},{\dot{x}}_{2}) = \frac{1}{2}m_{2}{(\dot{\xi} + {\dot{x}}_{2})}^{2} - \frac{1}{2}k_{2}x_{2}^{2}.} & {(1.205)}
+   \end{aligned}{{< /sicm-math >}}
    이다. 이 부분들로 이루어진 계의 라그랑지언을, 각 분리된 부분의 라그랑지언의
    합에 구속조건을 강제하는 결합 항을 더해 구성한다.
 
    @@html:<span id="disp_1.206"></span>@@
-$$\begin{aligned}
-{L(t;x_{1},x_{2},\xi,\lambda;{\overset{˙}{x}}_{1},{\overset{˙}{x}}_{2},\overset{˙}{\xi},\overset{˙}{\lambda})} & \\
-   {\text{         } = L_{1}(t,x_{1},{\overset{˙}{x}}_{1}) + L_{2}(t;\xi,x_{2};\overset{˙}{\xi},{\overset{˙}{x}}_{2})} & \\
-   {\text{         }\text{         } + \lambda(\xi - (X_{1} + x_{1})).} & {(1.206)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L(t;x_{1},x_{2},\xi,\lambda;{\dot{x}}_{1},{\dot{x}}_{2},\dot{\xi},\dot{\lambda})} & \\
+   {\text{} = L_{1}(t,x_{1},{\dot{x}}_{1}) + L_{2}(t;\xi,x_{2};\dot{\xi},{\dot{x}}_{2})} & \\
+   {\text{}\text{} + \lambda(\xi - (X_{1} + x_{1})).} & {(1.206)}
+   \end{aligned}{{< /sicm-math >}}
    따라서 네 배치 좌표에 대한 라그랑주 방정식을 순서대로 다음과 같이 쓸 수
    있다.
 
    @@html:<span id="disp_1.207"></span>@@
-$$\begin{aligned} {m_{1}D^{2}x_{1} = - k_{1}x_{1} - \lambda} & {(1.207)}
-   \\ \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned} {m_{1}D^{2}x_{1} = - k_{1}x_{1} - \lambda} & {(1.207)}
+   \\ \end{aligned}{{< /sicm-math >}}
 
    @@html:<span id="disp_1.208"></span>@@
-$$\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = - k_{2}x_{2}} & {(1.208)}
-   \\ \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = - k_{2}x_{2}} & {(1.208)}
+   \\ \end{aligned}{{< /sicm-math >}}
 
    @@html:<span id="disp_1.209"></span>@@
-$$\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = \lambda} & {(1.209)}
-   \\ \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = \lambda} & {(1.209)}
+   \\ \end{aligned}{{< /sicm-math >}}
 
    @@html:<span id="disp_1.210"></span>@@
-$$\begin{aligned} {0 = \xi - (X_{1} + x_{1}).} & {(1.210)} \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned} {0 = \xi - (X_{1} + x_{1}).} & {(1.210)} \end{aligned}{{< /sicm-math >}}
 
    이 계에서 /λ/는 계를 붙들고 있는 구속력임에 주목하라. 이제 “접착” 좌표
-   $\xi$와 /λ/를 소거하여 좌표 /x/_{1}과 /x/_{2}에서의 운동방정식을 얻을 수
+   {{< sicm-math >}}\xi{{< /sicm-math >}}와 /λ/를 소거하여 좌표 /x/_{1}과 /x/_{2}에서의 운동방정식을 얻을 수
    있다.
 
    @@html:<span id="disp_1.211"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {m_{1}D^{2}x_{1} + m_{2}(D^{2}x_{1} + D^{2}x_{2}) + k_{1}x_{1} = 0} & {(1.211)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.212"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {m_{2}(D^{2}x_{1} + D^{2}x_{2}) + k_{2}x_{2} = 0.} & {(1.212)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이 전략은 일반화할 수 있다. 원시 부품의 라이브러리를 만들 수 있다. 각
    부품은 그 부품이 다른 것에 붙을 수 있는 /단자(terminals)/에 대한 추가
    자유도를 가진 라그랑지언으로 특징지을 수 있다. 그런 다음 부품을 결합하고
@@ -4676,16 +4676,16 @@ $$\begin{aligned}
     다음을 만족하는 속도에 무관한 함수 /φ/가 존재한다는 뜻이다.
 
     @@html:<span id="disp_1.213"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\psi \circ \Gamma\lbrack q\rbrack = D(\varphi \circ \Gamma\lbrack q\rbrack).} & {(1.213)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     /φ/가 속도에 무관하다는 것은 ∂_{2}/φ/ = 0이라는 뜻이다. 상태 함수로서
     /ψ/와 /φ/의 관계는
 
     @@html:<span id="disp_1.214"></span>@@
-$$\begin{aligned}
-{\psi = D_{t}\varphi = \partial_{0}\varphi + \partial_{1}\varphi\overset{˙}{Q}.} & {(1.214)}
-    \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\psi = D_{t}\varphi = \partial_{0}\varphi + \partial_{1}\varphi\dot{Q}.} & {(1.214)}
+    \end{aligned}{{< /sicm-math >}}
     이다. /ψ/가 주어지면 이 선형 편미분 방정식을 풀어 /φ/를 찾을 수 있다.
     해는 상수까지 정해지므로, /ψ/ = 0은 어떤 상수 /K/에 대해 /φ/ = /K/를
     함의한다. 다른 한편 /φ/ = /K/를 알면 /ψ/ = 0이 따른다. 따라서 속도 의존
@@ -4698,29 +4698,29 @@ $$\begin{aligned}
     라그랑주 방정식은
 
     @@html:<span id="disp_1.215"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack + \lambda\,(\mathcal{E}\lbrack\varphi\rbrack \circ \Gamma\lbrack q\rbrack) = 0,} & {(1.215)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이고, 여기서 /λ/는 해를 구하는 과정에서 소거될 시간의 함수이다. 상수
     /K/는 라그랑주 방정식에 영향을 주지 않는다. 함수 /φ/는 속도에 무관하여
     ∂_{2}/φ/ = 0이므로, 라그랑주 방정식은
 
     @@html:<span id="disp_1.216"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack - \lambda(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.216)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이 된다. 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.214][1.214]])에서
 
     @@html:<span id="disp_1.217"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{1}\varphi = \partial_{2}\psi,} & {(1.217)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     임을 보므로, 구속조건 /ψ/ = 0을 가진 라그랑주 방정식은
 
     @@html:<span id="disp_1.218"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack).} & {(1.218)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이다. 중요한 특징은 /φ/를 만들어 내지 않고도 /ψ/로 라그랑주 방정식을
     직접 쓸 수 있다는 것이다. 그러나 이 라그랑주 방정식의 타당성은 /φ/의
     존재에 의존한다.
@@ -4729,15 +4729,15 @@ $$\begin{aligned}
     함수 /λ/′를 곱한 구속조건 /ψ/로 확대하면 이 라그랑주 방정식이 나온다.
 
     @@html:<span id="disp_1.219"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime = L + \lambda\prime\psi.} & {(1.219)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     /L/′의 라그랑주 방정식은
 
     @@html:<span id="disp_1.220"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = - D\lambda\prime(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack),} & {(1.220)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     로 나오며, 동일시 /λ/ = −/Dλ/′와 함께 라그랑주 방정식
     ([[/ko/eval/sicm/chapter-1/#disp_1.218][1.218]])과 같다.
 
@@ -4780,9 +4780,9 @@ $$\begin{aligned}
    변화에 정확히 반영된다. 구속조건 함수는
 
    @@html:<span id="disp_1.221"></span>@@
-$$\begin{aligned}
-{\psi(t;x,\theta;\overset{˙}{x},\overset{˙}{\theta}) = R\overset{˙}{\theta} - \overset{˙}{x}.} & {(1.221)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\psi(t;x,\theta;\dot{x},\dot{\theta}) = R\dot{\theta} - \dot{x}.} & {(1.221)}
+   \end{aligned}{{< /sicm-math >}}
    이다. 이 구속조건은 일반화 속도 사이의 관계로 서술되어 있으나, 적분하면
    /x/ = /Rθ/ + /c/를 얻을 수 있다. 적분된 구속조건 또는 그 미분 어느 쪽으로든
    확대 라그랑지언을 만들 수 있다.
@@ -4794,52 +4794,52 @@ $$\begin{aligned}
    따라서 확대 라그랑지언을 다음과 같이 쓸 수 있다.
 
    @@html:<span id="disp_1.222"></span>@@
-$$\begin{aligned}
-{L(t;x,\theta,\lambda;\overset{˙}{x},\overset{˙}{\theta},\lambda)} & \\
-   {\,\,\,\,\,\,\,\, = \frac{1}{2}M\, R^{2}{\overset{˙}{\theta}}^{2} + \frac{1}{2}M\,{\overset{˙}{x}}^{2} + M\, gx\sin\varphi + \lambda(R\overset{˙}{\theta} - \overset{˙}{x}).} & {(1.222)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L(t;x,\theta,\lambda;\dot{x},\dot{\theta},\lambda)} & \\
+   {\,\,\,\,\,\,\,\, = \frac{1}{2}M\, R^{2}{\dot{\theta}}^{2} + \frac{1}{2}M\,{\dot{x}}^{2} + M\, gx\sin\varphi + \lambda(R\dot{\theta} - \dot{x}).} & {(1.222)}
+   \end{aligned}{{< /sicm-math >}}
    라그랑주 방정식은
 
    @@html:<span id="disp_1.223"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {M\, D^{2}x - D\lambda = M\, g\sin\varphi} & {(1.223)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.224"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {M\, R^{2}D^{2}\theta + R\, D\lambda = 0} & {(1.224)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.225"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {R\, D\theta - Dx = 0.} & {(1.225)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이다. 셋째 라그랑주 방정식을 미분하면
 
    @@html:<span id="disp_1.226"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}x = RD^{2}\theta.} & {(1.226)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    를 얻는다. 이 방정식들을 결합하여 관심 있는 동역학적 양을 풀 수 있다.
    이 구르는 고리의 경우 선형 가속도
 
    @@html:<span id="disp_1.227"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}x = \frac{1}{2}g\sin\varphi} & {(1.227)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    는 질량이 회전 없이 마찰 없는 평면을 미끄러져 내려갔을 때의 딱 절반이다.
    이 고리에 대해 /D/^{2}/x/가 /M/과 /R/ 모두에 무관함에 유의하라. 라그랑주
    방정식에서 /Dλ/를 구속조건을 강제하는 데 관여하는 마찰력으로 해석할 수
    있음을 본다. 구속의 마찰력은
 
    @@html:<span id="disp_1.228"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D\lambda = \frac{1}{2}M\, g\sin\varphi} & {(1.228)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이고 각가속도는
 
    @@html:<span id="disp_1.229"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}\theta = \frac{1}{2}\frac{g}{R}\sin\varphi.} & {(1.229)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    이다.
 
 
@@ -4863,16 +4863,16 @@ $$\begin{aligned}
     보고된다[fn:98]. /ψ/가 다음 꼴을 가진다고 하자.
 
     @@html:<span id="disp_1.230"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\psi(t,q,v) = G_{1}(t,q)v + G_{2}(t,q),} & {(1.230)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     속도에 선형인 상태 함수이다. /ψ/가 전시간 미분이 아니라고 가정한다.
     /L/이 구속되지 않은 계의 라그랑지언이면, 운동방정식은 다음이라고 주장된다.
 
     @@html:<span id="disp_1.231"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(G_{1} \circ \Gamma\lbrack q\rbrack) = \lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack).} & {(1.231)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     구속조건 /ψ/ = 0과 함께 계는 완전히 지정되고 계의 전개가 결정된다. 이
     방정식들이 /ψ/가 전시간 미분인 경우의 라그랑주 방정식
     ([[/ko/eval/sicm/chapter-1/#disp_1.218][1.218]])과 동일함에 유의하라. 그러나
@@ -4882,85 +4882,85 @@ $$\begin{aligned}
     단계는 두 조건이 만족되어야 함을 주목하는 것이었다.
 
     @@html:<span id="disp_1.232"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 ({\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack
     q\rbrack)\eta = 0,} & {(1.232)}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
     그리고
 
     @@html:<span id="disp_1.233"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 ({\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack)\eta =
     0.} & {(1.233)}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
 
 
     왜냐하면
 
-    $\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack$
+    {{< sicm-math >}}\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
-    가 $\eta$에 직교하고 $\eta$는 ∂_{1}/φ/ ∘ Γ[/q/]에 직교하도록 구속되므로,
+    가 {{< sicm-math >}}\eta{{< /sicm-math >}}에 직교하고 {{< sicm-math >}}\eta{{< /sicm-math >}}는 ∂_{1}/φ/ ∘ Γ[/q/]에 직교하도록 구속되므로,
     둘은 매 순간 평행해야 한다.
 
     @@html:<span id="disp_1.234"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack).} & {(1.234)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     미분 구속조건의 라그랑주 방정식은 이로부터 유도되었다.
 
     구속조건 함수가 속도에 의존하면 이 유도는 통과하지 않는다. 이 경우 변분
-    $\eta$가 속도 의존 구속조건 함수 /ψ/와 부합하려면 다음을 만족해야 한다
+    {{< sicm-math >}}\eta{{< /sicm-math >}}가 속도 의존 구속조건 함수 /ψ/와 부합하려면 다음을 만족해야 한다
     (방정식 [[/ko/eval/sicm/chapter-1/#disp_1.185][1.185]] 참조).
 
     @@html:<span id="disp_1.235"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\partial_{1}\psi \circ \Gamma\lbrack q\rbrack)\eta + (\partial_{2}\psi \circ \Gamma\lbrack q\rbrack)D\eta = 0.} & {(1.235)}
-    \end{aligned}$$
-    같은 논증으로 $\eta$를 더 이상 소거할 수 없다. $\eta$가 더 이상
+    \end{aligned}{{< /sicm-math >}}
+    같은 논증으로 {{< sicm-math >}}\eta{{< /sicm-math >}}를 더 이상 소거할 수 없다. {{< sicm-math >}}\eta{{< /sicm-math >}}가 더 이상
     ∂_{1}/ψ/ ∘ Γ[/q/]에 직교하지 않고, /ψ/가 가정에 의해 적분 가능하지
     않으므로 구속조건을 좌표 구속조건으로 다시 쓸 수도 없기 때문이다.
 
     다음은 Arnold 등 [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_6][6]]]의 비홀로노믹 방정식
-    유도이며, 우리의 표기로 옮긴 것이다. “가상 속도(virtual velocity)” $\xi$를
+    유도이며, 우리의 표기로 옮긴 것이다. “가상 속도(virtual velocity)” {{< sicm-math >}}\xi{{< /sicm-math >}}를
     다음을 만족하는 임의의 속도로 정의하라.
 
     @@html:<span id="disp_1.236"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 ({\partial_{2}\psi \circ \Gamma\lbrack q\rbrack)\xi = 0.}
     & {(1.236)}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
     Arnold에 따르면 “달랑베르--라그랑주 원리(principle of d'Alembert--Lagrange)”는
-    임의의 가상 속도 $\xi$에 대해
+    임의의 가상 속도 {{< sicm-math >}}\xi{{< /sicm-math >}}에 대해
 
     @@html:<span id="disp_1.237"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack)\xi = 0,} & {(1.237)}
-    \end{aligned}$$
-    라고 말한다. $\xi$는 ∂_{2}/ψ/ ∘ Γ[/q/]에 직교해야 한다는 것을 제외하면
-    임의이고, 그런 임의의 $\xi$가
+    \end{aligned}{{< /sicm-math >}}
+    라고 말한다. {{< sicm-math >}}\xi{{< /sicm-math >}}는 ∂_{2}/ψ/ ∘ Γ[/q/]에 직교해야 한다는 것을 제외하면
+    임의이고, 그런 임의의 {{< sicm-math >}}\xi{{< /sicm-math >}}가
 
-    $\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack$
+    {{< sicm-math >}}\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
     에 직교하므로, ∂_{2}/ψ/ ∘ Γ[/q/]는
 
-    $\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack$
+    {{< sicm-math >}}\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
     에 평행해야 한다. 따라서
 
     @@html:<span id="disp_1.238"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack),} & {(1.238)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이고, 이것이 비홀로노믹 방정식이다.
 
     정지 작용 방정식을 Arnold의 방정식으로 바꾸려면 다음을 해야 한다. 방정식
     ([[/ko/eval/sicm/chapter-1/#disp_1.232][1.232]])에서 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.237][1.237]])로 가려면
-    $\eta$를 $\xi$로 바꾸어야 한다. 그러나 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.235][1.235]])에서
-    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.236][1.236]])로 가려면 $\eta = 0$으로
-    두고 /Dη/를 $\xi$로 바꾸어야 한다. 비홀로노믹 방정식의 모든 “유도”는
+    {{< sicm-math >}}\eta{{< /sicm-math >}}를 {{< sicm-math >}}\xi{{< /sicm-math >}}로 바꾸어야 한다. 그러나 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.235][1.235]])에서
+    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.236][1.236]])로 가려면 {{< sicm-math >}}\eta = 0{{< /sicm-math >}}으로
+    두고 /Dη/를 {{< sicm-math >}}\xi{{< /sicm-math >}}로 바꾸어야 한다. 비홀로노믹 방정식의 모든 “유도”는
     비슷한 동일시를 가진다. 결국 이것이다. 비홀로노믹 방정식은 작용 원리에서
     따르지 않는다. 그것은 다른 것이다. 그것이 옳은지 아닌지는 실험과 맞는지
     아닌지에 달려 있다.
@@ -4972,22 +4972,22 @@ $$\begin{aligned}
     /L/′를 적분 가능하지 않은 구속조건 /ψ/를 가진 확대 라그랑지언이라 하자.
 
     @@html:<span id="disp_1.239"></span>@@
-$$\begin{aligned}
-{L\prime(t;q,\lambda;\overset{˙}{q},\overset{˙}{\lambda}) = L(t,q,\overset{˙}{q}) + \lambda\psi(t,q,\overset{˙}{q});} & {(1.239)}
-    \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t;q,\lambda;\dot{q},\dot{\lambda}) = L(t,q,\dot{q}) + \lambda\psi(t,q,\dot{q});} & {(1.239)}
+    \end{aligned}{{< /sicm-math >}}
     그러면 좌표에 연관된 라그랑주 방정식은
 
     @@html:<span id="disp_1.240"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {0 = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack} & \\
     {\,\,\,\,\, + D\lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack) + \lambda D(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack) - \lambda(\partial_{1}\psi \circ \Gamma\lbrack q\rbrack).} & {(1.240)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이다. /λ/에 연관된 라그랑주 방정식은 바로 구속조건 방정식이다.
 
     @@html:<span id="disp_1.241"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\psi \circ \Gamma\lbrack q\rbrack = 0.} & {(1.241)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     이 방정식들의 흥미로운 특징은 /λ/와 /Dλ/ 모두를 포함한다는 것이다.
     따라서 보통의 상태 변수 /q/와 /Dq/는, 구속조건과 함께여도, 유도된
     라그랑주 방정식의 완전한 초기조건 집합을 정하기에 충분하지 않다. /λ/의
@@ -5048,8 +5048,8 @@ $$\begin{aligned}
   진자를 생각하라. 균일 중력장에서 길이 /l/인 질량 없는 막대에 받쳐진 질량
   /m/이다. 진자의 라그랑지언은
 
-  $L(t,\theta,\overset{˙}{\theta}) = \frac{m}{2}{(l\overset{˙}{\theta})}^{2} +
-  mgl\cos\theta.$
+  {{< sicm-math >}}L(t,\theta,\dot{\theta}) = \frac{m}{2}{(l\dot{\theta})}^{2} +
+  mgl\cos\theta.{{< /sicm-math >}}
 
   이다. 진자의 경우 운동의 주기는 진폭에 의존한다. 주어진 진동수를 가진
   진자의 궤적을 찾고 싶다. 이를 하는 세 방법이 떠오른다. (1) 최소 작용
@@ -5060,11 +5060,11 @@ $$\begin{aligned}
   매개변수 /m/ = 1 kg, /l/ = 1 m, /g/ = 9.8 m s^{−2}를 생각하라. 작은 진폭
   진동의 진동수는
 
-  $\omega_{0} = \sqrt{g/l}$
+  {{< sicm-math >}}\omega_{0} = \sqrt{g/l}{{< /sicm-math >}}
 
   이다. 진동수
 
-  $\omega_{1} = \frac{4}{5}\omega_{0}$
+  {{< sicm-math >}}\omega_{1} = \frac{4}{5}\omega_{0}{{< /sicm-math >}}
 
   를 갖는 자명하지 않은 해를 찾자.
 
@@ -5074,11 +5074,11 @@ $$\begin{aligned}
   영으로 돌아가므로, 각은 중점에 대해 시간의 홀함수이다. 따라서 급수의 홀수
   항만 나타난다.
 
-  $\theta(t) = {\sum\limits_{n = 1}^{m}{A_{n}\sin((2n - 1)\omega_{1}t).}}$
+  {{< sicm-math >}}\theta(t) = {\sum\limits_{n = 1}^{m}{A_{n}\sin((2n - 1)\omega_{1}t).}}{{< /sicm-math >}}
 
   궤적의 진폭은
 
-  $A = \theta_{\max} = {\sum_{n = 1}^{\infty}{{( - 1)}^{n + 1}A_{n}}}$
+  {{< sicm-math >}}A = \theta_{\max} = {\sum_{n = 1}^{\infty}{{( - 1)}^{n + 1}A_{n}}}{{< /sicm-math >}}
 
   이다.
 
@@ -5091,12 +5091,12 @@ $$\begin{aligned}
   의존하는지 모른다는 것이다. 따라서 짐작한 뒤 그 짐작을 점차 개선해야
   한다. 함수
 
-  $\Omega(\overset{˙}{\theta})$
+  {{< sicm-math >}}\Omega(\dot{\theta}){{< /sicm-math >}}
 
   를 정의하여, (/θ/ = 0인) 초기 각속도의 함수로서 운동의 진동수를 수치로
   계산하게 하라. 원하는 궤적의 초기 각속도에 대해
 
-  $\Omega(\overset{˙}{\theta}) = \omega$
+  {{< sicm-math >}}\Omega(\dot{\theta}) = \omega{{< /sicm-math >}}
 
   를 풀어 궤적을 찾아라. 이 방정식을 푸는 방법에는 연속 이분, 제곱 잔차
   최소화 등이 있다---하나를 골라라.
@@ -5106,12 +5106,12 @@ $$\begin{aligned}
   *c.* 이제 진폭의 함수로서 진동수에 대한 해석적 해를 정식화하자. 운동의
   주기는 단순히
 
-  $T = 4{\int_{0}^{T/4}{dt =
-  4}}{\int_{0}^{A}\frac{1}{\overset{˙}{\theta}}}d\theta.$
+  {{< sicm-math >}}T = 4{\int_{0}^{T/4}{dt =
+  4}}{\int_{0}^{A}\frac{1}{\dot{\theta}}}d\theta.{{< /sicm-math >}}
 
   이다. 에너지를 써서
 
-  $\overset{˙}{\theta}$
+  {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
   를 진폭 /A/와 /θ/로 풀어 필요한 적분을 명시적으로 써라. 이 적분은
   타원함수로 쓸 수 있으나, 어떤 의미에서는 이것이 문제를 풀지 않는다---여전히
@@ -5142,8 +5142,8 @@ $$\begin{aligned}
 
   | /θ/_{1}(0)                     | = | /π//2 rad    |
   | /θ/_{2}(0)                     | = | /π/ rad      |
-  | ${\overset{˙}{\theta}}_{1}(0)$ | = | 0 rad s^{−1} |
-  | ${\overset{˙}{\theta}}_{2}(0)$ | = | 0 rad s^{−1} |
+  | {{< sicm-math >}}{\dot{\theta}}_{1}(0){{< /sicm-math >}} | = | 0 rad s^{−1} |
+  | {{< sicm-math >}}{\dot{\theta}}_{2}(0){{< /sicm-math >}} | = | 0 rad s^{−1} |
 
   그래프가 50초까지 이어지게 하라.
 
@@ -5170,8 +5170,8 @@ $$\begin{aligned}
 
   | /θ/_{1}(0)                     | = | /π//2 rad    |
   | /θ/_{2}(0)                     | = | 0 rad        |
-  | ${\overset{˙}{\theta}}_{1}(0)$ | = | 0 rad s^{−1} |
-  | ${\overset{˙}{\theta}}_{2}(0)$ | = | 0 rad s^{−1} |
+  | {{< sicm-math >}}{\dot{\theta}}_{1}(0){{< /sicm-math >}} | = | 0 rad s^{−1} |
+  | {{< sicm-math >}}{\dot{\theta}}_{2}(0){{< /sicm-math >}} | = | 0 rad s^{−1} |
 
   여기서는 무엇이 보이는가?
 
@@ -5218,13 +5218,13 @@ $$\begin{aligned}
 매끈한 좌표 함수로 국소적으로 매개변수화할 수 있는 공간을 /미분가능
 다양체(differentiable manifold)/라 부른다.
 
-[fn:9] 여기서 $\circ$는 함수의 합성을 나타낸다.
+[fn:9] 여기서 {{< sicm-math >}}\circ{{< /sicm-math >}}는 함수의 합성을 나타낸다.
 
-$$(f \circ g)(t) = f(g(t))$$
+{{< sicm-math display >}}(f \circ g)(t) = f(g(t)){{< /sicm-math >}}
 
-[fn:10] 함수 $f$의 도함수는 $Df$로 나타내는 함수이다. 우리의 표기 관례는
-$D$가 높은 우선순위 연산자라는 것이다. 따라서 $D$는 다른 적용이 일어나기
-전에 인접한 함수에 작용한다. $Df(x)$는 $(Df)(x)$와 같다.
+[fn:10] 함수 {{< sicm-math >}}f{{< /sicm-math >}}의 도함수는 {{< sicm-math >}}Df{{< /sicm-math >}}로 나타내는 함수이다. 우리의 표기 관례는
+{{< sicm-math >}}D{{< /sicm-math >}}가 높은 우선순위 연산자라는 것이다. 따라서 {{< sicm-math >}}D{{< /sicm-math >}}는 다른 적용이 일어나기
+전에 인접한 함수에 작용한다. {{< sicm-math >}}Df(x){{< /sicm-math >}}는 {{< sicm-math >}}(Df)(x){{< /sicm-math >}}와 같다.
 
 [fn:11] 원자 척도의 계에 대한 경험은, 이 척도에서 계가 잘 정의된 배치 경로를
 따라 여행하지 않음을 시사한다. 원자 척도에서 계의 전개를 기술하려면 양자역학을
@@ -5243,13 +5243,13 @@ Leibniz는 질량, 속도, 운동 거리의 곱인 “무해한 작용”을 써
 원리”를 언명했다. Leibniz는 또한 것들이 충돌하는 경우의 “격렬한 작용”을
 말했다.
 
-[fn:15] 실수 인수의 실숫값 함수 $f$의 정적분은
+[fn:15] 실수 인수의 실숫값 함수 {{< sicm-math >}}f{{< /sicm-math >}}의 정적분은
 
-  $\int_{a}^{b}f$
+  {{< sicm-math >}}\int_{a}^{b}f{{< /sicm-math >}}
 
   로 쓴다. 이는 또한
 
-  ${\int_{a}^{b}f}(x)dx$
+  {{< sicm-math >}}{\int_{a}^{b}f}(x)dx{{< /sicm-math >}}
 
   로 쓸 수 있다. 첫 표기는 함수가 적분되고 있음을 강조한다.
 
@@ -5310,7 +5310,7 @@ Euler, Lagrange의 역할에 대한 역사적 관점은 [[[https://tgvaughan.git
 안의 다른 어떤 기호와 충돌하지 않는 한, 바꾸어도 된다. 예를 들어 다음 정의는
 정확히 같은 자유 입자 라그랑지언을 지정한다.
 
-  $L(a,b,c) = \frac{1}{2}m(c \cdot c).$
+  {{< sicm-math >}}L(a,b,c) = \frac{1}{2}m(c \cdot c).{{< /sicm-math >}}
 
 [fn:25] 라그랑지언은 형식적으로 국소 튜플의 함수이지만, 어떤 특정 라그랑지언도
 국소 튜플의 유한한 초기 조각에만 의존한다. 우리는 함수가 의존하는 원소를
@@ -5365,8 +5365,8 @@ down 튜플도 있다. 표기에 관한 부록을 보라.
 수가 정확한 정수 또는 유리 분수여서 표현식을 신뢰성 있게 기약으로 줄일 수
 있는 것이 필수이다. 그런 수는 소수점 없이 지정한다.
 
-[fn:36] 속도의 제곱 크기는 $\overset{\rightarrow}{v} \cdot
- \overset{\rightarrow}{v}$
+[fn:36] 속도의 제곱 크기는 {{< sicm-math >}}\overset{\rightarrow}{v} \cdot
+ \overset{\rightarrow}{v}{{< /sicm-math >}}
 
   , 곧 속도와 그 자신의 벡터 내적이므로, 간단히
   /v/^{2} = /v/ · /v/로 쓴다.
@@ -5448,27 +5448,27 @@ nelder-mead를 더 맛좋은 multidimensional-minimize로 감싸 특수화했다
 인수의 함수의 도함수는 각 인수에 대한 그 함수의 편미분의 down 튜플이다.
 따라서 라그랑지언 /L/의 경우,
 
-$$DL(t,q,v) = \lbrack\partial_{0}L(t,q,v),\partial_{1}L(t,q,v),\partial_{2}L(t,q,v)\rbrack.$$
+{{< sicm-math display >}}DL(t,q,v) = \lbrack\partial_{0}L(t,q,v),\partial_{1}L(t,q,v),\partial_{2}L(t,q,v)\rbrack.{{< /sicm-math >}}
 
 [fn:53] 국소 튜플의 성분에 이름을 붙이는 정의를 쓸 때, 이 성분들이 시간,
 위치, 속도 성분으로 묶임을 그룹 사이에 세미콜론을 두어 나타낸다.
 
-[fn:54] 기호 $\overset{˙}{\theta}$
+[fn:54] 기호 {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
 는 단지 연상 기호일 뿐이며, /θ/ 위의 점은 미분을 나타내지 않는다. /L/을
 정의하기 위해 다음처럼 쓸 수도 있었을 것이다.
 
-$$L(a,b,c) = \frac{1}{2}ml^{2}c^{2} + mgl\cos b$$
+{{< sicm-math display >}}L(a,b,c) = \frac{1}{2}ml^{2}c^{2} + mgl\cos b{{< /sicm-math >}}
 
-. 그러나 점 찍힌 기호를 써서, $\overset{˙}{\theta}$
+. 그러나 점 찍힌 기호를 써서, {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
 와 같은 형식 매개변수에 맞는 인수가 /θ/와 같은 각의 변화율임을 상기시킨다.
 
 [fn:55] 전통 표기에서 이 방정식은 다음과 같이 읽힌다.
 
-$$\frac{d^{2}}{dt^{2}}\frac{\partial L}{\partial\overset{¨}{q}} -
-\frac{d}{dt}\frac{\partial L}{\partial\overset{˙}{q}} + \frac{\partial
-L}{\partial q} = 0.$$
+{{< sicm-math display >}}\frac{d^{2}}{dt^{2}}\frac{\partial L}{\partial\ddot{q}} -
+\frac{d}{dt}\frac{\partial L}{\partial\dot{q}} + \frac{\partial
+L}{\partial q} = 0.{{< /sicm-math >}}
 
 [fn:56] Lagrange-equations 절차는 (partial 1)과 (partial 2) 연산을 쓰며,
 이는 둘째와 셋째 인수 위치(인덱스 1과 2를 가진 것)에 대한 편미분 연산자를
@@ -5544,7 +5544,7 @@ College의 천문학 교수이자 Ireland 왕립 천문학자로 선출되었다
 대한 편미분을 취하는 것과 교환된다. /q/에 대한 라그랑주 방정식을 유도할 때
 라그랑지언에서 /c/ = /l/과
 
-  $\overset{˙}{c} = 0$
+  {{< sicm-math >}}\dot{c} = 0{{< /sicm-math >}}
 
   으로 둘 수 있으나, /c/에 연관된 라그랑주 방정식을 유도할 때는 그렇게 할 수
   없다. 그 인수에 대해 미분해야 하기 때문이다.
@@ -5627,27 +5627,27 @@ integrals)/이라 불린다.
 않으므로, 구조를 만드는 도함수와 교환될 수 있다. 그러나 주의하라. 다른
 이유로 어떤 도함수와는 교환되지 않을 수 있다. 예를 들어
 
-$$D_{t}\partial_{1}(\widetilde{F}(s))$$
+{{< sicm-math display >}}D_{t}\partial_{1}(\widetilde{F}(s)){{< /sicm-math >}}
 
 는
 
-$$\partial_{1}D_{t}(\widetilde{F}(s))$$
+{{< sicm-math display >}}\partial_{1}D_{t}(\widetilde{F}(s)){{< /sicm-math >}}
 
 와 같지만,
 
-$$D_{t}\partial_{2}(\widetilde{F}(s))$$
+{{< sicm-math display >}}D_{t}\partial_{2}(\widetilde{F}(s)){{< /sicm-math >}}
 
 는
 
-$$\partial_{2}D_{t}(\widetilde{F}(s))$$
+{{< sicm-math display >}}\partial_{2}D_{t}(\widetilde{F}(s)){{< /sicm-math >}}
 
 와 같지 않다. 이유는
 
-$$\widetilde{F}(s)$$
+{{< sicm-math display >}}\widetilde{F}(s){{< /sicm-math >}}
 
 가 속도에 의존하지 않으나
 
-$$D_{t}(\widetilde{F}(s))$$
+{{< sicm-math display >}}D_{t}(\widetilde{F}(s)){{< /sicm-math >}}
 
 는 의존하기 때문이다.
 
@@ -5669,23 +5669,23 @@ $$D_{t}(\widetilde{F}(s))$$
 
 [fn:89] 국소 튜플 함수 /f/는 국소 튜플 함수
 
-$$\overline{\Gamma}(\overline{f})$$
+{{< sicm-math display >}}\overline{\Gamma}(\overline{f}){{< /sicm-math >}}
 
 와 같으며, 여기서
 
-  $\overline{f}\lbrack q\rbrack = f \circ \Gamma\lbrack q\rbrack$
+  {{< sicm-math >}}\overline{f}\lbrack q\rbrack = f \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
 이다. 다른 한편 경로 함수
 
-$$\overline{f}\lbrack q\rbrack$$
+{{< sicm-math display >}}\overline{f}\lbrack q\rbrack{{< /sicm-math >}}
 
 와 경로 함수
 
-$$\overline{\Gamma}(\overline{f}) \circ \Gamma\lbrack q\rbrack$$
+{{< sicm-math display >}}\overline{\Gamma}(\overline{f}) \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
 는 반드시 같지는 않은데,
 
-$$\overline{f}\lbrack q\rbrack$$
+{{< sicm-math display >}}\overline{f}\lbrack q\rbrack{{< /sicm-math >}}
 
 가 기본값으로 제공되는 것보다 더 많은 국소 튜플 성분을 요구할 수 있기
 때문이다. 예를 들어 라그랑주 방정식은 가속도뿐 아니라 시간, 좌표, 속도도
@@ -5707,13 +5707,13 @@ $$\overline{f}\lbrack q\rbrack$$
 직교한다고 본다. 비슷하게, 각 순간에 튜플 하나가 다른 것의 스칼라 배수이면
 튜플값 함수는 평행하다고 여긴다. 스칼라 배수는 일반적으로 시간의 함수이다.
 
-[fn:93] 오일러--라그랑주 연산자 $\mathcal{E}$
+[fn:93] 오일러--라그랑주 연산자 {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
 는 다음 성질을 가짐을 상기하라.
 
-$$\mathcal{E}\,\lbrack FG\rbrack = F\,\mathcal{E}\lbrack G\rbrack +
+{{< sicm-math display >}}\mathcal{E}\,\lbrack FG\rbrack = F\,\mathcal{E}\lbrack G\rbrack +
 \mathcal{E}\lbrack F\rbrack G + D_{t}F\,\partial_{2}G + \partial_{2}F\,
-D_{t}G.$$
+D_{t}G.{{< /sicm-math >}}
 
 [fn:94] 이 구속조건은 강체계에 /L/ = /T/ − /V/를 쓸 수 있음을 보인 데 쓰인
 것과 같은 꼴이다. 여기서는 더 일반적인 구속조건 집합의 특정 예이다.
@@ -5727,7 +5727,7 @@ D_{t}G.$$
 
 [fn:97] 2장에서 회전 운동 에너지를 계산하는 법을 보겠지만, 지금은 답이
 
-$$\frac{1}{2}M\, R^{2}{\overset{˙}{\theta}}^{2}.$$
+{{< sicm-math display >}}\frac{1}{2}M\, R^{2}{\dot{\theta}}^{2}.{{< /sicm-math >}}
 
 이다.
 

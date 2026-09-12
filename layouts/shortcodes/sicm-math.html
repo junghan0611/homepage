@@ -1,0 +1,9 @@
+{{- $display := eq (.Get 0) "display" -}}
+{{- $opts := dict "output" "mathml" "displayMode" $display -}}
+{{- with try (transform.ToMath (strings.TrimSpace .Inner) $opts) -}}
+	{{- with .Err -}}
+		{{- errorf "SICM math rendering failed: %s at %s" . $.Position -}}
+	{{- else -}}
+		{{- .Value -}}
+	{{- end -}}
+{{- end -}}

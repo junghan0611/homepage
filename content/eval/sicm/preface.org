@@ -63,12 +63,12 @@ and often even change within a given context.@@html:<sup><a id="endnote_ref_1" h
 example, a fundamental result of mechanics is the Lagrange equations. In
 traditional notation the Lagrange equations are written
 
-$\frac{d}{dt}\frac{\partial L}{\partial{\overset{˙}{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0.$
+{{< sicm-math >}}\frac{d}{dt}\frac{\partial L}{\partial{\dot{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0.{{< /sicm-math >}}
 
 The Lagrangian /L/ must be interpreted as a function of the position and
 velocity components /q^{i}/ and
 
-${\overset{˙}{q}}^{i}$
+{{< sicm-math >}}{\dot{q}}^{i}{{< /sicm-math >}}
 
 , so that the partial derivatives make sense, but then in order for the
 time derivative /d/dt/ to make sense solution paths must have been
@@ -257,12 +257,12 @@ the introduction of irrelevant letters. The usual evaluation for
 If /f/(/u, v/) is a function and /u/ = /g/(/x, y/) and /v/ = /h/(/x, y/)
 then
 
-$\frac{\partial f(g(x,y),h(x,y)}{\partial x} = \frac{\partial f(u,v)}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f(u,v)}{\partial v}\frac{\partial v}{\partial x}$
+{{< sicm-math >}}\frac{\partial f(g(x,y),h(x,y)}{\partial x} = \frac{\partial f(u,v)}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f(u,v)}{\partial v}\frac{\partial v}{\partial x}{{< /sicm-math >}}
 [The symbol ∂/u//∂/x/ means ∂///∂/x g/(/x, y/), and ∂///∂/u f/(/u, v/)
 means /D/_{1}/f/(/u, v/) = /D/_{1}/f/(/g/(/x, y/), /h/(/x, y/)).] This
 equation is often written simply
 
-$\frac{\partial f}{\partial x} = \frac{\partial f}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f}{\partial v}\frac{\partial v}{\partial x}.$
+{{< sicm-math >}}\frac{\partial f}{\partial x} = \frac{\partial f}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f}{\partial v}\frac{\partial v}{\partial x}.{{< /sicm-math >}}
 Note that /f/ means something different on the two sides of the
 equation!
 

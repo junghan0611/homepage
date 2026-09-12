@@ -61,7 +61,7 @@ const requiredFiles = [
 	"content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md",
 	"data/eval/runtime.json", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json",
 	"layouts/eval/list.html", "layouts/eval/single.html", "layouts/eval/license.html",
-	"layouts/shortcodes/eval-cell.html", "layouts/shortcodes/eval-rails.html", "layouts/shortcodes/eval-attribution.html",
+	"layouts/shortcodes/eval-cell.html", "layouts/shortcodes/eval-rails.html", "layouts/shortcodes/eval-attribution.html", "layouts/shortcodes/sicm-math.html",
 	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/cell.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html",
 	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js", "assets/js/eval-sicm.js",
 	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
@@ -131,7 +131,7 @@ for (const [path, notice] of [
 	["static/eval/licenses/BSD-2-Clause-odex.txt", "Copyright (c) 2016, Colin Smith"],
 ]) if (!(await read(path)).includes(notice)) fail(`invalid license notice: ${path}`);
 
-const authoredPaths = [...contentPaths, "content/javascript.md", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json", "assets/js/eval.js", "assets/js/eval-sicm.js", "assets/css/eval.css", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj"];
+const authoredPaths = [...contentPaths, "content/javascript.md", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json", "assets/js/eval.js", "assets/js/eval-sicm.js", "assets/css/eval.css", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html", "layouts/shortcodes/sicm-math.html", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj"];
 for (const path of authoredPaths) {
 	const source = await read(path);
 	for (const forbidden of ["cdn.jsdelivr.net", "unpkg.com", "daslu.github.io", "/home/", "~/", "dev/eval-stack/"]) {

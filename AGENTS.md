@@ -68,8 +68,8 @@ surface. This repo is public; the global commit/push hook scans added lines unde
   Hugo + Hextra in its publication stack, so `footer.displayPoweredBy` stays false.
 - **SICM reading edition**: `/eval/sicm/` publishes the pinned English Preface and
   Chapter 1 beside a Korean reading translation under CC BY-NC-SA 3.0. Exact Org,
-  segment hashes, original images, balanced rendering repairs, and computed-view
-  provenance remain separate evidence layers. `./run.sh s` verifies/assembles the
+  segment hashes, original images, balanced rendering repairs, build-time MathML,
+  and computed-view provenance remain separate evidence layers. `./run.sh s` verifies/assembles the
   segmented translation and regenerates Hugo Org pages; never hand-edit generated
   `content/eval/sicm/{preface,chapter-1}*.org`.
 - **Verification**: `./run.sh v` is the release gate: it verifies Eval source/runtime

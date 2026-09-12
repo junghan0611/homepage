@@ -137,6 +137,49 @@ def repair_reading_markup(text: str) -> str:
 	return text
 
 
+def render_math_shortcodes(text: str) -> str:
+	"""Route Org dollar math through Hugo's pinned build-time KaTeX→MathML."""
+	protected = re.compile(
+		r"(?msi)^([ \t]*#\+begin_(?:src|example|export).*?^[ \t]*#\+end_(?:src|example|export)[ \t]*$)"
+	)
+
+	def normalize_tex(tex: str) -> str:
+		# The canonical Org port encoded Newton dots as underlined spacing accents;
+		# normalize only in the generated rendering layer.
+		return (
+			tex.replace(r"\overset{˙}", r"\dot")
+			.replace(r"\overset{¨}", r"\ddot")
+			.replace("\u2009\u0332", "")
+			.replace("\u2009", "")
+		)
+
+	def convert(chunk: str) -> str:
+		out: list[str] = []
+		cursor = 0
+		while cursor < len(chunk):
+			if chunk.startswith("$$", cursor):
+				end = chunk.find("$$", cursor + 2)
+				if end < 0:
+					raise ValueError("unmatched display-math delimiter in generated SICM page")
+				tex = normalize_tex(chunk[cursor + 2 : end])
+				out.append("{{< sicm-math display >}}" + tex + "{{< /sicm-math >}}")
+				cursor = end + 2
+			elif chunk[cursor] == "$":
+				end = chunk.find("$", cursor + 1)
+				if end < 0:
+					raise ValueError("unmatched inline-math delimiter in generated SICM page")
+				tex = normalize_tex(chunk[cursor + 1 : end])
+				out.append("{{< sicm-math >}}" + tex + "{{< /sicm-math >}}")
+				cursor = end + 1
+			else:
+				out.append(chunk[cursor])
+				cursor += 1
+		return "".join(out)
+
+	pieces = protected.split(text)
+	return "".join(piece if protected.fullmatch(piece) else convert(piece) for piece in pieces)
+
+
 def add_navigation_anchors(text: str) -> str:
 	# go-org prints legacy <<target>> syntax as text; raw inline HTML preserves the
 	# canonical target without altering the exact public source artifact.
@@ -258,8 +301,10 @@ def render(page: Page, lang: str) -> str | None:
 		return None
 	body = strip_upstream_header(path.read_text(encoding="utf-8"), page)
 	body = repair_reading_markup(body)
+	body = body.replace("$q = $\\chi \\circ \\gamma$", "$q = \\chi \\circ \\gamma$")
 	body = add_navigation_anchors(body)
 	body = rewrite_links(body, lang)
+	body = render_math_shortcodes(body)
 	return front_matter(page, lang) + body.rstrip() + "\n"
 
 

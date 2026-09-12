@@ -241,11 +241,11 @@ formulation because of these advantages.
   freedom; later we will learn how to handle systems with redundant coordinates
   and explicit constraints.
 
-  In general, the configurations form a space $M$ of some dimension $n$. The
-  $n$-dimensional configuration space can be parameterized by choosing a
-  coordinate function $\chi$ that maps elements of the configuration space to
-  $n$-tuples of real numbers.[fn:5] If there is more than one dimension, the
-  function $\chi$ is a tuple of $n$ independent coordinate functions[fn:6]
+  In general, the configurations form a space {{< sicm-math >}}M{{< /sicm-math >}} of some dimension {{< sicm-math >}}n{{< /sicm-math >}}. The
+  {{< sicm-math >}}n{{< /sicm-math >}}-dimensional configuration space can be parameterized by choosing a
+  coordinate function {{< sicm-math >}}\chi{{< /sicm-math >}} that maps elements of the configuration space to
+  {{< sicm-math >}}n{{< /sicm-math >}}-tuples of real numbers.[fn:5] If there is more than one dimension, the
+  function {{< sicm-math >}}\chi{{< /sicm-math >}} is a tuple of {{< sicm-math >}}n{{< /sicm-math >}} independent coordinate functions[fn:6]
   /χ^{i}, i/ = 0, ..., /n/ − 1, where each /χ^{i}/ is a real-valued function
   defined on some region of the configuration space.[fn:7] For a given
   configuration /m/ in the configuration space /M/ the values /χ^{i}/(/m/) of
@@ -259,14 +259,14 @@ formulation because of these advantages.
 
   The motion of the system can be described by a configuration path /γ/ mapping
   time to configuration-space points. Corresponding to the configuration path is
-  a /coordinate path/ $q = $\chi \circ \gamma$ mapping time to tuples of
+  a /coordinate path/ {{< sicm-math >}}q = \chi \circ \gamma{{< /sicm-math >}} mapping time to tuples of
   generalized coordinates.[fn:9] If there is more than one degree of freedom the
-  coordinate path is a structured object: $q$ is a tuple of component coordinate
-  path functions $q^i = \chi^i \circ \gamma$. At each instant of time $t$, the
-  values $q(t) = \left(q^0(t),\, \ldots,\, q^{n−1}(t) \right)$ are the
+  coordinate path is a structured object: {{< sicm-math >}}q{{< /sicm-math >}} is a tuple of component coordinate
+  path functions {{< sicm-math >}}q^i = \chi^i \circ \gamma{{< /sicm-math >}}. At each instant of time {{< sicm-math >}}t{{< /sicm-math >}}, the
+  values {{< sicm-math >}}q(t) = \left(q^0(t),\, \ldots,\, q^{n−1}(t) \right){{< /sicm-math >}} are the
   generalized coordinates of a configuration.
 
-  The derivative $Dq$ of the coordinate path $q$ is a function[fn:10] that gives
+  The derivative {{< sicm-math >}}Dq{{< /sicm-math >}} of the coordinate path {{< sicm-math >}}q{{< /sicm-math >}} is a function[fn:10] that gives
   the rate of change of the configuration coordinates at a given time: /Dq/(/t/)
   = (/Dq/^{0}(/t/), ..., /Dq/^{/n/−1}(/t/)). The rate of change of a generalized
   coordinate is called a /generalized velocity/.
@@ -355,9 +355,9 @@ formulation because of these advantages.
    the time interval from /t/_{1} to /t/_{2} is[fn:15]
 
    @@html:<span id="disp_1.1"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{F\lbrack q\rbrack.}}} & {(1.1)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    where /F/[/q/] is a function of time that measures some local property of the
    path. It may depend upon the value of the function /q/ at that time and the
    value of any derivatives of /q/ at that time.[fn:16]
@@ -378,9 +378,9 @@ $$\begin{aligned}
    can write /F/[/q/] as a composition of these two functions:[fn:18]
 
    @@html:<span id="disp_1.2"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {F\lbrack q\rbrack = L \circ \Gamma\lbrack q\rbrack.} & {(1.2)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The function Γ takes the coordinate path and produces a function of time
    whose value is an ordered tuple containing the time, the coordinates at that
    time, the rate of change of the coordinates at that time, and the values of
@@ -388,9 +388,9 @@ $$\begin{aligned}
    /q/ and time /t/:
 
    @@html:<span id="disp_1.3"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Gamma\lbrack q\rbrack(t) = (t,q(t),Dq(t),\ldots).} & {(1.3)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    We refer to this tuple, which includes as many derivatives as are needed, as
    the /local tuple/. The function Γ[/q/] depends only on the coordinate path
    /q/ and its derivatives; the function Γ[/q/] does not depend on /χ/ or the
@@ -413,16 +413,16 @@ $$\begin{aligned}
    resulting action,
 
    @@html:<span id="disp_1.4"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack,}}} & {(1.4)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    is called the /Lagrangian action/. For Lagrangians that depend only on time,
    positions, and velocities the action can also be written
 
    @@html:<span id="disp_1.5"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L(t,q(t),Dq(t))\, dt.}}} & {(1.5)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Lagrangians can be found for a great variety of systems. We will see that for
    many systems the Lagrangian can be taken to be the difference between kinetic
    and potential energy. Such Lagrangians depend only on the time, the
@@ -475,15 +475,15 @@ $$\begin{aligned}
   provided we take the Lagrangian to be the kinetic energy. The kinetic energy
   for a particle of mass /m/ and velocity
 
-  $\overset{\rightarrow}{v}$
+  {{< sicm-math >}}\overset{\rightarrow}{v}{{< /sicm-math >}}
 
   is
 
-  $\frac{1}{2}mv^{2}$
+  {{< sicm-math >}}\frac{1}{2}mv^{2}{{< /sicm-math >}}
 
   , where /v/ is the magnitude of
 
-  $\overset{\rightarrow}{v}$
+  {{< sicm-math >}}\overset{\rightarrow}{v}{{< /sicm-math >}}
 
   . In this case we can choose the generalized coordinates to be the ordinary
   rectangular coordinates.
@@ -491,9 +491,9 @@ $$\begin{aligned}
   Following Euler and Lagrange, the Lagrangian for the free particle is[fn:24]
 
   @@html:<span id="disp_1.6"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = \frac{1}{2}m(v \cdot v),} & {(1.6)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   where the formal parameter /x/ names a tuple of components of the position
   with respect to a given rectangular coordinate system, and the formal
   parameter /v/ names a tuple of velocity components.[fn:25]
@@ -515,9 +515,9 @@ $$\begin{aligned}
   position components:[fn:27]
 
   @@html:<span id="disp_1.7"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {q(t) = (x(t),y(t),z(t)).} & {(1.7)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   We can make this definition[fn:28]
 
   #+begin_src scheme
@@ -541,7 +541,7 @@ $$\begin{aligned}
   The derivative of the coordinate path /Dq/ is the function that maps time to
   velocity components:
 
-  $Dq(t) = (Dx(t),Dy(t),Dz(t)).$
+  {{< sicm-math >}}Dq(t) = (Dx(t),Dy(t),Dz(t)).{{< /sicm-math >}}
 
   We can make and use the derivative of a function.[fn:29] For example, we can
   write:
@@ -627,17 +627,17 @@ z) t) 2)))
     For a free particle an appropriate Lagrangian is[fn:36]
 
     @@html:<span id="disp_1.8"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = \frac{1}{2}mv^{2}.} & {(1.8)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     Suppose that /x/ is the constant-velocity straight-line path of a free
     particle, such that /x/_{/a/} = /x/(/t/_{/a/}) and /x/_{/b/} =
     /x/(/t/_{/b/}). Show that the action on the solution path is
 
     @@html:<span id="disp_1.9"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\frac{m}{2}\frac{{(x_{b} - x_{a})}^{2}}{t_{b} - t_{a}}.} & {(1.9)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
 ** Paths of minimum action
    :PROPERTIES:
    :CUSTOM_ID: paths-of-minimum-action
@@ -645,18 +645,18 @@ $$\begin{aligned}
    :END:
    We already know that the actual path of a free particle is uniform motion in
    a straight line. According to Euler and Lagrange, the action is smaller along
-   a straight-line test path than along nearby paths. Let $q$ be a straight-line
-   test path with action $S\left[q\right](t_1, t_2)$. Let $q + \varepsilon \eta$
-   be a nearby path, obtained from $q$ by adding a path variation $\eta$ scaled
-   by the real parameter $\varepsilon$.[fn:37] The action on the varied path is
-   $S\left[q + \varepsilon \eta\right](t_1, t_2)$. Euler and Lagrange found that
-   $S\left[q + \varepsilon \eta\right](t_1, t_2) > S\left[q\right](t_1, t_2)$
-   for any $\eta$ that is zero at the endpoints and for any small nonzero
-   $\eta$.
+   a straight-line test path than along nearby paths. Let {{< sicm-math >}}q{{< /sicm-math >}} be a straight-line
+   test path with action {{< sicm-math >}}S\left[q\right](t_1, t_2){{< /sicm-math >}}. Let {{< sicm-math >}}q + \varepsilon \eta{{< /sicm-math >}}
+   be a nearby path, obtained from {{< sicm-math >}}q{{< /sicm-math >}} by adding a path variation {{< sicm-math >}}\eta{{< /sicm-math >}} scaled
+   by the real parameter {{< sicm-math >}}\varepsilon{{< /sicm-math >}}.[fn:37] The action on the varied path is
+   {{< sicm-math >}}S\left[q + \varepsilon \eta\right](t_1, t_2){{< /sicm-math >}}. Euler and Lagrange found that
+   {{< sicm-math >}}S\left[q + \varepsilon \eta\right](t_1, t_2) > S\left[q\right](t_1, t_2){{< /sicm-math >}}
+   for any {{< sicm-math >}}\eta{{< /sicm-math >}} that is zero at the endpoints and for any small nonzero
+   {{< sicm-math >}}\eta{{< /sicm-math >}}.
 
    Let's check this numerically by varying the test path, adding some amount of
-   a test function that is zero at the endpoints $t = t_1$ and $t = t_2$. To
-   make a function $\eta$ that is zero at the endpoints, given a sufficiently
+   a test function that is zero at the endpoints {{< sicm-math >}}t = t_1{{< /sicm-math >}} and {{< sicm-math >}}t = t_2{{< /sicm-math >}}. To
+   make a function {{< sicm-math >}}\eta{{< /sicm-math >}} that is zero at the endpoints, given a sufficiently
    well-behaved function /ν/, we can use /η/(/t/) = (/t/ − /t/_{1})(/t/ −
    /t/_{2})/ν/(/t/). This can be implemented:
 
@@ -761,9 +761,9 @@ $$\begin{aligned}
    harmonic oscillator, with Lagrangian[fn:44]
 
    @@html:<span id="disp_1.10"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,q,v) = \frac{1}{2}mv^{2} - \frac{1}{2}kq^{2},} & {(1.10)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    for mass /m/ and spring constant /k/. This Lagrangian is implemented
    by[fn:45]
 
@@ -794,9 +794,9 @@ $$\begin{aligned}
    /k/ = 1, are
 
    @@html:<span id="disp_1.11"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {q(t) = A\,\,\text{cos}(t + \varphi)} & {(1.11)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    where the amplitude /A/ and the phase /φ/ are determined by the initial
    conditions. For the chosen endpoint conditions the solution is /q/(/t/) =
    cos(/t/). The approximate path should be an approximation to cosine over the
@@ -866,9 +866,9 @@ $$\begin{aligned}
    variation in the path that keeps the endpoints of the path fixed), then
 
    @@html:<span id="disp_1.12"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack = 0.} & {(1.12)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Here /L/ is a real-valued function of a local tuple; ∂_{1}/L/ and ∂_{2}/L/
    denote the partial derivatives of /L/ with respect to its generalized
    position argument and generalized velocity argument respectively.[fn:47] The
@@ -885,11 +885,11 @@ $$\begin{aligned}
    Lagrange's equations are traditionally written as a separate equation for
    each component of /q/:
 
-   $$\begin{aligned}
+   {{< sicm-math display >}}\begin{aligned}
 {\frac{d}{dt}\frac{\partial
-   L}{\partial{\overset{˙}{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0} &
+   L}{\partial{\dot{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0} &
    {i = 0,\ldots,n - 1.}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
    In this way of writing Lagrange's equations the notation does not distinguish
    between /L/, which is a real-valued function of three variables (/t/, /q/,
@@ -910,7 +910,7 @@ $$\begin{aligned}
    ∂/L//∂/q/ is a function of three variables, which we must view as a function
    of /t/ before setting it equal to
 
-   $d/dt\left( {\partial L/\partial\overset{˙}{q}} \right)$
+   {{< sicm-math >}}d/dt\left( {\partial L/\partial\dot{q}} \right){{< /sicm-math >}}
 
    .
 
@@ -918,10 +918,10 @@ $$\begin{aligned}
 
    A correct use of the traditional notation is more explicit:
 
-   $\frac{d}{dt}\left( \left. \frac{\partial L\left( {t,w,\overset{˙}{w}}
-   \right)}{\partial{\overset{˙}{w}}^{i}} \right|_{\begin{array}{l} {w = q{(t)}} \\ {\overset{˙}{w} = \frac{dq{(t)}}{dt}} \end{array}} \right) - \left.
-   \frac{\partial L\left( {t,w,\overset{˙}{w}} \right)}{\partial w^{i}}
-   \right|_{\begin{array}{l} {w = q{(t)}} {\overset{˙}{w} = \frac{dq{(t)}}{dt}} \end{array}} = 0,$
+   {{< sicm-math >}}\frac{d}{dt}\left( \left. \frac{\partial L\left( {t,w,\dot{w}}
+   \right)}{\partial{\dot{w}}^{i}} \right|_{\begin{array}{l} {w = q{(t)}} \\ {\dot{w} = \frac{dq{(t)}}{dt}} \end{array}} \right) - \left.
+   \frac{\partial L\left( {t,w,\dot{w}} \right)}{\partial w^{i}}
+   \right|_{\begin{array}{l} {w = q{(t)}} {\dot{w} = \frac{dq{(t)}}{dt}} \end{array}} = 0,{{< /sicm-math >}}
 
    where /i/ = 0, ..., /n/ − 1. In these equations we see that the partial
    derivatives of the Lagrangian function are taken, then the path and its
@@ -946,44 +946,44 @@ $$\begin{aligned}
    = /η/(/t/_{2}) = 0. Let
 
    @@html:<span id="disp_1.13"></span>@@
-$$\begin{array}{lll} {g(\mathit{\epsilon})} & {= S\lbrack q + \mathit{\epsilon}\eta\rbrack(t_{1},\,\, t_{2})} & \\ & {= {\int_{t_{1}}^{t_{2}}{L(t,q(t) + \mathit{\epsilon}\eta(t),Dq(t) + \mathit{\epsilon}D\eta(t))dt.}}} & {(1.13)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {g(\mathit{\epsilon})} & {= S\lbrack q + \mathit{\epsilon}\eta\rbrack(t_{1},\,\, t_{2})} & \\ & {= {\int_{t_{1}}^{t_{2}}{L(t,q(t) + \mathit{\epsilon}\eta(t),Dq(t) + \mathit{\epsilon}D\eta(t))dt.}}} & {(1.13)}\end{array}{{< /sicm-math >}}
    Expanding as a power series in /ϵ/
 
    @@html:<span id="disp_1.14"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {g(\mathit{\epsilon}) = g(0) + \mathit{\epsilon}Dg(0) + \cdots} & {(1.14)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    and using the chain rule we get
 
    @@html:<span id="disp_1.15"></span>@@
-$$\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{(\partial_{2}L(t,q(t),Dq(t))D\eta(t))\,\, dt.}}} & {(1.15)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{(\partial_{2}L(t,q(t),Dq(t))D\eta(t))\,\, dt.}}} & {(1.15)}\end{array}{{< /sicm-math >}}
    Integrating the second term by parts we obtain
 
    @@html:<span id="disp_1.16"></span>@@
-$$\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ \,\partial_{2}L(t,q(t),Dq(t)D\eta(t))\eta(t)|_{t_{1}}^{t_{2}}} & \\ & {- {\int_{t_{1}}^{t_{2}}{\frac{d}{dt}(\partial_{2}L(t,q(t),Dq(t)))\eta(t)dt}}.} & {(1.16)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ \,\partial_{2}L(t,q(t),Dq(t)D\eta(t))\eta(t)|_{t_{1}}^{t_{2}}} & \\ & {- {\int_{t_{1}}^{t_{2}}{\frac{d}{dt}(\partial_{2}L(t,q(t),Dq(t)))\eta(t)dt}}.} & {(1.16)}\end{array}{{< /sicm-math >}}
    The increment Δ/S/ in the action due to the variation in the path is, to
-   first order in /ϵ/, /ϵDg/(0). Because $\eta$ is zero at the endpoints the
+   first order in /ϵ/, /ϵDg/(0). Because {{< sicm-math >}}\eta{{< /sicm-math >}} is zero at the endpoints the
    integrated term is zero. Collecting together the other two terms, and
    reverting to functional notation, we find the increment to be
 
    @@html:<span id="disp_1.17"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Delta S = \mathit{\epsilon}{\int_{t_{1}}^{t_{2}}\left\{ \partial_{1}L \circ \Gamma\lbrack q\rbrack\, - \, D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}}\eta.} & {(1.17)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    If Δ/S/ is zero the action is stationary. We retain enough freedom in the
-   choice of the variation that the factor in the integrand multiplying $\eta$
+   choice of the variation that the factor in the integrand multiplying {{< sicm-math >}}\eta{{< /sicm-math >}}
    is forced to be zero at each point along the path. We argue by contradiction:
    Suppose this factor were nonzero at some particular time. Then it would have
-   to be nonzero in at least one of its components. But if we choose our $\eta$
+   to be nonzero in at least one of its components. But if we choose our {{< sicm-math >}}\eta{{< /sicm-math >}}
    to be a bump that is nonzero only in that component in a neighborhood of that
    time, and zero everywhere else, then the integral will be nonzero. So we may
    conclude that the factor in curly brackets is identically zero and thus
    obtain Lagrange's equations:[fn:48]
 
    @@html:<span id="disp_1.18"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, - \,\partial_{1}L \circ \Gamma\lbrack q\rbrack = 0.} & {(1.18)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
 ** The Variation Operator
    :PROPERTIES:
    :CUSTOM_ID: the-variation-operator
@@ -995,17 +995,17 @@ $$\begin{aligned}
 
    Suppose that we have a function /f/[/q/] that depends on a path /q/. How does
    the function vary as the path is varied? Let /q/ be a coordinate path and
-   /q/ + /ϵη/ be a varied path, where the function $\eta$ is a path-like
+   /q/ + /ϵη/ be a varied path, where the function {{< sicm-math >}}\eta{{< /sicm-math >}} is a path-like
    function that can be added to the path /q/, and the factor /ϵ/ is a scale
    factor. We define the /variation δ_{η}f/[/q/] of the function /f/ on the path
    /q/ by[fn:49]
 
    @@html:<span id="disp_1.19"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}f\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{f\lbrack q + \mathit{\epsilon}\eta\rbrack - f\lbrack q\rbrack}{\mathit{\epsilon}} \right).} & {(1.19)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The variation of /f/ is a linear approximation to the change in the function
-   /f/ for small variations in the path. The variation of /f/ depends on $\eta$.
+   /f/ for small variations in the path. The variation of /f/ depends on {{< sicm-math >}}\eta{{< /sicm-math >}}.
 
 
 
@@ -1013,65 +1013,65 @@ $$\begin{aligned}
    /q/. Applying the definition, we find
 
    @@html:<span id="disp_1.20"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}I\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{(q + \mathit{\epsilon}\eta) - q}{\mathit{\epsilon}} \right) = \eta.} & {(1.20)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    It is traditional to write /δ_{η}I/[/q/] simply as /δq/. Another example is
    the variation of the path function that returns the derivative of the path.
    We have[fn:50]
 
    @@html:<span id="disp_1.21"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}g\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{D(q + \mathit{\epsilon}\eta) - Dq}{\mathit{\epsilon}} \right) = D\eta\,\,\,\,\text{with}\,\,\,\, g\lbrack q\rbrack = Dq.} & {(1.21)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    It is traditional to write /δ_{η}g/[/q/] as /δDq/.
 
    The variation may be represented in terms of a derivative. Let /g/(/ϵ/) =
    /f/[/q/ + /ϵη/]; then
 
    @@html:<span id="disp_1.22"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}f\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{g(\mathit{\epsilon}) - g(0)}{\mathit{\epsilon}} \right) = Dg(0).} & {(1.22)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Variations have the following derivative-like properties. For path-dependent
    functions /f/ and /g/ and constant /c/:
 
    @@html:<span id="disp_1.23"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}(f\, g)\lbrack q\rbrack = \delta_{\eta}f\lbrack q\rbrack\,\, g\lbrack q\rbrack + f\lbrack q\rbrack\,\,\delta_{\eta}g\lbrack q\rbrack} & {(1.23)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.24"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}(f + g)\lbrack q\rbrack = \delta_{\eta}f\lbrack q\rbrack\, + \,\,\delta_{\eta}g\lbrack q\rbrack} & {(1.24)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.25"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}(cf)\lbrack q\rbrack = c\,\,\delta_{\eta}f\lbrack q\rbrack.} & {(1.25)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Let /F/ be a path-independent function and /g/ be a path-dependent function;
    then
 
    @@html:<span id="disp_1.26"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}h\lbrack q\rbrack = (DF \circ g\lbrack q\rbrack)\,\,\delta_{\eta}g\lbrack q\rbrack\,\,\,\text{with}\,\,\,\, h\lbrack q\rbrack = F \circ g\lbrack q\rbrack.} & {(1.26)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The operators /D/ (differentiation) and /δ/ (variation) commute in the
    following sense:
 
    @@html:<span id="disp_1.27"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 D{\delta_{\eta}f\lbrack q\rbrack = \delta_{\eta}g\lbrack
    q\rbrack\,\,\,\text{with}\,\,\,\, g\lbrack q\rbrack = D(f\lbrack q\rbrack).}
    & {(1.27)}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
    Variations also commute with integration in a similar sense.
 
    If a path-dependent function /f/ is stationary for a particular path /q/ with
    respect to small changes in that path, then it must be stationary for a
    subset of those variations that results from adding small multiples of a
-   particular function $\eta$ to /q/. So the statement /δ_{η}f/[/q/] = 0 for
-   arbitrary $\eta$ implies the function /f/ is stationary for small variations
+   particular function {{< sicm-math >}}\eta{{< /sicm-math >}} to /q/. So the statement /δ_{η}f/[/q/] = 0 for
+   arbitrary {{< sicm-math >}}\eta{{< /sicm-math >}} implies the function /f/ is stationary for small variations
    of the path around /q/.
 
    @@html:<span id="Exe_1-7"></span>@@
@@ -1120,56 +1120,56 @@ D{\delta_{\eta}f\lbrack q\rbrack = \delta_{\eta}g\lbrack
    The action is the integral of the Lagrangian along a path:
 
    @@html:<span id="disp_1.28"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack.}}} & {(1.28)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    For a realizable path /q/ the variation of the action with respect to any
-   variation $\eta$ that preserves the endpoints, /η/(/t/_{1}) = /η/(/t/_{2}) =
+   variation {{< sicm-math >}}\eta{{< /sicm-math >}} that preserves the endpoints, /η/(/t/_{1}) = /η/(/t/_{2}) =
    0, is zero:
 
    @@html:<span id="disp_1.29"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) = 0.} & {(1.29)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Variation commutes with integration, so the variation of the action is
 
    @@html:<span id="disp_1.30"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{\delta_{\eta}h\lbrack q\rbrack\,\,\,\,\text{where}\,\,\,\, h\lbrack q\rbrack = L \circ \Gamma\lbrack q\rbrack.}}} & {(1.30)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Using the fact that
 
    @@html:<span id="disp_1.31"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}\Gamma\lbrack q\rbrack(t) = (0,\eta(t),D\eta(t)),} & {(1.31)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    which follows from equations ([[/eval/sicm/chapter-1/#disp_1.20][1.20]]) and ([[/eval/sicm/chapter-1/#disp_1.21][1.21]]), and using the chain rule for
    variations ([[/eval/sicm/chapter-1/#disp_1.26][1.26]]), we get[fn:52]
 
    @@html:<span id="disp_1.32"></span>@@
-$$\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{(D\, L \circ \Gamma\lbrack q\rbrack)\delta_{\eta}\Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{((\partial_{1}L \circ \Gamma\lbrack q\rbrack)\eta + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D\eta).}}} & {(1.32)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{(D\, L \circ \Gamma\lbrack q\rbrack)\delta_{\eta}\Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{((\partial_{1}L \circ \Gamma\lbrack q\rbrack)\eta + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D\eta).}}} & {(1.32)}\end{array}{{< /sicm-math >}}
    Integrating the last term of equation ([[/eval/sicm/chapter-1/#disp_1.32][1.32]]) by parts gives
 
    @@html:<span id="disp_1.33"></span>@@
-$$\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) =} & {(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\eta|_{t_{1}}^{t_{2}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\eta.}}} & {(1.33)}\end{array}$$
-   For our variation $\eta$ we have /η/(/t/_{1}) = /η/(/t/_{2}) = 0, so the
+{{< sicm-math display >}}\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) =} & {(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\eta|_{t_{1}}^{t_{2}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\eta.}}} & {(1.33)}\end{array}{{< /sicm-math >}}
+   For our variation {{< sicm-math >}}\eta{{< /sicm-math >}} we have /η/(/t/_{1}) = /η/(/t/_{2}) = 0, so the
    first term vanishes.
 
    Thus the variation of the action is zero if and only if
 
    @@html:<span id="disp_1.34"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {0 = {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\,\eta.}}} & {(1.34)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The variation of the action is zero because, by assumption, /q/ is a
-   realizable path. Thus ([[/eval/sicm/chapter-1/#disp_1.34][1.34]]) must be true for /any/ function $\eta$ that is
-   zero at the endpoints. Since $\eta$ is arbitrary, except for being zero at
+   realizable path. Thus ([[/eval/sicm/chapter-1/#disp_1.34][1.34]]) must be true for /any/ function {{< sicm-math >}}\eta{{< /sicm-math >}} that is
+   zero at the endpoints. Since {{< sicm-math >}}\eta{{< /sicm-math >}} is arbitrary, except for being zero at
    the endpoints, the bracketed factor of the integrand is zero. So
 
    @@html:<span id="disp_1.35"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - (\partial_{1}L \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.35)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    This is just what we set out to obtain, the Lagrange equations.
 
    A path satisfying Lagrange's equations is one for which the action is
@@ -1189,15 +1189,15 @@ $$\begin{aligned}
    For an example, consider the harmonic oscillator. A Lagrangian is
 
    @@html:<span id="disp_1.36"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = \frac{1}{2}mv^{2} - \frac{1}{2}kx^{2}.} & {(1.36)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Then
 
    @@html:<span id="disp_1.37"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{1}L(t,x,v) = - kx\,\,\,\,\,\,\text{and}\,\,\,\,\partial_{2}L(t,x,v) = mv.} & {(1.37)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The Lagrangian is applied to a tuple of the time, a coordinate, and a
    velocity. The symbols /t/, /x/, and /v/ are arbitrary; they are used to
    specify formal parameters of the Lagrangian.
@@ -1207,29 +1207,29 @@ $$\begin{aligned}
    corresponding local tuple at time /t/ is
 
    @@html:<span id="disp_1.38"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Gamma\lbrack y\rbrack(t) = (t,y(t),Dy(t)).} & {(1.38)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    So
 
    @@html:<span id="disp_1.39"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\partial_{1}L \circ \Gamma\lbrack y\rbrack)(t) = - ky(t)\,\,\,\,\,\text{and}\,\,\,\,\,(\partial_{2}L \circ \Gamma\lbrack y\rbrack)(t) = mDy(t),} & {(1.39)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    and
 
    @@html:<span id="disp_1.40"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack y\rbrack)(t) = mD^{2}y(t),} & {(1.40)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    so the Lagrange equation is
 
 
 
    @@html:<span id="disp_1.41"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}y(t) + ky(t) = 0,} & {(1.41)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    which is the equation of motion of the harmonic oscillator.
 
 ** Orbital motion
@@ -1245,46 +1245,46 @@ $$\begin{aligned}
    A Lagrangian for this problem is[fn:53]
 
    @@html:<span id="disp_1.42"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t;\xi,\eta;v_{\xi},v_{\eta}) = \frac{1}{2}m(v_{\xi}^{2} + v_{\eta}^{2}) + \frac{\mu}{\sqrt{\xi^{2} + \eta^{2}}},} & {(1.42)}
-   \end{aligned}$$
-   where $\xi$ and $\eta$ are formal parameters for rectangular coordinates of
+   \end{aligned}{{< /sicm-math >}}
+   where {{< sicm-math >}}\xi{{< /sicm-math >}} and {{< sicm-math >}}\eta{{< /sicm-math >}} are formal parameters for rectangular coordinates of
    the particle, and /v_{ξ}/ and /v_{η}/ are formal parameters for corresponding
    rectangular velocity components. Then
 
    @@html:<span id="disp_1.43"></span>@@
-$$\begin{array}{lll} {\partial_{1}L(t;\xi,\eta;v_{\xi},v_{\eta})} & {= \lbrack\partial_{1,0}L(t;\xi,\eta;v_{\xi},v_{\eta}),\partial_{1,1}L(t;\xi,\eta;v_{\xi},v_{\eta})\rbrack} & \\ & {{= \left\lbrack {\frac{- \mu\xi}{{(\xi^{2} + \eta^{2})}^{3/2}},\frac{- \mu\eta}{{(\xi^{2} + \eta^{2})}^{3/2}}} \right\rbrack}.} & {(1.43)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {\partial_{1}L(t;\xi,\eta;v_{\xi},v_{\eta})} & {= \lbrack\partial_{1,0}L(t;\xi,\eta;v_{\xi},v_{\eta}),\partial_{1,1}L(t;\xi,\eta;v_{\xi},v_{\eta})\rbrack} & \\ & {{= \left\lbrack {\frac{- \mu\xi}{{(\xi^{2} + \eta^{2})}^{3/2}},\frac{- \mu\eta}{{(\xi^{2} + \eta^{2})}^{3/2}}} \right\rbrack}.} & {(1.43)}\end{array}{{< /sicm-math >}}
    Similarly,
 
    @@html:<span id="disp_1.44"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{2}L(t;\xi,\eta;v_{\xi},v_{\eta}) = \lbrack mv_{\xi},mv_{\eta}\rbrack.} & {(1.44)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Now suppose we have a configuration path /q/ = (/x/, /y/), so that the
    coordinate tuple at time /t/ is /q/(/t/) = (/x/(/t/), /y/(/t/)). The initial
    segment of the local tuple at time /t/ is
 
    @@html:<span id="disp_1.45"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Gamma\lbrack q\rbrack(t) = (t;x(t),y(t);Dx(t),Dy(t)).} & {(1.45)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    So
 
    @@html:<span id="disp_1.46"></span>@@
-$$\begin{array}{lll} {(\partial_{1}L \circ \Gamma\lbrack q\rbrack)(t)} & {= \left\lbrack {\frac{- \mu x(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}},\frac{- \mu y(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}}} \right\rbrack} & \\ {(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t)} & {= \lbrack mDx(t),mDy(t)\rbrack} & {(1.46)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {(\partial_{1}L \circ \Gamma\lbrack q\rbrack)(t)} & {= \left\lbrack {\frac{- \mu x(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}},\frac{- \mu y(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}}} \right\rbrack} & \\ {(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t)} & {= \lbrack mDx(t),mDy(t)\rbrack} & {(1.46)}\end{array}{{< /sicm-math >}}
    and
 
    @@html:<span id="disp_1.47"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t) = \lbrack mD^{2}x(t),mD^{2}y(t)\rbrack.} & {(1.47)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The component Lagrange equations at time /t/ are
 
    @@html:<span id="disp_1.48"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}x(t) + \frac{\mu x(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}} = 0} & \\
    {mD^{2}y(t) + \frac{\mu y(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}} = 0.} & {(1.48)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="Exe_1-9"></span>@@
    *Exercise 1.9: Lagrange's equations*
 
@@ -1295,16 +1295,16 @@ $$\begin{aligned}
    pivot by a massless rod of length /l/ subject to uniform gravitational
    acceleration /g/. A Lagrangian is
 
-   $L(t,\theta,\overset{˙}{\theta}) =
-   \frac{1}{2}ml^{2}{\overset{˙}{\theta}}^{2} + mgl\,\,\cos\theta$
+   {{< sicm-math >}}L(t,\theta,\dot{\theta}) =
+   \frac{1}{2}ml^{2}{\dot{\theta}}^{2} + mgl\,\,\cos\theta{{< /sicm-math >}}
 
    . The formal parameters of /L/ are /t/, /θ/, and
 
-   $\overset{˙}{\theta}$
+   {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
    ; /θ/ measures the angle of the pendulum rod to a plumb line and
 
-   $\overset{˙}{\theta}$
+   {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
    is the angular velocity of the rod.[fn:54]
 
@@ -1312,16 +1312,16 @@ $$\begin{aligned}
    /y/) = (/x/^{2} + /y/^{2})/2 + /x/^{2}/y/ − /y/^{3}/3, where /x/ and /y/ are
    rectangular coordinates of the particle. A Lagrangian is
 
-   $L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
-   V(x,y)$
+   {{< sicm-math >}}L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
+   V(x,y){{< /sicm-math >}}
 
    .
 
    *c.* A Lagrangian for a particle of mass /m/ constrained to move on a sphere
    of radius /R/ is
 
-   $L(t;\theta,\varphi;\alpha,\beta) = \frac{1}{2}mR^{2}{({\alpha^{2} +
-   {(\beta\,\sin\theta)}^{2}})}$
+   {{< sicm-math >}}L(t;\theta,\varphi;\alpha,\beta) = \frac{1}{2}mR^{2}{({\alpha^{2} +
+   {(\beta\,\sin\theta)}^{2}})}{{< /sicm-math >}}
 
    . The angle /θ/ is the colatitude of the particle and /φ/ is the longitude;
    the rate of change of the colatitude is /α/ and the rate of change of the
@@ -1348,9 +1348,9 @@ $$\begin{aligned}
    terms are[fn:55]
 
    @@html:<span id="disp_1.49"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}(\partial_{3}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) + \partial_{1}L \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.49)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    In general, these equations, first derived by Poisson, will involve the
    fourth derivative of /q/. Note that the derivation is completely analogous to
    the derivation of the Lagrange equations without accelerations; it is just
@@ -1426,7 +1426,7 @@ $$\begin{aligned}
 (* (((expt D 2) x) t) m)
    #+end_src
 
-   $$mD^{2}x(t)$$
+   {{< sicm-math display >}}mD^{2}x(t){{< /sicm-math >}}
 
    The result is an expression containing the arbitrary time /t/ and mass /m/,
    so it is zero precisely when /D/^{2}/x/ = 0, which is the expected equation
@@ -1442,9 +1442,9 @@ $$\begin{aligned}
    frequency, and phase:
 
    @@html:<span id="disp_1.50"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x(t) = a\,\,\cos(\omega t + \varphi).} & {(1.50)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Suppose we have forgotten how the constants in the solution relate to the
    mass /m/ and spring constant /k/ of the oscillator. Let's plug in the
    proposed solution and look at the residual:
@@ -1457,12 +1457,12 @@ $$\begin{aligned}
 't))
     #+end_src
 
-   $$\cos\,(\omega t + \varphi)\, A\,(k - m\omega^{2})$$
+   {{< sicm-math display >}}\cos\,(\omega t + \varphi)\, A\,(k - m\omega^{2}){{< /sicm-math >}}
 
    The residual here shows that for nonzero amplitude, the only solutions
    allowed are ones where (/k/ − /mω/^{2}) = 0 or
 
-   $\omega = \sqrt{k/m}.$
+   {{< sicm-math >}}\omega = \sqrt{k/m}.{{< /sicm-math >}}
 
    @@html:<span id="Exe_1-11"></span>@@
 
@@ -1485,9 +1485,9 @@ $$\begin{aligned}
    The argument m is the /reduced mass/ of the system
 
    @@html:<span id="disp_1.51"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {m = \frac{m_{1}m_{2}}{m_{1} + m_{2}}.} & {(1.51)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    For gravity, the potential energy function is
 
     #+begin_src scheme
@@ -1501,9 +1501,9 @@ $$\begin{aligned}
    Lagrange equations. Show that the residual gives Kepler's law:
 
    @@html:<span id="disp_1.52"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {n^{2}a^{3} = G(m_{1} + m_{2})} & {(1.52)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    where /n/ is the angular frequency of the orbit and /a/ is the distance
    between the particles.
 
@@ -1533,7 +1533,7 @@ $$\begin{aligned}
 
    *b.* Use your procedure to compute the Lagrange equations for the Lagrangian
 
-   $L(t,x,v,a) = - \frac{1}{2}mxa - \frac{1}{2}kx^{2}.$
+   {{< sicm-math >}}L(t,x,v,a) = - \frac{1}{2}mxa - \frac{1}{2}kx^{2}.{{< /sicm-math >}}
 
    Do you recognize the resulting equation of motion?
 
@@ -1554,60 +1554,60 @@ $$\begin{aligned}
   terms of kinetic and potential energy. The key idea is to construct a
   Lagrangian /L/ such that Lagrange's equations are Newton's equations
 
-  $\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}$
+  {{< sicm-math >}}\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}{{< /sicm-math >}}
 
   .
 
   Suppose our system consists of /N/ particles indexed by /α/, with mass /m_{α}/
   and vector position
 
-  ${\overset{\rightarrow}{x}}_{\alpha}(t)$
+  {{< sicm-math >}}{\overset{\rightarrow}{x}}_{\alpha}(t){{< /sicm-math >}}
 
   . Suppose further that the forces acting on the particles can be written in
   terms of a gradient of a potential energy
 
-  $\mathcal{V}$
+  {{< sicm-math >}}\mathcal{V}{{< /sicm-math >}}
 
   that is a function of the positions of the particles and possibly time, but
   does not depend on the velocities. In other words, the force on particle /α/
   is
 
-  ${\overset{\rightarrow}{F}}_{\alpha} = -
-  {\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}$
+  {{< sicm-math >}}{\overset{\rightarrow}{F}}_{\alpha} = -
+  {\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}{{< /sicm-math >}}
 
   , where
 
-  ${\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}$
+  {{< sicm-math >}}{\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}{{< /sicm-math >}}
 
   is the gradient of
 
-  $\mathcal{V}$
+  {{< sicm-math >}}\mathcal{V}{{< /sicm-math >}}
 
   with respect to the position of the particle with index /α/. We can write
   Newton's equations as
 
   @@html:<span id="disp_1.53"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(m_{\alpha}\, D{\overset{\rightarrow}{x}}_{\alpha})(t) + {\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)) = 0.} & {(1.53)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   Vectors can be represented as tuples of components of the vectors on a
   rectangular basis. So
 
-  ${\overset{\rightarrow}{x}}_{1}(t)$
+  {{< sicm-math >}}{\overset{\rightarrow}{x}}_{1}(t){{< /sicm-math >}}
 
   is represented as the tuple *x*_{1}(/t/). Let /V/ be the potential energy
   function expressed in terms of components:
 
   @@html:<span id="disp_1.54"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {V(t;\mathbf{x}_{0}(t),\ldots,\mathbf{x}_{N - 1}(t)) = \mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)).} & {(1.54)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   Newton's equations are
 
   @@html:<span id="disp_1.55"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(m_{\alpha}\, D\mathbf{x}_{\alpha})(t) + \partial_{1,\alpha}V(t;\mathbf{x}_{0}(t),\ldots,\mathbf{x}_{\alpha}(t),\ldots,\mathbf{x}_{N - 1}(t)) = 0,} & {(1.55)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   where ∂_{1,/α/}/V/ is the partial derivative of /V/ with respect to the
   *x*_{/α/}(/t/) argument slot.
 
@@ -1616,16 +1616,16 @@ $$\begin{aligned}
   *x*_{/N/−1}(/t/)). The Lagrange equations for the coordinate path /x/ are
 
   @@html:<span id="disp_1.56"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack x\rbrack) - \partial_{1}L \circ \Gamma\lbrack x\rbrack = 0.} & {(1.56)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   Observe that Newton's equations ([[/eval/sicm/chapter-1/#disp_1.55][1.55]]) are
   just the components of the Lagrange equations
   ([[/eval/sicm/chapter-1/#disp_1.56][1.56]]) if we choose /L/ to have the
   properties
 
   @@html:<span id="disp_1.57"></span>@@
-$$\begin{array}{lll} {(\partial_{2}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack m_{0}D\mathbf{x}_{0}(t),\ldots,m_{N - 1}D\mathbf{x}_{N - 1}(t)\rbrack} & \\ {(\partial_{1}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack - \partial_{1,0}V(t,x(t)),\ldots, - \partial_{1,N - 1}V(t,x(t))\rbrack;} & {(1.57)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {(\partial_{2}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack m_{0}D\mathbf{x}_{0}(t),\ldots,m_{N - 1}D\mathbf{x}_{N - 1}(t)\rbrack} & \\ {(\partial_{1}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack - \partial_{1,0}V(t,x(t)),\ldots, - \partial_{1,N - 1}V(t,x(t))\rbrack;} & {(1.57)}\end{array}{{< /sicm-math >}}
   here /V/ (/t/, /x/(/t/)) = /V/ (/t/; *x*_{0}(/t/), ..., *x*_{/N/−1}(/t/)) and
   ∂_{1,/α/}/V/ (/t/, /x/(/t/)) is the tuple of the components of the derivative
   of /V/ with respect to the coordinates of the particle with index /α/,
@@ -1635,31 +1635,31 @@ $$\begin{array}{lll} {(\partial_{2}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbr
 
 
   @@html:<span id="disp_1.58"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{2}L(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N -
   1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})} & \\ {\,\,\,\,\,\,\,\,\,\,{=
   \lbrack m_{0}\mathbf{v}_{0},\ldots,m_{N - 1}\mathbf{v}_{N - 1}\rbrack}} &
   {(1.58)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   and
 
   @@html:<span id="disp_1.59"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{1}L(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})} & \\
-  {\text{           } = \lbrack - \partial_{1,0}V(t,x),\ldots, - \partial_{1,N - 1}V(t,x)\rbrack,} & {(1.59)}
-  \end{aligned}$$
+  {\text{} = \lbrack - \partial_{1,0}V(t,x),\ldots, - \partial_{1,N - 1}V(t,x)\rbrack,} & {(1.59)}
+  \end{aligned}{{< /sicm-math >}}
   where /x/ = (*x*_{0}, ..., *x*_{/N/−1}). One choice for /L/ that has the
   required properties
   ([[/eval/sicm/chapter-1/#disp_1.58][1.58]]--[[/eval/sicm/chapter-1/#disp_1.59][1.59]])
   is
 
   @@html:<span id="disp_1.60"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = \frac{1}{2}{\sum\limits_{\alpha}{m_{\alpha}v_{\alpha}^{2} - V(t,x),}}} & {(1.60)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   where
 
-  $v_{\alpha}^{2}$
+  {{< sicm-math >}}v_{\alpha}^{2}{{< /sicm-math >}}
 
   is the sum of the squares of the components of *v*_{/α/}.[fn:59]
 
@@ -1684,8 +1684,8 @@ $$\begin{aligned}
    velocity-independent potential energy evolves along a path /q/ for which the
    action
 
-   $S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack
-   q\rbrack}}$
+   {{< sicm-math >}}S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack
+   q\rbrack}}{{< /sicm-math >}}
 
 
 
@@ -1695,13 +1695,13 @@ $$\begin{aligned}
 
    It might seem that we have reduced Lagrange's equations to nothing more than
 
-   $\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}$
+   {{< sicm-math >}}\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}{{< /sicm-math >}}
 
    , and indeed, the principle is motivated by comparing the two equations for
    this special class of systems. However, the Lagrangian formulation of the
    equations of motion has an important advantage over
 
-   $\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}$
+   {{< sicm-math >}}\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}{{< /sicm-math >}}
 
    . Our derivation used the rectangular components *x*_{/α/} of the positions
    of the constituent particles for the generalized coordinates, but if the
@@ -1713,11 +1713,11 @@ $$\begin{aligned}
    contrast, the Newtonian formulation is based on elementary geometry: In order
    for
 
-   $D^{2}\overset{\rightarrow}{x}(t)$
+   {{< sicm-math >}}D^{2}\overset{\rightarrow}{x}(t){{< /sicm-math >}}
 
    to be meaningful as an acceleration,
 
-   $\overset{\rightarrow}{x}(t)$
+   {{< sicm-math >}}\overset{\rightarrow}{x}(t){{< /sicm-math >}}
 
    must be a vector in physical space. Lagrange's equations have no such
    restriction on the meaning of the coordinate /q/. The generalized coordinates
@@ -1735,14 +1735,14 @@ $$\begin{aligned}
    acceleration /g/. The potential energy is /mgh/ where /h/ is the height of
    the particle. The kinetic energy is just
 
-   $\frac{1}{2}mv^{2}$
+   {{< sicm-math >}}\frac{1}{2}mv^{2}{{< /sicm-math >}}
 
    . A Lagrangian for the system is the difference of the kinetic and potential
    energies. In rectangular coordinates, with /y/ measuring the vertical
    position and /x/ measuring the horizontal position, the Lagrangian is
 
-   $L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
-   mgy$
+   {{< sicm-math >}}L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
+   mgy{{< /sicm-math >}}
 
    . We have[fn:62]
 
@@ -1754,7 +1754,7 @@ $$\begin{aligned}
 'y))) 't))
     #+end_src
 
-   $$\begin{bmatrix} {mD^{2}x\,(t)} {gm + mD^{2}y\,(t)} \end{bmatrix}$$
+   {{< sicm-math display >}}\begin{bmatrix} {mD^{2}x\,(t)} {gm + mD^{2}y\,(t)} \end{bmatrix}{{< /sicm-math >}}
 
    This equation describes unaccelerated motion in the horizontal direction
    (/mD/^{2}/x/(/t/) = 0) and constant acceleration in the vertical direction
@@ -1773,18 +1773,18 @@ $$\begin{aligned}
    In rectangular coordinates (/x/, /y/), with origin at the center of
    attraction, the potential energy is
 
-   $V(t;x,y) = U(\sqrt{x^{2} + y^{2}})$
+   {{< sicm-math >}}V(t;x,y) = U(\sqrt{x^{2} + y^{2}}){{< /sicm-math >}}
 
    and the kinetic energy is
 
-   $T(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right)$
+   {{< sicm-math >}}T(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right){{< /sicm-math >}}
 
    . A Lagrangian for the system is /L/ = /T/ − /V/:
 
    @@html:<span id="disp_1.61"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) - U(\sqrt{x^{2} + y^{2}}).} & {(1.61)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    As a procedure:
 
     #+begin_src scheme
@@ -1801,22 +1801,22 @@ $$\begin{aligned}
    (literal-function 'y))) 't))
     #+end_src
 
-   $$\left\lbrack \begin{array}{l} {mD^{2}x(t) + \frac{DU\left( \sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}} \right)\, x(t)}{\sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}}}} {mD^{2}y(t) + \frac{DU\left( \sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}} \right)\, y(t)}{\sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}}}} \end{array}
-   \right\rbrack$$
+   {{< sicm-math display >}}\left\lbrack \begin{array}{l} {mD^{2}x(t) + \frac{DU\left( \sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}} \right)\, x(t)}{\sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}}}} {mD^{2}y(t) + \frac{DU\left( \sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}} \right)\, y(t)}{\sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}}}} \end{array}
+   \right\rbrack{{< /sicm-math >}}
 
    We can rewrite these Lagrange equations as:
 
    @@html:<span id="disp_1.62"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}x(t) = - \frac{x(t)}{r(t)}DU(r(t))} & {(1.62)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.63"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}y(t) = - \frac{y(t)}{r(t)}DU(r(t)),} & {(1.63)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    where
 
-   $r(t) = \sqrt{{(x(t))}^{2} + {(y(t))}^{2}}$
+   {{< sicm-math >}}r(t) = \sqrt{{(x(t))}^{2} + {(y(t))}^{2}}{{< /sicm-math >}}
 
    . We can interpret these as follows. The particle is subject to a radially
    directed force with magnitude −/DU/(/r/). Newton's equations equate the force
@@ -1826,92 +1826,92 @@ $$\begin{aligned}
 
 
    We can describe the same system in polar coordinates. The relationship
-   between rectangular coordinates $(x, y)$ and polar coordinates $(r, \varphi)$
+   between rectangular coordinates {{< sicm-math >}}(x, y){{< /sicm-math >}} and polar coordinates {{< sicm-math >}}(r, \varphi){{< /sicm-math >}}
    is
 
    @@html:<span id="disp_1.64"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 \begin{aligned}
    {x = r\cos \varphi} & \\
    {y = r\sin \varphi} & {(1.64)}
    \end{aligned}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The relationship of the generalized velocities is derived from the coordinate
    transformation. Consider a configuration path that is represented in both
    rectangular and polar coordinates. Let
 
-   $\widetilde{x}$
+   {{< sicm-math >}}\widetilde{x}{{< /sicm-math >}}
 
    and
 
-   $\widetilde{y}$
+   {{< sicm-math >}}\widetilde{y}{{< /sicm-math >}}
 
    be components of the rectangular coordinate path, and let
 
-   $\widetilde{r}$
+   {{< sicm-math >}}\widetilde{r}{{< /sicm-math >}}
 
    and
 
-   $\widetilde{\varphi}$
+   {{< sicm-math >}}\widetilde{\varphi}{{< /sicm-math >}}
 
    be components of the corresponding polar coordinate path. The rectangular
    components at time /t/ are
 
-   $(\widetilde{x}(t),\widetilde{y}(t))$
+   {{< sicm-math >}}(\widetilde{x}(t),\widetilde{y}(t)){{< /sicm-math >}}
 
    and the polar coordinates at time /t/ are
 
-   $(\widetilde{r}(t),\widetilde{\varphi}(t))$
+   {{< sicm-math >}}(\widetilde{r}(t),\widetilde{\varphi}(t)){{< /sicm-math >}}
 
    . They are related by ([[/eval/sicm/chapter-1/#disp_1.64][1.64]]):
 
    @@html:<span id="disp_1.65"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\widetilde{x}(t) = \widetilde{r}(t)\cos\widetilde{\varphi}(t)} & \\
    {\widetilde{y}(t) = \widetilde{r}(t)\sin\widetilde{\varphi}(t).} & {(1.65)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The rectangular velocity at time /t/ is
 
-   $(D\widetilde{x}(t),\,\, D\widetilde{y}(t))$
+   {{< sicm-math >}}(D\widetilde{x}(t),\,\, D\widetilde{y}(t)){{< /sicm-math >}}
 
    . Differentiating ([[/eval/sicm/chapter-1/#disp_1.65][1.65]]) gives the relationship among the velocities
 
    @@html:<span id="disp_1.66"></span>@@
-$$\begin{array}{lll} {D\widetilde{x}(t)} & {= D\widetilde{r}(t)\,\cos\,\widetilde{\varphi}(t) - \widetilde{r}(t)D\widetilde{\varphi}(t)\,\sin\,\widetilde{\varphi}(t)} & \\ {D\widetilde{y}(t)} & {= D\widetilde{r}(t)\,\sin\,\widetilde{\varphi}(t) + \widetilde{r}(t)D\widetilde{\varphi}(t)\,\cos\,\widetilde{\varphi}(t).} & {(1.66)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {D\widetilde{x}(t)} & {= D\widetilde{r}(t)\,\cos\,\widetilde{\varphi}(t) - \widetilde{r}(t)D\widetilde{\varphi}(t)\,\sin\,\widetilde{\varphi}(t)} & \\ {D\widetilde{y}(t)} & {= D\widetilde{r}(t)\,\sin\,\widetilde{\varphi}(t) + \widetilde{r}(t)D\widetilde{\varphi}(t)\,\cos\,\widetilde{\varphi}(t).} & {(1.66)}\end{array}{{< /sicm-math >}}
    These relations are valid for any configuration path at any moment, so we can
    abstract them to relations among coordinate representations of an arbitrary
    velocity. Let /v_{x}/ and /v_{y}/ be the rectangular components of the
    velocity and
 
-   $\overset{˙}{r}$
+   {{< sicm-math >}}\dot{r}{{< /sicm-math >}}
 
    and
 
-   $\overset{˙}{\varphi}$
+   {{< sicm-math >}}\dot{\varphi}{{< /sicm-math >}}
 
    be the rate of change of /r/ and /φ/. Then
 
    @@html:<span id="disp_1.67"></span>@@
-$$\begin{aligned}
-{v_{x} = \overset{˙}{r}\cos\varphi - r\overset{˙}{\varphi}\sin\varphi} & \\
-   {v_{y} = \overset{˙}{r}\sin\varphi + r\overset{˙}{\varphi}\cos\varphi.} & {(1.67)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{v_{x} = \dot{r}\cos\varphi - r\dot{\varphi}\sin\varphi} & \\
+   {v_{y} = \dot{r}\sin\varphi + r\dot{\varphi}\cos\varphi.} & {(1.67)}
+   \end{aligned}{{< /sicm-math >}}
    The kinetic energy is
 
-   $\frac{1}{2}m(v_{x}^{2} + v_{y}^{2})$
+   {{< sicm-math >}}\frac{1}{2}m(v_{x}^{2} + v_{y}^{2}){{< /sicm-math >}}
 
    :
 
    @@html:<span id="disp_1.68"></span>@@
-$$\begin{aligned}
-{T(t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}) = \frac{1}{2}m\left( {{\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\varphi}}^{2}} \right),} & {(1.68)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{T(t;r,\varphi;\dot{r},\dot{\varphi}) = \frac{1}{2}m\left( {{\dot{r}}^{2} + r^{2}{\dot{\varphi}}^{2}} \right),} & {(1.68)}
+   \end{aligned}{{< /sicm-math >}}
    and the Lagrangian is
 
    @@html:<span id="disp_1.69"></span>@@
-$$\begin{aligned}
-{L(t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}) = \frac{1}{2}m\left( {{\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\varphi}}^{2}} \right) - U(r).} & {(1.69)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L(t;r,\varphi;\dot{r},\dot{\varphi}) = \frac{1}{2}m\left( {{\dot{r}}^{2} + r^{2}{\dot{\varphi}}^{2}} \right) - U(r).} & {(1.69)}
+   \end{aligned}{{< /sicm-math >}}
    We express this Lagrangian as follows:
 
     #+begin_src scheme
@@ -1937,8 +1937,8 @@ $$\begin{aligned}
        (literal-function 'phi))) 't))
     #+end_src
 
-   $$\left\lbrack \begin{array}{l} {mD^{2}r\,(t) - mr\,(t)\,{(D\varphi\,\,(t))}^{2} + DU\,(r\,(t))} {2mDr\,(t)\, r\,(t)\, D\varphi\,(t) + mD^{2}\varphi\,(t)\,{(r\,(t))}^{2}} \end{array}
-   \right\rbrack$$
+   {{< sicm-math display >}}\left\lbrack \begin{array}{l} {mD^{2}r\,(t) - mr\,(t)\,{(D\varphi\,\,(t))}^{2} + DU\,(r\,(t))} {2mDr\,(t)\, r\,(t)\, D\varphi\,(t) + mD^{2}\varphi\,(t)\,{(r\,(t))}^{2}} \end{array}
+   \right\rbrack{{< /sicm-math >}}
 
    We can interpret the first equation as saying that the product of the mass
    and the radial acceleration is the sum of the force due to the potential and
@@ -1988,9 +1988,9 @@ $$\begin{aligned}
     satisfy:
 
     @@html:<span id="disp_1.70"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime \circ \Gamma\lbrack q\prime\rbrack = L \circ \Gamma\lbrack q\rbrack.} & {(1.70)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     We have seen that the transformation from rectangular to polar coordinates
     implies that the generalized velocities transform in a certain way. The
     velocity transformation can be deduced from the requirement that a path in
@@ -2003,9 +2003,9 @@ $$\begin{aligned}
     system to corresponding local tuples in the unprimed coordinate system:
 
     @@html:<span id="disp_1.71"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {C \circ \Gamma\lbrack q\prime\rbrack = \Gamma\lbrack q\rbrack.} & {(1.71)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     We will deduce the general form of /C/ below.
 
 
@@ -2014,54 +2014,54 @@ $$\begin{aligned}
     satisfies equation ([[/eval/sicm/chapter-1/#disp_1.70][1.70]]) is
 
     @@html:<span id="disp_1.72"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime = L \circ C} & {(1.72)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     We can see this by substituting for /L/′ in equation ([[/eval/sicm/chapter-1/#disp_1.70][1.70]]):
 
     @@html:<span id="disp_1.73"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime \circ \Gamma\lbrack q\prime\rbrack = L \circ C \circ \Gamma\lbrack q\prime\rbrack = L \circ \Gamma\lbrack q\rbrack.} & {(1.73)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     To find the local-tuple transformation /C/ given a coordinate transformation
     /F/, we deduce how each component of the local tuple transforms. The
     coordinate transformation specifies how the coordinate component of the
     local tuple transforms
 
     @@html:<span id="disp_1.74"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x = F(t,x\prime).} & {(1.74)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     The generalized-velocity component of the local-tuple transformation can be
     deduced as follows. Let /q/ and /q/′ be the same configuration path
     expressed in the two coordinate systems. Substituting these paths into the
     coordinate transformation and computing the derivative, we find
 
     @@html:<span id="disp_1.75"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {Dq(t) = \partial_{0}F(t,q\prime(t)) + \partial_{1}F(t,q\prime(t))Dq\prime(t).} & {(1.75)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     Through any point there is always a path of any given velocity, so we may
     generalize and conclude that along corresponding coordinate paths the
     generalized velocities satisfy
 
     @@html:<span id="disp_1.76"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {v = \partial_{0}F(t,x\prime) + \partial_{1}F(t,x\prime)v\prime.} & {(1.76)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     If needed, rules for higher-derivative components of the local tuple can be
     determined in a similar fashion. The local-tuple transformation that takes a
     local tuple in the primed system to a local tuple in the unprimed system is
     constructed from the component transformations:
 
     @@html:<span id="disp_1.77"></span>@@
-$$\begin{array}{lll} {(t,x,v,\ldots)} & {= C(t,x\prime,v\prime,\ldots)} & \\ & {= (t,F(t,x\prime),\,\,\partial_{0}F(t,x\prime) + \partial_{1}F(t,x\prime)v\prime,\ldots).} & {(1.77)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {(t,x,v,\ldots)} & {= C(t,x\prime,v\prime,\ldots)} & \\ & {= (t,F(t,x\prime),\,\,\partial_{0}F(t,x\prime) + \partial_{1}F(t,x\prime)v\prime,\ldots).} & {(1.77)}\end{array}{{< /sicm-math >}}
     So if we take the Lagrangian /L/′ to be
 
     @@html:<span id="disp_1.78"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime = L \circ C,} & {(1.78)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     then the action has a value that is independent of the coordinate system
     used to compute it. The configuration path of stationary action does not
     depend on which coordinate system is used to describe the path. The Lagrange
@@ -2105,9 +2105,9 @@ polar-tuple 0)) (phi (ref polar-tuple 1))) (let ((x
 'phidot)))))
      #+end_src
 
-    $$\begin{pmatrix} {- \overset{˙}{\varphi}r\sin\,(\varphi) +
-    \overset{˙}{r}\cos\,(\varphi)} {\overset{˙}{\varphi}r\cos\,(\varphi) +
-    \overset{˙}{r}\sin\,(\varphi)} \end{pmatrix}$$
+    {{< sicm-math display >}}\begin{pmatrix} {- \dot{\varphi}r\sin\,(\varphi) +
+    \dot{r}\cos\,(\varphi)} {\dot{\varphi}r\cos\,(\varphi) +
+    \dot{r}\sin\,(\varphi)} \end{pmatrix}{{< /sicm-math >}}
 
     We can use F->C to find the Lagrangian for central force motion in polar
     coordinates from the Lagrangian in rectangular components, using equation
@@ -2120,8 +2120,8 @@ polar-tuple 0)) (phi (ref polar-tuple 1))) (let ((x
 
         #+end_src
 
-    $$\frac{1}{2}m{\overset{˙}{\varphi}}^{2}r^{2} +
-    \frac{1}{2}m{\overset{˙}{r}}^{2} - U(r)$$
+    {{< sicm-math display >}}\frac{1}{2}m{\dot{\varphi}}^{2}r^{2} +
+    \frac{1}{2}m{\dot{r}}^{2} - U(r){{< /sicm-math >}}
 
     The result is the same as Lagrangian
     ([[/eval/sicm/chapter-1/#disp_1.69][1.69]]).
@@ -2239,9 +2239,9 @@ x_r) (* 1/2 m (expt xdot_r 2)) (* 1/2 m (expt ydot_r 2)))
    coordinates of particle /α/ are
 
    @@html:<span id="disp_1.79"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathbf{x}_{\alpha} = f_{\alpha}(t,q).} & {(1.79)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    For irredundant coordinates /q/ all the coordinate constraints are built into
    the functions /f_{α}/. We deduce the relationship of the generalized
    velocities /v/ to the velocities of the constituent particles *v*_{/α/} by
@@ -2251,45 +2251,45 @@ $$\begin{aligned}
    1.6.1]]). We find
 
    @@html:<span id="disp_1.80"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v.} & {(1.80)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    We use equations ([[/eval/sicm/chapter-1/#disp_1.79][1.79]]) and
    ([[/eval/sicm/chapter-1/#disp_1.80][1.80]]) to express the kinetic energy in
    terms of the generalized coordinates and velocities. Let
 
-   $\widetilde{T}$
+   {{< sicm-math >}}\widetilde{T}{{< /sicm-math >}}
 
    be the kinetic energy as a function of the rectangular coordinates and
    velocities:
 
    @@html:<span id="disp_1.81"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\widetilde{T}(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1}) = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{v}_{\alpha}^{2},}}} & {(1.81)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    where
 
-   $\mathbf{v}_{\alpha}^{2}$
+   {{< sicm-math >}}\mathbf{v}_{\alpha}^{2}{{< /sicm-math >}}
 
    is the squared magnitude of *v*_{/α/}. As a function of the generalized
    coordinate tuple /q/ and the generalized velocity tuple /v/, the kinetic
    energy is
 
    @@html:<span id="disp_1.82"></span>@@
-$$\begin{array}{lll} {T(t,q,v)} & {= \widetilde{T}(t,f(t,q),\partial_{0}f(t,q) + \partial_{1}f(t,q)v)} & \\ & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v)}^{2}.}}} & {(1.82)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {T(t,q,v)} & {= \widetilde{T}(t,f(t,q),\partial_{0}f(t,q) + \partial_{1}f(t,q)v)} & \\ & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v)}^{2}.}}} & {(1.82)}\end{array}{{< /sicm-math >}}
    Similarly, we use equation ([[/eval/sicm/chapter-1/#disp_1.79][1.79]]) to
    reexpress the potential energy in terms of the generalized coordinates. Let
 
-   $\widetilde{V}(t,x)$
+   {{< sicm-math >}}\widetilde{V}(t,x){{< /sicm-math >}}
 
    be the potential energy at time /t/ in the configuration specified by the
    tuple of rectangular coordinates /x/. Expressed in generalized coordinates
    the potential energy is
 
    @@html:<span id="disp_1.83"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {V(t,q,v) = \widetilde{V}(t,f(t,q)).} & {(1.83)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    We take the Lagrangian to be the difference of the kinetic energy and the
    potential energy: /L/ = /T/ − /V/.
 
@@ -2309,11 +2309,11 @@ $$\begin{aligned}
    The position of the bob is given, in rectangular coordinates, by
 
    @@html:<span id="disp_1.84"></span>@@
-$$\begin{array}{llll} {x = l\sin\theta} & \text{and} & {y = y_{s}(t) - l\cos\theta.} & {(1.84)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{llll} {x = l\sin\theta} & \text{and} & {y = y_{s}(t) - l\cos\theta.} & {(1.84)}\end{array}{{< /sicm-math >}}
    The velocities are
 
    @@html:<span id="disp_1.85"></span>@@
-$$\begin{array}{llll} {v_{x} = l\overset{˙}{\theta}\cos\theta} & \text{and} & {v_{y} = Dy_{s}(t) + l\overset{˙}{\theta}\sin\theta,} & {(1.85)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{llll} {v_{x} = l\dot{\theta}\cos\theta} & \text{and} & {v_{y} = Dy_{s}(t) + l\dot{\theta}\sin\theta,} & {(1.85)}\end{array}{{< /sicm-math >}}
    @@html:<span id="Fig_1-2"></span>@@
    #+caption: *Figure 1.2* The pendulum is driven by vertical motion of the
    pivot. The pivot slides on the /y/-axis. Although the bob is drawn as a blob
@@ -2326,28 +2326,28 @@ $$\begin{array}{llll} {v_{x} = l\overset{˙}{\theta}\cos\theta} & \text{and} & {
 
    The kinetic energy is
 
-   $\widetilde{T}(t;x,y;v_{x},v_{y}) = \frac{1}{2}m(v_{x}^{2} + v_{y}^{2})$
+   {{< sicm-math >}}\widetilde{T}(t;x,y;v_{x},v_{y}) = \frac{1}{2}m(v_{x}^{2} + v_{y}^{2}){{< /sicm-math >}}
 
    . Expressed in generalized coordinates the kinetic energy is
 
    @@html:<span id="disp_1.86"></span>@@
-$$\begin{aligned}
-{T(t,\theta,\overset{˙}{\theta}) = \frac{1}{2}m(l^{2}{\overset{˙}{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2lDy_{s}(t)\overset{˙}{\theta}\sin\theta).} & {(1.86)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{T(t,\theta,\dot{\theta}) = \frac{1}{2}m(l^{2}{\dot{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2lDy_{s}(t)\dot{\theta}\sin\theta).} & {(1.86)}
+   \end{aligned}{{< /sicm-math >}}
    The potential energy is
 
-   $\widetilde{V}(t;x,y) = mgy$
+   {{< sicm-math >}}\widetilde{V}(t;x,y) = mgy{{< /sicm-math >}}
 
    . Expressed in generalized coordinates the potential energy is
 
    @@html:<span id="disp_1.87"></span>@@
-$$\begin{aligned}
-{V(t,\theta,\overset{˙}{\theta}) = gm(y_{s}(t) - l\cos\theta).} & {(1.87)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{V(t,\theta,\dot{\theta}) = gm(y_{s}(t) - l\cos\theta).} & {(1.87)}
+   \end{aligned}{{< /sicm-math >}}
    A Lagrangian is /L/ = /T/ − /V/ :
 
    @@html:<span id="disp_1.88"></span>@@
-$$\begin{array}{lll} {L(t,\theta,\overset{˙}{\theta})} & {= \frac{1}{2}m(l^{2}{\overset{˙}{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2l\, Dy_{s}(t)\overset{˙}{\theta}\sin\theta)} & \\ & {\text{   } - gm(y_{s}(t) - l\cos\theta).} & {(1.88)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {L(t,\theta,\dot{\theta})} & {= \frac{1}{2}m(l^{2}{\dot{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2l\, Dy_{s}(t)\dot{\theta}\sin\theta)} & \\ & {\text{} - gm(y_{s}(t) - l\cos\theta).} & {(1.88)}\end{array}{{< /sicm-math >}}
    The Lagrangian is expressed as
 
     #+begin_src scheme
@@ -2365,8 +2365,8 @@ local)) (theta (coordinate local))) (* m g (- (ys t) (* l (cos theta))))))
 (literal-function 'y_s))) (literal-function 'theta)) 't))
 
   #+end_src
-   $$D^{2}\theta\,(t)\, l^{2}m + D^{2}y_{s}\,(t)\,\,\sin\,(\theta(t))lm +
-   \sin\,(\theta(t))\, glm$$
+   {{< sicm-math display >}}D^{2}\theta\,(t)\, l^{2}m + D^{2}y_{s}\,(t)\,\,\sin\,(\theta(t))lm +
+   \sin\,(\theta(t))\, glm{{< /sicm-math >}}
 
    @@html:<span id="Exe_1-17"></span>@@
 
@@ -2387,9 +2387,9 @@ local)) (theta (coordinate local))) (* m g (- (ys t) (* l (cos theta))))))
    In rectangular coordinates the surface satisfies
 
    @@html:<span id="disp_1.89"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} = 1} & {(1.89)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    for some constants /a/, /b/, and /c/. Identify suitable generalized
    coordinates, formulate a Lagrangian, and find Lagrange's equations.
 
@@ -2449,7 +2449,7 @@ $$\begin{aligned}
    We consider a system of particles. The particle with index /α/ has mass
    /m_{α}/ and position
 
-   ${\overset{\rightarrow}{x}}_{\alpha}(t)$
+   {{< sicm-math >}}{\overset{\rightarrow}{x}}_{\alpha}(t){{< /sicm-math >}}
 
    at time /t/. There may be a very large number of these particles, or just a
    few. Some of the positions may also be specified functions of time, such as
@@ -2458,9 +2458,9 @@ $$\begin{aligned}
    constraints are of the form
 
    @@html:<span id="disp_1.90"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {({\overset{\rightarrow}{x}}_{\alpha}(t) - {\overset{\rightarrow}{x}}_{\beta}(t)) \cdot ({\overset{\rightarrow}{x}}_{\alpha}(t) - {\overset{\rightarrow}{x}}_{\beta}(t)) = l_{\alpha\beta}^{2};} & {(1.90)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    that is, the distance between particles /α/ and /β/ is /l_{αβ}/.
 
    The Newtonian equation of motion for particle /α/ says that the mass times
@@ -2469,16 +2469,16 @@ $$\begin{aligned}
    gradient of the potential energy, and may depend on the positions of the
    other particles and the time. The constraint forces
 
-   ${\overset{\rightarrow}{F}}_{\alpha\beta}$
+   {{< sicm-math >}}{\overset{\rightarrow}{F}}_{\alpha\beta}{{< /sicm-math >}}
 
    are the vector constraint forces associated with the rigid constraint between
    particle /α/ and particle /β/. So
 
    @@html:<span id="disp_1.91"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(m_{\alpha}D{\overset{\rightarrow}{x}}_{\alpha})(t)} & \\
-   {\text{       } = - {\overset{\rightarrow}{\nabla}}_{\overset{\rightarrow}{x}\alpha}\mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)) + {\sum\limits_{\{\beta|\beta\leftrightarrow\alpha\}}{{\overset{\rightarrow}{F}}_{\alpha\beta}(t),}}} & {(1.91)}
-   \end{aligned}$$
+   {\text{} = - {\overset{\rightarrow}{\nabla}}_{\overset{\rightarrow}{x}\alpha}\mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)) + {\sum\limits_{\{\beta|\beta\leftrightarrow\alpha\}}{{\overset{\rightarrow}{F}}_{\alpha\beta}(t),}}} & {(1.91)}
+   \end{aligned}{{< /sicm-math >}}
    where in the summation /β/ ranges over only those particle indices for which
    there are rigid constraints with the particle indexed by /α/; we use the
    notation /β/ ↔ /α/ for the relation that there is a rigid constraint between
@@ -2490,49 +2490,49 @@ $$\begin{aligned}
    we may write
 
    @@html:<span id="disp_1.92"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {{\overset{\rightarrow}{F}}_{\alpha\beta}(t) = F_{\alpha\beta}(t)\frac{{\overset{\rightarrow}{x}}_{\beta}(t) - {\overset{\rightarrow}{x}}_{\alpha}(t)}{l_{\alpha\beta}}} & {(1.92)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    where /F_{αβ}/(/t/) is the scalar magnitude of the tension in the constraint
    at time /t/. Note that
 
-   ${\overset{\rightarrow}{F}}_{\alpha\beta} = -
-   {\overset{\rightarrow}{F}}_{\beta\alpha}$
+   {{< sicm-math >}}{\overset{\rightarrow}{F}}_{\alpha\beta} = -
+   {\overset{\rightarrow}{F}}_{\beta\alpha}{{< /sicm-math >}}
 
    . In general, the scalar constraint forces change as the system evolves.
 
    Formally, we can reproduce Newton's equations with the Lagrangian[fn:66]
 
    @@html:<span id="disp_1.93"></span>@@
-$$\begin{array}{lll} {L(t;x,F;\overset{˙}{x},\overset{˙}{F}) =} & {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{\overset{˙}{x}}_{\alpha}^{2} - V(t,x)}} & \\ & {- {\sum\limits_{\{\alpha,\beta|\alpha < \beta,\alpha\leftrightarrow\beta\}}{\frac{F_{\alpha\beta}}{2l_{\alpha\beta}}\lbrack{(\mathbf{x}_{\beta} - \mathbf{x}_{\alpha})}^{2} - l_{\alpha\beta}^{2}\rbrack}}} & {(1.93)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {L(t;x,F;\dot{x},\dot{F}) =} & {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{\dot{x}}_{\alpha}^{2} - V(t,x)}} & \\ & {- {\sum\limits_{\{\alpha,\beta|\alpha < \beta,\alpha\leftrightarrow\beta\}}{\frac{F_{\alpha\beta}}{2l_{\alpha\beta}}\lbrack{(\mathbf{x}_{\beta} - \mathbf{x}_{\alpha})}^{2} - l_{\alpha\beta}^{2}\rbrack}}} & {(1.93)}\end{array}{{< /sicm-math >}}
    where the constraint forces are being treated as additional generalized
    coordinates. Here /x/ is a structure composed of all the rectangular
    components *x*_{/α/} of all the
 
-   ${\overset{\rightarrow}{x}}_{\alpha},\overset{˙}{x}$
+   {{< sicm-math >}}{\overset{\rightarrow}{x}}_{\alpha},\dot{x}{{< /sicm-math >}}
 
    is a structure composed of all the rectangular components
 
-   $\mathbf{\overset{˙}{x}}_{\alpha}$
+   {{< sicm-math >}}\mathbf{\dot{x}}_{\alpha}{{< /sicm-math >}}
 
    of all the velocity vectors
 
-   ${\overset{\rightarrow}{v}}_{\alpha}$
+   {{< sicm-math >}}{\overset{\rightarrow}{v}}_{\alpha}{{< /sicm-math >}}
 
    , and /F/ is a structure composed of all the /F_{αβ}/. The velocity of /F/
    does not appear in the Lagrangian, and /F/ itself appears only linearly. So
    the Lagrange equations associated with /F/ are
 
    @@html:<span id="disp_1.94"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {{(\mathbf{x}_{\beta}(t) - \mathbf{x}_{\alpha}(t))}^{2} - l_{\alpha\beta}^{2} = 0} & {(1.94)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    but this is just a restatement of the constraints. The Lagrange equations for
    the coordinates of the particles are Newton's equations
    ([[/eval/sicm/chapter-1/#disp_1.91][1.91]])
 
    @@html:<span id="disp_1.95"></span>@@
-$$\begin{array}{lll} {D(mD\mathbf{x}_{\alpha})(t)} & {= - \partial_{1,\alpha}V(t,x(t))} & \\ & {\,\,\,\,\,\,\,\, + {\sum\limits_{\{\beta|\alpha\leftrightarrow\beta\}}{F_{\alpha\beta}(t)\frac{\mathbf{x}_{\beta}(t) - \mathbf{x}_{\alpha}(t)}{l_{\alpha\beta}}}}.} & {(1.95)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {D(mD\mathbf{x}_{\alpha})(t)} & {= - \partial_{1,\alpha}V(t,x(t))} & \\ & {\,\,\,\,\,\,\,\, + {\sum\limits_{\{\beta|\alpha\leftrightarrow\beta\}}{F_{\alpha\beta}(t)\frac{\mathbf{x}_{\beta}(t) - \mathbf{x}_{\alpha}(t)}{l_{\alpha\beta}}}}.} & {(1.95)}\end{array}{{< /sicm-math >}}
    Now that we have a suitable Lagrangian, we can use the fact that Lagrangians
    can be reexpressed in any generalized coordinates to find a simpler
    Lagrangian. The strategy is to choose a new set of coordinates for which many
@@ -2552,9 +2552,9 @@ $$\begin{array}{lll} {D(mD\mathbf{x}_{\alpha})(t)} & {= - \partial_{1,\alpha}V(t
    constituent particles in terms of /q/ and /c/:
 
    @@html:<span id="disp_1.96"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathbf{x}_{\alpha} = f_{\alpha}(t,q,c).} & {(1.96)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    To reexpress the Lagrangian in terms of /q/, /c/, and /F/, we need to find
    *v*_{/α/} in terms of the generalized velocities
 
@@ -2568,33 +2568,33 @@ $$\begin{aligned}
    arbitrary velocities (see [[/eval/sicm/chapter-1/#h3_1-6-1][section 1.6.1]]):
 
    @@html:<span id="disp_1.97"></span>@@
-$$\begin{aligned}
-{\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\overset{˙}{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\overset{˙}{c}.} & {(1.97)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\dot{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\dot{c}.} & {(1.97)}
+   \end{aligned}{{< /sicm-math >}}
    Substituting these into Lagrangian
    ([[/eval/sicm/chapter-1/#disp_1.93][1.93]]), and using
 
    @@html:<span id="disp_1.98"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {c_{\alpha\beta}^{2} = {(\mathbf{x}_{\beta} - \mathbf{x}_{\alpha})}^{2},} & {(1.98)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    we find
 
    @@html:<span id="disp_1.99"></span>@@
-$$\begin{aligned}
-{L\prime(t;q,c,F;\overset{˙}{q},\overset{˙}{c},\overset{˙}{F})} & \\
-   {\,\,\,\,\,\,\,\,\,\, = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\overset{˙}{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\overset{˙}{c})}^{2}}}} & \\
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t;q,c,F;\dot{q},\dot{c},\dot{F})} & \\
+   {\,\,\,\,\,\,\,\,\,\, = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\dot{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\dot{c})}^{2}}}} & \\
    {\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, - V(t,f(t,q,c)) - {\sum\limits_{\{\alpha,\beta|\alpha < \beta,\alpha\leftrightarrow\beta\}}{\frac{F_{\alpha\beta}}{2l_{\alpha\beta}}\lbrack c_{\alpha\beta}^{2} - l_{\alpha\beta}^{2}\rbrack.}}} & {(1.99)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The Lagrange equations are derived by the usual procedure. Rather than write
    out all the gory details, let's think about how it will go.
 
    The Lagrange equations associated with /F/ just restate the constraints:
 
    @@html:<span id="disp_1.100"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {0 = c_{\alpha\beta}^{2}(t) - l_{\alpha\beta}^{2}} & {(1.100)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    and consequently we know that along a solution path, /c/(/t/) = /l/ and
    /Dc/(/t/) = /D/^{2}/c/(/t/) = 0. We can use this result to simplify the
    Lagrange equations associated with /q/ and /c/.
@@ -2603,7 +2603,7 @@ $$\begin{aligned}
    derived from the Lagrangian[fn:68]
 
    @@html:<span id="disp_1.101"></span>@@
-$$\begin{array}{lll} {L''(t,q,\overset{˙}{q})} & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,l) + \partial_{1}f_{\alpha}(t,q,l)\,\,\overset{˙}{q})}^{2}}}} & \\ & {\,\,\, - V(t,f(t,q,l)),} & {(1.101)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {L''(t,q,\dot{q})} & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,l) + \partial_{1}f_{\alpha}(t,q,l)\,\,\dot{q})}^{2}}}} & \\ & {\,\,\, - V(t,f(t,q,l)),} & {(1.101)}\end{array}{{< /sicm-math >}}
    but this is exactly /T/ − /V/ where /T/ and /V/ are computed from the
    generalized coordinates /q/, with fixed constraints. Notice that the
    constraint forces do not appear in the Lagrange equations for /q/ because in
@@ -2634,7 +2634,7 @@ $$\begin{array}{lll} {L''(t,q,\overset{˙}{q})} & {= {\sum\limits_{\alpha}{\frac
    generalized to allow distance constraints to time-dependent positions, by
    making some of the positions of particles
 
-   ${\overset{\rightarrow}{x}}_{\beta}$
+   {{< sicm-math >}}{\overset{\rightarrow}{x}}_{\beta}{{< /sicm-math >}}
 
    be specified functions of time.
 
@@ -2662,7 +2662,7 @@ $$\begin{array}{lll} {L''(t,q,\overset{˙}{q})} & {= {\sum\limits_{\alpha}{\frac
 
    *b.* Write the formal Lagrangian
 
-   $L(t;x_{0},y_{0},x_{1},y_{1},F;{\overset{˙}{x}}_{0},{\overset{˙}{y}}_{0},{\overset{˙}{x}}_{1},{\overset{˙}{y}}_{1},\overset{˙}{F})$
+   {{< sicm-math >}}L(t;x_{0},y_{0},x_{1},y_{1},F;{\dot{x}}_{0},{\dot{y}}_{0},{\dot{x}}_{1},{\dot{y}}_{1},\dot{F}){{< /sicm-math >}}
 
    such that Lagrange's equations will yield the Newton's equations you derived
    in part *a*.
@@ -2748,10 +2748,10 @@ $$\begin{array}{lll} {L''(t,q,\overset{˙}{q})} & {= {\sum\limits_{\alpha}{\frac
     particle with index /α/, and let *v*_{/α/} be its velocity. The Lagrangian
 
     @@html:<span id="disp_1.102"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L_{f}(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})} & \\
     {\,\,\,\,\,\,\, = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{v}_{\alpha}^{2} - V(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})}}} & {(1.102)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     is the difference of kinetic and potential energies of the constituent
     particles. This is a suitable Lagrangian for a set of unconstrained free
     particles with potential energy /V/.
@@ -2768,18 +2768,18 @@ $$\begin{aligned}
     [[/eval/sicm/chapter-1/#h3_1-6-1][section 1.6.1]])
 
     @@html:<span id="disp_1.103"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1}) = C(t,q,v).} & {(1.103)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     A Lagrangian for the constrained system can be obtained from the Lagrangian
     for the unconstrained system by composing it with the local-tuple
     transformation function from constrained coordinates to unconstrained
     coordinates:
 
     @@html:<span id="disp_1.104"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L = L_{f} \circ C.} & {(1.104)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     The constraints enter only in the transformation.
 
     To illustrate this we will find a Lagrangian for the driven pendulum
@@ -2789,9 +2789,9 @@ $$\begin{aligned}
     potential with acceleration /g/ is
 
     @@html:<span id="disp_1.105"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L_{f}\left( {t;x,y;v_{x},v_{y}} \right) = \frac{1}{2}m(v_{x}^{2} + v_{y}^{2}) - mgy,} & {(1.105)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     where /y/ measures the height of the point mass. A program that computes
     this Lagrangian is
 
@@ -2828,10 +2828,10 @@ y))))
 'thetadot)))
      #+end_src
 
-    $$glm\,\cos\,(\theta) - gmy_{s}\,(t) +
-    \frac{1}{2}l^{2}m{\overset{˙}{\theta}}^{2} +
-    lm\overset{˙}{\theta}Dy_{s}\,(t)\sin\left( \theta \right) +
-    \frac{1}{2}m{(Dy_{s}(t))}^{2}$$
+    {{< sicm-math display >}}glm\,\cos\,(\theta) - gmy_{s}\,(t) +
+    \frac{1}{2}l^{2}m{\dot{\theta}}^{2} +
+    lm\dot{\theta}Dy_{s}\,(t)\sin\left( \theta \right) +
+    \frac{1}{2}m{(Dy_{s}(t))}^{2}{{< /sicm-math >}}
 
     This is the same as the Lagrangian of equation
     ([[/eval/sicm/chapter-1/#disp_1.88][1.88]]) on
@@ -2875,7 +2875,7 @@ y))))
     can choose the longitude to be zero, so the angular position of the support
     of the bob is rotated by Ω/t/. The transformation of coordinates is:[fn:69]
 
-    $(x,y,z) = R_{z}(\Omega t)R_{y}(\phi)(x_{0},y_{0},z_{0}).$
+    {{< sicm-math >}}(x,y,z) = R_{z}(\Omega t)R_{y}(\phi)(x_{0},y_{0},z_{0}).{{< /sicm-math >}}
 
 
 
@@ -2916,57 +2916,57 @@ phi))))
    function of time and coordinates. The function /F/ on the path at time /t/ is
 
    @@html:<span id="disp_1.106"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(F \circ \Gamma\lbrack q\rbrack)(t) = F(t,q(t)).} & {(1.106)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    So, by the chain rule
 
    @@html:<span id="disp_1.107"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(F \circ \Gamma\lbrack q\rbrack)(t) = \partial_{0}F(t,q(t)) + \partial_{1}F(t,q(t))Dq(t).} & {(1.107)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    More formally, the time derivative of /F/ along a path /q/ is
 
    @@html:<span id="disp_1.108"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(F \circ \Gamma\lbrack q\rbrack) = (DF \circ \Gamma\lbrack q\rbrack)\, D\Gamma\lbrack q\rbrack.} & {(1.108)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Because /F/ depends only on time and coordinates, we have
 
    @@html:<span id="disp_1.109"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {DF \circ \Gamma\lbrack q\rbrack = \lbrack\partial_{0}F \circ \Gamma\lbrack q\rbrack,\partial_{1}F \circ \Gamma\lbrack q\rbrack\rbrack.} & {(1.109)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    So we need only the first two components of /D/Γ[/q/],
 
    @@html:<span id="disp_1.110"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(D\Gamma\lbrack q\rbrack)(t) = (1,Dq(t),D^{2}q(t),\ldots),} & {(1.110)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    to form the product
 
    @@html:<span id="disp_1.111"></span>@@
-$$\begin{array}{lll} {D(F \circ \Gamma\lbrack q\rbrack)} & {= \partial_{0}F \circ \Gamma\lbrack q\rbrack + (\partial_{1}F \circ \Gamma\lbrack q\rbrack)Dq} & \\ & {= (\partial_{0}F + (\partial_{1}F)\overset{˙}{Q}) \circ \Gamma\lbrack q\rbrack,} & {(1.111)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {D(F \circ \Gamma\lbrack q\rbrack)} & {= \partial_{0}F \circ \Gamma\lbrack q\rbrack + (\partial_{1}F \circ \Gamma\lbrack q\rbrack)Dq} & \\ & {= (\partial_{0}F + (\partial_{1}F)\dot{Q}) \circ \Gamma\lbrack q\rbrack,} & {(1.111)}\end{array}{{< /sicm-math >}}
    where
 
-   $\overset{˙}{Q} = I_{2}$
+   {{< sicm-math >}}\dot{Q} = I_{2}{{< /sicm-math >}}
 
    is a selector function:[fn:70]
 
-   $c = \overset{˙}{Q}(a,b,c)$
+   {{< sicm-math >}}c = \dot{Q}(a,b,c){{< /sicm-math >}}
 
    , so
 
-   $Dq = \overset{˙}{Q} \circ \Gamma\lbrack q\rbrack$
+   {{< sicm-math >}}Dq = \dot{Q} \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
    .
 
    The function
 
    @@html:<span id="disp_1.112"></span>@@
-$$\begin{aligned}
-{D_{t}F = \partial_{0}F + (\partial_{1}F)\overset{˙}{Q}} & {(1.112)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{D_{t}F = \partial_{0}F + (\partial_{1}F)\dot{Q}} & {(1.112)}
+   \end{aligned}{{< /sicm-math >}}
    is called the /total time derivative/ of /F/ ; it is a function of three
    arguments: the time, the generalized coordinates, and the generalized
    velocities.
@@ -2977,13 +2977,13 @@ $$\begin{aligned}
    path:
 
    @@html:<span id="disp_1.113"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D_{t}F \circ \Gamma\lbrack q\rbrack = D(F \circ \Gamma\lbrack q\rbrack).} & {(1.113)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The total time derivative /D_{t}F/ is explicitly given by
 
    @@html:<span id="disp_1.114"></span>@@
-$$\begin{array}{lll} {D_{t}F(t,q,v,a,\ldots) =} & {\partial_{0}F(t,q,v,a,\ldots)} & \\ & {+ \partial_{1}F(t,q,v,a,\ldots)v} & \\ & {+ \partial_{2}F(t,q,v,a,\ldots)a + \cdots,} & {(1.114)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {D_{t}F(t,q,v,a,\ldots) =} & {\partial_{0}F(t,q,v,a,\ldots)} & \\ & {+ \partial_{1}F(t,q,v,a,\ldots)v} & \\ & {+ \partial_{2}F(t,q,v,a,\ldots)a + \cdots,} & {(1.114)}\end{array}{{< /sicm-math >}}
    where we take as many terms as needed to exhaust the arguments of /F/.
 
    @@html:<span id="Exe_1-26"></span>@@
@@ -3016,22 +3016,22 @@ $$\begin{array}{lll} {D_{t}F(t,q,v,a,\ldots) =} & {\partial_{0}F(t,q,v,a,\ldots)
    coordinates
 
    @@html:<span id="disp_1.115"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime = L + D_{t}F.} & {(1.115)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The corresponding action integral is
 
    @@html:<span id="disp_1.116"></span>@@
-$$\begin{array}{lll} {S\prime\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{L\prime \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{(L + D_{t}F) \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack + {\int_{t_{1}}^{t_{2}}{D(F \circ \Gamma\lbrack q\rbrack)}}}}} & \\ & {= S\lbrack q\rbrack(t_{1},t_{2}) + (F \circ \Gamma\lbrack q\rbrack)|_{t_{1}}^{t_{2}}.} & {(1.116)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {S\prime\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{L\prime \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{(L + D_{t}F) \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack + {\int_{t_{1}}^{t_{2}}{D(F \circ \Gamma\lbrack q\rbrack)}}}}} & \\ & {= S\lbrack q\rbrack(t_{1},t_{2}) + (F \circ \Gamma\lbrack q\rbrack)|_{t_{1}}^{t_{2}}.} & {(1.116)}\end{array}{{< /sicm-math >}}
    The variational principle states that the action integral along a realizable
    trajectory is stationary with respect to variations of the trajectory that
    leave the configuration at the endpoints fixed. The action integrals
    /S/[/q/](/t/_{1}, /t/_{2}) and /S/′[/q/](/t/_{1}, /t/_{2}) differ by a term
 
    @@html:<span id="disp_1.117"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(F \circ \Gamma\lbrack q\rbrack)|_{t_{1}}^{t_{2}} = F(t_{2},q(t_{2})) - F(t_{1},q(t_{1}))} & {(1.117)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    that depends only on the coordinates and time at the endpoints and these are
    not allowed to vary. Thus, if /S/[/q/](/t/_{1}, /t/_{2}) is stationary for a
    path, then /S/′[/q/](/t/_{1}, /t/_{2}) will also be stationary. So either
@@ -3055,9 +3055,9 @@ $$\begin{aligned}
    derivative
 
    @@html:<span id="disp_1.118"></span>@@
-$$\begin{aligned}
-{D_{t}F = \partial_{0}F + (\partial_{1}F)\overset{˙}{Q}.} & {(1.118)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{D_{t}F = \partial_{0}F + (\partial_{1}F)\dot{Q}.} & {(1.118)}
+   \end{aligned}{{< /sicm-math >}}
    Show explicitly that the Lagrange equations for /D_{t}F/ are identically
    zero, and thus that the addition of /D_{t}F/ to a Lagrangian does not affect
    the Lagrange equations.
@@ -3067,9 +3067,9 @@ $$\begin{aligned}
    (see [[/eval/sicm/chapter-1/#h3_1-6-2][section 1.6.2]]),
 
    @@html:<span id="disp_1.119"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {ml^{2}D^{2}\theta(t) + ml(g + D^{2}y_{s}(t))\,\sin\theta(t) = 0,} & {(1.119)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    has an interesting and suggestive interpretation: it is the same as the
    equation of motion of an undriven pendulum, except that the acceleration of
    gravity /g/ is augmented by the acceleration of the pivot /D/^{2}/y_{s}/.
@@ -3080,25 +3080,25 @@ $$\begin{aligned}
    interpret as the equation of motion:
 
    @@html:<span id="disp_1.120"></span>@@
-$$\begin{aligned}
-{L\prime(t,\theta,\overset{˙}{\theta}) = \frac{1}{2}ml^{2}{\overset{˙}{\theta}}^{2} + ml(g + D^{2}y_{s}(t))\,\cos\theta.} & {(1.120)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t,\theta,\dot{\theta}) = \frac{1}{2}ml^{2}{\dot{\theta}}^{2} + ml(g + D^{2}y_{s}(t))\,\cos\theta.} & {(1.120)}
+   \end{aligned}{{< /sicm-math >}}
    With this Lagrangian it is apparent that the effect of the accelerating pivot
    is to modify the acceleration of gravity. Note, however, that it is not the
    difference of the kinetic and potential energies. Let's compare the two
    Lagrangians for the driven pendulum. The difference Δ/L/ = /L/ − /L/′ is
 
    @@html:<span id="disp_1.121"></span>@@
-$$\begin{array}{lll} {\Delta L(t,\theta,\overset{˙}{\theta}) =} & {\frac{1}{2}m{(Dy_{s}(t))}^{2} + mlDy_{s}(t)\overset{˙}{\theta}\,\sin\theta} & \\ & {- gmy_{s}(t) - mlD^{2}y_{s}(t)\,\cos\theta.} & {(1.121)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {\Delta L(t,\theta,\dot{\theta}) =} & {\frac{1}{2}m{(Dy_{s}(t))}^{2} + mlDy_{s}(t)\dot{\theta}\,\sin\theta} & \\ & {- gmy_{s}(t) - mlD^{2}y_{s}(t)\,\cos\theta.} & {(1.121)}\end{array}{{< /sicm-math >}}
    The two terms in Δ/L/ that depend on neither /θ/ nor
 
-   $\overset{˙}{\theta}$
+   {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
    do not affect the equations of motion. The remaining two terms are the total
    time derivative of the function /F/ (/t/, /θ/) = −/mlDy_{s}/(/t/) cos /θ/,
    which does not depend on
 
-   $\overset{˙}{\theta}$
+   {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
    . The addition of such terms to a Lagrangian does not affect the equations of
    motion.
@@ -3116,9 +3116,9 @@ $$\begin{array}{lll} {\Delta L(t,\theta,\overset{˙}{\theta}) =} & {\frac{1}{2}m
    must be linear in the generalized velocities
 
    @@html:<span id="disp_1.122"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {G(t,q,v) = G_{0}(t,q,v) + G_{1}(t,q,v)\, v} & {(1.122)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    where neither /G/_{1} nor /G/_{0} depends on the generalized velocities:
    ∂_{2}/G/_{1} = ∂_{2}/G/_{0} = 0.
 
@@ -3126,24 +3126,24 @@ $$\begin{aligned}
    /G/_{0} = ∂_{0}/F/, so
 
    @@html:<span id="disp_1.123"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{0}G_{1} = \partial_{0}\partial_{1}F} & \\
    {\partial_{1}G_{0} = \partial_{1}\partial_{0}F.} & {(1.123)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The partial derivative with respect to the time argument does not have
    structure, so ∂_{0}∂_{1}/F/ = ∂_{1}∂_{0}/F/. So if /G/ is the total time
    derivative of /F/ then
 
    @@html:<span id="disp_1.124"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{0}G_{1} = \partial_{1}G_{0}.} & {(1.124)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Furthermore, /G/_{1} = ∂_{1}/F/, so
 
    @@html:<span id="disp_1.125"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{1}G_{1} = \partial_{1}\partial_{1}F.} & {(1.125)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    If there is more than one degree of freedom these partials are actually
    structures of partial derivatives with respect to each coordinate. The
    partial derivatives with respect to two different coordinates must be the
@@ -3185,7 +3185,7 @@ $$\begin{aligned}
 
    We have taken the kinetic energy of a set of particles indexed by /α/ to be
 
-   $\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}$
+   {{< sicm-math >}}\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}{{< /sicm-math >}}
 
    . This form is Galilean invariant.
 
@@ -3193,28 +3193,28 @@ $$\begin{aligned}
    their kinetic energies:
 
    @@html:<span id="disp_1.126"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t,x,v) = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}.}}} & {(1.126)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Carry out a coordinate transformation from old to new coordinates that
    consists of a shift and a uniform translation
 
    @@html:<span id="disp_1.127"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x_{\alpha} = x_{\alpha}^{\prime} + \Delta x + \Delta vt.} & {(1.127)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Derive the Lagrangian in new coordinates.
 
    *b.* The new Lagrangian can be put in the form
 
-   $\sum_{\alpha}{\frac{1}{2}m_{\alpha}{(v_{\alpha}^{\prime})}^{2}}$
+   {{< sicm-math >}}\sum_{\alpha}{\frac{1}{2}m_{\alpha}{(v_{\alpha}^{\prime})}^{2}}{{< /sicm-math >}}
 
    plus some additional terms. Show that the additional terms are a total time
    derivative.
 
    Thus the kinetic energy can be taken to be
 
-   $\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}$
+   {{< sicm-math >}}\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}{{< /sicm-math >}}
 
    in any uniformly moving coordinate system.
 
@@ -3262,19 +3262,19 @@ $$\begin{aligned}
   acceleration /a/ = /A/(/t/, /q/, /v/), then
 
   @@html:<span id="disp_1.128"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}q = A \circ \Gamma\lbrack q\rbrack,} & {(1.128)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   and we have as a consequence
 
   @@html:<span id="disp_1.129"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{3}q = D(A \circ \Gamma\lbrack q\rbrack) = D_{t}A \circ \Gamma\lbrack q\rbrack,} & {(1.129)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   and so on. So the higher-derivative components of the local tuple are given by
   functions
 
-  $D_{t}A,\,\,\, D_{t}^{2}A,\ldots$
+  {{< sicm-math >}}D_{t}A,\,\,\, D_{t}^{2}A,\ldots{{< /sicm-math >}}
 
   . Each of these functions depends on lower-derivative components of the local
   tuple. All we need to deduce the path from the state is a function that gives
@@ -3283,27 +3283,27 @@ $$\begin{aligned}
 
   First, we expand the Lagrange equations
 
-  $\partial_{1}L \circ \Gamma\lbrack q\rbrack = D(\partial_{2}L \circ
-  \Gamma\lbrack q\rbrack)$
+  {{< sicm-math >}}\partial_{1}L \circ \Gamma\lbrack q\rbrack = D(\partial_{2}L \circ
+  \Gamma\lbrack q\rbrack){{< /sicm-math >}}
 
   so that the second derivative appears explicitly:
 
-  $$\begin{array}{l} {\partial_{1}L \circ \Gamma\lbrack q\rbrack} \\ {\,\,\,\,\,\,\,\,\, = \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack + (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq + (\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, D^{2}q.} \\\end{array}$$
+  {{< sicm-math display >}}\begin{array}{l} {\partial_{1}L \circ \Gamma\lbrack q\rbrack} \\ {\,\,\,\,\,\,\,\,\, = \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack + (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq + (\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, D^{2}q.} \\\end{array}{{< /sicm-math >}}
   Solving this system for /D/^{2}/q/, one obtains the generalized acceleration
   along a solution path /q/:
 
-  $$\begin{array}{l} {D^{2}q =} \\ {\,\,\,\,\,\,\,\,\,{\lbrack\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}^{- 1}\lbrack\partial_{1}L \circ \Gamma\lbrack q\rbrack - (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq - \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}\end{array}$$
+  {{< sicm-math display >}}\begin{array}{l} {D^{2}q =} \\ {\,\,\,\,\,\,\,\,\,{\lbrack\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}^{- 1}\lbrack\partial_{1}L \circ \Gamma\lbrack q\rbrack - (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq - \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}\end{array}{{< /sicm-math >}}
   where [∂_{2}∂_{2}/L/ ∘ Γ] is a structure that can be represented by a
   symmetric square matrix, so we can compute its inverse.[fn:73] The function
   that gives the acceleration is
 
   @@html:<span id="disp_1.130"></span>@@
-$$\begin{aligned}
-{A = {(\partial_{2}\partial_{2}L)}^{- 1}\lbrack\partial_{1}L - \partial_{0}\partial_{2}L - (\partial_{1}\partial_{2}L)\overset{˙}{Q}\rbrack,} & {(1.130)}
-  \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{A = {(\partial_{2}\partial_{2}L)}^{- 1}\lbrack\partial_{1}L - \partial_{0}\partial_{2}L - (\partial_{1}\partial_{2}L)\dot{Q}\rbrack,} & {(1.130)}
+  \end{aligned}{{< /sicm-math >}}
   where
 
-  $\overset{˙}{Q} = I_{2}$
+  {{< sicm-math >}}\dot{Q} = I_{2}{{< /sicm-math >}}
 
   is the velocity component selector.
 
@@ -3373,9 +3373,9 @@ t) (up t (q t) (v t)))
   (literal-function 'v_x) (literal-function 'v_y))) 't))
    #+end_src
 
-  $$\begin{pmatrix} 0 \\ \begin{pmatrix} {Dx(t) - v_{x}(t)} {Dy(t) - v_{y}(t)}
+  {{< sicm-math display >}}\begin{pmatrix} 0 \\ \begin{pmatrix} {Dx(t) - v_{x}(t)} {Dy(t) - v_{y}(t)}
   \end{pmatrix} \begin{pmatrix} {\frac{kx(t)}{m} + Dv_{x}(t)}
-  \\ {\frac{ky(t)}{m} + Dv_{y}(t)} \end{pmatrix} \end{pmatrix}$$
+  \\ {\frac{ky(t)}{m} + Dv_{y}(t)} \end{pmatrix} \end{pmatrix}{{< /sicm-math >}}
 
 
 
@@ -3452,8 +3452,8 @@ omega 0))) (L-pend m l g ys)))
 'theta)) 't))
     #+end_src
 
-   $$D^{2}\theta(t)l^{2}m - \cos(\omega t)\,\sin\,(\theta(t))\, Alm\omega^{2} +
-   \sin\,(\theta(t))\, glm$$
+   {{< sicm-math display >}}D^{2}\theta(t)l^{2}m - \cos(\omega t)\,\sin\,(\theta(t))\, Alm\omega^{2} +
+   \sin\,(\theta(t))\, glm{{< /sicm-math >}}
 
    The parametric state derivative for the periodically driven pendulum is
 
@@ -3464,8 +3464,8 @@ omega))) (show-expression ((pend-state-derivative 'm 'l 'g 'A 'omega) (up 't
 'theta 'thetadot)))
     #+end_src
 
-   $$\begin{pmatrix} 1 \\ \overset{˙}{\theta} {\frac{A\omega^{2}\cos\,(\omega
-   t)\,\sin\,(\theta)}{l} - \frac{g\sin\,(\theta)}{l}} \end{pmatrix}$$
+   {{< sicm-math display >}}\begin{pmatrix} 1 \\ \dot{\theta} {\frac{A\omega^{2}\cos\,(\omega
+   t)\,\sin\,(\theta)}{l} - \frac{g\sin\,(\theta)}{l}} \end{pmatrix}{{< /sicm-math >}}
 
    To examine the evolution of the driven pendulum we need a mechanism that
    evolves a system for some interval while monitoring aspects of the system as
@@ -3506,10 +3506,10 @@ omega))) (show-expression ((pend-state-derivative 'm 'l 'g 'A 'omega) (up 't
    #+caption: *Figure 1.7* Orbits of the driven pendulum. The angle /θ/ is
    plotted against time. Because angles are periodic, this plot may be thought
    of as being wound around a cylinder. The upper plot shows the results of a
-   simulation with initial conditions /θ/ = 1 and ¶ $\overset{˙}{\theta} = 0$ ¶
+   simulation with initial conditions /θ/ = 1 and ¶ {{< sicm-math >}}\dot{\theta} = 0{{< /sicm-math >}} ¶
    . The orbit oscillates for a while, then circulates, then resumes
    oscillating. In the lower plot we show the result for a slightly different
-   initial angular velocity, ¶ $\overset{˙}{\theta} = 10^{- 10}$ ¶ . The initial
+   initial angular velocity, ¶ {{< sicm-math >}}\dot{\theta} = 10^{- 10}{{< /sicm-math >}} ¶ . The initial
    behavior is indistinguishable from the top figure, but the two trajectories
    become uncorrelated after the transition between oscillation and circulation.
    This extreme sensitivity to initial conditions is characteristic of systems
@@ -3526,8 +3526,8 @@ omega))) (show-expression ((pend-state-derivative 'm 'l 'g 'A 'omega) (up 't
    A Lagrangian for planar motion of a particle of mass /m/ in a central field
    with potential energy /V/ (/r/) = −/βr^{α}/ is
 
-   $L(t;r,\theta;\overset{˙}{r},\overset{˙}{\theta}) =
-   \frac{1}{2}m({\overset{˙}{r}}^{2} + {(r\overset{˙}{\theta})}^{2}) + V(r).$
+   {{< sicm-math >}}L(t;r,\theta;\dot{r},\dot{\theta}) =
+   \frac{1}{2}m({\dot{r}}^{2} + {(r\dot{\theta})}^{2}) + V(r).{{< /sicm-math >}}
 
    *a.* Write a program to evolve the motion of a particle subject to this
    Lagrangian and display the orbit in the plane.
@@ -3576,9 +3576,9 @@ omega))) (show-expression ((pend-state-derivative 'm 'l 'g 'A 'omega) (up 't
   conserved quantity, then
 
   @@html:<span id="disp_1.131"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(C \circ \Gamma\lbrack q\rbrack) = D_{t}C \circ \Gamma\lbrack q\rbrack = 0} & {(1.131)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   for solution paths /q/. In this section, we will investigate systems with
   symmetry and find that symmetries are associated with conserved quantities.
   For instance, linear momentum is conserved in a system with translational
@@ -3597,31 +3597,31 @@ $$\begin{aligned}
     coordinate /q^{i}/, then
 
     @@html:<span id="disp_1.132"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {{(\partial_{1}L)}_{i} = 0,} & {(1.132)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     and the corresponding /i/th component of the Lagrange equations is
 
     @@html:<span id="disp_1.133"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {{(D(\partial_{2}L \circ \Gamma\lbrack q\rbrack))}_{i} = 0.} & {(1.133)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     The derivative of a component is equal to the component of the derivative,
     so this is the same as
 
     @@html:<span id="disp_1.134"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D({(\partial_{2}L)}_{i} \circ \Gamma\lbrack q\rbrack) = 0,} & {(1.134)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     and we can see that
 
     @@html:<span id="disp_1.135"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{P}_{i} = {(\partial_{2}L)}_{i}} & {(1.135)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     is a conserved quantity. The function
 
-    $\mathcal{P}$
+    {{< sicm-math >}}\mathcal{P}{{< /sicm-math >}}
 
     is called the /momentum state function/. The value of the momentum state
     function is the /generalized momentum/. We refer to the /i/th component of
@@ -3638,23 +3638,23 @@ $$\begin{aligned}
     is
 
     @@html:<span id="disp_1.136"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {p = \partial_{2}L \circ \Gamma\lbrack q\rbrack = \mathcal{P} \circ \Gamma\lbrack q\rbrack,} & {(1.136)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     with components
 
     @@html:<span id="disp_1.137"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {p_{i} = \mathcal{P}_{i} \circ \Gamma\lbrack q\rbrack.} & {(1.137)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     The momentum path is well defined for any path /q/. If the path is
     realizable and the Lagrangian does not depend on /q^{i}/, then /p_{i}/ is a
     constant function
 
     @@html:<span id="disp_1.138"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {Dp_{i} = 0.} & {(1.138)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     The constant value of /p_{i}/ may be different for different trajectories.
 
 ** Examples of conserved momenta
@@ -3664,16 +3664,16 @@ $$\begin{aligned}
    :END:
    The free-particle Lagrangian
 
-   $L(t,x,v) = \frac{1}{2}mv^{2}$
+   {{< sicm-math >}}L(t,x,v) = \frac{1}{2}mv^{2}{{< /sicm-math >}}
 
    is independent of /x/. So the momentum state function,
 
-   $\mathcal{P}(t,q,v) = mv$
+   {{< sicm-math >}}\mathcal{P}(t,q,v) = mv{{< /sicm-math >}}
 
    , is conserved along realizable paths. The momentum path /p/ for the
    coordinate path /q/ is
 
-   $p(t) = \mathcal{P} \circ \Gamma\lbrack q\rbrack(t) = m\, Dq(t)$
+   {{< sicm-math >}}p(t) = \mathcal{P} \circ \Gamma\lbrack q\rbrack(t) = m\, Dq(t){{< /sicm-math >}}
 
    . For a realizable path /Dp/(/t/) = 0. For the free particle the usual linear
    momentum is conserved for realizable paths.
@@ -3681,13 +3681,13 @@ $$\begin{aligned}
    For a particle in a central force field
    ([[/eval/sicm/chapter-1/#h1-6a][section 1.6]]), the Lagrangian
 
-   $L(t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}) =
-   \frac{1}{2}m({\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\varphi}}^{2}) - V(r)$
+   {{< sicm-math >}}L(t;r,\varphi;\dot{r},\dot{\varphi}) =
+   \frac{1}{2}m({\dot{r}}^{2} + r^{2}{\dot{\varphi}}^{2}) - V(r){{< /sicm-math >}}
 
    depends on /r/ but is independent of /φ/. The momentum state function is
 
-   $\mathcal{P}\left( {t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}} \right)
-   = \lbrack m\overset{˙}{r},mr^{2}\overset{˙}{\varphi}\rbrack.$
+   {{< sicm-math >}}\mathcal{P}\left( {t;r,\varphi;\dot{r},\dot{\varphi}} \right)
+   = \lbrack m\dot{r},mr^{2}\dot{\varphi}\rbrack.{{< /sicm-math >}}
 
    It has two components. The first component, the “radial momentum,” is not
    conserved. The second component, the “angular momentum,” is conserved along
@@ -3716,36 +3716,36 @@ $$\begin{aligned}
     corresponding coordinate. There is another constant of the motion, the
     energy, if the Lagrangian
 
-    $L(t,q,\overset{˙}{q})$
+    {{< sicm-math >}}L(t,q,\dot{q}){{< /sicm-math >}}
 
     does not depend explicitly on the time: ∂_{0}/L/ = 0.
 
     Consider the time derivative of the Lagrangian along a solution path /q/:
 
     @@html:<span id="disp_1.139"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(L \circ \Gamma\lbrack q\rbrack) = \partial_{0}L \circ \Gamma\lbrack q\rbrack + (\partial_{1}L \circ \Gamma\lbrack q\rbrack)Dq + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D^{2}q.} & {(1.139)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     Using Lagrange's equations to rewrite the second term yields
 
     @@html:<span id="disp_1.140"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(L \circ \Gamma\lbrack q\rbrack) = (\partial_{0}L) \circ \Gamma\lbrack q\rbrack + D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)Dq + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D^{2}q.} & {(1.140)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     Isolating ∂_{0}/L/ and combining the other terms we get
 
     @@html:<span id="disp_1.141"></span>@@
-$$\begin{array}{lll} {(\partial_{0}L) \circ \Gamma\lbrack q\rbrack} & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)Dq)} & \\ & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)(\overset{˙}{Q} \circ \Gamma\lbrack q\rbrack))} & \\ & {= D((L - \mathcal{P}\overset{˙}{Q}) \circ \Gamma\lbrack q\rbrack),} & {(1.141)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {(\partial_{0}L) \circ \Gamma\lbrack q\rbrack} & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)Dq)} & \\ & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)(\dot{Q} \circ \Gamma\lbrack q\rbrack))} & \\ & {= D((L - \mathcal{P}\dot{Q}) \circ \Gamma\lbrack q\rbrack),} & {(1.141)}\end{array}{{< /sicm-math >}}
     where, as before,
 
-    $\overset{˙}{Q}$
+    {{< sicm-math >}}\dot{Q}{{< /sicm-math >}}
 
     selects the velocity from the state. So we see that if ∂_{0}/L/ = 0 then
 
     @@html:<span id="disp_1.142"></span>@@
-$$\begin{aligned}
-{\mathcal{E} = \mathcal{P}\overset{˙}{Q} - L} & {(1.142)}
-    \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathcal{E} = \mathcal{P}\dot{Q} - L} & {(1.142)}
+    \end{aligned}{{< /sicm-math >}}
     is conserved along realizable paths. The function /ℰ/ is called the /energy
     state function/.[fn:83] The energy state function for a system depends on
     the choice of Lagrangian used to describe the system.[fn:84] Let /E/ = /ℰ/ ∘
@@ -3776,15 +3776,15 @@ $$\begin{aligned}
    velocities:
 
    @@html:<span id="disp_1.143"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v.} & {(1.143)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The kinetic energy is
 
    @@html:<span id="disp_1.144"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {T\left( {t,q,v} \right) = \frac{1}{2}{\sum_{\alpha}{m_{\alpha}v_{\alpha}^{2},}}} & {(1.144)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    where /v_{α}/ is the magnitude of *v*_{/α/}.
 
    If the /f/_{/α/} functions do not depend explicitly on time (∂_{0}/f_{α}/ =
@@ -3795,22 +3795,22 @@ $$\begin{aligned}
    of degree 2 in the generalized velocities then
 
    @@html:<span id="disp_1.145"></span>@@
-$$\begin{aligned}
-{\mathcal{P}\overset{˙}{Q} = \left( {\partial_{2}T} \right)\overset{˙}{Q} = 2T,} & {(1.145)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathcal{P}\dot{Q} = \left( {\partial_{2}T} \right)\dot{Q} = 2T,} & {(1.145)}
+   \end{aligned}{{< /sicm-math >}}
    where the second equality follows from Euler's theorem on homogeneous
    functions.[fn:85] The energy state function is
 
    @@html:<span id="disp_1.146"></span>@@
-$$\begin{aligned}
-{\mathcal{E} = \mathcal{P}\overset{˙}{Q} - L = 2T - T + V.} & {(1.146)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathcal{E} = \mathcal{P}\dot{Q} - L = 2T - T + V.} & {(1.146)}
+   \end{aligned}{{< /sicm-math >}}
    So if /f_{α}/ is independent of time, the energy function can be rewritten
 
    @@html:<span id="disp_1.147"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E} = 2T - T + V = T + V.} & {(1.147)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Notice that if /V/ depends on time the energy is still the sum of the kinetic
    energy and potential energy, but the energy is not conserved.
 
@@ -3864,9 +3864,9 @@ $$\begin{aligned}
     /r/, /θ/, and /φ/, where /θ/ is the colatitude and /φ/ is the longitude. The
     kinetic energy has three terms:
 
-    $$T(t;r,\theta,\varphi;\overset{˙}{r},\overset{˙}{\theta},\overset{˙}{\varphi})
-    = \frac{1}{2}m({\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\theta}}^{2} +
-    r^{2}{(\sin\theta)}^{2}{\overset{˙}{\varphi}}^{2}).$$
+    {{< sicm-math display >}}T(t;r,\theta,\varphi;\dot{r},\dot{\theta},\dot{\varphi})
+    = \frac{1}{2}m({\dot{r}}^{2} + r^{2}{\dot{\theta}}^{2} +
+    r^{2}{(\sin\theta)}^{2}{\dot{\varphi}}^{2}).{{< /sicm-math >}}
 
     As a procedure:
 
@@ -3897,10 +3897,10 @@ state))) (let ((r (ref q 0)) (theta (ref q 1)) (rdot
 'phidot))))
      #+end_src
 
-    $$\begin{bmatrix} {m{\overset{˙}{\varphi}}^{2}r\,{(\sin\,(\theta))}^{2} +
-    mr{\overset{˙}{\theta}}^{2} - DV\,(r)}
-    \\ {m{\overset{˙}{\varphi}}^{2}r^{2}\cos\,(\theta)\,\sin\,(\theta)} 0
-    \\ \end{bmatrix}$$
+    {{< sicm-math display >}}\begin{bmatrix} {m{\dot{\varphi}}^{2}r\,{(\sin\,(\theta))}^{2} +
+    mr{\dot{\theta}}^{2} - DV\,(r)}
+    \\ {m{\dot{\varphi}}^{2}r^{2}\cos\,(\theta)\,\sin\,(\theta)} 0
+    \\ \end{bmatrix}{{< /sicm-math >}}
 
     The /φ/ component of the force is zero because /φ/ does not appear in the
     Lagrangian (it is a cyclic coordinate). The corresponding momentum component
@@ -3912,21 +3912,21 @@ state))) (let ((r (ref q 0)) (theta (ref q 1)) (rdot
 'phidot))))
      #+end_src
 
-    $$\begin{bmatrix} {m\overset{˙}{r}} {mr^{2}\overset{˙}{\theta}}
-    \\ {mr^{2}\overset{˙}{\varphi}{(\sin\,(\theta))}^{2}} \end{bmatrix}$$
+    {{< sicm-math display >}}\begin{bmatrix} {m\dot{r}} {mr^{2}\dot{\theta}}
+    \\ {mr^{2}\dot{\varphi}{(\sin\,(\theta))}^{2}} \end{bmatrix}{{< /sicm-math >}}
 
     The momentum conjugate to /φ/ is conserved. This is the /z/ component of the
     angular momentum
 
-    $\overset{\rightarrow}{r} \times (m\overset{\rightarrow}{v})$
+    {{< sicm-math >}}\overset{\rightarrow}{r} \times (m\overset{\rightarrow}{v}){{< /sicm-math >}}
 
     , for vector position
 
-    $\overset{\rightarrow}{r}$
+    {{< sicm-math >}}\overset{\rightarrow}{r}{{< /sicm-math >}}
 
     and linear momentum
 
-    $m\overset{\rightarrow}{v}$
+    {{< sicm-math >}}m\overset{\rightarrow}{v}{{< /sicm-math >}}
 
     . We can show this by writing the /z/ component of the angular momentum in
     spherical coordinates:
@@ -3946,21 +3946,21 @@ phi))) (z (* r (cos theta)))) (up x y z)))))
 
         #+end_src
 
-    $$mr^{2}\overset{˙}{\varphi}{(\sin\,(\theta))}^{2}$$
+    {{< sicm-math display >}}mr^{2}\dot{\varphi}{(\sin\,(\theta))}^{2}{{< /sicm-math >}}
 
     The choice of the /z/-axis is arbitrary, so the conservation of any
     component of the angular momentum implies the conservation of all
     components. Thus the total angular momentum is conserved. We can choose the
     /z/-axis so all of the angular momentum is in the /z/ component. Since
 
-    $\overset{\rightarrow}{x} \cdot (\overset{\rightarrow}{x} \times
+    {{< sicm-math >}}\overset{\rightarrow}{x} \cdot (\overset{\rightarrow}{x} \times
     \overset{\rightarrow}{v}) = \overset{\rightarrow}{v} \cdot
-    (\overset{\rightarrow}{x} \times \overset{\rightarrow}{x}) = 0$
+    (\overset{\rightarrow}{x} \times \overset{\rightarrow}{x}) = 0{{< /sicm-math >}}
 
     , the motion is confined to the plane perpendicular to the angular momentum:
     /θ/ = /π//2, and
 
-    $\overset{˙}{\theta} = 0$
+    {{< sicm-math >}}\dot{\theta} = 0{{< /sicm-math >}}
 
     . Planar motion in a central-force field was discussed in
     [[/eval/sicm/chapter-1/#h1-6a][section 1.6]].
@@ -3974,9 +3974,9 @@ phi))) (z (* r (cos theta)))) (up x y z)))))
 'phidot))))
      #+end_src
 
-    $$\frac{1}{2}m{\overset{˙}{\varphi}}^{2}r^{2}{(\sin\,(\theta))}^{2} +
-    \frac{1}{2}mr^{2}{\overset{˙}{\theta}}^{2} +
-    \frac{1}{2}m{\overset{˙}{r}}^{2} + V\,(r)$$
+    {{< sicm-math display >}}\frac{1}{2}m{\dot{\varphi}}^{2}r^{2}{(\sin\,(\theta))}^{2} +
+    \frac{1}{2}mr^{2}{\dot{\theta}}^{2} +
+    \frac{1}{2}m{\dot{r}}^{2} + V\,(r){{< /sicm-math >}}
 
     The energy is conserved because the Lagrangian has no explicit time
     dependence.
@@ -4018,25 +4018,25 @@ q))))
     the two particles from the origin are:
 
     @@html:<span id="disp_1.148"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {a_{0} = \frac{M_{1}}{M_{0} + M_{1}}a\,\,\text{and}\,\, a_{1} = \frac{M_{0}}{M_{0} + M_{1}}a} & {(1.148)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     Each massive particle revolves in a circle about their common center of mass
     with angular frequency Ω. The radii of the circles are the distances given
     above. Kepler's law gives the angular frequency of the orbit:
 
     @@html:<span id="disp_1.149"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\Omega^{2}a^{3} = G(M_{0} + M_{1})} & {(1.149)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     We choose our axes so that at /t/ = 0 the body with mass /M/_{1} is on the
     positive
 
-    $\widehat{x}$
+    {{< sicm-math >}}\widehat{x}{{< /sicm-math >}}
 
     axis and the body with mass /M/_{0} is on the negative
 
-    $\widehat{x}$
+    {{< sicm-math >}}\widehat{x}{{< /sicm-math >}}
 
     axis. The gravitational potential energy function is:
 
@@ -4056,7 +4056,7 @@ $$\begin{aligned}
     coordinate system where the massive particles are fixed. We can place the
     rotating axes so that the two massive particles are on the
 
-    $\widehat{x}\prime$
+    {{< sicm-math >}}\widehat{x}\prime{{< /sicm-math >}}
 
     axis, and we can choose the rotating and nonrotating axes to be coincident
     at /t/ = 0. We can transform to the rotating rectangular coordinates as we
@@ -4065,15 +4065,15 @@ $$\begin{aligned}
     potential energy terms:
 
     @@html:<span id="disp_1.150"></span>@@
-$$\begin{aligned}
-{L_{r}(t;x_{r},y_{r};{\overset{˙}{x}}_{r},{\overset{˙}{y}}_{r})} & \\
-    {\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\left( {{\overset{˙}{x}}_{r}^{2} + {\overset{˙}{y}}_{r}^{2}} \right) + \frac{1}{2}m\Omega^{2}(x_{r}^{2} + y_{r}^{2}) + m\Omega(x_{r}{\overset{˙}{y}}_{r} - {\overset{˙}{x}}_{r}y_{r})} & \\
+{{< sicm-math display >}}\begin{aligned}
+{L_{r}(t;x_{r},y_{r};{\dot{x}}_{r},{\dot{y}}_{r})} & \\
+    {\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\left( {{\dot{x}}_{r}^{2} + {\dot{y}}_{r}^{2}} \right) + \frac{1}{2}m\Omega^{2}(x_{r}^{2} + y_{r}^{2}) + m\Omega(x_{r}{\dot{y}}_{r} - {\dot{x}}_{r}y_{r})} & \\
     {\,\,\,\,\,\,\,\,\,\,\,\,\,\, + \frac{GM_{0}m}{r_{0}} + \frac{GM_{1}m}{r_{1}}} & {(1.150)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     where now
 
-    $r_{0}^{2} = {(x_{r} + a_{0})}^{2} + y_{r}^{2}\,\,\text{and}\,\, r_{1}^{2} =
-    \left( {x_{r} - a_{1}} \right)^{2} + y_{r}^{2}$
+    {{< sicm-math >}}r_{0}^{2} = {(x_{r} + a_{0})}^{2} + y_{r}^{2}\,\,\text{and}\,\, r_{1}^{2} =
+    \left( {x_{r} - a_{1}} \right)^{2} + y_{r}^{2}{{< /sicm-math >}}
 
     . As a program we can write:
 
@@ -4120,15 +4120,15 @@ m) r1))))))
     velocity-independent part we get
 
     @@html:<span id="disp_1.151"></span>@@
-$$\begin{aligned}
-{\mathcal{E}(t;x_{r},y_{r};{\overset{˙}{x}}_{r},{\overset{˙}{y}}_{r}) = \frac{1}{2}m({\overset{˙}{x}}_{r}^{2} + {\overset{˙}{y}}_{r}^{2}) + mU_{r}(x_{r},y_{r})} & {(1.151)}
-    \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\mathcal{E}(t;x_{r},y_{r};{\dot{x}}_{r},{\dot{y}}_{r}) = \frac{1}{2}m({\dot{x}}_{r}^{2} + {\dot{y}}_{r}^{2}) + mU_{r}(x_{r},y_{r})} & {(1.151)}
+    \end{aligned}{{< /sicm-math >}}
     where
 
     @@html:<span id="disp_1.152"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {U_{r}(x_{r},y_{r}) = - \left( {\frac{GM_{0}}{r_{0}} + \frac{GM_{1}}{r_{1}} + \frac{1}{2}\Omega^{2}(x_{r}^{2} + y_{r}^{2})} \right).} & {(1.152)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     This constant of motion of the restricted three-body problem is called the
     /Jacobi constant/.[fn:86] Notice that the energy function is a positive
     definite quadratic form in the components of the velocity (in rotating
@@ -4136,11 +4136,11 @@ $$\begin{aligned}
     Note that the energy state function does not have terms that are linear in
     the velocities
 
-    ${\overset{˙}{x}}_{r}$
+    {{< sicm-math >}}{\dot{x}}_{r}{{< /sicm-math >}}
 
     and
 
-    ${\overset{˙}{y}}_{r}$
+    {{< sicm-math >}}{\dot{y}}_{r}{{< /sicm-math >}}
 
     , although such terms appear in the Lagrangian
     ([[/eval/sicm/chapter-1/#disp_1.150][1.150]]).
@@ -4177,55 +4177,55 @@ $$\begin{aligned}
 
     Consider a parametric coordinate transformation
 
-    $\widetilde{F}$
+    {{< sicm-math >}}\widetilde{F}{{< /sicm-math >}}
 
     with parameter /s/:
 
     @@html:<span id="disp_1.153"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x = \widetilde{F}(s)(t,x\prime).} & {(1.153)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     To this parametric coordinate transformation there corresponds a parametric
     state transformation
 
-    $\widetilde{C}$
+    {{< sicm-math >}}\widetilde{C}{{< /sicm-math >}}
 
     :
 
     @@html:<span id="disp_1.154"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(t,x,v) = \widetilde{C}(s)(t,x\prime,v\prime).} & {(1.154)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     We require that the transformation
 
-    $\widetilde{F}(0)$
+    {{< sicm-math >}}\widetilde{F}(0){{< /sicm-math >}}
 
     be the identity coordinate transformation
 
-    $x\prime = \widetilde{F}(0)(t,x\prime)$
+    {{< sicm-math >}}x\prime = \widetilde{F}(0)(t,x\prime){{< /sicm-math >}}
 
     , and as a consequence
 
-    $\widetilde{C}(0)$
+    {{< sicm-math >}}\widetilde{C}(0){{< /sicm-math >}}
 
     is the identity state transformation
 
-    $(t,x\prime,v\prime) = \widetilde{C}(0)(t,x\prime,v\prime)$
+    {{< sicm-math >}}(t,x\prime,v\prime) = \widetilde{C}(0)(t,x\prime,v\prime){{< /sicm-math >}}
 
     . The Lagrangian /L/ has a continuous symmetry corresponding to
 
-    $\widetilde{F}$
+    {{< sicm-math >}}\widetilde{F}{{< /sicm-math >}}
 
     if it is invariant under the transformations
 
     @@html:<span id="disp_1.155"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\widetilde{L}(s) = L \circ \widetilde{C}(s) = L} & {(1.155)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     for any /s/. The Lagrangian /L/ is the same function as the transformed
     Lagrangian
 
-    $\widetilde{L}(s)$
+    {{< sicm-math >}}\widetilde{L}(s){{< /sicm-math >}}
 
     .
 
@@ -4233,63 +4233,63 @@ $$\begin{aligned}
 
     That
 
-    $\widetilde{L}(s) = L$
+    {{< sicm-math >}}\widetilde{L}(s) = L{{< /sicm-math >}}
 
     for any /s/ implies
 
-    $D\widetilde{L}(s) = 0$
+    {{< sicm-math >}}D\widetilde{L}(s) = 0{{< /sicm-math >}}
 
     . Explicitly,
 
-    $\widetilde{L}(s)$
+    {{< sicm-math >}}\widetilde{L}(s){{< /sicm-math >}}
 
     is
 
     @@html:<span id="disp_1.156"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\widetilde{L}(s)(t,x\prime,v\prime) = L(t,\widetilde{F}(s)(t,x\prime),D_{t}(\widetilde{F}(s))(t,x\prime,v\prime)),} & {(1.156)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     where we have rewritten the velocity component of
 
-    $\widetilde{C}(s)$
+    {{< sicm-math >}}\widetilde{C}(s){{< /sicm-math >}}
 
     in terms of the total time derivative. The derivative of
 
-    $\widetilde{L}$
+    {{< sicm-math >}}\widetilde{L}{{< /sicm-math >}}
 
     is zero:
 
     @@html:<span id="disp_1.157"></span>@@
-$$\begin{array}{lll} 0 & {= D\widetilde{L}(s)(t,x\prime,v\prime)} & \\ & {= \partial_{1}L(t,x,v)\,\,(D\widetilde{F})(s)(t,x\prime) + \partial_{2}L(t,x,v)\,\, D_{t}(D\widetilde{F}(s))(t,x\prime),} & {(1.157)} \\\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} 0 & {= D\widetilde{L}(s)(t,x\prime,v\prime)} & \\ & {= \partial_{1}L(t,x,v)\,\,(D\widetilde{F})(s)(t,x\prime) + \partial_{2}L(t,x,v)\,\, D_{t}(D\widetilde{F}(s))(t,x\prime),} & {(1.157)} \\\end{array}{{< /sicm-math >}}
     where we have used the fact that[fn:87]
 
     @@html:<span id="disp_1.158"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D_{t}(D\widetilde{F}(s)) = DG(s)\,\,\,\text{with}\,\,\, G\left( s \right) = D_{t}(\widetilde{F}(s)).} & {(1.158)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     On a realizable path /q/ we can use the Lagrange equations to rewrite the
     first term of equation ([[/eval/sicm/chapter-1/#disp_1.157][1.157]]):
 
     @@html:<span id="disp_1.159"></span>@@
-$$\begin{array}{lll} {0 =} & {(D_{t}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,((D\widetilde{F})(s) \circ \Gamma\lbrack q\prime\rbrack)} & \\ & {\, + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,(D_{t}(D\widetilde{F}(s)) \circ \Gamma\lbrack q\prime\rbrack).} & {(1.159)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {0 =} & {(D_{t}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,((D\widetilde{F})(s) \circ \Gamma\lbrack q\prime\rbrack)} & \\ & {\, + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,(D_{t}(D\widetilde{F}(s)) \circ \Gamma\lbrack q\prime\rbrack).} & {(1.159)}\end{array}{{< /sicm-math >}}
     For /s/ = 0 the paths /q/ and /q/′ are the same, because
 
-    $\widetilde{F}(0)$
+    {{< sicm-math >}}\widetilde{F}(0){{< /sicm-math >}}
 
     is the identity, so Γ[/q/] = Γ[/q/′] and this equation becomes
 
     @@html:<span id="disp_1.160"></span>@@
-$$\begin{array}{lll} 0 & {= ((D_{t}\partial_{2}L)\,\,((D\widetilde{F})(0)) + (\partial_{2}L)\,\,(D_{t}(D\widetilde{F}(0)))) \circ \Gamma\lbrack q\rbrack} & \\ & {= D_{t}((\partial_{2}L)\,\,(D\widetilde{F}(0))) \circ \Gamma\lbrack q\rbrack.} & {(1.160)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} 0 & {= ((D_{t}\partial_{2}L)\,\,((D\widetilde{F})(0)) + (\partial_{2}L)\,\,(D_{t}(D\widetilde{F}(0)))) \circ \Gamma\lbrack q\rbrack} & \\ & {= D_{t}((\partial_{2}L)\,\,(D\widetilde{F}(0))) \circ \Gamma\lbrack q\rbrack.} & {(1.160)}\end{array}{{< /sicm-math >}}
     Thus the state function
 
-    $\mathcal{I}$
+    {{< sicm-math >}}\mathcal{I}{{< /sicm-math >}}
 
     ,
 
     @@html:<span id="disp_1.161"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{I} = (\partial_{2}L)(D\widetilde{F}(0)),} & {(1.161)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     is conserved along solution trajectories. This conserved quantity is called
     /Noether's integral/. It is the product of the momentum and a vector
     associated with the symmetry.
@@ -4305,64 +4305,64 @@ $$\begin{aligned}
    coordinates:
 
    @@html:<span id="disp_1.162"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t;x,y,z;v_{x}.v_{y},v_{z})} & \\
    {\,\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\,\left( v_{x}^{2} + v_{y}^{2} + v_{z}^{2} \right) - U\left( \sqrt{x^{2} + y^{2} + z^{2}} \right),} & {(1.162)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    and a parametric rotation /R_{z}/(/s/) about the /z/ axis
 
    @@html:<span id="disp_1.163"></span>@@
-$$\begin{matrix} {\begin{pmatrix} x \\ y \\ z \\ \end{pmatrix} =
+{{< sicm-math display >}}\begin{matrix} {\begin{pmatrix} x \\ y \\ z \\ \end{pmatrix} =
    R_{z}(s)\,\begin{pmatrix} {x\prime} {y\prime} {z\prime} \\ \end{pmatrix}
    = \begin{pmatrix} {x\prime\cos s - y\prime\sin s} \\ {x\prime\sin s +
-   y\prime\cos s} {z\prime} \end{pmatrix}.} & {(1.163)} \end{matrix}$$
+   y\prime\cos s} {z\prime} \end{pmatrix}.} & {(1.163)} \end{matrix}{{< /sicm-math >}}
 
    The rotation is an orthogonal transformation so
 
    @@html:<span id="disp_1.164"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x^{2} + y^{2} + z^{2} = {(x\prime)}^{2} + {(y\prime)}^{2} + {(z\prime)}^{2}.} & {(1.164)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Differentiating along a path, we get
 
    @@html:<span id="disp_1.165"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(v_{x},v_{y},v_{z}) = R_{z}(s)(v_{x}^{\prime},v_{y}^{\prime},v_{z}^{\prime}),} & {(1.165)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    so the velocities also transform by an orthogonal transformation, and
 
-   $v_{x}^{2} + v_{y}^{2} + v_{z}^{2} = {(v_{x}^{\prime})}^{2} +
-   {(v_{y}^{\prime})}^{2} + {(v_{z}^{\prime})}^{2}$
+   {{< sicm-math >}}v_{x}^{2} + v_{y}^{2} + v_{z}^{2} = {(v_{x}^{\prime})}^{2} +
+   {(v_{y}^{\prime})}^{2} + {(v_{z}^{\prime})}^{2}{{< /sicm-math >}}
 
    . Thus
 
    @@html:<span id="disp_1.166"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime(t;x\prime,y\prime,z\prime;v_{x}^{\prime},v_{y}^{\prime},v_{z}^{\prime})} & \\
    {\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\,\left( {{(v_{x}^{\prime})}^{2} + {(v_{y}^{\prime})}^{2} + {(v_{z}^{\prime})}^{2}} \right)} & \\
    {\,\,\,\,\,\,\,\,\,\,\,\,\,\, - U\left( \sqrt{{(x\prime)}^{2} + {(y\prime)}^{2} + {(z\prime)}^{2}} \right),} & {(1.166)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    and we see that /L/′ is precisely the same function as /L/.
 
    The momenta are
 
    @@html:<span id="disp_1.167"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{2}L(t;x,y,z;v_{x},v_{y},v_{z}) = \lbrack mv_{x},mv_{y},mv_{z}\rbrack} & {(1.167)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    and
 
    @@html:<span id="disp_1.168"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D\widetilde{F}(0)(t;x,y,z) = D{\widetilde{R}}_{z}(0)(x,y,z) = (y, - x,0).} & {(1.168)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    So the Noether integral is
 
    @@html:<span id="disp_1.169"></span>@@
-$$\begin{array}{lll} {\mathcal{I}(t;x,y,z;v_{x},v_{y},v_{z})} & {= ((\partial_{2}L)(D\widetilde{F}(0)))(t;x,y,z;v_{x},v_{y},v_{z})} & \\ & {= m(yv_{x} - xv_{y}),} & {(1.169)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {\mathcal{I}(t;x,y,z;v_{x},v_{y},v_{z})} & {= ((\partial_{2}L)(D\widetilde{F}(0)))(t;x,y,z;v_{x},v_{y},v_{z})} & \\ & {= m(yv_{x} - xv_{y}),} & {(1.169)}\end{array}{{< /sicm-math >}}
    which we recognize as minus the /z/ component of the angular momentum:
 
-   $\overset{\rightarrow}{x} \times (m\overset{\rightarrow}{v})$
+   {{< sicm-math >}}\overset{\rightarrow}{x} \times (m\overset{\rightarrow}{v}){{< /sicm-math >}}
 
    . Since the Lagrangian is preserved by any continuous rotational symmetry,
    all components of the vector angular momenta are conserved for the
@@ -4408,7 +4408,7 @@ vx y) (* -1 m vy x)))
 
    Consider motion on an ellipsoidal surface. The surface is specified by:
 
-   $x^{2}/a^{2} + y^{2}/b^{2} + z^{2}/c^{2} = 1$
+   {{< sicm-math >}}x^{2}/a^{2} + y^{2}/b^{2} + z^{2}/c^{2} = 1{{< /sicm-math >}}
 
    Formulate a Lagrangian for frictionless motion on this surface. Assume that
    two of the axes of the ellipsoid are equal: /b/ = /c/.
@@ -4416,12 +4416,12 @@ vx y) (* -1 m vy x)))
    Using angular coordinates (/θ/, /ϕ/), where /θ/ is colatitude from the
    /ẑ/-axis, and /ϕ/ is longitude measured from the
 
-   $\widehat{x}$
+   {{< sicm-math >}}\widehat{x}{{< /sicm-math >}}
 
    -axis, formulate a Lagrangian that captures the symmetry of this ellipsoid:
    rotational symmetry around the
 
-   $\widehat{x}$
+   {{< sicm-math >}}\widehat{x}{{< /sicm-math >}}
 
    -axis. Formulate a parametric transformation that represents this symmetry
    and show that the Lagrangian you formulated is invariant under this
@@ -4443,32 +4443,32 @@ vx y) (* -1 m vy x)))
   of abstracting a local-tuple function from a path function. Given a function
   /f/ of a local tuple, a corresponding path-dependent function
 
-  $\overline{f}\lbrack q\rbrack\,\text{is}\,\overline{f}\lbrack q\rbrack = f
-  \circ \Gamma\lbrack q\rbrack$
+  {{< sicm-math >}}\overline{f}\lbrack q\rbrack\,\text{is}\,\overline{f}\lbrack q\rbrack = f
+  \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
   . Given
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   , how can we reconstitute /f/? The local-tuple function /f/ depends on only a
   finite number of components of the local tuple, and
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   depends only on the corresponding local components of the path. So
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   has the same value for all paths that have that number of components of the
   local tuple in common. Given
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   we can reconstitute /f/ by taking the argument of /f/, which is a finite
   initial segment of a local tuple, constructing a path that has this local
   description, and finding the value of
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   for this path.
 
@@ -4482,53 +4482,53 @@ vx y) (* -1 m vy x)))
   ...))(/t/) = /v/, and in general
 
   @@html:<span id="disp_1.170"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(t,q,v,\ldots) = \Gamma\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.170)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   The number of components of the local tuple that are required is finite, but
   unspecified. One way of constructing /O/ is through the truncated power series
 
   @@html:<span id="disp_1.171"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {O(t,q,v,a,\ldots)(t\prime) = q + v(t\prime - t) + \frac{1}{2}a{(t\prime - t)}^{2} + \cdots,} & {(1.171)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   where the number of terms is the same as the number of components of the local
   tuple that are specified.
 
   Given the path function
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   we reconstitute the /f/ function as follows. We take the argument of /f/ and
   construct an osculating path with this local description. Then the value of
   /f/ is the value of
 
-  $\overline{f}$
+  {{< sicm-math >}}\overline{f}{{< /sicm-math >}}
 
   for this osculating path:
 
   @@html:<span id="disp_1.172"></span>@@
-$$\begin{array}{lll} {f(t,q,v,\ldots)} & {= (f \circ \Gamma\lbrack O(t,q,v,\ldots)\rbrack)(t)} & \\ & {= \overline{f}\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.172)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {f(t,q,v,\ldots)} & {= (f \circ \Gamma\lbrack O(t,q,v,\ldots)\rbrack)(t)} & \\ & {= \overline{f}\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.172)}\end{array}{{< /sicm-math >}}
   Let
 
-  $\overline{\Gamma}$
+  {{< sicm-math >}}\overline{\Gamma}{{< /sicm-math >}}
 
   be the function that takes a path function and returns the corresponding
   local-tuple function:[fn:89]
 
   @@html:<span id="disp_1.173"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {f = \overline{\Gamma}(\overline{f}).} & {(1.173)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   From equation ([[/eval/sicm/chapter-1/#disp_1.172][1.172]]) we see that
 
   @@html:<span id="disp_1.174"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\overline{\Gamma}(\overline{f})(t,q,v,\ldots) = \overline{f}\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.174)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   The procedure Gamma-bar implements the function
 
-  $\overline{\Gamma}$
+  {{< sicm-math >}}\overline{\Gamma}{{< /sicm-math >}}
 
   that reconstitutes a path-dependent function into a local-tuple function:
 
@@ -4557,10 +4557,10 @@ q-prime))) (Gamma q n)) ((Gamma-bar f-bar) local))) C) (show-expression ((F->C
 p->r) (up 't (up 'r 'theta) (up 'rdot 'thetadot))))
    #+end_src
 
-  $$\begin{pmatrix} t \\ \begin{pmatrix} {r\cos\,(\theta)} {r\sin\,(\theta)}
-  \\ \end{pmatrix} \begin{pmatrix} {- r\overset{˙}{\theta}\sin\,(\theta) +
-  \overset{˙}{r}\cos\,(\theta)} {r\overset{˙}{\theta}\cos\,(\theta) +
-  \overset{˙}{r}\sin\,(\theta)} \end{pmatrix} \end{pmatrix}$$
+  {{< sicm-math display >}}\begin{pmatrix} t \\ \begin{pmatrix} {r\cos\,(\theta)} {r\sin\,(\theta)}
+  \\ \end{pmatrix} \begin{pmatrix} {- r\dot{\theta}\sin\,(\theta) +
+  \dot{r}\cos\,(\theta)} {r\dot{\theta}\cos\,(\theta) +
+  \dot{r}\sin\,(\theta)} \end{pmatrix} \end{pmatrix}{{< /sicm-math >}}
 
 
 
@@ -4570,13 +4570,13 @@ p->r) (up 't (up 'r 'theta) (up 'rdot 'thetadot))))
 
   We can also use
 
-  $\overline{\Gamma}$
+  {{< sicm-math >}}\overline{\Gamma}{{< /sicm-math >}}
 
   to make an elegant formula for computing the total time derivative /D_{t}F/ of
   the function /F/ :
 
   @@html:<span id="disp_1.175"></span>@@
-$$\begin{array}{llll} {D_{t}F = \overline{\Gamma}(\overline{G}),} & \text{with} & {\overline{G}\lbrack q\rbrack = D(F \circ \Gamma\lbrack q\rbrack).} & {(1.175)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{llll} {D_{t}F = \overline{\Gamma}(\overline{G}),} & \text{with} & {\overline{G}\lbrack q\rbrack = D(F \circ \Gamma\lbrack q\rbrack).} & {(1.175)}\end{array}{{< /sicm-math >}}
   The total time derivative can be expressed as a program:
 
    #+begin_src scheme
@@ -4614,53 +4614,53 @@ $$\begin{array}{llll} {D_{t}F = \overline{\Gamma}(\overline{G}),} & \text{with} 
 
    Let
 
-   $\overline{\mathcal{E}}$
+   {{< sicm-math >}}\overline{\mathcal{E}}{{< /sicm-math >}}
 
    [/L/] be the path-dependent function that produces the residuals of the
    Lagrange equations ([[/eval/sicm/chapter-1/#disp_1.12][1.12]]) for the
    Lagrangian /L/:
 
    @@html:<span id="disp_1.176"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\overline{\mathcal{E}}\lbrack L\rbrack\lbrack q\rbrack = D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack.} & {(1.176)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Realizable paths /q/ satisfy the Lagrange equations
 
    @@html:<span id="disp_1.177"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\overline{\mathcal{E}}\lbrack L\rbrack\lbrack q\rbrack = 0.} & {(1.177)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The path-dependent Lagrange equations can be converted to local Lagrange
    equations using
 
-   $\overline{\Gamma}$
+   {{< sicm-math >}}\overline{\Gamma}{{< /sicm-math >}}
 
    :
 
    @@html:<span id="disp_1.178"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack = \overline{\Gamma}(\overline{\mathcal{E}}\lbrack L\rbrack).} & {(1.178)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The operator
 
-   $\mathcal{E}$
+   {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
    is called the /Euler--Lagrange operator/. In terms of this operator the
    Lagrange equations are
 
    @@html:<span id="disp_1.179"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = 0.} & {(1.179)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The Euler--Lagrange operator is explicitly
 
    @@html:<span id="disp_1.180"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack = D_{t}\partial_{2}L - \partial_{1}L.} & {(1.180)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The procedure Euler-Lagrange-operator implements
 
-   $\mathcal{E}$
+   {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
    :
 
@@ -4695,24 +4695,24 @@ x))
 
    *a.*
 
-   $\mathcal{E}\lbrack F + G\rbrack = \mathcal{E}\lbrack F\rbrack +
-   \mathcal{E}\lbrack G\rbrack$
+   {{< sicm-math >}}\mathcal{E}\lbrack F + G\rbrack = \mathcal{E}\lbrack F\rbrack +
+   \mathcal{E}\lbrack G\rbrack{{< /sicm-math >}}
 
 
 
    *b.*
 
-   $\mathcal{E}\lbrack cF\rbrack = c\mathcal{E}\lbrack F\rbrack$
+   {{< sicm-math >}}\mathcal{E}\lbrack cF\rbrack = c\mathcal{E}\lbrack F\rbrack{{< /sicm-math >}}
 
    *c.*
 
-   $\mathcal{E}\lbrack FG\rbrack = \mathcal{E}\lbrack F\rbrack G +
-   F\mathcal{E}\lbrack G\rbrack + (D_{t}F)\partial_{2}G + \partial_{2}F(D_{t}G)$
+   {{< sicm-math >}}\mathcal{E}\lbrack FG\rbrack = \mathcal{E}\lbrack F\rbrack G +
+   F\mathcal{E}\lbrack G\rbrack + (D_{t}F)\partial_{2}G + \partial_{2}F(D_{t}G){{< /sicm-math >}}
 
    *d.*
 
-   $\mathcal{E}\lbrack F \circ C\rbrack = D_{t}(DF \circ C)\partial_{2}C + DF
-   \circ C\mathcal{E}\lbrack C\rbrack$
+   {{< sicm-math >}}\mathcal{E}\lbrack F \circ C\rbrack = D_{t}(DF \circ C)\partial_{2}C + DF
+   \circ C\mathcal{E}\lbrack C\rbrack{{< /sicm-math >}}
 
 * 1.10 Constrained Motion
   :PROPERTIES:
@@ -4739,9 +4739,9 @@ x))
   satisfy some relation of the form
 
   @@html:<span id="disp_1.181"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\varphi(t,q(t),Dq(t)) = 0.} & {(1.181)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   How do we formulate the equations of motion? One approach would be to use the
   constraint equation to eliminate one of the coordinates in favor of the rest;
   then the evolution of the reduced set of generalized coordinates would be
@@ -4766,46 +4766,46 @@ $$\begin{aligned}
   reduces to the conditions ([[/eval/sicm/chapter-1/#disp_1.17][1.17]]) or ([[/eval/sicm/chapter-1/#disp_1.34][1.34]]):
 
   @@html:<span id="disp_1.182"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {0 = {\int_{t_{1}}^{t_{2}}{\left\{ {(\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)} \right\}\eta.}}} & {(1.182)}
-  \end{aligned}$$
-  At this point we argued that because the variations $\eta$ are arbitrary
+  \end{aligned}{{< /sicm-math >}}
+  At this point we argued that because the variations {{< sicm-math >}}\eta{{< /sicm-math >}} are arbitrary
   (except for conditions at the endpoints), the only way for the integral to be
   zero is for the integrand to be zero. Furthermore, the freedom in our choice
-  of $\eta$ allowed us to deduce that the factor multiplying $\eta$ in the
+  of {{< sicm-math >}}\eta{{< /sicm-math >}} allowed us to deduce that the factor multiplying {{< sicm-math >}}\eta{{< /sicm-math >}} in the
   integrand must be identically zero, thereby deriving Lagrange's equations.
 
-  Now the choice of $\eta$ is not completely free. We can still deduce from the
-  arbitrariness of $\eta$ that the integrand must be zero,[fn:91] but we can no
-  longer deduce that the factor multiplying $\eta$ is zero (only that the
+  Now the choice of {{< sicm-math >}}\eta{{< /sicm-math >}} is not completely free. We can still deduce from the
+  arbitrariness of {{< sicm-math >}}\eta{{< /sicm-math >}} that the integrand must be zero,[fn:91] but we can no
+  longer deduce that the factor multiplying {{< sicm-math >}}\eta{{< /sicm-math >}} is zero (only that the
   projection of this factor onto acceptable variations is zero). So we have
 
   @@html:<span id="disp_1.183"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\left\{ {(\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)} \right\}\eta = 0,} & {(1.183)}
-  \end{aligned}$$
-  with $\eta$ subject to the constraints.
+  \end{aligned}{{< /sicm-math >}}
+  with {{< sicm-math >}}\eta{{< /sicm-math >}} subject to the constraints.
 
   A path /q/ satisfies the constraint if
 
-  $\overline{\varphi}\lbrack q\rbrack = \varphi \circ \Gamma\lbrack q\rbrack =
-  0$
+  {{< sicm-math >}}\overline{\varphi}\lbrack q\rbrack = \varphi \circ \Gamma\lbrack q\rbrack =
+  0{{< /sicm-math >}}
 
   . The constraint must be satisfied even for the varied path, so we allow only
-  variations $\eta$ for which the variation of the constraint is zero:
+  variations {{< sicm-math >}}\eta{{< /sicm-math >}} for which the variation of the constraint is zero:
 
   @@html:<span id="disp_1.184"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}(\overline{\varphi}) = 0.} & {(1.184)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   We can say that the variation must be “tangent” to the constraint surface.
-  Expanding this with the chain rule, a variation $\eta$ is tangent to the
+  Expanding this with the chain rule, a variation {{< sicm-math >}}\eta{{< /sicm-math >}} is tangent to the
   constraint surface /φ/ if
 
   @@html:<span id="disp_1.185"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack)\,\eta + (\partial_{2}\varphi \circ \Gamma\lbrack q\rbrack)\, D\eta = 0.} & {(1.185)}
-  \end{aligned}$$
+  \end{aligned}{{< /sicm-math >}}
   Note that these are functions of time; the variation at a given time is
   tangent to the constraint at that time.
 
@@ -4816,26 +4816,26 @@ $$\begin{aligned}
     :END:
     Consider constraints that do not depend on velocities:
 
-    $\partial_{2}\varphi = 0.$
+    {{< sicm-math >}}\partial_{2}\varphi = 0.{{< /sicm-math >}}
 
     In this case the variation is tangent to the constraint surface if
 
     @@html:<span id="disp_1.186"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\partial_{1}\varphi \circ \Gamma)\,\,\,\eta = 0.} & {(1.186)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     Together, equations ([[/eval/sicm/chapter-1/#disp_1.183][1.183]]) and ([[/eval/sicm/chapter-1/#disp_1.186][1.186]]) should determine the motion, but how
-    do we eliminate $\eta$? The residual of the Lagrange equations is
-    orthogonal[fn:92] to any $\eta$ that is orthogonal to the normal to the
+    do we eliminate {{< sicm-math >}}\eta{{< /sicm-math >}}? The residual of the Lagrange equations is
+    orthogonal[fn:92] to any {{< sicm-math >}}\eta{{< /sicm-math >}} that is orthogonal to the normal to the
     constraint surface. A vector that is orthogonal to all vectors orthogonal to
     a given vector is parallel to the given vector. Thus, the residual of
     Lagrange's equations is parallel to the normal to the constraint surface;
     the two must be proportional:
 
     @@html:<span id="disp_1.187"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack).} & {(1.187)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     That the two vectors are parallel everywhere along the path does not
     guarantee that the proportionality factor is the same at each moment along
     the path, so the proportionality factor /λ/ is some function of time, which
@@ -4855,14 +4855,14 @@ $$\begin{aligned}
    coordinates:
 
    @@html:<span id="disp_1.188"></span>@@
-$$\begin{aligned}
-{L\prime(t;q,\lambda;\overset{˙}{q},\overset{˙}{\lambda}) = L(t,q,\overset{˙}{q}) + \lambda\varphi(t,q,\overset{˙}{q}).} & {(1.188)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t;q,\lambda;\dot{q},\dot{\lambda}) = L(t,q,\dot{q}) + \lambda\varphi(t,q,\dot{q}).} & {(1.188)}
+   \end{aligned}{{< /sicm-math >}}
    The Lagrange equations associated with the coordinates /q/ are just the
    modified Lagrange equations ([[/eval/sicm/chapter-1/#disp_1.187][1.187]]), and the Lagrange equation associated
    with /λ/ is just the constraint equation. (Note that
 
-   $\overset{˙}{\lambda}$
+   {{< sicm-math >}}\dot{\lambda}{{< /sicm-math >}}
 
    does not appear in the augmented Lagrangian.) So the Lagrange equations for
    this augmented Lagrangian fully encapsulate the modification to the Lagrange
@@ -4887,23 +4887,23 @@ $$\begin{aligned}
    the Lagrangian
 
    @@html:<span id="disp_1.189"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L'' = L + \Lambda\varphi.} & {(1.189)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    This new Lagrangian has no extra degrees of freedom. The Lagrange equations
    for /L/″ are the Lagrange equations for /L/ with additional terms arising
    from the product Λ/φ/. Applying the Euler--Lagrange operator
 
-   $\mathcal{E}$
+   {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
    (see [[/eval/sicm/chapter-1/#h1-6d][section 1.9]]) to this Lagrangian
    gives[fn:93]
 
    @@html:<span id="disp_1.190"></span>@@
-$$\begin{array}{lll} {\mathcal{E}\lbrack L''\rbrack} & {= \mathcal{E}\lbrack L\rbrack + \mathcal{E}\lbrack\Lambda\varphi\rbrack} & \\ & {= \mathcal{E}\lbrack L\rbrack + \Lambda\mathcal{E}\lbrack\varphi\rbrack + \mathcal{E}\lbrack\Lambda\rbrack\varphi + D_{t}\Lambda\partial_{2}\varphi + \partial_{2}\Lambda D_{t}\varphi.} & {(1.190)}\end{array}$$
+{{< sicm-math display >}}\begin{array}{lll} {\mathcal{E}\lbrack L''\rbrack} & {= \mathcal{E}\lbrack L\rbrack + \mathcal{E}\lbrack\Lambda\varphi\rbrack} & \\ & {= \mathcal{E}\lbrack L\rbrack + \Lambda\mathcal{E}\lbrack\varphi\rbrack + \mathcal{E}\lbrack\Lambda\rbrack\varphi + D_{t}\Lambda\partial_{2}\varphi + \partial_{2}\Lambda D_{t}\varphi.} & {(1.190)}\end{array}{{< /sicm-math >}}
    Composition of
 
-   $\mathcal{E}$
+   {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
    [/L/″] with Γ[/q/] gives the Lagrange equations for the path /q/. Using the
    fact that the constraint is satisfied on the path /φ/ ∘ Γ[/q/] = 0 and
@@ -4912,20 +4912,20 @@ $$\begin{array}{lll} {\mathcal{E}\lbrack L''\rbrack} & {= \mathcal{E}\lbrack L\r
 
 
    @@html:<span id="disp_1.191"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L''\rbrack \circ \Gamma\lbrack q\rbrack}
-   & \\ {\text{       } = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack
+   & \\ {\text{} = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack
    q\rbrack + \lambda(\mathcal{E}\lbrack\varphi\rbrack \circ \Gamma\lbrack
    q\rbrack) + D\lambda(\partial_{2}\varphi \circ \Gamma\lbrack q\rbrack),} &
    {(1.191)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    where we have used /λ/ = Λ ∘ Γ[/q/]. If we now use the fact that we are
    dealing only with coordinate constraints, ∂_{2}/φ/ = 0, then
 
    @@html:<span id="disp_1.192"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L''\rbrack \circ \Gamma\lbrack q\rbrack = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack + \lambda(\mathcal{E}\lbrack\varphi\rbrack \circ \Gamma\lbrack q\rbrack).} & {(1.192)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The Lagrange equations are the same as those derived from the augmented
    Lagrangian /L/′. The difference is that now we see that /λ/ = Λ ∘ Γ[/q/] is
    determined by the unaugmented state. This is the same as saying that /λ/ can
@@ -4955,73 +4955,73 @@ $$\begin{aligned}
    Lagrangian for the unconstrained particle is
 
    @@html:<span id="disp_1.193"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( v_{x}^{2} + v_{y}^{2} \right) - mgy.} & {(1.193)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The constraint that the pendulum moves in a circle of radius /l/ about the
    pivot is[fn:94]
 
    @@html:<span id="disp_1.194"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x^{2} + y^{2} - l^{2} = 0.} & {(1.194)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    The augmented Lagrangian is
 
    @@html:<span id="disp_1.195"></span>@@
-$$\begin{aligned}
-{L\prime(t;x,y,\lambda;v_{x},v_{y},\overset{˙}{\lambda}) = \frac{1}{2}m\left( v_{x}^{2} + v_{y}^{2} \right) - mgy + \lambda\left( x^{2} + y^{2} - l^{2} \right).} & {(1.195)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t;x,y,\lambda;v_{x},v_{y},\dot{\lambda}) = \frac{1}{2}m\left( v_{x}^{2} + v_{y}^{2} \right) - mgy + \lambda\left( x^{2} + y^{2} - l^{2} \right).} & {(1.195)}
+   \end{aligned}{{< /sicm-math >}}
    The Lagrange equations for the augmented Lagrangian are
 
    @@html:<span id="disp_1.196"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}x - 2\lambda x = 0} & {(1.196)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.197"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mD^{2}y + mg - 2\lambda y = 0} & {(1.197)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.198"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {x^{2} + y^{2} - l^{2} = 0.} & {(1.198)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    These equations are sufficient to solve for the motion of the pendulum.
 
    It should not be surprising that these equations simplify if we switch to
    “polar” coordinates
 
    @@html:<span id="disp_1.199"></span>@@
-$$\begin{aligned}
-{x = r\sin\theta\text{       }y = - r\cos\theta.} & {(1.199)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{x = r\sin\theta\text{}y = - r\cos\theta.} & {(1.199)}
+   \end{aligned}{{< /sicm-math >}}
    Substituting this into the constraint equation, we determine that /r/ = /l/,
    a constant. Forming the derivatives and substituting into the other two
    equations, we find
 
    @@html:<span id="disp_1.200"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {ml(\cos\theta\, D^{2}\theta - \sin\theta\,{(D\theta)}^{2}) - 2\lambda\sin\theta = 0} & {(1.200)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.201"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {ml(\sin\theta\, D^{2}\theta + \cos\theta\,{(D\theta)}^{2}) + mg + 2\lambda\cos\theta = 0.} & {(1.201)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    Multiplying the first by cos /θ/ and the second by sin /θ/ and adding, we
    find
 
    @@html:<span id="disp_1.202"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {mlD^{2}\theta + mg\sin\theta = 0,} & {(1.202)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    which we recognize as the correct equation for the pendulum. This is the same
    as the Lagrange equation for the pendulum using the unconstrained generalized
    coordinate /θ/. For completeness, we can find /λ/ in terms of the other
    variables:
 
    @@html:<span id="disp_1.203"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\lambda = \frac{mD^{2}x}{2x} = - \frac{1}{2l}(mg\cos\theta + ml{(D\theta)}^{2}).} & {(1.203)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    This confirms that /λ/ is really the composition of a function of the state
    with the state path. Notice that 2/lλ/ is a force---it is the sum of the
    outward component of the gravitational force and the centrifugal force. Using
@@ -5054,9 +5054,9 @@ $$\begin{aligned}
    An alternative procedure is to break the system into several parts. In our
    spring-mass system we can choose two parts: one is a spring and mass attached
    to the wall, and the other is a spring and mass with its attachment point at
-   an additional configuration coordinate $\xi$. We can formulate a Lagrangian
+   an additional configuration coordinate {{< sicm-math >}}\xi{{< /sicm-math >}}. We can formulate a Lagrangian
    for each part separately. We can then choose a Lagrangian for the composite
-   system as the sum of the two component Lagrangians with a constraint $\xi$ =
+   system as the sum of the two component Lagrangians with a constraint {{< sicm-math >}}\xi{{< /sicm-math >}} =
    /X/_{1} + /x/_{1} to accomplish the coupling.
 
 
@@ -5065,55 +5065,55 @@ $$\begin{aligned}
    wall is
 
    @@html:<span id="disp_1.204"></span>@@
-$$\begin{aligned}
-{L_{1}(t,x_{1},{\overset{˙}{x}}_{1}) = \frac{1}{2}m_{1}{\overset{˙}{x}}_{1}^{2} - \frac{1}{2}k_{1}x_{1}^{2}} & {(1.204)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L_{1}(t,x_{1},{\dot{x}}_{1}) = \frac{1}{2}m_{1}{\dot{x}}_{1}^{2} - \frac{1}{2}k_{1}x_{1}^{2}} & {(1.204)}
+   \end{aligned}{{< /sicm-math >}}
    and the Lagrangian for the subsystem that attaches to it is
 
    @@html:<span id="disp_1.205"></span>@@
-$$\begin{aligned}
-{L_{2}(t;\xi,x_{2};\overset{˙}{\xi},{\overset{˙}{x}}_{2}) = \frac{1}{2}m_{2}{(\overset{˙}{\xi} + {\overset{˙}{x}}_{2})}^{2} - \frac{1}{2}k_{2}x_{2}^{2}.} & {(1.205)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L_{2}(t;\xi,x_{2};\dot{\xi},{\dot{x}}_{2}) = \frac{1}{2}m_{2}{(\dot{\xi} + {\dot{x}}_{2})}^{2} - \frac{1}{2}k_{2}x_{2}^{2}.} & {(1.205)}
+   \end{aligned}{{< /sicm-math >}}
    We construct a Lagrangian for the system composed from these parts as a sum
    of the Lagrangians for each of the separate parts, with a coupling term to
    enforce the constraint:
 
    @@html:<span id="disp_1.206"></span>@@
-$$\begin{aligned}
-{L(t;x_{1},x_{2},\xi,\lambda;{\overset{˙}{x}}_{1},{\overset{˙}{x}}_{2},\overset{˙}{\xi},\overset{˙}{\lambda})} & \\
-   {\text{         } = L_{1}(t,x_{1},{\overset{˙}{x}}_{1}) + L_{2}(t;\xi,x_{2};\overset{˙}{\xi},{\overset{˙}{x}}_{2})} & \\
-   {\text{         }\text{         } + \lambda(\xi - (X_{1} + x_{1})).} & {(1.206)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L(t;x_{1},x_{2},\xi,\lambda;{\dot{x}}_{1},{\dot{x}}_{2},\dot{\xi},\dot{\lambda})} & \\
+   {\text{} = L_{1}(t,x_{1},{\dot{x}}_{1}) + L_{2}(t;\xi,x_{2};\dot{\xi},{\dot{x}}_{2})} & \\
+   {\text{}\text{} + \lambda(\xi - (X_{1} + x_{1})).} & {(1.206)}
+   \end{aligned}{{< /sicm-math >}}
    Thus we can write Lagrange's equations for the four configuration
    coordinates, in order, as follows:
 
    @@html:<span id="disp_1.207"></span>@@
-$$\begin{aligned} {m_{1}D^{2}x_{1} = - k_{1}x_{1} - \lambda} & {(1.207)}
-   \\ \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned} {m_{1}D^{2}x_{1} = - k_{1}x_{1} - \lambda} & {(1.207)}
+   \\ \end{aligned}{{< /sicm-math >}}
 
    @@html:<span id="disp_1.208"></span>@@
-$$\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = - k_{2}x_{2}} & {(1.208)}
-   \\ \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = - k_{2}x_{2}} & {(1.208)}
+   \\ \end{aligned}{{< /sicm-math >}}
 
    @@html:<span id="disp_1.209"></span>@@
-$$\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = \lambda} & {(1.209)}
-   \\ \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = \lambda} & {(1.209)}
+   \\ \end{aligned}{{< /sicm-math >}}
 
    @@html:<span id="disp_1.210"></span>@@
-$$\begin{aligned} {0 = \xi - (X_{1} + x_{1}).} & {(1.210)} \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned} {0 = \xi - (X_{1} + x_{1}).} & {(1.210)} \end{aligned}{{< /sicm-math >}}
 
    Notice that in this system /λ/ is the force of constraint holding the system
-   together. We can now eliminate the “glue” coordinates $\xi$ and /λ/ to obtain
+   together. We can now eliminate the “glue” coordinates {{< sicm-math >}}\xi{{< /sicm-math >}} and /λ/ to obtain
    the equations of motion in the coordinates /x/_{1} and /x/_{2}:
 
    @@html:<span id="disp_1.211"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {m_{1}D^{2}x_{1} + m_{2}(D^{2}x_{1} + D^{2}x_{2}) + k_{1}x_{1} = 0} & {(1.211)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.212"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {m_{2}(D^{2}x_{1} + D^{2}x_{2}) + k_{2}x_{2} = 0.} & {(1.212)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    This strategy can be generalized. We can make a library of primitive
    components. Each component may be characterized by a Lagrangian with
    additional degrees of freedom for the /terminals/ where that component may be
@@ -5193,16 +5193,16 @@ $$\begin{aligned}
     that
 
     @@html:<span id="disp_1.213"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\psi \circ \Gamma\lbrack q\rbrack = D(\varphi \circ \Gamma\lbrack q\rbrack).} & {(1.213)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     That /φ/ is velocity-independent means ∂_{2}/φ/ = 0. As state functions the
     relationship between /ψ/ and /φ/ is
 
     @@html:<span id="disp_1.214"></span>@@
-$$\begin{aligned}
-{\psi = D_{t}\varphi = \partial_{0}\varphi + \partial_{1}\varphi\overset{˙}{Q}.} & {(1.214)}
-    \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\psi = D_{t}\varphi = \partial_{0}\varphi + \partial_{1}\varphi\dot{Q}.} & {(1.214)}
+    \end{aligned}{{< /sicm-math >}}
     Given a /ψ/ we can find /φ/ by solving this linear partial differential
     equation. The solution is determined up to a constant, so /ψ/ = 0 implies
     /φ/ = /K/ for some constant /K/. On the other hand, if we knew /φ/ = /K/
@@ -5216,30 +5216,30 @@ $$\begin{aligned}
     with the constraint /φ/ = /K/ are
 
     @@html:<span id="disp_1.215"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack + \lambda\,(\mathcal{E}\lbrack\varphi\rbrack \circ \Gamma\lbrack q\rbrack) = 0,} & {(1.215)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     where /λ/ is a function of time that will be eliminated during the solution
     process. The constant /K/ does not affect the Lagrange equations. The
     function /φ/ is independent of velocity, ∂_{2}/φ/ = 0, so the Lagrange
     equations become
 
     @@html:<span id="disp_1.216"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack - \lambda(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.216)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     From equation ([[/eval/sicm/chapter-1/#disp_1.214][1.214]]) we see that
 
     @@html:<span id="disp_1.217"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\partial_{1}\varphi = \partial_{2}\psi,} & {(1.217)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     so the Lagrange equations with the constraint /ψ/ = 0 are
 
     @@html:<span id="disp_1.218"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack).} & {(1.218)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     The important feature is that we can write the Lagrange equations directly
     in terms of /ψ/ without having to produce /φ/. But the validity of these
     Lagrange equations depends on the existence of /φ/.
@@ -5249,15 +5249,15 @@ $$\begin{aligned}
     constraint /ψ/ multiplied by a function of time /λ/′:
 
     @@html:<span id="disp_1.219"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {L\prime = L + \lambda\prime\psi.} & {(1.219)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     The Lagrange equations for /L/′ turn out to be
 
     @@html:<span id="disp_1.220"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = - D\lambda\prime(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack),} & {(1.220)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     which, with the identification /λ/ = −/Dλ/′, are the same as Lagrange
     equations ([[/eval/sicm/chapter-1/#disp_1.218][1.218]]).
 
@@ -5304,9 +5304,9 @@ $$\begin{aligned}
    reflected in a change in /x/; the constraint function is
 
    @@html:<span id="disp_1.221"></span>@@
-$$\begin{aligned}
-{\psi(t;x,\theta;\overset{˙}{x},\overset{˙}{\theta}) = R\overset{˙}{\theta} - \overset{˙}{x}.} & {(1.221)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{\psi(t;x,\theta;\dot{x},\dot{\theta}) = R\dot{\theta} - \dot{x}.} & {(1.221)}
+   \end{aligned}{{< /sicm-math >}}
    This constraint is phrased as a relation among generalized velocities, but it
    could be integrated to get /x/ = /Rθ/ + /c/. We may form our augmented
    Lagrangian with either the integrated constraint or its derivative.
@@ -5319,37 +5319,37 @@ $$\begin{aligned}
    Lagrangian:
 
    @@html:<span id="disp_1.222"></span>@@
-$$\begin{aligned}
-{L(t;x,\theta,\lambda;\overset{˙}{x},\overset{˙}{\theta},\lambda)} & \\
-   {\,\,\,\,\,\,\,\, = \frac{1}{2}M\, R^{2}{\overset{˙}{\theta}}^{2} + \frac{1}{2}M\,{\overset{˙}{x}}^{2} + M\, gx\sin\varphi + \lambda(R\overset{˙}{\theta} - \overset{˙}{x}).} & {(1.222)}
-   \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L(t;x,\theta,\lambda;\dot{x},\dot{\theta},\lambda)} & \\
+   {\,\,\,\,\,\,\,\, = \frac{1}{2}M\, R^{2}{\dot{\theta}}^{2} + \frac{1}{2}M\,{\dot{x}}^{2} + M\, gx\sin\varphi + \lambda(R\dot{\theta} - \dot{x}).} & {(1.222)}
+   \end{aligned}{{< /sicm-math >}}
    Lagrange's equations are
 
    @@html:<span id="disp_1.223"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {M\, D^{2}x - D\lambda = M\, g\sin\varphi} & {(1.223)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.224"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {M\, R^{2}D^{2}\theta + R\, D\lambda = 0} & {(1.224)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    @@html:<span id="disp_1.225"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {R\, D\theta - Dx = 0.} & {(1.225)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    And by differentiation of the third Lagrange equation we obtain
 
    @@html:<span id="disp_1.226"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}x = RD^{2}\theta.} & {(1.226)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    By combining these equations we can solve for the dynamical quantities of
    interest. For this case of a rolling hoop the linear acceleration
 
    @@html:<span id="disp_1.227"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}x = \frac{1}{2}g\sin\varphi} & {(1.227)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    is just half of what it would have been if the mass had just slid down a
    frictionless plane without rotating. Note that for this hoop /D/^{2}/x/ is
    independent of both /M/ and /R/. We see from the Lagrange equations that /Dλ/
@@ -5357,15 +5357,15 @@ $$\begin{aligned}
    constraint. The frictional force of constraint is
 
    @@html:<span id="disp_1.228"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D\lambda = \frac{1}{2}M\, g\sin\varphi} & {(1.228)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
    and the angular acceleration is
 
    @@html:<span id="disp_1.229"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {D^{2}\theta = \frac{1}{2}\frac{g}{R}\sin\varphi.} & {(1.229)}
-   \end{aligned}$$
+   \end{aligned}{{< /sicm-math >}}
 *** 1.10.3 Nonholonomic Systems
     :PROPERTIES:
     :CUSTOM_ID: h3_1-10-3
@@ -5388,17 +5388,17 @@ $$\begin{aligned}
     are as follows. Let /ψ/ have the form
 
     @@html:<span id="disp_1.230"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\psi(t,q,v) = G_{1}(t,q)v + G_{2}(t,q),} & {(1.230)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     a state function that is linear in the velocities. We assume /ψ/ is not a
     total time derivative. If /L/ is a Lagrangian for the unconstrained system,
     then the equations of motion are asserted to be
 
     @@html:<span id="disp_1.231"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(G_{1} \circ \Gamma\lbrack q\rbrack) = \lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack).} & {(1.231)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     With the constraint /ψ/ = 0, the system is completely specified and the
     evolution of the system is determined. Note that these equations are
     identical to the Lagrange equations ([[/eval/sicm/chapter-1/#disp_1.218][1.218]]) for the case that /ψ/ is a total
@@ -5410,85 +5410,85 @@ $$\begin{aligned}
     be satisfied:
 
     @@html:<span id="disp_1.232"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 ({\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack
     q\rbrack)\eta = 0,} & {(1.232)}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
     and
 
     @@html:<span id="disp_1.233"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 ({\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack)\eta =
     0.} & {(1.233)}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
 
 
     Because
 
-    $\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack$
+    {{< sicm-math >}}\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
-    is orthogonal to $\eta$ and $\eta$ is constrained to be orthogonal to
+    is orthogonal to {{< sicm-math >}}\eta{{< /sicm-math >}} and {{< sicm-math >}}\eta{{< /sicm-math >}} is constrained to be orthogonal to
     ∂_{1}/φ/ ∘ Γ[/q/], the two must be parallel at each moment:
 
     @@html:<span id="disp_1.234"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack).} & {(1.234)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     The Lagrange equations for derivative constraints were derived from this.
 
     This derivation does not go through if the constraint function depends on
-    velocity. In this case, for a variation $\eta$ to be consistent with the
+    velocity. In this case, for a variation {{< sicm-math >}}\eta{{< /sicm-math >}} to be consistent with the
     velocity-dependent constraint function /ψ/ it must satisfy (see equation
     [[/eval/sicm/chapter-1/#disp_1.185][1.185]])
 
     @@html:<span id="disp_1.235"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\partial_{1}\psi \circ \Gamma\lbrack q\rbrack)\eta + (\partial_{2}\psi \circ \Gamma\lbrack q\rbrack)D\eta = 0.} & {(1.235)}
-    \end{aligned}$$
-    We may no longer eliminate $\eta$ by the same argument, because $\eta$ is no
+    \end{aligned}{{< /sicm-math >}}
+    We may no longer eliminate {{< sicm-math >}}\eta{{< /sicm-math >}} by the same argument, because {{< sicm-math >}}\eta{{< /sicm-math >}} is no
     longer orthogonal to ∂_{1}/ψ/ ∘ Γ[/q/], and we cannot rewrite the constraint
     as a coordinate constraint because /ψ/ is, by assumption, not integrable.
 
     The following is the derivation of the nonholonomic equations from Arnold et
-    al. [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_6][6]]], translated into our notation. Define a “virtual velocity” $\xi$ to
+    al. [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_6][6]]], translated into our notation. Define a “virtual velocity” {{< sicm-math >}}\xi{{< /sicm-math >}} to
     be any velocity satisfying
 
     @@html:<span id="disp_1.236"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 ({\partial_{2}\psi \circ \Gamma\lbrack q\rbrack)\xi = 0.}
     & {(1.236)}
-\end{aligned}$$
+\end{aligned}{{< /sicm-math >}}
 
     The “principle of d'Alembert--Lagrange,” according to Arnold, states that
 
     @@html:<span id="disp_1.237"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {(\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack)\xi = 0,} & {(1.237)}
-    \end{aligned}$$
-    for any virtual velocity $\xi$. Because $\xi$ is arbitrary except that it is
-    required to be orthogonal to ∂_{2}/ψ/ ∘ Γ[/q/] and any such $\xi$ is
+    \end{aligned}{{< /sicm-math >}}
+    for any virtual velocity {{< sicm-math >}}\xi{{< /sicm-math >}}. Because {{< sicm-math >}}\xi{{< /sicm-math >}} is arbitrary except that it is
+    required to be orthogonal to ∂_{2}/ψ/ ∘ Γ[/q/] and any such {{< sicm-math >}}\xi{{< /sicm-math >}} is
     orthogonal to
 
-    $\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack$
+    {{< sicm-math >}}\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
     , then ∂_{2}/ψ/ ∘ Γ[/q/] must be parallel to
 
-    $\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack$
+    {{< sicm-math >}}\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
     . So
 
     @@html:<span id="disp_1.238"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack),} & {(1.238)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     which are the nonholonomic equations.
 
     To convert the stationary action equations to the equations of Arnold we
     must do the following. To get from equation ([[/eval/sicm/chapter-1/#disp_1.232][1.232]]) to equation ([[/eval/sicm/chapter-1/#disp_1.237][1.237]]), we
-    must replace $\eta$ by $\xi$. However, to get from equation ([[/eval/sicm/chapter-1/#disp_1.235][1.235]]) to
-    equation ([[/eval/sicm/chapter-1/#disp_1.236][1.236]]), we must set $\eta = 0$ and replace /Dη/ by $\xi$. All
+    must replace {{< sicm-math >}}\eta{{< /sicm-math >}} by {{< sicm-math >}}\xi{{< /sicm-math >}}. However, to get from equation ([[/eval/sicm/chapter-1/#disp_1.235][1.235]]) to
+    equation ([[/eval/sicm/chapter-1/#disp_1.236][1.236]]), we must set {{< sicm-math >}}\eta = 0{{< /sicm-math >}} and replace /Dη/ by {{< sicm-math >}}\xi{{< /sicm-math >}}. All
     “derivations” of the nonholonomic equations have similar identifications. It
     comes down to this: the nonholonomic equations do not follow from the action
     principle. They are something else. Whether they are correct or not depends
@@ -5502,22 +5502,22 @@ $$\begin{aligned}
     augmented Lagrangian with non-integrable constraint /ψ/:
 
     @@html:<span id="disp_1.239"></span>@@
-$$\begin{aligned}
-{L\prime(t;q,\lambda;\overset{˙}{q},\overset{˙}{\lambda}) = L(t,q,\overset{˙}{q}) + \lambda\psi(t,q,\overset{˙}{q});} & {(1.239)}
-    \end{aligned}$$
+{{< sicm-math display >}}\begin{aligned}
+{L\prime(t;q,\lambda;\dot{q},\dot{\lambda}) = L(t,q,\dot{q}) + \lambda\psi(t,q,\dot{q});} & {(1.239)}
+    \end{aligned}{{< /sicm-math >}}
     then the Lagrange equations associated with the coordinates are
 
     @@html:<span id="disp_1.240"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {0 = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack} & \\
     {\,\,\,\,\, + D\lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack) + \lambda D(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack) - \lambda(\partial_{1}\psi \circ \Gamma\lbrack q\rbrack).} & {(1.240)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     The Lagrange equation associated with /λ/ is just the constraint equation
 
     @@html:<span id="disp_1.241"></span>@@
-$$\begin{aligned}
+{{< sicm-math display >}}\begin{aligned}
 {\psi \circ \Gamma\lbrack q\rbrack = 0.} & {(1.241)}
-    \end{aligned}$$
+    \end{aligned}{{< /sicm-math >}}
     An interesting feature of these equations is that they involve both /λ/ and
     /Dλ/. Thus the usual state variables /q/ and /Dq/, with the constraint, are
     not sufficient to determine a full set of initial conditions for the derived
@@ -5587,8 +5587,8 @@ $$\begin{aligned}
   Consider a pendulum: a mass /m/ supported on a massless rod of length /l/ in a
   uniform gravitational field. A Lagrangian for the pendulum is
 
-  $L(t,\theta,\overset{˙}{\theta}) = \frac{m}{2}{(l\overset{˙}{\theta})}^{2} +
-  mgl\cos\theta.$
+  {{< sicm-math >}}L(t,\theta,\dot{\theta}) = \frac{m}{2}{(l\dot{\theta})}^{2} +
+  mgl\cos\theta.{{< /sicm-math >}}
 
   For the pendulum, the period of the motion depends on the amplitude. We wish
   to find trajectories of the pendulum with a given frequency. Three methods of
@@ -5600,11 +5600,11 @@ $$\begin{aligned}
   Consider the parameters /m/ = 1 kg, /l/ = 1 m, /g/ = 9.8 m s^{−2}. The
   frequency of small-amplitude oscillations is
 
-  $\omega_{0} = \sqrt{g/l}$
+  {{< sicm-math >}}\omega_{0} = \sqrt{g/l}{{< /sicm-math >}}
 
   . Let's find the nontrivial solution that has the frequency
 
-  $\omega_{1} = \frac{4}{5}\omega_{0}$
+  {{< sicm-math >}}\omega_{1} = \frac{4}{5}\omega_{0}{{< /sicm-math >}}
 
   .
 
@@ -5615,11 +5615,11 @@ $$\begin{aligned}
   returns to zero after one-half period, the angle is an odd function of time
   about the midpoint. Thus only odd terms of the series are present:
 
-  $\theta(t) = {\sum\limits_{n = 1}^{m}{A_{n}\sin((2n - 1)\omega_{1}t).}}$
+  {{< sicm-math >}}\theta(t) = {\sum\limits_{n = 1}^{m}{A_{n}\sin((2n - 1)\omega_{1}t).}}{{< /sicm-math >}}
 
   The amplitude of the trajectory is
 
-  $A = \theta_{\max} = {\sum_{n = 1}^{\infty}{{( - 1)}^{n + 1}A_{n}}}$
+  {{< sicm-math >}}A = \theta_{\max} = {\sum_{n = 1}^{\infty}{{( - 1)}^{n + 1}A_{n}}}{{< /sicm-math >}}
 
   .
 
@@ -5634,12 +5634,12 @@ $$\begin{aligned}
   depends on the initial conditions. So we have to guess, and then gradually
   improve our guess. Define a function
 
-  $\Omega(\overset{˙}{\theta})$
+  {{< sicm-math >}}\Omega(\dot{\theta}){{< /sicm-math >}}
 
   that numerically computes the frequency of the motion as a function of the
   initial angular velocity (with /θ/ = 0). Find the trajectory by solving
 
-  $\Omega(\overset{˙}{\theta}) = \omega$
+  {{< sicm-math >}}\Omega(\dot{\theta}) = \omega{{< /sicm-math >}}
 
   for the initial angular velocity of the desired trajectory. Methods of solving
   this equation include successive bisection, minimizing the squared residual,
@@ -5650,12 +5650,12 @@ $$\begin{aligned}
   *c.* Now let's formulate the analytic solution for the frequency as a function
   of amplitude. The period of the motion is simply
 
-  $T = 4{\int_{0}^{T/4}{dt =
-  4}}{\int_{0}^{A}\frac{1}{\overset{˙}{\theta}}}d\theta.$
+  {{< sicm-math >}}T = 4{\int_{0}^{T/4}{dt =
+  4}}{\int_{0}^{A}\frac{1}{\dot{\theta}}}d\theta.{{< /sicm-math >}}
 
   Using the energy, solve for
 
-  $\overset{˙}{\theta}$
+  {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
   in terms of the amplitude /A/ and /θ/ to write the required integral
   explicitly. This integral can be written in terms of elliptic functions, but
@@ -5689,8 +5689,8 @@ $$\begin{aligned}
 
   | /θ/_{1}(0)                     | = | /π//2 rad    |
   | /θ/_{2}(0)                     | = | /π/ rad      |
-  | ${\overset{˙}{\theta}}_{1}(0)$ | = | 0 rad s^{−1} |
-  | ${\overset{˙}{\theta}}_{2}(0)$ | = | 0 rad s^{−1} |
+  | {{< sicm-math >}}{\dot{\theta}}_{1}(0){{< /sicm-math >}} | = | 0 rad s^{−1} |
+  | {{< sicm-math >}}{\dot{\theta}}_{2}(0){{< /sicm-math >}} | = | 0 rad s^{−1} |
 
   Make the graphs extend to 50 seconds.
 
@@ -5721,8 +5721,8 @@ $$\begin{aligned}
 
   | /θ/_{1}(0)                     | = | /π//2 rad    |
   | /θ/_{2}(0)                     | = | 0 rad        |
-  | ${\overset{˙}{\theta}}_{1}(0)$ | = | 0 rad s^{−1} |
-  | ${\overset{˙}{\theta}}_{2}(0)$ | = | 0 rad s^{−1} |
+  | {{< sicm-math >}}{\dot{\theta}}_{1}(0){{< /sicm-math >}} | = | 0 rad s^{−1} |
+  | {{< sicm-math >}}{\dot{\theta}}_{2}(0){{< /sicm-math >}} | = | 0 rad s^{−1} |
 
   What do you see here?
 
@@ -5777,14 +5777,14 @@ to a disk, with a strip near the equator common to both coordinate systems. A
 space that can be locally parameterized by smooth coordinate functions is called
 a /differentiable manifold/.
 
-[fn:9] Here $\circ$ denotes composition of functions:
+[fn:9] Here {{< sicm-math >}}\circ{{< /sicm-math >}} denotes composition of functions:
 
-$$(f \circ g)(t) = f(g(t))$$
+{{< sicm-math display >}}(f \circ g)(t) = f(g(t)){{< /sicm-math >}}
 
-[fn:10] The derivative of a function $f$ is a function, denoted $Df$. Our
-notational convention is that $D$ is a high-precedence operator. Thus $D$
-operates on the adjacent function before any other application occurs: $Df(x)$
-is the same as $(Df)(x)$.
+[fn:10] The derivative of a function {{< sicm-math >}}f{{< /sicm-math >}} is a function, denoted {{< sicm-math >}}Df{{< /sicm-math >}}. Our
+notational convention is that {{< sicm-math >}}D{{< /sicm-math >}} is a high-precedence operator. Thus {{< sicm-math >}}D{{< /sicm-math >}}
+operates on the adjacent function before any other application occurs: {{< sicm-math >}}Df(x){{< /sicm-math >}}
+is the same as {{< sicm-math >}}(Df)(x){{< /sicm-math >}}.
 
 [fn:11] Experience with systems on an atomic scale suggests that at this scale
 systems do not travel along well-defined configuration paths. To describe the
@@ -5807,14 +5807,14 @@ Action Principle” using the “harmless action,” which was the product of ma
 velocity, and the distance of the motion. Leibniz also spoke of a “violent
 action” in the case where things collided.
 
-[fn:15] A definite integral of a real-valued function $f$ of a real argument is
+[fn:15] A definite integral of a real-valued function {{< sicm-math >}}f{{< /sicm-math >}} of a real argument is
 written
 
-  $\int_{a}^{b}f$
+  {{< sicm-math >}}\int_{a}^{b}f{{< /sicm-math >}}
 
   . This can also be written
 
-  ${\int_{a}^{b}f}(x)dx$
+  {{< sicm-math >}}{\int_{a}^{b}f}(x)dx{{< /sicm-math >}}
 
   . The first notation emphasizes that a function is being integrated.
 
@@ -5889,7 +5889,7 @@ the name of a formal parameter, so long as the new name does not conflict with
 any other symbol in the definition. For example, the following definition
 specifies exactly the same free-particle Lagrangian:
 
-  $L(a,b,c) = \frac{1}{2}m(c \cdot c).$
+  {{< sicm-math >}}L(a,b,c) = \frac{1}{2}m(c \cdot c).{{< /sicm-math >}}
 
 [fn:25] The Lagrangian is formally a function of the local tuple, but any
 particular Lagrangian depends only on a finite initial segment of the local
@@ -5954,8 +5954,8 @@ the numbers be exact integers or rational fractions, so that expressions can be
 reliably reduced to lowest terms. Such numbers are specified without a decimal
 point.
 
-[fn:36] The squared magnitude of the velocity is $\overset{\rightarrow}{v} \cdot
- \overset{\rightarrow}{v}$
+[fn:36] The squared magnitude of the velocity is {{< sicm-math >}}\overset{\rightarrow}{v} \cdot
+ \overset{\rightarrow}{v}{{< /sicm-math >}}
 
   , the vector dot product of the velocity with itself, so we write simply
   /v/^{2} = /v/ · /v/.
@@ -6051,31 +6051,31 @@ of its arguments. Thus, the derivative of a function of multiple arguments is a
 down tuple of the partial derivatives of that function with respect to each of
 the arguments. So in the case of a Lagrangian /L/,
 
-$$DL(t,q,v) = \lbrack\partial_{0}L(t,q,v),\partial_{1}L(t,q,v),\partial_{2}L(t,q,v)\rbrack.$$
+{{< sicm-math display >}}DL(t,q,v) = \lbrack\partial_{0}L(t,q,v),\partial_{1}L(t,q,v),\partial_{2}L(t,q,v)\rbrack.{{< /sicm-math >}}
 
 [fn:53] When we write a definition that names the components of the local tuple,
 we indicate that these are grouped into time, position, and velocity components
 by separating the groups with semicolons.
 
-[fn:54] The symbol $\overset{˙}{\theta}$
+[fn:54] The symbol {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
 is just a mnemonic symbol; the dot over the /θ/ does not indicate
 differentiation. To define /L/ we could have just as well have written:
 
-$$L(a,b,c) = \frac{1}{2}ml^{2}c^{2} + mgl\cos b$$
+{{< sicm-math display >}}L(a,b,c) = \frac{1}{2}ml^{2}c^{2} + mgl\cos b{{< /sicm-math >}}
 
 . However, we use a dotted symbol to remind us that the argument matching a
 formal parameter, such as
 
-  $\overset{˙}{\theta}$
+  {{< sicm-math >}}\dot{\theta}{{< /sicm-math >}}
 
 , is a rate of change of an angle, such as /θ/.
 
 [fn:55] In traditional notation these equations read
 
-$$\frac{d^{2}}{dt^{2}}\frac{\partial L}{\partial\overset{¨}{q}} -
-\frac{d}{dt}\frac{\partial L}{\partial\overset{˙}{q}} + \frac{\partial
-L}{\partial q} = 0.$$
+{{< sicm-math display >}}\frac{d^{2}}{dt^{2}}\frac{\partial L}{\partial\ddot{q}} -
+\frac{d}{dt}\frac{\partial L}{\partial\dot{q}} + \frac{\partial
+L}{\partial q} = 0.{{< /sicm-math >}}
 
 [fn:56] The Lagrange-equations procedure uses the operations (partial 1) and
 (partial 2), which implement the partial derivative operators with respect to
@@ -6163,7 +6163,7 @@ in an argument commutes with the taking of the partial derivative with respect
 to a different argument. In deriving the Lagrange equations for /q/ we can set
 /c/ = /l/ and
 
-  $\overset{˙}{c} = 0$
+  {{< sicm-math >}}\dot{c} = 0{{< /sicm-math >}}
 
   in the Lagrangian, but we cannot do this in deriving the Lagrange equations
   associated with /c/, because we have to take derivatives with respect to those
@@ -6261,27 +6261,27 @@ real-number argument in that it does not generate structure, so it can commute
 with derivatives that generate structure. Be careful, though: it may not commute
 with some derivatives for other reasons. For example,
 
-$$D_{t}\partial_{1}(\widetilde{F}(s))$$
+{{< sicm-math display >}}D_{t}\partial_{1}(\widetilde{F}(s)){{< /sicm-math >}}
 
 is the same as
 
-$$\partial_{1}D_{t}(\widetilde{F}(s))$$
+{{< sicm-math display >}}\partial_{1}D_{t}(\widetilde{F}(s)){{< /sicm-math >}}
 
 , but
 
-$$D_{t}\partial_{2}(\widetilde{F}(s))$$
+{{< sicm-math display >}}D_{t}\partial_{2}(\widetilde{F}(s)){{< /sicm-math >}}
 
 is not the same as
 
-$$\partial_{2}D_{t}(\widetilde{F}(s))$$
+{{< sicm-math display >}}\partial_{2}D_{t}(\widetilde{F}(s)){{< /sicm-math >}}
 
 . The reason is that
 
-$$\widetilde{F}(s)$$
+{{< sicm-math display >}}\widetilde{F}(s){{< /sicm-math >}}
 
 does not depend on the velocity, but
 
-$$D_{t}(\widetilde{F}(s))$$
+{{< sicm-math display >}}D_{t}(\widetilde{F}(s)){{< /sicm-math >}}
 
 does.
 
@@ -6303,23 +6303,23 @@ The definitions of =Ry= and =Rz= are similar. See footnote [fn:69].
 
 [fn:89] The local-tuple function /f/ is the same as the local-tuple function
 
-$$\overline{\Gamma}(\overline{f})$$
+{{< sicm-math display >}}\overline{\Gamma}(\overline{f}){{< /sicm-math >}}
 
 where
 
-  $\overline{f}\lbrack q\rbrack = f \circ \Gamma\lbrack q\rbrack$
+  {{< sicm-math >}}\overline{f}\lbrack q\rbrack = f \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
 . On the other hand, the path function
 
-$$\overline{f}\lbrack q\rbrack$$
+{{< sicm-math display >}}\overline{f}\lbrack q\rbrack{{< /sicm-math >}}
 
 and the path function
 
-$$\overline{\Gamma}(\overline{f}) \circ \Gamma\lbrack q\rbrack$$
+{{< sicm-math display >}}\overline{\Gamma}(\overline{f}) \circ \Gamma\lbrack q\rbrack{{< /sicm-math >}}
 
 are not necessarily the same because
 
-$$\overline{f}\lbrack q\rbrack$$
+{{< sicm-math display >}}\overline{f}\lbrack q\rbrack{{< /sicm-math >}}
 
 may require more components of the local tuple than are provided by default. For
 example, the Lagrange equations involve accelerations, as well as time,
@@ -6346,13 +6346,13 @@ instant the dot product of the tuples is zero. Similarly, tuple-valued functions
 are considered parallel if at each moment one of the tuples is a scalar multiple
 of the other. The scalar multiplier is in general a function of time.
 
-[fn:93] Recall that the Euler--Lagrange operator $\mathcal{E}$
+[fn:93] Recall that the Euler--Lagrange operator {{< sicm-math >}}\mathcal{E}{{< /sicm-math >}}
 
 has the property
 
-$$\mathcal{E}\,\lbrack FG\rbrack = F\,\mathcal{E}\lbrack G\rbrack +
+{{< sicm-math display >}}\mathcal{E}\,\lbrack FG\rbrack = F\,\mathcal{E}\lbrack G\rbrack +
 \mathcal{E}\lbrack F\rbrack G + D_{t}F\,\partial_{2}G + \partial_{2}F\,
-D_{t}G.$$
+D_{t}G.{{< /sicm-math >}}
 
 [fn:94] This constraint has the same form as those used in the demonstration
 that /L/ = /T/ − /V/ can be used for rigid systems. Here it is a particular
@@ -6370,7 +6370,7 @@ artificially pretty.
 [fn:97] We will see in chapter 2 how to compute the kinetic energy of rotation,
 but for now the answer is
 
-$$\frac{1}{2}M\, R^{2}{\overset{˙}{\theta}}^{2}.$$
+{{< sicm-math display >}}\frac{1}{2}M\, R^{2}{\dot{\theta}}^{2}.{{< /sicm-math >}}
 
 [fn:98] For some treatments of nonholonomic systems see, for example, Whittaker
 [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_46][46]]], Goldstein [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_20][20]]], Gantmakher [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_19][19]]], or Arnold et al. [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_6][6]]].
