@@ -1,7 +1,7 @@
 ---
 title: "About"
 author: ["Junghan Kim"]
-description: "Meditations on Technology, Learning, Life, and Text-editor"
+description: "폴리매스 엔지니어, 디지털 가드너"
 date: 2024-03-26T05:38:00+09:00
 publishDate: 2023-08-14T15:42:00+09:00
 lastmod: 2023-08-14T15:42:00+09:00

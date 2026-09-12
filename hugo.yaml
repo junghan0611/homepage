@@ -27,11 +27,15 @@ languages:
     weight: 1
     languageCode: en
     title: "Authology"
+    params:
+      description: "Meditations on Technology, Learning, Life, and Text-editor"
   ko:
     languageName: 한국어
     weight: 2
     languageCode: ko
     title: "어쏠로지"
+    params:
+      description: "기술과 배움, 삶, 그리고 텍스트 에디터에 대한 사유"
 
 markup:
   goldmark:

@@ -9,7 +9,9 @@
 {{ $isHome := .IsHome }}
 {{ $isBlogList := and (eq .Section "blog") (eq .Kind "section") }}
 {{ $isBlogPost := and (eq .Section "blog") (eq .Kind "page") }}
-{{ if or $isHome $isBlogList $isBlogPost }}
+{{/* /about/ 는 리프 번들(content/about/index.md)이라 .Section 이 비어 있다 — 논리 경로로 집는다 */}}
+{{ $isAbout := and (eq .Kind "page") (eq .Path "/about") }}
+{{ if or $isHome $isBlogList $isBlogPost $isAbout }}
   {{ $personId := printf "%s/#person" $origin }}
   {{ $websiteId := printf "%s/#website" $origin }}
   {{ $blogId := printf "%s/#blog" $origin }}
@@ -21,7 +23,7 @@
     "name" "Junghan Kim"
     "givenName" "Junghan"
     "familyName" "Kim"
-    "alternateName" (slice "GLG" "GLGMAN" "힣" "힣맨")
+    "alternateName" (slice "GLG" "GLGMAN" "힣" "힣맨" "정한")
     "url" $origin
     "image" "https://notes.junghanacs.com/static/profile.jpg"
     "jobTitle" "Software Engineer"
@@ -151,6 +153,18 @@
         "url" "https://notes.junghanacs.com/static/profile.jpg"
         "width" 640
         "height" 640))
+    }}
+  {{ else if $isAbout }}
+    {{ $graph = $graph | append (dict
+      "@type" "AboutPage"
+      "@id" (printf "%s#aboutpage" .Permalink)
+      "url" .Permalink
+      "name" .Title
+      "inLanguage" .Lang
+      "description" (or .Description .Site.Params.description)
+      "isPartOf" (dict "@id" $websiteId)
+      "about" (dict "@id" $personId)
+      "mainEntity" (dict "@id" $personId))
     }}
   {{ else if $isBlogList }}
     {{ $graph = $graph | append (dict
