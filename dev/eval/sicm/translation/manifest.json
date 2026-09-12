@@ -1,0 +1,69 @@
+{
+  "source": {
+    "path": "static/eval/source/sicm/en/chapter001.org",
+    "commit": "4088864745715d8afa923162155e63795d43a375",
+    "sha256": "efc987664d30dd3bfd399933797c2e799842ecf92d831e6ce9fb50ffabd11c2e"
+  },
+  "status": "first Korean reading translation; structural review complete, full independent bilingual review pending",
+  "segments": [
+    {
+      "id": "00-04",
+      "sourceLines": [1, 815],
+      "sourceSha256": "14567b6b7eb5acdf3e40cb9e04306788520cd634a0d4716972bb4101df81daf9",
+      "translationPath": "dev/eval/sicm/translation/chapter001/ch1-00-04.ko.org",
+      "translationSha256": "0a7dcd7005ba22e63ee1346ddd72e79a1efb4fbedf73aa015dc7059e1140a9e6",
+      "draftedBy": "openai-codex/gpt-5.6-terra"
+    },
+    {
+      "id": "05",
+      "sourceLines": [815, 1539],
+      "sourceSha256": "0224e42c06d15a84070cd87f4cebb0871dcdac957c8e7a2f1ee20495b4c6e017",
+      "translationPath": "dev/eval/sicm/translation/chapter001/ch1-05.ko.org",
+      "translationSha256": "1d2e3f9c5b06425683fee9d985e685fd6583cf4c1179effc15aeaaeee3dfe004",
+      "draftedBy": "claude-code/claude-opus-5"
+    },
+    {
+      "id": "06",
+      "sourceLines": [1539, 3244],
+      "sourceSha256": "1cae4ab1ede23da726e3bef81218caab86b3c1390a2ce706ceda94d5751cdc84",
+      "translationPath": "dev/eval/sicm/translation/chapter001/ch1-06.ko.org",
+      "translationSha256": "91206b21985bb669c6381f3761adf6e14c731f915aa094911ea959c0a7652244",
+      "draftedBy": "zai/glm-5.3"
+    },
+    {
+      "id": "07-09",
+      "sourceLines": [3244, 4748],
+      "sourceSha256": "d7fd4dc57879fa404879cac6b2f9e40fbe8bfe36a815021382a5928afad9187e",
+      "translationPath": "dev/eval/sicm/translation/chapter001/ch1-07-09.ko.org",
+      "translationSha256": "3d8ecf90144b384e3fd13c2e34801d4bee0dca2c68cc0bd160ec4547e056182e",
+      "draftedBy": "xai/grok-4.6",
+      "retiredDraft": {
+        "sha256": "1bfa1b4cdb2d00c0f25d3af24be4eae9a90116fa83d8ea2741c5b9464e0cec1f",
+        "receipt": "Rejected before assembly: 75 f또는, 24 co또는, 59 broken Lagrangi tokens, and 44 English sentence starts"
+      }
+    },
+    {
+      "id": "10-12",
+      "sourceLines": [4748, 6379],
+      "sourceSha256": "3eed377b54171a2a9bc58963214c30333ffcda02eb4e00909d0f3b178419e845",
+      "translationPath": "dev/eval/sicm/translation/chapter001/ch1-10-12.ko.org",
+      "translationSha256": "f42e8e25478c45c3a8b3a9278e87bb70e6d69364134899b6744a2a96b4e4210d",
+      "draftedBy": "xai/grok-4.6"
+    }
+  ],
+  "checks": {
+    "exact": [
+      "source segment hash",
+      "translation segment hash",
+      "CUSTOM_ID and CLASS sequence",
+      "link targets",
+      "footnote tokens",
+      "image filenames",
+      "equation environments",
+      "array displays",
+      "source, example, and export blocks after known source-block repair"
+    ],
+    "orderIndependent": ["single-line dollar-delimited math tokens"],
+    "manual": "Sampled Korean prose review across all five segments; not a substitute for full independent bilingual review"
+  }
+}

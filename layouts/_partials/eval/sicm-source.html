@@ -6,7 +6,8 @@
 <aside class="sicm-source-note">
   {{ if $isKo }}
     <p><strong>한국어 읽기 번역.</strong> 이 페이지는 아래 고정 영어 원문에서 출발한
-    adaptation입니다. 수식·Scheme·앵커는 원문과 대응하며, 번역은
+    첫 읽기판 adaptation입니다. 수식·Scheme·앵커의 구조 검증은 통과했으며,
+    전 문장 독립 대조 검수는 계속 열어 둡니다. 번역은
     <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>으로
     공유됩니다.</p>
   {{ else }}
@@ -16,7 +17,7 @@
   {{ end }}
   <p>
     <a href="{{ $exact }}">{{ if $isKo }}대응 번역 Org{{ else }}Exact Org source{{ end }}</a>
-    {{ if $isKo }}· <a href="{{ $original }}">고정 영어 원문 Org</a>{{ end }}
+    {{ if $isKo }}· <a href="{{ $original }}">고정 영어 원문 Org</a> · <a href="https://github.com/junghan0611/homepage/blob/main/dev/eval/sicm/translation/manifest.json">분할 번역 manifest</a>{{ end }}
     · <a href="https://github.com/mentat-collective/sicm-book/tree/4088864745715d8afa923162155e63795d43a375">upstream @ 4088864</a>
     · <a href="/eval/source/sicm/LICENSE">CC BY-NC-SA 3.0 license</a>
     {{ with .Translations }}

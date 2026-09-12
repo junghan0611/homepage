@@ -85,8 +85,7 @@ def strip_upstream_header(text: str, page: Page) -> str:
 
 def repair_reading_markup(text: str) -> str:
 	"""Repair known conversion scars in the pinned Org without changing the public source."""
-	text = text.replace("[fn:3]We often refer", "[fn:3] We often refer")
-	text = text.replace("[fn:3]우리는 흔히", "[fn:3] 우리는 흔히")
+	text = re.sub(r"(?m)^\[fn:([^\]]+)\](?=\S)", r"[fn:\1] ", text)
 
 	# Three conversion scars around source blocks otherwise make go-org swallow
 	# hundreds of lines as one Scheme listing.

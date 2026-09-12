@@ -17,7 +17,7 @@ eyebrow: "Eval / SICM 읽기판"
 읽기 번역입니다.
 
 - [서문 — 한국어 읽기 번역](/ko/eval/sicm/preface/)
-- 제1장: 라그랑주 역학 — 한국어 읽기 번역 조립 중
+- [제1장: 라그랑주 역학 — 한국어 읽기 번역](/ko/eval/sicm/chapter-1/)
 - [English source text](/eval/sicm/)
 
 각 읽기 페이지는 정확한 upstream revision을 밝히고 대응하는 Org 소스와 adaptation

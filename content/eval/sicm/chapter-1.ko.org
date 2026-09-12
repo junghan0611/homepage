@@ -1,0 +1,5738 @@
+---
+title: "제1장 — 라그랑주 역학"
+description: "SICM 제1장 전체와 소스 영수증, 계산에서 다시 그린 Emmy 뷰."
+type: eval
+translationKey: "sicm-ch1"
+weight: 20
+math: true
+noindex: true
+comments: false
+toc: false
+sidebar:
+  exclude: true
+runtime: true
+eyebrow: "Eval / SICM Reading Edition"
+sicmSource: "ko/chapter001.ko.org"
+sicmTranslation: true
+sicmViewer: "chapter-1"
+---
+
+#+begin_quote
+역학의 목적은 물체가 “시간”과 함께 공간에서 어떻게 위치를 바꾸는지를 기술하는
+것이다. 심각한 숙고와 상세한 설명 없이 역학의 목적을 이와 같이 정식화한다면,
+나는 명료성이라는 성스러운 정신에 거슬러 중대한 죄를 내 양심에 지우게 될
+것이다. 이 죄들을 드러내는 일로 나아가자.
+
+Albert Einstein, /Relativity, the Special and General Theory/ [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_16][16]]], [[https://tgvaughan.github.io/sicm/chapter001.html#p9][p. 9]]
+#+end_quote
+
+이 책의 주제는 운동과 그것을 기술하는 데 쓰이는 수학 도구다.
+
+수 세기에 걸친 행성 운동의 주의 깊은 관찰은 그 운동 안의 규칙성을 드러냈고,
+일식과 합 같은 현상을 정확히 예측하게 했다. 이 규칙성을 정식화하고 마침내
+이해하려는 노력은 수학의 발전으로 이어졌으며, 수학이 물리 세계의 측면을
+기술하는 데 효과적으로 쓰일 수 있음을 발견하게 했다. 수학으로 자연 현상을
+기술할 수 있다는 것은 놀라운 사실이다.
+
+저글러가 던진 곤봉은 꽤 예측 가능한 경로를 따르고 꽤 예측 가능한 방식으로
+회전한다. 실제로 저글링의 기술은 이 예측 가능성에 결정적으로 의존한다. 행성
+운동을 기술하는 데 쓰이는 같은 수학 도구를 저글링 곤봉의 운동을 기술하는 데도
+쓸 수 있다는 사실 또한 놀라운 발견이다.
+
+고전역학은 상호작용을 기술하는 힘을 받는 입자계의 운동을 기술한다. 저글링
+곤봉과 같은 복잡한 물체는 강한 상호작용 힘이 유지하는 고정된 공간 관계를 지닌
+무수한 입자로 모형화할 수 있다.
+
+계가 움직일 수 있는 생각 가능한 방식은 많지만, 결코 일어나지 않는 것도 많다.
+우리는 저글링 곤봉이 공중에서 멈추거나 잡히기 전에 저글러의 머리 둘레를
+열네 번 돌 수 있다고 상상할 수 있지만, 그런 운동은 일어나지 않는다. 실제로
+일어날 수 있는 계의 운동을 다른 생각 가능한 운동과 어떻게 구별할 수 있을까?
+생각 가능한 모든 운동 가운데 실현 가능한 운동을 구별하게 해 주는 어떤 수학
+함수를 고안할 수 있을지도 모른다.
+
+계의 운동은 매 순간 계의 모든 부분의 위치를 주어 기술할 수 있다. 이와 같은
+계의 운동 기술을 /배치 경로(configuration path)/라 부른다. 배치 경로는
+시간의 함수로서 배치를 지정한다. 저글링 곤봉은 공중을 날며 회전한다. 저글링
+곤봉의 배치는 곤봉의 위치와 방향을 주어 지정된다. 저글링 곤봉의 운동은 시간의
+함수로서 곤봉의 위치와 방향을 주어 지정된다.
+
+우리가 찾는 경로-구별 함수는 배치 경로를 입력으로 받아 어떤 출력을 낸다. 이
+함수는 입력이 실현 가능한 경로일 때 어떤 특징적인 거동을 하기를 바란다. 예를
+들어 출력은 수일 수 있고, 이 수가 실현 가능한 경로에서만 영이 되도록 만들 수
+있다. 뉴턴의 운동방정식이 이 형식이다. 매 순간 뉴턴의 미분방정식이 만족되어야
+한다.
+
+그러나 더 큰 통찰과 힘을 주는 다른 전략이 있다. 실현 가능한 경로에서 최솟값을
+갖는 경로-구별 함수를 찾을 수 있다---가까이에 있는 실현 불가능한 경로에서는
+함수값이 실현 가능한 경로에서보다 더 높다. 이것이 /변분 전략(variational
+strategy)/이다. 각 물리계에 대해, 각 실현 가능한 경로에서 정지점을 가짐으로써
+계의 실현 가능한 운동을 구별하는 경로-구별 함수를 고안한다[fn:1]. 매우 다양한
+계에서 계의 실현 가능한 운동은 변분 원리로 정식화될 수 있다.[fn:2]
+
+뉴턴과 그 시대의 다른 이들이 고안한 역학은 계 안의 각 입자의 위치, 속도,
+가속도로 계의 운동을 기술한다. 역학의 뉴턴식 정식화와 달리, 역학의 변분적
+정식화는 계 전체의 운동에 연관된 집합량으로 계의 운동을 기술한다.
+
+뉴턴식 정식화에서 힘은 흔히 계의 퍼텐셜 에너지의 도함수로 쓸 수 있다. 계의
+운동은 개별 성분 입자가 이 힘에 어떻게 반응하는지를 고려하여 결정된다.
+운동방정식의 뉴턴식 정식화는 본질적으로 입자 하나하나의 기술이다.
+
+변분적 정식화에서 운동방정식은 운동 에너지와 퍼텐셜 에너지의 차로 정식화된다.
+퍼텐셜 에너지는 계 안 입자들의 배치가 특징짓는 수이고, 운동 에너지는 계 안
+입자들의 속도로 결정되는 수다. 퍼텐셜 에너지도 운동 에너지도 그 위치와 속도를
+어떻게 지정하는지에 의존하지 않는다. 그 차이는 계 전체의 특징이며 계를
+어떻게 지정하는가의 세부에 의존하지 않는다. 따라서 다루기 쉬운 계 기술 방식을
+자유롭게 선택할 수 있다. 우리는 뉴턴식 정식화에 고유한 입자 하나하나의
+기술에서 벗어난다.
+
+변분적 정식화는 뉴턴식 정식화보다 수많은 장점을 지닌다. 계의 상태를 기술하는
+매개변수들에 대한 운동방정식은 그 매개변수의 선택과 관계없이 같은 방식으로
+유도된다. 정식화 방법은 좌표계 선택에 의존하지 않는다. 계 입자들 사이에 위치
+구속조건이 있으면 뉴턴식 정식화에서는 이 구속조건을 유지하는 힘을 고려해야
+하지만, 변분적 정식화에서는 구속조건을 좌표에 넣을 수 있다. 변분적 정식화는
+보존 법칙과 대칭 사이의 연관을 드러낸다. 변분적 정식화는 계의 특정 운동을
+그 계의 모든 가능한 운동의 문맥 안에 놓는 틀을 제공한다. 우리는 이 장점들
+때문에 변분적 정식화를 추구한다.
+
+* 1.1 배치공간
+  :PROPERTIES:
+  :CUSTOM_ID: h1-2
+  :CLASS:    level1
+  :END:
+
+  질량과 위치를 가지지만 내부 구조는 없는 구성 점입자로 이루어졌다고 생각할
+  수 있는 역학계를 생각하자.[fn:3] 연장된 물체는 그들 사이에 특정 공간 관계를
+  지닌 많은 수의 이 구성 입자로 이루어졌다고 생각할 수 있다. 연장된 물체는
+  구성 입자들 사이의 공간 구속조건 때문에 모양을 유지한다. 계의 모든 구성
+  입자의 위치를 지정하면 계의 /배치(configuration)/를 지정한 것이다. 연장된
+  물체의 모양을 결정하는 것과 같은 계 부분들 사이의 구속조건이 존재한다는 것은
+  구성 입자들이 가능한 모든 위치를 취할 수 없다는 뜻이다. 취할 수 있는 계의
+  모든 배치의 집합을 그 계의 /배치공간(configuration space)/이라 한다. 배치공간의
+  /차원(dimension)/은 배치를 완전히 지정하기 위해 주어야 하는 매개변수의 최소
+  수다. 배치공간의 차원은 계의 /자유도(degrees of freedom)/ 수라고도 부른다.[fn:4]
+
+  구속되지 않은 단일 입자의 배치를 지정하려면 세 매개변수가 필요하다. 점입자는
+  3차원 배치공간을 갖는다. 점입자가 하나보다 많은 계를 다룬다면 배치공간은 더
+  복잡하다. 분리된 입자가 /k/개이면 가능한 배치를 기술하는 데 3/k/ 매개변수가
+  필요하다. 계 부분들 사이에 구속조건이 있으면 배치는 더 낮은 차원의 공간으로
+  제한된다. 예를 들어 입자 사이의 거리가 고정되도록 3차원에서 움직이도록
+  구속된 두 점입자로 이루어진 계는 5차원 배치공간을 갖는다. 따라서 세 수로 한
+  입자의 위치를 고정하고, 다른 두 수로 첫 입자에 대한 다른 입자의 상대 위치를
+  줄 수 있다.
+
+  저글링 곤봉을 생각하자. 곤봉을 이루는 원자들의 위치를 주면 곤봉의 배치가
+  지정된다. 그러나 배치를 기술하는 더 경제적인 방법이 존재한다. 저글링 곤봉이
+  정말로 강체라는 이상화에서는 곤봉의 모든 원자 사이 거리가 일정하게 남는다.
+  그러므로 한 원자의 위치와 곤봉의 방향을 주어 곤봉의 배치를 지정할 수 있다.
+  구속조건을 사용하면 이 정보로부터 곤봉의 다른 모든 구성요소 위치를 결정할 수
+  있다. 저글링 곤봉의 배치공간 차원은 여섯이다. 공간에서 위치를 지정하는
+  매개변수의 최소 수는 셋이고, 방향을 지정하는 매개변수의 최소 수도 셋이다.
+
+  계가 시간과 함께 진화함에 따라 구성 입자들은 구속조건을 받으며 움직인다.
+  각 구성 입자의 운동은 변하는 배치를 기술하여 지정된다. 따라서 계의 운동은
+  배치공간 안의 경로를 따라 진화하는 것으로 기술할 수 있다. 배치 경로는 어느
+  때에나 계의 배치를 주는 함수인 배치-경로 함수로 지정할 수 있다.
+
+@@html:<span id="Exe_1-1"></span>@@
+*** 연습문제 1.1: 자유도
+
+    아래에 기술된 각 역학계에 대해 배치공간의 자유도 수를 구하라.
+
+    - *a.* 저글링 곤봉 세 개.
+
+    - *b.* 고정된 지지점에 붙은 질량 없는 강체 막대에 매달린 점질량(진자추)으로
+    이루어진 구면 진자. 진자추는 강체 막대가 부과하는 구속조건을 받으며 어느
+    방향으로든 움직일 수 있다. 점질량에는 균일한 중력이 작용한다.
+
+    - *c.* 고정된 지지점에 붙은 두 번째 질량 없는 막대에 매달린 두 번째 점질량에,
+      다시 첫 번째 점질량에 붙은 질량 없는 강체 막대가 매달린 하나의 점질량으로
+    이루어진 구면 이중 진자. 점질량들에는 균일한 중력이 작용한다.
+
+    - *d.* 마찰 없이 굽은 강체 철사 위를 미끄러지는 점질량.
+
+    - *e.* 물체의 대칭축 위 한 점이 고정 지지점에 붙은 강체 축대칭 물체로 이루어진
+    팽이. 균일한 중력이 작용한다.
+
+    - *f.* *e.*와 같지만 축대칭이 아닌 경우.
+
+* 1.2 일반화 좌표
+  :PROPERTIES:
+  :CUSTOM_ID: h1-3
+  :CLASS:    level1
+  :END:
+
+  특정 배치에 관해 말할 수 있으려면 그 배치에 꼬리표를 붙이는 매개변수 집합이
+  필요하다. 계의 배치를 지정하는 데 쓰이는 매개변수를 /일반화 좌표(generalized
+  coordinates)/라 한다. 구속되지 않은 자유 입자를 생각하자. 입자의 배치는 그
+  위치를 주어 지정된다. 여기에는 세 매개변수가 필요하다. 구속되지 않은 입자는
+  세 자유도를 갖는다. 입자의 위치를 지정하는 한 방법은 선택한 좌표축에 대한
+  직교 좌표를 지정하는 것이다. 위치의 직교 성분은 구속되지 않은 입자의 일반화
+  좌표다. 또는 이상적인 평면 이중 진자를 생각하자. 하나의 점질량이 고정점에서
+  주어진 거리만큼 떨어지도록 강체 막대가 구속하고, 두 번째 질량이 첫 번째
+  질량에서 주어진 거리만큼 떨어지도록 또 다른 강체 막대가 구속하며, 모두 수직
+  평면에 갇혀 있다. 두 막대의 방향을 주면 배치가 지정된다. 여기에는 적어도 두
+  매개변수가 필요하다. 평면 이중 진자는 두 자유도를 갖는다. 각 막대의 방향을
+  지정하는 한 방법은 수직 추선과 이루는 각을 지정하는 것이다. 이 두 각은 평면
+  이중 진자의 일반화 좌표다.
+
+  좌표 수는 배치공간 차원과 같을 필요는 없지만, 적어도 그만큼은 있어야 한다.
+  필요한 것보다 많은 매개변수로 작업하도록 선택할 수 있지만, 그러면 그
+  매개변수는 계를 가능한 배치, 곧 배치공간의 원소로 제한하는 구속조건을 받는다.
+
+  위에서 기술한 평면 이중 진자에서는 두 각 좌표면 배치를 지정하기에 충분하다.
+  선택한 좌표축에 대해 평면 안의 각 질량의 직교 좌표를 일반화 좌표로 취할 수도
+  있다. 이들도 좋은 좌표이지만, 가능한 배치를 계의 실제 기하로 제한하는
+  구속조건을 명시적으로 염두에 두어야 한다. 배치공간과 같은 차원을 가진 좌표
+  집합은 좌표 사이의 명시적 구속조건을 다룰 필요가 없으므로 작업하기 쉽다.
+  따라서 당분간 배치 좌표 수가 자유도 수와 같은 정식화만 고려할 것이다. 뒤에는
+  중복 좌표와 명시적 구속조건을 지닌 계를 다루는 법을 배운다.
+
+  일반적으로 배치는 어떤 차원 $n$의 공간 $M$을 이룬다. $n$차원 배치공간은
+  배치공간의 원소를 실수의 $n$-튜플로 사상하는 좌표 함수 $\chi$를 선택하여
+  매개변수화할 수 있다.[fn:5] 차원이 하나보다 크면 함수 $\chi$는 $n$개의 독립
+  좌표 함수[fn:6] /χ^{i}, i/ = 0, ..., /n/ − 1의 튜플이며, 각 /χ^{i}/는
+  배치공간의 어떤 영역에서 정의된 실숫값 함수다.[fn:7] 배치공간 /M/ 안의 주어진
+  배치 /m/에 대해 좌표 함수의 값 /χ^{i}/(/m/)는 그 배치의 일반화 좌표다. 이
+  일반화 좌표로 /n/차원 배치공간의 점을 실수의 /n/-튜플과 동일시할 수 있다.[fn:8]
+  주어진 어느 배치공간에 대해서든 일반화 좌표를 선택하는 방법은 매우 다양하다.
+  구속 없이 움직이는 단일 점에도 직교 좌표, 극좌표, 또는 마음에 드는 다른
+  좌표계를 선택할 수 있다.
+
+  계의 운동은 시간을 배치공간 점으로 사상하는 배치 경로 /γ/로 기술할 수 있다.
+  배치 경로에 대응하는 것은 시간을 일반화 좌표의 튜플로 사상하는 /좌표 경로/
+  $q = $\chi \circ \gamma$다.[fn:9] 자유도가 하나보다 크면 좌표 경로는 구조화된
+  객체다. $q$는 성분 좌표 경로 함수 $q^i = \chi^i \circ \gamma$의 튜플이다. 각
+  순간 $t$에서 값 $q(t) = \left(q^0(t),\, \ldots,\, q^{n−1}(t) \right)$은 배치의
+  일반화 좌표다.
+
+  좌표 경로 $q$의 도함수 $Dq$는 주어진 순간에 배치 좌표의 변화율을 주는
+  함수[fn:10]다. /Dq/(/t/) = (/Dq/^{0}(/t/), ..., /Dq/^{/n/−1}(/t/)). 일반화
+  좌표의 변화율을 /일반화 속도(generalized velocity)/라 한다.
+
+@@html:<span id="Exe_1-2"></span>@@
+*** 연습문제 1.2: 일반화 좌표
+
+    [[/ko/eval/sicm/chapter-1/#Exe_1-1][연습문제 1.1]]의 각 계에 대해, 계의 거동을
+    기술하는 데 쓸 수 있는 일반화 좌표계를 지정하라.
+
+* 1.3 정지 작용 원리
+  :PROPERTIES:
+  :CUSTOM_ID: h1-4
+  :CLASS:    level1
+  :END:
+
+  각 물리계에 대해 실현 가능한 경로에서 정지하는 경로-구별 함수가 있다고
+  가정하자. 그 성질 일부를 추론해 보자.
+
+** 운동의 경험
+   :PROPERTIES:
+   :CUSTOM_ID: experience-of-motion
+   :CLASS:    level2
+   :END:
+
+   우리의 일상 경험은 물리적 운동이 연속적이고 매끄러운 배치 경로로 기술될 수
+   있음을 시사한다.[fn:11] 우리는 저글링 곤봉이 한 장소에서 다른 장소로 뛰는
+   것을 보지 않는다. 저글링 곤봉이 움직이는 방식을 갑자기 바꾸는 것도 보지
+   않는다.
+
+   우리의 일상 경험은 물리계의 운동이 계의 전체 역사에 의존하지 않음을
+   시사한다. 저글링 곤봉이 공중에 던져진 뒤 방에 들어가면 우리는 그것이 언제
+   저글러의 손을 떠났는지 알 수 없다. 우리가 문으로 들어올 때 보이는 결과와
+   같은 결과를 내면서 저글러는 여러 시각에 여러 장소에서 곤봉을 던졌을 수
+   있다.[fn:12] 따라서 곤봉의 운동은 역사의 세부에 의존하지 않는다.
+
+   우리의 일상 경험은 물리계의 운동이 결정론적임을 시사한다. 실제로 적은 수의
+   매개변수가 계 역사의 중요한 측면을 요약하고 미래 진화를 결정한다. 예를 들어
+   어느 순간이든 저글링 곤봉의 위치, 속도, 방향, 방향 변화율이면 곤봉의 미래
+   운동을 완전히 결정하기에 충분하다.
+
+** 실현 가능한 경로
+   :PROPERTIES:
+   :CUSTOM_ID: realizable-paths
+   :CLASS:    level2
+   :END:
+
+   운동 경험에서 우리는 실현 가능한 배치 경로에 관한 몇 가지 기대를 끌어낸다.
+   경로가 실현 가능하다면 그 경로의 어느 구간도 실현 가능한 경로 구간이다.
+   반대로 경로의 모든 구간이 실현 가능한 경로 구간이면 그 경로는 실현
+   가능하다. 경로 구간의 실현 가능성은 그 구간 안 경로의 모든 점에 의존한다.
+   경로 구간의 실현 가능성은 경로 구간의 모든 점에 같은 방식으로 의존한다.
+   경로의 어느 부분도 특별하지 않다. 경로 구간의 실현 가능성은 오직 구간 안의
+   경로 점에 의존한다. 경로 구간의 실현 가능성은 국소 성질이다.
+
+   따라서 경로-구별 함수는 경로 구간을 따라 매 순간 측정되는 계의 어떤 국소
+   성질을 집합한다. 경로를 따르는 각 순간은 같은 방식으로 다루어야 한다.
+   경로 구간을 따르는 각 순간의 기여는 서로소 부분구간의 기여가 독립적이라는
+   성질을 유지하는 방식으로 결합되어야 한다. 이 요구를 만족하는 한 결합 방법은
+   기여를 더하는 것이다. 그러면 경로-구별 함수는 경로의 어떤 국소 성질에 대한
+   경로 구간 위 적분이 된다.[fn:13]
+
+   그러므로 경로를 따라 국소 성질을 적분하여 구성한 경로-구별 함수가 모든
+   실현 가능한 경로에서 정지값을 취하도록 만들고자 한다. 이러한 경로-구별
+   함수는 전통적으로 계의 /작용(action)/이라 불린다. 통용되는 용법과 일치하게
+   “작용”이라는 말을 쓴다. 계속 “경로-구별 함수”라고 부르는 편이 더 명료할지도
+   모르지만, 그러면 다른 사람들이 우리가 무엇을 말하는지 알기 더 어려울
+   것이다.[fn:14]
+
+   변분역학의 의제를 추구하려면 우리가 연구하는 계의 실현 가능한 궤적에서
+   정지하는 작용 함수를 고안해야 한다. 매 순간 배치 경로의 어떤 국소 성질을
+   적분한 작용을 고려할 것이다. /q/ = /χ/ ∘ /γ/를 배치공간 안의 좌표 경로라
+   하자. /q/(/t/)는 시간 /t/에서 배치의 좌표다. 그러면 /t/_{1}에서 /t/_{2}까지
+   시간 구간에서 경로 한 구간의 작용은[fn:15]
+
+   @@html:<span id="disp_1.1"></span>@@
+$$\begin{aligned}
+{S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{F\lbrack q\rbrack.}}} & {(1.1)}
+   \end{aligned}$$
+   이다. 여기서 /F/[/q/]는 경로의 어떤 국소 성질을 측정하는 시간의 함수다.
+   이는 그 시각 함수 /q/의 값과 그 시각 /q/의 어떤 도함수 값에 의존할 수
+   있다.[fn:16]
+
+   배치 경로는 한 순간에 좌표, 좌표 변화율, 그리고 그 순간 좌표의 모든 고계
+   도함수로 국소적으로 기술할 수 있다. 이 정보가 주어지면 그 순간을 포함하는
+   어떤 구간에서 경로를 재구성할 수 있다.[fn:17] 경로의 국소 성질은 경로의
+   국소 기술보다 더 많은 것에 의존할 수 없다.
+
+   함수 /F/는 좌표 경로 /q/의 어떤 국소 성질을 측정한다. /F/ [/q/]를 두 부분,
+   곧 국소 기술의 어떤 성질을 측정하는 부분과 경로 함수로부터 경로의 국소
+   기술을 추출하는 부분으로 분해할 수 있다. 계의 국소 성질을 측정하는 함수는
+   특정 물리계에 의존한다. 경로에서 경로의 국소 기술을 구성하는 방법은 어느
+   계에서나 같다. /F/[/q/]를 이 두 함수의 합성으로 쓸 수 있다:[fn:18]
+
+   @@html:<span id="disp_1.2"></span>@@
+$$\begin{aligned}
+{F\lbrack q\rbrack = L \circ \Gamma\lbrack q\rbrack.} & {(1.2)}
+   \end{aligned}$$
+   함수 Γ는 좌표 경로를 받아 시간의 함수를 만들며, 그 값은 시간, 그 시간의
+   좌표, 그 시간의 좌표 변화율, 그 시간에 평가한 좌표의 고계 도함수 값을 담은
+   순서 있는 튜플이다. 경로 /q/와 시간 /t/에 대해:
+
+   @@html:<span id="disp_1.3"></span>@@
+$$\begin{aligned}
+{\Gamma\lbrack q\rbrack(t) = (t,q(t),Dq(t),\ldots).} & {(1.3)}
+   \end{aligned}$$
+   필요한 만큼의 도함수를 포함하는 이 튜플을 /국소 튜플(local tuple)/이라
+   부른다. 함수 Γ[/q/]는 좌표 경로 /q/와 그 도함수에만 의존한다. 함수 Γ[/q/]는
+   /χ/나 /q/가 /χ/와 /γ/를 합성하여 만들어졌다는 사실에 의존하지 않는다.
+
+   함수 /L/은 조사하는 물리계의 특정 세부에 의존하지만 어떤 특정 배치 경로에는
+   의존하지 않는다. 함수 /L/은 경로의 실숫값 국소 성질을 계산한다. /L/은 이
+   성질을 계산하는 데 국소 튜플의 유한한 수의 성분만 필요함을 보게 될 것이다.
+   전체 국소 기술로부터 경로를 국소적으로 재구성할 수 있고, /L/이 국소 튜플의
+   유한한 수 성분에 의존한다는 사실은 /L/이 국소 성질을 측정함을 보장한다.[fn:19]
+
+   이 분해의 장점은 경로의 국소 기술이 고려하는 계와 독립적으로, 배치 경로에서
+   균일한 과정으로 계산된다는 점이다. 계에 특수한 모든 정보는 함수 /L/에
+   포착된다.
+
+   함수 /L/을 그 계의 /라그랑지언(Lagrangian)/[fn:20]이라 하고, 그로부터 얻는
+   작용
+
+   @@html:<span id="disp_1.4"></span>@@
+$$\begin{aligned}
+{S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack,}}} & {(1.4)}
+   \end{aligned}$$
+   을 /라그랑지언 작용(Lagrangian action)/이라 한다. 시간, 위치, 속도에만
+   의존하는 라그랑지언의 경우 작용은 다음처럼도 쓸 수 있다.
+
+   @@html:<span id="disp_1.5"></span>@@
+$$\begin{aligned}
+{S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L(t,q(t),Dq(t))\, dt.}}} & {(1.5)}
+   \end{aligned}$$
+   매우 다양한 계에서 라그랑지언을 찾을 수 있다. 많은 계에서 라그랑지언을
+   운동 에너지와 퍼텐셜 에너지의 차로 잡을 수 있음을 보게 될 것이다. 이러한
+   라그랑지언은 시간, 배치, 배치 변화율에만 의존한다. 이 부류의 계에 초점을
+   맞추겠지만, 때때로 더 일반적인 계도 고려한다.
+
+   계의 실현 가능한 경로는 가까이에 있는 어떤 실현 불가능한 경로 집합에 관한
+   작용의 정지성으로 다른 경로와 구별되어야 한다. 그런데 실현 가능한 경로
+   가까이의 몇몇 경로 역시 실현 가능하다. 저글링 곤봉의 어느 운동에 대해서나
+   그것과 조금 다른 다른 운동이 있다. 그러므로 경로 변분에 관해 작용이
+   정지하는지 묻는 문제를 다룰 때에는 고려하는 경로 집합이 실현 가능한 경로를
+   하나만 포함하도록 어떤 방식으로 제한해야 한다. 배치와 배치 변화율에만
+   의존하는 라그랑지언의 경우에는 경로 구간 양 끝점에서 같은 배치를 가진
+   경로들로 집합을 제한하면 충분함이 드러날 것이다.
+
+   /정지 작용 원리(principle of stationary action)/는 각 동역학계에 대해,
+   /t/_{1}과 /t/_{2} 두 시각의 배치를 잇는 실현 가능한 경로가 경로 변분에 대한
+   작용 /S/[/q/](/t/_{1}, /t/_{2})의 정지성으로 모든 생각 가능한 경로와
+   구별되도록 하는 라그랑지언을 고안할 수 있다고 주장한다.[fn:21] 배치와 배치
+   변화율에만 의존하는 라그랑지언의 경우 변분은 /t/_{1}과 /t/_{2}에서 배치를
+   보존하는 변분으로 제한된다.[fn:22]
+
+@@html:<span id="Exe_1-3"></span>@@
+*** 연습문제 1.3: Fermat 광학
+
+    Fermat은 반사와 굴절의 법칙이 다음 사실들로 설명될 수 있음을 관찰했다.
+    빛은 특정 매질 안에서 그 매질에 의존하는 속도로 직선으로 진행한다. 광원이
+    임의의 매질 열을 지나 목적지로 가는 광선의 경로는 이웃 경로들과 비교할 때
+    전체 시간이 최소인 경로다. 이 사실들이 반사와 굴절 법칙을 함의함을 보여라.[fn:23]
+
+* 1.4 작용 계산하기
+  :PROPERTIES:
+  :CUSTOM_ID: h1-5
+  :CLASS:    level1
+  :END:
+
+  위의 생각을 예시하고 컴퓨터 프로그램으로 정식화하는 방식을 소개하기 위해,
+  가장 단순한 역학계---3차원에서 움직이는 자유 입자---를 고려한다. Euler와
+  Lagrange는 자유 입자에 대해 실제 경로를 따라 운동 에너지를 시간 적분한 값이
+  같은 점들을 잇는 어느 대안 경로를 따라 같은 적분을 한 값보다 작음을
+  발견했다. 라그랑지언을 운동 에너지로 잡으면 자유 입자는 정지 작용 원리에
+  따라 움직인다. 질량 /m/과 속도
+
+  $\overset{\rightarrow}{v}$
+
+  를 지닌 입자의 운동 에너지는
+
+  $\frac{1}{2}mv^{2}$
+
+  이며, 여기서 /v/는
+
+  $\overset{\rightarrow}{v}$
+
+  의 크기다. 이 경우 일반화 좌표를 보통의 직교 좌표로 선택할 수 있다.
+
+  Euler와 Lagrange를 따라 자유 입자의 라그랑지언은[fn:24]
+
+  @@html:<span id="disp_1.6"></span>@@
+$$\begin{aligned}
+{L(t,x,v) = \frac{1}{2}m(v \cdot v),} & {(1.6)}
+  \end{aligned}$$
+  이다. 여기서 형식 매개변수 /x/는 주어진 직교 좌표계에 대한 위치 성분의
+  튜플을 가리키고, 형식 매개변수 /v/는 속도 성분의 튜플을 가리킨다.[fn:25]
+
+  이 공식을 절차로 표현할 수 있다:
+
+  #+begin_src scheme
+(define ((L-free-particle mass) local)
+  (let ((v (velocity local)))
+    (* 1/2 mass (dot-product v v))))
+  #+end_src
+
+  이 정의는 L-free-particle이 질량을 인수로 받아 국소 튜플 local을 받는 절차를
+  돌려주는 절차이며, velocity 절차로 일반화 속도를 추출하고 그 속도로
+  라그랑지언 값을 계산함을 나타낸다.[fn:26]
+
+  시간을 위치 성분으로 사상하는 좌표 경로 함수를 /q/로 나타내자:[fn:27]
+
+  @@html:<span id="disp_1.7"></span>@@
+$$\begin{aligned}
+{q(t) = (x(t),y(t),z(t)).} & {(1.7)}
+  \end{aligned}$$
+  다음 정의를 만들 수 있다[fn:28]
+
+  #+begin_src scheme
+(define q
+  (up (literal-function 'x)
+      (literal-function 'y)
+      (literal-function 'z)))
+  #+end_src
+
+  여기서 literal-function은 주어진 기호 이름 외에는 알려진 성질이 없는 하나의
+  인수 함수 하나를 나타내는 절차를 만든다. 이제 기호 q는 세 성분의 튜플을
+  산출하는 하나의 실수 인수(시간) 절차를 가리키며, 그 성분은 그 시각의 좌표를
+  나타낸다. 예를 들어 이 절차를 기호적 시간 t에 대해 다음처럼 평가할 수 있다:
+
+  #+begin_src scheme
+(q 't)
+(up (x t) (y t) (z t))
+  #+end_src
+
+  좌표 경로 /Dq/의 도함수는 시간을 속도 성분으로 사상하는 함수다:
+
+  $Dq(t) = (Dx(t),Dy(t),Dz(t)).$
+
+  함수의 도함수를 만들고 사용할 수 있다.[fn:29] 예를 들어 다음처럼 쓸 수 있다:
+
+  #+begin_src scheme
+((D q) 't)
+(up ((D x) t) ((D y) t) ((D z) t))
+  #+end_src
+
+  함수 Γ는 좌표 경로를 받아 국소 튜플 (/t, q/(/t/), /Dq/(/t/), ...)을 주는
+  시간의 함수를 돌려준다. 우리는 이 Γ를 Gamma 절차로 구현한다.[fn:30] Gamma가
+  하는 일은 다음과 같다:
+
+  #+begin_src scheme
+((Gamma q) 't)
+
+(up t (up (x t) (y t) (z t)) (up ((D x) t) ((D y) t) ((D z) t)))
+  #+end_src
+
+  따라서 합성 /L/ ∘ Γ는 경로 위 이 점에서 라그랑지언 값을 돌려주는 시간의
+  함수다:[fn:31]
+
+  #+begin_src scheme
+((compose (L-free-particle 'm) (Gamma q)) 't)
+(+ (* 1/2 m (expt ((D x) t) 2)) (* 1/2 m (expt ((D y) t) 2)) (* 1/2 m (expt ((D
+z) t) 2)))
+  #+end_src
+
+  절차 =show-expression=은 표현식을 단순화하고 T_{E}X를 써서 결과를 전통적인
+  중위 형식으로 표시한다. 이 표시 방법으로 이 책의 상자 친 표현식을 만든다.
+  절차 show-expression은 전위 형식도 산출하지만 우리는 대체로 이를 보이지
+  않는다.[fn:32]
+
+  #+begin_src scheme
+(show-expression
+ ((compose (L-free-particle 'm) (Gamma q)) 't))
+  #+end_src
+
+  #+begin_export latex
+  \frac{1}{2}m\,\,{(Dx\,\,(t))}^{2} + \frac{1}{2}m\,\,{(Dy\,\,(t))}^{2} + \frac{1}{2}m\,\,{(Dz\,\,(t))}^{2}
+  #+end_export
+
+  방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.4][1.4]])에 따라 /t/_{1}에서 /t/_{2}까지
+  라그랑지언 작용을 다음처럼 계산할 수 있다:
+
+  #+begin_src scheme
+(define (Lagrangian-action L q t1 t2)
+  (definite-integral
+    (compose L (Gamma q)) t1 t2))
+  #+end_src
+
+  Lagrangian-action은 라그랑지언을 계산하는 절차 L, 좌표 경로를 계산하는 절차 q,
+  시작과 끝 시각 t1 및 t2를 인수로 받는다. 여기서 쓰인 definite-integral은 함수와
+  두 경계 t1, t2를 인수로 받아 t1에서 t2까지 구간에서 함수의 정적분을 계산한다.[fn:33]
+  Lagrangian-action의 정의가 특정 좌표 집합이나 배치공간의 차원에 의존하지
+  않음에 유의하라. 라그랑지언과 좌표 경로의 좌표 표현에서 작용을 계산하는
+  방법은 좌표계에 의존하지 않는다.
+
+  이제 경로를 따라 자유 입자의 작용을 계산할 수 있다. 예를 들어 직선 /t/ ↦
+  (4/t/ + 7, 3/t/ + 5, 2/t/ + 1)을 따라 등속으로 움직이는 입자를 생각하자.[fn:34]
+  경로를 다음 절차로 나타낸다.
+
+  #+begin_src scheme
+(define (test-path t)
+  (up (+ (* 4 t) 7)
+      (+ (* 3 t) 5)
+      (+ (* 2 t) 1)))
+  #+end_src
+
+  질량 3인 입자에 대해 /t/ = 0과 /t/ = 10 사이의 작용은 다음과 같다[fn:35]
+
+  #+begin_src scheme
+(Lagrangian-action (L-free-particle 3.0) test-path 0.0 10.0) 435
+  #+end_src
+
+@@html:<span id="Exe_1-4"></span>@@
+*** 연습문제 1.4: 라그랑지언 작용
+
+    자유 입자에 적절한 라그랑지언은[fn:36]
+
+    @@html:<span id="disp_1.8"></span>@@
+$$\begin{aligned}
+{L(t,x,v) = \frac{1}{2}mv^{2}.} & {(1.8)}
+    \end{aligned}$$
+    이다. /x/가 자유 입자의 일정 속도 직선 경로이고, /x/_{/a/} = /x/(/t/_{/a/})와
+    /x/_{/b/} = /x/(/t/_{/b/})라 하자. 해 경로에서의 작용이 다음과 같음을 보여라.
+
+    @@html:<span id="disp_1.9"></span>@@
+$$\begin{aligned}
+{\frac{m}{2}\frac{{(x_{b} - x_{a})}^{2}}{t_{b} - t_{a}}.} & {(1.9)}
+    \end{aligned}$$
+** 최소 작용 경로
+   :PROPERTIES:
+   :CUSTOM_ID: paths-of-minimum-action
+   :CLASS:    level2
+   :END:
+   우리는 자유 입자의 실제 경로가 직선 위의 등속 운동임을 이미 안다. Euler와
+   Lagrange에 따르면 작용은 가까운 경로보다 직선 시험 경로에서 더 작다. $q$를
+   작용 $S\left[q\right](t_1, t_2)$을 갖는 직선 시험 경로라 하자. $q + \varepsilon \eta$를
+   실수 매개변수 $\varepsilon$로 크기를 조절한 경로 변분 $\eta$를 $q$에 더하여 얻은
+   가까운 경로라 하자.[fn:37] 변분 경로의 작용은
+   $S\left[q + \varepsilon \eta\right](t_1, t_2)$다. Euler와 Lagrange는 끝점에서
+   영인 모든 $\eta$와 작은 영 아닌 모든
+   $\eta$에 대해
+   $S\left[q + \varepsilon \eta\right](t_1, t_2) > S\left[q\right](t_1, t_2)$임을
+   발견했다.
+
+   끝점 $t = t_1$, $t = t_2$에서 영이 되는 시험 함수의 어떤 양을 더하여 시험
+   경로를 변분시켜, 이를 수치적으로 확인해 보자. 충분히 잘 거동하는 함수 /ν/가
+   주어졌을 때 끝점에서 영인 함수 $\eta$를 만들려면 /η/(/t/) = (/t/ − /t/_{1})(/t/ −
+   /t/_{2})/ν/(/t/)를 쓸 수 있다. 이를 구현하면 다음과 같다.
+
+   #+begin_src scheme
+(define ((make-eta nu t1 t2) t)
+  (* (- t t1) (- t t2) (nu t)))
+   #+end_src
+
+   이를 사용해 주어진 경로에서 변분한 경로 위 자유 입자의 작용을 /ϵ/의 함수로
+   계산할 수 있다:[fn:38]
+
+    #+begin_src scheme
+(define ((varied-free-particle-action mass q nu t1 t2) eps)
+  (let ((eta (make-eta nu t1 t2)))
+    (Lagrangian-action (L-free-particle mass)
+                       (+ q (* eps eta)) t1 t2)))
+    #+end_src
+
+   /ν/(/t/) = (sin /t,/ cos /t/, /t/^{2})이고 /ϵ/ = 0.001일 때 변분 경로의 작용은
+   예상대로 시험 경로의 작용보다 크다:
+
+    #+begin_src scheme
+((varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) 0.001)
+    #+end_src
+
+    #+begin_src scheme
+436.29121428571153
+    #+end_src
+
+   작용이 최소가 되는 /ϵ/ 값을 수치적으로 계산할 수 있다. 예를 들어 −2와 1
+   사이를 탐색한다:[fn:39]
+
+    #+begin_src scheme
+(minimize
+ (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) -2.0
+1.0)
+    #+end_src
+
+   #+begin_src scheme
+(-1.5987211554602254e-14 435.0000000000237 5) {%
+   #+end_src
+
+
+
+   우리는 예상한 바, 곧 /ϵ/의 최선값이
+   영[fn:40]이고 작용의 최솟값이 직선 경로를 따른 작용이라는 것을 정확히
+   찾아낸다.
+
+** 작용을 최소화하는 궤적 찾기
+   :PROPERTIES:
+   :CUSTOM_ID: finding-trajectories-that-minimize-the-action
+   :CLASS:    level2
+   :END:
+   우리는 주어진 궤적이 실현 가능한지 결정하기 위해 변분 원리를 사용했다.
+   변분 원리로 궤적을 찾을 수도 있다. 유한한 수의 매개변수로 지정되는 궤적
+   집합이 주어지면, 작용을 최소화하는 궤적을 찾아 실제 궤적을 가장 잘 근사하는
+   집합 안의 궤적을 찾으면서 매개변수 공간을 탐색할 수 있다. 좋은 근사 함수
+   집합을 선택하면 실제 궤적에 임의로 가까이 갈 수 있다.[fn:41]
+
+   끝점이 고정된 매개변수 경로를 만드는 한 방법은 끝점뿐 아니라 여러 중간점을
+   지나는 다항식을 쓰는 것이다. 중간점 위치를 변분하면 경로가 변분된다. 변분
+   경로의 매개변수는 중간 위치의 좌표다. 절차 make-path는 라그랑주 보간 다항식을
+   써서 이와 같은 경로를 구성한다. 절차 make-path는 다섯 인수
+   (make-path t0 q0 t1 q1 qs)로 호출한다. 여기서 q0, q1은 끝점이고 t0, t1은
+   대응하는 시각이며 qs는 중간점 목록이다.[fn:42]
+
+
+
+   매개변수 경로를 지정했으면 그 매개변수 경로를 따라 계산한 작용인 매개변수
+   작용을 구성할 수 있다:
+
+    #+begin_src scheme
+(define ((parametric-path-action Lagrangian t0 q0 t1 q1) qs)
+  (let ((path (make-path t0 q0 t1 q1 qs)))
+    (Lagrangian-action Lagrangian path t0 t1)))
+    #+end_src
+
+   작용을 최소화하는 매개변수를 찾아 근사 해 경로를 찾을 수 있다. 이 최소화는
+   미리 만들어진 다차원 최소화 절차로 한다:[fn:43]
+
+    #+begin_src scheme
+(define (find-path Lagrangian t0 q0 t1 q1 n)
+  (let ((initial-qs (linear-interpolants q0 q1 n)))
+    (let ((minimizing-qs (multidimensional-minimize
+                          (parametric-path-action Lagrangian t0 q0 t1 q1) initial-qs)))
+      (make-path t0 q0 t1 q1 minimizing-qs))))
+    #+end_src
+
+   절차 multidimensional-minimize는 최소화할 함수를 계산하는 절차(이 경우
+   parametric-path-action 호출의 값으로서의 작용)와 매개변수의 초기 추측값을
+   받는다. 여기서는 linear-interpolants로 계산한 두 끝점 사이 직선 위의 등간격
+   점들을 초기 추측값으로 선택한다.
+
+   이 전략의 사용을 예시하기 위해 라그랑지언이[fn:44]
+
+   @@html:<span id="disp_1.10"></span>@@
+$$\begin{aligned}
+{L(t,q,v) = \frac{1}{2}mv^{2} - \frac{1}{2}kq^{2},} & {(1.10)}
+   \end{aligned}$$
+   인 조화 진동자의 궤적을 찾는다. 여기서 /m/은 질량이고 /k/는 용수철
+   상수다. 이 라그랑지언은 다음으로 구현한다.[fn:45]
+
+   @@html:<span id="Fig_1-1"></span>@@
+
+   #+caption: *그림 1.1* 최소 작용을 갖는 다항식 근사와 조화 진동자가 실제로
+   취한 궤적의 차이. 가로축은 시간이고 세로축은 오차다.
+   [[/eval/source/sicm/images/Art_P19.jpg]]
+
+    #+begin_src scheme
+(define ((L-harmonic m k) local)
+  (let ((q (coordinate local))
+        (v (velocity local)))
+    (- (* 1/2 m (square v))
+       (* 1/2 k (square q)))))
+    #+end_src
+
+   /m/ = 1, /k/ = 1인 조화 진동자가 /q/(0) = 1과 /q/(/π//2) = 0 사이에서 취하는
+   근사 경로는 다음처럼 찾을 수 있다:[fn:46]
+
+    #+begin_src scheme
+(define q
+  (find-path (L-harmonic 1.0 1.0) 0.0 1.0 :pi/2 0.0 3))
+    #+end_src
+
+   /m/ = 1, /k/ = 1일 때 이 조화 진동자의 궤적은 다음과 같음을 안다.
+
+   @@html:<span id="disp_1.11"></span>@@
+$$\begin{aligned}
+{q(t) = A\,\,\text{cos}(t + \varphi)} & {(1.11)}
+   \end{aligned}$$
+   여기서 진폭 /A/와 위상 /φ/는 초기 조건으로 결정된다. 선택한 끝점 조건에서는
+   해가 /q/(/t/) = cos(/t/)다. 근사 경로는 0에서 /π//2까지 범위에서 코사인의
+   근사여야 한다. [[#Fig_1-1][그림 1.1]]은 이 과정이 만든 다항식 근사의 오차를
+   보인다. 중간점 세 개를 쓴 근사의 최대 오차는 1.7 × 10^{−4}보다 작다. 예상대로
+   중간점 수가 늘면 근사 오차가 줄어든다. 중간점 네 개일 때는 약 15배 더 좋다.
+
+   @@html:<span id="Exe_1-5"></span>@@
+
+   *연습문제 1.5: 해 구하는 과정*
+
+   작용이 계산될 때마다 경로를 그리도록 절차 parametric-path-action을 고치면
+   최소화의 진행을 볼 수 있다. 다음을 시도하라:
+
+    #+begin_src scheme
+(define win2 (frame 0.0 :pi/2 0.0 1.2))
+
+(define ((parametric-path-action Lagrangian t0 q0 t1 q1) intermediate-qs)
+  (let ((path (make-path t0 q0 t1 q1 intermediate-qs))) ;; display path
+    (graphics-clear win2)
+    (plot-function win2 path t0 t1 (/ (- t1 t0) 100)) ;; compute action
+    (Lagrangian-action Lagrangian path t0 t1)))
+
+(find-path (L-harmonic 1.0 1.0) 0.0 1.0 :pi/2 0.0 2)
+    #+end_src
+
+   @@html:<span id="Exe_1-6"></span>@@
+
+   *연습문제 1.6: 작용 최소화*
+
+   불가능한 문제에 대해 작용을 최소화하여 경로를 얻으려 한다고 하자. 예를 들어
+   자유 입자가 있고, 입자가 자유롭다는 것과 양립하지 않는 위치뿐 아니라 속도에
+   관한 끝점 조건을 부과한다고 하자. 이 형식론은 이런 불쾌한 공격으로부터
+   스스로를 보호하는가? 이를 프로그래밍하여 무슨 일이 일어나는지 보면 깨달음을
+   얻을 수 있다.
+* 1.5 오일러--라그랑주 방정식
+  :PROPERTIES:
+  :CUSTOM_ID: h1-6
+  :CLASS:    level1
+  :END:
+  정지 작용 원리는 배치공간에 놓인 계의 실현 가능한 경로를, 작용이 정지값을
+  갖는 경로로 특징짓는다. 초등 미적분학에서 우리는 함수의 임계점이 도함수가
+  사라지는 점임을 배운다. 이와 비슷하게, 작용이 정지인 경로는 미분방정식계의
+  해이다. /오일러--라그랑주 방정식/ 또는 그냥 /라그랑주 방정식/이라 불리는 이
+  방정식계는, 정지 작용 원리를 써서 역학계의 운동을 계산하고 역학의 변분적
+  정식화와 뉴턴식 정식화를 연결할 수 있게 해 주는 고리이다.
+
+
+
+** 라그랑주 방정식
+   :PROPERTIES:
+   :CUSTOM_ID: lagrange-equations
+   :CLASS:    level2
+   :END:
+   /L/이 시간, 좌표, 속도에 의존하는 어떤 계의 라그랑지언이고, /q/가 작용
+   /S/[/q/](/t/_{1}, /t/_{2})를 정지로 만드는 좌표 경로라면(경로의 양 끝점을
+   고정하는 임의의 경로 변분에 관하여), 다음이 성립함을 보게 될 것이다.
+
+   @@html:<span id="disp_1.12"></span>@@
+$$\begin{aligned}
+{D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack = 0.} & {(1.12)}
+   \end{aligned}$$
+   여기서 /L/은 국소 튜플의 실숫값 함수이고, ∂_{1}/L/과 ∂_{2}/L/은 각각 /L/의
+   일반화 위치 인수와 일반화 속도 인수에 대한 편미분을 나타낸다.[fn:47] 함수
+   ∂_{2}/L/은 국소 튜플을, 일반화 속도의 각 성분에 대한 /L/의 도함수를
+   성분으로 갖는 구조로 보낸다. 함수 Γ[/q/]는 시간을 국소 튜플로 보낸다:
+   Γ[/q/](/t/) = (/t/, /q/(/t/), /Dq/(/t/), ...). 따라서 합성 ∂_{1}/L/ ∘
+   Γ[/q/]와 ∂_{2}/L/ ∘ Γ[/q/]는 인수가 하나, 곧 시간인 함수이다. 라그랑주
+   방정식은 임의의 시각에 ∂_{2}/L/ ∘ Γ[/q/]의 도함수가 ∂_{1}/L/ ∘ Γ[/q/]와
+   같다고 주장한다. 라그랑지언이 주어지면 라그랑주 방정식은 실현 가능한 경로가
+   만족해야 하는 상미분방정식계를 이룬다.
+
+   라그랑주 방정식은 전통적으로 /q/의 각 성분마다 하나씩 따로 쓴다:
+
+   $$\begin{aligned}
+{\frac{d}{dt}\frac{\partial
+   L}{\partial{\overset{˙}{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0} &
+   {i = 0,\ldots,n - 1.}
+\end{aligned}$$
+
+   라그랑주 방정식을 이렇게 쓰는 방식에서는, 이 표기가 세 변수 (/t/, /q/,
+
+   q˙
+
+   )의 실숫값 함수인 /L/과, 하나의 실변수 /t/의 실숫값 함수인 /L/ ∘ Γ[/q/]를
+   구별하지 않는다. 이 표기의 말장난을 알아채지 못하면 방정식은 쓰인 그대로는
+   뜻이 통하지 않는다---∂/L//∂
+
+   q˙
+
+   는 세 변수의 함수이므로, 이 식에 /d///dt/를 취하기 전에 인수 /q,/
+
+   q˙
+
+   를 /t/의 함수로 보아야 한다. 마찬가지로 ∂/L//∂/q/도 세 변수의 함수이고,
+   이것을 다음과 같이 놓기 전에 /t/의 함수로 보아야 한다
+
+   $d/dt\left( {\partial L/\partial\overset{˙}{q}} \right)$
+
+   .
+
+
+
+   전통적 표기를 올바르게 쓰면 더 명시적이다:
+
+   $\frac{d}{dt}\left( \left. \frac{\partial L\left( {t,w,\overset{˙}{w}}
+   \right)}{\partial{\overset{˙}{w}}^{i}} \right|_{\begin{array}{l} {w = q{(t)}} \\ {\overset{˙}{w} = \frac{dq{(t)}}{dt}} \end{array}} \right) - \left.
+   \frac{\partial L\left( {t,w,\overset{˙}{w}} \right)}{\partial w^{i}}
+   \right|_{\begin{array}{l} {w = q{(t)}} {\overset{˙}{w} = \frac{dq{(t)}}{dt}} \end{array}} = 0,$
+
+   여기서 /i/ = 0, ..., /n/ − 1이다. 이 식들에서 우리는 먼저 라그랑지언 함수의
+   편미분을 취하고, 그런 다음 라그랑지언의 위치 인수와 속도 인수에 경로와 그
+   도함수를 대입하여 시간에 관한 식을 얻는 것을 본다.
+
+*** 1.5.1 라그랑주 방정식의 유도
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-5-1
+    :CLASS:    level3
+    :END:
+    정지 작용 원리가 실현 가능한 경로는 오일러--라그랑주 방정식을 만족함을
+    함의한다는 것을 보이겠다.
+
+** 직접적인 유도
+   :PROPERTIES:
+   :CUSTOM_ID: a-direct-derivation
+   :CLASS:    level2
+   :END:
+   /q/를 (/t/_{1}, /q/(/t/_{1}))에서 (/t/_{2}, /q/(/t/_{2}))에 이르는 실현
+   가능한 좌표 경로라 하자. /η/(/t/_{1}) = /η/(/t/_{2}) = 0인 근처 경로 /q/ +
+   /ϵη/를 생각하자. 다음과 같이 두자.
+
+   @@html:<span id="disp_1.13"></span>@@
+$$\begin{array}{lll} {g(\mathit{\epsilon})} & {= S\lbrack q + \mathit{\epsilon}\eta\rbrack(t_{1},\,\, t_{2})} & \\ & {= {\int_{t_{1}}^{t_{2}}{L(t,q(t) + \mathit{\epsilon}\eta(t),Dq(t) + \mathit{\epsilon}D\eta(t))dt.}}} & {(1.13)}\end{array}$$
+   /ϵ/에 대한 거듭제곱 급수로 전개하면
+
+   @@html:<span id="disp_1.14"></span>@@
+$$\begin{aligned}
+{g(\mathit{\epsilon}) = g(0) + \mathit{\epsilon}Dg(0) + \cdots} & {(1.14)}
+   \end{aligned}$$
+   연쇄 법칙을 쓰면 다음을 얻는다.
+
+   @@html:<span id="disp_1.15"></span>@@
+$$\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{(\partial_{2}L(t,q(t),Dq(t))D\eta(t))\,\, dt.}}} & {(1.15)}\end{array}$$
+   두 번째 항을 부분적분하면 다음을 얻는다.
+
+   @@html:<span id="disp_1.16"></span>@@
+$$\begin{array}{lll} {Dg(0)} & {= {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\ & {+ \,\partial_{2}L(t,q(t),Dq(t)D\eta(t))\eta(t)|_{t_{1}}^{t_{2}}} & \\ & {- {\int_{t_{1}}^{t_{2}}{\frac{d}{dt}(\partial_{2}L(t,q(t),Dq(t)))\eta(t)dt}}.} & {(1.16)}\end{array}$$
+   경로의 변분으로 인한 작용의 증분 Δ/S/는 /ϵ/의 1차까지 /ϵDg/(0)이다.
+   $\eta$가 양 끝점에서 0이므로 적분된 항은 0이다. 나머지 두 항을 모으고 함수
+   표기로 되돌리면 증분은 다음과 같다.
+
+   @@html:<span id="disp_1.17"></span>@@
+$$\begin{aligned}
+{\Delta S = \mathit{\epsilon}{\int_{t_{1}}^{t_{2}}\left\{ \partial_{1}L \circ \Gamma\lbrack q\rbrack\, - \, D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}}\eta.} & {(1.17)}
+   \end{aligned}$$
+   Δ/S/가 0이면 작용은 정지이다. 우리는 변분을 고르는 데 충분한 자유를 남겨
+   두었으므로, 피적분 함수에서 $\eta$에 곱해지는 인자는 경로를 따라 각 점에서
+   0이 되도록 강제된다. 귀류법으로 논증한다. 이 인자가 어떤 특정한 시각에 0이
+   아니라고 하자. 그러면 그 성분 가운데 적어도 하나에서 0이 아니어야 한다.
+   그런데 $\eta$를 그 시각의 근방에서 그 성분에서만 0이 아니고 나머지 모든
+   곳에서는 0인 융기(bump) 함수로 잡으면 적분은 0이 아니게 된다. 따라서 중괄호
+   안의 인자는 항등적으로 0이라고 결론지을 수 있고, 이로써 라그랑주 방정식을
+   얻는다:[fn:48]
+
+   @@html:<span id="disp_1.18"></span>@@
+$$\begin{aligned}
+{D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, - \,\partial_{1}L \circ \Gamma\lbrack q\rbrack = 0.} & {(1.18)}
+   \end{aligned}$$
+** 변분 연산자
+   :PROPERTIES:
+   :CUSTOM_ID: the-variation-operator
+   :CLASS:    level2
+   :END:
+   먼저 경로가 변할 때 경로 의존 함수(path-dependent function)가 어떻게
+   변하는지 조사할 도구를 마련한다. 그런 다음 이 도구를 작용에 적용하여
+   라그랑주 방정식을 유도한다.
+
+   경로 /q/에 의존하는 함수 /f/[/q/]가 있다고 하자. 경로를 변화시키면 이
+   함수는 어떻게 변하는가? /q/를 좌표 경로라 하고 /q/ + /ϵη/를 변화된 경로라
+   하자. 여기서 함수 $\eta$는 경로 /q/에 더할 수 있는 경로 같은 함수이고, 인자
+   /ϵ/는 크기 배율이다. 경로 /q/ 위에서 함수 /f/의 /변분 δ_{η}f/[/q/]를 다음과
+   같이 정의한다.[fn:49]
+
+   @@html:<span id="disp_1.19"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}f\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{f\lbrack q + \mathit{\epsilon}\eta\rbrack - f\lbrack q\rbrack}{\mathit{\epsilon}} \right).} & {(1.19)}
+   \end{aligned}$$
+   /f/의 변분은 경로의 작은 변분에 대한 함수 /f/의 변화의 선형 근사이다. /f/의
+   변분은 $\eta$에 의존한다.
+
+
+
+   간단한 예는 항등 경로 함수 /I/[/q/] = /q/의 변분이다. 정의를 적용하면
+   다음을 얻는다.
+
+   @@html:<span id="disp_1.20"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}I\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{(q + \mathit{\epsilon}\eta) - q}{\mathit{\epsilon}} \right) = \eta.} & {(1.20)}
+   \end{aligned}$$
+   /δ_{η}I/[/q/]는 전통적으로 그냥 /δq/라고 쓴다. 또 다른 예는 경로의 도함수를
+   돌려주는 경로 함수의 변분이다. 다음이 성립한다.[fn:50]
+
+   @@html:<span id="disp_1.21"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}g\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{D(q + \mathit{\epsilon}\eta) - Dq}{\mathit{\epsilon}} \right) = D\eta\,\,\,\,\text{with}\,\,\,\, g\lbrack q\rbrack = Dq.} & {(1.21)}
+   \end{aligned}$$
+   /δ_{η}g/[/q/]는 전통적으로 /δDq/라고 쓴다.
+
+   변분은 도함수로 나타낼 수 있다. /g/(/ϵ/) = /f/[/q/ + /ϵη/]라 하자. 그러면
+
+   @@html:<span id="disp_1.22"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}f\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{g(\mathit{\epsilon}) - g(0)}{\mathit{\epsilon}} \right) = Dg(0).} & {(1.22)}
+   \end{aligned}$$
+   변분은 다음과 같은 도함수 비슷한 성질을 갖는다. 경로 의존 함수 /f/와 /g/,
+   그리고 상수 /c/에 대하여:
+
+   @@html:<span id="disp_1.23"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}(f\, g)\lbrack q\rbrack = \delta_{\eta}f\lbrack q\rbrack\,\, g\lbrack q\rbrack + f\lbrack q\rbrack\,\,\delta_{\eta}g\lbrack q\rbrack} & {(1.23)}
+   \end{aligned}$$
+   @@html:<span id="disp_1.24"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}(f + g)\lbrack q\rbrack = \delta_{\eta}f\lbrack q\rbrack\, + \,\,\delta_{\eta}g\lbrack q\rbrack} & {(1.24)}
+   \end{aligned}$$
+   @@html:<span id="disp_1.25"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}(cf)\lbrack q\rbrack = c\,\,\delta_{\eta}f\lbrack q\rbrack.} & {(1.25)}
+   \end{aligned}$$
+   /F/를 경로에 무관한 함수라 하고 /g/를 경로 의존 함수라 하자. 그러면
+
+   @@html:<span id="disp_1.26"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}h\lbrack q\rbrack = (DF \circ g\lbrack q\rbrack)\,\,\delta_{\eta}g\lbrack q\rbrack\,\,\,\text{with}\,\,\,\, h\lbrack q\rbrack = F \circ g\lbrack q\rbrack.} & {(1.26)}
+   \end{aligned}$$
+   연산자 /D/(미분)와 /δ/(변분)는 다음과 같은 뜻에서 교환한다:
+
+   @@html:<span id="disp_1.27"></span>@@
+$$\begin{aligned}
+D{\delta_{\eta}f\lbrack q\rbrack = \delta_{\eta}g\lbrack
+   q\rbrack\,\,\,\text{with}\,\,\,\, g\lbrack q\rbrack = D(f\lbrack q\rbrack).}
+   & {(1.27)}
+\end{aligned}$$
+
+   변분은 비슷한 뜻에서 적분과도 교환한다.
+
+   경로 의존 함수 /f/가 어떤 특정 경로 /q/에 대해 그 경로의 작은 변화에 관하여
+   정지라면, /q/에 특정한 함수 $\eta$의 작은 배수를 더해 얻는 변분의
+   부분집합에 대해서도 정지여야 한다. 그러므로 임의의 $\eta$에 대하여
+   /δ_{η}f/[/q/] = 0이라는 진술은 함수 /f/가 /q/ 주위 경로의 작은 변분에
+   대하여 정지임을 함의한다.
+
+   @@html:<span id="Exe_1-7"></span>@@
+
+   *연습문제 1.7: /δ/의 성질*
+
+   /δ/가 성질 1.23--1.27을 가짐을 보여라.
+
+   @@html:<span id="Exe_1-8"></span>@@
+
+   *연습문제 1.8: /δ/의 구현*
+
+   *a.* 경로 의존 함수를 구현하는 절차 f가 있다고 하자. 경로 q와 시간 t에 대해
+   그 값은 ((f q) t)이다. 절차 delta는 변분 (/δ_{η}f/)[/q/](/t/)를 식
+   ((((delta eta) f) q) t)의 값으로 계산한다. delta의 정의를 완성하라:
+
+    #+begin_src scheme
+(define (((delta eta) f) q) ... )
+    #+end_src
+
+   *b.* 여러분의 delta 절차를 써서, 절차 f가 구현하는 것과 같은 간단한 함수에
+   대해 [[/ko/eval/sicm/chapter-1/#Exe_1-7][연습문제 1.7]]에 나열된 /δ/의 성질을
+   확인하라:[fn:51]
+
+    #+begin_src scheme
+(define (f q)
+  (compose (literal-function 'F (-> (UP Real (UP* Real) (UP* Real)) Real))
+           (Gamma q)))
+    #+end_src
+
+   이것은 각 순간에 경로의 국소 튜플에 의존하는 /n/-자유도 경로 의존 함수를
+   구현한다. 리터럴 2차원 경로는 다음과 같이 정의할 수 있다.
+
+   (define q (literal-function 'q (-> Real (UP Real Real))))
+
+   등식의 양변을 모두 계산하고 그 결과를 빼 보라. 답은 0이어야 한다.
+
+** 변분 연산자를 이용한 유도
+   :PROPERTIES:
+   :CUSTOM_ID: a-derivation-with-the-variation-operator
+   :CLASS:    level2
+   :END:
+   작용은 경로를 따라 라그랑지언을 적분한 것이다:
+
+   @@html:<span id="disp_1.28"></span>@@
+$$\begin{aligned}
+{S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack.}}} & {(1.28)}
+   \end{aligned}$$
+   실현 가능한 경로 /q/에 대해, 끝점을 보존하는 임의의 변분 $\eta$, 곧
+   /η/(/t/_{1}) = /η/(/t/_{2}) = 0인 변분에 관한 작용의 변분은 0이다:
+
+   @@html:<span id="disp_1.29"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) = 0.} & {(1.29)}
+   \end{aligned}$$
+   변분은 적분과 교환하므로 작용의 변분은 다음과 같다.
+
+   @@html:<span id="disp_1.30"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{\delta_{\eta}h\lbrack q\rbrack\,\,\,\,\text{where}\,\,\,\, h\lbrack q\rbrack = L \circ \Gamma\lbrack q\rbrack.}}} & {(1.30)}
+   \end{aligned}$$
+   다음 사실을 쓰면
+
+   @@html:<span id="disp_1.31"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}\Gamma\lbrack q\rbrack(t) = (0,\eta(t),D\eta(t)),} & {(1.31)}
+   \end{aligned}$$
+   ---이는 식 ([[/ko/eval/sicm/chapter-1/#disp_1.20][1.20]])과
+   ([[/ko/eval/sicm/chapter-1/#disp_1.21][1.21]])에서 따라 나온다---그리고 변분에
+   대한 연쇄 법칙 ([[/ko/eval/sicm/chapter-1/#disp_1.26][1.26]])을 쓰면 다음을
+   얻는다.[fn:52]
+
+   @@html:<span id="disp_1.32"></span>@@
+$$\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{(D\, L \circ \Gamma\lbrack q\rbrack)\delta_{\eta}\Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{((\partial_{1}L \circ \Gamma\lbrack q\rbrack)\eta + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D\eta).}}} & {(1.32)}\end{array}$$
+   식 ([[/ko/eval/sicm/chapter-1/#disp_1.32][1.32]])의 마지막 항을 부분적분하면
+   다음을 얻는다.
+
+   @@html:<span id="disp_1.33"></span>@@
+$$\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) =} & {(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\eta|_{t_{1}}^{t_{2}}} & \\ & {+ {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\eta.}}} & {(1.33)}\end{array}$$
+   우리의 변분 $\eta$에 대해서는 /η/(/t/_{1}) = /η/(/t/_{2}) = 0이므로 첫 항은
+   사라진다.
+
+   따라서 작용의 변분이 0인 것은 다음과 필요충분이다.
+
+   @@html:<span id="disp_1.34"></span>@@
+$$\begin{aligned}
+{0 = {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\,\eta.}}} & {(1.34)}
+   \end{aligned}$$
+   가정에 의해 /q/는 실현 가능한 경로이므로 작용의 변분은 0이다. 따라서
+   ([[/ko/eval/sicm/chapter-1/#disp_1.34][1.34]])는 끝점에서 0인 /임의의/ 함수
+   $\eta$에 대해 참이어야 한다. $\eta$는 끝점에서 0이라는 것 말고는
+   임의이므로, 피적분 함수에서 괄호로 묶인 인자는 0이다. 그러므로
+
+   @@html:<span id="disp_1.35"></span>@@
+$$\begin{aligned}
+{D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - (\partial_{1}L \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.35)}
+   \end{aligned}$$
+   이것이 바로 우리가 얻고자 했던 것, 곧 라그랑주 방정식이다.
+
+   라그랑주 방정식을 만족하는 경로는 작용이 정지인 경로이며, 작용이 정지라는
+   사실은 경로의 각 점(그리고 근처 경로의 각 점)에서의 /L/ 값에만 의존할 뿐,
+   그 값을 계산하는 데 쓰는 좌표계에는 의존하지 않는다. 그러므로 계의 경로가
+   어떤 특정 좌표계에서 라그랑주 방정식을 만족한다면 /임의의/ 좌표계에서도
+   라그랑주 방정식을 만족해야 한다. 따라서 변분역학의 방정식은 어떤
+   배치공간에서든 어떤 좌표계에서든 같은 방식으로 유도된다.
+
+** 조화 진동자
+   :PROPERTIES:
+   :CUSTOM_ID: harmonic-oscillator
+   :CLASS:    level2
+   :END:
+   예로 조화 진동자를 생각하자. 하나의 라그랑지언은 다음과 같다.
+
+   @@html:<span id="disp_1.36"></span>@@
+$$\begin{aligned}
+{L(t,x,v) = \frac{1}{2}mv^{2} - \frac{1}{2}kx^{2}.} & {(1.36)}
+   \end{aligned}$$
+   그러면
+
+   @@html:<span id="disp_1.37"></span>@@
+$$\begin{aligned}
+{\partial_{1}L(t,x,v) = - kx\,\,\,\,\,\,\text{and}\,\,\,\,\partial_{2}L(t,x,v) = mv.} & {(1.37)}
+   \end{aligned}$$
+   라그랑지언은 시간, 좌표, 속도로 이루어진 튜플에 적용된다. 기호 /t/, /x/,
+   /v/는 임의이며, 라그랑지언의 형식 매개변수를 지정하는 데 쓰인다.
+
+   이제 각 시각 /t/에 대해 진동자의 좌표 /y/(/t/)를 주는 배치 경로 /y/가
+   있다고 하자. 시각 /t/에서 대응하는 국소 튜플의 처음 부분은 다음과 같다.
+
+   @@html:<span id="disp_1.38"></span>@@
+$$\begin{aligned}
+{\Gamma\lbrack y\rbrack(t) = (t,y(t),Dy(t)).} & {(1.38)}
+   \end{aligned}$$
+   그러므로
+
+   @@html:<span id="disp_1.39"></span>@@
+$$\begin{aligned}
+{(\partial_{1}L \circ \Gamma\lbrack y\rbrack)(t) = - ky(t)\,\,\,\,\,\text{and}\,\,\,\,\,(\partial_{2}L \circ \Gamma\lbrack y\rbrack)(t) = mDy(t),} & {(1.39)}
+   \end{aligned}$$
+   그리고
+
+   @@html:<span id="disp_1.40"></span>@@
+$$\begin{aligned}
+{D(\partial_{2}L \circ \Gamma\lbrack y\rbrack)(t) = mD^{2}y(t),} & {(1.40)}
+   \end{aligned}$$
+   따라서 라그랑주 방정식은
+
+
+
+   @@html:<span id="disp_1.41"></span>@@
+$$\begin{aligned}
+{mD^{2}y(t) + ky(t) = 0,} & {(1.41)}
+   \end{aligned}$$
+   이며, 이것이 조화 진동자의 운동방정식이다.
+
+** 궤도 운동
+   :PROPERTIES:
+   :CUSTOM_ID: orbital-motion
+   :CLASS:    level2
+   :END:
+   또 다른 예로, 질량 /m/인 입자가 고정된 인력 중심 주위를 도는 2차원 운동을
+   생각하자. 중력 퍼텐셜 에너지는 −/μ/r/이고, 여기서 /r/는 인력 중심까지의
+   거리이다. 이를 /케플러 문제(Kepler problem)/라 한다.
+
+   이 문제에 대한 하나의 라그랑지언은 다음과 같다.[fn:53]
+
+   @@html:<span id="disp_1.42"></span>@@
+$$\begin{aligned}
+{L(t;\xi,\eta;v_{\xi},v_{\eta}) = \frac{1}{2}m(v_{\xi}^{2} + v_{\eta}^{2}) + \frac{\mu}{\sqrt{\xi^{2} + \eta^{2}}},} & {(1.42)}
+   \end{aligned}$$
+   여기서 $\xi$와 $\eta$는 입자의 직각 좌표에 대한 형식 매개변수이고,
+   /v_{ξ}/와 /v_{η}/는 대응하는 직각 속도 성분에 대한 형식 매개변수이다.
+   그러면
+
+   @@html:<span id="disp_1.43"></span>@@
+$$\begin{array}{lll} {\partial_{1}L(t;\xi,\eta;v_{\xi},v_{\eta})} & {= \lbrack\partial_{1,0}L(t;\xi,\eta;v_{\xi},v_{\eta}),\partial_{1,1}L(t;\xi,\eta;v_{\xi},v_{\eta})\rbrack} & \\ & {{= \left\lbrack {\frac{- \mu\xi}{{(\xi^{2} + \eta^{2})}^{3/2}},\frac{- \mu\eta}{{(\xi^{2} + \eta^{2})}^{3/2}}} \right\rbrack}.} & {(1.43)}\end{array}$$
+   마찬가지로,
+
+   @@html:<span id="disp_1.44"></span>@@
+$$\begin{aligned}
+{\partial_{2}L(t;\xi,\eta;v_{\xi},v_{\eta}) = \lbrack mv_{\xi},mv_{\eta}\rbrack.} & {(1.44)}
+   \end{aligned}$$
+   이제 배치 경로 /q/ = (/x/, /y/)가 있어서 시각 /t/에서 좌표 튜플이 /q/(/t/)
+   = (/x/(/t/), /y/(/t/))라 하자. 시각 /t/에서 국소 튜플의 처음 부분은 다음과
+   같다.
+
+   @@html:<span id="disp_1.45"></span>@@
+$$\begin{aligned}
+{\Gamma\lbrack q\rbrack(t) = (t;x(t),y(t);Dx(t),Dy(t)).} & {(1.45)}
+   \end{aligned}$$
+   그러므로
+
+   @@html:<span id="disp_1.46"></span>@@
+$$\begin{array}{lll} {(\partial_{1}L \circ \Gamma\lbrack q\rbrack)(t)} & {= \left\lbrack {\frac{- \mu x(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}},\frac{- \mu y(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}}} \right\rbrack} & \\ {(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t)} & {= \lbrack mDx(t),mDy(t)\rbrack} & {(1.46)}\end{array}$$
+   그리고
+
+   @@html:<span id="disp_1.47"></span>@@
+$$\begin{aligned}
+{D(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t) = \lbrack mD^{2}x(t),mD^{2}y(t)\rbrack.} & {(1.47)}
+   \end{aligned}$$
+   시각 /t/에서 성분별 라그랑주 방정식은 다음과 같다.
+
+   @@html:<span id="disp_1.48"></span>@@
+$$\begin{aligned}
+{mD^{2}x(t) + \frac{\mu x(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}} = 0} & \\
+   {mD^{2}y(t) + \frac{\mu y(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}} = 0.} & {(1.48)}
+   \end{aligned}$$
+   @@html:<span id="Exe_1-9"></span>@@
+   *연습문제 1.9: 라그랑주 방정식*
+
+   다음 계들에 대해 라그랑주 방정식을 유도하되, 조화 진동자와 궤도 운동
+   예에서처럼 중간 단계를 모두 보여라.
+
+   *a.* 이상적인 평면 진자는 길이 /l/인 질량 없는 막대로 회전축에 이어진 질량
+   /m/인 추로 이루어지며, 균일한 중력 가속도 /g/를 받는다. 하나의 라그랑지언은
+
+   $L(t,\theta,\overset{˙}{\theta}) =
+   \frac{1}{2}ml^{2}{\overset{˙}{\theta}}^{2} + mgl\,\,\cos\theta$
+
+   이다. /L/의 형식 매개변수는 /t/, /θ/, 그리고
+
+   $\overset{˙}{\theta}$
+
+   이며, /θ/는 진자 막대가 연직선과 이루는 각을 재고,
+
+   $\overset{˙}{\theta}$
+
+   는 막대의 각속도이다.[fn:54]
+
+   *b.* 질량 /m/인 입자가 2차원 퍼텐셜 /V/ (/x/, /y/) = (/x/^{2} + /y/^{2})/2
+   + /x/^{2}/y/ − /y/^{3}/3 속에서 움직인다. 여기서 /x/와 /y/는 입자의 직각
+   좌표이다. 하나의 라그랑지언은
+
+   $L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
+   V(x,y)$
+
+   이다.
+
+   *c.* 반지름 /R/인 구면 위에서 움직이도록 구속된 질량 /m/인 입자에 대한
+   하나의 라그랑지언은
+
+   $L(t;\theta,\varphi;\alpha,\beta) = \frac{1}{2}mR^{2}{({\alpha^{2} +
+   {(\beta\,\sin\theta)}^{2}})}$
+
+   이다. 각 /θ/는 입자의 여위도(colatitude)이고 /φ/는 경도이다. 여위도의
+   변화율은 /α/이고 경도의 변화율은 /β/이다.
+
+   @@html:<span id="Exe_1-10"></span>@@
+
+   *연습문제 1.10: 고계 미분 라그랑지언*
+
+   가속도에 의존하는 라그랑지언에 대해 라그랑주 방정식을 유도하라. 특히
+   /L/(/t, q,/
+
+   q˙
+
+   ,
+
+   q¨
+
+   ) 꼴이면서
+
+   q¨
+
+   항을 포함하는 라그랑지언에 대한 라그랑주 방정식이 다음과 같음을
+   보여라.[fn:55]
+
+   @@html:<span id="disp_1.49"></span>@@
+$$\begin{aligned}
+{D^{2}(\partial_{3}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) + \partial_{1}L \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.49)}
+   \end{aligned}$$
+   일반적으로 Poisson이 처음 유도한 이 방정식들은 /q/의 4계 도함수를 포함하게
+   된다. 이 유도가 가속도가 없는 라그랑주 방정식의 유도와 완전히 유사하며 다만
+   더 길 뿐임에 유의하라. 임계 경로가 미분방정식을 만족하도록 하려면 변분에
+   어떤 제한을 두어야 하는가?
+
+*** 1.5.2 라그랑주 방정식 계산하기
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-5-2
+    :CLASS:    level3
+    :END:
+    라그랑주 방정식을 계산하는 절차는 함수 표기 식
+    ([[/ko/eval/sicm/chapter-1/#disp_1.12][1.12]])을 그대로 반영하며, 여기서 절차
+    Gamma가 Γ를 구현한다:[fn:56]
+
+     #+begin_src scheme
+(define ((Lagrange-equations Lagrangian) q)
+  (- (D (compose ((partial 2) Lagrangian) (Gamma q)))
+     (compose ((partial 1) Lagrangian) (Gamma q))))
+     #+end_src
+
+    Lagrange-equations의 인수는 라그랑지언을 계산하는 절차이다.
+    Lagrange-equations 절차는 경로 q에 적용되면 인수가 하나(시간)인 절차를
+    돌려주며, 이 절차는 라그랑주 방정식
+    ([[/ko/eval/sicm/chapter-1/#disp_1.12][1.12]])의 좌변을 계산한다. q가
+    라그랑지언 작용을 정지로 만드는 경로라면 이 잔차(residual) 값들은 0이다.
+
+    라그랑주 방정식 자체와 마찬가지로 Lagrange-equations 절차도 /임의의/
+    일반화 좌표계에서 유효함에 주목하라. 특정 계를 조사하는 프로그램을 쓸 때,
+    라그랑지언 함수와 경로 /q/를 구현하는 절차는 계를 나타내려고 실제로 고른
+    좌표를 반영하지만, 각 경우에 우리는 같은 Lagrange-equations 절차를 쓴다.
+    이 추상화는 라그랑지언에서 라그랑주 방정식을 유도하는 방법이 언제나 같다는
+    중요한 사실을 반영한다. 그 방법은 자유도의 수에도, 배치공간의 위상에도,
+    배치공간의 점을 기술하는 데 쓰는 좌표계에도 무관하다.
+
+** 자유 입자
+   :PROPERTIES:
+   :CUSTOM_ID: the-free-particle
+   :CLASS:    level2
+   :END:
+   자유 입자의 경우를 다시 생각하자. 라그랑지언은 절차 L-free-particle로
+   구현된다. [[/ko/eval/sicm/chapter-1/#h1-5][1.4절]]에서 했듯이 작용을 수치적으로
+   적분하고 최소화하는 대신, 임의의 직선 경로 /t/ ↦ (/at/ + /a/_{0}, /bt/ +
+   /b/_{0}, /ct/ + /c/_{0})에 대해 라그랑주 방정식을 확인할 수 있다:
+
+
+
+    #+begin_src scheme
+(define (test-path t)
+  (up (+ (* 'a t) 'a0) (+ (* 'b t) 'b0) (+ (* 'c t) 'c0)))
+
+(((Lagrange-equations (L-free-particle 'm)) test-path) 't)
+    #+end_src
+
+    #+begin_src scheme
+(down 0 0 0)
+    #+end_src
+
+   잔차가 0이라는 것은 시험 경로가 라그랑주 방정식을 만족함을 뜻한다.[fn:57]
+
+   Lagrange-equations 절차를 임의의 함수에 적용할 수도 있다:[fn:58]
+
+   #+begin_src scheme
+(show-expression
+ (((Lagrange-equations (L-free-particle 'm))
+   (literal-function 'x)) 't))
+
+(* (((expt D 2) x) t) m)
+   #+end_src
+
+   $$mD^{2}x(t)$$
+
+   결과는 임의의 시간 /t/와 질량 /m/을 포함하는 식이므로, 정확히 /D/^{2}/x/ =
+   0일 때 0이 되며, 이것이 자유 입자에 대해 기대되는 방정식이다.
+
+** 조화 진동자
+   :PROPERTIES:
+   :CUSTOM_ID: the-harmonic-oscillator
+   :CLASS:    level2
+   :END:
+   라그랑지언 ([[/ko/eval/sicm/chapter-1/#disp_1.10][1.10]])을 가진 조화 진동자를
+   다시 생각하자. 조화 진동자의 운동이 주어진 진폭, 진동수, 위상을 갖는
+   사인꼴임을 우리는 알고 있다:
+
+   @@html:<span id="disp_1.50"></span>@@
+$$\begin{aligned}
+{x(t) = a\,\,\cos(\omega t + \varphi).} & {(1.50)}
+   \end{aligned}$$
+   해에 나오는 상수들이 진동자의 질량 /m/과 용수철 상수 /k/에 어떻게
+   관계되는지 잊어버렸다고 하자. 제안된 해를 대입하여 잔차를 살펴보자:
+
+    #+begin_src scheme
+(define (proposed-solution t)
+  (* 'A (cos (+ (* 'omega t) 'phi))))
+
+(show-expression (((Lagrange-equations (L-harmonic 'm 'k)) proposed-solution)
+'t))
+    #+end_src
+
+   $$\cos\,(\omega t + \varphi)\, A\,(k - m\omega^{2})$$
+
+   여기서의 잔차는, 진폭이 0이 아닐 때 허용되는 유일한 해가 (/k/ − /mω/^{2}) =
+   0인 경우, 곧
+
+   $\omega = \sqrt{k/m}.$
+
+   @@html:<span id="Exe_1-11"></span>@@
+
+   *연습문제 1.11: 케플러의 제3법칙*
+
+   질량이 /m/_{1}과 /m/_{2}이고 퍼텐셜 에너지가 /V/인 두 입자의 상대 운동을
+   연구하기에 알맞은 라그랑지언은 다음과 같다:
+
+    #+begin_src scheme
+(define ((L-central-polar m V) local)
+  (let ((q (coordinate local)) (qdot (velocity local)))
+    (let ((r (ref q 0))
+          (phi (ref q 1))
+          (rdot (ref qdot 0))
+          (phidot (ref qdot 1)))
+      (- (* 1/2 m (+ (square rdot) (square (* r phidot))))
+         (V r)))))
+    #+end_src
+
+   인수 m은 계의 /환산 질량(reduced mass)/이다.
+
+   @@html:<span id="disp_1.51"></span>@@
+$$\begin{aligned}
+{m = \frac{m_{1}m_{2}}{m_{1} + m_{2}}.} & {(1.51)}
+   \end{aligned}$$
+   중력의 경우 퍼텐셜 에너지 함수는 다음과 같다.
+
+    #+begin_src scheme
+(define ((gravitational-energy G m1 m2) r) (- (/ (* G m1 m2) r)))
+    #+end_src
+
+   여기서 r는 두 입자 사이의 거리이다.
+
+   입자들이 공통 질량중심 주위에서 원 궤도를 도는 단순한 상황을 생각하자. 원
+   궤도를 구성하여 라그랑주 방정식에 대입하라. 그 잔차가 케플러의 법칙을
+   준다는 것을 보여라:
+
+   @@html:<span id="disp_1.52"></span>@@
+$$\begin{aligned}
+{n^{2}a^{3} = G(m_{1} + m_{2})} & {(1.52)}
+   \end{aligned}$$
+   여기서 /n/은 궤도의 각진동수이고 /a/는 두 입자 사이의 거리이다.
+
+
+
+   @@html:<span id="Exe_1-12"></span>@@
+
+
+
+   *연습문제 1.12: 라그랑주 방정식*
+
+   [[/ko/eval/sicm/chapter-1/#Exe_1-9][연습문제 1.9]]의 라그랑지언들에 대해
+   Lagrange-equations 절차를 써서 라그랑주 방정식을 계산하라. 나아가
+   Lagrange-equations 절차의 각 단계를 컴퓨터로 수행하고 중간 결과를 보여라.
+   이 단계들을 [[/ko/eval/sicm/chapter-1/#Exe_1-9][연습문제 1.9]]의 손 유도에서
+   보인 단계들과 연관 지어라.
+
+   @@html:<span id="Exe_1-13"></span>@@
+
+   *연습문제 1.13: 고계 미분 라그랑지언*
+
+   *a.* [[/ko/eval/sicm/chapter-1/#Exe_1-10][연습문제 1.10]]에서처럼 가속도에
+   의존하는 라그랑지언에 대해 라그랑주 방정식을 계산하는 절차를 작성하라.
+   Gamma는 필요한 국소 튜플의 처음 부분의 길이를 주는 선택적 인수를 받을 수
+   있음에 유의하라. 기본 길이는 3이며, 이는 속도까지 포함하는 국소 튜플의
+   성분을 준다.
+
+   *b.* 여러분의 절차를 써서 다음 라그랑지언에 대한 라그랑주 방정식을
+   계산하라.
+
+   $L(t,x,v,a) = - \frac{1}{2}mxa - \frac{1}{2}kx^{2}.$
+
+   결과로 나온 운동방정식을 알아보겠는가?
+
+   *c.* 더 재미 삼아, 임의의 개수의 도함수에 의존하는 라그랑지언과 그 도함수의
+   개수를 받아 필요한 운동방정식을 만들어 내는 일반적인 라그랑주 방정식 절차를
+   작성하라.
+* 1.6 라그랑지언을 찾는 법
+  :PROPERTIES:
+  :CUSTOM_ID: h1-6a
+  :CLASS:    level1
+  :END:
+  라그랑주 방정식은 이계 미분방정식계다. 이것으로 역학계의 시간 발전을 계산하려면
+  그 계에 맞는 라그랑지언을 찾아야 한다. 모든 계에 대한 라그랑지언을 구성하는 일반적인
+  방법은 없지만, 운동 에너지와 퍼텐셜 에너지로 라그랑지언을 간단히 알아낼 수 있는
+  중요한 계의 부류가 있다. 핵심 생각은 라그랑주 방정식이 뉴턴 방정식
+
+  $\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}$
+
+  이 되도록 라그랑지언 /L/을 구성하는 것이다.
+
+  우리 계가 첨자 /α/로 색인되는 /N/개의 입자로 이루어져 있고, 각 입자는 질량 /m_{α}/과
+  벡터 위치
+
+  ${\overset{\rightarrow}{x}}_{\alpha}(t)$
+
+  를 가진다고 하자. 나아가 입자들에 작용하는 힘은 입자들의 위치와 어쩌면 시간의
+  함수이지만 속도에는 의존하지 않는 퍼텐셜 에너지
+
+  $\mathcal{V}$
+
+  의 그래디언트로 쓸 수 있다고 가정하자. 다시 말해 입자 /α/에 작용하는 힘은
+
+  ${\overset{\rightarrow}{F}}_{\alpha} = -
+  {\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}$
+
+  이며, 여기서
+
+  ${\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}$
+
+  는
+
+  $\mathcal{V}$
+
+  의 첨자 /α/ 입자 위치에 대한 그래디언트다. 뉴턴 방정식을 다음과 같이 쓸 수 있다.
+
+  @@html:<span id="disp_1.53"></span>@@
+$$\begin{aligned}
+{D(m_{\alpha}\, D{\overset{\rightarrow}{x}}_{\alpha})(t) + {\overset{\rightarrow}{\nabla}}_{{\overset{\rightarrow}{x}}_{\alpha}}\,\mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)) = 0.} & {(1.53)}
+  \end{aligned}$$
+  벡터는 직교 기저 위에서 벡터 성분들의 튜플로 나타낼 수 있다. 따라서
+
+  ${\overset{\rightarrow}{x}}_{1}(t)$
+
+  은 튜플 *x*_{1}(/t/)로 나타내진다. /V/를 성분들로 표현한 퍼텐셜 에너지 함수라
+  하자:
+
+  @@html:<span id="disp_1.54"></span>@@
+$$\begin{aligned}
+{V(t;\mathbf{x}_{0}(t),\ldots,\mathbf{x}_{N - 1}(t)) = \mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)).} & {(1.54)}
+  \end{aligned}$$
+  뉴턴 방정식은
+
+  @@html:<span id="disp_1.55"></span>@@
+$$\begin{aligned}
+{D(m_{\alpha}\, D\mathbf{x}_{\alpha})(t) + \partial_{1,\alpha}V(t;\mathbf{x}_{0}(t),\ldots,\mathbf{x}_{\alpha}(t),\ldots,\mathbf{x}_{N - 1}(t)) = 0,} & {(1.55)}
+  \end{aligned}$$
+  이며 여기서 ∂_{1,/α/}/V/는 /V/의 *x*_{/α/}(/t/) 인수 슬롯에 대한 편미분이다.
+
+  라그랑주 방정식을 세우기 위해 모든 입자의 모든 위치 성분을 하나의 튜플 /x/(/t/)로
+  모은다. 즉 /x/(/t/) = (*x*_{0}(/t/), ..., *x*_{/N/−1}(/t/))이다. 좌표 경로 /x/에
+  대한 라그랑주 방정식은
+
+  @@html:<span id="disp_1.56"></span>@@
+$$\begin{aligned}
+{D(\partial_{2}L \circ \Gamma\lbrack x\rbrack) - \partial_{1}L \circ \Gamma\lbrack x\rbrack = 0.} & {(1.56)}
+  \end{aligned}$$
+  뉴턴 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.55][1.55]])은 /L/이 다음 성질들을
+  갖도록 고르면 라그랑주 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.56][1.56]])의 각
+  성분에 지나지 않음을 보라:
+
+  @@html:<span id="disp_1.57"></span>@@
+$$\begin{array}{lll} {(\partial_{2}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack m_{0}D\mathbf{x}_{0}(t),\ldots,m_{N - 1}D\mathbf{x}_{N - 1}(t)\rbrack} & \\ {(\partial_{1}L \circ \Gamma\lbrack x\rbrack)(t)} & {= \lbrack - \partial_{1,0}V(t,x(t)),\ldots, - \partial_{1,N - 1}V(t,x(t))\rbrack;} & {(1.57)}\end{array}$$
+  여기서 /V/ (/t/, /x/(/t/)) = /V/ (/t/; *x*_{0}(/t/), ..., *x*_{/N/−1}(/t/))이고,
+  ∂_{1,/α/}/V/ (/t/, /x/(/t/))는 시각 /t/와 좌표 /x/(/t/)에서 평가한, /V/의 첨자
+  /α/ 입자 좌표들에 대한 도함수 성분들의 튜플이다. 이 조건들은 모든 *x*_{/α/}와
+  *v*_{/α/}에 대해
+
+
+
+  @@html:<span id="disp_1.58"></span>@@
+$$\begin{aligned}
+{\partial_{2}L(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N -
+  1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})} & \\ {\,\,\,\,\,\,\,\,\,\,{=
+  \lbrack m_{0}\mathbf{v}_{0},\ldots,m_{N - 1}\mathbf{v}_{N - 1}\rbrack}} &
+  {(1.58)}
+  \end{aligned}$$
+  과
+
+  @@html:<span id="disp_1.59"></span>@@
+$$\begin{aligned}
+{\partial_{1}L(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})} & \\
+  {\text{           } = \lbrack - \partial_{1,0}V(t,x),\ldots, - \partial_{1,N - 1}V(t,x)\rbrack,} & {(1.59)}
+  \end{aligned}$$
+  가 만족되면 성립한다. 여기서 /x/ = (*x*_{0}, ..., *x*_{/N/−1})이다. 요구된 성질
+  ([[/ko/eval/sicm/chapter-1/#disp_1.58][1.58]]--[[/ko/eval/sicm/chapter-1/#disp_1.59][1.59]])을
+  가진 /L/의 한 선택은
+
+  @@html:<span id="disp_1.60"></span>@@
+$$\begin{aligned}
+{L(t,x,v) = \frac{1}{2}{\sum\limits_{\alpha}{m_{\alpha}v_{\alpha}^{2} - V(t,x),}}} & {(1.60)}
+  \end{aligned}$$
+  이고 여기서
+
+  $v_{\alpha}^{2}$
+
+  는 *v*_{/α/}의 성분들의 제곱의 합이다.[fn:59]
+
+  첫째 항은 운동 에너지이며 관례적으로 /T/로 표기한다. 따라서 이 라그랑지언 선택은
+  /L/(/t/, /x/, /v/) = /T/ (/t/, /x/, /v/)−/V/ (/t/, /x/), 즉 운동 에너지와 퍼텐셜
+  에너지의 차이다. 우리는 /L/ = /T/ − /V/라고 쓸 수 있도록 퍼텐셜 에너지 함수의
+  인수를 속도까지 포함하도록 확장하는 일이 자주 있을 것이다.[fn:60]
+
+** 해밀턴 원리
+   :PROPERTIES:
+   :CUSTOM_ID: hamiltons-principle
+   :CLASS:    level2
+   :END:
+   힘을 속도에 무관한 퍼텐셜 에너지 /V/의 (음의) 도함수로 확인할 수 있는 점입자계가
+   주어지면, 그 계는 /L/ = /T/ − /V/에 대한 라그랑주 방정식을 만족하는 경로를 따라
+   시간 발전한다는 것을 우리는 보였다. 이 부류의 계에 대한 라그랑지언을 확인했으므로,
+   정지 작용 원리를 에너지로 다시 말할 수 있다. 이 서술은 /해밀턴 원리/(Hamilton's
+   principle)로 알려져 있다: 힘이 속도에 무관한 퍼텐셜 에너지에서 유도되는 점입자계는,
+   작용
+
+   $S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack
+   q\rbrack}}$
+
+
+
+   이 끝점을 고정한 채 두는 경로 /q/의 변분에 대해 정지가 되는 경로 /q/를 따라 시간
+   발전한다. 여기서 /L/ = /T/ − /V/는 운동 에너지와 퍼텐셜 에너지의 차이다.[fn:61]
+
+   라그랑주 방정식을
+
+   $\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}$
+
+   이상으로 축소한 것처럼 보일 수 있고, 실제로 이 원리는 이 특수한 부류의 계에 대해
+   두 방정식을 비교하는 데서 동기가 생겼다. 그러나 운동 방정식의 라그랑지언 정식화는
+
+   $\overset{\rightarrow}{F} = m\overset{\rightarrow}{a}$
+
+   에 대해 중요한 이점을 가진다. 우리의 유도는 일반화 좌표로 구성 입자들의 위치의
+   직교 성분 *x*_{/α/}를 썼지만, 계의 경로가 어떤 특정 좌표계에서 라그랑주 방정식을
+   만족한다면 그 방정식을 /임의의/ 좌표계에서도 만족해야 한다. 따라서 /L/ = /T/ −
+   /V/는 /임의의/ 일반화 좌표 집합에 대한 라그랑지언으로 적합하다는 것을 알 수 있다.
+   변분 역학의 방정식은 어떤 배치공간과 어떤 좌표계에서도 같은 방식으로 유도된다.
+   이와 대조적으로 뉴턴 정식화는 초등 기하학에 기초한다:
+
+   $D^{2}\overset{\rightarrow}{x}(t)$
+
+   이 가속도로서 의미를 가지려면
+
+   $\overset{\rightarrow}{x}(t)$
+
+   은 물리 공간의 벡터여야 한다. 라그랑주 방정식은 좌표 /q/의 의미에 이런 제한이
+   없다. 일반화 좌표는 계의 배치를 편리하게 기술하는 임의의 매개변수면 된다.
+
+
+
+** 일정한 가속도
+   :PROPERTIES:
+   :CUSTOM_ID: constant-acceleration
+   :CLASS:    level2
+   :END:
+   가속도 /g/인 균일 중력장 속 질량 /m/의 입자를 생각하자. 퍼텐셜 에너지는 /mgh/이고
+   여기서 /h/는 입자의 높이다. 운동 에너지는 그저
+
+   $\frac{1}{2}mv^{2}$
+
+   일 뿐이다. 이 계의 라그랑지언은 운동 에너지와 퍼텐셜 에너지의 차이다. 직교좌표에서
+   /y/는 수직 위치를, /x/는 수평 위치를 잰다고 하면 라그랑지언은
+
+   $L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
+   mgy$
+
+   이다. 다음을 얻는다[fn:62]
+
+    #+begin_src scheme
+(define ((L-uniform-acceleration m g) local) (let ((q
+   (coordinate local)) (v (velocity local))) (let ((y (ref q 1))) (- (* 1/2 m
+   (square v)) (* m g y))))) (show-expression (((Lagrange-equations
+   (L-uniform-acceleration 'm 'g)) (up (literal-function 'x) (literal-function
+'y))) 't))
+    #+end_src
+
+   $$\begin{bmatrix} {mD^{2}x\,(t)} {gm + mD^{2}y\,(t)} \end{bmatrix}$$
+
+   이 방정식은 수평 방향으로는 무가속도 운동(/mD/^{2}/x/(/t/) = 0), 수직 방향으로는
+   일정한 가속도(/mD/^{2}/y/(/t/) = −/gm/)를 기술한다.
+
+** 중심력 장
+   :PROPERTIES:
+   :CUSTOM_ID: central-force-field
+   :CLASS:    level2
+   :END:
+   중심력 장 속 질량 /m/의 입자의 평면 운동을 생각하자. 퍼텐셜 에너지 /U/(/r/)는
+   인력 중심까지의 거리 /r/에만 의존하는 임의의 함수다. 우리는 이 계의 라그랑주
+   방정식을 직교좌표와 극좌표 둘 다에서 유도할 것이다.
+
+   원점을 인력 중심에 둔 직교좌표 (/x/, /y/)에서 퍼텐셜 에너지는
+
+   $V(t;x,y) = U(\sqrt{x^{2} + y^{2}})$
+
+   이고 운동 에너지는
+
+   $T(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right)$
+
+   이다. 이 계의 라그랑지언은 /L/ = /T/ − /V/다:
+
+   @@html:<span id="disp_1.61"></span>@@
+$$\begin{aligned}
+{L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) - U(\sqrt{x^{2} + y^{2}}).} & {(1.61)}
+   \end{aligned}$$
+   절차로 나타내면:
+
+    #+begin_src scheme
+(define ((L-central-rectangular m U) local) (let ((q
+   (coordinate local)) (v (velocity local))) (- (* 1/2 m (square v)) (U (sqrt
+   (square q))))))
+    #+end_src
+
+   라그랑주 방정식은
+
+    #+begin_src scheme
+(show-expression (((Lagrange-equations
+   (L-central-rectangular 'm (literal-function 'U))) (up (literal-function 'x)
+   (literal-function 'y))) 't))
+    #+end_src
+
+   $$\left\lbrack \begin{array}{l} {mD^{2}x(t) + \frac{DU\left( \sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}} \right)\, x(t)}{\sqrt{{(y\,\,(t))}^{2} + {(x\,\,(t))}^{2}}}} {mD^{2}y(t) + \frac{DU\left( \sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}} \right)\, y(t)}{\sqrt{{(x\,\,(t))}^{2} + {(y\,\,(t))}^{2}}}} \end{array}
+   \right\rbrack$$
+
+   이 라그랑주 방정식들을 다음과 같이 다시 쓸 수 있다:
+
+   @@html:<span id="disp_1.62"></span>@@
+$$\begin{aligned}
+{mD^{2}x(t) = - \frac{x(t)}{r(t)}DU(r(t))} & {(1.62)}
+   \end{aligned}$$
+   @@html:<span id="disp_1.63"></span>@@
+$$\begin{aligned}
+{mD^{2}y(t) = - \frac{y(t)}{r(t)}DU(r(t)),} & {(1.63)}
+   \end{aligned}$$
+   여기서
+
+   $r(t) = \sqrt{{(x(t))}^{2} + {(y(t))}^{2}}$
+
+   이다. 이렇게 해석할 수 있다. 입자는 크기 −/DU/(/r/)의 반경 방향 힘을 받는다.
+   뉴턴 방정식은 힘을 질량과 가속도의 곱과 동치로 놓는다. 두 라그랑주 방정식은 뉴턴
+   방정식의 직교 성분일 뿐이다.
+
+
+
+   같은 계를 극좌표로 기술할 수 있다. 직교좌표 $(x, y)$와 극좌표 $(r, \varphi)$의 관계는
+
+   @@html:<span id="disp_1.64"></span>@@
+$$\begin{aligned}
+\begin{aligned}
+   {x = r\cos \varphi} & \\
+   {y = r\sin \varphi} & {(1.64)}
+   \end{aligned}
+   \end{aligned}$$
+   일반화 속도의 관계는 좌표 변환으로부터 유도된다. 직교좌표와 극좌표 양쪽으로
+   표현되는 배치 경로를 생각하자. $\widetilde{x}$과 $\widetilde{y}$을 직교좌표 경로의 성분이라 하고,
+   $\widetilde{r}$과 $\widetilde{\varphi}$을 대응하는 극좌표 경로의 성분이라 하자. 시각 /t/에서의 직교 성분은
+
+   $(\widetilde{x}(t),\widetilde{y}(t))$
+
+   이고 시각 /t/에서의 극좌표는
+
+   $(\widetilde{r}(t),\widetilde{\varphi}(t))$
+
+   이다. 이들은 ([[/ko/eval/sicm/chapter-1/#disp_1.64][1.64]])로 연결된다:
+
+   @@html:<span id="disp_1.65"></span>@@
+$$\begin{aligned}
+{\widetilde{x}(t) = \widetilde{r}(t)\cos\widetilde{\varphi}(t)} & \\
+   {\widetilde{y}(t) = \widetilde{r}(t)\sin\widetilde{\varphi}(t).} & {(1.65)}
+   \end{aligned}$$
+   시각 /t/에서의 직교 속도는
+
+   $(D\widetilde{x}(t),\,\, D\widetilde{y}(t))$
+
+   이다. ([[/ko/eval/sicm/chapter-1/#disp_1.65][1.65]])를 미분하면 속도들 사이의 관계를 얻는다
+
+   @@html:<span id="disp_1.66"></span>@@
+$$\begin{array}{lll} {D\widetilde{x}(t)} & {= D\widetilde{r}(t)\,\cos\,\widetilde{\varphi}(t) - \widetilde{r}(t)D\widetilde{\varphi}(t)\,\sin\,\widetilde{\varphi}(t)} & \\ {D\widetilde{y}(t)} & {= D\widetilde{r}(t)\,\sin\,\widetilde{\varphi}(t) + \widetilde{r}(t)D\widetilde{\varphi}(t)\,\cos\,\widetilde{\varphi}(t).} & {(1.66)}\end{array}$$
+   이 관계들은 임의의 순간의 임의의 배치 경로에 대해 성립하므로, 이를 임의의 속도의
+   좌표 표현들 사이의 관계로 추상화할 수 있다. /v_{x}/와 /v_{y}/를 속도의 직교
+   성분이라 하고
+
+   $\overset{˙}{r}$
+
+   과
+
+   $\overset{˙}{\varphi}$
+
+   을 /r/과 /φ/의 변화율이라 하자. 그러면
+
+   @@html:<span id="disp_1.67"></span>@@
+$$\begin{aligned}
+{v_{x} = \overset{˙}{r}\cos\varphi - r\overset{˙}{\varphi}\sin\varphi} & \\
+   {v_{y} = \overset{˙}{r}\sin\varphi + r\overset{˙}{\varphi}\cos\varphi.} & {(1.67)}
+   \end{aligned}$$
+   운동 에너지는
+
+   $\frac{1}{2}m(v_{x}^{2} + v_{y}^{2})$
+
+   다:
+
+   @@html:<span id="disp_1.68"></span>@@
+$$\begin{aligned}
+{T(t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}) = \frac{1}{2}m\left( {{\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\varphi}}^{2}} \right),} & {(1.68)}
+   \end{aligned}$$
+   그리고 라그랑지언은
+
+   @@html:<span id="disp_1.69"></span>@@
+$$\begin{aligned}
+{L(t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}) = \frac{1}{2}m\left( {{\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\varphi}}^{2}} \right) - U(r).} & {(1.69)}
+   \end{aligned}$$
+   이 라그랑지언을 다음과 같이 표현한다:
+
+    #+begin_src scheme
+(define ((L-central-polar m U) local)
+  (let ((q (coordinate local))
+        (qdot (velocity local)))
+    (let ((r (ref q 0))
+          (phi (ref q 1))
+          (rdot (ref qdot 0))
+          (phidot (ref qdot 1)))
+      (- (* 1/2 m (+ (square rdot)
+                     (square (* r phidot))) )
+         (U r)))))
+    #+end_src
+
+   라그랑주 방정식은
+
+    #+begin_src scheme
+(show-expression
+ (((Lagrange-equations
+    (L-central-polar 'm (literal-function 'U)))
+   (up (literal-function 'r)
+       (literal-function 'phi))) 't))
+    #+end_src
+
+   $$\left\lbrack \begin{array}{l} {mD^{2}r\,(t) - mr\,(t)\,{(D\varphi\,\,(t))}^{2} + DU\,(r\,(t))} {2mDr\,(t)\, r\,(t)\, D\varphi\,(t) + mD^{2}\varphi\,(t)\,{(r\,(t))}^{2}} \end{array}
+   \right\rbrack$$
+
+   첫째 방정식은 질량과 반경 방향 가속도의 곱이 퍼텐셜에 의한 힘과 원심력의 합이라는
+   뜻으로 해석할 수 있다. 둘째 방정식은 각운동량 /mr/^{2}/Dφ/의 도함수가 0, 즉
+   각운동량이 보존됨을 말하는 것으로 해석할 수 있다.
+
+   두 좌표계에서의 유도에 같은 Lagrange-equations 절차를 썼다는 점에 유의하라.
+   좌표계가 다르면 라그랑지언의 좌표 표현도 달라지고, 서로 다른 좌표계의 라그랑주
+   방정식은 다르게 보인다. 그럼에도 어떤 좌표계에서든 라그랑주 방정식을 유도하는 데
+   같은 방법이 쓰인다.
+
+   @@html:<span id="Exe_1-14"></span>@@
+
+   *연습문제 1.14: 라그랑주 방정식의 좌표 독립성*
+
+   중심력 운동에 대한 극좌표의 라그랑주 방정식과 직교좌표의 라그랑주 방정식이
+   동치임을 확인하라. 변환 방정식에 경로들을 대입하고 도함수를 계산하여 이계
+   도함수들 사이의 관계를 정한 뒤, 이 관계들을 운동 방정식에 대입하라.
+
+*** 1.6.1 좌표 변환
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-6-1
+    :CLASS:    level3
+    :END:
+    계의 운동은 그것을 기술하는 데 쓰는 좌표와 무관하다. 운동의 이러한 좌표 무관성은
+    작용 원리에 명백히 드러난다. 작용은 경로를 따르는 라그랑지언의 값에만 의존하고,
+    라그랑지언을 표현하는 데 쓰인 특정 좌표에는 의존하지 않는다. 이 성질을 이용해 한
+    좌표계의 라그랑지언으로부터 다른 좌표계의 라그랑지언을 구할 수 있다.
+
+    운동이 시간, 좌표, 속도에 의존하는 라그랑지언 /L/으로 기술되는 역학계가 있다고
+    하자. 그리고 /x/ = /F/ (/t/, /x/′)를 만족하는 좌표 변환 /F/가 있다고 하자.
+    라그랑지언 /L/은 비프라임 좌표(unprimed coordinates)로 표현되어 있다. 우리는 같은
+    계를 기술하는, 프라임 좌표(primed coordinates)로 표현된 라그랑지언 /L/′을 찾고
+    싶다. 한 가지 방법은 임의의 배치 경로를 따르는 라그랑지언의 값이 좌표계와
+    무관하도록 요구하는 것이다. /q/가 비프라임 좌표의 경로이고 /q/′가 프라임 좌표의
+    대응하는 경로이면, 두 라그랑지언은 다음을 만족해야 한다:
+
+    @@html:<span id="disp_1.70"></span>@@
+$$\begin{aligned}
+{L\prime \circ \Gamma\lbrack q\prime\rbrack = L \circ \Gamma\lbrack q\rbrack.} & {(1.70)}
+    \end{aligned}$$
+    직교좌표에서 극좌표로의 변환이 일반화 속도를 특정한 방식으로 변환함을 이미 보았다.
+    속도 변환은 극좌표의 한 경로와 대응하는 직교좌표 경로가 좌표 변환과 모순되지
+    않는다는 요구로부터 유도할 수 있다. 일반적으로, 서로 다른 두 좌표계의 경로들이
+    좌표 변환과 모순되지 않아야 한다는 요구를 써서 국소 튜플(local tuple)의 모든
+    성분이 어떻게 변환되는지 유도할 수 있다. 좌표 변환 /F/가 주어졌을 때, /C/를 프라임
+    좌표계의 국소 튜플을 비프라임 좌표계의 대응하는 국소 튜플로 대응시키는 함수라
+    하자:
+
+    @@html:<span id="disp_1.71"></span>@@
+$$\begin{aligned}
+{C \circ \Gamma\lbrack q\prime\rbrack = \Gamma\lbrack q\rbrack.} & {(1.71)}
+    \end{aligned}$$
+    아래에서 /C/의 일반형을 유도할 것이다.
+
+
+
+    이러한 국소 튜플 변환 /C/가 주어지면, 방정식
+    ([[/ko/eval/sicm/chapter-1/#disp_1.70][1.70]])을 만족하는 라그랑지언 /L/′은
+
+    @@html:<span id="disp_1.72"></span>@@
+$$\begin{aligned}
+{L\prime = L \circ C} & {(1.72)}
+    \end{aligned}$$
+    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.70][1.70]])에 /L/′을 대입하면 이를 알 수
+    있다:
+
+    @@html:<span id="disp_1.73"></span>@@
+$$\begin{aligned}
+{L\prime \circ \Gamma\lbrack q\prime\rbrack = L \circ C \circ \Gamma\lbrack q\prime\rbrack = L \circ \Gamma\lbrack q\rbrack.} & {(1.73)}
+    \end{aligned}$$
+    좌표 변환 /F/가 주어졌을 때 국소 튜플 변환 /C/를 찾으려면, 국소 튜플의 각 성분이
+    어떻게 변환되는지 유도한다. 좌표 변환은 국소 튜플의 좌표 성분이 어떻게 변환되는지
+    정한다
+
+    @@html:<span id="disp_1.74"></span>@@
+$$\begin{aligned}
+{x = F(t,x\prime).} & {(1.74)}
+    \end{aligned}$$
+    국소 튜플 변환의 일반화 속도 성분은 다음과 같이 유도할 수 있다. /q/와 /q/′를 두
+    좌표계로 표현한 같은 배치 경로라 하자. 이 경로들을 좌표 변환에 대입하고 도함수를
+    계산하면
+
+    @@html:<span id="disp_1.75"></span>@@
+$$\begin{aligned}
+{Dq(t) = \partial_{0}F(t,q\prime(t)) + \partial_{1}F(t,q\prime(t))Dq\prime(t).} & {(1.75)}
+    \end{aligned}$$
+    임의의 점을 통과하며 임의의 주어진 속도를 가진 경로는 항상 존재하므로, 일반화하여
+    대응하는 좌표 경로를 따라 일반화 속도가 다음을 만족한다고 결론 내려도 된다
+
+    @@html:<span id="disp_1.76"></span>@@
+$$\begin{aligned}
+{v = \partial_{0}F(t,x\prime) + \partial_{1}F(t,x\prime)v\prime.} & {(1.76)}
+    \end{aligned}$$
+    필요하다면 국소 튜플의 고계 도함수 성분에 대한 규칙도 비슷한 방식으로 정할 수
+    있다. 프라임 좌표계의 국소 튜플을 비프라임 좌표계의 국소 튜플로 가져가는 국소
+    튜플 변환은 성분 변환들로 구성된다:
+
+    @@html:<span id="disp_1.77"></span>@@
+$$\begin{array}{lll} {(t,x,v,\ldots)} & {= C(t,x\prime,v\prime,\ldots)} & \\ & {= (t,F(t,x\prime),\,\,\partial_{0}F(t,x\prime) + \partial_{1}F(t,x\prime)v\prime,\ldots).} & {(1.77)}\end{array}$$
+    따라서 라그랑지언 /L/′을 다음으로 취하면
+
+    @@html:<span id="disp_1.78"></span>@@
+$$\begin{aligned}
+{L\prime = L \circ C,} & {(1.78)}
+    \end{aligned}$$
+    작용은 그것을 계산하는 데 쓰인 좌표계와 무관한 값을 가진다. 정지 작용의 배치
+    경로는 경로를 기술하는 데 어느 좌표계가 쓰였는지에 의존하지 않는다. 이
+    라그랑지언들에서 유도된 라그랑주 방정식들은 일반적으로 서로 매우 달라 보이지만
+    동치여야 한다.
+
+    @@html:<span id="Exe_1-15"></span>@@
+
+    *연습문제 1.15: 동치성*
+
+    /L/에 대한 라그랑주 방정식이 만족되면 /L/′에 대한 라그랑주 방정식도 만족됨을
+    직접 계산으로 보여라.
+
+    좌표 변환 /F/가 주어지면 ([[/ko/eval/sicm/chapter-1/#disp_1.77][1.77]])을 써서 국소
+    튜플을 변환하는 함수 /C/를 구할 수 있다. 절차 F->C가 이를 구현한다:[fn:63]
+
+     #+begin_src scheme
+(define ((F->C F) local) (up (time local) (F local)
+    (+ (((partial 0) F) local) (* (((partial 1) F) local) (velocity local)))))
+
+     #+end_src
+
+    예시로, 극좌표에서 직교좌표로의 변환 /x/ = /r/ cos /φ/, /y/ = /r/ sin /φ/를 다음과
+    같이 구현한 것을 생각해 보자:
+
+     #+begin_src scheme
+(define (p->r local) (let ((polar-tuple (coordinate local))) (let ((r (ref
+polar-tuple 0)) (phi (ref polar-tuple 1))) (let ((x
+    (* r (cos phi))) (y (* r (sin phi)))) (up x y)))))
+     #+end_src
+
+    극좌표와 극좌표의 변화율로 나타낸 직교 성분의 변화율은 다음과 같다[fn:64]
+
+
+
+     #+begin_src scheme
+(show-expression (velocity ((F->C p->r) (up 't (up 'r 'phi) (up 'rdot
+'phidot)))))
+     #+end_src
+
+    $$\begin{pmatrix} {- \overset{˙}{\varphi}r\sin\,(\varphi) +
+    \overset{˙}{r}\cos\,(\varphi)} {\overset{˙}{\varphi}r\cos\,(\varphi) +
+    \overset{˙}{r}\sin\,(\varphi)} \end{pmatrix}$$
+
+    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.72][1.72]])을 써서 F->C로 직교 성분의
+    라그랑지언으로부터 중심력 운동의 극좌표 라그랑지언을 구할 수 있다:
+
+        #+begin_src scheme
+(define (L-central-polar m U) (compose
+    (L-central-rectangular m U) (F->C p->r))) (show-expression ((L-central-polar
+    'm (literal-function 'U)) (up 't (up 'r 'phi) (up 'rdot 'phidot)))) {%
+
+        #+end_src
+
+    $$\frac{1}{2}m{\overset{˙}{\varphi}}^{2}r^{2} +
+    \frac{1}{2}m{\overset{˙}{r}}^{2} - U(r)$$
+
+    결과는 라그랑지언 ([[/ko/eval/sicm/chapter-1/#disp_1.69][1.69]])과 같다.
+
+    @@html:<span id="Exe_1-16"></span>@@
+
+    *연습문제 1.16: 중심력 운동*
+
+    3차원 중심력 운동의 라그랑지언을 직교좌표와 구면좌표에서 구하라. 먼저 해석적으로
+    라그랑지언을 구한 뒤, 우리가 제시한 프로그램을 일반화하여 컴퓨터로 결과를
+    확인하라.
+
+** 코리올리 힘과 원심력
+   :PROPERTIES:
+   :CUSTOM_ID: coriolis-and-centrifugal-forces
+   :CLASS:    level2
+   :END:
+   회전 좌표계에서 자유 입자의 운동 방정식은 추가 항을 가진다. 2차원에서 움직이는
+   자유 입자를 생각하자. 라그랑지언은:
+
+    #+begin_src scheme
+(define ((L-free-rectangular m) local) (let ((vx (ref
+   (velocities local) 0)) (vy (ref (velocities local) 1))) (* 1/2 m (+ (square
+vx) (square vy)))))
+    #+end_src
+
+   회전은 극좌표로 기술하기 쉬우므로 극좌표로 변환한다:
+
+
+
+    #+begin_src scheme
+(define (L-free-polar m) (compose (L-free-rectangular m) (F->C p->r)))
+    #+end_src
+
+   이제 회전률 Omega로 회전 좌표로 가는 간단한 시간 의존 변환을 만들 수 있다:
+
+    #+begin_src scheme
+(define ((F Omega) local) (let ((t (time local)) (r
+   (ref (coordinates local) 0)) (theta (ref (coordinates local) 1))) (up r (+
+   theta (* Omega t))))) (define (L-rotating-polar m Omega) (compose
+   (L-free-polar m) (F->C (F Omega))))
+    #+end_src
+
+   이제 다시 직교좌표로 변환하자:
+
+    #+begin_src scheme
+(define (L-rotating-rectangular m Omega) (compose
+   (L-rotating-polar m Omega) (F->C r->p)))
+    #+end_src
+
+   회전 직교 좌표계에서의 새 라그랑지언은:
+
+    #+begin_src scheme
+((L-rotating-rectangular 'm 'Omega) (up 't (up 'x_r 'y_r) (up 'xdot_r
+'ydot_r))) (+ (* 1/2 (expt Omega 2) m (expt x_r 2)) (* 1/2
+   (expt Omega 2) m (expt y_r 2)) (* -1 Omega m xdot_r y_r) (* Omega m ydot_r
+x_r) (* 1/2 m (expt xdot_r 2)) (* 1/2 m (expt ydot_r 2)))
+    #+end_src
+
+   좌표 변환은 시간에 의존하지만 결과 라그랑지언은 시간과 무관하다.
+
+   회전 좌표계에서 자유 입자의 라그랑주 방정식은 각속도 Ω를 포함하는 힘 항을 가진다:
+
+    #+begin_src scheme
+(((Lagrange-equations (L-rotating-rectangular 'm 'Omega)) (up (literal-function
+'x r) (literal-function 'y r))) 't) (down (+
+   (* -1 (expt Omega 2) m (x_r t)) (* -2 Omega m ((D y_r) t)) (* m (((expt D 2)
+   x_r) t))) (+ (* -1 (expt Omega 2) m (y_r t)) (* 2 Omega m ((D x_r) t)) (* m
+   (((expt D 2) y_r) t))))
+    #+end_src
+
+
+
+   Ω^{2}에 비례하는 항들은 /원심력/(centrifugal force) 항이라 불리고, Ω에 비례하는
+   항들은 /코리올리 힘/(Coriolis force) 항이라 불린다. 원심력 항들은 회전 중심에서
+   바깥쪽을 가리키는 반경 방향임에 유의하라. 이 추가 힘 항들은 라그랑지언의 대응하는
+   항들에서 유도된다. 라그랑지언에서 Ω^{2}에 비례하는 항들은 /원심 퍼텐셜
+   에너지/(centrifugal potential energy)의 부정으로 생각할 수 있다.
+
+   자유 입자이므로 원래 회전하지 않는 좌표에서의 속도는 일정하다. 회전 좌표에서
+   코리올리 항들은 속도에 수직인 가속도를 기술하며, 이것이 궤적을 휘게 만든다.
+
+*** 1.6.2 강체 구속조건을 가진 계
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-6-2
+    :CLASS:    level3
+    :END:
+    우리는 퍼텐셜에서 유도된 힘을 받는 점입자계에 /L/ = /T/ − /V/가 적합한
+    라그랑지언임을 보았다. 확장된 물체는 때때로 강체 구속조건으로 연결된 점입자계로
+    편리하게 이상화할 수 있다. 우리는 비잉여 좌표(irredundant coordinates)로 표현된
+    /L/ = /T/ − /V/가 강체 구속조건을 가진 점입자계를 모델링하는 데에도 적합한
+    라그랑지언임을 알게 될 것이다. 먼저 방법을 예시하고 그런 다음 정당화를
+    제시하겠다.
+
+** 강체 구속된 계의 라그랑지언
+   :PROPERTIES:
+   :CUSTOM_ID: lagrangians-for-rigidly-constrained-systems
+   :CLASS:    level2
+   :END:
+   계는 보통의 3차원 공간에서 첨자 /α/로 색인되는 /N/개의 점 질량으로 이루어져 있다고
+   본다. 첫 단계는 편리한 비잉여 일반화 좌표 /q/의 집합을 골라 이 좌표들로 계를 다시
+   기술하는 것이다. 일반화 좌표로 나타낸 입자 /α/의 직교좌표는
+
+   @@html:<span id="disp_1.79"></span>@@
+$$\begin{aligned}
+{\mathbf{x}_{\alpha} = f_{\alpha}(t,q).} & {(1.79)}
+   \end{aligned}$$
+   비잉여 좌표 /q/에 대해서는 모든 좌표 구속조건이 함수 /f_{α}/에 내장되어 있다.
+   방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.79][1.79]])에 경로 함수들을 대입하고, 미분하고,
+   임의의 속도로 추상화하여([[/ko/eval/sicm/chapter-1/#h3_1-6-1][1.6.1절]] 참조) 일반화
+   속도 /v/와 구성 입자들의 속도 *v*_{/α/}의 관계를 유도한다. 다음을 얻는다
+
+   @@html:<span id="disp_1.80"></span>@@
+$$\begin{aligned}
+{\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v.} & {(1.80)}
+   \end{aligned}$$
+   방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.79][1.79]])과
+   ([[/ko/eval/sicm/chapter-1/#disp_1.80][1.80]])을 써서 운동 에너지를 일반화 좌표와
+   속도로 표현한다. $\widetilde{T}$을 직교좌표와 속도의 함수로서의 운동 에너지라 하자:
+
+   @@html:<span id="disp_1.81"></span>@@
+$$\begin{aligned}
+{\widetilde{T}(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1}) = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{v}_{\alpha}^{2},}}} & {(1.81)}
+   \end{aligned}$$
+   여기서
+
+   $\mathbf{v}_{\alpha}^{2}$
+
+   는 *v*_{/α/}의 크기의 제곱이다. 일반화 좌표 튜플 /q/와 일반화 속도 튜플 /v/의
+   함수로서 운동 에너지는
+
+   @@html:<span id="disp_1.82"></span>@@
+$$\begin{array}{lll} {T(t,q,v)} & {= \widetilde{T}(t,f(t,q),\partial_{0}f(t,q) + \partial_{1}f(t,q)v)} & \\ & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v)}^{2}.}}} & {(1.82)}\end{array}$$
+   비슷하게, 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.79][1.79]])을 써서 퍼텐셜 에너지를
+   일반화 좌표로 다시 표현한다. $\widetilde{V}(t,x)$를 직교좌표 튜플 /x/가 지정하는 배치에서 시각
+   /t/의 퍼텐셜 에너지라 하자. 일반화 좌표로 표현하면 퍼텐셜 에너지는
+
+   @@html:<span id="disp_1.83"></span>@@
+$$\begin{aligned}
+{V(t,q,v) = \widetilde{V}(t,f(t,q)).} & {(1.83)}
+   \end{aligned}$$
+   라그랑지언을 운동 에너지와 퍼텐셜 에너지의 차이로 취한다: /L/ = /T/ − /V/.
+
+** 피벗에서 구동되는 진자
+   :PROPERTIES:
+   :CUSTOM_ID: a-pendulum-driven-at-the-pivot
+   :CLASS:    level2
+   :END:
+   길이 /l/, 질량 /m/의 진자를 생각하자 ([[/ko/eval/sicm/chapter-1/#Fig_1-2][그림 1.2]]
+   참조). 점 질량으로 모델링되며, 주어진 시간 함수 /y_{s}/으로 수직 방향을 따라
+   구동되는 피벗(pivot)에 매달려 있다.
+
+   이 계의 배치공간의 차원은 1이다. [[/ko/eval/sicm/chapter-1/#Fig_1-2][그림 1.2]]에 보인
+   /θ/를 일반화 좌표로 고른다.
+
+   직교좌표에서 추(bob)의 위치는 다음으로 주어진다
+
+   @@html:<span id="disp_1.84"></span>@@
+$$\begin{array}{llll} {x = l\sin\theta} & \text{and} & {y = y_{s}(t) - l\cos\theta.} & {(1.84)}\end{array}$$
+   속도는
+
+   @@html:<span id="disp_1.85"></span>@@
+$$\begin{array}{llll} {v_{x} = l\overset{˙}{\theta}\cos\theta} & \text{and} & {v_{y} = Dy_{s}(t) + l\overset{˙}{\theta}\sin\theta,} & {(1.85)}\end{array}$$
+   @@html:<span id="Fig_1-2"></span>@@
+   #+caption: *그림 1.2* 진자는 피벗의 수직 운동으로 구동된다. 피벗은 /y/축을 따라
+   미끄러진다. 추는 얼룩으로 그려져 있지만 점 질량으로 모델링된다. 추는 음의 /ŷ/
+   방향의 균일한 중력 가속도 /g/를 받는다. [[/eval/source/sicm/images/Art_P138.jpg]]
+
+   이며, 경로를 따라 미분하고 그 순간의 속도들로 추상화하여 얻은 것이다.
+
+   운동 에너지는
+
+   $\widetilde{T}(t;x,y;v_{x},v_{y}) = \frac{1}{2}m(v_{x}^{2} + v_{y}^{2})$
+
+   이다. 일반화 좌표로 표현한 운동 에너지는
+
+   @@html:<span id="disp_1.86"></span>@@
+$$\begin{aligned}
+{T(t,\theta,\overset{˙}{\theta}) = \frac{1}{2}m(l^{2}{\overset{˙}{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2lDy_{s}(t)\overset{˙}{\theta}\sin\theta).} & {(1.86)}
+   \end{aligned}$$
+   퍼텐셜 에너지는
+
+   $\widetilde{V}(t;x,y) = mgy$
+
+   이다. 일반화 좌표로 표현한 퍼텐셜 에너지는
+
+   @@html:<span id="disp_1.87"></span>@@
+$$\begin{aligned}
+{V(t,\theta,\overset{˙}{\theta}) = gm(y_{s}(t) - l\cos\theta).} & {(1.87)}
+   \end{aligned}$$
+   라그랑지언은 /L/ = /T/ − /V/다:
+
+   @@html:<span id="disp_1.88"></span>@@
+$$\begin{array}{lll} {L(t,\theta,\overset{˙}{\theta})} & {= \frac{1}{2}m(l^{2}{\overset{˙}{\theta}}^{2} + {(Dy_{s}(t))}^{2} + 2l\, Dy_{s}(t)\overset{˙}{\theta}\sin\theta)} & \\ & {\text{   } - gm(y_{s}(t) - l\cos\theta).} & {(1.88)}\end{array}$$
+   라그랑지언은 다음과 같이 표현된다
+
+    #+begin_src scheme
+(define ((T-pend m l g ys) local) (let ((t (time local)) (theta (coordinate
+local)) (thetadot (velocity local))) (let ((vys (D ys))) (* 1/2 m (+ (square (*
+l thetadot)) (square (vys t)) (* 2 l (vys t) thetadot (sin
+theta))))))) (define ((V-pend m l g ys) local) (let ((t (time
+local)) (theta (coordinate local))) (* m g (- (ys t) (* l (cos theta))))))
+   (define L-pend (- T-pend V-pend))
+    #+end_src
+
+   이 계의 라그랑주 방정식은
+
+    #+begin_src scheme (show-expression (((Lagrange-equations (L-pend 'm 'l 'g
+(literal-function 'y_s))) (literal-function 'theta)) 't))
+
+  #+end_src
+   $$D^{2}\theta\,(t)\, l^{2}m + D^{2}y_{s}\,(t)\,\,\sin\,(\theta(t))lm +
+   \sin\,(\theta(t))\, glm$$
+
+   @@html:<span id="Exe_1-17"></span>@@
+
+   *연습문제 1.17: 나선형 철사 위의 구슬*
+
+   질량 /m/의 구슬이 마찰 없는 나선형 철사 위에서 움직이도록 구속되어 있다. 나선의
+   축이 수평이 되도록 놓여 있다. 나선의 지름은 /d/이고 피치(단위 길이당 회전 수)는
+   /h/다. 계는 수직 가속도 /g/의 균일 중력장 안에 있다. 계를 기술하는 라그랑지언을
+   세우고 운동의 라그랑주 방정식을 구하라.
+
+   @@html:<span id="Exe_1-18"></span>@@
+
+   *연습문제 1.18: 삼축 타원체면 위의 구슬*
+
+   질량 /m/의 구슬이 삼축 타원체면 위를 마찰 없이 움직인다. 직교좌표에서 이 표면은
+
+   @@html:<span id="disp_1.89"></span>@@
+$$\begin{aligned}
+{\frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} = 1} & {(1.89)}
+   \end{aligned}$$
+   을 만족한다. 여기서 /a/, /b/, /c/는 상수들이다. 적합한 일반화 좌표를 정하고,
+   라그랑지언을 세우고, 라그랑주 방정식을 구하라.
+
+
+
+   @@html:<span id="Fig_1-3"></span>@@
+
+
+
+   #+caption: *그림 1.3* 2-막대 링키지(two-bar linkage)는 질량 없는 강체 지지봉으로
+   연결된 세 개의 점 질량으로 모델링된다. 이 링키지는 균일한 수직 중력 가속도를
+   받는다. [[/eval/source/sicm/images/Art_P146.jpg]]
+
+   @@html:<span id="Fig_1-4"></span>@@
+
+   #+caption: *그림 1.4* 이 진자는 수평 레일 위를 미끄러질 수 있는 질량 /m/_{1}의 점
+   입자에 피벗되어 있다. 진자 추는 수직 중력을 받는 질량 /m/_{2}의 점 입자다.
+   [[/eval/source/sicm/images/Art_P147.jpg]]
+
+   @@html:<span id="Exe_1-19"></span>@@
+
+   *연습문제 1.19: 2-막대 링키지*
+
+   [[/ko/eval/sicm/chapter-1/#Fig_1-3][그림 1.3]]에 보인 2-막대 링키지는 평면에서 움직이도록
+   구속되어 있다. 균일한 수직 가속도 /g/의 중력장 속에서 두 개의 질량 없는 강체
+   막대로 상호 연결된, 작고 질량 있는 세 물체로 이루어져 있다. 막대들은 링키지가
+   접힐 수 있게 하는 경첩으로 중앙 물체에 핀으로 고정되어 있다. 계는 경첩이 완전히
+   자유롭도록 배치되어 있다. 부재들이 충돌 없이 모든 배치를 지나갈 수 있다. 계를
+   기술하는 라그랑지언을 세우고 운동의 라그랑주 방정식을 구하라. 방정식이 꽤 크기
+   때문에 컴퓨터로 하라.
+
+   @@html:<span id="Exe_1-20"></span>@@
+
+   *연습문제 1.20: 미끄러지는 진자*
+
+   [[/ko/eval/sicm/chapter-1/#Fig_1-4][그림 1.4]]와 같이 수평으로 자유롭게 움직일 수 있는
+   지지대에 붙은 길이 /l/의 진자를 생각하자. 지지대의 질량을 /m/_{1}, 진자 추의
+   질량을 /m/_{2}라 하자. 라그랑지언을 세우고 이 계의 라그랑주 방정식을 유도하라.
+
+
+
+** 왜 그런가
+   :PROPERTIES:
+   :CUSTOM_ID: why-it-works
+   :CLASS:    level2
+   :END:
+   이 절에서는 /L/ = /T/ − /V/가 실제로 강체 구속된 계에 적합한 라그랑지언임을 보인다.
+   라그랑주 방정식이 벡터 구속 힘을 가진 뉴턴 벡터 동역학과 동치가 되도록 요구하는
+   방식으로 한다.[fn:65]
+
+   입자계를 고려하자. 첨자 /α/인 입자는 질량 /m_{α}/과 시각 /t/의 위치
+
+   ${\overset{\rightarrow}{x}}_{\alpha}(t)$
+
+   를 가진다. 이 입자들은 매우 많을 수도 있고 몇 개뿐일 수도 있다. 어떤 위치들은
+   구동 진자의 피벗 위치처럼 주어진 시간의 함수일 수도 있다. 일부 입자들 사이에는
+   강체 위치 구속조건이 있다. 이 구속조건들이 모두 다음 형태라고 가정한다
+
+   @@html:<span id="disp_1.90"></span>@@
+$$\begin{aligned}
+{({\overset{\rightarrow}{x}}_{\alpha}(t) - {\overset{\rightarrow}{x}}_{\beta}(t)) \cdot ({\overset{\rightarrow}{x}}_{\alpha}(t) - {\overset{\rightarrow}{x}}_{\beta}(t)) = l_{\alpha\beta}^{2};} & {(1.90)}
+   \end{aligned}$$
+   다시 말해 입자 /α/와 입자 /β/ 사이의 거리는 /l_{αβ}/이다.
+
+   입자 /α/에 대한 뉴턴 운동 방정식은 입자 /α/의 질량 곱하기 가속도가 퍼텐셜 힘과
+   구속 힘의 합과 같다고 말한다. 퍼텐셜 힘은 퍼텐셜 에너지의 음의 그래디언트로
+   유도되며, 다른 입자들의 위치와 시간에 의존할 수 있다. 구속 힘
+
+   ${\overset{\rightarrow}{F}}_{\alpha\beta}$
+
+   은 입자 /α/와 입자 /β/ 사이의 강체 구속조건에 결부된 벡터 구속 힘이다. 따라서
+
+   @@html:<span id="disp_1.91"></span>@@
+$$\begin{aligned}
+{D(m_{\alpha}D{\overset{\rightarrow}{x}}_{\alpha})(t)} & \\
+   {\text{       } = - {\overset{\rightarrow}{\nabla}}_{\overset{\rightarrow}{x}\alpha}\mathcal{V}(t,{\overset{\rightarrow}{x}}_{0}(t),\ldots,{\overset{\rightarrow}{x}}_{N - 1}(t)) + {\sum\limits_{\{\beta|\beta\leftrightarrow\alpha\}}{{\overset{\rightarrow}{F}}_{\alpha\beta}(t),}}} & {(1.91)}
+   \end{aligned}$$
+   여기서 합에서 /β/는 첨자 /α/인 입자와 강체 구속조건을 가지는 입자 첨자들만을
+   순회한다. 표시된 입자들 사이에 강체 구속조건이 있다는 관계에 /β/ ↔ /α/ 표기를
+   쓴다.
+
+
+
+   구속 힘은 입자들 사이의 선을 따라 향하므로 다음과 같이 쓸 수 있다
+
+   @@html:<span id="disp_1.92"></span>@@
+$$\begin{aligned}
+{{\overset{\rightarrow}{F}}_{\alpha\beta}(t) = F_{\alpha\beta}(t)\frac{{\overset{\rightarrow}{x}}_{\beta}(t) - {\overset{\rightarrow}{x}}_{\alpha}(t)}{l_{\alpha\beta}}} & {(1.92)}
+   \end{aligned}$$
+   여기서 /F_{αβ}/(/t/)는 시각 /t/에서 구속조건의 장력의 스칼라 크기다.
+
+   ${\overset{\rightarrow}{F}}_{\alpha\beta} = -
+   {\overset{\rightarrow}{F}}_{\beta\alpha}$
+
+   임에 유의하라. 일반적으로 스칼라 구속 힘은 계가 시간 발전함에 따라 변한다.
+
+   형식적으로, 뉴턴 방정식을 다음 라그랑지언으로 재현할 수 있다[fn:66]
+
+   @@html:<span id="disp_1.93"></span>@@
+$$\begin{array}{lll} {L(t;x,F;\overset{˙}{x},\overset{˙}{F}) =} & {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{\overset{˙}{x}}_{\alpha}^{2} - V(t,x)}} & \\ & {- {\sum\limits_{\{\alpha,\beta|\alpha < \beta,\alpha\leftrightarrow\beta\}}{\frac{F_{\alpha\beta}}{2l_{\alpha\beta}}\lbrack{(\mathbf{x}_{\beta} - \mathbf{x}_{\alpha})}^{2} - l_{\alpha\beta}^{2}\rbrack}}} & {(1.93)}\end{array}$$
+   여기서 구속 힘들은 추가 일반화 좌표로 취급된다. 여기서 /x/는 모든
+
+   ${\overset{\rightarrow}{x}}_{\alpha},\overset{˙}{x}$
+
+   의 모든 직교 성분 *x*_{/α/}들로 이루어진 구조이고,
+
+   $\mathbf{\overset{˙}{x}}_{\alpha}$
+
+   는 모든 속도 벡터
+
+   ${\overset{\rightarrow}{v}}_{\alpha}$
+
+   의 모든 직교 성분으로 이루어진 구조이며, /F/는 모든 /F_{αβ}/로 이루어진 구조다.
+   /F/의 속도는 라그랑지언에 나타나지 않고 /F/ 자체는 선형으로만 나타난다. 따라서
+   /F/에 대응하는 라그랑주 방정식은
+
+   @@html:<span id="disp_1.94"></span>@@
+$$\begin{aligned}
+{{(\mathbf{x}_{\beta}(t) - \mathbf{x}_{\alpha}(t))}^{2} - l_{\alpha\beta}^{2} = 0} & {(1.94)}
+   \end{aligned}$$
+   인데 이것은 구속조건들의 재진술일 뿐이다. 입자들의 좌표에 대한 라그랑주 방정식은
+   뉴턴 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.91][1.91]])이다
+
+   @@html:<span id="disp_1.95"></span>@@
+$$\begin{array}{lll} {D(mD\mathbf{x}_{\alpha})(t)} & {= - \partial_{1,\alpha}V(t,x(t))} & \\ & {\,\,\,\,\,\,\,\, + {\sum\limits_{\{\beta|\alpha\leftrightarrow\beta\}}{F_{\alpha\beta}(t)\frac{\mathbf{x}_{\beta}(t) - \mathbf{x}_{\alpha}(t)}{l_{\alpha\beta}}}}.} & {(1.95)}\end{array}$$
+   적합한 라그랑지언을 얻었으므로, 라그랑지언을 임의의 일반화 좌표로 다시 표현할 수
+   있다는 사실을 써서 더 간단한 라그랑지언을 찾을 수 있다. 전략은 좌표 상당수가
+   상수가 되고 나머지 좌표들은 비잉여가 되는 새 좌표 집합을 고르는 것이다.
+
+   /q/를 계의 자유도를 잉여 없이 지정하는 일반화 좌표들의 튜플이라 하자. /c/는
+   구속조건이 지정된 입자들 사이의 거리들을 지정하는 다른 일반화 좌표들의 튜플이다.
+   /c/ 좌표들은 상숫값을 가질 것이다. /q/와 /c/의 조합이 잉여인 직교좌표 /x/를
+   대체한다.[fn:67] 덧붙여, 스칼라 구속 힘들인 /F/ 좌표들도 여전히 있다. 우리의 새
+   좌표들은 /q/, /c/, /F/의 성분들이다.
+
+   /q/와 /c/로 구성 입자들의 직교좌표를 주는 함수들 /f_{α}/가 존재한다:
+
+   @@html:<span id="disp_1.96"></span>@@
+$$\begin{aligned}
+{\mathbf{x}_{\alpha} = f_{\alpha}(t,q,c).} & {(1.96)}
+   \end{aligned}$$
+   라그랑지언을 /q/, /c/, /F/로 다시 표현하려면, 일반화 속도
+
+   q˙
+
+   와
+
+   c˙
+
+   로 *v*_{/α/}를 찾아야 한다. 이는 경로를 따라 /f_{α}/를 미분하고 임의의 속도로
+   추상화하여 한다([[/ko/eval/sicm/chapter-1/#h3_1-6-1][1.6.1절]] 참조):
+
+   @@html:<span id="disp_1.97"></span>@@
+$$\begin{aligned}
+{\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\overset{˙}{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\overset{˙}{c}.} & {(1.97)}
+   \end{aligned}$$
+   이것들을 라그랑지언 ([[/ko/eval/sicm/chapter-1/#disp_1.93][1.93]])에 대입하고
+
+   @@html:<span id="disp_1.98"></span>@@
+$$\begin{aligned}
+{c_{\alpha\beta}^{2} = {(\mathbf{x}_{\beta} - \mathbf{x}_{\alpha})}^{2},} & {(1.98)}
+   \end{aligned}$$
+   를 쓰면
+
+   @@html:<span id="disp_1.99"></span>@@
+$$\begin{aligned}
+{L\prime(t;q,c,F;\overset{˙}{q},\overset{˙}{c},\overset{˙}{F})} & \\
+   {\,\,\,\,\,\,\,\,\,\, = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,c) + \partial_{1}f_{\alpha}(t,q,c)\,\,\overset{˙}{q} + \partial_{2}f_{\alpha}(t,q,c)\,\,\overset{˙}{c})}^{2}}}} & \\
+   {\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, - V(t,f(t,q,c)) - {\sum\limits_{\{\alpha,\beta|\alpha < \beta,\alpha\leftrightarrow\beta\}}{\frac{F_{\alpha\beta}}{2l_{\alpha\beta}}\lbrack c_{\alpha\beta}^{2} - l_{\alpha\beta}^{2}\rbrack.}}} & {(1.99)}
+   \end{aligned}$$
+   을 얻는다.
+
+   라그랑주 방정식은 통상의 절차로 유도된다. 자질구레한 세부 사항을 전부 적는 대신,
+   어떻게 진행될지 생각해 보자.
+
+   /F/에 대응하는 라그랑주 방정식은 구속조건들을 그저 재진술한다:
+
+   @@html:<span id="disp_1.100"></span>@@
+$$\begin{aligned}
+{0 = c_{\alpha\beta}^{2}(t) - l_{\alpha\beta}^{2}} & {(1.100)}
+   \end{aligned}$$
+   따라서 해 경로를 따라 /c/(/t/) = /l/이고 /Dc/(/t/) = /D/^{2}/c/(/t/) = 0임을 안다.
+   이 결과를 써서 /q/와 /c/에 대응하는 라그랑주 방정식을 단순화할 수 있다.
+
+   /q/에 대응하는 라그랑주 방정식은 다음 라그랑지언에서 유도된 것과 같다[fn:68]
+
+   @@html:<span id="disp_1.101"></span>@@
+$$\begin{array}{lll} {L''(t,q,\overset{˙}{q})} & {= {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}{(\partial_{0}f_{\alpha}(t,q,l) + \partial_{1}f_{\alpha}(t,q,l)\,\,\overset{˙}{q})}^{2}}}} & \\ & {\,\,\, - V(t,f(t,q,l)),} & {(1.101)}\end{array}$$
+   그런데 이것은 정확히, 고정된 구속조건 아래에서 일반화 좌표 /q/로부터 계산된 /T/와
+   /V/에 대한 /T/ − /V/다. 해 경로에서 항등적으로 0이 되는 항이 곱해지기 때문에 구속
+   힘들은 /q/에 대한 라그랑주 방정식에 나타나지 않음을 알아차려라. 따라서 비잉여
+   일반화 좌표 /q/와 고정 구속조건을 가진 /T/ − /V/의 라그랑주 방정식은 벡터 구속
+   힘을 가진 뉴턴 방정식과 동치다.
+
+   /c/에 대한 라그랑주 방정식은 구속 힘들을 구하는 데 쓸 수 있다. 라그랑주 방정식이
+   아주 지저분하므로 명시적으로 보이지는 않겠지만, 일반적으로 이것들은 /q/, /Dq/,
+   /F/에 의존하는 /D/^{2}/c/, /Dc/, /c/에 대한 방정식이다. /F/에 대한 의존이
+   선형이므로, /c/ = /l/이고 /Dc/ = /D/^{2}/c/ = 0일 때 해 경로 /q/와 /Dq/로 /F/를
+   풀 수 있다.
+
+   구속 힘들에 관심이 없다면, 전체 라그랑지언
+   ([[/ko/eval/sicm/chapter-1/#disp_1.99][1.99]])을 버리고 라그랑지언
+   ([[/ko/eval/sicm/chapter-1/#disp_1.101][1.101]])을 택할 수 있다. 일반화 좌표 /q/의 시간
+   발전에 관한 한 둘은 동치다.
+
+   @@html:<span id="Fig_1-5"></span>@@
+
+   #+caption: *그림 1.5* 길이 /l/의 강체 막대가 평면에서 두 개의 질량 있는 입자를
+   구속한다. [[/eval/source/sicm/images/Art_P166.jpg]]
+
+   입자간 거리 구속조건에 지정된 길이 /l_{αβ}/가 시간의 함수이더라도 같은 유도가
+   통한다. 또한 일부 입자의 위치
+
+   ${\overset{\rightarrow}{x}}_{\beta}$
+
+   를 주어진 시간의 함수로 만들어, 거리 구속조건이 시간 의존 위치를 향하도록
+   일반화할 수도 있다.
+
+   @@html:<span id="Exe_1-21"></span>@@
+
+   *연습문제 1.21: 덤벨*
+
+   이 연습문제에서는 특정한 간단한 계에 대해 구속계의 라그랑지언 유도를 되짚어 볼
+   것이다.
+
+   [[/ko/eval/sicm/chapter-1/#Fig_1-5][그림 1.5]]처럼 평면에서 두 개의 질량 있는 입자가
+   질량 없는 강체 막대에 의해 거리 /l/을 유지하도록 구속되어 있다고 하자. 평면의 두
+   질량 있는 입자에는 겉보기에 네 개의 자유도가 있지만 강체 막대가 이 수를 셋으로
+   줄인다.
+
+   입자들의 잉여 좌표들, 예컨대 /x/_{0}(/t/), /y/_{0}(/t/)와 /x/_{1}(/t/),
+   /y/_{1}(/t/)로 배치를 유일하게 지정할 수 있다. 구속조건 (/x/_{1}(/t/) −
+   /x/_{0}(/t/))^{2} + (/y/_{1}(/t/) − /y/_{0}(/t/))^{2} = /l/^{2}가 자유도 하나를
+   없앤다.
+
+   *a.* 막대의 스칼라 장력이 /F/일 때, 두 입자의 네 개 직교좌표에 대한 힘 균형의
+   뉴턴 방정식을 써라.
+
+   *b.* 라그랑주 방정식이 부분 *a*에서 유도한 뉴턴 방정식을 산출하도록, 형식적
+   라그랑지언
+
+   $L(t;x_{0},y_{0},x_{1},y_{1},F;{\overset{˙}{x}}_{0},{\overset{˙}{y}}_{0},{\overset{˙}{x}}_{1},{\overset{˙}{y}}_{1},\overset{˙}{F})$
+
+   을 써라.
+
+   *c.* 무게중심 좌표 /x/_{CM}, /y/_{CM}, 각 /θ/, 입자들 사이의 거리 /c/, 장력 /F/를
+   가진 좌표계로 좌표 변환을 하라. 이 좌표들로 라그랑지언을 쓰고, 라그랑주 방정식을
+   써라.
+
+
+
+   *d.* 이 방정식들 중 하나에서 /c/(/t/) = /l/임을 알아낼 수 있다. 이 사실에서
+   /Dc/ = 0과 /D/^{2}/c/ = 0을 얻는다. 방금 계산한 라그랑주 방정식에 이것들을
+   대입하여 /x/_{CM}, /y/_{CM}, /θ/의 운동 방정식을 구하라.
+
+   *e.* 비잉여 일반화 좌표 /x/_{CM}, /y/_{CM}, /θ/로 기술된 계의 라그랑지언(=
+   /T/ − /V/)을 만들고 이 라그랑지언으로부터 라그랑주 방정식을 계산하라. 부분 *d*에서
+   같은 좌표들에 대해 유도한 방정식들과 같은 방정식들이어야 한다.
+
+   @@html:<span id="Exe_1-22"></span>@@
+
+   *연습문제 1.22: 구동 진자*
+
+   라그랑지언 ([[/ko/eval/sicm/chapter-1/#disp_1.93][1.93]])으로 피벗의 위치가 주어진 시간
+   함수인 구동 진자([[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]])를 기술할 수 있음을
+   보여라: 뉴턴식
+   구속 힘 처방으로 운동 방정식을 유도하고, 그것들이 라그랑주 방정식과 같음을
+   보여라. 진자 추의 위치만이 아니라 구속 힘들에 대한 방정식도 반드시 살펴보라.
+
+   @@html:<span id="Exe_1-23"></span>@@
+
+   *연습문제 1.23: 세부 사항 채우기*
+
+   라그랑지언 ([[/ko/eval/sicm/chapter-1/#disp_1.101][1.101]])의 라그랑주 방정식이, 치환
+   /c/(/t/) = /l/, /Dc/(/t/) = /D/^{2}/c/(/t/) = 0을 가한 라그랑지언
+   ([[/ko/eval/sicm/chapter-1/#disp_1.99][1.99]])의 라그랑주 방정식과 같음을 보여라.
+
+   @@html:<span id="Exe_1-24"></span>@@
+
+   *연습문제 1.24: 구속 힘*
+
+   구동되지 않은 평면 진자의 장력을 구하라.
+
+*** 1.6.3 좌표 변환으로서의 구속조건
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-6-3
+    :CLASS:    level3
+    :END:
+    구속계의 라그랑지언 유도는 좌표 변환의 유도와 유추되는 단계들을 포함한다.
+
+    직교좌표에서 비구속 입자계의 라그랑지언을 만들 수 있다. 일반적으로 실제 자유도보다
+    좌표가 더 많다. 구속조건들이 그 잉여를 없앨 것이다. 그다음 구속조건들을 통합한
+    편리한 비잉여 일반화 좌표 집합을 골라 우리 계를 기술한다. 잉여 직교좌표들과
+    속도들을 비잉여 일반화 좌표들과 일반화 속도들로 표현하고, 이 변환들을 써서
+    라그랑지언을 일반화 좌표들로 다시 표현한다.
+
+    좌표 변환을 수행하려면, 한 일반화 좌표 집합으로 표현된 계의 배치를 다른 일반화
+    좌표 집합으로 어떻게 다시 표현하는지 지정한다. 그다음 일반화 좌표의 변환이 내포하는
+    일반화 속도의 변환을 정한다. 일반화 좌표 집합 하나로 표현된 라그랑지언은 그다음
+    다른 일반화 좌표 집합으로 다시 표현될 수 있다.
+
+    이것은 사실 같은 과정의 두 가지 적용이다. 그러므로 구속조건을 통합한 좌표 변환과
+    비구속 입자들의 라그랑지언을 합성하여 구속계의 라그랑지언을 만들 수 있다. 구속계에
+    /L/ = /T/ − /V/가 적합한 라그랑지언이라는 우리의 추론은 사실, 구속조건에 복종하는
+    좌표 집합으로부터 비잉여 좌표들과 상수인 구속 좌표들로 이루어진 집합으로 가는 좌표
+    변환에 기초한 것이었다.
+
+    *x*_{/α/}를 첨자 /α/인 구성 입자의 직교 성분들의 튜플, *v*_{/α/}를 그 속도라
+    하자. 라그랑지언
+
+    @@html:<span id="disp_1.102"></span>@@
+$$\begin{aligned}
+{L_{f}(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})} & \\
+    {\,\,\,\,\,\,\, = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}\mathbf{v}_{\alpha}^{2} - V(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1})}}} & {(1.102)}
+    \end{aligned}$$
+    은 구성 입자들의 운동 에너지와 퍼텐셜 에너지의 차이다. 이것은 퍼텐셜 에너지 /V/를
+    가진 비구속 자유 입자들의 집합에 적합한 라그랑지언이다.
+
+    /q/를 비잉여 일반화 좌표들의 튜플, /v/를 대응하는 일반화 속도 튜플이라 하자. 좌표
+    /q/는 앞서처럼 *x*_{/α/} = /f_{α}/(/t/, /q/)로 구성 입자들의 좌표 *x*_{/α/}와
+    연결된다. 구성 입자들 사이의 구속조건들은 /f_{α}/의 정의에 반영되어 있다. 여기서는
+    이것을 좌표 변환으로 본다. 좌표 변환으로서 이것이 특이한 점은 /x/의 차원이 /q/의
+    차원과 같지 않다는 것이다. 이 좌표 변환으로부터 국소 튜플 변환 함수를 구할 수
+    있다([[/ko/eval/sicm/chapter-1/#h3_1-6-1][1.6.1절]] 참조)
+
+    @@html:<span id="disp_1.103"></span>@@
+$$\begin{aligned}
+{(t;\mathbf{x}_{0},\ldots,\mathbf{x}_{N - 1};\mathbf{v}_{0},\ldots,\mathbf{v}_{N - 1}) = C(t,q,v).} & {(1.103)}
+    \end{aligned}$$
+    구속계의 라그랑지언은 구속 좌표에서 비구속 좌표로 가는 국소 튜플 변환 함수와
+    비구속계의 라그랑지언을 합성하여 얻을 수 있다:
+
+    @@html:<span id="disp_1.104"></span>@@
+$$\begin{aligned}
+{L = L_{f} \circ C.} & {(1.104)}
+    \end{aligned}$$
+    구속조건은 변환에만 들어간다.
+
+    이를 예시하기 위해 [[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]]에서 도입한 구동 진자의
+    라그랑지언을 구하겠다. [[https://tgvaughan.github.io/sicm/chapter001.html#p40][40쪽]]에서 본 것처럼, 가속도 /g/의
+    중력 퍼텐셜을 받는 수직 평면 속 질량 /m/의 자유 입자에 대한 /T/ − /V/ 라그랑지언은
+
+    @@html:<span id="disp_1.105"></span>@@
+$$\begin{aligned}
+{L_{f}\left( {t;x,y;v_{x},v_{y}} \right) = \frac{1}{2}m(v_{x}^{2} + v_{y}^{2}) - mgy,} & {(1.105)}
+    \end{aligned}$$
+    이고 여기서 /y/는 점 질량의 높이를 잰다. 이 라그랑지언을 계산하는 프로그램은
+
+     #+begin_src scheme
+(define ((L-uniform-acceleration m g) local) (let ((q
+    (coordinate local)) (v (velocity local))) (let ((y (ref q 1))) (- (* 1/2 m
+    (square v)) (* m g y)))))
+     #+end_src
+
+    일반화 좌표 /θ/에서 직교좌표로 가는 좌표 변환은 /x/ = /l/ sin /θ/, /y/ =
+    /y_{s}/(/t/) − /l/ cos /θ/이며, 여기서 /l/은 진자의 길이이고 /y_{s}/는 시간의
+    함수로 지지대의 높이를 준다. 흥미롭게도 구동은 구속조건의 지정을 통해서만 들어간다.
+    이 좌표 변환을 구현하는 프로그램은
+
+     #+begin_src scheme
+(define ((dp-coordinates l y_s) local) (let ((t (time local)) (theta (coordinate
+local))) (let ((x (* l (sin theta))) (y (- (y_s t) (* l (cos theta))))) (up x
+y))))
+     #+end_src
+
+    F->C로 국소 튜플 변환을 유도하고 합성으로 구동 진자의 라그랑지언을 정의할 수 있다:
+
+     #+begin_src scheme
+(define (L-pend m l g y_s) (compose
+    (L-uniform-acceleration m g) (F->C (dp-coordinates l y_s))))
+     #+end_src
+    라그랑지언은
+
+     #+begin_src scheme
+(show-expression ((L-pend 'm 'l 'g (literal-function 'y_s)) (up 't 'theta
+'thetadot)))
+     #+end_src
+
+    $$glm\,\cos\,(\theta) - gmy_{s}\,(t) +
+    \frac{1}{2}l^{2}m{\overset{˙}{\theta}}^{2} +
+    lm\overset{˙}{\theta}Dy_{s}\,(t)\sin\left( \theta \right) +
+    \frac{1}{2}m{(Dy_{s}(t))}^{2}$$
+
+    이것은 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.88][1.88]])의 라그랑지언과
+    같다([[https://tgvaughan.github.io/sicm/chapter001.html#p51][51쪽]] 참조).
+
+    우리는 구속계의 라그랑지언에 대한 아주 흥미로운 분해를 발견했다. 한 부분은 구성
+    입자들의 운동 에너지와 퍼텐셜 에너지의 차이로 이루어진다. 다른 부분은 특정 계의
+    배치에 특유한 구속조건들을 기술한다.
+
+    @@html:<span id="Exe_1-25"></span>@@
+
+    *연습문제 1.25: 푸코 진자의 라그랑지언*
+
+    푸코 진자(Foucault pendulum)는 지구(반지름 /R/) 표면 위 높이 /l/에 여위도(colatitude)
+    /ϕ/로 매달린, 길이 /l/에 질량 /m/의 긴 주기 진자다. 진자를 정지 상태로, 지역
+    연직선으로부터 0이 아닌 변위를 가진 채 놓으면 겉보기 평면에서 진동할 것이다.
+    그러나 진동의 겉보기 평면은 지구가 자전함에 따라 세차 운동한다. 지구는 각속도
+    Ω로 자전한다.
+
+    추의 위치를 지정하는 한 가지 방법은 북극에 푸코 진자를 세우고 적절한 여위도와
+    고정 경도의 지구 표면 위 한 점으로 회전시키는 것이다. 지구가 자전하고 있으므로
+    이것은 시간에 따라 변하는 변환이다. 이 변환에는 두 부분이 있다.
+
+    첫째, 진자가 북극에 있을 때 일반화 좌표 /θ/와 /λ/를 진자 추의 좌표들과 연결한다.
+    /θ/를 지구 중심을 지나는 선에 대한 추의 각도라 하고 /λ/를 세차 각도라 하자. 북극의
+    진자에 대한 추의 직교좌표는 다음과 같다:
+
+    /x/_{0} = /l/ sin /θ/ cos /λ/
+
+    /y/_{0} = /l/ sin /θ/ sin /λ/
+
+    /z/_{0} = (/R/ + /l/) − /l/ cos /θ/.
+
+    다음으로, 진자를 여위도 /ϕ/의 실제 위치로 회전시킨다. 경도를 0으로 택할 수 있으므로
+    추 지지대의 각위치는 Ω/t/만큼 회전된다. 좌표 변환은 다음과 같다:[fn:69]
+
+    $(x,y,z) = R_{z}(\Omega t)R_{y}(\phi)(x_{0},y_{0},z_{0}).$
+
+
+
+    이 두 번째 변환은 다음 코드로 구현할 수 있다:
+
+     #+begin_src scheme
+((compose (Rz (* 'Omega 't)) (Ry 'phi)) (up 'x_0 'y_0 'z_0)) (up (+ (* x_0 (cos
+phi) (cos (* Omega t))) (* z_0 (sin phi) (cos (* Omega t))) (* -1 y_0 (sin (*
+Omega t)))) (+ (* x_0 (cos phi) (sin (* Omega t))) (* z_0 (sin phi) (sin (*
+Omega t))) (* y_0 (cos (* Omega t)))) (+ (* -1 x_0 (sin phi)) (* z_0 (cos
+phi))))
+     #+end_src
+
+    이 부분들로 좌표 변환 F를 구성하여, F->C와 함께 중력 퍼텐셜 속 입자의 자유
+    라그랑지언과 합성해 푸코 진자의 라그랑지언을 만들 수 있게 하라. 뉴턴 퍼텐셜
+    에너지는 −/GMm/r/이고, 여기서 /r/은 추의 지구 중심으로부터의 거리, /M/은 지구의
+    질량이다.
+
+*** 1.6.4 라그랑지언은 유일하지 않다
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-6-4
+    :CLASS:    level3
+    :END:
+    라그랑지언은 물리계와 일대일 관계에 있지 않다---같은 물리계를 기술하는 데 많은
+    라그랑지언을 쓸 수 있다. 이 절에서는 좌표와 시간의 함수의 “전시간
+    미분”(total time derivative)을 라그랑지언에 더해도, 정지 작용의 경로들이나 작용
+    원리에서 유도된 운동 방정식이 바뀌지 않음을 보여 이를 입증하겠다.
+
+** 전시간 미분
+   :PROPERTIES:
+   :CUSTOM_ID: total-time-derivatives
+   :CLASS:    level2
+   :END:
+   먼저 “전시간 미분”이 무엇을 뜻하는지 설명하자. /F/를 시간과 좌표의 함수라 하자.
+   시각 /t/에서 경로 위의 함수 /F/는
+
+   @@html:<span id="disp_1.106"></span>@@
+$$\begin{aligned}
+{(F \circ \Gamma\lbrack q\rbrack)(t) = F(t,q(t)).} & {(1.106)}
+   \end{aligned}$$
+   따라서 연쇄 법칙에 의해
+
+   @@html:<span id="disp_1.107"></span>@@
+$$\begin{aligned}
+{D(F \circ \Gamma\lbrack q\rbrack)(t) = \partial_{0}F(t,q(t)) + \partial_{1}F(t,q(t))Dq(t).} & {(1.107)}
+   \end{aligned}$$
+   더 형식적으로, 경로 /q/를 따르는 /F/의 시간 도함수는
+
+   @@html:<span id="disp_1.108"></span>@@
+$$\begin{aligned}
+{D(F \circ \Gamma\lbrack q\rbrack) = (DF \circ \Gamma\lbrack q\rbrack)\, D\Gamma\lbrack q\rbrack.} & {(1.108)}
+   \end{aligned}$$
+   /F/는 시간과 좌표에만 의존하므로
+
+   @@html:<span id="disp_1.109"></span>@@
+$$\begin{aligned}
+{DF \circ \Gamma\lbrack q\rbrack = \lbrack\partial_{0}F \circ \Gamma\lbrack q\rbrack,\partial_{1}F \circ \Gamma\lbrack q\rbrack\rbrack.} & {(1.109)}
+   \end{aligned}$$
+   따라서 /D/Γ[/q/]의 첫 두 성분만으로 곱
+
+   @@html:<span id="disp_1.110"></span>@@
+$$\begin{aligned}
+{(D\Gamma\lbrack q\rbrack)(t) = (1,Dq(t),D^{2}q(t),\ldots),} & {(1.110)}
+   \end{aligned}$$
+   을 만들 수 있다:
+
+   @@html:<span id="disp_1.111"></span>@@
+$$\begin{array}{lll} {D(F \circ \Gamma\lbrack q\rbrack)} & {= \partial_{0}F \circ \Gamma\lbrack q\rbrack + (\partial_{1}F \circ \Gamma\lbrack q\rbrack)Dq} & \\ & {= (\partial_{0}F + (\partial_{1}F)\overset{˙}{Q}) \circ \Gamma\lbrack q\rbrack,} & {(1.111)}\end{array}$$
+   여기서
+
+   $\overset{˙}{Q} = I_{2}$
+
+   는 선택 함수다:[fn:70]
+
+   $c = \overset{˙}{Q}(a,b,c)$
+
+   이므로
+
+   $Dq = \overset{˙}{Q} \circ \Gamma\lbrack q\rbrack$
+
+   이다.
+
+   함수
+
+   @@html:<span id="disp_1.112"></span>@@
+$$\begin{aligned}
+{D_{t}F = \partial_{0}F + (\partial_{1}F)\overset{˙}{Q}} & {(1.112)}
+   \end{aligned}$$
+   를 /F/의 /전시간 미분/(total time derivative)이라 부른다. 이것은 세 인수의 함수다:
+   시간, 일반화 좌표들, 일반화 속도들.
+
+   일반적으로, 국소 튜플 함수 /F/의 전시간 미분이란, 국소 튜플 경로와 합성하면 함수
+   /F/를 같은 국소 튜플 경로와 합성한 것의 시간 도함수가 되는 그런 함수 /D_{t}F/다:
+
+   @@html:<span id="disp_1.113"></span>@@
+$$\begin{aligned}
+{D_{t}F \circ \Gamma\lbrack q\rbrack = D(F \circ \Gamma\lbrack q\rbrack).} & {(1.113)}
+   \end{aligned}$$
+   전시간 미분 /D_{t}F/는 명시적으로 다음과 같다
+
+   @@html:<span id="disp_1.114"></span>@@
+$$\begin{array}{lll} {D_{t}F(t,q,v,a,\ldots) =} & {\partial_{0}F(t,q,v,a,\ldots)} & \\ & {+ \partial_{1}F(t,q,v,a,\ldots)v} & \\ & {+ \partial_{2}F(t,q,v,a,\ldots)a + \cdots,} & {(1.114)}\end{array}$$
+   여기서 /F/의 인수들이 소진될 때까지 필요한 만큼의 항들을 취한다.
+
+   @@html:<span id="Exe_1-26"></span>@@
+
+   *연습문제 1.26: /D_{t}/의 성질*
+
+   전시간 미분 /D_{t}F/는 함수 /F/의 도함수가 아니다. 그럼에도 전시간 미분은
+   도함수의 많은 성질을 공유한다. 국소 튜플 함수 /F/와 /G/, 수 /c/, 그리고 정의역이
+   /G/의 치역을 포함하는 함수 /H/에 대해 /D_{t}/가 다음 성질들을 가짐을 보여라.
+
+
+
+   *a.* /D_{t}/(/F/ + /G/) = /D_{t}F/ + /D_{t}G/
+
+   *b.* /D_{t}/(/cF/) = /cD_{t}F/
+
+   *c.* /D_{t}/(/FG/) = /FD_{t}G/ + (/D_{t}F/)/G/
+
+   *d.* /D_{t}/(/H/ ∘ /G/) = (/DH/ ∘ /G/)/D_{t}G/
+
+** 라그랑지언에 전시간 미분 더하기
+   :PROPERTIES:
+   :CUSTOM_ID: adding-total-time-derivatives-to-lagrangians
+   :CLASS:    level2
+   :END:
+   시간과 좌표에만 의존하는 함수 /F/의 전시간 미분을 더한 만큼 차이가 나는 두
+   라그랑지언 /L/과 /L/′을 생각하자
+
+   @@html:<span id="disp_1.115"></span>@@
+$$\begin{aligned}
+{L\prime = L + D_{t}F.} & {(1.115)}
+   \end{aligned}$$
+   대응하는 작용 적분은
+
+   @@html:<span id="disp_1.116"></span>@@
+$$\begin{array}{lll} {S\prime\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{L\prime \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{(L + D_{t}F) \circ \Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack + {\int_{t_{1}}^{t_{2}}{D(F \circ \Gamma\lbrack q\rbrack)}}}}} & \\ & {= S\lbrack q\rbrack(t_{1},t_{2}) + (F \circ \Gamma\lbrack q\rbrack)|_{t_{1}}^{t_{2}}.} & {(1.116)}\end{array}$$
+   변분 원리는, 실현 가능한 궤적을 따르는 작용 적분이 끝점에서 배치를 고정하는 궤적의
+   변분에 대해 정지라고 말한다. 작용 적분 /S/[/q/](/t/_{1}, /t/_{2})와
+   /S/′[/q/](/t/_{1}, /t/_{2})는 항
+
+   @@html:<span id="disp_1.117"></span>@@
+$$\begin{aligned}
+{(F \circ \Gamma\lbrack q\rbrack)|_{t_{1}}^{t_{2}} = F(t_{2},q(t_{2})) - F(t_{1},q(t_{1}))} & {(1.117)}
+   \end{aligned}$$
+   만큼 차이 나는데, 이 항은 끝점에서의 좌표와 시간에만 의존하고 이것들은 변할 수
+   없다. 따라서 /S/[/q/](/t/_{1}, /t/_{2})가 어떤 경로에 대해 정지이면
+   /S/′[/q/](/t/_{1}, /t/_{2})도 정지일 것이다. 그러므로 두 라그랑지언 중 어느
+   것으로도 실현 가능한 경로들을 구별할 수 있다.
+
+   라그랑지언에 전시간 미분을 더하는 것은 주어진 경로에 대해 작용이 정지인지 여부에
+   영향을 주지 않는다. 따라서 두 라그랑지언이 전시간 미분만큼 차이 난다면, 대응하는
+   라그랑주 방정식들은 같은 경로들이 각각을 만족한다는 점에서 동치다. 더 나아가,
+   전시간 미분이 작용에 도입하는 추가 항들은 끝점 조건에만 나타나므로 작용의 변분에서
+   유도된 라그랑주 방정식에 영향을 주지 않고, 따라서 라그랑주 방정식은 같다. 라그랑지언에
+   전시간 미분을 더해도 라그랑주 방정식은 바뀌지 않는다.
+
+   @@html:<span id="Exe_1-27"></span>@@
+
+   *연습문제 1.27: 전시간 미분에 대한 라그랑주 방정식*
+
+   /F/ (/t/, /q/)를 /t/와 /q/만의 함수라 하자. 그 전시간 미분은
+
+   @@html:<span id="disp_1.118"></span>@@
+$$\begin{aligned}
+{D_{t}F = \partial_{0}F + (\partial_{1}F)\overset{˙}{Q}.} & {(1.118)}
+   \end{aligned}$$
+   이다. /D_{t}F/에 대한 라그랑주 방정식이 항등적으로 0임을 명시적으로 보이고, 따라서
+   라그랑지언에 /D_{t}F/를 더해도 라그랑주 방정식에 영향을 주지 않음을 보여라.
+
+   구동 진자는 라그랑지언에 전시간 미분을 더하는 일의 좋은 예시가 된다. 구동 진자의
+   운동 방정식([[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]] 참조)
+
+   @@html:<span id="disp_1.119"></span>@@
+$$\begin{aligned}
+{ml^{2}D^{2}\theta(t) + ml(g + D^{2}y_{s}(t))\,\sin\theta(t) = 0,} & {(1.119)}
+   \end{aligned}$$
+   은 흥미롭고 시사적인 해석을 가진다: 중력 가속도 /g/가 피벗의 가속도
+   /D/^{2}/y_{s}/만큼 증폭되었다는 점만 빼면, 이것은 구동되지 않은 진자의 운동
+   방정식과 같다. 이 직관적 해석은 [[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]]에서 운동
+   에너지와 퍼텐셜 에너지의 차이로 유도한 라그랑지언에서는 분명하지 않았다. 그러나
+   운동 방정식만큼 해석이 쉬운, 같은 운동 방정식을 가진 대안 라그랑지언을 쓸 수 있다:
+
+   @@html:<span id="disp_1.120"></span>@@
+$$\begin{aligned}
+{L\prime(t,\theta,\overset{˙}{\theta}) = \frac{1}{2}ml^{2}{\overset{˙}{\theta}}^{2} + ml(g + D^{2}y_{s}(t))\,\cos\theta.} & {(1.120)}
+   \end{aligned}$$
+   이 라그랑지언에서는 가속하는 피벗의 효과가 중력 가속도를 수정하는 것임이 분명하다.
+   다만 이것은 운동 에너지와 퍼텐셜 에너지의 차이가 아님에 유의하라. 구동 진자의 두
+   라그랑지언을 비교해 보자. 차 Δ/L/ = /L/ − /L/′은
+
+   @@html:<span id="disp_1.121"></span>@@
+$$\begin{array}{lll} {\Delta L(t,\theta,\overset{˙}{\theta}) =} & {\frac{1}{2}m{(Dy_{s}(t))}^{2} + mlDy_{s}(t)\overset{˙}{\theta}\,\sin\theta} & \\ & {- gmy_{s}(t) - mlD^{2}y_{s}(t)\,\cos\theta.} & {(1.121)}\end{array}$$
+   Δ/L/에서 /θ/에도
+
+   $\overset{˙}{\theta}$
+
+   에도 의존하지 않는 두 항은 운동 방정식에 영향을 주지 않는다. 나머지 두 항은 함수
+   /F/ (/t/, /θ/) = −/mlDy_{s}/(/t/) cos /θ/의 전시간 미분이고, 이 함수는
+
+   $\overset{˙}{\theta}$
+
+   에 의존하지 않는다. 이런 항들을 라그랑지언에 더해도 운동 방정식에 영향을 주지
+   않는다.
+
+** 전시간 미분의 성질
+   :PROPERTIES:
+   :CUSTOM_ID: properties-of-total-time-derivatives
+   :CLASS:    level2
+   :END:
+   인수들이 (/t/, /q/, /v/)인 국소 튜플 함수 /G/가 인수들이 (/t/, /q/)인 함수 /F/의
+   전시간 미분이라면, /G/는 반드시 어떤 성질들을 가져야 한다.
+
+   방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.112][1.112]])에서 /G/는 일반화 속도들에 대해
+   선형이어야 함을 알 수 있다
+
+   @@html:<span id="disp_1.122"></span>@@
+$$\begin{aligned}
+{G(t,q,v) = G_{0}(t,q,v) + G_{1}(t,q,v)\, v} & {(1.122)}
+   \end{aligned}$$
+   여기서 /G/_{1}도 /G/_{0}도 일반화 속도들에 의존하지 않는다: ∂_{2}/G/_{1} =
+   ∂_{2}/G/_{0} = 0.
+
+   /G/가 /F/의 전시간 미분이면 /G/_{1} = ∂_{1}/F/이고 /G/_{0} = ∂_{0}/F/이므로
+
+   @@html:<span id="disp_1.123"></span>@@
+$$\begin{aligned}
+{\partial_{0}G_{1} = \partial_{0}\partial_{1}F} & \\
+   {\partial_{1}G_{0} = \partial_{1}\partial_{0}F.} & {(1.123)}
+   \end{aligned}$$
+   시간 인수에 대한 편미분은 구조를 가지지 않으므로 ∂_{0}∂_{1}/F/ = ∂_{1}∂_{0}/F/다.
+   따라서 /G/가 /F/의 전시간 미분이면
+
+   @@html:<span id="disp_1.124"></span>@@
+$$\begin{aligned}
+{\partial_{0}G_{1} = \partial_{1}G_{0}.} & {(1.124)}
+   \end{aligned}$$
+   더 나아가 /G/_{1} = ∂_{1}/F/이므로
+
+   @@html:<span id="disp_1.125"></span>@@
+$$\begin{aligned}
+{\partial_{1}G_{1} = \partial_{1}\partial_{1}F.} & {(1.125)}
+   \end{aligned}$$
+   자유도가 둘 이상이면 이 편미분들은 사실 각 좌표에 대한 편미분들의 구조다. 서로
+   다른 두 좌표에 대한 편미분들은 미분 순서와 무관하게 같아야 한다. 그러므로
+   ∂_{1}/G/_{1}은 대칭이어야 한다.
+
+   우리는 이 조건들이 함수가 전시간 미분임을 판정하기에 충분하다는 것을 보이지
+   않았고, 필요하다는 것만 보였음에 유의하라.
+
+
+
+   @@html:<span id="Exe_1-28"></span>@@
+
+
+
+   *연습문제 1.28: 전시간 미분 식별하기*
+
+   다음 각 함수에 대해, 전시간 미분이 아님을 보이거나 그것으로부터 유도되는 함수를
+   만들어라.
+
+   *a.* /G/(/t/, /x/, /v/_{/x/}) = /mv_{x}/
+
+   *b.* /G/(/t/, /x/, /v_{x}/) = /mv_{x}/ cos /t/
+
+   *c.* /G/(/t/, /x/, /v_{x}/) = /v_{x}/ cos /t/ − /x/ sin /t/
+
+   *d.* /G/(/t/, /x/, /v_{x}/) = /v_{x}/ cos /t/ + /x/ sin /t/
+
+   *e.* /G/(/t/; /x/, /y/; /v_{x}/, /v_{y}/) = 2(/xv_{x}/ + /yv_{y}/) cos /t/ −
+   (/x/^{2} + /y/^{2}) sin /t/
+
+   *f.* /G/(/t/; /x/, /y/; /v_{x}/, /v_{y}/) = 2(/xv_{x}/ + /yv_{y}/) cos /t/ −
+   (/x/^{2} + /y/^{2}) sin /t/ + /y/^{3}/v_{x}/ + /xv_{y}/
+
+   @@html:<span id="Exe_1-29"></span>@@
+
+   *연습문제 1.29: 운동 에너지의 갈릴레이 불변성*
+
+   우리는 첨자 /α/로 색인되는 입자 집합의 운동 에너지를
+
+   $\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}$
+
+   로 취해 왔다. 이 형태는 갈릴레이 불변(Galilean invariant)이다.
+
+   *a.* 자유 입자들의 라그랑지언, 즉 그들 운동 에너지들의 단순한 합에서 시작하자:
+
+   @@html:<span id="disp_1.126"></span>@@
+$$\begin{aligned}
+{L(t,x,v) = {\sum\limits_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}.}}} & {(1.126)}
+   \end{aligned}$$
+   이동과 균일 병진으로 이루어진, 옛 좌표에서 새 좌표로 가는 좌표 변환을 수행하라
+
+   @@html:<span id="disp_1.127"></span>@@
+$$\begin{aligned}
+{x_{\alpha} = x_{\alpha}^{\prime} + \Delta x + \Delta vt.} & {(1.127)}
+   \end{aligned}$$
+   새 좌표에서의 라그랑지언을 유도하라.
+
+   *b.* 새 라그랑지언은
+
+   $\sum_{\alpha}{\frac{1}{2}m_{\alpha}{(v_{\alpha}^{\prime})}^{2}}$
+
+   형태에 몇 가지 추가 항들을 더한 것으로 놓을 수 있다. 추가 항들이 전시간 미분임을
+   보여라.
+
+   따라서 운동 에너지는 균일하게 움직이는 어떤 좌표계에서든
+
+   $\sum_{\alpha}{\frac{1}{2}m_{\alpha}v_{\alpha}^{2}}$
+
+   로 취할 수 있다.
+* 1.7 동역학적 상태의 전개
+  :PROPERTIES:
+  :CUSTOM_ID: h1-6b
+  :CLASS:    level1
+  :END:
+  라그랑주 방정식은 경로가 만족해야 하는 상미분방정식이다. 제안된 경로가
+  계의 실현 가능한 경로인지를 시험하는 데 쓸 수 있다. 그러나 초기조건에서
+  출발하여 경로를 전개하는 데에도 쓸 수 있다.
+
+  계의 /상태(state)/는 이후의 전개가 결정되도록 명시해야 하는 정보로
+  정의한다. 저글러를 기억하라. 원하는 운동을 실행하려면 곤봉을 어떤 방식으로
+  던져야 한다. 저글러는 곤봉의 초기 위치와 방향, 그리고 곤봉의 초기 속도와
+  회전을 제어한다. 저글링과 비슷한 계에 대한 경험은 초기 배치와 배치의
+  변화율이 이후 운동을 정하기에 충분함을 시사한다. 다른 계는 배치의 더 높은
+  도함수를 요구할 수 있다.
+
+  일반화 좌표와 속도의 집합으로 쓰인 라그랑지언에 대해, 라그랑주 방정식이
+  2차 상미분방정식임을 보였다. 미분방정식이 최고차 도함수에 대해 풀릴 수
+  있고 Lipschitz 조건을 만족하면,[fn:71] 초기값 문제에 유일한 해가 있다.
+  특정 순간에 해와 해의 저차 도함수 값이 주어지면 유일한 해 함수가 있다.
+  비잉여 좌표가 주어지면 라그랑주 방정식은 이 조건을 만족한다.[fn:72]
+  따라서 궤적은 임의의 시각에서 일반화 좌표와 일반화 속도로 결정된다. 이것이
+  동역학적 상태를 지정하는 데 필요한 정보이다.
+
+  경로의 완전한 국소 기술은 한 순간의 경로와 그 모든 도함수로 이루어진다.
+  경로의 완전한 국소 기술은, 저차 도함수로 경로의 고차 도함수를 계산하는
+  처방이 주어지면, 국소 튜플의 초기 조각에서 재구성할 수 있다. 계의 상태는
+  완전한 국소 기술의 나머지를 이끌어 낼 수 있는 그 국소 튜플 초기 조각으로
+  지정된다. 완전한 국소 기술은 그 순간 근처의 경로를 준다. 실제로 다음
+  고차 도함수를 계산하는 규칙만 있으면 되고, 나머지는 이로부터 모두 얻을 수
+  있다. 계의 상태가 튜플 (/t/, /q/, /v/)로 주어진다고 가정하자. 가속도
+  /a/ = /A/(/t/, /q/, /v/)를 계산하는 처방이 주어지면
+
+  @@html:<span id="disp_1.128"></span>@@
+$$\begin{aligned}
+{D^{2}q = A \circ \Gamma\lbrack q\rbrack,} & {(1.128)}
+  \end{aligned}$$
+  이고, 그 결과로
+
+  @@html:<span id="disp_1.129"></span>@@
+$$\begin{aligned}
+{D^{3}q = D(A \circ \Gamma\lbrack q\rbrack) = D_{t}A \circ \Gamma\lbrack q\rbrack,} & {(1.129)}
+  \end{aligned}$$
+  등을 얻는다. 따라서 국소 튜플의 고차 도함수 성분은 함수
+
+  $D_{t}A,\,\,\, D_{t}^{2}A,\ldots$
+
+  로 주어진다. 이 함수 각각은 국소 튜플의 저차 도함수 성분에 의존한다. 상태에서
+  경로를 이끌어 내는 데 필요한 것은, 상태에서 국소 기술의 다음 고차 도함수
+  성분을 주는 함수뿐이다. 이 함수를 찾는 데 라그랑주 방정식을 쓴다.
+
+  먼저 라그랑주 방정식
+
+  $\partial_{1}L \circ \Gamma\lbrack q\rbrack = D(\partial_{2}L \circ
+  \Gamma\lbrack q\rbrack)$
+
+  을 전개하여 이계 도함수가 명시적으로 나타나게 한다.
+
+  $$\begin{array}{l} {\partial_{1}L \circ \Gamma\lbrack q\rbrack} \\ {\,\,\,\,\,\,\,\,\, = \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack + (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq + (\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, D^{2}q.} \\\end{array}$$
+  이 계를 /D/^{2}/q/에 대해 풀면, 해 경로 /q/를 따른 일반화 가속도를 얻는다.
+
+  $$\begin{array}{l} {D^{2}q =} \\ {\,\,\,\,\,\,\,\,\,{\lbrack\partial_{2}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}^{- 1}\lbrack\partial_{1}L \circ \Gamma\lbrack q\rbrack - (\partial_{1}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, Dq - \partial_{0}\partial_{2}L \circ \Gamma\lbrack q\rbrack\rbrack}\end{array}$$
+  여기서 [∂_{2}∂_{2}/L/ ∘ Γ]는 대칭 정사각 행렬로 나타낼 수 있는 구조이므로
+  그 역을 계산할 수 있다.[fn:73] 가속도를 주는 함수는
+
+  @@html:<span id="disp_1.130"></span>@@
+$$\begin{aligned}
+{A = {(\partial_{2}\partial_{2}L)}^{- 1}\lbrack\partial_{1}L - \partial_{0}\partial_{2}L - (\partial_{1}\partial_{2}L)\overset{˙}{Q}\rbrack,} & {(1.130)}
+  \end{aligned}$$
+  이고, 여기서
+
+  $\overset{˙}{Q} = I_{2}$
+
+  는 속도 성분 선택자이다.
+
+
+
+  상태를 지정하는 그 국소 튜플 초기 조각을 국소 상태 튜플, 또는 더 간단히
+  상태 튜플이라 부른다.[fn:74]
+
+  가속도를 주는 함수를 상태 튜플의 함수로 다음 절차로 표현할 수 있다. 이
+  절차는 라그랑지언을 계산하는 절차를 받아, 상태 튜플을 인수로 받아 가속도를
+  돌려주는 절차를 돌려준다.[fn:75]
+
+   #+begin_src scheme
+(define (Lagrangian->acceleration L) (let ((P
+  ((partial 2) L)) (F ((partial 1) L))) (solve-linear-left ((partial 2) P) (- F
+  (+ ((partial 0) P) (* ((partial 1) P) velocity))))))
+   #+end_src
+
+  좌표와 속도에서 가속도를 계산하는 길이 있으면, 상태의 도함수를 상태의
+  함수로 계산하는 처방을 줄 수 있다. 순간 /t/에서 상태 (/t/, /q/(/t/),
+  /Dq/(/t/))에 대해 상태의 도함수는 (1, /Dq/(/t/), /D/^{2}/q/(/t/))
+  = (1, /Dq/(/t/), /A/(/t/, /q/(/t/), /Dq/(/t/)))이다. 절차
+  Lagrangian->state-derivative는 라그랑지언을 받아, 상태를 받아 상태의
+  도함수를 돌려주는 절차를 돌려준다.
+
+   #+begin_src scheme
+(define (Lagrangian->state-derivative L) (let
+  ((acceleration (Lagrangian->acceleration L))) (lambda (state) (up 1 (velocity
+state) (acceleration state)))))
+   #+end_src
+
+  우리는 상태를, 상태를 정하는 그 국소 튜플 초기 조각의 성분으로 된 up 튜플로
+  나타낸다.
+
+
+
+  예를 들어 조화 진동자의 매개변수 상태 도함수는 다음과 같다.
+
+   #+begin_src scheme
+(define (harmonic-state-derivative m k)
+  (Lagrangian->state-derivative (L-harmonic m k))) ((harmonic-state-derivative
+'m 'k) (up 't (up 'x 'y) (up 'v_x 'v_y))) (up 1 (up v_x v_y) (up (/ (* -1 k x)
+m) (/ (* -1 k y) m)))
+   #+end_src
+
+  라그랑주 방정식은 실현 가능한 경로 /q/를 구속하는 2차 미분방정식 계이다.
+  상태 도함수를 써서 라그랑주 방정식을, 실현 가능한 좌표 경로 /q/와 속도
+  경로 /v/를 구속하는 1차 미분방정식 계로 표현할 수 있다.
+
+   #+begin_src scheme
+(define ((Lagrange-equations-first-order L) q v) (let
+  ((state-path (qv->state-path q v))) (- (D state-path) (compose
+  (Lagrangian->state-derivative L) state-path)))) (define ((qv->state-path q v)
+t) (up t (q t) (v t)))
+   #+end_src
+
+  예를 들어 2차원 조화 진동자 운동방정식의 1차 꼴을 찾을 수 있다.
+
+   #+begin_src scheme
+(show-expression (((Lagrange-equations-first-order
+  (L-harmonic 'm 'k)) (up (literal-function 'x) (literal-function 'y)) (up
+  (literal-function 'v_x) (literal-function 'v_y))) 't))
+   #+end_src
+
+  $$\begin{pmatrix} 0 \\ \begin{pmatrix} {Dx(t) - v_{x}(t)} {Dy(t) - v_{y}(t)}
+  \end{pmatrix} \begin{pmatrix} {\frac{kx(t)}{m} + Dv_{x}(t)}
+  \\ {\frac{ky(t)}{m} + Dv_{y}(t)} \end{pmatrix} \end{pmatrix}$$
+
+
+
+  @@html:<span id="Fig_1-6"></span>@@
+
+
+
+  #+caption: *그림 1.6* 계 도함수의 입력은 상태이다.
+  함수 /A/는 상태를 정하는 성분의 함수로서 가속도를 준다. 계 도함수의 출력은
+  상태의 도함수이다. 적분기는 상태의 도함수를 입력으로 받아, 초기조건에서
+  출발한 적분된 상태를 만든다. 계 도함수에서 /Dq/(/t/) 성분의 라우팅으로
+  2차 계가 어떻게 1차 꼴로 놓이는지에 주목하라. [[/eval/source/sicm/images/Art_P208.jpg]]
+
+  라그랑주 방정식 잔차 구조의 첫 원소에 있는 영은, 시간이 균일하게 나아간다는
+  항등일 뿐이다. 시간 함수는 항등함수이므로 그 도함수는 하나이고 잔차는
+  영이다. 둘째 원소의 방정식은 속도 경로가 좌표 경로의 도함수가 되도록
+  구속한다. 셋째 원소의 방정식은 가해진 힘으로 속도의 변화율을 준다.
+
+** 수치 적분
+   :PROPERTIES:
+   :CUSTOM_ID: numerical-integration
+   :CLASS:    level2
+   :END:
+   상태로 상태 도함수를 주는 1차 상미분방정식 집합은, 주어진 초기 상태에서
+   나오는 상태 경로를 찾도록 적분할 수 있다. 수치 적분기는
+   [[/ko/eval/sicm/chapter-1/#Fig_1-6][그림 1.6]]에 보인 과정으로 그런 미분방정식의
+   근사해를 찾는다. Lagrangian->state-derivative가 만든 상태 도함수는 1차
+   상미분방정식 계를 수치 적분하는 패키지가 쓸 수 있다.
+
+
+   절차 state-advancer는 초기 시각을 포함하는 초기 상태와 매개변수 상태
+   도함수 절차가 주어지면, 지정된 시각에서 계의 상태를 찾는 데 쓸 수
+   있다.[fn:76] 예를 들어 2차원 조화 진동자의 상태를 전진시키려면 다음처럼
+   쓴다[fn:77]
+
+    #+begin_src scheme
+((state-advancer harmonic-state-derivative 2.0 1.0)
+   (up 1.0 (up 1.0 2.0) (up 3.0 4.0)) 10.0 1.0e-12) (up 11.0 (up
+3.7127916645844437 5.420620823651583) (up 1.6148030925459782
+1.8189103724750855))
+    #+end_src
+
+   state-advancer의 인수는 매개변수 상태 도함수 harmonic-state-derivative와
+   상태 도함수 매개변수(질량 2와 용수철 상수 1)이다. 돌려주는 절차는 초기
+   상태 (up 1 (up 1 2) (up 3 4)), 시간 증분 10, 상대 오차 허용 1.0e-12를
+   받는다. 출력은 지정된 최종 시각에서의 상태에 대한 근사이다.
+
+   [[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]]에서 기술한, 주기 구동을 받는
+   구동 진자를 생각하자. /y_{s}/(/t/) = /A/ cos /ωt/를 고른다.
+
+    #+begin_src scheme
+(define ((periodic-drive amplitude frequency phase) t)
+   (* amplitude (cos (+ (* frequency t) phase)))) (define
+   (L-periodically-driven-pendulum m l g A omega) (let ((ys (periodic-drive A
+omega 0))) (L-pend m l g ys)))
+    #+end_src
+
+
+
+   이 계의 라그랑주 방정식은
+
+    #+begin_src scheme
+(show-expression (((Lagrange-equations
+   (L-periodically-driven-pendulum 'm 'l 'g 'A 'omega)) (literal-function
+'theta)) 't))
+    #+end_src
+
+   $$D^{2}\theta(t)l^{2}m - \cos(\omega t)\,\sin\,(\theta(t))\, Alm\omega^{2} +
+   \sin\,(\theta(t))\, glm$$
+
+   주기 구동 진자의 매개변수 상태 도함수는
+
+    #+begin_src scheme
+(define (pend-state-derivative m l g A omega)
+   (Lagrangian->state-derivative (L-periodically-driven-pendulum m l g A
+omega))) (show-expression ((pend-state-derivative 'm 'l 'g 'A 'omega) (up 't
+'theta 'thetadot)))
+    #+end_src
+
+   $$\begin{pmatrix} 1 \\ \overset{˙}{\theta} {\frac{A\omega^{2}\cos\,(\omega
+   t)\,\sin\,(\theta)}{l} - \frac{g\sin\,(\theta)}{l}} \end{pmatrix}$$
+
+   구동 진자의 전개를 살펴보려면, 어떤 구간 동안 계를 전개하면서 전개되는
+   동안 계의 측면을 감시하는 메커니즘이 필요하다. 절차 evolve는 state-advancer를
+   반복하여 상태를 필요한 순간으로 전진시키며 이 서비스를 제공한다. 절차
+   evolve는 매개변수 상태 도함수와 그 매개변수를 받아, 지정된 초기 상태에서
+   여러 다른 시각으로 계를 전개하고 그 시각에 상태의 어떤 측면을 감시하는
+   절차를 돌려준다. 각 대 시간의 플롯을 만들려면, 전개가 진행되는 동안
+   플롯을 생성하는 감시 절차를 만든다.[fn:78]
+
+    #+begin_src scheme
+(define ((monitor-theta win) state) (let ((theta
+   ((principal-value :pi) (coordinate state)))) (plot-point win (time state)
+   theta))) (define plot-win (frame 0.0 100.0 :-pi :pi)) ((evolve
+   pend-state-derivative 1.0 ;m=1kg 1.0 ;l=1m 9.8 ;g=9.8m/s^2 0.1 ;a=1/10 m (*
+   2.0 (sqrt 9.8)) ) ;omega (up 0.0 ;t0=0 1.0 ;theta0=1 radian 0.0) ;thetadot0=0
+   radians/s (monitor-theta plot-win) 0.01 ;step between plotted points 100.0
+   ;final time 1.0e-13) ;local error tolerance
+    #+end_src
+
+   [[#Fig_1-7][그림 1.7]]은 구동 진자의 몇 궤도에 대해 각 /θ/를 시간에 대해
+   보인다. 두 실행의 초기조건은 같고, 다만 하나에서는 추에 10^{−10}m/s, 곧
+   초당 원자 너비 정도의 아주 작은 속도를 준다. 두 궤도의 초기 조각은 구별할
+   수 없다. 약 75초 뒤에 두 궤도는 갈라져 완전히 달라진다. 초기조건의 아주
+   작은 변화에 대한 이 극단적 민감성은 /혼돈 거동(chaotic behavior)/이라
+   불리는 것의 특징이다. 나중에 Lyapunov 지수, 위상공간, Poincaré 단면 같은
+   다른 도구로 이 예를 더 조사할 것이다.
+
+
+
+   @@html:<span id="Fig_1-7"></span>@@
+
+
+
+   #+caption: *그림 1.7* 구동 진자의 궤도. 각 /θ/를
+   시간에 대해 그렸다. 각은 주기적이므로, 이 플롯은 원기둥에 감긴 것으로
+   생각할 수 있다. 위 플롯은 초기조건 /θ/ = 1과 ¶ $\overset{˙}{\theta} = 0$ ¶
+   인 시뮬레이션 결과를 보인다. 궤도는 한동안 진동하다 순환한 뒤 다시
+   진동한다. 아래 플롯은 조금 다른 초기 각속도 ¶ $\overset{˙}{\theta} = 10^{- 10}$ ¶
+   에 대한 결과를 보인다. 초기 거동은 위 그림과 구별할 수 없으나, 두 궤적은
+   진동과 순환 사이 전이 뒤에 상관을 잃는다. 초기조건에 대한 이 극단적
+   민감성은 혼돈 거동을 가진 계의 특징이다. [[/eval/source/sicm/images/Art_P211.jpg]]
+
+
+
+   @@html:<span id="Exe_1-30"></span>@@
+
+
+
+   *연습문제 1.30: 중심 퍼텐셜에서의 궤도*
+
+   퍼텐셜 에너지 /V/ (/r/) = −/βr^{α}/인 중심장에서 질량 /m/인 입자의 평면
+   운동에 대한 라그랑지언은
+
+   $L(t;r,\theta;\overset{˙}{r},\overset{˙}{\theta}) =
+   \frac{1}{2}m({\overset{˙}{r}}^{2} + {(r\overset{˙}{\theta})}^{2}) + V(r).$
+
+   이다.
+
+   *a.* 이 라그랑지언을 받는 입자의 운동을 전개하고 평면에서 궤도를 표시하는
+   프로그램을 써라.
+
+   *b.* /α/ = +2 (조화 진동자)로 이 계를 전개하라. 다양한 초기조건에 대해
+   원점에 중심을 둔 타원을 기술함을 관찰하라.
+
+   *c.* /α/ = −1 (뉴턴 중력)로 이 계를 전개하라. 다양한 초기조건에 대해
+   원점에 초점을 둔 타원을 기술함을 관찰하라.
+
+   *d.* /α/ = +1/4로 이 계를 전개하라. 원점에 중심을 둔 세잎을 기술함을
+   관찰하라.
+
+   @@html:<span id="Exe_1-31"></span>@@
+
+   *연습문제 1.31: Foucault 진자의 전개*
+
+   Foucault 진자를 북극에 세우면 하루에 정확히 한 번 세차한다. 적도에 세우면
+   전혀 세차하지 않는다. 세차율이 여위의 코사인에 비례한다고 널리 보고된다.
+
+   *a.* [[/ko/eval/sicm/chapter-1/#Exe_1-25][연습문제 1.25]]
+   [[https://tgvaughan.github.io/sicm/chapter001.html#p62][62쪽]]에서
+   구성한 라그랑지언으로 Foucault 진자를 전개하라. 세차각 /λ/를 시간의
+   함수로 보아야 한다.
+
+   *b.* 세차율은 예측된 율과 어떻게 비교되는가? 추선이 정의하는 국소 연직이
+   지구 중심을 향하지 않아 생기는 오차를 볼 것으로 기대해야 한다.
+
+   *c.* Δ/ϕ/를 국소 연직과 지구 중심 방향 사이의 각이라 하자. 여위를
+   /ϕ/ − Δ/ϕ/로 보정한 예측 세차율과 세차율은 어떻게 비교되는가? 이것이
+   완벽한가?
+
+* 1.8 보존량
+  :PROPERTIES:
+  :CUSTOM_ID: h1-6c
+  :CLASS:    level1
+  :END:
+  해 경로를 따라 상수인 계 상태의 함수를 /보존량/ 또는 /운동
+  상수(constant of motion)/라 부른다.[fn:79] /C/가 보존량이면, 해 경로 /q/에
+  대해
+
+  @@html:<span id="disp_1.131"></span>@@
+$$\begin{aligned}
+{D(C \circ \Gamma\lbrack q\rbrack) = D_{t}C \circ \Gamma\lbrack q\rbrack = 0} & {(1.131)}
+  \end{aligned}$$
+  이다. 이 절에서는 대칭이 있는 계를 조사하고, 대칭이 보존량에 연관됨을
+  찾는다. 예를 들어 병진 대칭이 있는 계에서는 선운동량이 보존되고, 회전
+  대칭이 있으면 각운동량이 보존되며, 계가 시간의 원점에 의존하지 않으면
+  에너지가 보존된다. 먼저 대칭을 자연스럽게 표현하는 좌표계를 고를 수 있는
+  계를 생각하고, 나중에 모든 대칭을 동시에 표현하는 좌표계를 고를 수 없는
+  계를 논의한다.
+
+*** 1.8.1 보존 운동량
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-8-1
+    :CLASS:    level3
+    :END:
+    라그랑지언 /L/(/t/, /q/, /v/)가 어떤 특정 좌표 /q^{i}/에 의존하지 않으면
+
+    @@html:<span id="disp_1.132"></span>@@
+$$\begin{aligned}
+{{(\partial_{1}L)}_{i} = 0,} & {(1.132)}
+    \end{aligned}$$
+    이고, 대응하는 라그랑주 방정식의 /i/번째 성분은
+
+    @@html:<span id="disp_1.133"></span>@@
+$$\begin{aligned}
+{{(D(\partial_{2}L \circ \Gamma\lbrack q\rbrack))}_{i} = 0.} & {(1.133)}
+    \end{aligned}$$
+    이다. 성분의 도함수는 도함수의 성분과 같으므로, 이는
+
+    @@html:<span id="disp_1.134"></span>@@
+$$\begin{aligned}
+{D({(\partial_{2}L)}_{i} \circ \Gamma\lbrack q\rbrack) = 0,} & {(1.134)}
+    \end{aligned}$$
+    과 같고,
+
+    @@html:<span id="disp_1.135"></span>@@
+$$\begin{aligned}
+{\mathcal{P}_{i} = {(\partial_{2}L)}_{i}} & {(1.135)}
+    \end{aligned}$$
+    가 보존량임을 볼 수 있다. 함수
+
+    $\mathcal{P}$
+
+    를 /운동량 상태 함수(momentum state function)/라 부른다. 운동량 상태
+    함수의 값이 /일반화 운동량/이다. 일반화 운동량의 /i/번째 성분을 /i/번째
+    좌표에 /켤레(conjugate)/인 운동량이라 한다.[fn:80] 운동량은 계를 기술하는
+    데 쓴 라그랑지언의 선택에 의존한다.[fn:81] 라그랑지언에 명시적으로
+    나타나지 않는 일반화 좌표 성분을 /순환 좌표(cyclic coordinate)/라 부른다.
+    임의의 순환 좌표에 켤레인 일반화 운동량 성분은 운동 상수이다. 그 값은
+    실현 가능한 경로를 따라 상수이며, 다른 경로에서는 다른 값을 가질 수
+    있다. 앞으로 보듯, 운동량은 보존되지 않을 때에도 중요한 양이다.
+
+    좌표 경로 /q/와 라그랑지언 /L/이 주어지면, 운동량 경로 /p/는
+
+    @@html:<span id="disp_1.136"></span>@@
+$$\begin{aligned}
+{p = \partial_{2}L \circ \Gamma\lbrack q\rbrack = \mathcal{P} \circ \Gamma\lbrack q\rbrack,} & {(1.136)}
+    \end{aligned}$$
+    이고 성분은
+
+    @@html:<span id="disp_1.137"></span>@@
+$$\begin{aligned}
+{p_{i} = \mathcal{P}_{i} \circ \Gamma\lbrack q\rbrack.} & {(1.137)}
+    \end{aligned}$$
+    이다. 운동량 경로는 임의의 경로 /q/에 대해 잘 정의된다. 경로가 실현
+    가능하고 라그랑지언이 /q^{i}/에 의존하지 않으면 /p_{i}/는 상수 함수이다.
+
+    @@html:<span id="disp_1.138"></span>@@
+$$\begin{aligned}
+{Dp_{i} = 0.} & {(1.138)}
+    \end{aligned}$$
+    /p_{i}/의 상수값은 궤적마다 다를 수 있다.
+
+** 보존 운동량의 예
+   :PROPERTIES:
+   :CUSTOM_ID: examples-of-conserved-momenta
+   :CLASS:    level2
+   :END:
+   자유 입자 라그랑지언
+
+   $L(t,x,v) = \frac{1}{2}mv^{2}$
+
+   은 /x/에 무관하다. 따라서 운동량 상태 함수
+
+   $\mathcal{P}(t,q,v) = mv$
+
+   는 실현 가능한 경로를 따라 보존된다. 좌표 경로 /q/에 대한 운동량 경로
+   /p/는
+
+   $p(t) = \mathcal{P} \circ \Gamma\lbrack q\rbrack(t) = m\, Dq(t)$
+
+   이다. 실현 가능한 경로에 대해 /Dp/(/t/) = 0이다. 자유 입자에서는 보통의
+   선운동량이 실현 가능한 경로에 대해 보존된다.
+
+   중심력장 안의 입자에 대해 ([[/ko/eval/sicm/chapter-1/#h1-6a][1.6절]]),
+   라그랑지언
+
+   $L(t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}) =
+   \frac{1}{2}m({\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\varphi}}^{2}) - V(r)$
+
+   은 /r/에 의존하지만 /φ/에는 무관하다. 운동량 상태 함수는
+
+   $\mathcal{P}\left( {t;r,\varphi;\overset{˙}{r},\overset{˙}{\varphi}} \right)
+   = \lbrack m\overset{˙}{r},mr^{2}\overset{˙}{\varphi}\rbrack.$
+
+   이다. 성분이 둘이다. 첫째 성분, “반지름 운동량”은 보존되지 않는다. 둘째
+   성분, “각운동량”은 임의의 해 궤적을 따라 보존된다.
+
+
+
+   중심 퍼텐셜 문제를 직각 좌표로 표현했다면, 모든 좌표가 라그랑지언에
+   나타났을 것이다. 그 경우 분명한 보존량은 없었을 것이다. 그럼에도 계의
+   운동은 좌표 선택에 의존하지 않으므로 각운동량은 여전히 보존된다.
+
+   좌표계를 현명하게 고르는 데 큰 이점이 있음을 본다. 계의 대칭이 어떤 좌표
+   성분의 부재로 라그랑지언에 반영되도록 좌표를 고를 수 있으면, 대응하는
+   보존량의 존재가 분명해진다.[fn:82]
+
+*** 1.8.2 에너지 보존
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-8-2
+    :CLASS:    level3
+    :END:
+    라그랑지언이 대응하는 좌표에 의존하지 않으면 운동량은 운동에 의해
+    보존된다. 라그랑지언
+
+    $L(t,q,\overset{˙}{q})$
+
+    가 시간에 명시적으로 의존하지 않으면, ∂_{0}/L/ = 0이면, 또 하나의 운동
+    상수인 에너지가 있다.
+
+    해 경로 /q/를 따른 라그랑지언의 시간 미분을 생각하자.
+
+    @@html:<span id="disp_1.139"></span>@@
+$$\begin{aligned}
+{D(L \circ \Gamma\lbrack q\rbrack) = \partial_{0}L \circ \Gamma\lbrack q\rbrack + (\partial_{1}L \circ \Gamma\lbrack q\rbrack)Dq + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D^{2}q.} & {(1.139)}
+    \end{aligned}$$
+    둘째 항을 라그랑주 방정식으로 다시 쓰면
+
+    @@html:<span id="disp_1.140"></span>@@
+$$\begin{aligned}
+{D(L \circ \Gamma\lbrack q\rbrack) = (\partial_{0}L) \circ \Gamma\lbrack q\rbrack + D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)Dq + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D^{2}q.} & {(1.140)}
+    \end{aligned}$$
+    이 된다. ∂_{0}/L/을 분리하고 다른 항을 결합하면
+
+    @@html:<span id="disp_1.141"></span>@@
+$$\begin{array}{lll} {(\partial_{0}L) \circ \Gamma\lbrack q\rbrack} & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)Dq)} & \\ & {= D(L \circ \Gamma\lbrack q\rbrack) - D((\partial_{2}L \circ \Gamma\lbrack q\rbrack)(\overset{˙}{Q} \circ \Gamma\lbrack q\rbrack))} & \\ & {= D((L - \mathcal{P}\overset{˙}{Q}) \circ \Gamma\lbrack q\rbrack),} & {(1.141)}\end{array}$$
+    을 얻으며, 앞에서와 같이
+
+    $\overset{˙}{Q}$
+
+    는 상태에서 속도를 고른다. 따라서 ∂_{0}/L/ = 0이면
+
+    @@html:<span id="disp_1.142"></span>@@
+$$\begin{aligned}
+{\mathcal{E} = \mathcal{P}\overset{˙}{Q} - L} & {(1.142)}
+    \end{aligned}$$
+    이 실현 가능한 경로를 따라 보존됨을 본다. 함수 /ℰ/를 /에너지 상태
+    함수(energy state function)/라 부른다.[fn:83] 계의 에너지 상태 함수는
+    계를 기술하는 데 쓴 라그랑지언의 선택에 의존한다.[fn:84] /E/ = /ℰ/ ∘
+    Γ[/q/]가 경로 /q/ 위의 에너지 함수를 나타낸다고 하자. 라그랑지언에 명시적
+    시간 의존이 없으면 에너지 함수는 임의의 실현 가능한 궤적을 따라 상수값을
+    가진다. 에너지 /E/는 궤적마다 다른 값을 가질 수 있다. 명시적 시간 의존이
+    없는 계를 /자율(autonomous)/이라 부른다.
+
+    라그랑지언 절차 L이 주어지면 에너지 함수를 구성할 수 있다.
+
+     #+begin_src scheme
+(define (Lagrangian->energy L) (let ((P ((partial 2) L))) (- (* P velocity) L)))
+     #+end_src
+
+
+** 운동 에너지와 퍼텐셜 에너지로 본 에너지
+   :PROPERTIES:
+   :CUSTOM_ID: energy-in-terms-of-kinetic-and-potential-energies
+   :CLASS:    level2
+   :END:
+   어떤 경우에는 에너지를 운동 에너지와 퍼텐셜 에너지의 합으로 쓸 수 있다.
+   계가 직각 좌표 *x*_{/α/}를 가진 입자로 이루어지고, 그 움직임이 구속조건의
+   지배를 받을 수 있으며, 이 직각 좌표가 일반화 좌표 /q/와 가능하면 시간
+   /t/의 어떤 함수라고 하자. *x*_{/α/} = /f_{α}/(/t/, /q/). 라그랑지언을
+   /L/ = /T/ − /V/로 만들고, 직각 속도를 일반화 속도로 써서 운동 에너지를
+   /q/로 계산한다.
+
+   @@html:<span id="disp_1.143"></span>@@
+$$\begin{aligned}
+{\mathbf{v}_{\alpha} = \partial_{0}f_{\alpha}(t,q) + \partial_{1}f_{\alpha}(t,q)v.} & {(1.143)}
+   \end{aligned}$$
+   운동 에너지는
+
+   @@html:<span id="disp_1.144"></span>@@
+$$\begin{aligned}
+{T\left( {t,q,v} \right) = \frac{1}{2}{\sum_{\alpha}{m_{\alpha}v_{\alpha}^{2},}}} & {(1.144)}
+   \end{aligned}$$
+   이고, 여기서 /v_{α}/는 *v*_{/α/}의 크기이다.
+
+   /f/_{/α/} 함수가 시간에 명시적으로 의존하지 않으면 (∂_{0}/f_{α}/ =
+   0), 직각 속도는 차수 1의 일반화 속도의 동차 함수이고, /T/는 차수 1의
+   동차 함수의 제곱을 합하여 만들어지므로 차수 2의 일반화 속도의 동차
+   함수이다. /T/가 일반화 속도에 대해 차수 2의 동차 함수이면
+
+   @@html:<span id="disp_1.145"></span>@@
+$$\begin{aligned}
+{\mathcal{P}\overset{˙}{Q} = \left( {\partial_{2}T} \right)\overset{˙}{Q} = 2T,} & {(1.145)}
+   \end{aligned}$$
+   이고, 둘째 등식은 동차 함수에 대한 Euler의 정리에서 따른다.[fn:85] 에너지
+   상태 함수는
+
+   @@html:<span id="disp_1.146"></span>@@
+$$\begin{aligned}
+{\mathcal{E} = \mathcal{P}\overset{˙}{Q} - L = 2T - T + V.} & {(1.146)}
+   \end{aligned}$$
+   이다. 따라서 /f_{α}/가 시간에 무관하면 에너지 함수를
+
+   @@html:<span id="disp_1.147"></span>@@
+$$\begin{aligned}
+{\mathcal{E} = 2T - T + V = T + V.} & {(1.147)}
+   \end{aligned}$$
+   로 다시 쓸 수 있다. /V/가 시간에 의존해도 에너지는 여전히 운동 에너지와
+   퍼텐셜 에너지의 합이지만, 에너지는 보존되지 않음에 주목하라.
+
+   에너지 상태 함수는 /T/ + /V/ 꼴로 쓸 수 있는지, 실현 가능한 경로를 따라
+   보존되는지와 무관하게 언제나 잘 정의된다.
+
+   @@html:<span id="Exe_1-32"></span>@@
+
+   *연습문제 1.32: 시간 의존 구속조건*
+
+   /f_{α}/가 시간에 명시적으로 의존할 때에도 유사한 결과가 성립한다.
+
+   *a.* 이 경우 운동 에너지가 일반화 속도에 선형인 항을 포함함을 보여라.
+
+   *b.* 전시간 미분을 더하여, 라그랑지언을 /L/ = /A/ − /B/ 꼴로 쓸 수 있음을
+   보여라. 여기서 /A/는 일반화 속도의 동차 이차 형식이고 /B/는 속도에
+   무관하다.
+
+   *c.* Euler의 정리를 써서 에너지 함수가 /ℰ/ = /A/+/B/임을 보여라.
+
+   속도에 선형인 항을 전시간 미분을 더해 라그랑지언에서 제거한 예는 이미
+   주어졌다. 구동 진자이다.
+
+
+
+   @@html:<span id="Exe_1-33"></span>@@
+
+
+
+   *연습문제 1.33: 통나무에서 떨어지기*
+
+   질량 /m/인 입자가 가속도 /g/의 균일 중력장에서 반지름 /R/인 수평
+   원기둥에서 미끄러져 떨어진다. 입자가 영의 초기 속력으로 원기둥 꼭대기
+   가까이에서 출발하면, 원기둥을 떠날 때 각속도는 얼마인가?
+   [[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]]에서 도입한 구속력을 넣는 방법과
+   에너지 보존을 함께 써라.
+
+*** 1.8.3 3차원의 중심력
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-8-3
+    :CLASS:    level3
+    :END:
+    하나의 중요한 물리계는 반지름에만 의존하는 임의의 퍼텐셜 에너지 /V/ (/r/)를
+    가진 3차원 중심장 안 입자의 운동이다. 이 계를 구면 좌표 /r/, /θ/, /φ/로
+    기술한다. 여기서 /θ/는 여위이고 /φ/는 경도이다. 운동 에너지에는 세 항이
+    있다.
+
+    $$T(t;r,\theta,\varphi;\overset{˙}{r},\overset{˙}{\theta},\overset{˙}{\varphi})
+    = \frac{1}{2}m({\overset{˙}{r}}^{2} + r^{2}{\overset{˙}{\theta}}^{2} +
+    r^{2}{(\sin\theta)}^{2}{\overset{˙}{\varphi}}^{2}).$$
+
+    절차로는 다음과 같다.
+
+     #+begin_src scheme
+(define ((T3-spherical m) state) (let ((q (coordinate state)) (qdot (velocity
+state))) (let ((r (ref q 0)) (theta (ref q 1)) (rdot
+    (ref qdot 0)) (thetadot (ref qdot 1)) (phidot (ref qdot 2))) (* 1/2 m (+
+    (square rdot) (square (* r thetadot)) (square (* r (sin theta) phidot)))))))
+
+     #+end_src
+
+    그런 다음 퍼텐셜 에너지를 빼 라그랑지언을 만든다.
+
+        #+begin_src scheme
+(define (L3-central m Vr) (define (Vs state) (let ((r
+    (ref (coordinate state) 0))) (Vr r))) (- (T3-spherical m) Vs)) {%
+
+        #+end_src
+
+    먼저 일반화 힘(일반화 좌표에 대한 라그랑지언의 도함수)을 보자. 라그랑지언의
+    좌표 인수에 대한 편미분으로 이를 계산한다.
+
+     #+begin_src scheme
+(show-expression (((partial 1) (L3-central 'm
+    (literal-function 'V))) (up 't (up 'r 'theta 'phi) (up 'rdot 'thetadot
+'phidot))))
+     #+end_src
+
+    $$\begin{bmatrix} {m{\overset{˙}{\varphi}}^{2}r\,{(\sin\,(\theta))}^{2} +
+    mr{\overset{˙}{\theta}}^{2} - DV\,(r)}
+    \\ {m{\overset{˙}{\varphi}}^{2}r^{2}\cos\,(\theta)\,\sin\,(\theta)} 0
+    \\ \end{bmatrix}$$
+
+    /φ/ 성분의 힘은 영이다. /φ/가 라그랑지언에 나타나지 않기 때문이다 (순환
+    좌표이다). 대응하는 운동량 성분은 보존된다. 운동량을 계산하라.
+
+     #+begin_src scheme
+(show-expression (((partial 2) (L3-central 'm
+    (literal-function 'V))) (up 't (up 'r 'theta 'phi) (up 'rdot 'thetadot
+'phidot))))
+     #+end_src
+
+    $$\begin{bmatrix} {m\overset{˙}{r}} {mr^{2}\overset{˙}{\theta}}
+    \\ {mr^{2}\overset{˙}{\varphi}{(\sin\,(\theta))}^{2}} \end{bmatrix}$$
+
+    /φ/에 켤레인 운동량은 보존된다. 이는 각운동량
+
+    $\overset{\rightarrow}{r} \times (m\overset{\rightarrow}{v})$
+
+    의 /z/ 성분이다. 벡터 위치
+
+    $\overset{\rightarrow}{r}$
+
+    와 선운동량
+
+    $m\overset{\rightarrow}{v}$
+
+    에 대한 것이다. 각운동량의 /z/ 성분을 구면 좌표로 써서 이를 보일 수
+    있다.
+
+     #+begin_src scheme
+(define ((ang-mom-z m) rectangular-state) (let ((xyz
+    (coordinate rectangular-state)) (v (velocity rectangular-state))) (ref
+    (cross-product xyz (* m v)) 2))) (define (s->r spherical-state) (let ((q
+    (coordinate spherical-state))) (let ((r (ref q 0)) (theta (ref q 1)) (phi
+    (ref q 2))) (let ((x (* r (sin theta) (cos phi))) (y (* r (sin theta) (sin
+phi))) (z (* r (cos theta)))) (up x y z)))))
+     #+end_src
+
+        #+begin_src scheme
+(show-expression ((compose (ang-mom-z 'm) (F->C s->r)) (up 't (up 'r 'theta
+'phi) (up 'rdot 'thetadot 'phidot)))) {%
+
+        #+end_src
+
+    $$mr^{2}\overset{˙}{\varphi}{(\sin\,(\theta))}^{2}$$
+
+    /z/축의 선택은 임의이므로, 각운동량의 임의의 성분이 보존되면 모든 성분이
+    보존된다. 따라서 총 각운동량은 보존된다. /z/축을 골라 각운동량 전부가
+    /z/ 성분에 있게 할 수 있다.
+
+    $\overset{\rightarrow}{x} \cdot (\overset{\rightarrow}{x} \times
+    \overset{\rightarrow}{v}) = \overset{\rightarrow}{v} \cdot
+    (\overset{\rightarrow}{x} \times \overset{\rightarrow}{x}) = 0$
+
+    이므로, 운동은 각운동량에 수직인 평면에 갇힌다. /θ/ = /π//2이고
+
+    $\overset{˙}{\theta} = 0$
+
+    이다. 중심력장에서의 평면 운동은 [[/ko/eval/sicm/chapter-1/#h1-6a][1.6절]]에서
+    논의했다.
+
+    중심장의 라그랑지언에서 계산한 에너지 상태 함수가 실제로 /T/ + /V/임도
+    볼 수 있다.
+
+     #+begin_src scheme
+(show-expression ((Lagrangian->energy (L3-central 'm
+    (literal-function 'V))) (up 't (up 'r 'theta 'phi) (up 'rdot 'thetadot
+'phidot))))
+     #+end_src
+
+    $$\frac{1}{2}m{\overset{˙}{\varphi}}^{2}r^{2}{(\sin\,(\theta))}^{2} +
+    \frac{1}{2}mr^{2}{\overset{˙}{\theta}}^{2} +
+    \frac{1}{2}m{\overset{˙}{r}}^{2} + V\,(r)$$
+
+    라그랑지언에 명시적 시간 의존이 없으므로 에너지는 보존된다.
+
+    @@html:<span id="Exe_1-34"></span>@@
+
+    *연습문제 1.34: 구동 구면 진자*
+
+    구면 진자는 균일 중력을 받는 질량이 있는 추로, 3차원에서 흔들릴 수 있으나
+    피벗으로부터 주어진 거리에 머문다. 피벗의 연직 운동으로 구동되는 구면
+    진자의 라그랑지언을 정식화하라. 어떤 대칭을 찾을 수 있는가? 그 대칭을
+    표현하는 좌표를 찾아라. 무엇이 보존되는가? 보존량에 대한 해석적 표현을
+    주어라.
+
+*** 1.8.4 제한 삼체 문제
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-8-4
+    :CLASS:    level3
+    :END:
+    질량 /M/_{0}과 /M/_{1}인 두 물체가 공통 질량중심 둘레의 원궤도에 있는
+    상황을 생각하라. 둘의 원궤도 평면에서 움직여야 하며, 다른 둘에 중력으로
+    끌리는 셋째 입자의 거동은 무엇인가? 셋째 입자의 질량이 너무 작아 두
+    무거운 입자의 궤도에 미치는 효과를 무시할 수 있다고 가정하라.
+
+    질량 /m/인 셋째 입자는 시간에 변하는 중력 퍼텐셜 에너지에서 유도된 장
+    안에서 움직인다. 우리는 다음을 가진다.
+
+     #+begin_src scheme
+(define ((L0 m V) local) (let ((t (time local)) (q
+    (coordinates local)) (v (velocities local))) (- (* 1/2 m (square v)) (V t
+q))))
+     #+end_src
+
+    /a/를 두 물체 사이 상수 거리라 하자. 질량중심을 좌표계의 원점에 두면 두
+    입자의 원점으로부터의 거리는 다음과 같다.
+
+    @@html:<span id="disp_1.148"></span>@@
+$$\begin{aligned}
+{a_{0} = \frac{M_{1}}{M_{0} + M_{1}}a\,\,\text{and}\,\, a_{1} = \frac{M_{0}}{M_{0} + M_{1}}a} & {(1.148)}
+    \end{aligned}$$
+    각 무거운 입자는 각진동수 Ω로 공통 질량중심 둘레의 원을 돈다. 원의
+    반지름은 위에 주어진 거리이다. Kepler의 법칙이 궤도의 각진동수를 준다.
+
+    @@html:<span id="disp_1.149"></span>@@
+$$\begin{aligned}
+{\Omega^{2}a^{3} = G(M_{0} + M_{1})} & {(1.149)}
+    \end{aligned}$$
+    /t/ = 0에서 질량 /M/_{1}인 물체가 양의
+
+    $\widehat{x}$
+
+    축 위에, 질량 /M/_{0}인 물체가 음의
+
+    $\widehat{x}$
+
+    축 위에 있도록 축을 고른다. 중력 퍼텐셜 에너지 함수는 다음과 같다.
+
+     #+begin_src scheme
+(define ((V a GM0 GM1 m) t xy) (let ((Omega (sqrt (/
+    (+ GM0 GM1) (expt a 3)))) (a0 (* (/ GM1 (+ GM0 GM1)) a)) (a1 (* (/ GM0 (+
+    GM0 GM1)) a))) (let ((x (ref xy 0)) (y (ref xy 1)) (x0 (* -1 a0 (cos (*
+    Omega t)))) (y0 (* -1 a0 (sin (* Omega t)))) (x1 (* +1 a1 (cos (* Omega
+    t)))) (y1 (* +1 a1 (sin (* Omega t))))) (let ((r0 (sqrt (+ (square (- x x0))
+    (square (- y y0))))) (r1 (sqrt (+ (square (- x x1)) (square (- y y1)))))) (-
+    (+ (/ (* GM0 m) r0) (/ (* GM1 m) r1)))))))
+     #+end_src
+
+
+
+   무거운 입자가 고정된 회전 좌표계에서 셋째 입자의 운동을 살펴보는 것이
+   편리하다. 두 무거운 입자가
+
+   $\widehat{x}\prime$
+
+   축 위에 있도록 회전 축을 둘 수 있고, /t/ = 0에서 회전 축과 비회전 축이
+   일치하도록 고를 수 있다. [[https://tgvaughan.github.io/sicm/chapter001.html#p48][48쪽]]에서처럼 회전
+   직각 좌표로 변환할 수 있다. 나온 라그랑지언은 자유 입자 라그랑지언에 두
+   중력 퍼텐셜 에너지 항을 더한 것이다.
+
+    @@html:<span id="disp_1.150"></span>@@
+$$\begin{aligned}
+{L_{r}(t;x_{r},y_{r};{\overset{˙}{x}}_{r},{\overset{˙}{y}}_{r})} & \\
+    {\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\left( {{\overset{˙}{x}}_{r}^{2} + {\overset{˙}{y}}_{r}^{2}} \right) + \frac{1}{2}m\Omega^{2}(x_{r}^{2} + y_{r}^{2}) + m\Omega(x_{r}{\overset{˙}{y}}_{r} - {\overset{˙}{x}}_{r}y_{r})} & \\
+    {\,\,\,\,\,\,\,\,\,\,\,\,\,\, + \frac{GM_{0}m}{r_{0}} + \frac{GM_{1}m}{r_{1}}} & {(1.150)}
+    \end{aligned}$$
+   여기서 이제
+
+    $r_{0}^{2} = {(x_{r} + a_{0})}^{2} + y_{r}^{2}\,\,\text{and}\,\, r_{1}^{2} =
+    \left( {x_{r} - a_{1}} \right)^{2} + y_{r}^{2}$
+
+   이다. 프로그램으로는 다음처럼 쓸 수 있다.
+
+     #+begin_src scheme
+(define ((LR3B m a GM0 GM1) local) (let ((q
+    (coordinates local)) (qdot (velocities local)) (Omega (sqrt (/ (+ GM0 GM1)
+    (expt a 3)))) (a0 (* (/ GM1 (+ GM0 GM1)) a)) (a1 (* (/ GM0 (+ GM0 GM1)) a)))
+    (let ((x (ref q 0)) (y (ref q 1)) (xdot (ref qdot 0)) (ydot (ref qdot 1)))
+    (let ((r0 (sqrt (+ (square (+ x a0)) (square y)))) (r1 (sqrt (+ (square (- x
+    a1)) (square y))))) (+ (* 1/2 m (square qdot)) (* 1/2 m (square Omega)
+    (square q)) (* m Omega (- (* x ydot) (* xdot y))) (/ (* GM0 m) r0) (/ (* GM1
+m) r1))))))
+     #+end_src
+
+   회전 좌표에서의 라그랑지언이 시간에 무관함에 주목하라. 따라서 이
+   라그랑지언이 정의하는 에너지 상태 함수는 보존량이다. 그것을 계산하자.
+   Ω, /a/_{0}, /a/_{1}로 결과를 표현하면 가장 분명하므로, 그것들을
+   라그랑지언의 명시적 매개변수로 만든다.
+
+        #+begin_src scheme
+(define ((LR3B1 m a0 a1 Omega GM0 GM1) local) (let
+    ((q (coordinates local)) (qdot (velocities local))) (let ((x (ref q 0)) (y
+    (ref q 1)) (xdot (ref qdot 0)) (ydot (ref qdot 1))) (let ((r0 (sqrt (+
+    (square (+ x a0)) (square y)))) (r1 (sqrt (+ (square (- x a1)) (square
+    y))))) (+ (* 1/2 m (square qdot)) (* 1/2 m (square Omega) (square q)) (* m
+    Omega (- (* x ydot) (* xdot y))) (/ (* GM0 m) r0) (/ (* GM1 m) r1)))))) {%
+
+        #+end_src
+
+   그리고 에너지 상태 함수를 계산한다 (약간의 손 단순화를 곁들여).
+
+     #+begin_src scheme
+((Lagrangian->energy (LR3B1 'm 'a_0 'a_1 'Omega 'GM_0 'GM_1)) (up 't (up 'x_r
+'y_r) (up 'v_r^x 'v_r^y))) (+ (* 1/2 m (expt v_r^x 2)) (* 1/2 m (expt v_r^y
+2)) (/ (* -1 GM_0 m) (sqrt (+ (expt (+ x_r a_0) 2)
+    (expt y_r 2)))) (/ (* -1 GM_1 m) (sqrt (+ (expt (- x_r a_1) 2) (expt y_r
+2)))) (* -1/2 m (expt Omega 2) (expt x_r 2)) (* -1/2 m (expt Omega 2) (expt y_r
+2)))
+     #+end_src
+
+   이를 속도 의존 부분과 속도에 무관한 부분으로 나누면
+
+    @@html:<span id="disp_1.151"></span>@@
+$$\begin{aligned}
+{\mathcal{E}(t;x_{r},y_{r};{\overset{˙}{x}}_{r},{\overset{˙}{y}}_{r}) = \frac{1}{2}m({\overset{˙}{x}}_{r}^{2} + {\overset{˙}{y}}_{r}^{2}) + mU_{r}(x_{r},y_{r})} & {(1.151)}
+    \end{aligned}$$
+   을 얻고, 여기서
+
+    @@html:<span id="disp_1.152"></span>@@
+$$\begin{aligned}
+{U_{r}(x_{r},y_{r}) = - \left( {\frac{GM_{0}}{r_{0}} + \frac{GM_{1}}{r_{1}} + \frac{1}{2}\Omega^{2}(x_{r}^{2} + y_{r}^{2})} \right).} & {(1.152)}
+    \end{aligned}$$
+   이다. 제한 삼체 문제의 이 운동 상수를 /Jacobi 상수(Jacobi constant)/라
+   부른다.[fn:86] 에너지 함수가 (회전 좌표에서) 속도 성분의 양의 정부호
+   이차 형식에, 회전 좌표에만 의존하는 함수를 더한 것임에 주목하라. 에너지
+   상태 함수에는 속도
+
+    ${\overset{˙}{x}}_{r}$
+
+   와
+
+    ${\overset{˙}{y}}_{r}$
+
+   에 선형인 항이 없으나, 그런 항은 라그랑지언
+   ([[/ko/eval/sicm/chapter-1/#disp_1.150][1.150]])에 나타남에 유의하라.
+
+
+
+   @@html:<span id="Exe_1-35"></span>@@
+
+
+
+   *연습문제 1.35: 제한 운동방정식*
+
+   라그랑지언 ([[/ko/eval/sicm/chapter-1/#disp_1.150][1.150]])이 주어졌을 때 제한
+   삼체 문제의 라그랑주 방정식을 유도하라. 운동방정식에서 코리올리 힘과
+   원심력 항을 식별하라.
+
+*** 1.8.5 Noether의 정리
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-8-5
+    :CLASS:    level3
+    :END:
+    계에 대칭이 있고, 그 대칭에 연관된 좌표에 라그랑지언이 의존하지 않도록
+    좌표계를 고를 수 있으면, 그 대칭에 연관된 보존량이 있음을 보았다. 그러나
+    어떤 좌표계도 완전히 표현할 수 없는 더 일반적인 대칭이 있다. 예를 들어
+    중심 퍼텐셜에서의 운동은 구면 대칭이지만 (동역학계가 임의의 축 둘레
+    회전에 대해 불변이다), 구면 좌표에서 계의 라그랑지언 표현은 한 축 둘레의
+    대칭만 드러낸다. 더 일반적으로, 라그랑지언을 그대로 두는 좌표 변환이
+    있으면 그 라그랑지언은 대칭을 가진다. 연속 대칭은 대칭의 매개변수 족이다.
+    Noether는 임의의 연속 대칭에 대해 보존량이 있음을 증명했다.
+
+    매개변수 /s/를 가진 매개변수 좌표 변환
+
+    $\widetilde{F}$
+
+    를 생각하라.
+
+    @@html:<span id="disp_1.153"></span>@@
+$$\begin{aligned}
+{x = \widetilde{F}(s)(t,x\prime).} & {(1.153)}
+    \end{aligned}$$
+    이 매개변수 좌표 변환에 대응하는 매개변수 상태 변환
+
+    $\widetilde{C}$
+
+    가 있다.
+
+    @@html:<span id="disp_1.154"></span>@@
+$$\begin{aligned}
+{(t,x,v) = \widetilde{C}(s)(t,x\prime,v\prime).} & {(1.154)}
+    \end{aligned}$$
+    변환
+
+    $\widetilde{F}(0)$
+
+    이 항등 좌표 변환
+
+    $x\prime = \widetilde{F}(0)(t,x\prime)$
+
+    이기를 요구하며, 그 결과
+
+    $\widetilde{C}(0)$
+
+    는 항등 상태 변환
+
+    $(t,x\prime,v\prime) = \widetilde{C}(0)(t,x\prime,v\prime)$
+
+    이다. 라그랑지언 /L/은, 임의의 /s/에 대해 변환
+
+    @@html:<span id="disp_1.155"></span>@@
+$$\begin{aligned}
+{\widetilde{L}(s) = L \circ \widetilde{C}(s) = L} & {(1.155)}
+    \end{aligned}$$
+    아래 불변이면
+
+    $\widetilde{F}$
+
+    에 대응하는 연속 대칭을 가진다. 라그랑지언 /L/은 변환된 라그랑지언
+
+    $\widetilde{L}(s)$
+
+    와 같은 함수이다.
+
+
+
+    임의의 /s/에 대해
+
+    $\widetilde{L}(s) = L$
+
+    이라는 것은
+
+    $D\widetilde{L}(s) = 0$
+
+    을 함의한다. 명시적으로
+
+    $\widetilde{L}(s)$
+
+    는
+
+    @@html:<span id="disp_1.156"></span>@@
+$$\begin{aligned}
+{\widetilde{L}(s)(t,x\prime,v\prime) = L(t,\widetilde{F}(s)(t,x\prime),D_{t}(\widetilde{F}(s))(t,x\prime,v\prime)),} & {(1.156)}
+    \end{aligned}$$
+    이고, 여기서
+
+    $\widetilde{C}(s)$
+
+    의 속도 성분을 전시간 미분으로 다시 썼다.
+
+    $\widetilde{L}$
+
+    의 도함수는 영이다.
+
+    @@html:<span id="disp_1.157"></span>@@
+$$\begin{array}{lll} 0 & {= D\widetilde{L}(s)(t,x\prime,v\prime)} & \\ & {= \partial_{1}L(t,x,v)\,\,(D\widetilde{F})(s)(t,x\prime) + \partial_{2}L(t,x,v)\,\, D_{t}(D\widetilde{F}(s))(t,x\prime),} & {(1.157)} \\\end{array}$$
+    여기서 다음 사실을 썼다.[fn:87]
+
+    @@html:<span id="disp_1.158"></span>@@
+$$\begin{aligned}
+{D_{t}(D\widetilde{F}(s)) = DG(s)\,\,\,\text{with}\,\,\, G\left( s \right) = D_{t}(\widetilde{F}(s)).} & {(1.158)}
+    \end{aligned}$$
+    실현 가능한 경로 /q/에서 라그랑주 방정식을 써서 방정식
+    ([[/ko/eval/sicm/chapter-1/#disp_1.157][1.157]])의 첫째 항을 다시 쓸 수 있다.
+
+    @@html:<span id="disp_1.159"></span>@@
+$$\begin{array}{lll} {0 =} & {(D_{t}\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,((D\widetilde{F})(s) \circ \Gamma\lbrack q\prime\rbrack)} & \\ & {\, + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)\,\,(D_{t}(D\widetilde{F}(s)) \circ \Gamma\lbrack q\prime\rbrack).} & {(1.159)}\end{array}$$
+    /s/ = 0에서 경로 /q/와 /q/′는 같다.
+
+    $\widetilde{F}(0)$
+
+    가 항등이므로 Γ[/q/] = Γ[/q/′]이고, 이 방정식은
+
+    @@html:<span id="disp_1.160"></span>@@
+$$\begin{array}{lll} 0 & {= ((D_{t}\partial_{2}L)\,\,((D\widetilde{F})(0)) + (\partial_{2}L)\,\,(D_{t}(D\widetilde{F}(0)))) \circ \Gamma\lbrack q\rbrack} & \\ & {= D_{t}((\partial_{2}L)\,\,(D\widetilde{F}(0))) \circ \Gamma\lbrack q\rbrack.} & {(1.160)}\end{array}$$
+    이 된다. 따라서 상태 함수
+
+    $\mathcal{I}$
+
+    ,
+
+    @@html:<span id="disp_1.161"></span>@@
+$$\begin{aligned}
+{\mathcal{I} = (\partial_{2}L)(D\widetilde{F}(0)),} & {(1.161)}
+    \end{aligned}$$
+    는 해 궤적을 따라 보존된다. 이 보존량을 /Noether 적분(Noether's integral)/이라
+    부른다. 그것은 운동량과 대칭에 연관된 벡터의 곱이다.
+
+
+
+** 예시: 중심 퍼텐셜에서의 운동
+   :PROPERTIES:
+   :CUSTOM_ID: illustration-motion-in-a-central-potential
+   :CLASS:    level2
+   :END:
+   예를 들어 직각 좌표에서의 중심 퍼텐셜 라그랑지언
+
+   @@html:<span id="disp_1.162"></span>@@
+$$\begin{aligned}
+{L(t;x,y,z;v_{x}.v_{y},v_{z})} & \\
+   {\,\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\,\left( v_{x}^{2} + v_{y}^{2} + v_{z}^{2} \right) - U\left( \sqrt{x^{2} + y^{2} + z^{2}} \right),} & {(1.162)}
+   \end{aligned}$$
+   과 /z/축 둘레의 매개변수 회전 /R_{z}/(/s/)
+
+   @@html:<span id="disp_1.163"></span>@@
+$$\begin{matrix} {\begin{pmatrix} x \\ y \\ z \\ \end{pmatrix} =
+   R_{z}(s)\,\begin{pmatrix} {x\prime} {y\prime} {z\prime} \\ \end{pmatrix}
+   = \begin{pmatrix} {x\prime\cos s - y\prime\sin s} \\ {x\prime\sin s +
+   y\prime\cos s} {z\prime} \end{pmatrix}.} & {(1.163)} \end{matrix}$$
+
+   를 생각하라. 회전은 직교 변환이므로
+
+   @@html:<span id="disp_1.164"></span>@@
+$$\begin{aligned}
+{x^{2} + y^{2} + z^{2} = {(x\prime)}^{2} + {(y\prime)}^{2} + {(z\prime)}^{2}.} & {(1.164)}
+   \end{aligned}$$
+   이다. 경로를 따라 미분하면
+
+   @@html:<span id="disp_1.165"></span>@@
+$$\begin{aligned}
+{(v_{x},v_{y},v_{z}) = R_{z}(s)(v_{x}^{\prime},v_{y}^{\prime},v_{z}^{\prime}),} & {(1.165)}
+   \end{aligned}$$
+   이므로 속도 또한 직교 변환으로 변환되고
+
+   $v_{x}^{2} + v_{y}^{2} + v_{z}^{2} = {(v_{x}^{\prime})}^{2} +
+   {(v_{y}^{\prime})}^{2} + {(v_{z}^{\prime})}^{2}$
+
+   이다. 따라서
+
+   @@html:<span id="disp_1.166"></span>@@
+$$\begin{aligned}
+{L\prime(t;x\prime,y\prime,z\prime;v_{x}^{\prime},v_{y}^{\prime},v_{z}^{\prime})} & \\
+   {\,\,\,\,\,\,\,\,\,\, = \frac{1}{2}m\,\left( {{(v_{x}^{\prime})}^{2} + {(v_{y}^{\prime})}^{2} + {(v_{z}^{\prime})}^{2}} \right)} & \\
+   {\,\,\,\,\,\,\,\,\,\,\,\,\,\, - U\left( \sqrt{{(x\prime)}^{2} + {(y\prime)}^{2} + {(z\prime)}^{2}} \right),} & {(1.166)}
+   \end{aligned}$$
+   이고 /L/′가 /L/과 정확히 같은 함수임을 본다.
+
+   운동량은
+
+   @@html:<span id="disp_1.167"></span>@@
+$$\begin{aligned}
+{\partial_{2}L(t;x,y,z;v_{x},v_{y},v_{z}) = \lbrack mv_{x},mv_{y},mv_{z}\rbrack} & {(1.167)}
+   \end{aligned}$$
+   이고
+
+   @@html:<span id="disp_1.168"></span>@@
+$$\begin{aligned}
+{D\widetilde{F}(0)(t;x,y,z) = D{\widetilde{R}}_{z}(0)(x,y,z) = (y, - x,0).} & {(1.168)}
+   \end{aligned}$$
+   이다. 따라서 Noether 적분은
+
+   @@html:<span id="disp_1.169"></span>@@
+$$\begin{array}{lll} {\mathcal{I}(t;x,y,z;v_{x},v_{y},v_{z})} & {= ((\partial_{2}L)(D\widetilde{F}(0)))(t;x,y,z;v_{x},v_{y},v_{z})} & \\ & {= m(yv_{x} - xv_{y}),} & {(1.169)}\end{array}$$
+   이고, 이를 각운동량
+
+   $\overset{\rightarrow}{x} \times (m\overset{\rightarrow}{v})$
+
+   의 /z/ 성분의 부호를 바꾼 것으로 알아본다. 라그랑지언이 임의의 연속 회전
+   대칭에 의해 보존되므로, 중심 퍼텐셜 문제에서 벡터 각운동량의 모든 성분이
+   보존된다.
+
+   절차 호출 ((Rx angle-x) q), ((Ry angle-y) q), ((Rz angle-z) q)는 직각 튜플
+   q를 표시된 축 둘레로 표시된 각만큼 회전시킨다.[fn:88] 이를 써서 매개변수
+   좌표 변환 F-tilde를 만든다.
+
+    #+begin_src scheme
+(define (F-tilde angle-x angle-y angle-z) (compose (Rx angle-x) (Ry angle-y) (Rz
+angle-z) coordinate))
+    #+end_src
+
+   중심 퍼텐셜에서의 운동에 대한 라그랑지언은
+
+    #+begin_src scheme
+(define ((L-central-rectangular m U) state) (let ((q
+   (coordinate state)) (v (velocity state))) (- (* 1/2 m (square v)) (U (sqrt
+   (square q))))))
+    #+end_src
+
+   이다. 그러면 Noether 적분은
+
+    #+begin_src scheme
+(define the-Noether-integral (let ((L
+   (L-central-rectangular 'm (literal-function 'U)))) (* ((partial 2) L) ((D
+F-tilde) 0 0 0)))) (the-Noether-integral (up 't (up 'x 'y 'z) (up 'vx 'vy
+'vz))) (down (+ (* m vy z) (* -1 m vz y)) (+ (* m vz x) (* -1 m vx z)) (+ (* m
+vx y) (* -1 m vy x)))
+    #+end_src
+
+   이다. 각운동량의 세 성분을 모두 얻는다.
+
+
+
+   @@html:<span id="Exe_1-36"></span>@@
+
+
+
+   *연습문제 1.36: Noether 적분*
+
+   타원면 위의 운동을 생각하라. 곡면은 다음으로 지정된다.
+
+   $x^{2}/a^{2} + y^{2}/b^{2} + z^{2}/c^{2} = 1$
+
+   이 곡면 위 마찰 없는 운동의 라그랑지언을 정식화하라. 타원의 축 둘이
+   같다고 가정하라. /b/ = /c/.
+
+   각좌표 (/θ/, /ϕ/)를 쓰되, /θ/는 /ẑ/축으로부터의 여위이고 /ϕ/는
+
+   $\widehat{x}$
+
+   축에서 잰 경도이다. 이 타원면의 대칭, 곧
+
+   $\widehat{x}$
+
+   축 둘레의 회전 대칭을 담아내는 라그랑지언을 정식화하라. 이 대칭을 나타내는
+   매개변수 변환을 정식화하고, 당신이 정식화한 라그랑지언이 이 변환 아래
+   불변임을 보여라. 이 대칭에 연관된 Noether 적분을 계산하라.
+
+   좌표의 선택이 이 대칭을 집어넣지 않음에 유의하라.
+
+* 1.9 경로 함수의 추상화
+  :PROPERTIES:
+  :CUSTOM_ID: h1-6d
+  :CLASS:    level1
+  :END:
+  좌표 변환 /F/에서 국소 튜플 변환 함수 /C/를 유도하는 핵심 단계는 두
+  좌표계에서 속도 사이의 관계를 이끌어 내는 것이었다. 좌표 경로를 좌표 변환
+  함수 /F/에 넣고 미분한 뒤, 경로 위의 결과를 한 순간의 임의의 속도로
+  일반화하여 이를 했다. 마지막 단계는 경로 함수에서 국소 튜플 함수를
+  추상화하는 더 일반적인 문제의 한 예이다. 국소 튜플의 함수 /f/가 주어지면,
+  대응하는 경로 의존 함수는
+
+  $\overline{f}\lbrack q\rbrack\,\text{is}\,\overline{f}\lbrack q\rbrack = f
+  \circ \Gamma\lbrack q\rbrack$
+
+  이다.
+
+  $\overline{f}$
+
+  가 주어졌을 때 /f/를 어떻게 재구성하는가? 국소 튜플 함수 /f/는 국소 튜플의
+  유한한 수의 성분에만 의존하고,
+
+  $\overline{f}$
+
+  는 경로의 대응하는 국소 성분에만 의존한다. 따라서
+
+  $\overline{f}$
+
+  는 그 수의 국소 튜플 성분을 공유하는 모든 경로에 대해 같은 값을 가진다.
+
+  $\overline{f}$
+
+  가 주어지면, /f/의 인수인 국소 튜플의 유한 초기 조각을 취해, 이 국소 기술을
+  가진 경로를 구성하고, 이 경로에 대한
+
+  $\overline{f}$
+
+  의 값을 찾아 /f/를 재구성할 수 있다.
+
+  /n/차 도함수까지 같은 국소 기술을 가진 두 경로를 /차수 n 접촉으로
+  접촉한다(osculate with order n contact)/고 한다. 예를 들어 경로와 그 경로의
+  /n/차까지의 절단 거듭제곱 급수 표현은 차수 /n/ 접촉을 가진다. 국소 튜플
+  함수가 /n/보다 적은 도함수를 필요로 하면, 경로와 절단 거듭제곱 급수 표현은
+  동등하다. /O/를 주어진 국소 튜플 성분으로 접촉 경로를 생성하는 함수라
+  하자. 따라서 /O/(/t/, /q/, /v/, ...)(/t/) = /q/, /D/(/O/(/t/, /q/, /v/,
+  ...))(/t/) = /v/이고, 일반적으로
+
+  @@html:<span id="disp_1.170"></span>@@
+$$\begin{aligned}
+{(t,q,v,\ldots) = \Gamma\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.170)}
+  \end{aligned}$$
+  이다. 필요한 국소 튜플 성분의 수는 유한하나 지정되지 않았다. /O/를 구성하는
+  한 방법은 절단 거듭제곱 급수를 통하는 것이다.
+
+  @@html:<span id="disp_1.171"></span>@@
+$$\begin{aligned}
+{O(t,q,v,a,\ldots)(t\prime) = q + v(t\prime - t) + \frac{1}{2}a{(t\prime - t)}^{2} + \cdots,} & {(1.171)}
+  \end{aligned}$$
+  항의 수는 지정된 국소 튜플 성분의 수와 같다.
+
+  경로 함수
+
+  $\overline{f}$
+
+  가 주어지면 /f/ 함수를 다음과 같이 재구성한다. /f/의 인수를 취해 이 국소
+  기술로 접촉 경로를 구성한다. 그러면 /f/의 값은 이 접촉 경로에 대한
+
+  $\overline{f}$
+
+  의 값이다.
+
+  @@html:<span id="disp_1.172"></span>@@
+$$\begin{array}{lll} {f(t,q,v,\ldots)} & {= (f \circ \Gamma\lbrack O(t,q,v,\ldots)\rbrack)(t)} & \\ & {= \overline{f}\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.172)}\end{array}$$
+  $\overline{\Gamma}$
+
+  를 경로 함수를 받아 대응하는 국소 튜플 함수를 돌려주는 함수라 하자.[fn:89]
+
+  @@html:<span id="disp_1.173"></span>@@
+$$\begin{aligned}
+{f = \overline{\Gamma}(\overline{f}).} & {(1.173)}
+  \end{aligned}$$
+  방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.172][1.172]])에서
+
+  @@html:<span id="disp_1.174"></span>@@
+$$\begin{aligned}
+{\overline{\Gamma}(\overline{f})(t,q,v,\ldots) = \overline{f}\lbrack O(t,q,v,\ldots)\rbrack(t).} & {(1.174)}
+  \end{aligned}$$
+  임을 본다. 절차 Gamma-bar는 경로 의존 함수를 국소 튜플 함수로 재구성하는
+  함수
+
+  $\overline{\Gamma}$
+
+  를 구현한다.
+
+   #+begin_src scheme
+(define ((Gamma-bar f-bar) local) ((f-bar
+  (osculating-path local)) (time local)))
+   #+end_src
+
+
+
+  절차 osculating-path는 여러 국소 성분을 받아 이 성분을 가진 경로를
+  돌려준다. 거듭제곱 급수로 구현된다.
+
+  Gamma-bar를 써서 좌표 변환 F를 받아 국소 튜플을 변환하는 절차를 생성하는
+  절차 F->C를 구성할 수 있다. 절차 F->C는 프라임 계의 좌표 경로를 받아
+  프라임 없는 좌표계에서 대응하는 경로의 국소 튜플을 돌려주는 경로 의존
+  절차 f-bar를 구성한다. 그런 다음 Gamma-bar를 써서 f-bar를 프라임 좌표계의
+  임의의 국소 튜플로 추상화한다.[fn:90]
+
+   #+begin_src scheme
+(define (F->C F) (define (C local) (let ((n
+  (vector-length local))) (define (f-bar q-prime) (define q (compose F (Gamma
+q-prime))) (Gamma q n)) ((Gamma-bar f-bar) local))) C) (show-expression ((F->C
+p->r) (up 't (up 'r 'theta) (up 'rdot 'thetadot))))
+   #+end_src
+
+  $$\begin{pmatrix} t \\ \begin{pmatrix} {r\cos\,(\theta)} {r\sin\,(\theta)}
+  \\ \end{pmatrix} \begin{pmatrix} {- r\overset{˙}{\theta}\sin\,(\theta) +
+  \overset{˙}{r}\cos\,(\theta)} {r\overset{˙}{\theta}\cos\,(\theta) +
+  \overset{˙}{r}\sin\,(\theta)} \end{pmatrix} \end{pmatrix}$$
+
+
+
+  이 F->C 정의에서 어떤 도함수도 명시적으로 계산하지 않음에 주목하라.
+  상태 변환 ([[/ko/eval/sicm/chapter-1/#disp_1.77][1.77]])으로 이끈 계산은 필요하지
+  않다.
+
+  또한
+
+  $\overline{\Gamma}$
+
+  를 써서 함수 /F/의 전시간 미분 /D_{t}F/를 계산하는 우아한 공식을 만들 수
+  있다.
+
+  @@html:<span id="disp_1.175"></span>@@
+$$\begin{array}{llll} {D_{t}F = \overline{\Gamma}(\overline{G}),} & \text{with} & {\overline{G}\lbrack q\rbrack = D(F \circ \Gamma\lbrack q\rbrack).} & {(1.175)}\end{array}$$
+  전시간 미분은 프로그램으로 표현할 수 있다.
+
+   #+begin_src scheme
+(define (Dt F) (define (DtF state) (let ((n
+  (vector-length state))) (define (DF-on-path q) (D (compose F (Gamma q (- n
+1))))) ((Gamma-bar DF-on-path) state))) DtF)
+   #+end_src
+
+  국소 튜플 함수를 구현하는 절차 F와 경로 q가 주어지면, 새 절차 (compose F
+  (Gamma q))를 구성한다. 절차 DF-on-path는 이 시간 함수의 도함수를 구현한다.
+  그런 다음 Gamma-bar로 이를 경로에서 추상화하여 전시간 미분을 준다.
+
+  @@html:<span id="Exe_1-37"></span>@@
+
+  *연습문제 1.37: 속도 변환*
+
+  절차 Gamma-bar를 써서 좌표 변환이 주어졌을 때 속도를 변환하는 절차를
+  구성하라. 이 절차를 절차 p->r에 적용하여 방정식
+  ([[/ko/eval/sicm/chapter-1/#disp_1.67][1.67]])을 [[https://tgvaughan.github.io/sicm/chapter001.html#p42][42쪽]]에서
+  (다시) 이끌어 내라.
+
+** 한 순간의 라그랑주 방정식
+   :PROPERTIES:
+   :CUSTOM_ID: lagrange-equations-at-a-moment
+   :CLASS:    level2
+   :END:
+   라그랑지언이 주어지면, 라그랑주 방정식은 경로가 계의 실현 가능한 경로인지
+   시험한다. 라그랑주 방정식은 경로와 그 도함수를 관계 맺는다. 라그랑주
+   방정식이 매 순간에 만족되어야 한다는 사실은, 라그랑주 방정식을 경로에서
+   추상화하여 실현 가능한 경로의 국소 튜플 성분 사이의 관계로 쓸 수 있음을
+   시사한다.
+
+   $\overline{\mathcal{E}}$
+
+   [/L/]를 라그랑지언 /L/에 대한 라그랑주 방정식
+   ([[/ko/eval/sicm/chapter-1/#disp_1.12][1.12]])의 잔차를 만드는 경로 의존 함수라
+   하자.
+
+   @@html:<span id="disp_1.176"></span>@@
+$$\begin{aligned}
+{\overline{\mathcal{E}}\lbrack L\rbrack\lbrack q\rbrack = D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack.} & {(1.176)}
+   \end{aligned}$$
+   실현 가능한 경로 /q/는 라그랑주 방정식
+
+   @@html:<span id="disp_1.177"></span>@@
+$$\begin{aligned}
+{\overline{\mathcal{E}}\lbrack L\rbrack\lbrack q\rbrack = 0.} & {(1.177)}
+   \end{aligned}$$
+   을 만족한다. 경로 의존 라그랑주 방정식은
+
+   $\overline{\Gamma}$
+
+   를 써서 국소 라그랑주 방정식으로 변환할 수 있다.
+
+   @@html:<span id="disp_1.178"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack = \overline{\Gamma}(\overline{\mathcal{E}}\lbrack L\rbrack).} & {(1.178)}
+   \end{aligned}$$
+   연산자
+
+   $\mathcal{E}$
+
+   를 /오일러--라그랑주 연산자/라 부른다. 이 연산자로 라그랑주 방정식은
+
+   @@html:<span id="disp_1.179"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = 0.} & {(1.179)}
+   \end{aligned}$$
+   이다. 오일러--라그랑주 연산자는 명시적으로
+
+   @@html:<span id="disp_1.180"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack = D_{t}\partial_{2}L - \partial_{1}L.} & {(1.180)}
+   \end{aligned}$$
+   이다. 절차 Euler-Lagrange-operator는
+
+   $\mathcal{E}$
+
+   를 구현한다.
+
+    #+begin_src scheme
+(define (Euler-Lagrange-operator L) (- (Dt
+   ((partial 2) L)) ((partial 1) L))).
+    #+end_src
+
+   예를 들어 조화 진동자의 라그랑지언에 적용하면
+
+    #+begin_src scheme
+((Euler-Lagrange-operator (L-harmonic 'm 'k)) (up 't 'x 'v 'a)) (+ (* a m) (* k
+x))
+    #+end_src
+
+   을 얻는다. 국소 튜플의 성분이 개별적으로 지정됨에 주목하라. 방정식
+   ([[/ko/eval/sicm/chapter-1/#disp_1.179][1.179]])를 쓰면 조화 진동자의 라그랑주
+   방정식은
+
+    #+begin_src scheme
+((compose (Euler-Lagrange-operator (L-harmonic 'm 'k)) (Gamma (literal-function
+'x) 4)) 't) (+ (* k (x t)) (* m (((expt D 2) x) t)))
+    #+end_src
+
+   이다.
+
+   @@html:<span id="Exe_1-38"></span>@@
+
+   *연습문제 1.38: E의 성질*
+
+   /F/와 /G/를 국소 튜플의 두 라그랑지언 비슷한 함수, /C/를 국소 튜플 변환
+   함수, /c/를 상수라 하자. 다음 성질을 보여라.
+
+   *a.*
+
+   $\mathcal{E}\lbrack F + G\rbrack = \mathcal{E}\lbrack F\rbrack +
+   \mathcal{E}\lbrack G\rbrack$
+
+
+
+   *b.*
+
+   $\mathcal{E}\lbrack cF\rbrack = c\mathcal{E}\lbrack F\rbrack$
+
+   *c.*
+
+   $\mathcal{E}\lbrack FG\rbrack = \mathcal{E}\lbrack F\rbrack G +
+   F\mathcal{E}\lbrack G\rbrack + (D_{t}F)\partial_{2}G + \partial_{2}F(D_{t}G)$
+
+   *d.*
+
+   $\mathcal{E}\lbrack F \circ C\rbrack = D_{t}(DF \circ C)\partial_{2}C + DF
+   \circ C\mathcal{E}\lbrack C\rbrack$
+* 1.10 구속 운동
+  :PROPERTIES:
+  :CUSTOM_ID: h1-6e
+  :CLASS:    level1
+  :END:
+  라그랑지언 접근의 한 장점은, 계의 자유를 정확히 기술하는 좌표를 고를 수
+  있는 경우가 많아 구속조건을 자동으로 포함한다는 것이다. 계가 실제로 가진
+  것보다 더 많은 자유를 가진 좌표를 쓰고, 좌표 사이의 명시적 구속조건을
+  고려할 수도 있다. 예를 들어 평면 진자는 1차원 배치공간을 가진다. 우리는
+  이 문제를 연직으로부터의 각을 배치 좌표로 써서 정식화했다. 다른 방법으로,
+  진자를 피벗 둘레의 올바른 반지름 원 위에 있도록 구속된, 평면에서 움직이는
+  물체로 나타낼 수도 있다. 두 선택 모두에 타당한 기술을 두고 둘이 동등함을
+  보이고 싶다. 이 절에서는 명시적 구속조건이 있는 문제를 다루는 도구를
+  개발한다. 여기서 다루는 구속조건은, 강체 구속조건이 있는 계의 라그랑지언을
+  운동 에너지와 퍼텐셜 에너지의 차로 쓸 수 있음을 보인 데 쓰인 것보다 더
+  일반적이다 ([[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]] 참조).
+
+  /n/ 자유도를 가진 계의 배치가 /n/ + 1개의 좌표로 지정되고, 배치 경로 /q/가
+  다음 꼴의 어떤 관계를 만족하도록 구속되어 있다고 하자.
+
+  @@html:<span id="disp_1.181"></span>@@
+$$\begin{aligned}
+{\varphi(t,q(t),Dq(t)) = 0.} & {(1.181)}
+  \end{aligned}$$
+  운동방정식을 어떻게 정식화하는가? 한 접근은 구속조건 방정식을 써서 좌표
+  하나를 나머지 좌표로 소거하는 것이다. 그러면 축소된 일반화 좌표 집합의
+  전개는 보통의 라그랑주 방정식으로 기술된다. 완전히 독립이지 않은 좌표의
+  전개를 지배하는 방정식은 이와 동등해야 한다.
+
+  잉여 좌표(redundant coordinates)가 있는 계의 운동방정식 정식화 문제는
+  작용 원리로 돌아가 다룰 수 있다. 실현 가능한 경로는 정지 작용을 가짐으로써
+  다른 경로와 구별된다. 정지란, 경로의 어떤 작은 변분에 대해 작용이 변하지
+  않는다는 사실을 가리킨다. 어떤 변분을 고려해야 하는가? 속도에 무관한 강체
+  구속조건은 잉여 좌표를 소거하는 데 쓸 수 있음을 보았다. 비잉여 좌표에서는,
+  구성상 구속조건을 만족하는 변분을 써서 실현 가능한 경로를 구별했다.
+  따라서 구속조건으로 잉여 좌표를 소거할 수 있는 경우에는, 경로의 변분을
+  구속조건과 부합하는 것으로 제한할 수 있다.
+
+  그렇다면 가능한 변분의 제한은 라그랑주 방정식으로 이끈 논증에 어떤 영향을
+  미치는가 ([[/ko/eval/sicm/chapter-1/#h1-6][1.5절]] 참조)? 실제로 계산의 대부분은
+  영향을 받지 않는다. 작용이 정지라는 조건은 여전히 조건
+  ([[/ko/eval/sicm/chapter-1/#disp_1.17][1.17]]) 또는 ([[/ko/eval/sicm/chapter-1/#disp_1.34][1.34]])로 줄어든다.
+
+  @@html:<span id="disp_1.182"></span>@@
+$$\begin{aligned}
+{0 = {\int_{t_{1}}^{t_{2}}{\left\{ {(\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)} \right\}\eta.}}} & {(1.182)}
+  \end{aligned}$$
+  이 지점에서 우리는, 변분 $\eta$가 (끝점 조건을 제외하면) 임의이므로 적분이
+  영이 되는 유일한 길은 피적분 함수가 영인 것이라고 주장했다. 나아가 $\eta$를
+  고르는 자유 덕분에 피적분 함수에서 $\eta$를 곱하는 인자가 항등적으로 영이어야
+  함을 이끌어 내, 라그랑주 방정식을 유도했다.
+
+  이제 $\eta$의 선택은 완전히 자유롭지 않다. $\eta$의 임의성으로부터 피적분
+  함수가 영이어야 함은 여전히 이끌어 낼 수 있지만,[fn:91] $\eta$를 곱하는
+  인자가 영이라고는 더 이상 이끌어 낼 수 없다 (그 인자를 허용되는 변분 위로
+  사영한 것이 영일 뿐이다). 따라서 다음을 얻는다.
+
+  @@html:<span id="disp_1.183"></span>@@
+$$\begin{aligned}
+{\left\{ {(\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)} \right\}\eta = 0,} & {(1.183)}
+  \end{aligned}$$
+  여기서 $\eta$는 구속조건의 지배를 받는다.
+
+  경로 /q/는 다음이면 구속조건을 만족한다.
+
+  $\overline{\varphi}\lbrack q\rbrack = \varphi \circ \Gamma\lbrack q\rbrack =
+  0$
+
+  . 변분된 경로에 대해서도 구속조건이 만족되어야 하므로, 구속조건의 변분이
+  영인 변분 $\eta$만 허용한다.
+
+  @@html:<span id="disp_1.184"></span>@@
+$$\begin{aligned}
+{\delta_{\eta}(\overline{\varphi}) = 0.} & {(1.184)}
+  \end{aligned}$$
+  변분이 구속조건 곡면에 “접해야” 한다고 말할 수 있다. 연쇄법칙으로 이를
+  전개하면, 변분 $\eta$는 다음일 때 구속조건 곡면 /φ/에 접한다.
+
+  @@html:<span id="disp_1.185"></span>@@
+$$\begin{aligned}
+{(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack)\,\eta + (\partial_{2}\varphi \circ \Gamma\lbrack q\rbrack)\, D\eta = 0.} & {(1.185)}
+  \end{aligned}$$
+  이들은 시간의 함수임에 유의하라. 주어진 시각의 변분은 그 시각의 구속조건에
+  접한다.
+
+*** 1.10.1 좌표 구속조건
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-10-1
+    :CLASS:    level3
+    :END:
+    속도에 의존하지 않는 구속조건을 생각하자.
+
+    $\partial_{2}\varphi = 0.$
+
+    이 경우 변분은 다음이면 구속조건 곡면에 접한다.
+
+    @@html:<span id="disp_1.186"></span>@@
+$$\begin{aligned}
+{(\partial_{1}\varphi \circ \Gamma)\,\,\,\eta = 0.} & {(1.186)}
+    \end{aligned}$$
+    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.183][1.183]])과 ([[/ko/eval/sicm/chapter-1/#disp_1.186][1.186]])이 함께 운동을 결정해야 하지만, $\eta$를
+    어떻게 소거하는가? 라그랑주 방정식의 잔차는 구속조건 곡면의 법선에 직교하는
+    임의의 $\eta$에 직교한다[fn:92]. 주어진 벡터에 직교하는 모든 벡터에 직교하는
+    벡터는 그 주어진 벡터에 평행하다. 따라서 라그랑주 방정식의 잔차는 구속조건
+    곡면의 법선에 평행하다. 둘은 비례해야 한다.
+
+    @@html:<span id="disp_1.187"></span>@@
+$$\begin{aligned}
+{D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack).} & {(1.187)}
+    \end{aligned}$$
+    경로를 따라 모든 곳에서 두 벡터가 평행하다는 것이, 경로를 따라 매 순간
+    비례 인자가 같음을 보장하지는 않으므로, 비례 인자 /λ/는 어떤 시간의
+    함수이며 고려 중인 경로에 의존할 수 있다. 이 방정식들과 구속조건 방정식
+    /φ/ ∘ Γ[/q/] = 0이 지배 방정식이다. 이 방정식들은 경로 /q/를 결정하고
+    미지 함수 /λ/를 소거하기에 충분하다.
+
+
+
+** 이제 이것을 보라
+   :PROPERTIES:
+   :CUSTOM_ID: now-watch-this
+   :CLASS:    level2
+   :END:
+   /λ/를 좌표 가운데 하나로 다루어 확대 라그랑지언(augmented Lagrangian)을
+   만든다고 하자.
+
+   @@html:<span id="disp_1.188"></span>@@
+$$\begin{aligned}
+{L\prime(t;q,\lambda;\overset{˙}{q},\overset{˙}{\lambda}) = L(t,q,\overset{˙}{q}) + \lambda\varphi(t,q,\overset{˙}{q}).} & {(1.188)}
+   \end{aligned}$$
+   좌표 /q/에 연관된 라그랑주 방정식은 바로 수정된 라그랑주 방정식
+   ([[/ko/eval/sicm/chapter-1/#disp_1.187][1.187]])이고, /λ/에 연관된 라그랑주 방정식은 바로 구속조건 방정식이다.
+   (
+
+   $\overset{˙}{\lambda}$
+
+   는 확대 라그랑지언에 나타나지 않음에 유의하라.) 따라서 이 확대 라그랑지언의
+   라그랑주 방정식은, 추가 자유도를 도입하는 대가를 치르고, 명시적 좌표
+   구속조건을 더한 것이 라그랑주 방정식에 부과하는 수정을 완전히 담아낸다.
+   이 라그랑지언이 강체계에 대해 /L/ = /T/ − /V/를 유도할 때 쓴 라그랑지언
+   (방정식 [[/ko/eval/sicm/chapter-1/#disp_1.93][1.93]])과 같은 꼴임에 주목하라
+   ([[/ko/eval/sicm/chapter-1/#h3_1-6-2][1.6.2절]]).
+
+** 다른 방식
+   :PROPERTIES:
+   :CUSTOM_ID: alternatively
+   :CLASS:    level2
+   :END:
+   방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.187][1.187]])에서 미지 함수 /λ/를
+   소거할 정보가 충분한지, 또는 라그랑지언
+   ([[/ko/eval/sicm/chapter-1/#disp_1.188][1.188]])에 도입된 추가 자유도가 순전히
+   형식적인지를 어떻게 아는가?
+
+   /λ/를 상태에 의존하는 함수와 경로의 합성으로 쓸 수 있으면, /λ/ = Λ ∘ Γ[/q/],
+   그것은 자유도로서 잉여다. 다음 라그랑지언을 생각하자.
+
+   @@html:<span id="disp_1.189"></span>@@
+$$\begin{aligned}
+{L'' = L + \Lambda\varphi.} & {(1.189)}
+   \end{aligned}$$
+   이 새 라그랑지언에는 추가 자유도가 없다. /L/″의 라그랑주 방정식은 /L/의
+   라그랑주 방정식에 곱 Λ/φ/에서 생기는 추가 항이 더해진 것이다. 오일러--라그랑주
+   연산자
+
+   $\mathcal{E}$
+
+   를 이 라그랑지언에 적용하면 ([[/ko/eval/sicm/chapter-1/#h1-6d][1.9절]] 참조)
+   다음을 얻는다[fn:93]
+
+   @@html:<span id="disp_1.190"></span>@@
+$$\begin{array}{lll} {\mathcal{E}\lbrack L''\rbrack} & {= \mathcal{E}\lbrack L\rbrack + \mathcal{E}\lbrack\Lambda\varphi\rbrack} & \\ & {= \mathcal{E}\lbrack L\rbrack + \Lambda\mathcal{E}\lbrack\varphi\rbrack + \mathcal{E}\lbrack\Lambda\rbrack\varphi + D_{t}\Lambda\partial_{2}\varphi + \partial_{2}\Lambda D_{t}\varphi.} & {(1.190)}\end{array}$$
+   $\mathcal{E}$
+
+   [/L/″]를 Γ[/q/]와 합성하면 경로 /q/에 대한 라그랑주 방정식이 나온다. 경로
+   위에서 구속조건이 만족되어 /φ/ ∘ Γ[/q/] = 0이고 따라서 /D_{t}φ/ ∘ Γ[/q/] = 0
+   이라는 사실을 쓰면,
+
+
+
+   @@html:<span id="disp_1.191"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L''\rbrack \circ \Gamma\lbrack q\rbrack}
+   & \\ {\text{       } = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack
+   q\rbrack + \lambda(\mathcal{E}\lbrack\varphi\rbrack \circ \Gamma\lbrack
+   q\rbrack) + D\lambda(\partial_{2}\varphi \circ \Gamma\lbrack q\rbrack),} &
+   {(1.191)}
+   \end{aligned}$$
+   여기서 /λ/ = Λ ∘ Γ[/q/]를 썼다. 이제 좌표 구속조건만 다루고 있어 ∂_{2}/φ/ = 0
+   이라는 사실을 쓰면
+
+   @@html:<span id="disp_1.192"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L''\rbrack \circ \Gamma\lbrack q\rbrack = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack + \lambda(\mathcal{E}\lbrack\varphi\rbrack \circ \Gamma\lbrack q\rbrack).} & {(1.192)}
+   \end{aligned}$$
+   라그랑주 방정식은 확대 라그랑지언 /L/′에서 유도한 것과 같다. 차이는 이제
+   /λ/ = Λ ∘ Γ[/q/]가 확대하지 않은 상태로 결정됨을 본다는 것이다. 이는 /λ/를
+   소거할 수 있다는 말과 같다.
+
+   확대 라그랑지언의 라그랑주 방정식이 형식적으로 타당하다는 것만 고려하면,
+   /λ/를 상태에 의존하는 함수 Λ와 Γ[/q/]의 합성으로 쓸 수 있다고 이끌어 낼 수
+   없었다. 확대 라그랑지언에서 유도한 명시적 라그랑주 방정식은 가속도
+   /D/^{2}/q/뿐 아니라 /λ/에도 의존하므로, 어느 한쪽이 상태에 의존하는 함수와
+   Γ[/q/]의 합성이라고 따로 이끌어 낼 수 없다. 그러나 이제 /λ/가 그런 합성임을
+   본다. 이로써 /D/^{2}/q/ 또한 경로와 합성된, 상태에 의존하는 함수임을 이끌어
+   낼 수 있다. 계의 전개는 동역학적 상태에서 결정된다.
+
+** 구속조건을 쓰는 진자
+   :PROPERTIES:
+   :CUSTOM_ID: the-pendulum-using-constraints
+   :CLASS:    level2
+   :END:
+   진자는 피벗까지의 거리가 일정하다는 구속조건을 받는, 연직 평면 안 질량이
+   있는 입자의 운동으로 정식화할 수 있다 ([[/ko/eval/sicm/chapter-1/#Fig_1-8][그림 1.8]] 참조).
+
+   이 정식화에서 라그랑지언의 운동 에너지와 퍼텐셜 에너지는 균일한 중력 가속도
+   아래 구속되지 않은 입자의 것이다. 구속되지 않은 입자의 라그랑지언은
+
+   @@html:<span id="disp_1.193"></span>@@
+$$\begin{aligned}
+{L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( v_{x}^{2} + v_{y}^{2} \right) - mgy.} & {(1.193)}
+   \end{aligned}$$
+   이다. 진자가 피벗 둘레 반지름 /l/의 원 위에서 움직인다는 구속조건은[fn:94]
+
+   @@html:<span id="disp_1.194"></span>@@
+$$\begin{aligned}
+{x^{2} + y^{2} - l^{2} = 0.} & {(1.194)}
+   \end{aligned}$$
+   확대 라그랑지언은
+
+   @@html:<span id="disp_1.195"></span>@@
+$$\begin{aligned}
+{L\prime(t;x,y,\lambda;v_{x},v_{y},\overset{˙}{\lambda}) = \frac{1}{2}m\left( v_{x}^{2} + v_{y}^{2} \right) - mgy + \lambda\left( x^{2} + y^{2} - l^{2} \right).} & {(1.195)}
+   \end{aligned}$$
+   이다. 확대 라그랑지언의 라그랑주 방정식은
+
+   @@html:<span id="disp_1.196"></span>@@
+$$\begin{aligned}
+{mD^{2}x - 2\lambda x = 0} & {(1.196)}
+   \end{aligned}$$
+   @@html:<span id="disp_1.197"></span>@@
+$$\begin{aligned}
+{mD^{2}y + mg - 2\lambda y = 0} & {(1.197)}
+   \end{aligned}$$
+   @@html:<span id="disp_1.198"></span>@@
+$$\begin{aligned}
+{x^{2} + y^{2} - l^{2} = 0.} & {(1.198)}
+   \end{aligned}$$
+   이다. 이 방정식들은 진자의 운동을 풀기에 충분하다.
+
+   “극” 좌표로 바꾸면 이 방정식들이 단순해지는 것은 놀랍지 않다.
+
+   @@html:<span id="disp_1.199"></span>@@
+$$\begin{aligned}
+{x = r\sin\theta\text{       }y = - r\cos\theta.} & {(1.199)}
+   \end{aligned}$$
+   이를 구속조건 방정식에 대입하면 /r/ = /l/, 곧 상수임을 정한다. 미분을 만들어
+   나머지 두 방정식에 대입하면
+
+   @@html:<span id="disp_1.200"></span>@@
+$$\begin{aligned}
+{ml(\cos\theta\, D^{2}\theta - \sin\theta\,{(D\theta)}^{2}) - 2\lambda\sin\theta = 0} & {(1.200)}
+   \end{aligned}$$
+   @@html:<span id="disp_1.201"></span>@@
+$$\begin{aligned}
+{ml(\sin\theta\, D^{2}\theta + \cos\theta\,{(D\theta)}^{2}) + mg + 2\lambda\cos\theta = 0.} & {(1.201)}
+   \end{aligned}$$
+   을 얻는다. 첫째에 cos /θ/를, 둘째에 sin /θ/를 곱해 더하면
+
+   @@html:<span id="disp_1.202"></span>@@
+$$\begin{aligned}
+{mlD^{2}\theta + mg\sin\theta = 0,} & {(1.202)}
+   \end{aligned}$$
+   을 얻고, 이를 진자의 올바른 방정식으로 알아본다. 이는 구속되지 않은 일반화
+   좌표 /θ/를 쓰는 진자의 라그랑주 방정식과 같다. 완전성을 위해, 다른 변수로
+   /λ/를 구할 수 있다.
+
+   @@html:<span id="disp_1.203"></span>@@
+$$\begin{aligned}
+{\lambda = \frac{mD^{2}x}{2x} = - \frac{1}{2l}(mg\cos\theta + ml{(D\theta)}^{2}).} & {(1.203)}
+   \end{aligned}$$
+   이는 /λ/가 정말로 상태의 함수와 상태 경로의 합성임을 확인한다. 2/lλ/가 힘임에
+   주목하라---그것은 중력의 바깥쪽 성분과 원심력의 합이다. 이 해석을 두 좌표
+   운동방정식에 쓰면, /λ/가 들어 있는 항은 구속되지 않은 입자가 구속조건이
+   요구하는 원 위에서 움직이게 하려고 가해야 하는 힘임을 본다. 동등하게,
+   2/lλ/를 질량을 붙드는 진자 막대의 장력으로 생각할 수 있다.[fn:95]
+
+   @@html:<span id="Fig_1-8"></span>@@
+
+   #+caption: *그림 1.8* 진자의 거동을 피벗 둘레의 원에 구속된 평면 운동으로
+   정식화할 수 있다.
+   [[/eval/source/sicm/images/Art_P316.jpg]]
+
+** 부분으로 계를 조립하기
+   :PROPERTIES:
+   :CUSTOM_ID: building-systems-from-parts
+   :CLASS:    level2
+   :END:
+   확대 라그랑지언으로 동역학계에 구속조건을 강제하는 방법은, 계의 부분들에
+   대한 해석 결과와 그들 사이의 결합을 합쳐 복합 계를 해석하는 길을 준다.
+
+   [[/ko/eval/sicm/chapter-1/#Fig_1-9][그림 1.9]] 위에 보인 복합 용수철-질량 계를 생각하자. 이를 평형 길이
+   /X/_{1}과 /X/_{2}로부터의 용수철 신장을 나타내는 두 배치 좌표 /x/_{1}과
+   /x/_{2}를 가진 단일 계로 해석할 수도 있다.
+
+   다른 절차는 계를 여러 부분으로 나누는 것이다. 우리의 용수철-질량 계에서는
+   두 부분을 고를 수 있다. 하나는 벽에 붙은 용수철과 질량이고, 다른 하나는
+   부착점이 추가 배치 좌표 $\xi$에 있는 용수철과 질량이다. 각 부분에 대해
+   따로 라그랑지언을 정식화할 수 있다. 그런 다음 합성 계의 라그랑지언을 두
+   성분 라그랑지언의 합으로 고르고, 결합을 이루도록 구속조건 $\xi$ =
+   /X/_{1} + /x/_{1}을 둔다.
+
+
+
+   이것이 어떻게 작동하는지 보자. 벽에 붙은 부분계의 라그랑지언은
+
+   @@html:<span id="disp_1.204"></span>@@
+$$\begin{aligned}
+{L_{1}(t,x_{1},{\overset{˙}{x}}_{1}) = \frac{1}{2}m_{1}{\overset{˙}{x}}_{1}^{2} - \frac{1}{2}k_{1}x_{1}^{2}} & {(1.204)}
+   \end{aligned}$$
+   이고, 그에 붙는 부분계의 라그랑지언은
+
+   @@html:<span id="disp_1.205"></span>@@
+$$\begin{aligned}
+{L_{2}(t;\xi,x_{2};\overset{˙}{\xi},{\overset{˙}{x}}_{2}) = \frac{1}{2}m_{2}{(\overset{˙}{\xi} + {\overset{˙}{x}}_{2})}^{2} - \frac{1}{2}k_{2}x_{2}^{2}.} & {(1.205)}
+   \end{aligned}$$
+   이다. 이 부분들로 이루어진 계의 라그랑지언을, 각 분리된 부분의 라그랑지언의
+   합에 구속조건을 강제하는 결합 항을 더해 구성한다.
+
+   @@html:<span id="disp_1.206"></span>@@
+$$\begin{aligned}
+{L(t;x_{1},x_{2},\xi,\lambda;{\overset{˙}{x}}_{1},{\overset{˙}{x}}_{2},\overset{˙}{\xi},\overset{˙}{\lambda})} & \\
+   {\text{         } = L_{1}(t,x_{1},{\overset{˙}{x}}_{1}) + L_{2}(t;\xi,x_{2};\overset{˙}{\xi},{\overset{˙}{x}}_{2})} & \\
+   {\text{         }\text{         } + \lambda(\xi - (X_{1} + x_{1})).} & {(1.206)}
+   \end{aligned}$$
+   따라서 네 배치 좌표에 대한 라그랑주 방정식을 순서대로 다음과 같이 쓸 수
+   있다.
+
+   @@html:<span id="disp_1.207"></span>@@
+$$\begin{aligned} {m_{1}D^{2}x_{1} = - k_{1}x_{1} - \lambda} & {(1.207)}
+   \\ \end{aligned}$$
+
+   @@html:<span id="disp_1.208"></span>@@
+$$\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = - k_{2}x_{2}} & {(1.208)}
+   \\ \end{aligned}$$
+
+   @@html:<span id="disp_1.209"></span>@@
+$$\begin{aligned} {m_{2}(D^{2}\xi + D^{2}x_{2}) = \lambda} & {(1.209)}
+   \\ \end{aligned}$$
+
+   @@html:<span id="disp_1.210"></span>@@
+$$\begin{aligned} {0 = \xi - (X_{1} + x_{1}).} & {(1.210)} \end{aligned}$$
+
+   이 계에서 /λ/는 계를 붙들고 있는 구속력임에 주목하라. 이제 “접착” 좌표
+   $\xi$와 /λ/를 소거하여 좌표 /x/_{1}과 /x/_{2}에서의 운동방정식을 얻을 수
+   있다.
+
+   @@html:<span id="disp_1.211"></span>@@
+$$\begin{aligned}
+{m_{1}D^{2}x_{1} + m_{2}(D^{2}x_{1} + D^{2}x_{2}) + k_{1}x_{1} = 0} & {(1.211)}
+   \end{aligned}$$
+   @@html:<span id="disp_1.212"></span>@@
+$$\begin{aligned}
+{m_{2}(D^{2}x_{1} + D^{2}x_{2}) + k_{2}x_{2} = 0.} & {(1.212)}
+   \end{aligned}$$
+   이 전략은 일반화할 수 있다. 원시 부품의 라이브러리를 만들 수 있다. 각
+   부품은 그 부품이 다른 것에 붙을 수 있는 /단자(terminals)/에 대한 추가
+   자유도를 가진 라그랑지언으로 특징지을 수 있다. 그런 다음 부품을 결합하고
+   구속조건으로 단자를 접착하여 합성 라그랑지언을 구성할 수 있다.
+
+
+
+   @@html:<span id="Fig_1-9"></span>@@
+
+
+
+   #+caption: *그림 1.9* 복합 용수철-질량 계를 두 부분계로 분해한다. 수평으로
+   움직일 수 있는 두 질량을 결합하는 두 용수철이 있다. 용수철의 평형 위치는
+   /X/_{1}과
+   /X/_{2}이다. 계는 좌표 구속조건 /ξ/ = /X/_{1} +
+   /x/_{1}로 결합된다. [[/eval/source/sicm/images/Art_P326.jpg]]
+
+   @@html:<span id="Exe_1-39"></span>@@
+
+   *연습문제 1.39: 라그랑지언 결합하기*
+
+   *a.* 이 절에서 기술한 용수철-질량 구조와 호환되는 또 하나의 원시 부품을
+   만들어라. 예를 들어 용수철-질량 계에 붙을 수 있는 진자를 만들어라. 조합을
+   만들고 운동방정식을 유도하라. 주의하라. 나쁜 좌표를 고르면 대수가 끔찍하다.
+
+   *b.* 괜찮은 작은 과제로, 적절한 라그랑지언으로 특징지어지며 다양한 방식으로
+   결합되어 흥미로운 메커니즘을 만들 수 있는 호환 기계 부품 족을 구성하라.
+   좋은 언어에서는 조각들을 결합한 결과가 다른 조각과 더 결합할 수 있는 같은
+   종류의 조각이어야 함을 기억하라.
+
+
+
+   @@html:<span id="Exe_1-40"></span>@@
+
+
+
+   *연습문제 1.40: 삼축 곡면 위의 구슬*
+
+   삼축 곡면 위에 머물도록 구속된 구슬의 운동을 다시 생각하라
+   ([[/ko/eval/sicm/chapter-1/#Exe_1-18][연습문제 1.18]]). 구슬이 곡면 위에 있어야
+   한다는 명시적 구속조건과 함께 직각 좌표를 일반화 좌표로 써서 다시
+   정식화하라. 라그랑지언을 찾고 라그랑주 방정식이
+   [[/ko/eval/sicm/chapter-1/#Exe_1-18][연습문제 1.18]]에서 찾은 것과 동등함을
+   보여라.
+
+   @@html:<span id="Exe_1-41"></span>@@
+
+   *연습문제 1.41: 작은 골프공의 운동*
+
+   가속도 /g/의 균일 중력장에서 높이 /h/(/x/, /y/)가 변하는 마찰 없는 매끈한
+   곡면에 구속된 질점으로 이상화한 골프공의 운동을 생각하라.
+
+   *a.* 이 계의 확대 라그랑지언을 찾고, /x/와 /y/에서 질점의 운동을 지배하는
+   방정식을 유도하라.
+
+   *b.* 어떤 조건에서 이것이 퍼텐셜 함수 /V/
+   (/x/, /y/) = /mgh/(/x/, /y/)로 근사되는가?
+
+   *c.* /h/(/x/, /y/)가 /x/ = /y/ = 0에 대해 축대칭이라고 가정하라. 닫힌
+   궤도를 갖는 운동을 산출하는 그런 /h/를 찾을 수 있는가?
+
+*** 1.10.2 미분 구속조건
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-10-2
+    :CLASS:    level3
+    :END:
+    여기서는 속도에 무관한 구속조건의 “전시간 미분(total time
+    derivatives)”인 속도 의존 구속조건을 조사한다. 구속조건이 속도에
+    의존하므로 지금까지 제시한 방법은 적용되지 않는다.
+
+    속도 의존 구속조건 /ψ/ = 0을 생각하자. /ψ/가 전시간 미분이라는 것은
+    다음을 만족하는 속도에 무관한 함수 /φ/가 존재한다는 뜻이다.
+
+    @@html:<span id="disp_1.213"></span>@@
+$$\begin{aligned}
+{\psi \circ \Gamma\lbrack q\rbrack = D(\varphi \circ \Gamma\lbrack q\rbrack).} & {(1.213)}
+    \end{aligned}$$
+    /φ/가 속도에 무관하다는 것은 ∂_{2}/φ/ = 0이라는 뜻이다. 상태 함수로서
+    /ψ/와 /φ/의 관계는
+
+    @@html:<span id="disp_1.214"></span>@@
+$$\begin{aligned}
+{\psi = D_{t}\varphi = \partial_{0}\varphi + \partial_{1}\varphi\overset{˙}{Q}.} & {(1.214)}
+    \end{aligned}$$
+    이다. /ψ/가 주어지면 이 선형 편미분 방정식을 풀어 /φ/를 찾을 수 있다.
+    해는 상수까지 정해지므로, /ψ/ = 0은 어떤 상수 /K/에 대해 /φ/ = /K/를
+    함의한다. 다른 한편 /φ/ = /K/를 알면 /ψ/ = 0이 따른다. 따라서 속도 의존
+    구속조건 /ψ/ = 0은 속도에 무관한 구속조건 /φ/ = /K/와 동등하고, 그런
+    계의 라그랑주 방정식을 찾는 법을 우리는 안다.
+
+
+
+    /L/이 구속되지 않은 문제의 라그랑지언이면, 구속조건 /φ/ = /K/를 가진
+    라그랑주 방정식은
+
+    @@html:<span id="disp_1.215"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack + \lambda\,(\mathcal{E}\lbrack\varphi\rbrack \circ \Gamma\lbrack q\rbrack) = 0,} & {(1.215)}
+    \end{aligned}$$
+    이고, 여기서 /λ/는 해를 구하는 과정에서 소거될 시간의 함수이다. 상수
+    /K/는 라그랑주 방정식에 영향을 주지 않는다. 함수 /φ/는 속도에 무관하여
+    ∂_{2}/φ/ = 0이므로, 라그랑주 방정식은
+
+    @@html:<span id="disp_1.216"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack - \lambda(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.216)}
+    \end{aligned}$$
+    이 된다. 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.214][1.214]])에서
+
+    @@html:<span id="disp_1.217"></span>@@
+$$\begin{aligned}
+{\partial_{1}\varphi = \partial_{2}\psi,} & {(1.217)}
+    \end{aligned}$$
+    임을 보므로, 구속조건 /ψ/ = 0을 가진 라그랑주 방정식은
+
+    @@html:<span id="disp_1.218"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack).} & {(1.218)}
+    \end{aligned}$$
+    이다. 중요한 특징은 /φ/를 만들어 내지 않고도 /ψ/로 라그랑주 방정식을
+    직접 쓸 수 있다는 것이다. 그러나 이 라그랑주 방정식의 타당성은 /φ/의
+    존재에 의존한다.
+
+    확대 라그랑지언 기교가 여기에서도 작동함이 드러난다. 라그랑지언을 시간의
+    함수 /λ/′를 곱한 구속조건 /ψ/로 확대하면 이 라그랑주 방정식이 나온다.
+
+    @@html:<span id="disp_1.219"></span>@@
+$$\begin{aligned}
+{L\prime = L + \lambda\prime\psi.} & {(1.219)}
+    \end{aligned}$$
+    /L/′의 라그랑주 방정식은
+
+    @@html:<span id="disp_1.220"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = - D\lambda\prime(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack),} & {(1.220)}
+    \end{aligned}$$
+    로 나오며, 동일시 /λ/ = −/Dλ/′와 함께 라그랑주 방정식
+    ([[/ko/eval/sicm/chapter-1/#disp_1.218][1.218]])과 같다.
+
+    어떤 문제는 속도 의존 구속조건으로 자연스럽게 정식화할 수 있다. 우리가
+    개발한 형식은 좌표 구속조건의 미분으로 쓸 수 있는 임의의 속도 의존
+    구속조건을 다룬다. 그런 구속조건을 /적분 가능 구속조건(integrable constraint)/이라
+    부른다. 구속조건을 좌표 구속조건의 꼴로 둘 수 있거나 이미 그 꼴인 임의의
+    계를 /홀로노믹 계(holonomic system)/라 부른다.
+
+
+
+    @@html:<span id="Fig_1-10"></span>@@
+
+
+
+    #+caption: *그림 1.10* 미끄러짐 없이 경사면을 굴러 내려가는 질량이 있는
+    고리. [[/eval/source/sicm/images/Art_P335.jpg]]
+
+    @@html:<span id="Exe_1-42"></span>@@
+
+    *연습문제 1.42: 확대 라그랑지언*
+
+    확대 라그랑지언
+    ([[/ko/eval/sicm/chapter-1/#disp_1.219][1.219]])이 라그랑주
+    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.220][1.220]])으로 이끈다는 것을,
+    /ψ/가 /φ/의 전시간 미분이라는 사실을 고려하여 보여라.
+
+** Goldstein의 고리
+   :PROPERTIES:
+   :CUSTOM_ID: goldsteins-hoop
+   :CLASS:    level2
+   :END:
+   여기서는 구속조건을 좌표 구속조건의 시간 미분으로 나타낼 수 있는 문제를
+   생각한다. 질량 /M/, 반지름 /R/인 고리가 미끄러짐 없이 (1차원) 경사면을
+   굴러 내려가는 것이다 ([[/ko/eval/sicm/chapter-1/#Fig_1-10][그림 1.10]] 참조).[fn:96]
+
+   이 문제를 두 좌표로 정식화한다. /θ/는 고리 위 임의의 점이 임의의 기준
+   방향으로부터 회전한 각이고, /x/는 경사면을 내려간 선형 진행이다.
+   구속조건은 고리가 미끄러지지 않는다는 것이다. 따라서 /θ/의 변화가 /x/의
+   변화에 정확히 반영된다. 구속조건 함수는
+
+   @@html:<span id="disp_1.221"></span>@@
+$$\begin{aligned}
+{\psi(t;x,\theta;\overset{˙}{x},\overset{˙}{\theta}) = R\overset{˙}{\theta} - \overset{˙}{x}.} & {(1.221)}
+   \end{aligned}$$
+   이다. 이 구속조건은 일반화 속도 사이의 관계로 서술되어 있으나, 적분하면
+   /x/ = /Rθ/ + /c/를 얻을 수 있다. 적분된 구속조건 또는 그 미분 어느 쪽으로든
+   확대 라그랑지언을 만들 수 있다.
+
+
+
+   운동 에너지에는 두 부분이 있다. 고리의 회전 에너지와 질량중심 운동의
+   에너지이다.[fn:97] 고리의 퍼텐셜 에너지는 높이가 줄어들수록 감소한다.
+   따라서 확대 라그랑지언을 다음과 같이 쓸 수 있다.
+
+   @@html:<span id="disp_1.222"></span>@@
+$$\begin{aligned}
+{L(t;x,\theta,\lambda;\overset{˙}{x},\overset{˙}{\theta},\lambda)} & \\
+   {\,\,\,\,\,\,\,\, = \frac{1}{2}M\, R^{2}{\overset{˙}{\theta}}^{2} + \frac{1}{2}M\,{\overset{˙}{x}}^{2} + M\, gx\sin\varphi + \lambda(R\overset{˙}{\theta} - \overset{˙}{x}).} & {(1.222)}
+   \end{aligned}$$
+   라그랑주 방정식은
+
+   @@html:<span id="disp_1.223"></span>@@
+$$\begin{aligned}
+{M\, D^{2}x - D\lambda = M\, g\sin\varphi} & {(1.223)}
+   \end{aligned}$$
+   @@html:<span id="disp_1.224"></span>@@
+$$\begin{aligned}
+{M\, R^{2}D^{2}\theta + R\, D\lambda = 0} & {(1.224)}
+   \end{aligned}$$
+   @@html:<span id="disp_1.225"></span>@@
+$$\begin{aligned}
+{R\, D\theta - Dx = 0.} & {(1.225)}
+   \end{aligned}$$
+   이다. 셋째 라그랑주 방정식을 미분하면
+
+   @@html:<span id="disp_1.226"></span>@@
+$$\begin{aligned}
+{D^{2}x = RD^{2}\theta.} & {(1.226)}
+   \end{aligned}$$
+   를 얻는다. 이 방정식들을 결합하여 관심 있는 동역학적 양을 풀 수 있다.
+   이 구르는 고리의 경우 선형 가속도
+
+   @@html:<span id="disp_1.227"></span>@@
+$$\begin{aligned}
+{D^{2}x = \frac{1}{2}g\sin\varphi} & {(1.227)}
+   \end{aligned}$$
+   는 질량이 회전 없이 마찰 없는 평면을 미끄러져 내려갔을 때의 딱 절반이다.
+   이 고리에 대해 /D/^{2}/x/가 /M/과 /R/ 모두에 무관함에 유의하라. 라그랑주
+   방정식에서 /Dλ/를 구속조건을 강제하는 데 관여하는 마찰력으로 해석할 수
+   있음을 본다. 구속의 마찰력은
+
+   @@html:<span id="disp_1.228"></span>@@
+$$\begin{aligned}
+{D\lambda = \frac{1}{2}M\, g\sin\varphi} & {(1.228)}
+   \end{aligned}$$
+   이고 각가속도는
+
+   @@html:<span id="disp_1.229"></span>@@
+$$\begin{aligned}
+{D^{2}\theta = \frac{1}{2}\frac{g}{R}\sin\varphi.} & {(1.229)}
+   \end{aligned}$$
+   이다.
+
+
+
+*** 1.10.3 비홀로노믹 계
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-10-3
+    :CLASS:    level3
+    :END:
+    적분 가능하지 않은 구속조건을 가진 계를 /비홀로노믹
+    계(non-holonomic systems)/라 부른다. 구속조건이 동등한 좌표 구속조건으로
+    쓰일 수 없으면 적분 가능하지 않다. 비홀로노믹 계의 한 예는 그릇 안에서
+    미끄러짐 없이 구르는 공이다. 공이 구르면 접촉점에서 그 표면이 그릇에
+    대해 움직이지 않도록 돌아야 한다. 이는 그릇 안 공의 위치와 공의 방향
+    사이에 관계를 세우는 것처럼 보이지만, 그렇지 않다. 공은 그 사이 취한
+    경로에 따라 다른 방향으로 그릇의 같은 자리로 돌아올 수 있다. 그 결과
+    구속조건으로 어떤 좌표도 소거할 수 없다.
+
+    비홀로노믹 계를 지배하는 운동방정식은 무엇인가? 속도에 선형인 비홀로노믹
+    구속조건을 가진 제한된 계 집합에 대해, 운동방정식이 다음과 같다고 널리
+    보고된다[fn:98]. /ψ/가 다음 꼴을 가진다고 하자.
+
+    @@html:<span id="disp_1.230"></span>@@
+$$\begin{aligned}
+{\psi(t,q,v) = G_{1}(t,q)v + G_{2}(t,q),} & {(1.230)}
+    \end{aligned}$$
+    속도에 선형인 상태 함수이다. /ψ/가 전시간 미분이 아니라고 가정한다.
+    /L/이 구속되지 않은 계의 라그랑지언이면, 운동방정식은 다음이라고 주장된다.
+
+    @@html:<span id="disp_1.231"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(G_{1} \circ \Gamma\lbrack q\rbrack) = \lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack).} & {(1.231)}
+    \end{aligned}$$
+    구속조건 /ψ/ = 0과 함께 계는 완전히 지정되고 계의 전개가 결정된다. 이
+    방정식들이 /ψ/가 전시간 미분인 경우의 라그랑주 방정식
+    ([[/ko/eval/sicm/chapter-1/#disp_1.218][1.218]])과 동일함에 유의하라. 그러나
+    여기서는 그 방정식의 유도가 더 이상 타당하지 않다.
+
+    좌표 구속조건 /φ/ = 0, ∂_{2}/φ/ = 0에 대한 라그랑주 방정식 유도의 핵심
+    단계는 두 조건이 만족되어야 함을 주목하는 것이었다.
+
+    @@html:<span id="disp_1.232"></span>@@
+$$\begin{aligned}
+({\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack
+    q\rbrack)\eta = 0,} & {(1.232)}
+\end{aligned}$$
+
+    그리고
+
+    @@html:<span id="disp_1.233"></span>@@
+$$\begin{aligned}
+({\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack)\eta =
+    0.} & {(1.233)}
+\end{aligned}$$
+
+
+
+    왜냐하면
+
+    $\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack$
+
+    가 $\eta$에 직교하고 $\eta$는 ∂_{1}/φ/ ∘ Γ[/q/]에 직교하도록 구속되므로,
+    둘은 매 순간 평행해야 한다.
+
+    @@html:<span id="disp_1.234"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{1}\varphi \circ \Gamma\lbrack q\rbrack).} & {(1.234)}
+    \end{aligned}$$
+    미분 구속조건의 라그랑주 방정식은 이로부터 유도되었다.
+
+    구속조건 함수가 속도에 의존하면 이 유도는 통과하지 않는다. 이 경우 변분
+    $\eta$가 속도 의존 구속조건 함수 /ψ/와 부합하려면 다음을 만족해야 한다
+    (방정식 [[/ko/eval/sicm/chapter-1/#disp_1.185][1.185]] 참조).
+
+    @@html:<span id="disp_1.235"></span>@@
+$$\begin{aligned}
+{(\partial_{1}\psi \circ \Gamma\lbrack q\rbrack)\eta + (\partial_{2}\psi \circ \Gamma\lbrack q\rbrack)D\eta = 0.} & {(1.235)}
+    \end{aligned}$$
+    같은 논증으로 $\eta$를 더 이상 소거할 수 없다. $\eta$가 더 이상
+    ∂_{1}/ψ/ ∘ Γ[/q/]에 직교하지 않고, /ψ/가 가정에 의해 적분 가능하지
+    않으므로 구속조건을 좌표 구속조건으로 다시 쓸 수도 없기 때문이다.
+
+    다음은 Arnold 등 [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_6][6]]]의 비홀로노믹 방정식
+    유도이며, 우리의 표기로 옮긴 것이다. “가상 속도(virtual velocity)” $\xi$를
+    다음을 만족하는 임의의 속도로 정의하라.
+
+    @@html:<span id="disp_1.236"></span>@@
+$$\begin{aligned}
+({\partial_{2}\psi \circ \Gamma\lbrack q\rbrack)\xi = 0.}
+    & {(1.236)}
+\end{aligned}$$
+
+    Arnold에 따르면 “달랑베르--라그랑주 원리(principle of d'Alembert--Lagrange)”는
+    임의의 가상 속도 $\xi$에 대해
+
+    @@html:<span id="disp_1.237"></span>@@
+$$\begin{aligned}
+{(\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack)\xi = 0,} & {(1.237)}
+    \end{aligned}$$
+    라고 말한다. $\xi$는 ∂_{2}/ψ/ ∘ Γ[/q/]에 직교해야 한다는 것을 제외하면
+    임의이고, 그런 임의의 $\xi$가
+
+    $\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack$
+
+    에 직교하므로, ∂_{2}/ψ/ ∘ Γ[/q/]는
+
+    $\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack$
+
+    에 평행해야 한다. 따라서
+
+    @@html:<span id="disp_1.238"></span>@@
+$$\begin{aligned}
+{\mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack = \lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack),} & {(1.238)}
+    \end{aligned}$$
+    이고, 이것이 비홀로노믹 방정식이다.
+
+    정지 작용 방정식을 Arnold의 방정식으로 바꾸려면 다음을 해야 한다. 방정식
+    ([[/ko/eval/sicm/chapter-1/#disp_1.232][1.232]])에서 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.237][1.237]])로 가려면
+    $\eta$를 $\xi$로 바꾸어야 한다. 그러나 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.235][1.235]])에서
+    방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.236][1.236]])로 가려면 $\eta = 0$으로
+    두고 /Dη/를 $\xi$로 바꾸어야 한다. 비홀로노믹 방정식의 모든 “유도”는
+    비슷한 동일시를 가진다. 결국 이것이다. 비홀로노믹 방정식은 작용 원리에서
+    따르지 않는다. 그것은 다른 것이다. 그것이 옳은지 아닌지는 실험과 맞는지
+    아닌지에 달려 있다.
+
+    좌표 구속조건 또는 미분 구속조건이 있는 계에 대해, 구속조건으로 확대한
+    라그랑지언에서 라그랑주 방정식을 유도할 수 있음을 알았다. 그러나
+    구속조건이 적분 가능하지 않으면 확대 라그랑지언의 라그랑주 방정식은
+    비홀로노믹 계와 같지 않다 (방정식 [[/ko/eval/sicm/chapter-1/#disp_1.231][1.231]]).[fn:99]
+    /L/′를 적분 가능하지 않은 구속조건 /ψ/를 가진 확대 라그랑지언이라 하자.
+
+    @@html:<span id="disp_1.239"></span>@@
+$$\begin{aligned}
+{L\prime(t;q,\lambda;\overset{˙}{q},\overset{˙}{\lambda}) = L(t,q,\overset{˙}{q}) + \lambda\psi(t,q,\overset{˙}{q});} & {(1.239)}
+    \end{aligned}$$
+    그러면 좌표에 연관된 라그랑주 방정식은
+
+    @@html:<span id="disp_1.240"></span>@@
+$$\begin{aligned}
+{0 = \mathcal{E}\lbrack L\rbrack \circ \Gamma\lbrack q\rbrack} & \\
+    {\,\,\,\,\, + D\lambda(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack) + \lambda D(\partial_{2}\psi \circ \Gamma\lbrack q\rbrack) - \lambda(\partial_{1}\psi \circ \Gamma\lbrack q\rbrack).} & {(1.240)}
+    \end{aligned}$$
+    이다. /λ/에 연관된 라그랑주 방정식은 바로 구속조건 방정식이다.
+
+    @@html:<span id="disp_1.241"></span>@@
+$$\begin{aligned}
+{\psi \circ \Gamma\lbrack q\rbrack = 0.} & {(1.241)}
+    \end{aligned}$$
+    이 방정식들의 흥미로운 특징은 /λ/와 /Dλ/ 모두를 포함한다는 것이다.
+    따라서 보통의 상태 변수 /q/와 /Dq/는, 구속조건과 함께여도, 유도된
+    라그랑주 방정식의 완전한 초기조건 집합을 정하기에 충분하지 않다. /λ/의
+    초깃값도 지정해야 한다.
+
+    일반적으로 어떤 특정 물리계에 대해서도 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.231][1.231]])과
+    ([[/ko/eval/sicm/chapter-1/#disp_1.240][1.240]])은 같지 않고, 실제로 다른 해를
+    가진다. 어느 쪽 방정식 집합이 그 물리계를 정확히 모형화하는지는 분명하지
+    않다. 비홀로노믹 계에 대한 첫 접근은 홀로노믹 경우에 대한 논증의 확장으로
+    정당화되지 않고, 다른 쪽은 완전히 결정되지 않는다. 이는 모형이 불충분하며,
+    구속조건이 어떻게 유지되는지에 대한 더 많은 세부가 지정되어야 함을 가리킬
+    수도 있다.
+
+
+
+* 1.11 요약
+  :PROPERTIES:
+  :CUSTOM_ID: h1-6f
+  :CLASS:    level1
+  :END:
+  역학계를 해석하려면, 실현 가능한 운동을 계의 다른 생각 가능한 운동과
+  구별하는 길을 주는 작용 함수를 구성한다. 작용 함수는 경로의 변분에 대해,
+  실현 가능한 운동을 기술하는 경로에서만 정지가 되도록 구성된다. 이것이
+  /정지 작용 원리(principle of stationary action)/이다. 정지 작용 원리는
+  실현 가능한 경로의 좌표에 무관한 지정이다. 구속조건이 있든 없든, 계의
+  배치를 유일하게 정하는 임의의 좌표계를 고를 수 있다.
+
+  작용은 경로를 따라 어떤 함수, 곧 /라그랑지언/의 적분이다. 많은 계에서
+  적절한 라그랑지언은 계의 운동 에너지와 퍼텐셜 에너지의 차이다. 계의
+  라그랑지언 선택은 유일하지 않다.
+
+  라그랑지언 작용을 가진 임의의 계에 대해, 임의의 실현 가능한 경로가
+  만족하는 상미분방정식 계, 곧 라그랑주 방정식을 정식화할 수 있다.
+  라그랑지언에서 라그랑주 방정식을 유도하는 방법은 라그랑지언을 정식화하는
+  데 쓴 좌표계에 무관하다. 정식화에서 우리가 가진 한 자유는, 계의
+  라그랑지언에 전시간 미분을 더하면 같은 라그랑주 방정식을 갖는 다른
+  라그랑지언이 나온다는 것이다.
+
+  라그랑주 방정식은 상미분방정식 집합이다. 계의 이력을 요약하고 미래를
+  정하기에 충분한 유한한 상태가 있다. 한 순간의 상태에서 계의 운동을
+  전개하는 유효한 절차가 있다. 많은 계에서 상태는 한 순간의 좌표와 좌표의
+  변화율로 정해진다.
+
+  물리계에 연속 대칭이 있으면 그에 연관된 보존량이 있다. 대칭이 라그랑지언의
+  빠진 좌표에 드러나도록 계를 정식화할 수 있으면, 그 좌표에 켤레인 보존
+  운동량이 있다. 라그랑지언이 시간에 무관하면 보존 에너지가 있다.
+
+
+
+* 1.12 과제
+  :PROPERTIES:
+  :CUSTOM_ID: h1-6g
+  :CLASS:    level1
+  :END:
+  @@html:<span id="Exe_1-43"></span>@@
+  *연습문제 1.43: 수치 조사*
+
+  진자를 생각하라. 균일 중력장에서 길이 /l/인 질량 없는 막대에 받쳐진 질량
+  /m/이다. 진자의 라그랑지언은
+
+  $L(t,\theta,\overset{˙}{\theta}) = \frac{m}{2}{(l\overset{˙}{\theta})}^{2} +
+  mgl\cos\theta.$
+
+  이다. 진자의 경우 운동의 주기는 진폭에 의존한다. 주어진 진동수를 가진
+  진자의 궤적을 찾고 싶다. 이를 하는 세 방법이 떠오른다. (1) 최소 작용
+  원리에 의한 해, (2) 라그랑주 방정식의 수치 적분, (3) 해석적 해 (타원함수에
+  대한 어느 정도의 노출이 필요하다). 셋 모두를 수행하고 해 궤적을 비교할
+  것이다.
+
+  매개변수 /m/ = 1 kg, /l/ = 1 m, /g/ = 9.8 m s^{−2}를 생각하라. 작은 진폭
+  진동의 진동수는
+
+  $\omega_{0} = \sqrt{g/l}$
+
+  이다. 진동수
+
+  $\omega_{1} = \frac{4}{5}\omega_{0}$
+
+  를 갖는 자명하지 않은 해를 찾자.
+
+  *a.* 각은 시간에 주기적이므로 푸리에 급수 표현이 적절하다. 각의 영 교차가
+  시각 영에 있도록 시간의 원점을 고를 수 있다. 퍼텐셜이 각에 대해 짝함수이므로
+  각은 시간의 홀함수이다. 따라서 사인 급수만 있으면 된다. 각이 반주기 뒤에
+  영으로 돌아가므로, 각은 중점에 대해 시간의 홀함수이다. 따라서 급수의 홀수
+  항만 나타난다.
+
+  $\theta(t) = {\sum\limits_{n = 1}^{m}{A_{n}\sin((2n - 1)\omega_{1}t).}}$
+
+  궤적의 진폭은
+
+  $A = \theta_{\max} = {\sum_{n = 1}^{\infty}{{( - 1)}^{n + 1}A_{n}}}$
+
+  이다.
+
+  작용을 최소화하여 처음 몇 계수 /A/_{/n/}의 근사를 찾아라. [[/ko/eval/sicm/chapter-1/#h1-5][1.4절]]의
+  find-path 절차와 비슷한 프로그램을 써야 한다. 주의하라. 작용을 최소화하는
+  궤적이 하나보다 많다.
+
+  *b.* 진자의 궤적에 대해 라그랑주 방정식을 수치 적분하는 프로그램을 써라.
+  이 문제를 수치 적분으로 푸는 어려움은 운동의 진동수가 초기조건에 어떻게
+  의존하는지 모른다는 것이다. 따라서 짐작한 뒤 그 짐작을 점차 개선해야
+  한다. 함수
+
+  $\Omega(\overset{˙}{\theta})$
+
+  를 정의하여, (/θ/ = 0인) 초기 각속도의 함수로서 운동의 진동수를 수치로
+  계산하게 하라. 원하는 궤적의 초기 각속도에 대해
+
+  $\Omega(\overset{˙}{\theta}) = \omega$
+
+  를 풀어 궤적을 찾아라. 이 방정식을 푸는 방법에는 연속 이분, 제곱 잔차
+  최소화 등이 있다---하나를 골라라.
+
+
+
+  *c.* 이제 진폭의 함수로서 진동수에 대한 해석적 해를 정식화하자. 운동의
+  주기는 단순히
+
+  $T = 4{\int_{0}^{T/4}{dt =
+  4}}{\int_{0}^{A}\frac{1}{\overset{˙}{\theta}}}d\theta.$
+
+  이다. 에너지를 써서
+
+  $\overset{˙}{\theta}$
+
+  를 진폭 /A/와 /θ/로 풀어 필요한 적분을 명시적으로 써라. 이 적분은
+  타원함수로 쓸 수 있으나, 어떤 의미에서는 이것이 문제를 풀지 않는다---여전히
+  타원함수를 계산해야 한다. 타원함수로의 이 우회를 피하고 절차
+  definite-integral을 써서 적분을 수치로만 하자. 진폭 /A/를 지정하고 진동수를
+  얻는 문제는 여전히 있다. 우리 문제를 풀려면 역문제를 풀어야 하나, 이는
+  *b*부에서처럼 할 수 있다.
+
+  @@html:<span id="Exe_1-44"></span>@@
+
+  *연습문제 1.44: 이중 진자의 거동*
+
+  [[/ko/eval/sicm/chapter-1/#Fig_1-11][그림 1.11]]에 보인 이상적 이중 진자를
+  생각하라.
+
+  *a.* 동역학을 기술하는 라그랑지언을 정식화하라. 주어진 각 /θ/_{1}과
+  /θ/_{2}로 운동방정식을 유도하라. 수치 적분에 적절한 꼴로 방정식을 두어라.
+  다음 계 매개변수를 가정하라.
+
+  | /g/     | = | 9.8 m s^{−2} |
+  | /l/_{1} | = | 1.0 m        |
+  | /l/_{2} | = | 0.9 m        |
+  | /m/_{1} | = | 1.0 kg       |
+  | /m/_{2} | = | 3.0 kg       |
+
+  *b.* 계가 다음 초기조건으로 시작될 때 각 각의 거동을 시간의 함수로 보이는
+  그래프를 준비하라.
+
+  | /θ/_{1}(0)                     | = | /π//2 rad    |
+  | /θ/_{2}(0)                     | = | /π/ rad      |
+  | ${\overset{˙}{\theta}}_{1}(0)$ | = | 0 rad s^{−1} |
+  | ${\overset{˙}{\theta}}_{2}(0)$ | = | 0 rad s^{−1} |
+
+  그래프가 50초까지 이어지게 하라.
+
+  *c.* 계의 에너지 거동을 시간의 함수로 보이는 그래프를 만들어라. 에너지는
+  보존되어야 한다. 얻은 보존은 얼마나 좋은가?
+
+  *d.* 동일한 결합되지 않은 두 이중 진자에 대한 새 라그랑지언을 만들어라.
+  (두 진자 모두 같은 질량과 길이를 가져야 한다.) 새 라그랑지언은 네 자유도를
+  가져야 한다. 한 진자의 초기조건은 *b*부 실험과 같게 주고, 다른 진자의
+  초기조건은 /m/_{2} 추가 전보다 10^{−10} m 높게 주어라. 두 진자의 운동은
+  시간이 지나며 갈라질 것이다. 두 진자에서 /m/_{2} 추 위치 차이의 절댓값의
+  로그를 시간에 대해 그려라. 무엇이 보이는가?
+
+
+
+  @@html:<span id="Fig_1-11"></span>@@
+
+
+
+  #+caption: *그림 1.11* 이중 진자는 두 관절에 핀으로 고정되어 구성 부재가
+  평면에서 자유롭게 움직인다. [[/eval/source/sicm/images/Art_P363.jpg]]
+
+  *e.* 앞의 비교를 반복하되, 이번에는 다음 기저 초기조건을 써라.
+
+  | /θ/_{1}(0)                     | = | /π//2 rad    |
+  | /θ/_{2}(0)                     | = | 0 rad        |
+  | ${\overset{˙}{\theta}}_{1}(0)$ | = | 0 rad s^{−1} |
+  | ${\overset{˙}{\theta}}_{2}(0)$ | = | 0 rad s^{−1} |
+
+  여기서는 무엇이 보이는가?
+
+
+* 각주
+
+[fn:1] 함수의 /정지점(stationary point)/은 입력을 변분해도 함수값이 변하지
+않는 점이다. 국소 최댓값 또는 최솟값은 정지점이다.
+
+[fn:2] 변분 정식화는 입자와 강체의 뉴턴 역학 전부를 성공적으로 기술한다.
+변분 정식화는 고전 전기역학, 비점성 유체의 동역학, 사절 링크 같은 메커니즘
+설계 등 많은 다른 계의 기술에도 유용하게 적용되어 왔다. 더하여, 양자역학과
+양자장론의 현대적 정식화는 같은 개념의 많은 부분에 기대어 세워진다. 그러나
+모든 동역학계가 변분 정식화를 갖는 것은 아닌 것으로 보인다. 예를 들어,
+산일이 있는 계에 변분 장치를 적용하는 간단한 처방은 없으나, 특수한 경우에는
+변분 방법을 여전히 쓸 수 있다.
+
+[fn:3] 우리는 질량은 있으나 내부 구조는 없는 점입자를 흔히 /질점(point mass)/이라
+부른다.
+
+[fn:4] 엄밀히 말하면 배치공간의 차원과 자유도의 수는 같지 않다. 자유도의 수는
+“국소적으로 접근 가능한” 배치공간의 차원이다. 적분 가능 구속조건이 있는
+계에서는 둘이 같다. 적분 가능하지 않은 구속조건이 있는 계에서는 배치 차원이
+자유도의 수보다 클 수 있다. 더 자세한 설명은 [[/ko/eval/sicm/chapter-1/#h3_1-10-3][1.10.3절]]의 적분 가능하지
+않은 구속조건이 있는 계에 대한 논의를 보라. 그 논의를 제외하면, 우리가
+고려하는 모든 계는 적분 가능 구속조건을 가진다 (그들은 “홀로노믹”이다).
+이 때문에 우리는 자유도의 수와 배치공간의 차원 사이의 구분을 흐리게 두기로
+했다.
+
+[fn:5] 튜플은 원소의 순서 있는 목록이다. 원소 자체가 튜플일 수 있다.
+
+[fn:6] 모두 같은 정의역을 갖는 함수의 튜플은 그 자체로 그 정의역 위의
+함수이다. 정의역의 한 점이 주어지면, 함수 튜플의 값은 그 점에서 성분 함수
+값들의 튜플이다.
+
+[fn:7] 좌표 성분을 첨자로 위첨자를 써서 번호 매기는 것은, 지수와의 혼동
+가능성이 있어도, 전통적이다. 우리는 0부터 시작하는 인덱싱을 쓴다.
+
+[fn:8] 더 정확히, 일반화 좌표는 배치공간의 열린 부분집합을 *R*/^{n}/의 열린
+부분집합과 동일시한다. 배치공간 전체를 덮으려면 하나보다 많은 일반화 좌표
+집합이 필요할 수 있다. 예를 들어 배치공간이 2차원 구면이면, (북반구보다
+조금 더) 원판으로 사상하는 한 좌표 집합과 (남반구보다 조금 더) 원판으로
+사상하는 다른 집합을 둘 수 있고, 적도 근처 띠는 두 좌표계에 공통이다.
+매끈한 좌표 함수로 국소적으로 매개변수화할 수 있는 공간을 /미분가능
+다양체(differentiable manifold)/라 부른다.
+
+[fn:9] 여기서 $\circ$는 함수의 합성을 나타낸다.
+
+$$(f \circ g)(t) = f(g(t))$$
+
+[fn:10] 함수 $f$의 도함수는 $Df$로 나타내는 함수이다. 우리의 표기 관례는
+$D$가 높은 우선순위 연산자라는 것이다. 따라서 $D$는 다른 적용이 일어나기
+전에 인접한 함수에 작용한다. $Df(x)$는 $(Df)(x)$와 같다.
+
+[fn:11] 원자 척도의 계에 대한 경험은, 이 척도에서 계가 잘 정의된 배치 경로를
+따라 여행하지 않음을 시사한다. 원자 척도에서 계의 전개를 기술하려면 양자역학을
+쓴다. 여기서는 운동이 매끈한 배치 경로로 잘 기술되는 계에만 주의를 제한한다.
+
+[fn:12] 달의 궤도를 시간 뒤로 외삽해도, 달이 이 궤적 위에 놓인 지점을 정할
+수는 없다. 달의 기원을 정하려면 동역학적 증거에 화학 조성 같은 다른 물리적
+증거를 보태야 한다.
+
+[fn:13] 우리는 이 논증이 이 경로-구별 함수를 만드는 가능한 방식에 대한 정밀한
+구속조건으로 격상될 수 있다고 의심한다.
+
+[fn:14] 역사적으로 Huygens가 역학에서 “작용”이라는 말을 처음 썼고, “운동의
+효과”를 가리켰다. 이는 그리스에서 온 생각이다. 그의 원고 “Dynamica” (1690)에서
+Leibniz는 질량, 속도, 운동 거리의 곱인 “무해한 작용”을 써서 “최소 작용
+원리”를 언명했다. Leibniz는 또한 것들이 충돌하는 경우의 “격렬한 작용”을
+말했다.
+
+[fn:15] 실수 인수의 실숫값 함수 $f$의 정적분은
+
+  $\int_{a}^{b}f$
+
+  로 쓴다. 이는 또한
+
+  ${\int_{a}^{b}f}(x)dx$
+
+  로 쓸 수 있다. 첫 표기는 함수가 적분되고 있음을 강조한다.
+
+[fn:16] 전통적으로 함수 인수 둘레에 대괄호를 둔다. 이 경우 대괄호는 /S/의
+값이 도함수를 통하는 등 복잡한 방식으로 함수 /q/에 의존할 수 있음을
+상기시킨다.
+
+[fn:17] 실숫값 함수의 경우, 어떤 점에서 함수값과 그 도함수를 써서 거듭제곱
+급수를 구성할 수 있다. 충분히 좋은 함수(실해석적 함수)에서는 이렇게 구성한
+거듭제곱 급수가 그 점을 포함하는 어떤 구간에서 수렴한다. 모든 함수가 이
+방식으로 국소적으로 나타내어지는 것은 아니다. 예를 들어 함수 /f/(/x/) =
+exp(−1//x/^{2}), /f/(0) = 0은 /x/ = 0에서 영이고 모든 도함수가 영이지만,
+이 무한한 수의 도함수는 다른 어떤 점에서의 함수값을 정하기에 충분하지 않다.
+
+[fn:18] 우리의 표기에서 경로에 의존하는 함수를 그 경로에 적용하는 것은
+합성보다 우선순위가 높으므로 /L/ ∘ Γ[/q/] = /L/ ∘ (Γ[/q/])이다.
+
+[fn:19] 나중에 우리는 국소 튜플의 초기 조각이 계의 미래 전개를 정하기에
+충분함을 발견할 것이다. 배치와 유한한 수의 도함수가 미래를 정한다는 것은,
+초기 조각에서 경로의 나머지 모든 도함수를 정하는 길이 있다는 뜻이다.
+
+[fn:20] 고전 라그랑지언은 양자역학의 경로적분 정식화(Dirac과 Feynman에
+기인)에서 근본적 역할을 하며, 고전 작용의 복소 지수가 경로의 상대 확률
+진폭을 낸다. 라그랑지언은 역학의 해밀턴 정식화(3장에서 논의)의 출발점이며,
+이는 또한 양자역학의 Schrödinger와 Heisenberg 정식화 및 통계역학의
+Boltzmann--Gibbs 접근에 필수이다.
+
+[fn:21] 경로가 충분히 짧으면 원리는 “최소 작용 원리”가 된다. 더 일반적인
+경우 작용은 정지이다. “최소 작용 원리”라는 말은 또한 Maupertuis, Euler,
+Lagrange에 기인하는 결과, 곧 자유 입자가 주어진 끝점을 가진 모든 경로
+가운데 운동 에너지의 적분이 최소화되는 경로를 따라 움직인다는 결과를
+가리키는 데 흔히 쓰인다. 그에 따라 “작용”이라는 말은 때로 운동 에너지의
+적분을 특별히 가리키는 데 쓰인다. (실제로 Euler와 Lagrange는 /활력(vis viva)/,
+곧 운동 에너지의 두 배를 썼다.)
+
+[fn:22] 정지 작용 원리를 말하는 다른 방식은 목적론적이고 신비하게 들리게
+만든다. 예를 들어, 계가 초기 배치에서 최종 배치로 가는 모든 가능한 경로를
+고려한 뒤 가장 작은 작용을 가진 것을 고른다고 상상할 수 있다. 실제로,
+목적 있고 경제적이며 합리적인 우주라는 밑바탕 비전은 역학의 초기 발전을
+동반한 철학적 고려에서 적지 않은 역할을 했다. 현대 물리학의 일부로 남은
+가장 이른 작용 원리는 Fermat의 원리로, 두 점 사이를 여행하는 광선의 경로는
+가장 적은 시간이 걸리는 경로라는 것이다. Fermat는 이 원리를 1660년경
+정식화하여 반사와 굴절의 법칙을 유도하는 데 썼다. 이에 자극받아 프랑스
+수학자이자 천문학자 Pierre-Louis Moreau de Maupertuis는 최소 작용 원리를
+물리학의 거대한 통일 원리로 언명했다. 그의 /Essai de cosmologie/
+(1750)에서 Maupertuis는 이 “자연의 경제” 원리를 신의 존재의 증거로
+호소하며, 그것이 “가장 높은 완전성의 일반 원리로 물리 현상을 조절하려는
+신의 의도”를 보여 준다고 주장했다. 최소 작용 원리의 정식화에서 Maupertuis,
+Euler, Lagrange의 역할에 대한 역사적 관점은 [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_28][28]]]을 보라.
+
+[fn:23] 반사에서 입사각은 반사각과 같다. 굴절은 Snell의 법칙으로 기술된다.
+빛이 한 매질에서 다른 매질로 지나갈 때, 경계면의 법선에 대해 만든 각의
+사인의 비는 매질 굴절률 비의 역이다. 굴절률은 진공에서 빛의 속도와 매질에서
+빛의 속도의 비이다.
+
+[fn:24] 여기서 우리는 함수 정의를 만들고 있다. 정의는 임의로 고른 형식
+매개변수에 대한 함수값을 지정한다. 형식 매개변수의 이름은, 새 이름이 정의
+안의 다른 어떤 기호와 충돌하지 않는 한, 바꾸어도 된다. 예를 들어 다음 정의는
+정확히 같은 자유 입자 라그랑지언을 지정한다.
+
+  $L(a,b,c) = \frac{1}{2}m(c \cdot c).$
+
+[fn:25] 라그랑지언은 형식적으로 국소 튜플의 함수이지만, 어떤 특정 라그랑지언도
+국소 튜플의 유한한 초기 조각에만 의존한다. 우리는 함수가 의존하는 원소를
+포함하는 국소 튜플 초기 조각의 원소에 이름을 명시적으로 선언하여 국소 튜플의
+함수를 정의한다.
+
+[fn:26]  우리는 국소 튜플을 복합 자료 구조로 나타내며, 그 성분은 시간,
+일반화 좌표, 일반화 속도, 그리고 가능하면 더 높은 도함수이다. 이 구조에
+성분을 넣고 꺼내는 세부에 시달리고 싶지 않으므로, 이를 하는 유틸리티를
+제공한다.
+
+[fn:27] 주의하라. /q/의 정의에 있는 /x/는 위에서 자유 입자 라그랑지언의
+정의에서 형식 매개변수로 쓰인 /x/와 같지 않다. 알파벳의 글자는 한정되어
+있어 재사용할 수밖에 없다. 기호에 새 의미가 주어지는 곳을 주의하여 표시할
+것이다.
+
+[fn:28] 좌표 또는 속도 성분의 튜플은 절차 up으로 만든다. 튜플 q의 성분 i는
+(ref q i)이다. 모든 인덱싱은 0부터 시작한다. 단어 up은 수학 표기에서 이
+성분이 위첨자로 번호 매겨짐을 상기시키기 위함이다. 아래첨자로 번호 매겨지는
+down 튜플도 있다. 표기에 관한 부록을 보라.
+
+생성자 up은 또한 시간, 좌표, 속도를 국소 튜플을 나타내는 자료 구조로 포장하는
+데 쓰인다. 선택자 time, coordinate, velocity는 국소 구조에서 적절한 조각을
+추출한다. 절차 time은 절차 (component 0)과 같고, 비슷하게 coordinate는
+(component 1), velocity는 (component 2)이다.
+
+[fn:29] 함수의 도함수는 함수를 낸다. 예를 들어 ((D cube) 2) =>
+12이고 ((D cube) 'a) => (_{*} 3 (expt a 2))이다.
+
+[fn:30] Γ는 임의로 긴 국소 튜플을 만들지만, 우리의 절차 Gamma는 기본값으로
+처음 세 원소만 만든다. 더 긴 국소 튜플이 필요하면 Gamma에 필요한 튜플의
+길이를 추가 인수로 줄 수 있다.
+
+[fn:31] 우리 체계에서 산술 연산자는 수치값뿐 아니라 기호 표현식에도
+제네릭하다. 산술 절차는 수 또는 표현식과 균일하게 일할 수 있다. 예를 들어
+절차 (define (cube x)
+(_{*} x x x))가 주어지면 수에 대한 값 (cube 2) => 8 또는 리터럴 기호에 대한
+(cube 'a) => (_{*} a a a)를 얻을 수 있다.
+
+[fn:32] 매우 복잡한 표현식에서는 Scheme의 전위 표기가 종종 더 낫지만,
+단순화는 거의 항상 유용하다. 단순화와 중위 표시의 기능을 분리할 수 있다.
+나중에 이 예를 볼 것이다.
+
+[fn:33] Scmutils는 다양한 수치 적분 절차를 포함한다. 이 절의 예는 상대 오차
+허용 10^{−10}의 Euler--MacLaurin 공식의 유리함수 외삽으로 계산되었다.
+
+[fn:34] 실제 물리 상황에서는 이 양들에 단위를 지정해야 하겠지만, 이
+예시에서는 지정하지 않은 채로 둔다.
+
+[fn:35] 여기서는 매개변수를 지정하는 데 소수점 있는 숫자를 쓴다. 이는
+표현을 부동소수점으로 강제하며, 수치 계산에 효율적이다. 기호 대수를 하려면
+수가 정확한 정수 또는 유리 분수여서 표현식을 신뢰성 있게 기약으로 줄일 수
+있는 것이 필수이다. 그런 수는 소수점 없이 지정한다.
+
+[fn:36] 속도의 제곱 크기는 $\overset{\rightarrow}{v} \cdot
+ \overset{\rightarrow}{v}$
+
+  , 곧 속도와 그 자신의 벡터 내적이므로, 간단히
+  /v/^{2} = /v/ · /v/로 쓴다.
+
+[fn:37] 우리가 함수에 대해 산술을 하고 있음에 유의하라. 같은 유형(같은
+정의역과 치역)의 두 함수의 결합이 같은 정의역 위에서 인수 함수의 값을
+치역에서 결합하는 함수가 되도록 산술 연산을 확장한다. 예를 들어 /f/와 /g/가
+/t/의 함수이면 /fg/는 함수 /t/ ↦ /f/(/t/)/g/(/t/)이다. 함수의 상수배는 각
+인수에 대해 값이 상수 곱하기 그 함수의 값인 함수이다. /cf/는 함수 /t/ ↦
+/cf/(/t/)이다.
+
+[fn:38] 우리가 절차를 더하고 있음에 유의하라. 산술 연산을 함수로 확장한 것에
+나란히, 산술 연산은 호환되는 절차로 확장된다.
+
+[fn:39] minimize의 인수는 문제의 일변수 함수를 구현하는 절차, 그리고 탐색할
+영역의 하한과 상한이다. Scmutils는 수치 최소화 방법의 선택을 포함하며, 여기서
+쓰인 것은 오차 허용 10^{−5}의 Brent 알고리즘이다. minimize가 돌려주는 값은
+세 수의 목록이다. 첫째는 최솟값이 일어난 인수, 둘째는 얻은 최솟값, 셋째는
+최솟값을 얻는 데 필요한 최소화 알고리즘의 반복 횟수이다.
+
+[fn:40] 그렇다, /-1.5987211554602254e-14/는 최소화기가 요구하는 허용에 대해
+영이다. 그리고 /435.0000000000237/은 앞에서 얻은 /435/와 같다고 주장할 수
+있다.
+
+[fn:41] 그런 매개변수 근사 궤적 집합을 만드는 좋은 방법은 많다. 스플라인이나
+고차 보간 다항식을 쓸 수 있고, Chebyshev 다항식을 쓸 수 있고, 푸리에 성분을
+쓸 수 있다. 선택은 근사하고 싶은 궤적의 종류에 의존한다.
+
+[fn:42] 여기 make-path를 구현하는 한 방법이 있다.
+
+   #+begin_src scheme
+(define (make-path t0 q0 t1 q1 qs)
+  (let ((n (length qs)))
+    (let ((ts (linear-interpolants t0 t1 n)))
+      (Lagrange-interpolation-function
+       (append (list q0) qs (list q1))
+       (append (list t0) ts (list t1))))))
+   #+end_src
+
+절차 linear-interpolants는 처음 두 인수를 선형 보간하는 원소의 목록을 만든다.
+여기서 이 절차를 써서 ts를 지정한다. ts는 경로가 지정될 t0과 t1 사이의 n개의
+균등 간격 중간 시각이다. 조정되는 매개변수 qs는 이 중간 시각에서의 위치이다.
+절차 Lagrange-interpolation-function은 값의 목록과 시각의 목록을 받아 이 점을
+지나는 Lagrange 보간 다항식을 계산하는 절차를 만든다.
+
+[fn:43] 여기서 쓰인 최소화기는 Nelder--Mead 내리막 심플렉스 방법이다. 수치
+절차에서 늘 그렇듯, nelder-mead 절차의 인터페이스는 복잡하며, 사용자가 오차를
+효과적으로 제어하게 하는 선택적 매개변수가 많다. 이 제시에서는
+nelder-mead를 더 맛좋은 multidimensional-minimize로 감싸 특수화했다.
+불행히도, 언젠가 복잡한 수치 절차와 함께 사는 법을 배워야 할 것이다.
+
+[fn:44] 걱정하지 마라. 이것이 왜 올바른 라그랑지언인지 아직 알지 못함을
+우리는 안다. [[/ko/eval/sicm/chapter-1/#h1-6a][1.6절]]에서 이에 이를 것이다.
+
+[fn:45] 성분 구조의 제곱은 개별 성분 제곱의 합으로 정의된다.
+
+[fn:46] 관례로, 이름 붙은 상수는 콜론으로 시작하는 이름을 가진다. :pi와
+:-pi라는 이름의 상수는 그 이름에서 기대하는 것이다.
+
+[fn:47] 구조화된 인수를 받는 함수의 도함수 또는 편미분은 같은 수와 유형의
+인수를 받는 새 함수이다. 이 새 함수의 치역은 그 자체로, 함수가 미분되는
+인수와 같은 수의 성분을 가진 구조이다. 더 자세한 것은 표기에 관한 부록을
+보라.
+
+[fn:48] 이 논증을 더 정밀하게 만들려면 주의 깊은 해석이 필요하다.
+
+[fn:49] 변분 연산자 /δ_{η}/는, 바로 뒤따르는 함수에 작용한다는 점에서
+도함수 연산자와 같다. /δ_{η}f/[/q/] = (/δ_{η}f/)[/q/].
+
+[fn:50] /g/의 정의를 분리한다. /δ_{η}g/[/q/]에서 /g/[/q/] 자리에 /Dq/를
+치환할 수 없는 것은 /δ_{η}/가 /g/[/q/]가 아니라 /g/에 적용되기 때문이다.
+
+[fn:51] 리터럴 함수의 유형은 함수 시그니처로 기술된다. 기본 함수 시그니처는
+(-> Real Real)로, 실수 인수의 실숫값 함수를 나타낸다. 이 경우 F는 자유도의
+수가 지정되지 않은, 라그랑지언처럼 생긴 함수로 선언된다. 함수 시그니처에
+대한 더 많은 정보는 표기에 관한 부록을 보라.
+
+[fn:52] 여러 인수의 함수는 그 인수의 up 튜플의 함수로 여겨진다. 따라서 여러
+인수의 함수의 도함수는 각 인수에 대한 그 함수의 편미분의 down 튜플이다.
+따라서 라그랑지언 /L/의 경우,
+
+$$DL(t,q,v) = \lbrack\partial_{0}L(t,q,v),\partial_{1}L(t,q,v),\partial_{2}L(t,q,v)\rbrack.$$
+
+[fn:53] 국소 튜플의 성분에 이름을 붙이는 정의를 쓸 때, 이 성분들이 시간,
+위치, 속도 성분으로 묶임을 그룹 사이에 세미콜론을 두어 나타낸다.
+
+[fn:54] 기호 $\overset{˙}{\theta}$
+
+는 단지 연상 기호일 뿐이며, /θ/ 위의 점은 미분을 나타내지 않는다. /L/을
+정의하기 위해 다음처럼 쓸 수도 있었을 것이다.
+
+$$L(a,b,c) = \frac{1}{2}ml^{2}c^{2} + mgl\cos b$$
+
+. 그러나 점 찍힌 기호를 써서, $\overset{˙}{\theta}$
+
+와 같은 형식 매개변수에 맞는 인수가 /θ/와 같은 각의 변화율임을 상기시킨다.
+
+[fn:55] 전통 표기에서 이 방정식은 다음과 같이 읽힌다.
+
+$$\frac{d^{2}}{dt^{2}}\frac{\partial L}{\partial\overset{¨}{q}} -
+\frac{d}{dt}\frac{\partial L}{\partial\overset{˙}{q}} + \frac{\partial
+L}{\partial q} = 0.$$
+
+[fn:56] Lagrange-equations 절차는 (partial 1)과 (partial 2) 연산을 쓰며,
+이는 둘째와 셋째 인수 위치(인덱스 1과 2를 가진 것)에 대한 편미분 연산자를
+구현한다.
+
+[fn:57] 각 자유도에 대해 라그랑주 방정식이 하나 있다. 경로가 실현 가능하면
+모든 방정식의 잔차는 영이다. 잔차는 down 튜플로 배열되는데, 그들이 up 튜플을
+받는 인수 자리에 대한 라그랑지언의 도함수에서 나오기 때문이다. 표기에 관한
+부록을 보라.
+
+[fn:58] 이계 도함수가 도함수 연산자의 제곱 (expt D 2)로 표시됨에 주목하라.
+Scmutils의 산술 연산은 함수뿐 아니라 연산자에도 확장된다.
+
+[fn:59] /x/와 /v/는 라그랑지언의 형식 매개변수일 뿐임을 기억하라. 이 /x/는
+유도에서 앞에서 쓴 경로 /x/가 아니며, 다만 특정 시각에서 그 경로의 값일 수는
+있다.
+
+[fn:60] 함수에 쓰이지 않는 추가 인수를 언제나 줄 수 있어, 같은 모양의 다른
+함수와 대수적으로 결합할 수 있다.
+
+[fn:61] William Rowan Hamilton은 1834--1835년에 시간에 무관한 계에 대한
+근본 변분 원리를 정식화했다. Jacobi는 이 원리에 “Hamilton의 원리”라는 이름을
+주었다. 일반적인 비정상 구속조건을 받는 계에 대해 Hamilton의 원리는 1848년
+Ostrogradsky가 조사했고, 러시아 문헌에서 Hamilton의 원리는 흔히
+Hamilton--Ostrogradsky 원리라 불린다.
+
+Hamilton (1805--1865)은 뛰어난 수학자였다. Fermat의 원리에 기초한 기하광학에
+대한 그의 초기 연구는 매우 인상적이어서, 그는 아직 학부생일 때 Trinity
+College의 천문학 교수이자 Ireland 왕립 천문학자로 선출되었다. 그는 두 기념비적
+수학 저작을 냈다. 사원수의 발견은 추상 대수를 되살렸고 물리학에서 벡터 기법의
+발전을 촉발했다. 그의 1835년 회고 “On a General Method in Dynamics”는 변분
+역학을 단단한 발판 위에 두어, 100년 전 Maupertuis가 모호하게 말한 최소 작용
+원리에 마침내 실체를 주었다. Hamilton은 또한 시를 썼고 Wordsworth와 폭넓은
+서신을 주고받았으며, Wordsworth는 그에게 시를 쓰기보다 수학을 쓰는 데 힘을
+쏟으라고 조언했다.
+
+근본 변분 원리의 정식화에 더하여, Hamilton은 또한 기하광학과 역학 사이의
+유비를 강조했고, (앞서 Lagrange와 Cauchy가 도입한) 운동량 변수의 중요성을
+강조하여 3장에서 논의하는 역학의 “정준” 형식으로 이끌었다.
+
+[fn:62] 튜플에 적용될 때 square는 튜플 성분 제곱의 합을 뜻한다.
+
+[fn:63] 위의 각주 [fn:26]에서 기술했듯, 절차 up은 시간, 좌표, 속도의 초기
+조각에서 국소 튜플을 구성한다.
+
+[fn:64] 여기 T_{E}X 마법을 알아주기를 바란다. 캐럿, 밑줄, 그리스 글자 이름,
+그리고 문자 “dot”으로 끝나는 이름을 가진 기호는 show-expression에 의해
+대응하는 T_{E}X 표현식으로 변환된다.
+
+[fn:65] 우리는 강체 구속조건이 있는 계에 대한 뉴턴 절차를 단순히 받아들이고
+동등한 라그랑지언을 찾는다. 물론 실제 물체는 결코 참으로 강체가 아니므로,
+그들을 참으로 강체인 것처럼 다루려면 어떤 상세한 근사가 이루어져야 하는지
+궁금할 수 있다. 예를 들어 더 만족스러운 접근은 강체 거리 구속조건을 매우
+뻣뻣한 용수철로 바꾸는 것일 것이다. 그러면 라그랑지언을 즉시 /L/ = /T/ − /V/로
+쓸 수 있고, 강체 구속조건이 있는 계에 대한 뉴턴 절차를 근사로서 /유도/할 수
+있어야 한다. 그러나 이는 이 단계에서 하기에는 너무 복잡하므로, 우리는 뉴턴식
+이상화를 받아들인다.
+
+[fn:66] 이 라그랑지언은 순전히 형식적이며 구속력의 모형을 나타내지 않는다.
+특히, 구속조건 항이 구속조건이 정확히 만족될 때 최솟값을 갖는 퍼텐셜 에너지로
+더해지지 않음에 유의하라. 오히려 라그랑지언의 구속조건 항은 구속조건이
+만족될 때 영이고, 입자 사이 거리가 구속 거리보다 큰지 작은지에 따라 양이거나
+음일 수 있다.
+
+[fn:67] 전형적으로 /x/의 성분 수는 /q/의 성분 수와 /c/의 성분 수의 합과
+같다. 버팀대를 하나 더하면 자유도 하나가 제거되고 거리 구속조건이 하나
+더해진다. 그러나 버팀대 하나를 더하는 것이 하나보다 많은 자유도를 제거할 수
+있는 특이 경우가 있다. 여기서는 특이 경우를 고려하지 않는다.
+
+[fn:68] 예를 들어 세 인수의 함수 /g/를 생각하고, /g/_{0}(/x/, /y/) = /g/(/x/,
+/y/, 0)을 만족하는 두 인수의 함수 /g/_{0}이라 하자. 그러면 (∂_{0}/g/_{0})(/x/,
+/y/) = (∂_{0}/g/)(/x/, /y/, 0)이다. 인수에 값을 치환하는 것은 다른 인수에
+대한 편미분을 취하는 것과 교환된다. /q/에 대한 라그랑주 방정식을 유도할 때
+라그랑지언에서 /c/ = /l/과
+
+  $\overset{˙}{c} = 0$
+
+  으로 둘 수 있으나, /c/에 연관된 라그랑주 방정식을 유도할 때는 그렇게 할 수
+  없다. 그 인수에 대해 미분해야 하기 때문이다.
+
+[fn:69] /R_{z}/(/α/)는 인수를 /ẑ/ 축 둘레로 각 /α/만큼 회전시키는 함수를
+내고, /R_{y}/도 비슷하다.
+
+[fn:70] Γ[/q/](/t/)의 값과 같은 튜플 구조의 성분은 선택 함수로 고를 수 있다.
+/I_{i}/는 튜플에서 인덱스 /i/인 원소를 얻는다.
+
+[fn:71] Lipschitz 조건은 상태의 변화율이 각 상태 둘레의 열린 집합에서 상수로
+유계라는 것이다. Lipschitz 조건의 좋은 처리는 [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_25][25]]]를 보라.
+
+[fn:72] 좌표가 잉여이면 일반적으로 최고차 도함수에 대해 풀 수 없다. 그러나
+비잉여 좌표로 변환할 수 있고, 비잉여 좌표에서 초기값 문제를 풀 수 있으며,
+비잉여 좌표에서 잉여 좌표를 구성할 수 있으므로, 일반적으로 잉여 좌표에 대한
+초기값 문제를 풀 수 있다. 유일한 문제는 임의의 초기조건을 지정할 수 없다는
+것이다. 초기조건은 구속조건과 부합해야 한다.
+
+[fn:73] 이 행렬을 역변환할 수 없게 만드는 특이점을 만날 수 있으나, 실제
+계에서 이 특이점은 고립되어 있으며 좌표를 바꾸어 피할 수 있다.
+
+[fn:74] 시간, 좌표, 속도에 의존하는 라그랑지언에 대해 상태는 시간, 좌표,
+속도로 지정된다. 그러나 라그랑지언이 국소 튜플의 처음 네 성분(시간, 좌표,
+속도, 가속도)에 의존하면 계의 상태는 국소 튜플의 처음 다섯 성분으로
+지정된다.
+
+[fn:75] 절차 solve-linear-left는 둘째 인수에 첫째 인수의 역을 왼쪽에서
+곱한다. 따라서 /u/ = /Mv/이면 /v/ = /M/^{−1}/u/이고, (solve-linear-left M u)는
+v를 만든다.
+
+[fn:76] Scmutils 체계는 이 인터페이스를 통해 접근할 수 있는 다양한 수치 적분
+루틴을 제공한다. 여기에는 품질 제어 Runge--Kutta와 Bulirsch--Stoer가
+포함된다. 기본 적분 방법은 Bulirsch--Stoer이다.
+
+[fn:77] 절차 state-advancer는 상태-도함수 절차를 처음 만날 때 자동으로
+컴파일한다. 새 상태 도함수가 처음 쓰일 때는 컴파일이 일어나는 동안 지연이
+있다.
+
+[fn:78] 결과는 절차 frame이 만든 플롯 창에 그려지며, 인수 xmin, xmax, ymin,
+ymax는 플롯 영역의 한계를 지정한다. 점은 절차 plot-point로 플롯에 더해지며,
+플롯 창과 그릴 점의 가로좌표와 세로좌표를 받는다.
+
+절차 principal-value는 각을 표준 구간으로 줄이는 데 쓰인다.
+principal-value의 인수는 원을 자를 점이다. 따라서 (principal-value :pi)는
+각 /θ/를 구간 −/π/ ≤ /θ < /π/./로 줄이는 절차이다.
+
+[fn:79] 더 오래된 문헌에서 보존량은 때로 /제1적분(first
+integrals)/이라 불린다.
+
+[fn:80] 일반화 운동량의 성분은 아래첨자로, 일반화 좌표의 성분은 위첨자로
+나타냄에 주목하라. 이 관례는 텐서 대수에서 흔히 쓰이는 것과 부합하며, 복잡한
+문제를 풀어 나갈 때 때로 도움이 된다.
+
+[fn:81] 예를 들어, 전시간 미분만큼만 다른 동등한 라그랑지언을 구성할 수
+있다. 이 라그랑지언의 운동량 상태 함수는 다르다.
+
+[fn:82] 일반적으로 물리계의 보존량은, 대칭이 드러나는 좌표계를 찾을 수
+있는지와 무관하게, 연속 대칭에 연관된다. 이 강력한 개념은 형식화되었고
+보존 법칙과 대칭을 잇는 정리는 20세기 초에 Noether가 증명했다. Noether의
+정리에 관한 [[/ko/eval/sicm/chapter-1/#h3_1-8-5][1.8.5절]]을 보라.
+
+[fn:83] 에너지 상태 함수의 부호는 관례의 문제이다.
+
+[fn:84] 전시간 미분만큼만 다른 동등한 라그랑지언을 구성할 수 있다. 이
+라그랑지언의 에너지 상태 함수는 다르다.
+
+[fn:85] 함수 /f/가 차수 /n/으로 동차인 것은 /f/(/ax/) = /a^{n}f/(/x/)일
+때 그리고 그때뿐이다. Euler의 정리는 /f/가 차수 /n/의 동차 함수이면
+/Df/(/x/)/x/ = /nf/(/x/)라고 말한다. 증명은 다음과 같다. /g_{x}/(/a/) =
+/f/(/ax/)라 하자. 그러면 /Dg_{x}/(/a/) = /Df/(/ax/)/x/이다. 그러나 동차성의
+정의에 의해 /g_{x}/(/a/) = /a^{n}f/(/x/)이다. 따라서 /Dg_{x}/(/a/) =
+/na/^{/n/−1}/f/(/x/)이다. 이들을 등치하면 /Df/(/ax/)/x/ =
+/na/^{/n/−1}/f/(/x/)를 찾는다. /a/ = 1로 특수화하면 요구된 /Df/(/x/)/x/ =
+/nf/(/x/)를 얻는다.
+
+[fn:86] 전통적으로 Jacobi 상수는 /C_{J}/ = −2/ℰ/로 정의된다.
+
+[fn:87] 전시간 미분은 실수 인수에 대한 도함수와 같아서 구조를 만들지
+않으므로, 구조를 만드는 도함수와 교환될 수 있다. 그러나 주의하라. 다른
+이유로 어떤 도함수와는 교환되지 않을 수 있다. 예를 들어
+
+$$D_{t}\partial_{1}(\widetilde{F}(s))$$
+
+는
+
+$$\partial_{1}D_{t}(\widetilde{F}(s))$$
+
+와 같지만,
+
+$$D_{t}\partial_{2}(\widetilde{F}(s))$$
+
+는
+
+$$\partial_{2}D_{t}(\widetilde{F}(s))$$
+
+와 같지 않다. 이유는
+
+$$\widetilde{F}(s)$$
+
+가 속도에 의존하지 않으나
+
+$$D_{t}(\widetilde{F}(s))$$
+
+는 의존하기 때문이다.
+
+[fn:88] 절차 =Rx=의 정의는
+
+#+begin_src scheme
+(define ((Rx angle) q)
+  (let ((ca (cos angle))
+        (sa (sin angle)))
+    (let ((x (ref q 0))
+          (y (ref q 1))
+          (z (ref q 2)))
+      (up x
+          (- (* ca y) (* sa z))
+          (+ (* sa y) (* ca z))))))
+#+end_src
+
+=Ry=와 =Rz=의 정의는 비슷하다. 각주 [fn:69]를 보라.
+
+[fn:89] 국소 튜플 함수 /f/는 국소 튜플 함수
+
+$$\overline{\Gamma}(\overline{f})$$
+
+와 같으며, 여기서
+
+  $\overline{f}\lbrack q\rbrack = f \circ \Gamma\lbrack q\rbrack$
+
+이다. 다른 한편 경로 함수
+
+$$\overline{f}\lbrack q\rbrack$$
+
+와 경로 함수
+
+$$\overline{\Gamma}(\overline{f}) \circ \Gamma\lbrack q\rbrack$$
+
+는 반드시 같지는 않은데,
+
+$$\overline{f}\lbrack q\rbrack$$
+
+가 기본값으로 제공되는 것보다 더 많은 국소 튜플 성분을 요구할 수 있기
+때문이다. 예를 들어 라그랑주 방정식은 가속도뿐 아니라 시간, 좌표, 속도도
+포함한다. Γ[/q/]가 적절한 수의 성분으로 확장되면 둘은 동등하다. (각주 [fn:90]을 보라.)
+
+[fn:90] 이 F->C는 [[https://tgvaughan.github.io/sicm/chapter001.html#p46][46쪽]]에 도입된 코드보다 더
+일반적이어서, 필요하면 국소 튜플의 고차 도함수 변환 계산을 허용한다.
+
+이를 작동하게 하려고 Gamma 또한, 시간, 좌표, 속도에 의존하는 라그랑지언에
+필요한 것보다 더 많은 국소 튜플 원소를 만들도록 확장된다. 여기서 Gamma는
+보통보다 인수를 하나 더 받는다. 이 선택적 인수는 필요한 국소 튜플 초기
+조각의 길이를 준다. 기본 길이는 3으로, 속도까지 포함하는 국소 튜플 성분을
+준다.
+
+[fn:91] 임의의 허용되는 변분이 주어지면, 특정 시간 구간을 강조하는 범프
+함수(bump function)를 그 변분에 곱하여 다른 허용되는 변분을 만들 수 있다.
+
+[fn:92] 우리는 시간의 두 튜플값 함수가, 각 순간에 튜플의 내적이 영이면
+직교한다고 본다. 비슷하게, 각 순간에 튜플 하나가 다른 것의 스칼라 배수이면
+튜플값 함수는 평행하다고 여긴다. 스칼라 배수는 일반적으로 시간의 함수이다.
+
+[fn:93] 오일러--라그랑주 연산자 $\mathcal{E}$
+
+는 다음 성질을 가짐을 상기하라.
+
+$$\mathcal{E}\,\lbrack FG\rbrack = F\,\mathcal{E}\lbrack G\rbrack +
+\mathcal{E}\lbrack F\rbrack G + D_{t}F\,\partial_{2}G + \partial_{2}F\,
+D_{t}G.$$
+
+[fn:94] 이 구속조건은 강체계에 /L/ = /T/ − /V/를 쓸 수 있음을 보인 데 쓰인
+것과 같은 꼴이다. 여기서는 더 일반적인 구속조건 집합의 특정 예이다.
+
+[fn:95] 실제로, 뉴턴 구속력 논의에서처럼 구속조건 방정식을 척도화했다면
+/λ/를 구속력 /F/의 크기와 동일시할 수 있었을 것이다. 그러나 /λ/는 일반적으로
+구속력과 관련되지만 그 가운데 하나는 아닐 것이다. 일을 인위적으로 예쁘게
+만들려 하기보다, 자연스럽게 나타난 대로 척도를 남겨 두기로 했다.
+
+[fn:96] 이 예는 [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_20][20]]], 49--51쪽에 나타난다.
+
+[fn:97] 2장에서 회전 운동 에너지를 계산하는 법을 보겠지만, 지금은 답이
+
+$$\frac{1}{2}M\, R^{2}{\overset{˙}{\theta}}^{2}.$$
+
+이다.
+
+[fn:98] 비홀로노믹 계의 어떤 처리는, 예를 들어 Whittaker
+[[[https://tgvaughan.github.io/sicm/bibliography.html#bib_46][46]]], Goldstein [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_20][20]]], Gantmakher [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_19][19]]], 또는 Arnold 등 [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_6][6]]]을 보라.
+
+[fn:99] Arnold 등 [[[https://tgvaughan.github.io/sicm/bibliography.html#bib_6][6]]]은 구속조건을 라그랑지언에 더한 변분 역학을 /바코노믹
+역학(Vakonomic mechanics)/이라 부른다.

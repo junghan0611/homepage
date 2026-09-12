@@ -16,6 +16,11 @@ if (generated.status !== 0) {
 	process.stderr.write(generated.stderr || generated.stdout);
 	fail("generated runtime receipts are missing or stale");
 }
+const sicmTranslation = spawnSync("python3", ["scripts/build-sicm-translation.py", "--check"], { cwd: root, encoding: "utf8" });
+if (sicmTranslation.status !== 0) {
+	process.stderr.write(sicmTranslation.stderr || sicmTranslation.stdout);
+	fail("segmented SICM translation is missing, structurally changed, or stale");
+}
 const sicmGenerated = spawnSync("python3", ["scripts/build-sicm-reading.py", "--check"], { cwd: root, encoding: "utf8" });
 if (sicmGenerated.status !== 0) {
 	process.stderr.write(sicmGenerated.stderr || sicmGenerated.stdout);
@@ -53,15 +58,16 @@ for (const name of await readdir(resolve(root, "static/eval/runtime"))) {
 }
 
 const requiredFiles = [
-	"content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md",
+	"content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md",
 	"data/eval/runtime.json", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json",
 	"layouts/eval/list.html", "layouts/eval/single.html", "layouts/eval/license.html",
 	"layouts/shortcodes/eval-cell.html", "layouts/shortcodes/eval-rails.html", "layouts/shortcodes/eval-attribution.html",
 	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/cell.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html",
 	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js", "assets/js/eval-sicm.js",
 	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
-	"scripts/build-eval-runtime.mjs", "scripts/build-sicm-reading.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
-	"static/eval/source/sicm/LICENSE", "static/eval/source/sicm/en/preface.org", "static/eval/source/sicm/en/chapter001.org", "static/eval/source/sicm/ko/preface.ko.org",
+	"scripts/build-eval-runtime.mjs", "scripts/build-sicm-reading.py", "scripts/build-sicm-translation.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
+	"dev/eval/sicm/translation/manifest.json", "dev/eval/sicm/translation/chapter001/ch1-00-04.ko.org", "dev/eval/sicm/translation/chapter001/ch1-05.ko.org", "dev/eval/sicm/translation/chapter001/ch1-06.ko.org", "dev/eval/sicm/translation/chapter001/ch1-07-09.ko.org", "dev/eval/sicm/translation/chapter001/ch1-10-12.ko.org",
+	"static/eval/source/sicm/LICENSE", "static/eval/source/sicm/en/preface.org", "static/eval/source/sicm/en/chapter001.org", "static/eval/source/sicm/ko/preface.ko.org", "static/eval/source/sicm/ko/chapter001.ko.org",
 	"static/eval/licenses/GPL-3.0.txt", "static/eval/licenses/EPL-1.0.txt", "static/eval/licenses/Apache-2.0.txt", "static/eval/licenses/MIT-fraction.js.txt", "static/eval/licenses/BSD-2-Clause-odex.txt",
 ];
 for (const path of requiredFiles) if (!(await exists(path))) fail(`required source or notice missing: ${path}`);
@@ -92,7 +98,7 @@ for (const [name, expected] of Object.entries(sicm.images.files)) {
 	if (sha256(await readFile(resolve(root, path))) !== expected) fail(`SICM image hash mismatch: ${path}`);
 }
 
-const contentPaths = ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/clay.md", "content/eval/canary.md"];
+const contentPaths = ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/canary.md"];
 const referencedCells = new Set();
 for (const path of [...contentPaths, "content/javascript.md", "layouts/_partials/eval/sicm-viewer.html"]) {
 	const source = await read(path);

@@ -1,0 +1,689 @@
+* 1.5 오일러--라그랑주 방정식
+  :PROPERTIES:
+  :CUSTOM_ID: h1-6
+  :CLASS:    level1
+  :END:
+  정지 작용 원리는 배치공간에 놓인 계의 실현 가능한 경로를, 작용이 정지값을
+  갖는 경로로 특징짓는다. 초등 미적분학에서 우리는 함수의 임계점이 도함수가
+  사라지는 점임을 배운다. 이와 비슷하게, 작용이 정지인 경로는 미분방정식계의
+  해이다. /오일러--라그랑주 방정식/ 또는 그냥 /라그랑주 방정식/이라 불리는 이
+  방정식계는, 정지 작용 원리를 써서 역학계의 운동을 계산하고 역학의 변분적
+  정식화와 뉴턴식 정식화를 연결할 수 있게 해 주는 고리이다.
+
+
+
+** 라그랑주 방정식
+   :PROPERTIES:
+   :CUSTOM_ID: lagrange-equations
+   :CLASS:    level2
+   :END:
+   /L/이 시간, 좌표, 속도에 의존하는 어떤 계의 라그랑지언이고, /q/가 작용
+   /S/[/q/](/t/_{1}, /t/_{2})를 정지로 만드는 좌표 경로라면(경로의 양 끝점을
+   고정하는 임의의 경로 변분에 관하여), 다음이 성립함을 보게 될 것이다.
+
+   \begin{equation}
+   {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - \partial_{1}L \circ \Gamma\lbrack q\rbrack = 0.} & {(1.12)}
+   \end{equation}
+
+   여기서 /L/은 국소 튜플의 실숫값 함수이고, ∂_{1}/L/과 ∂_{2}/L/은 각각 /L/의
+   일반화 위치 인수와 일반화 속도 인수에 대한 편미분을 나타낸다.[fn:47] 함수
+   ∂_{2}/L/은 국소 튜플을, 일반화 속도의 각 성분에 대한 /L/의 도함수를
+   성분으로 갖는 구조로 보낸다. 함수 Γ[/q/]는 시간을 국소 튜플로 보낸다:
+   Γ[/q/](/t/) = (/t/, /q/(/t/), /Dq/(/t/), ...). 따라서 합성 ∂_{1}/L/ ∘
+   Γ[/q/]와 ∂_{2}/L/ ∘ Γ[/q/]는 인수가 하나, 곧 시간인 함수이다. 라그랑주
+   방정식은 임의의 시각에 ∂_{2}/L/ ∘ Γ[/q/]의 도함수가 ∂_{1}/L/ ∘ Γ[/q/]와
+   같다고 주장한다. 라그랑지언이 주어지면 라그랑주 방정식은 실현 가능한 경로가
+   만족해야 하는 상미분방정식계를 이룬다.
+
+   라그랑주 방정식은 전통적으로 /q/의 각 성분마다 하나씩 따로 쓴다:
+
+   $\begin{equation} {\frac{d}{dt}\frac{\partial
+   L}{\partial{\overset{˙}{q}}^{i}} - \frac{\partial L}{\partial q^{i}} = 0} &
+   {i = 0,\ldots,n - 1.} \end{equation}$
+
+   라그랑주 방정식을 이렇게 쓰는 방식에서는, 이 표기가 세 변수 (/t/, /q/,
+
+   q˙
+
+   )의 실숫값 함수인 /L/과, 하나의 실변수 /t/의 실숫값 함수인 /L/ ∘ Γ[/q/]를
+   구별하지 않는다. 이 표기의 말장난을 알아채지 못하면 방정식은 쓰인 그대로는
+   뜻이 통하지 않는다---∂/L//∂
+
+   q˙
+
+   는 세 변수의 함수이므로, 이 식에 /d///dt/를 취하기 전에 인수 /q,/
+
+   q˙
+
+   를 /t/의 함수로 보아야 한다. 마찬가지로 ∂/L//∂/q/도 세 변수의 함수이고,
+   이것을 다음과 같이 놓기 전에 /t/의 함수로 보아야 한다
+
+   $d/dt\left( {\partial L/\partial\overset{˙}{q}} \right)$
+
+   .
+
+
+
+   전통적 표기를 올바르게 쓰면 더 명시적이다:
+
+   $\frac{d}{dt}\left( \left. \frac{\partial L\left( {t,w,\overset{˙}{w}}
+   \right)}{\partial{\overset{˙}{w}}^{i}} \right|_{\begin{array}{l} {w = q{(t)}}
+   \\
+   {\overset{˙}{w} = \frac{dq{(t)}}{dt}} \end{equation}} \right) - \left.
+   \frac{\partial L\left( {t,w,\overset{˙}{w}} \right)}{\partial w^{i}}
+   \right|_{\begin{array}{l} {w = q{(t)}} {\overset{˙}{w} = \frac{dq{(t)}}{dt}}
+   \end{equation}} = 0,$
+
+   여기서 /i/ = 0, ..., /n/ − 1이다. 이 식들에서 우리는 먼저 라그랑지언 함수의
+   편미분을 취하고, 그런 다음 라그랑지언의 위치 인수와 속도 인수에 경로와 그
+   도함수를 대입하여 시간에 관한 식을 얻는 것을 본다.
+
+*** 1.5.1 라그랑주 방정식의 유도
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-5-1
+    :CLASS:    level3
+    :END:
+    정지 작용 원리가 실현 가능한 경로는 오일러--라그랑주 방정식을 만족함을
+    함의한다는 것을 보이겠다.
+
+** 직접적인 유도
+   :PROPERTIES:
+   :CUSTOM_ID: a-direct-derivation
+   :CLASS:    level2
+   :END:
+   /q/를 (/t/_{1}, /q/(/t/_{1}))에서 (/t/_{2}, /q/(/t/_{2}))에 이르는 실현
+   가능한 좌표 경로라 하자. /η/(/t/_{1}) = /η/(/t/_{2}) = 0인 근처 경로 /q/ +
+   /ϵη/를 생각하자. 다음과 같이 두자.
+
+   $$\begin{array}{lll} {g(\mathit{\epsilon})} & {= S\lbrack q +
+   \mathit{\epsilon}\eta\rbrack(t_{1},\,\, t_{2})} & \\
+   & {= {\int_{t_{1}}^{t_{2}}{L(t,q(t) + \mathit{\epsilon}\eta(t),Dq(t) +
+   \mathit{\epsilon}D\eta(t))dt.}}} & {(1.13)} \end{equation}
+
+   /ϵ/에 대한 거듭제곱 급수로 전개하면
+
+   \begin{equation}
+   {g(\mathit{\epsilon}) = g(0) + \mathit{\epsilon}Dg(0) + \cdots} & {(1.14)}
+   \end{equation}
+
+   연쇄 법칙을 쓰면 다음을 얻는다.
+
+   $$\begin{array}{lll} {Dg(0)} & {=
+   {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\
+   & {+ {\int_{t_{1}}^{t_{2}}{(\partial_{2}L(t,q(t),Dq(t))D\eta(t))\,\, dt.}}} &
+   {(1.15)} \end{equation}
+
+   두 번째 항을 부분적분하면 다음을 얻는다.
+
+   $$\begin{array}{lll} {Dg(0)} & {=
+   {\int_{t_{1}}^{t_{2}}{(\partial_{1}L(t,q(t),Dq(t))\eta(t))\,\, dt}}} & \\
+   & {+ \,\partial_{2}L(t,q(t),Dq(t)D\eta(t))\eta(t)|_{t_{1}}^{t_{2}}} & \\
+   & {-
+   {\int_{t_{1}}^{t_{2}}{\frac{d}{dt}(\partial_{2}L(t,q(t),Dq(t)))\eta(t)dt}}.}
+   & {(1.16)} \end{equation}
+
+
+
+   경로의 변분으로 인한 작용의 증분 Δ/S/는 /ϵ/의 1차까지 /ϵDg/(0)이다.
+   $\eta$가 양 끝점에서 0이므로 적분된 항은 0이다. 나머지 두 항을 모으고 함수
+   표기로 되돌리면 증분은 다음과 같다.
+
+   \begin{equation}
+   {\Delta S = \mathit{\epsilon}{\int_{t_{1}}^{t_{2}}\left\{ \partial_{1}L \circ \Gamma\lbrack q\rbrack\, - \, D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}}\eta.} & {(1.17)}
+   \end{equation}
+
+   Δ/S/가 0이면 작용은 정지이다. 우리는 변분을 고르는 데 충분한 자유를 남겨
+   두었으므로, 피적분 함수에서 $\eta$에 곱해지는 인자는 경로를 따라 각 점에서
+   0이 되도록 강제된다. 귀류법으로 논증한다. 이 인자가 어떤 특정한 시각에 0이
+   아니라고 하자. 그러면 그 성분 가운데 적어도 하나에서 0이 아니어야 한다.
+   그런데 $\eta$를 그 시각의 근방에서 그 성분에서만 0이 아니고 나머지 모든
+   곳에서는 0인 융기(bump) 함수로 잡으면 적분은 0이 아니게 된다. 따라서 중괄호
+   안의 인자는 항등적으로 0이라고 결론지을 수 있고, 이로써 라그랑주 방정식을
+   얻는다:[fn:48]
+
+   \begin{equation}
+   {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\, - \,\partial_{1}L \circ \Gamma\lbrack q\rbrack = 0.} & {(1.18)}
+   \end{equation}
+
+** 변분 연산자
+   :PROPERTIES:
+   :CUSTOM_ID: the-variation-operator
+   :CLASS:    level2
+   :END:
+   먼저 경로가 변할 때 경로 의존 함수(path-dependent function)가 어떻게
+   변하는지 조사할 도구를 마련한다. 그런 다음 이 도구를 작용에 적용하여
+   라그랑주 방정식을 유도한다.
+
+   경로 /q/에 의존하는 함수 /f/[/q/]가 있다고 하자. 경로를 변화시키면 이
+   함수는 어떻게 변하는가? /q/를 좌표 경로라 하고 /q/ + /ϵη/를 변화된 경로라
+   하자. 여기서 함수 $\eta$는 경로 /q/에 더할 수 있는 경로 같은 함수이고, 인자
+   /ϵ/는 크기 배율이다. 경로 /q/ 위에서 함수 /f/의 /변분 δ_{η}f/[/q/]를 다음과
+   같이 정의한다.[fn:49]
+
+   \begin{equation}
+   {\delta_{\eta}f\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{f\lbrack q + \mathit{\epsilon}\eta\rbrack - f\lbrack q\rbrack}{\mathit{\epsilon}} \right).} & {(1.19)}
+   \end{equation}
+
+   /f/의 변분은 경로의 작은 변분에 대한 함수 /f/의 변화의 선형 근사이다. /f/의
+   변분은 $\eta$에 의존한다.
+
+
+
+   간단한 예는 항등 경로 함수 /I/[/q/] = /q/의 변분이다. 정의를 적용하면
+   다음을 얻는다.
+
+   \begin{equation}
+   {\delta_{\eta}I\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{(q + \mathit{\epsilon}\eta) - q}{\mathit{\epsilon}} \right) = \eta.} & {(1.20)}
+   \end{equation}
+
+   /δ_{η}I/[/q/]는 전통적으로 그냥 /δq/라고 쓴다. 또 다른 예는 경로의 도함수를
+   돌려주는 경로 함수의 변분이다. 다음이 성립한다.[fn:50]
+
+   \begin{equation}
+   {\delta_{\eta}g\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{D(q + \mathit{\epsilon}\eta) - Dq}{\mathit{\epsilon}} \right) = D\eta\,\,\,\,\text{with}\,\,\,\, g\lbrack q\rbrack = Dq.} & {(1.21)}
+   \end{equation}
+
+   /δ_{η}g/[/q/]는 전통적으로 /δDq/라고 쓴다.
+
+   변분은 도함수로 나타낼 수 있다. /g/(/ϵ/) = /f/[/q/ + /ϵη/]라 하자. 그러면
+
+   \begin{equation}
+   {\delta_{\eta}f\lbrack q\rbrack = \underset{\mathit{\epsilon}\rightarrow 0}{\lim}\left( \frac{g(\mathit{\epsilon}) - g(0)}{\mathit{\epsilon}} \right) = Dg(0).} & {(1.22)}
+   \end{equation}
+
+   변분은 다음과 같은 도함수 비슷한 성질을 갖는다. 경로 의존 함수 /f/와 /g/,
+   그리고 상수 /c/에 대하여:
+
+   \begin{equation}
+   {\delta_{\eta}(f\, g)\lbrack q\rbrack = \delta_{\eta}f\lbrack q\rbrack\,\, g\lbrack q\rbrack + f\lbrack q\rbrack\,\,\delta_{\eta}g\lbrack q\rbrack} & {(1.23)}
+   \end{equation}
+
+   \begin{equation}
+   {\delta_{\eta}(f + g)\lbrack q\rbrack = \delta_{\eta}f\lbrack q\rbrack\, + \,\,\delta_{\eta}g\lbrack q\rbrack} & {(1.24)}
+   \end{equation}
+
+   \begin{equation}
+   {\delta_{\eta}(cf)\lbrack q\rbrack = c\,\,\delta_{\eta}f\lbrack q\rbrack.} & {(1.25)}
+   \end{equation}
+
+   /F/를 경로에 무관한 함수라 하고 /g/를 경로 의존 함수라 하자. 그러면
+
+   \begin{equation}
+   {\delta_{\eta}h\lbrack q\rbrack = (DF \circ g\lbrack q\rbrack)\,\,\delta_{\eta}g\lbrack q\rbrack\,\,\,\text{with}\,\,\,\, h\lbrack q\rbrack = F \circ g\lbrack q\rbrack.} & {(1.26)}
+   \end{equation}
+
+   연산자 /D/(미분)와 /δ/(변분)는 다음과 같은 뜻에서 교환한다:
+
+   $$D\begin{equation} {\delta_{\eta}f\lbrack q\rbrack = \delta_{\eta}g\lbrack
+   q\rbrack\,\,\,\text{with}\,\,\,\, g\lbrack q\rbrack = D(f\lbrack q\rbrack).}
+   & {(1.27)} \end{equation}
+
+   변분은 비슷한 뜻에서 적분과도 교환한다.
+
+   경로 의존 함수 /f/가 어떤 특정 경로 /q/에 대해 그 경로의 작은 변화에 관하여
+   정지라면, /q/에 특정한 함수 $\eta$의 작은 배수를 더해 얻는 변분의
+   부분집합에 대해서도 정지여야 한다. 그러므로 임의의 $\eta$에 대하여
+   /δ_{η}f/[/q/] = 0이라는 진술은 함수 /f/가 /q/ 주위 경로의 작은 변분에
+   대하여 정지임을 함의한다.
+
+   *연습문제 1.7: /δ/의 성질*
+
+   /δ/가 성질 1.23--1.27을 가짐을 보여라.
+
+   *연습문제 1.8: /δ/의 구현*
+
+   *a.* 경로 의존 함수를 구현하는 절차 f가 있다고 하자. 경로 q와 시간 t에 대해
+   그 값은 ((f q) t)이다. 절차 delta는 변분 (/δ_{η}f/)[/q/](/t/)를 식
+   ((((delta eta) f) q) t)의 값으로 계산한다. delta의 정의를 완성하라:
+
+    #+begin_src scheme
+(define (((delta eta) f) q) ... )
+    #+end_src
+
+   *b.* 여러분의 delta 절차를 써서, 절차 f가 구현하는 것과 같은 간단한 함수에
+   대해 [[file:chapter001.html#Exe_1-7][연습문제 1.7]]에 나열된 /δ/의 성질을
+   확인하라:[fn:51]
+
+    #+begin_src scheme
+(define (f q)
+  (compose (literal-function 'F (-> (UP Real (UP* Real) (UP* Real)) Real))
+           (Gamma q)))
+    #+end_src
+
+   이것은 각 순간에 경로의 국소 튜플에 의존하는 /n/-자유도 경로 의존 함수를
+   구현한다. 리터럴 2차원 경로는 다음과 같이 정의할 수 있다.
+
+   (define q (literal-function 'q (-> Real (UP Real Real))))
+
+   등식의 양변을 모두 계산하고 그 결과를 빼 보라. 답은 0이어야 한다.
+
+** 변분 연산자를 이용한 유도
+   :PROPERTIES:
+   :CUSTOM_ID: a-derivation-with-the-variation-operator
+   :CLASS:    level2
+   :END:
+   작용은 경로를 따라 라그랑지언을 적분한 것이다:
+
+   \begin{equation}
+   {S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{L \circ \Gamma\lbrack q\rbrack.}}} & {(1.28)}
+   \end{equation}
+
+
+
+   실현 가능한 경로 /q/에 대해, 끝점을 보존하는 임의의 변분 $\eta$, 곧
+   /η/(/t/_{1}) = /η/(/t/_{2}) = 0인 변분에 관한 작용의 변분은 0이다:
+
+   \begin{equation}
+   {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) = 0.} & {(1.29)}
+   \end{equation}
+
+   변분은 적분과 교환하므로 작용의 변분은 다음과 같다.
+
+   \begin{equation}
+   {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) = {\int_{t_{1}}^{t_{2}}{\delta_{\eta}h\lbrack q\rbrack\,\,\,\,\text{where}\,\,\,\, h\lbrack q\rbrack = L \circ \Gamma\lbrack q\rbrack.}}} & {(1.30)}
+   \end{equation}
+
+   다음 사실을 쓰면
+
+   \begin{equation}
+   {\delta_{\eta}\Gamma\lbrack q\rbrack(t) = (0,\eta(t),D\eta(t)),} & {(1.31)}
+   \end{equation}
+
+   ---이는 식 ([[file:chapter001.html#disp_1.20][1.20]])과
+   ([[file:chapter001.html#disp_1.21][1.21]])에서 따라 나온다---그리고 변분에
+   대한 연쇄 법칙 ([[file:chapter001.html#disp_1.26][1.26]])을 쓰면 다음을
+   얻는다.[fn:52]
+
+   $$\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2})} & {=
+   {\int_{t_{1}}^{t_{2}}{(D\, L \circ \Gamma\lbrack
+   q\rbrack)\delta_{\eta}\Gamma\lbrack q\rbrack}}} & \\
+   & {= {\int_{t_{1}}^{t_{2}}{((\partial_{1}L \circ \Gamma\lbrack
+   q\rbrack)\eta + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D\eta).}}} &
+   {(1.32)} \end{equation}
+
+   식 ([[file:chapter001.html#disp_1.32][1.32]])의 마지막 항을 부분적분하면
+   다음을 얻는다.
+
+   $$\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) =} &
+   {(\partial_{2}L \circ \Gamma\lbrack q\rbrack)\eta|_{t_{1}}^{t_{2}}} & \\
+   & {+ {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack
+   q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\eta.}}} &
+   {(1.33)} \end{equation}
+
+   우리의 변분 $\eta$에 대해서는 /η/(/t/_{1}) = /η/(/t/_{2}) = 0이므로 첫 항은
+   사라진다.
+
+   따라서 작용의 변분이 0인 것은 다음과 필요충분이다.
+
+   \begin{equation}
+   {0 = {\int_{t_{1}}^{t_{2}}{\left\{ (\partial_{1}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) \right\}\,\eta.}}} & {(1.34)}
+   \end{equation}
+
+
+
+   가정에 의해 /q/는 실현 가능한 경로이므로 작용의 변분은 0이다. 따라서
+   ([[file:chapter001.html#disp_1.34][1.34]])는 끝점에서 0인 /임의의/ 함수
+   $\eta$에 대해 참이어야 한다. $\eta$는 끝점에서 0이라는 것 말고는
+   임의이므로, 피적분 함수에서 괄호로 묶인 인자는 0이다. 그러므로
+
+   \begin{equation}
+   {D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) - (\partial_{1}L \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.35)}
+   \end{equation}
+
+   이것이 바로 우리가 얻고자 했던 것, 곧 라그랑주 방정식이다.
+
+   라그랑주 방정식을 만족하는 경로는 작용이 정지인 경로이며, 작용이 정지라는
+   사실은 경로의 각 점(그리고 근처 경로의 각 점)에서의 /L/ 값에만 의존할 뿐,
+   그 값을 계산하는 데 쓰는 좌표계에는 의존하지 않는다. 그러므로 계의 경로가
+   어떤 특정 좌표계에서 라그랑주 방정식을 만족한다면 /임의의/ 좌표계에서도
+   라그랑주 방정식을 만족해야 한다. 따라서 변분역학의 방정식은 어떤
+   배치공간에서든 어떤 좌표계에서든 같은 방식으로 유도된다.
+
+** 조화 진동자
+   :PROPERTIES:
+   :CUSTOM_ID: harmonic-oscillator
+   :CLASS:    level2
+   :END:
+   예로 조화 진동자를 생각하자. 하나의 라그랑지언은 다음과 같다.
+
+   \begin{equation}
+   {L(t,x,v) = \frac{1}{2}mv^{2} - \frac{1}{2}kx^{2}.} & {(1.36)}
+   \end{equation}
+
+   그러면
+
+   \begin{equation}
+   {\partial_{1}L(t,x,v) = - kx\,\,\,\,\,\,\text{and}\,\,\,\,\partial_{2}L(t,x,v) = mv.} & {(1.37)}
+   \end{equation}
+
+   라그랑지언은 시간, 좌표, 속도로 이루어진 튜플에 적용된다. 기호 /t/, /x/,
+   /v/는 임의이며, 라그랑지언의 형식 매개변수를 지정하는 데 쓰인다.
+
+   이제 각 시각 /t/에 대해 진동자의 좌표 /y/(/t/)를 주는 배치 경로 /y/가
+   있다고 하자. 시각 /t/에서 대응하는 국소 튜플의 처음 부분은 다음과 같다.
+
+   \begin{equation}
+   {\Gamma\lbrack y\rbrack(t) = (t,y(t),Dy(t)).} & {(1.38)}
+   \end{equation}
+
+   그러므로
+
+   \begin{equation}
+   {(\partial_{1}L \circ \Gamma\lbrack y\rbrack)(t) = - ky(t)\,\,\,\,\,\text{and}\,\,\,\,\,(\partial_{2}L \circ \Gamma\lbrack y\rbrack)(t) = mDy(t),} & {(1.39)}
+   \end{equation}
+
+   그리고
+
+   \begin{equation}
+   {D(\partial_{2}L \circ \Gamma\lbrack y\rbrack)(t) = mD^{2}y(t),} & {(1.40)}
+   \end{equation}
+
+   따라서 라그랑주 방정식은
+
+
+
+   \begin{equation} {mD^{2}y(t) + ky(t) = 0,} & {(1.41)} \end{equation}
+
+   이며, 이것이 조화 진동자의 운동방정식이다.
+
+** 궤도 운동
+   :PROPERTIES:
+   :CUSTOM_ID: orbital-motion
+   :CLASS:    level2
+   :END:
+   또 다른 예로, 질량 /m/인 입자가 고정된 인력 중심 주위를 도는 2차원 운동을
+   생각하자. 중력 퍼텐셜 에너지는 −/μ/r/이고, 여기서 /r/는 인력 중심까지의
+   거리이다. 이를 /케플러 문제(Kepler problem)/라 한다.
+
+   이 문제에 대한 하나의 라그랑지언은 다음과 같다.[fn:53]
+
+   \begin{equation}
+   {L(t;\xi,\eta;v_{\xi},v_{\eta}) = \frac{1}{2}m(v_{\xi}^{2} + v_{\eta}^{2}) + \frac{\mu}{\sqrt{\xi^{2} + \eta^{2}}},} & {(1.42)}
+   \end{equation}
+
+   여기서 $\xi$와 $\eta$는 입자의 직각 좌표에 대한 형식 매개변수이고,
+   /v_{ξ}/와 /v_{η}/는 대응하는 직각 속도 성분에 대한 형식 매개변수이다.
+   그러면
+
+   $$\begin{array}{lll} {\partial_{1}L(t;\xi,\eta;v_{\xi},v_{\eta})} & {=
+   \lbrack\partial_{1,0}L(t;\xi,\eta;v_{\xi},v_{\eta}),\partial_{1,1}L(t;\xi,\eta;v_{\xi},v_{\eta})\rbrack}
+   & \\
+   & {{= \left\lbrack {\frac{- \mu\xi}{{(\xi^{2} + \eta^{2})}^{3/2}},\frac{-
+   \mu\eta}{{(\xi^{2} + \eta^{2})}^{3/2}}} \right\rbrack}.} & {(1.43)}
+   \end{equation}
+
+   마찬가지로,
+
+   \begin{equation}
+   {\partial_{2}L(t;\xi,\eta;v_{\xi},v_{\eta}) = \lbrack mv_{\xi},mv_{\eta}\rbrack.} & {(1.44)}
+   \end{equation}
+
+   이제 배치 경로 /q/ = (/x/, /y/)가 있어서 시각 /t/에서 좌표 튜플이 /q/(/t/)
+   = (/x/(/t/), /y/(/t/))라 하자. 시각 /t/에서 국소 튜플의 처음 부분은 다음과
+   같다.
+
+   \begin{equation}
+   {\Gamma\lbrack q\rbrack(t) = (t;x(t),y(t);Dx(t),Dy(t)).} & {(1.45)}
+   \end{equation}
+
+   그러므로
+
+   $$\begin{array}{lll} {(\partial_{1}L \circ \Gamma\lbrack q\rbrack)(t)} & {=
+   \left\lbrack {\frac{- \mu x(t)}{{({(x(t))}^{2} +
+   {(y(t))}^{2})}^{3/2}},\frac{- \mu y(t)}{{({(x(t))}^{2} +
+   {(y(t))}^{2})}^{3/2}}} \right\rbrack} & \\
+   {(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t)} & {= \lbrack
+   mDx(t),mDy(t)\rbrack} & {(1.46)} \end{equation}
+
+   그리고
+
+   \begin{equation}
+   {D(\partial_{2}\, L \circ \Gamma\lbrack q\rbrack)(t) = \lbrack mD^{2}x(t),mD^{2}y(t)\rbrack.} & {(1.47)}
+   \end{equation}
+
+
+
+   시각 /t/에서 성분별 라그랑주 방정식은 다음과 같다.
+
+   \begin{equation}
+   {mD^{2}x(t) + \frac{\mu x(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}} = 0} & \\
+   {mD^{2}y(t) + \frac{\mu y(t)}{{({(x(t))}^{2} + {(y(t))}^{2})}^{3/2}} = 0.} & {(1.48)}
+   \end{equation}
+
+   *연습문제 1.9: 라그랑주 방정식*
+
+   다음 계들에 대해 라그랑주 방정식을 유도하되, 조화 진동자와 궤도 운동
+   예에서처럼 중간 단계를 모두 보여라.
+
+   *a.* 이상적인 평면 진자는 길이 /l/인 질량 없는 막대로 회전축에 이어진 질량
+   /m/인 추로 이루어지며, 균일한 중력 가속도 /g/를 받는다. 하나의 라그랑지언은
+
+   $L(t,\theta,\overset{˙}{\theta}) =
+   \frac{1}{2}ml^{2}{\overset{˙}{\theta}}^{2} + mgl\,\,\cos\theta$
+
+   이다. /L/의 형식 매개변수는 /t/, /θ/, 그리고
+
+   $\overset{˙}{\theta}$
+
+   이며, /θ/는 진자 막대가 연직선과 이루는 각을 재고,
+
+   $\overset{˙}{\theta}$
+
+   는 막대의 각속도이다.[fn:54]
+
+   *b.* 질량 /m/인 입자가 2차원 퍼텐셜 /V/ (/x/, /y/) = (/x/^{2} + /y/^{2})/2
+   + /x/^{2}/y/ − /y/^{3}/3 속에서 움직인다. 여기서 /x/와 /y/는 입자의 직각
+   좌표이다. 하나의 라그랑지언은
+
+   $L(t;x,y;v_{x},v_{y}) = \frac{1}{2}m\left( {v_{x}^{2} + v_{y}^{2}} \right) -
+   V(x,y)$
+
+   이다.
+
+   *c.* 반지름 /R/인 구면 위에서 움직이도록 구속된 질량 /m/인 입자에 대한
+   하나의 라그랑지언은
+
+   $L(t;\theta,\varphi;\alpha,\beta) = \frac{1}{2}mR^{2}{({\alpha^{2} +
+   {(\beta\,\sin\theta)}^{2}})}$
+
+   이다. 각 /θ/는 입자의 여위도(colatitude)이고 /φ/는 경도이다. 여위도의
+   변화율은 /α/이고 경도의 변화율은 /β/이다.
+
+   *연습문제 1.10: 고계 미분 라그랑지언*
+
+   가속도에 의존하는 라그랑지언에 대해 라그랑주 방정식을 유도하라. 특히
+   /L/(/t, q,/
+
+   q˙
+
+   ,
+
+   q¨
+
+   ) 꼴이면서
+
+   q¨
+
+   항을 포함하는 라그랑지언에 대한 라그랑주 방정식이 다음과 같음을
+   보여라.[fn:55]
+
+   \begin{equation}
+   {D^{2}(\partial_{3}L \circ \Gamma\lbrack q\rbrack) - D(\partial_{2}L \circ \Gamma\lbrack q\rbrack) + \partial_{1}L \circ \Gamma\lbrack q\rbrack) = 0.} & {(1.49)}
+   \end{equation}
+
+   일반적으로 Poisson이 처음 유도한 이 방정식들은 /q/의 4계 도함수를 포함하게
+   된다. 이 유도가 가속도가 없는 라그랑주 방정식의 유도와 완전히 유사하며 다만
+   더 길 뿐임에 유의하라. 임계 경로가 미분방정식을 만족하도록 하려면 변분에
+   어떤 제한을 두어야 하는가?
+
+*** 1.5.2 라그랑주 방정식 계산하기
+    :PROPERTIES:
+    :CUSTOM_ID: h3_1-5-2
+    :CLASS:    level3
+    :END:
+    라그랑주 방정식을 계산하는 절차는 함수 표기 식
+    ([[file:chapter001.html#disp_1.12][1.12]])을 그대로 반영하며, 여기서 절차
+    Gamma가 Γ를 구현한다:[fn:56]
+
+     #+begin_src scheme
+(define ((Lagrange-equations Lagrangian) q)
+  (- (D (compose ((partial 2) Lagrangian) (Gamma q)))
+     (compose ((partial 1) Lagrangian) (Gamma q))))
+     #+end_src
+
+    Lagrange-equations의 인수는 라그랑지언을 계산하는 절차이다.
+    Lagrange-equations 절차는 경로 q에 적용되면 인수가 하나(시간)인 절차를
+    돌려주며, 이 절차는 라그랑주 방정식
+    ([[file:chapter001.html#disp_1.12][1.12]])의 좌변을 계산한다. q가
+    라그랑지언 작용을 정지로 만드는 경로라면 이 잔차(residual) 값들은 0이다.
+
+    라그랑주 방정식 자체와 마찬가지로 Lagrange-equations 절차도 /임의의/
+    일반화 좌표계에서 유효함에 주목하라. 특정 계를 조사하는 프로그램을 쓸 때,
+    라그랑지언 함수와 경로 /q/를 구현하는 절차는 계를 나타내려고 실제로 고른
+    좌표를 반영하지만, 각 경우에 우리는 같은 Lagrange-equations 절차를 쓴다.
+    이 추상화는 라그랑지언에서 라그랑주 방정식을 유도하는 방법이 언제나 같다는
+    중요한 사실을 반영한다. 그 방법은 자유도의 수에도, 배치공간의 위상에도,
+    배치공간의 점을 기술하는 데 쓰는 좌표계에도 무관하다.
+
+** 자유 입자
+   :PROPERTIES:
+   :CUSTOM_ID: the-free-particle
+   :CLASS:    level2
+   :END:
+   자유 입자의 경우를 다시 생각하자. 라그랑지언은 절차 L-free-particle로
+   구현된다. [[file:chapter001.html#h1-5][1.4절]]에서 했듯이 작용을 수치적으로
+   적분하고 최소화하는 대신, 임의의 직선 경로 /t/ ↦ (/at/ + /a/_{0}, /bt/ +
+   /b/_{0}, /ct/ + /c/_{0})에 대해 라그랑주 방정식을 확인할 수 있다:
+
+
+
+    #+begin_src scheme
+(define (test-path t)
+  (up (+ (* 'a t) 'a0) (+ (* 'b t) 'b0) (+ (* 'c t) 'c0)))
+
+(((Lagrange-equations (L-free-particle 'm)) test-path) 't)
+    #+end_src
+
+    #+begin_src scheme
+(down 0 0 0)
+    #+end_src
+
+   잔차가 0이라는 것은 시험 경로가 라그랑주 방정식을 만족함을 뜻한다.[fn:57]
+
+   Lagrange-equations 절차를 임의의 함수에 적용할 수도 있다:[fn:58]
+
+   #+begin_src scheme
+(show-expression
+ (((Lagrange-equations (L-free-particle 'm))
+   (literal-function 'x)) 't))
+
+(* (((expt D 2) x) t) m)
+   #+end_src
+
+   $$mD^{2}x(t)$$
+
+   결과는 임의의 시간 /t/와 질량 /m/을 포함하는 식이므로, 정확히 /D/^{2}/x/ =
+   0일 때 0이 되며, 이것이 자유 입자에 대해 기대되는 방정식이다.
+
+** 조화 진동자
+   :PROPERTIES:
+   :CUSTOM_ID: the-harmonic-oscillator
+   :CLASS:    level2
+   :END:
+   라그랑지언 ([[file:chapter001.html#disp_1.10][1.10]])을 가진 조화 진동자를
+   다시 생각하자. 조화 진동자의 운동이 주어진 진폭, 진동수, 위상을 갖는
+   사인꼴임을 우리는 알고 있다:
+
+   \begin{equation}
+   {x(t) = a\,\,\cos(\omega t + \varphi).} & {(1.50)}
+   \end{equation}
+
+
+
+   해에 나오는 상수들이 진동자의 질량 /m/과 용수철 상수 /k/에 어떻게
+   관계되는지 잊어버렸다고 하자. 제안된 해를 대입하여 잔차를 살펴보자:
+
+    #+begin_src scheme
+(define (proposed-solution t)
+  (* 'A (cos (+ (* 'omega t) 'phi))))
+
+(show-expression (((Lagrange-equations (L-harmonic 'm 'k)) proposed-solution)
+'t))
+    #+end_src
+
+   $$\cos\,(\omega t + \varphi)\, A\,(k - m\omega^{2})$$
+
+   여기서의 잔차는, 진폭이 0이 아닐 때 허용되는 유일한 해가 (/k/ − /mω/^{2}) =
+   0인 경우, 곧
+
+   $\omega = \sqrt{k/m}.$
+
+   *연습문제 1.11: 케플러의 제3법칙*
+
+   질량이 /m/_{1}과 /m/_{2}이고 퍼텐셜 에너지가 /V/인 두 입자의 상대 운동을
+   연구하기에 알맞은 라그랑지언은 다음과 같다:
+
+    #+begin_src scheme
+(define ((L-central-polar m V) local)
+  (let ((q (coordinate local)) (qdot (velocity local)))
+    (let ((r (ref q 0))
+          (phi (ref q 1))
+          (rdot (ref qdot 0))
+          (phidot (ref qdot 1)))
+      (- (* 1/2 m (+ (square rdot) (square (* r phidot))))
+         (V r)))))
+    #+end_src
+
+   인수 m은 계의 /환산 질량(reduced mass)/이다.
+
+   \begin{equation}
+   {m = \frac{m_{1}m_{2}}{m_{1} + m_{2}}.} & {(1.51)}
+   \end{equation}
+
+   중력의 경우 퍼텐셜 에너지 함수는 다음과 같다.
+
+    #+begin_src scheme
+(define ((gravitational-energy G m1 m2) r) (- (/ (* G m1 m2) r)))
+    #+end_src
+
+   여기서 r는 두 입자 사이의 거리이다.
+
+   입자들이 공통 질량중심 주위에서 원 궤도를 도는 단순한 상황을 생각하자. 원
+   궤도를 구성하여 라그랑주 방정식에 대입하라. 그 잔차가 케플러의 법칙을
+   준다는 것을 보여라:
+
+   \begin{equation}
+   {n^{2}a^{3} = G(m_{1} + m_{2})} & {(1.52)}
+   \end{equation}
+
+   여기서 /n/은 궤도의 각진동수이고 /a/는 두 입자 사이의 거리이다.
+
+
+
+   *연습문제 1.12: 라그랑주 방정식*
+
+   [[file:chapter001.html#Exe_1-9][연습문제 1.9]]의 라그랑지언들에 대해
+   Lagrange-equations 절차를 써서 라그랑주 방정식을 계산하라. 나아가
+   Lagrange-equations 절차의 각 단계를 컴퓨터로 수행하고 중간 결과를 보여라.
+   이 단계들을 [[file:chapter001.html#Exe_1-9][연습문제 1.9]]의 손 유도에서
+   보인 단계들과 연관 지어라.
+
+   *연습문제 1.13: 고계 미분 라그랑지언*
+
+   *a.* [[file:chapter001.html#Exe_1-10][연습문제 1.10]]에서처럼 가속도에
+   의존하는 라그랑지언에 대해 라그랑주 방정식을 계산하는 절차를 작성하라.
+   Gamma는 필요한 국소 튜플의 처음 부분의 길이를 주는 선택적 인수를 받을 수
+   있음에 유의하라. 기본 길이는 3이며, 이는 속도까지 포함하는 국소 튜플의
+   성분을 준다.
+
+   *b.* 여러분의 절차를 써서 다음 라그랑지언에 대한 라그랑주 방정식을
+   계산하라.
+
+   $L(t,x,v,a) = - \frac{1}{2}mxa - \frac{1}{2}kx^{2}.$
+
+   결과로 나온 운동방정식을 알아보겠는가?
+
+   *c.* 더 재미 삼아, 임의의 개수의 도함수에 의존하는 라그랑지언과 그 도함수의
+   개수를 받아 필요한 운동방정식을 만들어 내는 일반적인 라그랑주 방정식 절차를
+   작성하라.
+

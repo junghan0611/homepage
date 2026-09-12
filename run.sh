@@ -21,9 +21,10 @@ usage() {
 	cat <<EOF
 homepage — 하나의 Hugo 공개면
 
-Usage: ./run.sh [1|v|h|0]
+Usage: ./run.sh [1|s|v|h|0]
 
   1  전체 사이트를 빌드하며 보기  http://localhost:${PORT}/
+  s  SICM 번역 조립 + 읽기 페이지 갱신
   v  Netlify 계약 검증 + production Hugo build
   h  도움말
   0  종료
@@ -41,6 +42,13 @@ port_pid() {
 verify_sources() {
 	info "Eval 원본·런타임·라이선스 검증"
 	node scripts/verify-eval-runtime.mjs
+}
+
+build_sicm() {
+	info "SICM 분할 번역 검증·조립"
+	python3 scripts/build-sicm-translation.py
+	python3 scripts/build-sicm-reading.py
+	success "SICM 영어 원문·한국어 읽기 페이지 갱신"
 }
 
 serve() {
@@ -86,6 +94,7 @@ menu() {
 	echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	echo ""
 	echo "    1) 빌드해서 보기  localhost:${PORT}"
+	echo "    s) SICM 읽기판 갱신"
 	echo "    v) verify"
 	echo "    h) help"
 	echo "    0) 종료"
@@ -96,6 +105,7 @@ menu() {
 run() {
 	case "$1" in
 		1) serve ;;
+		s) build_sicm ;;
 		v) verify ;;
 		h) usage ;;
 		0) return 0 ;;
