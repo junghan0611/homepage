@@ -116,6 +116,14 @@
 .sicm-error-path { fill: none; stroke: var(--ctp-green); stroke-width: 2.5; }
 .sicm-axis-label, .sicm-tick { fill: var(--ctp-subtext); font: 12px var(--glg-font-family); }
 .sicm-computed-figure figcaption { color: var(--ctp-subtext); font-size: .82rem; margin-top: .6rem; }
+.eval-content math { font-size: 1.04em; }
+.eval-content math[display="block"] {
+	display: block;
+	max-width: 100%;
+	margin: 1.35rem 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
 .eval-content img { height: auto; max-width: 100%; }
 .eval-content pre { overflow-x: auto; }
 .eval-footer { border-top: 1px solid var(--ctp-surface); margin-top: 2rem; padding-top: 1rem; }
