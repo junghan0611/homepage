@@ -32,6 +32,24 @@ export const compareReleaseIds = (left, right) => {
 	return a.year - b.year || a.month - b.month || a.day - b.day || Number(a.suffixed) - Number(b.suffixed) || a.n - b.n || label;
 };
 
+export const assertDayFollowUpSequence = (ids) => {
+	const byDay = new Map();
+	for (const id of ids) {
+		const item = typeof id === "string" ? parseReleaseId(id) : id;
+		if (!item.suffixed) continue;
+		const day = `${item.year}.${item.month}.${item.day}`;
+		const list = byDay.get(day) || [];
+		list.push(item.n);
+		byDay.set(day, list);
+	}
+	for (const [day, numbers] of byDay) {
+		numbers.sort((left, right) => left - right);
+		for (let i = 0; i < numbers.length; i++) {
+			if (numbers[i] !== i + 1) throw new Error(`engine release follow-ups on ${day} must use consecutive n starting at 1; got ${numbers.join(",")}`);
+		}
+	}
+};
+
 const parseSums = (text, releaseId) => {
 	const sums = new Map();
 	for (const line of text.replace(/\n$/, "").split("\n")) {
@@ -50,6 +68,7 @@ export const listReleaseIds = async (releasesRoot) => {
 		ids.push(entry.name);
 	}
 	ids.sort(compareReleaseIds);
+	assertDayFollowUpSequence(ids);
 	return ids;
 };
 

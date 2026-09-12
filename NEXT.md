@@ -12,7 +12,7 @@ Eval 엔진 — 두 번째 릴리즈 생애주기 (이 세션의 workstream). �
 - [x] **3. Phase 1 버전 하드코딩 → 파생**
 - [x] **4. Phase 2 발견면(`/eval/engine/releases.json`) + 캐시 도메인**
 - [x] **5. Phase 3 문서 입구**
-- [x] **6. Phase 4 릴리즈 id 문법** — `YYYY.M.D[-<label>.<n>]`, 같은 날 후속은 새 디렉터리
+- [x] **6. Phase 4 릴리즈 id 문법** — `YYYY.M.D[-<label>.<n>]`, `n`은 그날 통산 순번 (라벨별 카운터 아님)
 
 현재 좌표: 1–6 완료. 다음: GLG 결정 + 발행 후 feed cache/CORS 실측.
 

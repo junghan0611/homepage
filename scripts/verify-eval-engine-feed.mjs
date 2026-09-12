@@ -78,6 +78,30 @@ try {
 	if (feed.releases.map((entry) => entry.release).join(",") !== "2026.9.2,2026.9.12,2026.9.12-fix.1") fail(`release order drifted: ${feed.releases.map((entry) => entry.release).join(",")}`);
 	if (feed.releases[0].manifestSha256 !== early.manifestSha256 || feed.releases[1].manifestSha256 !== current.manifestSha256 || feed.releases[2].manifestSha256 !== follow.manifestSha256) fail("manifestSha256 does not match written manifest bytes");
 	if (feed.releases[1].modules[0].sha256 !== current.modules[0].sha256) fail("module sha256 in the feed does not match artifact bytes");
+	await writeRelease(root, "2026.9.12-docs.2", [
+		["cell-v1", "cell-docs"],
+		["claim-v1", "claim-docs"],
+		["conformance-v1", "{\"cases\":[3]}"],
+	]);
+	const withDocs = await buildFeed(root);
+	if (withDocs.latest !== "2026.9.12-docs.2") fail(`day-serial follow-up did not become latest: ${withDocs.latest}`);
+	if (withDocs.releases.map((entry) => entry.release).join(",") !== "2026.9.2,2026.9.12,2026.9.12-fix.1,2026.9.12-docs.2") fail(`day-serial order drifted: ${withDocs.releases.map((entry) => entry.release).join(",")}`);
+	const expectFeedFailure = async (ids, needle, label) => {
+		const bad = await mkdtemp(join(tmpdir(), "eval-engine-feed-bad-"));
+		try {
+			for (const id of ids) await writeRelease(bad, id, [["cell-v1", id], ["claim-v1", id], ["conformance-v1", "{}"]]);
+			try {
+				await buildFeed(bad);
+				fail(`${label} was accepted`);
+			} catch (error) {
+				if (!String(error.message).includes(needle)) fail(`${label} failed with the wrong error: ${error.message}`);
+			}
+		} finally {
+			await rm(bad, { recursive: true, force: true });
+		}
+	};
+	await expectFeedFailure(["2026.9.12", "2026.9.12-fix.1", "2026.9.12-docs.1"], "consecutive n", "duplicate n");
+	await expectFeedFailure(["2026.9.12-fix.1", "2026.9.12-docs.3"], "consecutive n", "gapped n");
 	await mkdir(join(root, "2026.9.12-fix"));
 	try {
 		await buildFeed(root);
@@ -85,7 +109,7 @@ try {
 	} catch (error) {
 		if (!String(error.message).includes("YYYY.M.D")) fail(`malformed directory failed with the wrong error: ${error.message}`);
 	}
-	console.log("eval engine feed rehearsal passed: suffix grammar, numeric n, and malformed id failure");
+	console.log("eval engine feed rehearsal passed: suffix grammar, day-serial n, and malformed id failure");
 } finally {
 	await rm(root, { recursive: true, force: true });
 }

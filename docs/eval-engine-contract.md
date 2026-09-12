@@ -45,12 +45,22 @@ An engine release id is `YYYY.M.D` with an optional same-day follow-up `-<label>
 Month and day have no leading zero. `label` is `[a-z][a-z0-9-]*`. `n` is an integer ≥ 1
 with no leading zero. Examples: `2026.9.12`, `2026.9.12-fix.1`, `2026.9.12-docs.2`.
 
+`n` is that date's running follow-up number, not a per-label counter. After `-fix.1`, a
+documentation follow-up is `-docs.2`, not `-docs.1`. Git tags may restart `.1` on each
+label (`-fix.1`, `-cleanup.1`); engine release ids do not. The feed has to name an order,
+so this promise is narrower than the tag convention.
+
 Sort is deterministic:
 
 1. `(year, month, day)` numerically;
 2. on the same date, the bare id precedes any suffix — the bare id is the original, the suffix a follow-up;
 3. suffixes compare `n` numerically, so `-fix.2` precedes `-fix.10`;
 4. if `n` also matches, `label` compares as ASCII.
+
+Step 3 is first among suffixes because `n` is the running order: the sort then matches
+publication order, and `latest` is the most recent release. Step 4 is only a tie-breaker;
+a valid ledger never has two follow-ups with the same `n` on the same day. The build
+rejects duplicate or gapped `n` on a date.
 
 `latest` is the last id in that order. A same-day follow-up such as `2026.9.12-fix.1` is
 normal: immutability forbids overwriting a released directory, not creating a new one.
