@@ -51,14 +51,17 @@ for (const [file, route] of outputPages) {
 	const canonicalTag = (html.match(/<link\b[^>]*>/g) || []).find((tag) => attribute(tag, "rel") === "canonical");
 	const canonical = canonicalTag && attribute(canonicalTag, "href");
 	if (!canonical || canonical !== `${expectedOrigin}${route}`) fail(`${file} canonical is not ${expectedOrigin}${route}`);
-	for (const tag of html.match(/<[A-Za-z][^>]*>/g) || []) {
+	const tags = html.match(/<[A-Za-z][^>]*>/g) || [];
+	const ids = new Set(tags.map((tag) => attribute(tag, "id")).filter(Boolean));
+	for (const tag of tags) {
 		for (const name of ["href", "src"]) {
 			const raw = attribute(tag, name);
-			if (!raw || raw.startsWith("#") || /^(?:data:|mailto:|tel:|javascript:)/i.test(raw)) continue;
+			if (!raw || /^(?:data:|mailto:|tel:|javascript:)/i.test(raw)) continue;
 			const url = new URL(raw, expectedOrigin);
 			if (url.origin === expectedOrigin) {
-				if (!raw.startsWith("/") && !raw.startsWith(expectedOrigin)) fail(`${file} has a non-root internal ${name}: ${raw}`);
+				if (!raw.startsWith("/") && !raw.startsWith(expectedOrigin) && !raw.startsWith("#")) fail(`${file} has a non-root internal ${name}: ${raw}`);
 				const pathname = decodeURIComponent(url.pathname);
+				if (name === "href" && pathname === route && url.hash && !ids.has(decodeURIComponent(url.hash.slice(1)))) fail(`${file} links to missing same-page fragment ${url.hash}`);
 				const candidates = pathname.endsWith("/")
 					? [resolve(root, "public", `.${pathname}`, "index.html")]
 					: [resolve(root, "public", `.${pathname}`), resolve(root, "public", `.${pathname}`, "index.html")];

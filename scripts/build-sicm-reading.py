@@ -88,10 +88,28 @@ def repair_reading_markup(text: str) -> str:
 	text = text.replace("[fn:3]We often refer", "[fn:3] We often refer")
 	text = text.replace("[fn:3]우리는 흔히", "[fn:3] 우리는 흔히")
 
-	# The HTML→Org port closed every array display with the wrong environment
-	# name. The pinned chapter has 35 array openings and no array closings.
+	# Three conversion scars around source blocks otherwise make go-org swallow
+	# hundreds of lines as one Scheme listing.
 	text = re.sub(
-		r"(?s)(\\begin\{array\}.*?)(\\end\{equation\})",
+		r"(?ms)^(\s*)#\+begin_src scheme\s+(.+?)\s+#\+end_src\s+%\}\s*$",
+		lambda match: f"{match.group(1)}#+begin_src scheme\n{match.group(2)}\n{match.group(1)}#+end_src",
+		text,
+	)
+	text = re.sub(r"(?m)^(\s*),#\+(begin_src\s+scheme|end_src)\s*(?:%\})?\s*$", r"\1#+\2", text)
+
+	# The HTML→Org port closed every array display with the wrong environment
+	# name. Direct display arrays also lost their closing dollar delimiters.
+	def direct_array(match: re.Match[str]) -> str:
+		indent, body = match.group(1), match.group(2).rstrip()
+		return f"{indent}$$\\begin{{array}}{body}\\end{{array}}$$"
+
+	text = re.sub(
+		r"(?ms)^([ \t]*)\${1,2}\\begin\{array\}(.*?)\\end\{equation\}\$?\s*$",
+		direct_array,
+		text,
+	)
+	text = re.sub(
+		r"(?s)(\\begin\{array\}(?:(?!\\end\{array\}).)*?)\\end\{equation\}",
 		r"\1\\end{array}",
 		text,
 	)
@@ -120,6 +138,65 @@ def repair_reading_markup(text: str) -> str:
 	return text
 
 
+def add_navigation_anchors(text: str) -> str:
+	# go-org prints legacy <<target>> syntax as text; raw inline HTML preserves the
+	# canonical target without altering the exact public source artifact.
+	text = re.sub(r"<<([A-Za-z0-9_.:-]+)>>", r'@@html:<span id="\1"></span>@@', text)
+
+	text = re.sub(
+		r"\^\{\[\[#endnote_(\d+)\]\[(\d+)\]\]\}",
+		r'@@html:<sup><a id="endnote_ref_\1" href="#endnote_\1">\2</a></sup>@@',
+		text,
+	)
+	text = re.sub(
+		r"\[\[#endnote_ref_(\d+)\]\[\^\{(\d+)\}\]\]",
+		r'@@html:<span id="endnote_\1"></span><a href="#endnote_ref_\1"><sup>\2</sup></a>@@',
+		text,
+	)
+
+	# Normalize numbered display environments so each can carry the same anchor
+	# used by the canonical HTML port.
+	text = re.sub(
+		r"(?s)(?<!\$)\$(\\begin\{(?:array|aligned)\}.*?\\end\{(?:array|aligned)\})\$(?!\$)",
+		r"$$\1$$",
+		text,
+	)
+
+	def display_anchors(match: re.Match[str]) -> str:
+		block = match.group(0)
+		numbers = list(dict.fromkeys(re.findall(r"\{\(1\.([0-9]+)\)\}", block)))
+		anchors = "".join(f'@@html:<span id="disp_1.{number}"></span>@@\n' for number in numbers)
+		return anchors + block
+
+	text = re.sub(r"(?s)\$\$.*?\$\$", display_anchors, text)
+	text = re.sub(
+		r"(?m)^(\s*)(\$\$[^\n]*\{\(1\.([0-9]+)\)\}[^\n]*\$\$)",
+		lambda match: f'{match.group(1)}@@html:<span id="disp_1.{match.group(3)}"></span>@@\n{match.group(1)}{match.group(2)}' if f'id="disp_1.{match.group(3)}"' not in text else match.group(0),
+		text,
+	)
+	text = re.sub(
+		r"(?m)^(\s*)(#\+caption:\s+\*?(?:Figure|그림)\s+1\.([0-9]+)\*?)",
+		lambda match: f'{match.group(1)}@@html:<span id="Fig_1-{match.group(3)}"></span>@@\n{match.group(1)}{match.group(2)}',
+		text,
+	)
+	text = re.sub(
+		r"(?m)^(\s*)(\*(?:Exercise|연습문제)\s+1\.([0-9]+)[^\n]*\*)",
+		lambda match: f'{match.group(1)}@@html:<span id="Exe_1-{match.group(3)}"></span>@@\n{match.group(1)}{match.group(2)}',
+		text,
+	)
+	text = re.sub(
+		r"(?m)^(\*{2,}\s+(?:Exercise|연습문제)\s+1\.([0-9]+)[^\n]*)",
+		lambda match: f'@@html:<span id="Exe_1-{match.group(2)}"></span>@@\n{match.group(1)}',
+		text,
+	)
+	text = re.sub(
+		r"\[\[#(p\d+)\]\[([^\]]+)\]\]",
+		lambda match: f'[[{CANONICAL_HTML}/chapter001.html#{match.group(1)}][{match.group(2)}]]',
+		text,
+	)
+	return text
+
+
 def rewrite_links(text: str, lang: str) -> str:
 	prefix = "/ko" if lang == "ko" else ""
 	local = {
@@ -132,7 +209,7 @@ def rewrite_links(text: str, lang: str) -> str:
 		base, sep, fragment = target.partition("#")
 		if base.startswith("images/"):
 			href = f"/eval/source/sicm/{base}"
-		elif base in local:
+		elif base in local and not (fragment and re.fullmatch(r"p\d+", fragment)):
 			href = local[base]
 		else:
 			href = f"{CANONICAL_HTML}/{base}"
@@ -182,6 +259,7 @@ def render(page: Page, lang: str) -> str | None:
 		return None
 	body = strip_upstream_header(path.read_text(encoding="utf-8"), page)
 	body = repair_reading_markup(body)
+	body = add_navigation_anchors(body)
 	body = rewrite_links(body, lang)
 	return front_matter(page, lang) + body.rstrip() + "\n"
 

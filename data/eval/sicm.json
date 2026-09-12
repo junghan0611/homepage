@@ -46,6 +46,8 @@
       "Add the missing space after Chapter 1 footnote label fn:3 in generated reading pages",
       "Close 35 array environments as array rather than equation",
       "Wrap the remaining equation bodies in explicit KaTeX display delimiters with balanced aligned environments",
+      "Repair three malformed Org source-block boundaries that otherwise swallow prose and figures",
+      "Restore canonical equation, figure, exercise, page, and endnote navigation targets",
       "Rewrite source-relative links to pinned Homepage or canonical upstream routes"
     ]
   },
