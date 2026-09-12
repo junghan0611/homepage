@@ -3,104 +3,29 @@
 Disposable handoff. Read at session start. `AGENTS.md` holds durable facts; this holds the
 live plan and the next concrete move.
 
-# RAIL — 현재 좌표
+# NOW — 기술 하네스 글쓰기의 첫 판본
 
-Eval 엔진 — 두 번째 릴리즈 생애주기 (이 세션의 workstream). 글쓰기 stem은 바꾸지 않는다.
+Eval 엔진의 "두 번째 릴리즈 생애주기" detour는 `v2026.9.13`으로 닫혔다 (CHANGELOG 참조).
+stem으로 복귀한다. 아래 글쓰기 절이 지금의 작업이다.
 
-- [x] **1. v2026.9.12 production** — 불변 릴리즈 1개 · claim-v1 3-mode · fixture 12-case · production receipt
-- [x] **2. Phase 0 NEXT 레인**
-- [x] **3. Phase 1 버전 하드코딩 → 파생**
-- [x] **4. Phase 2 발견면(`/eval/engine/releases.json`) + 캐시 도메인**
-- [x] **5. Phase 3 문서 입구**
-- [x] **6. Phase 4 릴리즈 id 문법** — `YYYY.M.D[-<label>.<n>]`, `n`은 그날 통산 순번 (라벨별 카운터 아님)
-- [x] **7. Sol HOLD A–C** — 발견 링크, fail-closed shared validator, append-only 피드
-- [x] **8. Sol HOLD 재검수 A·B** — strict prefix append-only + rendered robots/sitemap
+**바로 다음 한 수**: `content/blog/20260804T094556.md`·`.ko.md`가 워킹트리에 untracked로
+떠 있고 front matter가 `draft: false`다. 그런데 Org 정본
+(`~/sync/org/posts/20260804T094556--…org`)은 아직 `#+hugo_draft: t`다. 세 신호가 어긋나 있다:
+정본은 초안, export는 발행, 이 문서는 "아직 export 안 함". **누군가 `git add -A` 한 번이면
+GLG의 첫 연재 글이 공개된다.** GLG가 발행/보류를 정하고, 어느 쪽이든 세 곳을 같이 맞춘다.
 
-현재 좌표: 1–8 완료. 다음: Sol 짧은 판정 → GLG 태그·푸시. 발행 후 feed cache/CORS 실측.
+## 남은 후속
 
-P2 (지금 안 함): `inspectRelease`가 named entry를 `lstat`하지 않아 safe leaf symlink가 밖을 가리킬 수 있다. trusted git source라 이번 태그 blocker 아님.
+- **P2 — `inspectRelease`의 symlink**: named entry를 `lstat`으로 regular file인지 보지 않아
+  safe leaf symlink가 릴리즈 루트 밖을 가리킬 수 있다. trusted git source라 `v2026.9.13`
+  blocker는 아니었다 (Sol 판정). 다음에 엔진을 손댈 때 닫는다.
+- **aionsclubs 채택 영수증 URL**: `llms.txt`·가든 `llms.txt` 모두 상대경로
+  `eval/engine/adopted.json`로 적혀 있다. `https://aionsclubs.org/eval/engine/adopted.json`이
+  실제로 200이면 exact URL이 더 나은 증거다 (Sol 지적). **확인 전에 적지 말 것.**
+- **B에게 전환 신호**: 피드가 200이 된 시점에 한 통 보내기로 약속했다. 지금 200이다.
+  보내면 B가 `--online`을 스크랩에서 피드로 바꾸고 이 왕복이 닫힌다.
 
-# NOW — Eval 엔진, 두 번째 릴리즈를 낼 자리
-
-- Stem: 홈페이지를 다시 글이 쌓이는 대문으로 만든다 (아래 글쓰기 절). 이 세션은 그 stem을 바꾸지 않는다.
-- Detour: Eval 엔진에 "두 번째 릴리즈를 낼 자리"를 만든다. Sol HOLD A–C 로컬은 닫혔다.
-- Next: Sol 재검수 후 GLG가 태그·푸시를 정한다. 발행 후 `releases.json` cache/CORS 실측.
-- Return: 발행 후 실측이 남았다. 코드로 닫지 말 것.
-- Blocker: 없음
-- Read: `docs/eval-engine-contract.md`, `data/eval/engine.json`, `static/_headers`, `scripts/build-eval-engine.mjs`
-- Do not touch: `static/eval/engine/releases/2026.9.12/` 모든 바이트; `dev/eval/**/receipts/*.json`·`*.png`; `CHANGELOG.md` 과거 항목; untracked `content/blog/20260804T094556.md`·`.ko.md`; `git push`; 태그
-
-## Eval 엔진 — 두 번째 릴리즈 생애주기
-
-어제(2026-09-12) `v2026.9.12`를 production에 올렸고, **두 번째 릴리즈를 낼 자리**가 없다.
-의미는 멀쩡하다. 빈 것은 전부 "두 번째"다. 계약 정본은 `docs/eval-engine-contract.md`.
-여기에는 작업·rehearsal·발행 후 확인만 적는다.
-
-### 지금 하는 작업
-
-1. Phase 0 — 이 레인 (닫힘).
-2. Phase 1 — 파생: verifier, 공통 푸터, content 릴리즈 링크 목록. SSOT는
-   `data/eval/engine.json` (단수, 그대로). 버전 문자열이 content에 남으면 실패.
-   KO 라벨 유지. 의미 회귀는 module id에 묶는다. content→shortcode가 rendered-HTML
-   needle과 충돌하면 중개 id에 보고하고 혼자 정하지 말 것.
-3. Phase 2 — `/eval/engine/releases.json` 발견면 + `_headers`에 `max-age=0`·CORS·nosniff
-   명시. `releases/index.json` 금지(immutable 와일드카드). 피드 = 릴리즈 디렉터리의
-   mutable projection. 별도 원장 금지. `latest`는 알림일 뿐 호환성 약속 아님.
-4. Phase 3 — `docs/eval-engine-contract.md`에 discovery ≠ compatibility 절만 정본으로.
-   README는 `docs/` 입구. AGENTS는 세 문서와 겹치면 **건드리지 않는다.**
-   계약 문서의 기존 `2026.9.12`는 역사/예시일 수 있으니 기계 치환하지 말고, 남긴 이유를
-   보고에 한 줄.
-
-각 단계 끝: `./run.sh v` 통과 후 그 단계만 `commit` 스킬. 푸시·태그 없음.
-
-### 다음 릴리즈 rehearsal (Phase 2 완료 조건)
-
-실릴리즈가 하나뿐이면 피드·정렬·열거는 "한 건이 보인다"만 증명한다.
-**`static/` 아래에 가짜 릴리즈를 만들지 말 것.** `dev/` 또는 임시 디렉터리 fixture로
-최소 두 릴리즈를 구성한다:
-
-- `2026.9.2` 와 `2026.9.12` — 숫자 컴포넌트 정렬. `latest` = `2026.9.12` (사전순이면 실패).
-- 각 `manifestSha256`이 실제 바이트와 일치.
-- 허용 문법 `YYYY.M.D[-<label>.<n>]` 밖 디렉터리 → 조용히 넘기지 말고 **실패**.
-
-이 테스트가 없으면 Phase 2는 미완.
-
-### 발행 후 확인할 것 (코드로 닫지 말 것)
-
-푸시 이후에만 가능하다. 로컬 게이트가 대체하지 않는다.
-
-```bash
-curl -sI https://junghanacs.com/eval/engine/releases.json
-# Cache-Control: public, max-age=0
-# Access-Control-Allow-Origin: *
-# X-Content-Type-Options: nosniff
-```
-
-불변 트리 대조: `releases/2026.9.12/manifest.json` 은 계속 `max-age=31536000,immutable` + CORS.
-
-### 검수 체크리스트 (Phase 1–2가 닫을 것)
-
-- [x] feed deterministic generation + `--check`가 byte-exact drift를 잡음
-- [x] 모든 release manifest 전수 파싱
-- [x] 디렉터리 이름 ↔ `manifest.release` / `basePath` 일치
-- [x] `manifestSha256` ↔ 실제 manifest 바이트
-- [x] module·conformance artifact 존재와 SHA
-- [x] `SHA256SUMS` 검증
-- [x] current source ↔ current release byte equality
-- [x] 기존 `2026.9.12` 디렉터리 바이트 불변 (작업 전후; `git diff` empty)
-- [ ] production feed cache·CORS 실측 ← 발행 후. 위 절.
-
-### 가드레일
-
-- `static/eval/engine/releases/2026.9.12/` 모든 바이트. 추가·수정·삭제 금지.
-- `dev/eval/**/receipts/*.json`, `*.png`. 버전이 박혀 있는 게 정상.
-- `CHANGELOG.md` 과거 항목.
-- untracked `content/blog/20260804T094556.md`·`.ko.md`.
-- `git push` 금지. 태그 금지.
-
----
-
-## Stem (paused) — 기술 하네스 글쓰기의 첫 판본
+## 연재 계획 — 기술 하네스 글쓰기
 
 **Stem:** 홈페이지를 다시 글이 쌓이는 대문으로 만든다. 초반 연재는 이직 시장에서도
 GLG를 정확히 소개할 수 있도록, 삶 일반론보다 **직접 만든 AI 기술 하네스와 그 설계 판단**을
@@ -120,19 +45,16 @@ GLG를 정확히 소개할 수 있도록, 삶 일반론보다 **직접 만든 AI
 - **홈페이지 반영:** `<slug>.ko.md` = 한국어 원본, `<slug>.md` = 영어(default). front matter의 title / description / date를 언어별로 맞춘 뒤 `hugo server -D`와 production build로 확인하고 발행한다.
 - **리듬:** 주 1편을 목표로 하되, 기술 하네스 연재의 첫 세 편은 완결도와 구체성을 우선한다.
 
-## JSON-LD 시맨틱 신원층 — 출하 완료, 후속 2건
+## JSON-LD 시맨틱 신원층 — 남은 후속
 
-**구현·출하(2026-06-27).** `head-end.html`에 `@graph` 신원층 이식 완료. notes 637ab1
-세션 3라운드 재리뷰 GO(블로커 0, 매 라운드 빌드+jq 독립검증). 8페이지 emit 검증
-(EN home·blog목록·sample / KO 동일+실글2), taxonomy 누출 0, 번역관계·KO-only 가드 작동.
-SSOT는 `docs/semantic-jsonld.md`. 남은 후속:
+SSOT는 `docs/semantic-jsonld.md`. 출하된 범위는 home / blog 목록 / blog 글 / about이고,
+`scripts/verify-jsonld-output.mjs`가 렌더된 HTML에서 그 계약을 검증한다(`./run.sh v`와
+Netlify 세 context 모두). KO description 다국어와 `/about/` 커버리지는 `v2026.9.13`에서 닫혔다.
 
-1. **KO ProfilePage description 다국어** — 현재 `or .Description .Site.Params.description`
-   fallback이라 KO도 영어 카피. 고칠 땐 **config side**(hugo.yaml
-   `languages.ko/en.params.description`)로 — 템플릿 카피 하드코딩 금지. 가까운 후속(다음 커밋쯤).
-2. **/about·/cv·/projects JSON-LD 커버리지** — 화이트리스트가 현재 home/blog만.
-   인물정체성 정본면(about)에 최소 `Person`+`WebSite`(AboutPage) 깔 가치. 화이트리스트 확장.
-3. (옵션) hreflang `.AllTranslations ≥ 2`일 때만 — JSON-LD 코어와 분리한 별도 커밋.
+1. **`/cv`·`/projects` 커버리지** — 화이트리스트에 아직 없다. 넣을 때 docs·템플릿·verifier를
+   같은 변경으로 함께 옮긴다.
+2. (옵션) hreflang `.AllTranslations ≥ 2`일 때만 — JSON-LD 코어와 분리한 별도 커밋.
+3. `WebSite.hasPart → #blog`, breadcrumb, 가든 reciprocal `sameAs` — `semantic-jsonld.md` 후속 목록 참조.
 
 ## Verify
 
@@ -156,4 +78,4 @@ curl -sI https://junghanacs.com | grep -i server       # Netlify serving (apex c
 
 ## Done
 
-See `CHANGELOG.md` `v2026.6.24` for the closed migration + doc-set work.
+See `CHANGELOG.md`. Most recent: `v2026.9.13` — second-release lifecycle and public authority.

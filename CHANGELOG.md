@@ -5,6 +5,71 @@ CalVer snapshots (`vYYYY.M.D[-suffix]`) of the homepage repo. Past tense — wha
 
 ## Unreleased
 
+## v2026.9.13 — Second-release lifecycle and public authority
+
+### Features
+
+- Published `/eval/engine/releases.json`, a mutable discovery feed derived from the
+  release-directory ledger, so a consumer can learn that a new engine release exists
+  without scraping the shelf page. The feed lives outside `/eval/engine/releases/*` and
+  carries `max-age=0`, CORS, and `nosniff`, keeping the mutable discovery surface and the
+  year-immutable adoption surface in separate cache domains under one directory.
+- Widened engine release identifiers to `YYYY.M.D[-<label>.<n>]` so a second release on
+  the same day is possible at all, with `n` a running serial for that date enforced by
+  the build, a four-step deterministic sort, and the release-id axis kept explicitly
+  separate from the repository's git tags.
+- Opened the whole Eval shelf, the SICM reading edition, and the `/javascript/` license
+  page to search engines and AI crawlers. `noindex` had shipped as a first-release guard
+  and the gate had been enforcing that guard as if it were policy; the gate now refuses
+  any Eval page that carries it, and `robots.txt` states the crawl stance the way the
+  digital garden already does.
+- Covered `/about/` with an `AboutPage` node and moved the site description to
+  per-language params, so the Korean home and about pages stop describing themselves in
+  English.
+
+### Fixes
+
+- Closed a path escape in the release validator: a module path that merely began with
+  the release `basePath` could resolve outside the release root. Paths are now single
+  safe leaf filenames rejected before any file is read, alongside real Gregorian date
+  validation, a required bare release for any same-day follow-up, an exact directory
+  entry set, and duplicate-name rejection in `SHA256SUMS`.
+- Made the discovery feed append-only: a previously published `releases[]` must be an
+  exact prefix of the next one, so an existing entry cannot be rewritten, removed,
+  reordered, or displaced by a backdated insertion.
+- Stopped declaring `ai-train=yes` for the whole site. The crawl policy had been copied
+  from the garden, which holds only the author's own notes; this site also serves the
+  SICM reading edition under an upstream NonCommercial license, and a site-wide training
+  grant would purport to re-license work the author does not own.
+- Derived every current-release path from `data/eval/engine.json` instead of repeating
+  the version across verifiers, the shared page footer, and two hand-maintained locale
+  pages whose link lists had already drifted apart.
+
+### Docs
+
+- Separated discovery from compatibility in the engine contract: the feed finds a
+  published id, while adoption still closes on an exact manifest, artifact hashes, the
+  named runtime pin, and a vendored conformance fixture.
+- Registered the Eval shelf in `llms.txt` as a published surface, named its layered
+  licenses, and narrowed the import claim to the engine release subtree — the reading
+  edition and the experiments are published to be read and run.
+- Added the site's own copyright beside the retained hextra starter notice, and declared
+  CC BY-NC-SA 4.0 for the original writing in the README, `llms.txt`, and the `Blog` node.
+- Recorded the second-release lifecycle in `NEXT.md`, including the rehearsal fixture and
+  the checks that only a deployed build can answer.
+
+### Verification
+
+- Added `scripts/verify-jsonld-output.mjs` and wired it into both `./run.sh v` and all
+  three Netlify build contexts, with a preview-aware origin. The identity layer had been
+  shipping on claims nothing checked.
+- Promoted the rendered contract to the gate: Eval routes are parsed for `robots` meta
+  and must appear in the per-language sitemaps, so a template or configuration change
+  cannot quietly close the shelf again.
+- Reused one shared release validator across the feed builder and the rendered-output
+  verifier, and exercised it against a two-release rehearsal fixture covering numeric
+  sort, malformed identifiers, and the adversarial mutations above.
+
 ## v2026.9.12 — SICM reading edition and immutable Eval engine
 
 ### Features
