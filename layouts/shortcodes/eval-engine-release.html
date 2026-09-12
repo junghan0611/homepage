@@ -3,6 +3,7 @@
 {{- $lang := .Page.Language.Lang -}}
 <h2>Release {{ $engine.release }}</h2>
 <ul>
+  <li><a href="/eval/engine/releases.json">{{ if eq $lang "ko" }}발견 피드{{ else }}Discovery feed{{ end }}</a></li>
   <li><a href="{{ $engine.basePath }}manifest.json">Manifest</a></li>
   <li><a href="{{ $engine.basePath }}SHA256SUMS">SHA256SUMS</a></li>
   {{- range $engine.modules }}

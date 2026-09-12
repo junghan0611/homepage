@@ -186,7 +186,7 @@ if (home.includes("Under construction") || homeKo.includes("공사중")) fail("r
 for (const [route, html, needles] of [["/", home, ["The executable shelf is open", "/eval/engine/", "/eval/sicm/"]], ["/ko/", homeKo, ["실행되는 선반", "/ko/eval/engine/", "/ko/eval/sicm/"]]]) for (const needle of needles) if (!html.includes(needle)) fail(`${route} missing current Eval promise ${needle}`);
 for (const route of ["public/eval/engine/index.html", "public/ko/eval/engine/index.html"]) {
 	const html = await readFile(resolve(root, route), "utf8");
-	for (const needle of ["scalar-exact", "structured", "fragment", "claim-v1", "cell-v1", "unobserved", "data-engine-conformance", "eval-engine-conformance.min."]) if (!html.toLowerCase().includes(needle)) fail(`${route} missing ${needle}`);
+	for (const needle of ["scalar-exact", "structured", "fragment", "claim-v1", "cell-v1", "unobserved", "data-engine-conformance", "eval-engine-conformance.min.", "/eval/engine/releases.json"]) if (!html.toLowerCase().includes(needle)) fail(`${route} missing ${needle}`);
 }
 const sicm = await readFile(resolve(root, "public/eval/sicm/index.html"), "utf8");
 for (const needle of ["sicm_edition_2.zip", "tgvaughan.github.io/sicm/", "mentat-collective/sicm-book/tree/4088864", "No endorsement"]) if (!sicm.includes(needle)) fail(`/eval/sicm/ missing ${needle}`);

@@ -13,14 +13,15 @@ Eval 엔진 — 두 번째 릴리즈 생애주기 (이 세션의 workstream). �
 - [x] **4. Phase 2 발견면(`/eval/engine/releases.json`) + 캐시 도메인**
 - [x] **5. Phase 3 문서 입구**
 - [x] **6. Phase 4 릴리즈 id 문법** — `YYYY.M.D[-<label>.<n>]`, `n`은 그날 통산 순번 (라벨별 카운터 아님)
+- [ ] **7. Sol HOLD A–C** ← CURRENT: A 발견 링크 → B/D shared validator → C append-only
 
-현재 좌표: 1–6 완료. 다음: GLG 결정 + 발행 후 feed cache/CORS 실측.
+현재 좌표: 1–6 완료 → 7 진행. 태그·푸시 없음.
 
 # NOW — Eval 엔진, 두 번째 릴리즈를 낼 자리
 
 - Stem: 홈페이지를 다시 글이 쌓이는 대문으로 만든다 (아래 글쓰기 절). 이 세션은 그 stem을 바꾸지 않는다.
-- Detour: Eval 엔진에 "두 번째 릴리즈를 낼 자리"를 만든다. Phase 0–4 로컬 게이트는 닫혔다.
-- Next: GLG가 다음을 정한다. 푸시 뒤에 production `releases.json` cache/CORS를 실측한다. 그 다음 글쓰기 stem으로 복귀.
+- Detour: Eval 엔진에 "두 번째 릴리즈를 낼 자리"를 만든다. Sol HOLD A–C를 태그 전에 닫는다.
+- Next: (1) A 발견 피드 링크 → (2) B/D shared validator → (3) C append-only. 각 단계 `./run.sh v` + commit.
 - Return: 발행 후 실측이 남았다. 코드로 닫지 말 것.
 - Blocker: 없음
 - Read: `docs/eval-engine-contract.md`, `data/eval/engine.json`, `static/_headers`, `scripts/build-eval-engine.mjs`
