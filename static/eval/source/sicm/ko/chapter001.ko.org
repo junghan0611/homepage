@@ -978,7 +978,7 @@ z) t) 2)))
    {\delta_{\eta}\Gamma\lbrack q\rbrack(t) = (0,\eta(t),D\eta(t)),} & {(1.31)}
    \end{equation}
 
-   ---이는 식 ([[file:chapter001.html#disp_1.20][1.20]])과
+   ---이는 방정식 ([[file:chapter001.html#disp_1.20][1.20]])과
    ([[file:chapter001.html#disp_1.21][1.21]])에서 따라 나온다---그리고 변분에
    대한 연쇄 법칙 ([[file:chapter001.html#disp_1.26][1.26]])을 쓰면 다음을
    얻는다.[fn:52]
@@ -990,7 +990,7 @@ z) t) 2)))
    q\rbrack)\eta + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D\eta).}}} &
    {(1.32)} \end{equation}
 
-   식 ([[file:chapter001.html#disp_1.32][1.32]])의 마지막 항을 부분적분하면
+   방정식 ([[file:chapter001.html#disp_1.32][1.32]])의 마지막 항을 부분적분하면
    다음을 얻는다.
 
    $$\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2}) =} &

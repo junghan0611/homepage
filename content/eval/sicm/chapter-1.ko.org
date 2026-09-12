@@ -995,14 +995,14 @@ D{\delta_{\eta}f\lbrack q\rbrack = \delta_{\eta}g\lbrack
 {{< sicm-math display >}}\begin{aligned}
 {\delta_{\eta}\Gamma\lbrack q\rbrack(t) = (0,\eta(t),D\eta(t)),} & {(1.31)}
    \end{aligned}{{< /sicm-math >}}
-   ---이는 식 ([[/ko/eval/sicm/chapter-1/#disp_1.20][1.20]])과
+   ---이는 방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.20][1.20]])과
    ([[/ko/eval/sicm/chapter-1/#disp_1.21][1.21]])에서 따라 나온다---그리고 변분에
    대한 연쇄 법칙 ([[/ko/eval/sicm/chapter-1/#disp_1.26][1.26]])을 쓰면 다음을
    얻는다.[fn:52]
 
    @@html:<span id="disp_1.32"></span>@@
 {{< sicm-math display >}}\begin{array}{lll} {\delta_{\eta}S\lbrack q\rbrack(t_{1},t_{2})} & {= {\int_{t_{1}}^{t_{2}}{(D\, L \circ \Gamma\lbrack q\rbrack)\delta_{\eta}\Gamma\lbrack q\rbrack}}} & \\ & {= {\int_{t_{1}}^{t_{2}}{((\partial_{1}L \circ \Gamma\lbrack q\rbrack)\eta + (\partial_{2}L \circ \Gamma\lbrack q\rbrack)D\eta).}}} & {(1.32)}\end{array}{{< /sicm-math >}}
-   식 ([[/ko/eval/sicm/chapter-1/#disp_1.32][1.32]])의 마지막 항을 부분적분하면
+   방정식 ([[/ko/eval/sicm/chapter-1/#disp_1.32][1.32]])의 마지막 항을 부분적분하면
    다음을 얻는다.
 
    @@html:<span id="disp_1.33"></span>@@

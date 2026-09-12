@@ -28,10 +28,10 @@
       ],
       "sourceSha256": "0224e42c06d15a84070cd87f4cebb0871dcdac957c8e7a2f1ee20495b4c6e017",
       "translationPath": "dev/eval/sicm/translation/chapter001/ch1-05.ko.org",
-      "translationSha256": "eb777f58c2fc0d7bd3e091864526b1462c41a5242ae815c184caf2d1867e73b5",
+      "translationSha256": "d36c6ed00d2dff85ced7893294943ce5fc9fededf54a8853f9fe91c0739e8886",
       "draftedBy": "claude-code/claude-opus-5",
       "reviewedBy": "openai-codex/gpt-5.6-terra",
-      "reviewResult": "PASS; no meaning defect found",
+      "reviewResult": "PASS; no meaning defect found; chapter terminology normalized",
       "reviewedAt": "2026-09-12"
     },
     {
@@ -99,5 +99,5 @@
     "manual": "Complete independent bilingual prose review by source segment; see dev/eval/sicm/translation/REVIEW.md"
   },
   "reviewReceipt": "dev/eval/sicm/translation/REVIEW.md",
-  "reviewReceiptSha256": "ac47a4e1931f764b946683eaa718a771369b80448741ce9ebeaae795950dfbec"
+  "reviewReceiptSha256": "32c1405eb4330ea7007b34a90f230b8c5ebfd8303dffa34cad42a71bfbb1d4e6"
 }

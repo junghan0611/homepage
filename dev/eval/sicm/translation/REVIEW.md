@@ -45,6 +45,7 @@ mistranslation, and chapter-level terminology. Structural checks remain the job 
 - point mass → `질점`
 - radial momentum → `방사 운동량`
 - four-bar linkage → `4절 링크 기구(four-bar linkage)`
+- numbered equation reference → `방정식 (n.n)`
 
 ## Boundary
 

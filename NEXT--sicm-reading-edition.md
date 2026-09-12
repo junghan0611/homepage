@@ -14,7 +14,7 @@ Branch-only handoff. Delete this file before merging to `main`.
 
 # NOW — SICM reading edition 출하
 
-- Current: `sicm-reading-edition`은 `main`보다 13 commits 앞서며 `./run.sh v` 통과.
+- Current: `sicm-reading-edition`은 `main`보다 14 commits 앞서며 `./run.sh v` 통과.
 - Next: GLG가 승인하면 branch NEXT를 삭제하고 main에 merge한 뒤, 별도 push 명령이 있을
   때만 push한다. 배포 뒤 실제 브라우저에서 EN/KO Chapter 1, Figure 1.1 PASS·80 SVG
   points·`book-bound=true`, MathML, CSP를 관측한다.
