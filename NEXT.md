@@ -12,13 +12,14 @@ Eval 엔진 — 두 번째 릴리즈 생애주기 (이 세션의 workstream). �
 - [x] **3. Phase 1 버전 하드코딩 → 파생**
 - [x] **4. Phase 2 발견면(`/eval/engine/releases.json`) + 캐시 도메인**
 - [x] **5. Phase 3 문서 입구**
+- [x] **6. Phase 4 릴리즈 id 문법** — `YYYY.M.D[-<label>.<n>]`, 같은 날 후속은 새 디렉터리
 
-현재 좌표: 1–5 완료. 다음: GLG 결정 + 발행 후 feed cache/CORS 실측.
+현재 좌표: 1–6 완료. 다음: GLG 결정 + 발행 후 feed cache/CORS 실측.
 
 # NOW — Eval 엔진, 두 번째 릴리즈를 낼 자리
 
 - Stem: 홈페이지를 다시 글이 쌓이는 대문으로 만든다 (아래 글쓰기 절). 이 세션은 그 stem을 바꾸지 않는다.
-- Detour: Eval 엔진에 "두 번째 릴리즈를 낼 자리"를 만든다. Phase 0–3 로컬 게이트는 닫혔다.
+- Detour: Eval 엔진에 "두 번째 릴리즈를 낼 자리"를 만든다. Phase 0–4 로컬 게이트는 닫혔다.
 - Next: GLG가 다음을 정한다. 푸시 뒤에 production `releases.json` cache/CORS를 실측한다. 그 다음 글쓰기 stem으로 복귀.
 - Return: 발행 후 실측이 남았다. 코드로 닫지 말 것.
 - Blocker: 없음
@@ -56,7 +57,7 @@ Eval 엔진 — 두 번째 릴리즈 생애주기 (이 세션의 workstream). �
 
 - `2026.9.2` 와 `2026.9.12` — 숫자 컴포넌트 정렬. `latest` = `2026.9.12` (사전순이면 실패).
 - 각 `manifestSha256`이 실제 바이트와 일치.
-- 허용 문법 `YYYY.M.D` 밖 디렉터리 → 조용히 넘기지 말고 **실패**.
+- 허용 문법 `YYYY.M.D[-<label>.<n>]` 밖 디렉터리 → 조용히 넘기지 말고 **실패**.
 
 이 테스트가 없으면 Phase 2는 미완.
 

@@ -35,11 +35,19 @@ const writeRelease = async (root, id, payloads) => {
 	return { manifestSha256: sha256(manifest), modules: modules.map((module) => ({ id: module.id, sha256: module.sha256 })) };
 };
 
+const ordered = (left, right) => {
+	if (compareReleaseIds(left, right) >= 0) fail(`numeric/suffix sort puts ${left} after or equal to ${right}`);
+};
+
 const root = await mkdtemp(join(tmpdir(), "eval-engine-feed-"));
 try {
-	if (compareReleaseIds("2026.9.2", "2026.9.12") >= 0) fail("numeric component sort puts 2026.9.2 after 2026.9.12");
-	if (parseReleaseId("2026.9.12").day !== 12) fail("YYYY.M.D parser rejected the current id grammar");
-	for (const name of ["2026.9.12-fix.1", "latest", "2026.09.12a", "9.12.2026"]) {
+	ordered("2026.9.2", "2026.9.12");
+	ordered("2026.9.12", "2026.9.12-fix.1");
+	ordered("2026.9.12-fix.2", "2026.9.12-fix.10");
+	ordered("2026.9.12-docs.1", "2026.9.12-fix.1");
+	if (parseReleaseId("2026.9.12").day !== 12 || parseReleaseId("2026.9.12").suffixed) fail("YYYY.M.D parser rejected the bare id grammar");
+	if (parseReleaseId("2026.9.12-fix.1").n !== 1 || parseReleaseId("2026.9.12-fix.1").label !== "fix") fail("suffix parser rejected YYYY.M.D[-<label>.<n>]");
+	for (const name of ["latest", "2026.09.12a", "9.12.2026", "2026.9.12-", "2026.9.12-fix", "2026.9.12-FIX.1", "2026.9.12-fix.0"]) {
 		try {
 			parseReleaseId(name);
 			fail(`accepted malformed release id ${name}`);
@@ -57,22 +65,27 @@ try {
 		["claim-v1", "claim-current"],
 		["conformance-v1", "{\"cases\":[1]}"],
 	]);
+	const follow = await writeRelease(root, "2026.9.12-fix.1", [
+		["cell-v1", "cell-follow"],
+		["claim-v1", "claim-follow"],
+		["conformance-v1", "{\"cases\":[2]}"],
+	]);
 	const feed = await buildFeed(root);
 	const serialized = serializeFeed(feed);
 	if (serializeFeed(await buildFeed(root)).compare(serialized) !== 0) fail("feed serialization is not deterministic");
-	if (feed.format !== 1 || feed.latest !== "2026.9.12") fail(`latest drifted: ${feed.latest}`);
+	if (feed.format !== 1 || feed.latest !== "2026.9.12-fix.1") fail(`latest drifted: ${feed.latest}`);
 	if (!feed.note.includes("discovery only") || !feed.note.includes("latest is not a compatibility promise")) fail("feed note dropped the discovery/compatibility boundary");
-	if (feed.releases.map((entry) => entry.release).join(",") !== "2026.9.2,2026.9.12") fail(`release order drifted: ${feed.releases.map((entry) => entry.release).join(",")}`);
-	if (feed.releases[0].manifestSha256 !== early.manifestSha256 || feed.releases[1].manifestSha256 !== current.manifestSha256) fail("manifestSha256 does not match written manifest bytes");
+	if (feed.releases.map((entry) => entry.release).join(",") !== "2026.9.2,2026.9.12,2026.9.12-fix.1") fail(`release order drifted: ${feed.releases.map((entry) => entry.release).join(",")}`);
+	if (feed.releases[0].manifestSha256 !== early.manifestSha256 || feed.releases[1].manifestSha256 !== current.manifestSha256 || feed.releases[2].manifestSha256 !== follow.manifestSha256) fail("manifestSha256 does not match written manifest bytes");
 	if (feed.releases[1].modules[0].sha256 !== current.modules[0].sha256) fail("module sha256 in the feed does not match artifact bytes");
-	await mkdir(join(root, "2026.9.12-fix.1"));
+	await mkdir(join(root, "2026.9.12-fix"));
 	try {
 		await buildFeed(root);
 		fail("malformed release directory was skipped instead of failing");
 	} catch (error) {
 		if (!String(error.message).includes("YYYY.M.D")) fail(`malformed directory failed with the wrong error: ${error.message}`);
 	}
-	console.log("eval engine feed rehearsal passed: numeric sort, manifest hashes, and malformed YYYY.M.D failure");
+	console.log("eval engine feed rehearsal passed: suffix grammar, numeric n, and malformed id failure");
 } finally {
 	await rm(root, { recursive: true, force: true });
 }

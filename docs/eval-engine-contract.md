@@ -39,6 +39,26 @@ The build refuses to overwrite a mismatching release artifact. `SHA256SUMS` cove
 modules and conformance fixture. The release manifest is deterministic and protected by
 the repository commit that publishes it.
 
+## Release identifiers
+
+An engine release id is `YYYY.M.D` with an optional same-day follow-up `-<label>.<n>`.
+Month and day have no leading zero. `label` is `[a-z][a-z0-9-]*`. `n` is an integer ≥ 1
+with no leading zero. Examples: `2026.9.12`, `2026.9.12-fix.1`, `2026.9.12-docs.2`.
+
+Sort is deterministic:
+
+1. `(year, month, day)` numerically;
+2. on the same date, the bare id precedes any suffix — the bare id is the original, the suffix a follow-up;
+3. suffixes compare `n` numerically, so `-fix.2` precedes `-fix.10`;
+4. if `n` also matches, `label` compares as ASCII.
+
+`latest` is the last id in that order. A same-day follow-up such as `2026.9.12-fix.1` is
+normal: immutability forbids overwriting a released directory, not creating a new one.
+
+A release id and a git tag are different axes. Tags snapshot the repository
+(`vYYYY.M.D[-suffix]`). Release ids address immutable engine artifacts. They share a
+house convention, not a derivation. They may differ on the same day.
+
 ## Discovery is not compatibility
 
 `/eval/engine/releases.json` lists published releases. It is a mutable projection of the

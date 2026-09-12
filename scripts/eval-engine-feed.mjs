@@ -7,24 +7,29 @@ export const FEED_FORMAT = 1;
 export const FEED_NOTE = "discovery only; adopt an exact release and verify its artifact hashes. latest is not a compatibility promise.";
 export const FEED_RELATIVE = "static/eval/engine/releases.json";
 export const RELEASES_RELATIVE = "static/eval/engine/releases";
-const RELEASE_ID = /^(\d{4})\.(\d{1,2})\.(\d{1,2})$/;
+const RELEASE_ID = /^(\d{4})\.([1-9]|1[0-2])\.([1-9]|[12]\d|3[01])(?:-([a-z][a-z0-9-]*)\.([1-9][0-9]*))?$/;
 
 export const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 
 export const parseReleaseId = (name) => {
 	const match = RELEASE_ID.exec(name);
-	if (!match) throw new Error(`engine release directory ${name} is not YYYY.M.D`);
-	const year = Number(match[1]);
-	const month = Number(match[2]);
-	const day = Number(match[3]);
-	if (month < 1 || month > 12 || day < 1 || day > 31) throw new Error(`engine release directory ${name} is not a valid YYYY.M.D date`);
-	return { id: name, year, month, day };
+	if (!match) throw new Error(`engine release directory ${name} is not YYYY.M.D[-<label>.<n>]`);
+	return {
+		id: name,
+		year: Number(match[1]),
+		month: Number(match[2]),
+		day: Number(match[3]),
+		label: match[4] ?? "",
+		n: match[4] ? Number(match[5]) : 0,
+		suffixed: Boolean(match[4]),
+	};
 };
 
 export const compareReleaseIds = (left, right) => {
 	const a = typeof left === "string" ? parseReleaseId(left) : left;
 	const b = typeof right === "string" ? parseReleaseId(right) : right;
-	return a.year - b.year || a.month - b.month || a.day - b.day;
+	const label = a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
+	return a.year - b.year || a.month - b.month || a.day - b.day || Number(a.suffixed) - Number(b.suffixed) || a.n - b.n || label;
 };
 
 const parseSums = (text, releaseId) => {
