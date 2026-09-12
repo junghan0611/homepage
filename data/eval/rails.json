@@ -10,7 +10,7 @@
     "id": "sicm",
     "title": "SICM Book",
     "route": "/eval/sicm/",
-    "subtitle": "A curated calculation—not a mirror of the book",
+    "subtitle": "Preface and Chapter 1 in English and Korean, with computed views",
     "authority": "External Org and upstream edition",
     "attribution": {
       "work": "Structure and Interpretation of Classical Mechanics",
@@ -21,10 +21,10 @@
       "license": "CC BY-NC-SA 3.0 Unported",
       "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
       "canonicalOriginalUrl": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/9579/sicm_edition_2.zip",
-      "exactSourceUrl": "https://tgvaughan.github.io/sicm/preface.html",
-      "orgSourceUrl": "https://github.com/mentat-collective/sicm-book",
-      "sourceChain": "The quoted sentence follows Tim Vaughan’s HTML port of the second edition; Sam Ritchie’s org-mode port documents the local authoring lineage.",
-      "adaptation": "The quote remains the authors’ text. The commentary and Emmy/Clojure calculation are a new adaptation and are not copied from the book’s program text.",
+      "exactSourceUrl": "https://tgvaughan.github.io/sicm/",
+      "orgSourceUrl": "https://github.com/mentat-collective/sicm-book/tree/4088864745715d8afa923162155e63795d43a375",
+      "sourceChain": "Tim Vaughan’s HTML port carries the official second-edition text into the pinned org-mode source used by this reading edition.",
+      "adaptation": "The English reading text preserves the pinned source prose. The Korean translation, publication structure, and Emmy/Clojure computation views are new CC BY-NC-SA adaptations, explicitly separated from the authors’ work.",
       "noEndorsement": "The original authors, port authors, and publisher have not reviewed or endorsed this page."
     }
   },

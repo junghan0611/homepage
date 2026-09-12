@@ -43,6 +43,13 @@
     "auto": true,
     "editable": false
   },
+  "sicm-figure-1-1": {
+    "label": "Figure 1.1: stationary path maximum error",
+    "source": "(do\n  (require '[emmy.env :as e])\n  (defn sicm-L-harmonic [m k]\n    (fn [local]\n      (let [q (e/coordinate local)\n            v (e/velocity local)]\n        (e/- (e/* (e// 1 2) m (e/square v))\n             (e/* (e// 1 2) k (e/square q))))))\n  (def sicm-q3\n    (e/find-path (sicm-L-harmonic 1.0 1.0)\n                 0.0 1.0 1.5707963267948966 0.0 3))\n  (apply max\n         (map (fn [i]\n                (let [t (* i 0.01)]\n                  (js/Math.abs (- (sicm-q3 t) (js/Math.cos t)))))\n              (range 158))))",
+    "expected": "0.000167",
+    "auto": true,
+    "editable": false
+  },
   "clay-emmy": {
     "label": "The browser half of the Clay receipt",
     "source": "(do (require '[emmy.env :as e]) (e/->TeX (e/simplify (e/+ 'x 'x))))",

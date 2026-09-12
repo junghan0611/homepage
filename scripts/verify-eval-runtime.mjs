@@ -16,10 +16,16 @@ if (generated.status !== 0) {
 	process.stderr.write(generated.stderr || generated.stdout);
 	fail("generated runtime receipts are missing or stale");
 }
+const sicmGenerated = spawnSync("python3", ["scripts/build-sicm-reading.py", "--check"], { cwd: root, encoding: "utf8" });
+if (sicmGenerated.status !== 0) {
+	process.stderr.write(sicmGenerated.stderr || sicmGenerated.stdout);
+	fail("generated SICM reading pages are missing or stale");
+}
 
 const spec = JSON.parse(await read("data/eval/runtime.json"));
 const cells = JSON.parse(await read("data/eval/cells.json"));
 const rails = JSON.parse(await read("data/eval/rails.json"));
+const sicm = JSON.parse(await read("data/eval/sicm.json"));
 const cellsLicense = JSON.parse(await read("data/eval/cells_license.json"));
 const runtime = spec.runtime;
 const manifest = JSON.parse(await read("static/eval/runtime/manifest.json"));
@@ -42,14 +48,15 @@ for (const name of await readdir(resolve(root, "static/eval/runtime"))) {
 }
 
 const requiredFiles = [
-	"content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm.md", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md",
-	"data/eval/runtime.json", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json",
+	"content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md",
+	"data/eval/runtime.json", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json",
 	"layouts/eval/list.html", "layouts/eval/single.html", "layouts/eval/license.html",
 	"layouts/shortcodes/eval-cell.html", "layouts/shortcodes/eval-rails.html", "layouts/shortcodes/eval-attribution.html",
-	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html",
-	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js",
+	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/cell.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html",
+	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js", "assets/js/eval-sicm.js",
 	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
-	"scripts/build-eval-runtime.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
+	"scripts/build-eval-runtime.mjs", "scripts/build-sicm-reading.py", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
+	"static/eval/source/sicm/LICENSE", "static/eval/source/sicm/en/preface.org", "static/eval/source/sicm/en/chapter001.org", "static/eval/source/sicm/ko/preface.ko.org",
 	"static/eval/licenses/GPL-3.0.txt", "static/eval/licenses/EPL-1.0.txt", "static/eval/licenses/Apache-2.0.txt", "static/eval/licenses/MIT-fraction.js.txt", "static/eval/licenses/BSD-2-Clause-odex.txt",
 ];
 for (const path of requiredFiles) if (!(await exists(path))) fail(`required source or notice missing: ${path}`);
@@ -59,23 +66,37 @@ for (const obsolete of [
 	"static/eval/eval.css", "static/eval/eval.js", "static/javascript.html", "dev/eval-stack",
 ]) if (await exists(obsolete)) fail(`obsolete HTML-first surface remains: ${obsolete}`);
 
-const requiredCells = ["hub-canary", "proto-arithmetic", "proto-definition", "proto-shared-state", "proto-error-state", "proto-emmy", "sicm-harmonic", "clay-emmy", "runtime-canary"];
+const requiredCells = ["hub-canary", "proto-arithmetic", "proto-definition", "proto-shared-state", "proto-error-state", "proto-emmy", "sicm-harmonic", "sicm-figure-1-1", "clay-emmy", "runtime-canary"];
 if (Object.keys(cells).length !== requiredCells.length || requiredCells.some((id) => !cells[id]?.source || !cells[id]?.label)) fail("Eval cell inventory is incomplete");
 if (rails.length !== 4 || ["proto", "sicm", "clay", "canary"].some((id) => !rails.some((rail) => rail.id === id && rail.route === `/eval/${id}/`))) fail("Eval rail inventory is incomplete");
 if (cellsLicense.spdx !== "GPL-3.0-only" || cellsLicense.sourcePath !== "data/eval/cells.json" || cellsLicense.correspondingSourceUrl !== "/eval/source/cells.json" || cellsLicense.declarationUrl !== "/eval/source/cells-license.json" || cellsLicense.licenseUrl !== "/eval/licenses/GPL-3.0.txt") fail("Eval cell corresponding-source declaration is incomplete");
 const sicmAttribution = rails.find((rail) => rail.id === "sicm")?.attribution;
 for (const field of ["work", "edition", "authors", "publisher", "copyright", "license", "licenseUrl", "canonicalOriginalUrl", "exactSourceUrl", "orgSourceUrl", "sourceChain", "adaptation", "noEndorsement"]) if (!sicmAttribution?.[field] || (Array.isArray(sicmAttribution[field]) && !sicmAttribution[field].length)) fail(`SICM attribution field missing: ${field}`);
-if (sicmAttribution.licenseUrl !== "https://creativecommons.org/licenses/by-nc-sa/3.0/" || !sicmAttribution.exactSourceUrl.includes("/sicm/preface.html")) fail("SICM license or exact source-chain URL drifted");
-
-const contentPaths = ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm.md", "content/eval/clay.md", "content/eval/canary.md"];
-const referencedCells = new Set();
-for (const path of [...contentPaths, "content/javascript.md"]) {
-	const source = await read(path);
-	for (const marker of ["type: eval", "noindex: true", "comments: false", "toc: false"]) if (!source.includes(marker)) fail(`${path} is missing Eval publication front matter: ${marker}`);
-	for (const match of source.matchAll(/eval-cell id="([^"]+)"/g)) referencedCells.add(match[1]);
+if (sicmAttribution.licenseUrl !== "https://creativecommons.org/licenses/by-nc-sa/3.0/" || sicmAttribution.orgSourceUrl !== `https://github.com/${sicm.orgSource.repository}/tree/${sicm.orgSource.commit}`) fail("SICM license or exact source-chain URL drifted");
+if (sicm.orgSource.commit !== "4088864745715d8afa923162155e63795d43a375" || sicm.images.commit !== "6cac77666976d7656ba6adb4571995d086943af7") fail("SICM source revisions are not pinned");
+for (const [name, expected] of Object.entries(sicm.orgSource.files)) {
+	const path = name === "LICENSE" ? `static/eval/source/sicm/${name}` : `static/eval/source/sicm/en/${name}`;
+	if (sha256(await readFile(resolve(root, path))) !== expected) fail(`SICM source hash mismatch: ${path}`);
 }
-if (requiredCells.some((id) => !referencedCells.has(id)) || [...referencedCells].some((id) => !cells[id])) fail("Markdown cell references and data/eval/cells.json disagree");
-if (!(await read("content/eval/sicm.md")).includes('{{< eval-attribution rail="sicm" >}}')) fail("SICM page does not render the structured attribution record");
+for (const [name, expected] of Object.entries(sicm.translation.files)) {
+	const path = `static/eval/source/sicm/ko/${name}`;
+	if (sha256(await readFile(resolve(root, path))) !== expected) fail(`SICM translation hash mismatch: ${path}`);
+}
+for (const [name, expected] of Object.entries(sicm.images.files)) {
+	const path = `static/eval/source/sicm/images/${name}`;
+	if (sha256(await readFile(resolve(root, path))) !== expected) fail(`SICM image hash mismatch: ${path}`);
+}
+
+const contentPaths = ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/clay.md", "content/eval/canary.md"];
+const referencedCells = new Set();
+for (const path of [...contentPaths, "content/javascript.md", "layouts/_partials/eval/sicm-viewer.html"]) {
+	const source = await read(path);
+	if (!path.startsWith("layouts/")) for (const marker of ["type: eval", "noindex: true", "comments: false", "toc: false"]) if (!source.includes(marker)) fail(`${path} is missing Eval publication front matter: ${marker}`);
+	for (const match of source.matchAll(/eval-cell id="([^"]+)"/g)) referencedCells.add(match[1]);
+	for (const match of source.matchAll(/"ID" "([^"]+)"/g)) referencedCells.add(match[1]);
+}
+if (requiredCells.some((id) => !referencedCells.has(id)) || [...referencedCells].some((id) => !cells[id])) fail("content cell references and data/eval/cells.json disagree");
+if (!(await read("content/eval/sicm/_index.md")).includes('{{< eval-attribution rail="sicm" >}}')) fail("SICM page does not render the structured attribution record");
 const sourceReceipt = await read("layouts/_partials/eval/page.html");
 const licenseSurface = await read("layouts/eval/license.html");
 for (const surface of [sourceReceipt, licenseSurface]) if (!surface.includes("cellSource") || !surface.includes("evalSource")) fail("Eval corresponding-source links are missing from a public surface");
@@ -99,14 +120,14 @@ for (const [path, notice] of [
 	["static/eval/licenses/BSD-2-Clause-odex.txt", "Copyright (c) 2016, Colin Smith"],
 ]) if (!(await read(path)).includes(notice)) fail(`invalid license notice: ${path}`);
 
-const authoredPaths = [...contentPaths, "content/javascript.md", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "assets/js/eval.js", "assets/css/eval.css", "layouts/_partials/eval/scripts.html", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj"];
+const authoredPaths = [...contentPaths, "content/javascript.md", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json", "assets/js/eval.js", "assets/js/eval-sicm.js", "assets/css/eval.css", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj"];
 for (const path of authoredPaths) {
 	const source = await read(path);
 	for (const forbidden of ["cdn.jsdelivr.net", "unpkg.com", "daslu.github.io", "/home/", "~/", "dev/eval-stack/"]) {
 		if (source.includes(forbidden)) fail(`${path} contains forbidden publication dependency or private path: ${forbidden}`);
 	}
 }
-if (!(await read("assets/js/eval.js")).includes("SPDX-License-Identifier: GPL-3.0-only")) fail("Eval evaluator license marker is missing");
+for (const path of ["assets/js/eval.js", "assets/js/eval-sicm.js"]) if (!(await read(path)).includes("SPDX-License-Identifier: GPL-3.0-only")) fail(`Eval JavaScript license marker is missing: ${path}`);
 if (!(await read("layouts/_partials/components/analytics/analytics.html")).includes('(ne .Type "eval")')) fail("Eval analytics suppression is missing");
 
 console.log("eval verified: Hugo sources, cells, runtime hashes, SBOM, licenses, CSP, and publication boundaries are current");

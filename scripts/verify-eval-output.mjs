@@ -7,11 +7,12 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const fail = (message) => { console.error(`Eval Hugo output verification failed: ${message}`); process.exit(1); };
 const required = [
 	"public/_headers",
-	"public/eval/index.html", "public/eval/proto/index.html", "public/eval/sicm/index.html", "public/eval/clay/index.html", "public/eval/canary/index.html",
+	"public/eval/index.html", "public/eval/proto/index.html", "public/eval/sicm/index.html", "public/eval/sicm/preface/index.html", "public/eval/sicm/chapter-1/index.html", "public/ko/eval/sicm/index.html", "public/ko/eval/sicm/preface/index.html", "public/eval/clay/index.html", "public/eval/canary/index.html",
 	"public/eval/runtime/manifest.json", "public/eval/runtime/sbom.json",
+	"public/eval/source/sicm/LICENSE", "public/eval/source/sicm/en/preface.org", "public/eval/source/sicm/en/chapter001.org", "public/eval/source/sicm/ko/preface.ko.org", "public/eval/source/sicm/images/Art_P19.jpg",
 	"public/eval/runtime/scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js",
 	"public/eval/runtime/scittle.emmy.427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c.js",
-	"public/eval/source/cells.json", "public/eval/source/cells-license.json", "public/eval/source/eval.js",
+	"public/eval/source/cells.json", "public/eval/source/cells-license.json", "public/eval/source/eval.js", "public/eval/source/eval-sicm.js",
 	"public/javascript/index.html",
 ];
 for (const path of required) {
@@ -21,6 +22,11 @@ for (const [source, published] of [
 	["data/eval/cells.json", "public/eval/source/cells.json"],
 	["data/eval/cells_license.json", "public/eval/source/cells-license.json"],
 	["assets/js/eval.js", "public/eval/source/eval.js"],
+	["assets/js/eval-sicm.js", "public/eval/source/eval-sicm.js"],
+	["static/eval/source/sicm/LICENSE", "public/eval/source/sicm/LICENSE"],
+	["static/eval/source/sicm/en/preface.org", "public/eval/source/sicm/en/preface.org"],
+	["static/eval/source/sicm/en/chapter001.org", "public/eval/source/sicm/en/chapter001.org"],
+	["static/eval/source/sicm/ko/preface.ko.org", "public/eval/source/sicm/ko/preface.ko.org"],
 ]) if ((await readFile(resolve(root, source))).compare(await readFile(resolve(root, published))) !== 0) fail(`${published} differs from ${source}`);
 
 const attribute = (tag, name) => {
@@ -31,7 +37,9 @@ const isPreview = ["deploy-preview", "branch-deploy"].includes(process.env.CONTE
 const expectedOrigin = new URL(isPreview && process.env.DEPLOY_PRIME_URL || "https://junghanacs.com").origin;
 const outputPages = new Map([
 	["public/eval/index.html", "/eval/"], ["public/eval/proto/index.html", "/eval/proto/"],
-	["public/eval/sicm/index.html", "/eval/sicm/"], ["public/eval/clay/index.html", "/eval/clay/"],
+	["public/eval/sicm/index.html", "/eval/sicm/"], ["public/eval/sicm/preface/index.html", "/eval/sicm/preface/"],
+	["public/eval/sicm/chapter-1/index.html", "/eval/sicm/chapter-1/"], ["public/ko/eval/sicm/index.html", "/ko/eval/sicm/"],
+	["public/ko/eval/sicm/preface/index.html", "/ko/eval/sicm/preface/"], ["public/eval/clay/index.html", "/eval/clay/"],
 	["public/eval/canary/index.html", "/eval/canary/"], ["public/javascript/index.html", "/javascript/"],
 ]);
 let localURLCount = 0;
@@ -68,16 +76,19 @@ for (const [file, route] of outputPages) {
 		}
 	}
 }
-for (const path of ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm.md", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md", "data/eval/rails.json", "data/eval/runtime.json", "layouts/_partials/eval/page.html", "layouts/eval/license.html"]) {
+for (const path of ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md", "data/eval/rails.json", "data/eval/runtime.json", "data/eval/sicm.json", "layouts/_partials/eval/page.html", "layouts/eval/license.html"]) {
 	if (/https?:\/\/[^"'\s>]*netlify\.app|deploy-preview/i.test(await readFile(resolve(root, path), "utf8"))) fail(`${path} hardcodes a Netlify preview URL`);
 }
 
 const license = await readFile(resolve(root, "public/javascript/index.html"), "utf8");
-for (const needle of ["jslicense-labels1", "/eval/source/cells.json", "/eval/source/cells-license.json", "/eval/source/eval.js", "/eval/runtime/sbom.json"]) if (!license.includes(needle)) fail(`/javascript/ missing ${needle}`);
+for (const needle of ["jslicense-labels1", "/eval/source/cells.json", "/eval/source/cells-license.json", "/eval/source/eval.js", "/eval/source/eval-sicm.js", "/eval/runtime/sbom.json"]) if (!license.includes(needle)) fail(`/javascript/ missing ${needle}`);
 const sicm = await readFile(resolve(root, "public/eval/sicm/index.html"), "utf8");
-for (const needle of ["sicm_edition_2.zip", "sicm/preface.html", "mentat-collective/sicm-book", "No endorsement"]) if (!sicm.includes(needle)) fail(`/eval/sicm/ missing ${needle}`);
-for (const page of ["index", "proto/index", "sicm/index", "clay/index", "canary/index"]) {
-	const html = await readFile(resolve(root, `public/eval/${page}.html`), "utf8");
-	if (html.includes("analytics.junghanacs.com") || /<script[^>]+src=["']?https?:\/\//i.test(html)) fail(`/eval/${page}.html loads an external script or analytics`);
+for (const needle of ["sicm_edition_2.zip", "tgvaughan.github.io/sicm/", "mentat-collective/sicm-book/tree/4088864", "No endorsement"]) if (!sicm.includes(needle)) fail(`/eval/sicm/ missing ${needle}`);
+const sicmChapter = await readFile(resolve(root, "public/eval/sicm/chapter-1/index.html"), "utf8");
+for (const needle of ["computed-figure-1-1", "sicm-figure-1-1", "Art_P19.jpg", "eval-sicm.min."]) if (!sicmChapter.includes(needle)) fail(`/eval/sicm/chapter-1/ missing ${needle}`);
+for (const [file, route] of outputPages) {
+	if (!route.startsWith("/eval/") && !route.startsWith("/ko/eval/")) continue;
+	const html = await readFile(resolve(root, file), "utf8");
+	if (html.includes("analytics.junghanacs.com") || /<script[^>]+src=["']?https?:\/\//i.test(html)) fail(`${route} loads an external script or analytics`);
 }
 console.log(`Eval Hugo output verified: ${localURLCount} local URLs, ${ownGitHubBlobCount} GitHub blob/main targets present in this candidate, ${externalURLs.size} external attribution/source URLs, and no fixed Netlify preview URL`);

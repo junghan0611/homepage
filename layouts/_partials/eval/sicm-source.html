@@ -1,0 +1,28 @@
+{{- $source := .Params.sicmSource -}}
+{{- $isKo := eq .Language.Lang "ko" -}}
+{{- $exact := printf "/eval/source/sicm/%s" $source -}}
+{{- $originalSource := replaceRE "^ko/(.*)\\.ko\\.org$" "en/$1.org" $source -}}
+{{- $original := printf "/eval/source/sicm/%s" $originalSource -}}
+<aside class="sicm-source-note">
+  {{ if $isKo }}
+    <p><strong>한국어 읽기 번역.</strong> 이 페이지는 아래 고정 영어 원문에서 출발한
+    adaptation입니다. 수식·Scheme·앵커는 원문과 대응하며, 번역은
+    <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>으로
+    공유됩니다.</p>
+  {{ else }}
+    <p><strong>English source text.</strong> This reading page follows the pinned Org source
+    below. Homepage changes its publication structure and adds separately attributed
+    computation; it does not present those additions as the authors’ work.</p>
+  {{ end }}
+  <p>
+    <a href="{{ $exact }}">{{ if $isKo }}대응 번역 Org{{ else }}Exact Org source{{ end }}</a>
+    {{ if $isKo }}· <a href="{{ $original }}">고정 영어 원문 Org</a>{{ end }}
+    · <a href="https://github.com/mentat-collective/sicm-book/tree/4088864745715d8afa923162155e63795d43a375">upstream @ 4088864</a>
+    · <a href="/eval/source/sicm/LICENSE">CC BY-NC-SA 3.0 license</a>
+    {{ with .Translations }}
+      {{ range . }} · <a href="{{ .RelPermalink }}">{{ if eq .Language.Lang "ko" }}한국어{{ else }}English{{ end }}</a>{{ end }}
+    {{ end }}
+  </p>
+  <p class="sicm-no-endorsement">Gerald Jay Sussman, Jack Wisdom, the upstream editors,
+  and The MIT Press have not reviewed or endorsed this reading edition or its computation views.</p>
+</aside>

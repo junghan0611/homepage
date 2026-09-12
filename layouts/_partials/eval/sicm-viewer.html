@@ -1,0 +1,26 @@
+{{- if eq .Params.sicmViewer "chapter-1" -}}
+<section class="sicm-computed" id="computed-figure-1-1" aria-labelledby="computed-figure-1-1-title">
+  <p class="eval-eyebrow">Computed correspondence / Figure 1.1</p>
+  <h2 id="computed-figure-1-1-title">{{ if eq .Language.Lang "ko" }}그림을 베끼지 않고 경로를 다시 계산한다{{ else }}Recompute the path instead of copying the picture{{ end }}</h2>
+  {{ if eq .Language.Lang "ko" }}
+    <p>원문의 Figure 1.1은 작용을 최소화한 다항 경로와 조화진동자의 참 경로
+    <span class="math inline">\(q(t)=\cos t\)</span> 사이의 오차를 보여 줍니다.
+    이 셀은 Emmy의 <code>find-path</code>로 중간점 세 개를 다시 구합니다. 아래 SVG는
+    그 결과를 표본화해 그리며, 원본 그림과 별개의 계산 adaptation입니다.</p>
+  {{ else }}
+    <p>Figure 1.1 compares an action-minimizing polynomial path with the harmonic
+    oscillator’s true path <span class="math inline">\(q(t)=\cos t\)</span>. This cell uses
+    Emmy’s <code>find-path</code> to solve again with three intermediate points. The SVG
+    samples that result; it is a computational adaptation, not the original figure.</p>
+  {{ end }}
+  {{ partial "eval/cell.html" (dict "Page" . "ID" "sicm-figure-1-1") }}
+  <figure class="sicm-computed-figure" data-sicm-figure="1.1">
+    <div class="sicm-figure-canvas" role="img" aria-label="Figure 1.1 recomputed error curve"></div>
+    <figcaption>
+      {{ if eq .Language.Lang "ko" }}Emmy 계산 산출: <span class="sicm-figure-result">셀을 실행하는 중…</span>{{ else }}Emmy computation: <span class="sicm-figure-result">running the cell…</span>{{ end }}
+      · <a href="/eval/source/sicm/images/Art_P19.jpg">{{ if eq .Language.Lang "ko" }}원본 Figure 1.1 이미지{{ else }}original Figure 1.1 image{{ end }}</a>
+      · <a href="/eval/source/cells.json">Clojure source</a>
+    </figcaption>
+  </figure>
+</section>
+{{- end -}}

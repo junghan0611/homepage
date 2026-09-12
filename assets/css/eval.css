@@ -88,6 +88,36 @@
 	padding: 1rem;
 }
 .eval-attribution h2 { margin-top: 0; }
+.sicm-source-note {
+	background: var(--ctp-mantle);
+	border-left: 3px solid var(--ctp-yellow);
+	margin: 0 0 2rem;
+	padding: .65rem 1rem;
+}
+.sicm-source-note p { font-size: .86rem; margin: .55rem 0; }
+.sicm-no-endorsement { color: var(--ctp-subtext); }
+.sicm-computed {
+	border-bottom: 1px solid var(--ctp-surface);
+	border-top: 1px solid var(--ctp-surface);
+	margin: 2rem 0 3rem;
+	padding: 1.5rem 0 2rem;
+}
+.sicm-computed h2 { margin-top: .35rem; }
+.sicm-computed-figure { margin: 1.5rem 0 0; }
+.sicm-figure-canvas {
+	background: var(--ctp-mantle);
+	border: 1px solid var(--ctp-surface-raised);
+	border-radius: .35rem;
+	min-height: 14rem;
+	padding: .5rem;
+}
+.sicm-figure-canvas svg { display: block; height: auto; width: 100%; }
+.sicm-axis { stroke: var(--ctp-overlay); stroke-width: 1; }
+.sicm-error-path { fill: none; stroke: var(--ctp-green); stroke-width: 2.5; }
+.sicm-axis-label, .sicm-tick { fill: var(--ctp-subtext); font: 12px var(--glg-font-family); }
+.sicm-computed-figure figcaption { color: var(--ctp-subtext); font-size: .82rem; margin-top: .6rem; }
+.eval-content img { height: auto; max-width: 100%; }
+.eval-content pre { overflow-x: auto; }
 .eval-footer { border-top: 1px solid var(--ctp-surface); margin-top: 2rem; padding-top: 1rem; }
 .eval-shell table { border-collapse: collapse; display: block; overflow-x: auto; width: 100%; }
 .eval-shell th, .eval-shell td { border: 1px solid var(--ctp-surface); padding: .55rem; text-align: left; vertical-align: top; }

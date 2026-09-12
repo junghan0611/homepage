@@ -6,6 +6,9 @@
 {{- $evalJSOriginal := resources.Get "js/eval.js" -}}
 {{- $evalJS := $evalJSOriginal | minify | fingerprint "sha384" -}}
 {{- $evalSource := resources.Copy "eval/source/eval.js" $evalJSOriginal -}}
+{{- $sicmJSOriginal := resources.Get "js/eval-sicm.js" -}}
+{{- $sicmJS := $sicmJSOriginal | minify | fingerprint "sha384" -}}
+{{- $sicmSource := resources.Copy "eval/source/eval-sicm.js" $sicmJSOriginal -}}
 {{- $cellSource := resources.FromString "eval/source/cells.json" (readFile "data/eval/cells.json") -}}
 {{- $cellLicense := resources.FromString "eval/source/cells-license.json" (readFile "data/eval/cells_license.json") -}}
 <div class="eval-page">
@@ -21,6 +24,7 @@
           <tr><td><a href="{{ $scittle }}">scittle.js</a></td><td><a href="/eval/licenses/EPL-1.0.txt">EPL-1.0</a></td><td><a href="https://github.com/babashka/scittle/tree/v0.8.33">Scittle v0.8.33</a> and <a href="{{ $runtime.kitchenPluginTemplates }}">kitchen build input</a></td></tr>
           <tr><td><a href="{{ $emmy }}">scittle.emmy.js</a></td><td><a href="/eval/licenses/GPL-3.0.txt">GPL-3.0-only</a></td><td><a href="https://github.com/mentat-collective/emmy/tree/v0.32.0">Emmy v0.32.0</a> and <a href="{{ $runtime.kitchenPluginTemplates }}">kitchen build input</a></td></tr>
           <tr><td><a href="{{ $evalJS.RelPermalink }}">eval.js</a></td><td><a href="/eval/licenses/GPL-3.0.txt">GPL-3.0-only</a></td><td><a href="{{ $evalSource.RelPermalink }}">assets/js/eval.js</a></td></tr>
+          <tr><td><a href="{{ $sicmJS.RelPermalink }}">eval-sicm.js</a></td><td><a href="/eval/licenses/GPL-3.0.txt">GPL-3.0-only</a></td><td><a href="{{ $sicmSource.RelPermalink }}">assets/js/eval-sicm.js</a></td></tr>
           <tr><td><a href="{{ $cellSource.RelPermalink }}">Embedded Eval cell programs</a></td><td><a href="{{ $cellsLicense.licenseUrl }}">{{ $cellsLicense.spdx }}</a></td><td><a href="{{ $cellSource.RelPermalink }}">{{ $cellsLicense.sourcePath }}</a> · <a href="{{ $cellLicense.RelPermalink }}">license declaration</a></td></tr>
         </tbody>
       </table>

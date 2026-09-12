@@ -1,0 +1,17 @@
+{{- $id := .ID -}}
+{{- $page := .Page -}}
+{{- $cell := index site.Data.eval.cells $id -}}
+{{- if not $cell -}}{{ errorf "unknown Eval cell %q in %s" $id $page.File.Path }}{{- end -}}
+<div class="eval-cell" id="cell-{{ $id }}"
+  data-auto="{{ if $cell.auto }}true{{ else }}false{{ end }}"
+  data-editable="{{ if eq $cell.editable false }}false{{ else }}true{{ end }}"
+  data-expect-error="{{ if $cell.expectError }}true{{ else }}false{{ end }}"
+  {{ with $cell.expected }}data-expected="{{ . }}"{{ end }}>
+  <div class="eval-cell-head">
+    <strong>{{ $cell.label }}</strong>
+    <span class="eval-status" aria-live="polite">READY</span>
+  </div>
+  <textarea aria-label="{{ $cell.label }} Clojure source"{{ if eq $cell.editable false }} readonly{{ end }}>{{ $cell.source }}</textarea>
+  <div class="eval-cell-actions"><button type="button">Evaluate</button></div>
+  <pre class="eval-output" aria-live="polite"></pre>
+</div>

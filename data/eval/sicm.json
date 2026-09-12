@@ -1,0 +1,61 @@
+{
+  "work": "Structure and Interpretation of Classical Mechanics",
+  "edition": "Second edition",
+  "authors": ["Gerald Jay Sussman", "Jack Wisdom"],
+  "license": "CC BY-NC-SA 3.0 Unported",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+  "orgSource": {
+    "repository": "mentat-collective/sicm-book",
+    "commit": "4088864745715d8afa923162155e63795d43a375",
+    "files": {
+      "preface.org": "140b8edd06c627301e8ff54f2ad081776fc48679df18e0b79b8e00d26c6f2655",
+      "chapter001.org": "efc987664d30dd3bfd399933797c2e799842ecf92d831e6ce9fb50ffabd11c2e",
+      "LICENSE": "9ff68d09842e2bf5bd1db5d97acb1b58f9e05425ff0d11e716f86195f12d5e21"
+    }
+  },
+  "translation": {
+    "language": "ko",
+    "license": "CC BY-NC-SA 3.0 Unported",
+    "status": "reading translation draft",
+    "files": {
+      "preface.ko.org": "daee6ddfadd2dd7d29b29b7de8d82c44ff882dac613a6333d0da081a63316404"
+    },
+    "noEndorsement": "The original authors, upstream editors, and publisher have not reviewed or endorsed this translation."
+  },
+  "images": {
+    "repository": "tgvaughan/sicm",
+    "commit": "6cac77666976d7656ba6adb4571995d086943af7",
+    "files": {
+      "Art_P19.jpg": "1618f42a2b7216748e9c577039cba8ebe9e1611880abbce5a21263d11de29ecd",
+      "Art_P138.jpg": "8fe123d8121a3edb2c5661890944f346b84d2448075fefaa329a5a51d1ad1102",
+      "Art_P146.jpg": "15d7893aaa55b470c8bd199dd83489888b02242c246bb789fa72b3c0e1c9433f",
+      "Art_P147.jpg": "45d4458c608345ca5edc542157e6cc54e085d2138f41bcd00e62ae6546eebd88",
+      "Art_P166.jpg": "bb4af98bc43a691407ee3eb4ac928fd1a9ec88be9bb03789a85c9280c89b3a9b",
+      "Art_P208.jpg": "205b4b868541fe0340f545a2fbfd8c683b9c3d13ed9e5028d7496f3709d642f2",
+      "Art_P211.jpg": "2ff7d35939eb75ab1daa86bd8036a4f45a89e90e231e8e5bf314d64803331fd7",
+      "Art_P316.jpg": "cfca5b9df0b71280181c7bfd4adcd10599eea08b562b0808c7c009d43dce3f76",
+      "Art_P326.jpg": "6732218870e627b267e235715cbb9ff1e9dd629a857a9e40c6fe3b56c45545cc",
+      "Art_P335.jpg": "6c4375df951d66ae3d277a9b2ec3dc650458b89cf76d12d6b75cf88ea772de17",
+      "Art_P363.jpg": "01eaefd2056542da70f50faf248d0b338392b79692e63c93151b0b3eea8822de"
+    }
+  },
+  "renderingAdaptation": {
+    "sourceUntouched": true,
+    "generatedBy": "scripts/build-sicm-reading.py",
+    "corrections": [
+      "Add the missing space after Chapter 1 footnote label fn:3 in generated reading pages",
+      "Close 35 array environments as array rather than equation",
+      "Wrap the remaining equation bodies in explicit KaTeX display delimiters with balanced aligned environments",
+      "Rewrite source-relative links to pinned Homepage or canonical upstream routes"
+    ]
+  },
+  "computedViews": {
+    "figure-1-1": {
+      "sourceFigure": "Art_P19.jpg",
+      "cell": "sicm-figure-1-1",
+      "method": "Emmy find-path with three intermediate points; SVG samples q3(t) - cos(t)",
+      "expectedMaximumErrorPrefix": "0.000167",
+      "status": "computational adaptation, not a replacement source image"
+    }
+  }
+}

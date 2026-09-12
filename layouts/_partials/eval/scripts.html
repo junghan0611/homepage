@@ -5,3 +5,7 @@
 <script src="{{ $scittle }}" data-sha256="{{ $runtime.scittle.sha256 }}"></script>
 <script src="{{ $emmy }}" data-sha256="{{ $runtime.emmy.sha256 }}"></script>
 <script src="{{ $evalJS.RelPermalink }}" integrity="{{ $evalJS.Data.Integrity }}"></script>
+{{- with .Params.sicmViewer }}
+{{- $sicmJS := resources.Get "js/eval-sicm.js" | minify | fingerprint "sha384" -}}
+<script src="{{ $sicmJS.RelPermalink }}" integrity="{{ $sicmJS.Data.Integrity }}"></script>
+{{- end }}
