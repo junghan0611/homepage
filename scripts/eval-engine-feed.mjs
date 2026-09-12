@@ -155,7 +155,7 @@ export const buildFeed = async (releasesRoot) => {
 	if (!ids.length) throw new Error("no engine releases to project into the discovery feed");
 	const releases = [];
 	for (const id of ids) releases.push(await inspectRelease(releasesRoot, id));
-	return {
+	const feed = {
 		format: FEED_FORMAT,
 		note: FEED_NOTE,
 		latest: ids.at(-1),
@@ -166,6 +166,16 @@ export const buildFeed = async (releasesRoot) => {
 			modules: entry.modules,
 		})),
 	};
+	assertFeedOrder(feed);
+	return feed;
+};
+
+export const assertFeedOrder = (feed) => {
+	if (!feed?.releases?.length) throw new Error("discovery feed is missing releases");
+	const ids = feed.releases.map((entry) => entry.release);
+	const sorted = [...ids].sort(compareReleaseIds);
+	if (ids.join("\0") !== sorted.join("\0")) throw new Error("discovery feed releases[] is not in publication order");
+	if (feed.latest !== ids.at(-1)) throw new Error("discovery feed latest is not the last releases[] entry");
 };
 
 export const assertAppendOnly = (previous, next) => {

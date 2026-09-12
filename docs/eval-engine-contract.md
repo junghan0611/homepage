@@ -77,8 +77,14 @@ the immutable cache. `latest` is a convenience for humans and watchers. It is no
 compatibility promise and not an instruction to auto-adopt.
 
 The feed guarantees discovery and manifest-byte correspondence: the listed ids exist, and
-each `manifestSha256` matches the bytes at that release's manifest path. It does not
-guarantee compatibility between releases, that a consumer should run `latest`, or that a
+each `manifestSha256` matches the bytes at that release's manifest path. `releases[]` is
+in publication order, oldest first. A consumer answers whether anything is newer than an
+adopted id from that id's array position: later entries are newer. Reimplementing the
+release-id grammar is not required. `latest` is always the last array element. Because
+the feed is append-only, a previously observed position is never displaced by an
+insertion in front of it. The sort rules under Release identifiers are how the publisher
+builds that order, not a procedure a consumer must follow. The feed does not guarantee
+compatibility between releases, that a consumer should run `latest`, or that a
 consumer's rendering matches Homepage's observation.
 
 Adoption still closes on an exact manifest path, artifact hashes, the runtime pin named

@@ -5,6 +5,10 @@ CalVer snapshots (`vYYYY.M.D[-suffix]`) of the homepage repo. Past tense — wha
 
 ## Unreleased
 
+- Declared `releases[]` array order as the normative publication order in the engine
+  discovery feed, so a consumer can detect a newer release from position alone without
+  reimplementing the release-id grammar.
+
 ## v2026.9.13 — Second-release lifecycle and public authority
 
 ### Features

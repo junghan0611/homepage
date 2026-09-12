@@ -3,7 +3,7 @@
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { assertAppendOnly, buildFeed, compareReleaseIds, parseReleaseId, serializeFeed, sha256 } from "./eval-engine-feed.mjs";
+import { assertAppendOnly, assertFeedOrder, buildFeed, compareReleaseIds, parseReleaseId, serializeFeed, sha256 } from "./eval-engine-feed.mjs";
 
 const fail = (message) => { console.error(`Eval engine feed rehearsal failed: ${message}`); process.exit(1); };
 
@@ -86,6 +86,22 @@ try {
 	const withDocs = await buildFeed(root);
 	if (withDocs.latest !== "2026.9.12-docs.2") fail(`day-serial follow-up did not become latest: ${withDocs.latest}`);
 	if (withDocs.releases.map((entry) => entry.release).join(",") !== "2026.9.2,2026.9.12,2026.9.12-fix.1,2026.9.12-docs.2") fail(`day-serial order drifted: ${withDocs.releases.map((entry) => entry.release).join(",")}`);
+	assertFeedOrder(feed);
+	assertFeedOrder(withDocs);
+	try {
+		const reversed = { ...feed, releases: [...feed.releases].reverse(), latest: feed.releases[0].release };
+		assertFeedOrder(reversed);
+		fail("reversed releases[] was accepted");
+	} catch (error) {
+		if (!String(error.message).includes("publication order")) fail(`reversed order failed with the wrong error: ${error.message}`);
+	}
+	try {
+		const wrongLatest = { ...feed, latest: feed.releases[0].release };
+		assertFeedOrder(wrongLatest);
+		fail("latest that is not the last releases[] entry was accepted");
+	} catch (error) {
+		if (!String(error.message).includes("last releases[]")) fail(`wrong latest failed with the wrong error: ${error.message}`);
+	}
 	assertAppendOnly(feed, feed);
 	assertAppendOnly(feed, withDocs);
 	try {

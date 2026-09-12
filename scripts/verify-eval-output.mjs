@@ -2,7 +2,7 @@
 import { access, readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildFeed, inspectRelease, listReleaseIds, serializeFeed } from "./eval-engine-feed.mjs";
+import { assertFeedOrder, buildFeed, inspectRelease, listReleaseIds, serializeFeed } from "./eval-engine-feed.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const fail = (message) => { console.error(`Eval Hugo output verification failed: ${message}`); process.exit(1); };
@@ -73,8 +73,10 @@ for (const path of ["content/eval/engine.md", "content/eval/engine.ko.md"]) {
 	if ((await readFile(resolve(root, path), "utf8")).includes(engineSpec.release)) fail(`${path} still hardcodes release ${engineSpec.release}`);
 }
 const expectedFeed = serializeFeed(await buildFeed(staticReleaseRoot));
-if (expectedFeed.compare(await readFile(resolve(root, "public/eval/engine/releases.json"))) !== 0) fail("published discovery feed drifted from the release ledger");
-const feed = JSON.parse(expectedFeed.toString("utf8"));
+const publishedFeedBytes = await readFile(resolve(root, "public/eval/engine/releases.json"));
+if (expectedFeed.compare(publishedFeedBytes) !== 0) fail("published discovery feed drifted from the release ledger");
+const feed = JSON.parse(publishedFeedBytes.toString("utf8"));
+try { assertFeedOrder(feed); } catch (error) { fail(error.message); }
 if (feed.format !== 1 || !feed.note.includes("discovery only") || !feed.note.includes("latest is not a compatibility promise")) fail("discovery feed dropped the discovery/compatibility boundary");
 for (const published of publishedReleases) {
 	const entry = feed.releases.find((item) => item.release === published.release);
