@@ -103,6 +103,21 @@ try {
 	} catch (error) {
 		if (!String(error.message).includes("removed")) fail(`historical deletion failed with the wrong error: ${error.message}`);
 	}
+	try {
+		const reordered = { ...feed, releases: [feed.releases[1], feed.releases[0], ...feed.releases.slice(2)] };
+		assertAppendOnly(feed, reordered);
+		fail("reordered historical releases were accepted");
+	} catch (error) {
+		if (!String(error.message).includes("prefix")) fail(`historical reorder failed with the wrong error: ${error.message}`);
+	}
+	try {
+		const previous = { ...feed, releases: feed.releases.slice(1) };
+		const backdated = { ...feed, releases: [feed.releases[0], ...previous.releases] };
+		assertAppendOnly(previous, backdated);
+		fail("past-date middle insertion was accepted");
+	} catch (error) {
+		if (!String(error.message).includes("prefix")) fail(`past-date insertion failed with the wrong error: ${error.message}`);
+	}
 	const expectFeedFailure = async (ids, needle, label) => {
 		const bad = await mkdtemp(join(tmpdir(), "eval-engine-feed-bad-"));
 		try {
