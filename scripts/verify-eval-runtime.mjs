@@ -46,6 +46,7 @@ const spec = JSON.parse(await read("data/eval/runtime.json"));
 const cells = JSON.parse(await read("data/eval/cells.json"));
 const rails = JSON.parse(await read("data/eval/rails.json"));
 const sicm = JSON.parse(await read("data/eval/sicm.json"));
+const engineBrowserReceipt = JSON.parse(await read("dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json"));
 const sicmBrowserReceipt = JSON.parse(await read("dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.json"));
 const sicmTranslationManifest = JSON.parse(await read("dev/eval/sicm/translation/manifest.json"));
 const cellsLicense = JSON.parse(await read("data/eval/cells_license.json"));
@@ -78,13 +79,15 @@ const requiredFiles = [
 	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js", "assets/js/eval-sicm.js",
 	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
 	"scripts/build-eval-runtime.mjs", "scripts/build-eval-engine.mjs", "scripts/verify-eval-claim-v1.mjs", "scripts/build-sicm-reading.py", "scripts/build-sicm-translation.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
-	"dev/eval/engine/conformance-v1.json", "docs/eval-engine-contract.md",
+	"dev/eval/engine/conformance-v1.json", "dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json", "dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.png", "docs/eval-engine-contract.md",
 	"static/eval/engine/releases/2026.9.12/manifest.json", "static/eval/engine/releases/2026.9.12/SHA256SUMS", "static/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js", "static/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js", "static/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json",
 	"dev/eval/sicm/translation/manifest.json", "dev/eval/sicm/translation/REVIEW.md", "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.json", "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.png", "dev/eval/sicm/translation/chapter001/ch1-00-04.ko.org", "dev/eval/sicm/translation/chapter001/ch1-05.ko.org", "dev/eval/sicm/translation/chapter001/ch1-06.ko.org", "dev/eval/sicm/translation/chapter001/ch1-07-09.ko.org", "dev/eval/sicm/translation/chapter001/ch1-10-12.ko.org",
 	"static/eval/source/sicm/LICENSE", "static/eval/source/sicm/en/preface.org", "static/eval/source/sicm/en/chapter001.org", "static/eval/source/sicm/ko/preface.ko.org", "static/eval/source/sicm/ko/chapter001.ko.org",
 	"static/eval/licenses/GPL-3.0.txt", "static/eval/licenses/EPL-1.0.txt", "static/eval/licenses/Apache-2.0.txt", "static/eval/licenses/MIT-fraction.js.txt", "static/eval/licenses/BSD-2-Clause-odex.txt",
 ];
 for (const path of requiredFiles) if (!(await exists(path))) fail(`required source or notice missing: ${path}`);
+const engineScreenshot = await readFile(resolve(root, engineBrowserReceipt.artifacts.screenshot));
+if (sha256(engineScreenshot) !== engineBrowserReceipt.artifacts.screenshotSha256 || engineBrowserReceipt.candidateCommit !== "c66e35c8cff8f8fdf794501f1bb557a4524644ff" || engineBrowserReceipt.routes["/eval/engine/"]?.state !== "pass" || engineBrowserReceipt.routes["/ko/eval/engine/"]?.state !== "pass" || engineBrowserReceipt.observations.externalScriptElements !== 0 || engineBrowserReceipt.observations.cases.some((test) => test.pass !== test.expectedPass)) fail("claim-v1 candidate browser receipt is incomplete or changed");
 const sicmScreenshot = await readFile(resolve(root, sicmBrowserReceipt.artifacts.screenshot));
 if (sha256(sicmScreenshot) !== sicmBrowserReceipt.artifacts.screenshotSha256) fail("SICM browser screenshot hash mismatch");
 if (sicmBrowserReceipt.scope !== "local candidate browser observation; not a production receipt" || sicmBrowserReceipt.observations.cellState !== "pass" || sicmBrowserReceipt.observations.svgPathCommands < 80 || sicmBrowserReceipt.observations.externalScriptElements !== 0 || !sicmBrowserReceipt.observations.cellOutput.includes("book-bound=true")) fail("SICM browser receipt is incomplete or overclaims its scope");

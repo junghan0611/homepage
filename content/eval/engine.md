@@ -24,6 +24,7 @@ silent copy are required.
 - [`claim-v1` assertion module](/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js)
 - [Conformance fixture](/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json)
 - [Contract and adoption boundary](https://github.com/junghan0611/homepage/blob/main/docs/eval-engine-contract.md)
+- [Homepage candidate-browser receipt](https://github.com/junghan0611/homepage/blob/main/dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json)
 
 The manifest also pins the exact Scittle and Emmy runtime. The module artifacts are their
 own unminified corresponding source and are released under
@@ -76,6 +77,6 @@ Fragment matching survives only as an explicit compatibility choice.
 bytes are frozen rather than rewritten. `claim-v1` is a separate assertion module that
 operates on the raw value; it does not evaluate code or render a page.
 
-The fixture proves assertion semantics in Node. Rendering remains **unobserved** until an
-adopter records a real-browser receipt for its DOM, CSP, load order, and visible states.
+The fixture proves assertion semantics in Node. Homepage also records a candidate-browser
+PASS against real Scittle keyword maps. An adopter’s rendering remains **unobserved** until it records its own real-browser receipt for its DOM, CSP, load order, and visible states.
 Scittle evaluation is not a sandbox.

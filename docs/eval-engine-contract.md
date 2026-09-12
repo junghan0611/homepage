@@ -122,6 +122,12 @@ fragments for fragment mode.
 Node verifier covers all three modes, nested and array paths, a simulated ClojureScript
 keyword map, and negative controls. This is evaluator/assertion evidence only.
 
+Homepage's candidate-browser receipt is
+`dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json`. The first real-map
+observation retired a pre-release assumption that `cljs.core` was exported globally;
+the released module instead uses the map-compatible `get`/`forEach` surface actually
+observed on Scittle's returned ClojureScript collection.
+
 An adopter still owes a browser receipt for its own DOM, loading order, CSP, runtime
 bytes, and visible PASS/FAIL states. “Unobserved” is the correct rendering status until
 that receipt exists.

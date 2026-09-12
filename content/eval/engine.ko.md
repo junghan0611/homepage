@@ -24,6 +24,7 @@ eyebrow: "Eval / Engine"
 - [`claim-v1` assertion module](/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js)
 - [Conformance fixture](/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json)
 - [계약과 채택 경계](https://github.com/junghan0611/homepage/blob/main/docs/eval-engine-contract.md)
+- [Homepage candidate-browser 영수증](https://github.com/junghan0611/homepage/blob/main/dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json)
 
 Manifest는 정확한 Scittle·Emmy 런타임도 고정한다. 모듈 artifact 자체가 압축하지 않은
 corresponding source이며 [GPL-3.0-only](/eval/licenses/GPL-3.0.txt)로 공개된다.
@@ -74,6 +75,6 @@ Fragment matching은 명시적인 호환 선택으로만 남는다.
 고쳐 쓰지 않고 바이트를 동결했다. `claim-v1`은 raw value를 받는 별도 assertion
 module이며 코드를 실행하거나 페이지를 렌더링하지 않는다.
 
-Fixture는 Node에서 assertion semantics를 증명한다. 채택한 쪽이 자기 DOM·CSP·로딩
-순서·가시 상태를 실제 브라우저에서 기록하기 전까지 rendering 상태는
-**unobserved**다. Scittle 실행은 sandbox가 아니다.
+Fixture는 Node에서 assertion semantics를 증명하고, Homepage는 실제 Scittle keyword
+map에 대한 candidate-browser PASS도 기록했다. 채택한 쪽이 자기 DOM·CSP·로딩 순서·가시
+상태를 실제 브라우저에서 기록하기 전까지 그쪽 rendering 상태는 **unobserved**다. Scittle 실행은 sandbox가 아니다.

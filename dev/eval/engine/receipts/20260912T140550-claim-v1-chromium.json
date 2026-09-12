@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "scope": "local candidate browser observation; not a production receipt",
+  "observedAt": "2026-09-12T14:05:50+09:00",
+  "candidateCommit": "c66e35c8cff8f8fdf794501f1bb557a4524644ff",
+  "browser": "Chromium 142.0.7444.175 headless via CDP",
+  "routes": {
+    "/eval/engine/": {"language": "en", "state": "pass", "status": "PASS"},
+    "/ko/eval/engine/": {"language": "ko", "state": "pass", "status": "PASS"}
+  },
+  "observations": {
+    "contract": "claim-v1",
+    "cases": [
+      {"name": "scalar exact 0", "expectedPass": true, "pass": true, "code": "pass"},
+      {"name": "scalar rejects 10", "expectedPass": false, "pass": false, "code": "mismatch"},
+      {"name": "keyword-map field 48", "expectedPass": true, "pass": true, "code": "pass"},
+      {"name": "keyword-map rejects 480", "expectedPass": false, "pass": false, "code": "mismatch"},
+      {"name": "explicit fragment", "expectedPass": true, "pass": true, "code": "pass"}
+    ],
+    "externalScriptElements": 0
+  },
+  "artifacts": {
+    "claimV1": "/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js",
+    "claimV1Sha256": "52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1",
+    "scittle": "/eval/runtime/scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js",
+    "scittleSha256": "d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6",
+    "browserViewSourceSha256": "68d98991c4791c54a2bb75f9f05ca5dc06f7631e10920aaaec4fa36ef6d0ac20",
+    "screenshot": "dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.png",
+    "screenshotSha256": "cd2c306d26bce260e5f1e3ade2a9892e9080220c4cc6bd62b7e7cb81e076beb0"
+  },
+  "retiredPreReleaseObservation": {
+    "claimSourceSha256": "7eab7207c1d6b56338184a5a15460239b7505b2996c47f3e016cf099d84be514",
+    "result": "scalar and fragment cases passed, but a real Scittle keyword map returned invalid-claim because cljs.core was not exported globally",
+    "correction": "claim-v1 now traverses the map-compatible get/forEach interface exposed by the returned ClojureScript collection; the retired bytes were never committed as a release"
+  },
+  "limitations": [
+    "The observation is against a local Hugo candidate, not the deployed Netlify site.",
+    "Hugo's development server does not apply static/_headers; immutable cache, CORS, and CSP are covered separately by source and rendered-output verification.",
+    "A production browser receipt remains required before describing adopter rendering as observed."
+  ]
+}
