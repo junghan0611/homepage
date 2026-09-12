@@ -1,19 +1,20 @@
 #!/usr/bin/env node
 /** Materialize one immutable Eval engine release from its source and contract SSOT. */
-import { createHash } from "node:crypto";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { FEED_RELATIVE, RELEASES_RELATIVE, buildFeed, serializeFeed, sha256 } from "./eval-engine-feed.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const mode = process.argv[2] || "write";
 if (!new Set(["write", "--check"]).has(mode)) throw new Error("usage: node scripts/build-eval-engine.mjs [write|--check]");
 const read = (path) => readFile(resolve(root, path));
-const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const spec = JSON.parse((await read("data/eval/engine.json")).toString("utf8"));
 const runtime = JSON.parse((await read("data/eval/runtime.json")).toString("utf8")).runtime;
 const releaseRelative = `static${spec.basePath}`.replace(/\/$/, "");
 const releaseDirectory = resolve(root, releaseRelative);
+const feedPath = resolve(root, FEED_RELATIVE);
+const releasesRoot = resolve(root, RELEASES_RELATIVE);
 
 const payloads = [];
 for (const module of spec.modules) {
@@ -76,6 +77,13 @@ if (mode === "--check") {
 		console.error(`Eval engine release drift: stale=[${stale.join(", ")}] unexpected=[${unexpected.join(", ")}]`);
 		process.exit(1);
 	}
+	const expectedFeed = serializeFeed(await buildFeed(releasesRoot));
+	let actualFeed = null;
+	try { actualFeed = await readFile(feedPath); } catch {}
+	if (!actualFeed?.equals(expectedFeed)) {
+		console.error("Eval engine discovery feed drifted from the release ledger");
+		process.exit(1);
+	}
 	console.log(`Eval engine ${spec.release}: immutable artifacts match source hashes`);
 } else {
 	await mkdir(releaseDirectory, { recursive: true });
@@ -87,5 +95,8 @@ if (mode === "--check") {
 		if (!actual) await writeFile(path, expected);
 	}
 	if (unexpected.length) throw new Error(`unexpected files in immutable release: ${unexpected.join(", ")}`);
+	const expectedFeed = serializeFeed(await buildFeed(releasesRoot));
+	await writeFile(feedPath, expectedFeed);
 	console.log(`wrote Eval engine ${spec.release} immutable release`);
+	console.log(`wrote Eval engine discovery feed ${FEED_RELATIVE}`);
 }

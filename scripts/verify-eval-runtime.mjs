@@ -21,6 +21,11 @@ if (engineGenerated.status !== 0) {
 	process.stderr.write(engineGenerated.stderr || engineGenerated.stdout);
 	fail("immutable Eval engine release is missing or stale");
 }
+const engineFeed = spawnSync(process.execPath, ["scripts/verify-eval-engine-feed.mjs"], { cwd: root, encoding: "utf8" });
+if (engineFeed.status !== 0) {
+	process.stderr.write(engineFeed.stderr || engineFeed.stdout);
+	fail("Eval engine discovery feed rehearsal failed");
+}
 const claimConformance = spawnSync(process.execPath, ["scripts/verify-eval-claim-v1.mjs"], { cwd: root, encoding: "utf8" });
 if (claimConformance.status !== 0) {
 	process.stderr.write(claimConformance.stderr || claimConformance.stdout);
@@ -82,7 +87,8 @@ const requiredFiles = [
 	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/cell.html", "assets/js/eval-claim-v1.js", "assets/js/eval-engine-conformance.js", "layouts/_partials/eval/engine-conformance.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html",
 	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js", "assets/js/eval-sicm.js",
 	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
-	"scripts/build-eval-runtime.mjs", "scripts/build-eval-engine.mjs", "scripts/verify-eval-claim-v1.mjs", "scripts/build-sicm-reading.py", "scripts/build-sicm-translation.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
+	"scripts/build-eval-runtime.mjs", "scripts/build-eval-engine.mjs", "scripts/eval-engine-feed.mjs", "scripts/verify-eval-engine-feed.mjs", "scripts/verify-eval-claim-v1.mjs", "scripts/build-sicm-reading.py", "scripts/build-sicm-translation.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
+	"static/eval/engine/releases.json",
 	"dev/eval/receipts/20260912T143700-production-gate.json", "dev/eval/receipts/20260912T143722-production-claim-v1.png", "dev/eval/receipts/20260912T143639-production-sicm-figure-1-1-ko.png",
 	"dev/eval/engine/conformance-v1.json", "dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json", "dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.png", "docs/eval-engine-contract.md",
 	...engineReleaseFiles,
@@ -150,7 +156,9 @@ for (const asset of [runtime.scittle, runtime.emmy]) {
 }
 if (!headers.includes("/eval/*\n  Cache-Control: public, max-age=0\n  Content-Security-Policy:")) fail("Eval HTML revalidation/CSP header rule is missing");
 if (!headers.includes("/eval/engine/releases/*\n  Cache-Control: public, max-age=31536000, immutable\n  Access-Control-Allow-Origin: *")) fail("immutable cross-origin engine release header is missing");
+if (!headers.includes("/eval/engine/releases.json\n  Cache-Control: public, max-age=0\n  Access-Control-Allow-Origin: *\n  X-Content-Type-Options: nosniff")) fail("mutable engine discovery feed header is missing");
 if (headers.indexOf("/eval/*") > headers.indexOf("/eval/engine/releases/*")) fail("generic Eval cache rule must precede immutable engine override");
+if (headers.indexOf("/eval/*") > headers.indexOf("/eval/engine/releases.json")) fail("generic Eval cache rule must precede the discovery feed override");
 const evalHeaderBlock = headers.slice(headers.indexOf("/eval/*"), headers.indexOf("/javascript/*"));
 if (evalHeaderBlock.includes("script-src 'self' 'unsafe-inline'")) fail("Eval CSP permits unnecessary inline scripts");
 if (!headers.includes("/javascript/*") || !headers.slice(headers.indexOf("/javascript/*")).includes("Content-Security-Policy:")) fail("JavaScript license CSP header rule is missing");

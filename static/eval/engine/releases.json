@@ -1,0 +1,22 @@
+{
+  "format": 1,
+  "note": "discovery only; adopt an exact release and verify its artifact hashes. latest is not a compatibility promise.",
+  "latest": "2026.9.12",
+  "releases": [
+    {
+      "release": "2026.9.12",
+      "manifest": "/eval/engine/releases/2026.9.12/manifest.json",
+      "manifestSha256": "441952328b55662ad2109bcc41801b7685ceb7939a498a1cbff2690c26cd2f65",
+      "modules": [
+        {
+          "id": "cell-v1",
+          "sha256": "33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6"
+        },
+        {
+          "id": "claim-v1",
+          "sha256": "52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1"
+        }
+      ]
+    }
+  ]
+}

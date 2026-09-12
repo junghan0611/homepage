@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { access, readFile, readdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildFeed, serializeFeed } from "./eval-engine-feed.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const fail = (message) => { console.error(`Eval Hugo output verification failed: ${message}`); process.exit(1); };
@@ -19,6 +20,7 @@ const required = [
 	"public/_headers",
 	"public/eval/index.html", "public/eval/proto/index.html", "public/eval/sicm/index.html", "public/eval/sicm/preface/index.html", "public/eval/sicm/chapter-1/index.html", "public/ko/eval/sicm/index.html", "public/ko/eval/sicm/preface/index.html", "public/ko/eval/sicm/chapter-1/index.html", "public/eval/clay/index.html", "public/eval/engine/index.html", "public/ko/eval/engine/index.html", "public/eval/canary/index.html",
 	"public/eval/runtime/manifest.json", "public/eval/runtime/sbom.json",
+	"public/eval/engine/releases.json",
 	...currentReleaseFiles,
 	"public/eval/source/sicm/LICENSE", "public/eval/source/sicm/en/preface.org", "public/eval/source/sicm/en/chapter001.org", "public/eval/source/sicm/ko/preface.ko.org", "public/eval/source/sicm/ko/chapter001.ko.org", "public/eval/source/sicm/images/Art_P19.jpg",
 	"public/eval/runtime/scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js",
@@ -32,6 +34,7 @@ for (const path of required) {
 for (const [source, published] of [
 	["data/eval/cells.json", "public/eval/source/cells.json"],
 	["data/eval/cells_license.json", "public/eval/source/cells-license.json"],
+	["static/eval/engine/releases.json", "public/eval/engine/releases.json"],
 	["assets/js/eval.js", "public/eval/source/eval.js"],
 	["assets/js/eval-sicm.js", "public/eval/source/eval-sicm.js"],
 	["assets/js/eval-engine-conformance.js", "public/eval/source/eval-engine-conformance.js"],
@@ -104,6 +107,15 @@ const publishedReleases = [];
 for (const releaseId of publicReleaseIds) publishedReleases.push(await verifyPublishedRelease(releaseId));
 for (const path of ["content/eval/engine.md", "content/eval/engine.ko.md"]) {
 	if ((await readFile(resolve(root, path), "utf8")).includes(engineSpec.release)) fail(`${path} still hardcodes release ${engineSpec.release}`);
+}
+const expectedFeed = serializeFeed(await buildFeed(staticReleaseRoot));
+if (expectedFeed.compare(await readFile(resolve(root, "public/eval/engine/releases.json"))) !== 0) fail("published discovery feed drifted from the release ledger");
+const feed = JSON.parse(expectedFeed.toString("utf8"));
+if (feed.format !== 1 || !feed.note.includes("discovery only") || !feed.note.includes("latest is not a compatibility promise")) fail("discovery feed dropped the discovery/compatibility boundary");
+for (const published of publishedReleases) {
+	const entry = feed.releases.find((item) => item.release === published.manifest.release);
+	if (!entry) fail(`discovery feed missing ${published.manifest.release}`);
+	if (entry.manifestSha256 !== published.manifestSha256) fail(`discovery feed manifestSha256 does not match published bytes for ${published.manifest.release}`);
 }
 
 const attribute = (tag, name) => {

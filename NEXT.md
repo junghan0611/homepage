@@ -10,16 +10,16 @@ Eval 엔진 — 두 번째 릴리즈 생애주기 (이 세션의 workstream). �
 - [x] **1. v2026.9.12 production** — 불변 릴리즈 1개 · claim-v1 3-mode · fixture 12-case · production receipt
 - [x] **2. Phase 0 NEXT 레인**
 - [x] **3. Phase 1 버전 하드코딩 → 파생**
-- [ ] **4. Phase 2 발견면(`/eval/engine/releases.json`) + 캐시 도메인** ← CURRENT: 피드 + `_headers` + 두 릴리즈 rehearsal fixture
-- [ ] **5. Phase 3 문서 입구** — 계약 정본은 `docs/eval-engine-contract.md`만. README는 입구. AGENTS는 겹치면 안 건드림.
+- [x] **4. Phase 2 발견면(`/eval/engine/releases.json`) + 캐시 도메인**
+- [ ] **5. Phase 3 문서 입구** ← CURRENT: discovery ≠ compatibility 절. README는 `docs/` 입구. AGENTS는 겹치면 안 건드림.
 
-현재 좌표: 1–3 완료 → 4 진행 → 5 대기
+현재 좌표: 1–4 완료 → 5 진행
 
 # NOW — Eval 엔진, 두 번째 릴리즈를 낼 자리
 
 - Stem: 홈페이지를 다시 글이 쌓이는 대문으로 만든다 (아래 글쓰기 절). 이 세션은 그 stem을 바꾸지 않는다.
 - Detour: Eval 엔진에 "두 번째 릴리즈를 낼 자리"를 만든다. 소비자 사이트 요구와 무관 — 우리 리포를 위해 한다.
-- Next: (1) Phase 2 발견면+rehearsal fixture → (2) Phase 3 문서 입구. 각 단계 끝 `./run.sh v` + `commit` 스킬. 푸시·태그 없음.
+- Next: Phase 3 문서 입구. `./run.sh v` + `commit` 스킬. 푸시·태그 없음. 발행 후 cache/CORS 실측은 푸시 뒤에만.
 - Return: Phase 3 커밋 후 GLG가 다음을 정한다. 글쓰기 stem으로 복귀.
 - Blocker: 없음
 - Read: `docs/eval-engine-contract.md`, `data/eval/engine.json`, `static/_headers`, `scripts/build-eval-engine.mjs`
@@ -75,14 +75,14 @@ curl -sI https://junghanacs.com/eval/engine/releases.json
 
 ### 검수 체크리스트 (Phase 1–2가 닫을 것)
 
-- [ ] feed deterministic generation + `--check`가 byte-exact drift를 잡음
-- [ ] 모든 release manifest 전수 파싱
-- [ ] 디렉터리 이름 ↔ `manifest.release` / `basePath` 일치
-- [ ] `manifestSha256` ↔ 실제 manifest 바이트
-- [ ] module·conformance artifact 존재와 SHA
-- [ ] `SHA256SUMS` 검증
-- [ ] current source ↔ current release byte equality
-- [ ] 기존 `2026.9.12` 디렉터리 바이트 불변 (작업 전후)
+- [x] feed deterministic generation + `--check`가 byte-exact drift를 잡음
+- [x] 모든 release manifest 전수 파싱
+- [x] 디렉터리 이름 ↔ `manifest.release` / `basePath` 일치
+- [x] `manifestSha256` ↔ 실제 manifest 바이트
+- [x] module·conformance artifact 존재와 SHA
+- [x] `SHA256SUMS` 검증
+- [x] current source ↔ current release byte equality
+- [x] 기존 `2026.9.12` 디렉터리 바이트 불변 (작업 전후; `git diff` empty)
 - [ ] production feed cache·CORS 실측 ← 발행 후. 위 절.
 
 ### 가드레일
