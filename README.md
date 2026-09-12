@@ -69,6 +69,47 @@ Pushes to `main` on [`junghan0611/homepage`](https://github.com/junghan0611/home
 trigger Netlify's source/runtime verification → Hugo build → rendered-output verification
 pipeline, serving `junghanacs.com`. No GitHub Actions — deploy is Netlify-only.
 
+## Links
+
+- **Homepage**: https://junghanacs.com — this site (`www` redirects to the apex)
+- **Digital Garden**: https://notes.junghanacs.com
+- **Dashboard**: https://agenda.junghanacs.com — geworfen, existence-data
+- **AX Record**: https://ax.junghanacs.com
+- **AIONS CLUBS**: https://aionsclubs.org — B's residence (`www` redirects to the apex).
+  Adjacent project with its own editorial voice; the first external adopter of the Eval
+  engine published here, pinned to an exact release
+- **Zotero Library**: https://www.zotero.org/groups/5570207/junghanacs/library
+- **GitHub**: https://github.com/junghan0611
+- **Substack**: https://junghankim151502.substack.com
+- **Threads**: [@junghanacs](https://www.threads.net/@junghanacs) ·
+  **Bluesky**: [junghanacs.bsky.social](https://bsky.app/profile/junghanacs.bsky.social) ·
+  **Mastodon**: [@junghanacs](https://fosstodon.org/@junghanacs) ·
+  **LinkedIn**: [junghan-kim](https://www.linkedin.com/in/junghan-kim-1489a4306)
+
+The machine-readable version of this list, with the authority of each surface stated, is
+[`/llms.txt`](https://junghanacs.com/llms.txt).
+
+## Acknowledgments
+
+- [Hugo](https://gohugo.io) and [hextra](https://github.com/imfing/hextra) by imfing — the
+  theme is consumed as a Hugo module, never vendored
+- [Catppuccin](https://catppuccin.com) Mocha — local palette tokens
+- [Scittle](https://github.com/babashka/scittle) and [Emmy](https://github.com/mentat-collective/emmy)
+  — the self-hosted, hash-pinned browser runtime behind the Eval shelf
+- *Structure and Interpretation of Classical Mechanics* by Gerald Jay Sussman and Jack
+  Wisdom. The reading edition is built from the pinned Org source at
+  [mentat-collective/sicm-book](https://github.com/mentat-collective/sicm-book), with
+  [tgvaughan's HTML port](https://tgvaughan.github.io/sicm) as the canonical reference
+
+## License
+
+| Layer | License |
+|---|---|
+| Repository code | MIT — see [`LICENSE`](LICENSE) |
+| Eval engine releases | GPL-3.0-only — the unminified artifact is its own corresponding source ([`/eval/licenses/GPL-3.0.txt`](https://junghanacs.com/eval/licenses/GPL-3.0.txt)) |
+| SICM reading edition | CC BY-NC-SA 3.0, inherited from the pinned upstream source |
+| Bundled runtime components | Apache-2.0 · BSD-2-Clause · EPL-1.0 · MIT — receipts at [`/javascript/`](https://junghanacs.com/javascript/) and [`/eval/runtime/sbom.json`](https://junghanacs.com/eval/runtime/sbom.json) |
+
 ## History
 
 This repo was migrated from
