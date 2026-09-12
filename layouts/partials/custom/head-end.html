@@ -4,7 +4,8 @@
 {{/* ── JSON-LD 시맨틱 신원층 — SSOT: docs/semantic-jsonld.md ──────────────
      @graph + 안정 @id. 공통 노드(Person/WebSite/Blog)는 origin fragment를
      전 언어에서 공유, 페이지 노드는 언어별 .Permalink 기반 @id.
-     화이트리스트: 홈 / blog 목록 / blog 글. taxonomy·term·404 등은 제외. */}}
+     화이트리스트: 홈 / blog 목록 / blog 글 / about. taxonomy·term·eval·404 등은 제외.
+     출하 주장은 scripts/verify-jsonld-output.mjs 가 렌더된 HTML에서 검증한다. */}}
 {{ $origin := strings.TrimSuffix "/" .Site.BaseURL }}
 {{ $isHome := .IsHome }}
 {{ $isBlogList := and (eq .Section "blog") (eq .Kind "section") }}

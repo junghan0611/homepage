@@ -92,7 +92,9 @@ verify() {
 	rm -rf public
 	"$HUGO_BIN" --gc --minify
 	node scripts/verify-eval-output.mjs
-	success "전체 공개면 검증 완료: / · /projects/ · /eval/"
+	info "JSON-LD 신원층 검증"
+	node scripts/verify-jsonld-output.mjs
+	success "전체 공개면 검증 완료: / · /about/ · /projects/ · /eval/"
 }
 
 menu() {

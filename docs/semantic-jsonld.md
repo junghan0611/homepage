@@ -24,10 +24,11 @@ AI/검색엔진이 이 사이트를 (1) 누가 쓴 글인지(신원), (2) 한 �
 
 | 범위 | 노드 | 핵심 |
 |---|---|---|
-| 전 페이지 공통 | `Person` `#person` | alternateName `[GLG, GLGMAN, 힣, 힣맨]`, `knowsAbout`, `knowsLanguage [ko,en]`, 프로필 이미지, **`sameAs`** |
+| 전 페이지 공통 | `Person` `#person` | alternateName `[GLG, GLGMAN, 힣, 힣맨, 정한]`(가든 Person 노드와 동일 집합), `knowsAbout`, `knowsLanguage [ko,en]`, 프로필 이미지, **`sameAs`** |
 | 전 페이지 공통 | `WebSite` `#website` | `publisher → #person`, `inLanguage ['en','ko']` 고정 |
 | 전 페이지 공통 | `Blog` `#blog` | 원작 글 컬렉션의 안정 노드, `isPartOf → #website`, `publisher → #person` |
 | 홈(slug=index) | `ProfilePage` | `@id <permalink>#profilepage`, `mainEntity → #person`, `about → #person`, `isPartOf → #website`, `description`, `primaryImageOfPage`(ImageObject 640×640) |
+| `/about/` | `AboutPage` | `@id <permalink>#aboutpage`, `mainEntity → #person`, `about → #person`, `isPartOf → #website`, `description`. 리프 번들이라 `.Section`이 비어 논리 경로 `.Path == "/about"`로 집는다 |
 | `/blog/` 목록면 | `CollectionPage` | `@id <permalink>#collectionpage`, `mainEntity → #blog` |
 | 글 페이지 | `BlogPosting` | `@id <permalink>#article`, `author/publisher → #person`, `isPartOf → #blog`, `inLanguage`, date/lastmod |
 
@@ -234,12 +235,8 @@ rg -n "application/ld\+json|schema.org|BlogPosting|ProfilePage|translationOfWork
 기본 구조 + `head-end.html` Go 템플릿은 출하(2026-06-27, notes 637ab1 재리뷰 GO).
 `.Translations` 실측으로 번역 페어링·KO-only 가드 확인 완료. 남은 디테일:
 
-- **KO ProfilePage description 다국어** — 현재 `or .Description .Site.Params.description`
-  fallback인데 `site.Params.description`이 언어별로 안 갈려 KO도 영어 카피. 고칠 땐
-  **config side**(hugo.yaml `languages.ko/en.params.description`)로 — 템플릿에 카피
-  하드코딩 금지(로직과 카피 분리 유지).
-- **/about·/cv·/projects 커버리지** — 화이트리스트가 현재 home/blog만. 인물정체성
-  정본면(about)에 최소 `Person`+`WebSite`(AboutPage) 깔 가치. 화이트리스트 확장 후속.
+- **`/cv`·`/projects` 커버리지** — 화이트리스트는 현재 home / blog / about. 나머지 두 면은
+  아직 노드 없음.
 - `WebSite.hasPart → #blog` 넣을지, breadcrumb(`BreadcrumbList`) 추가할지.
 - hreflang(`.AllTranslations ≥ 2`일 때만) — JSON-LD 코어와 분리한 별도 후속 커밋.
 - 가든 reciprocal sameAs 후속(`notes` Person.sameAs에 `junghanacs.com/`).
