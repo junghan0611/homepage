@@ -93,6 +93,10 @@ for (const path of ["content/eval/_index.md", "content/eval/proto.md", "content/
 
 const license = await readFile(resolve(root, "public/javascript/index.html"), "utf8");
 for (const needle of ["jslicense-labels1", "/eval/source/cells.json", "/eval/source/cells-license.json", "/eval/source/eval.js", "/eval/source/eval-sicm.js", "/eval/source/eval-engine-conformance.js", "/eval/engine/releases/2026.9.12/claim-v1.", "/eval/runtime/sbom.json"]) if (!license.includes(needle)) fail(`/javascript/ missing ${needle}`);
+const home = await readFile(resolve(root, "public/index.html"), "utf8");
+const homeKo = await readFile(resolve(root, "public/ko/index.html"), "utf8");
+if (home.includes("Under construction") || homeKo.includes("공사중")) fail("root construction marker remains after the production Eval gate");
+for (const [route, html, needles] of [["/", home, ["The executable shelf is open", "/eval/engine/", "/eval/sicm/"]], ["/ko/", homeKo, ["실행되는 선반", "/ko/eval/engine/", "/ko/eval/sicm/"]]]) for (const needle of needles) if (!html.includes(needle)) fail(`${route} missing current Eval promise ${needle}`);
 const engineManifest = JSON.parse(await readFile(resolve(root, "public/eval/engine/releases/2026.9.12/manifest.json"), "utf8"));
 if (engineManifest.release !== "2026.9.12" || engineManifest.modules?.find((module) => module.id === "cell-v1")?.status !== "frozen compatibility module" || JSON.stringify(engineManifest.modules?.find((module) => module.id === "claim-v1")?.modes) !== JSON.stringify(["scalar-exact", "field", "fragment"])) fail("published Eval engine manifest contract drifted");
 for (const route of ["public/eval/engine/index.html", "public/ko/eval/engine/index.html"]) {

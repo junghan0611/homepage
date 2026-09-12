@@ -14,12 +14,12 @@ writing done alongside AI.
 
 Life is always just so. This one — nothing to add, nothing to take away.
 
-> [!NOTE] Under construction
+> [!TIP] The executable shelf is open
 >
-> This site is being rebuilt. The next version keeps source documents primary and adds
-> pages that **evaluate**: Lisp forms running in the browser, formulas that are computed
-> rather than merely typeset, and figures redrawn from the computation itself. The first
-> public shelf is now open under [Eval](/eval/).
+> Source documents stay primary. [Eval](/eval/) now runs Lisp forms in the browser,
+> computes formulas rather than merely typesetting them, and redraws figures from the
+> computation itself. Its [engine releases](/eval/engine/) and the bilingual
+> [SICM reading edition](/eval/sicm/) carry source, runtime, and browser receipts.
 
 ## Explore
 

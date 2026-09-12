@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "scope": "production browser and response-header observation",
+  "observedAt": "2026-09-12T14:37:00+09:00",
+  "sourceCommit": "0b0d45f2b459c27a39a40ec609c6981888b610b3",
+  "browser": "Chromium 142.0.7444.175 headless via CDP",
+  "origin": "https://junghanacs.com",
+  "engine": {
+    "routes": {
+      "/eval/engine/": {"language": "en", "state": "pass", "status": "PASS"},
+      "/ko/eval/engine/": {"language": "ko", "state": "pass", "status": "PASS"}
+    },
+    "contract": "claim-v1",
+    "cases": [
+      {"name": "scalar exact 0", "expectedPass": true, "pass": true, "code": "pass"},
+      {"name": "scalar rejects 10", "expectedPass": false, "pass": false, "code": "mismatch"},
+      {"name": "keyword-map field 48", "expectedPass": true, "pass": true, "code": "pass"},
+      {"name": "keyword-map rejects 480", "expectedPass": false, "pass": false, "code": "mismatch"},
+      {"name": "explicit fragment", "expectedPass": true, "pass": true, "code": "pass"}
+    ],
+    "claimArtifact": "/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js",
+    "externalScriptElements": 0,
+    "screenshot": "dev/eval/receipts/20260912T143722-production-claim-v1.png",
+    "screenshotSha256": "cd2c306d26bce260e5f1e3ade2a9892e9080220c4cc6bd62b7e7cb81e076beb0"
+  },
+  "sicmFigure11": {
+    "routes": {
+      "/eval/sicm/chapter-1/": {"language": "en", "state": "pass", "status": "PASS", "mathElements": 512},
+      "/ko/eval/sicm/chapter-1/": {"language": "ko", "state": "pass", "status": "PASS", "mathElements": 512}
+    },
+    "cellOutput": "0.00016772069029036274 | book-bound=true",
+    "svgPathCommands": 80,
+    "externalScriptElements": 0,
+    "screenshot": "dev/eval/receipts/20260912T143639-production-sicm-figure-1-1-ko.png",
+    "screenshotSha256": "356e0264688c22c240a3557590d176c62482e9b105f28926391ef5d158bb3645"
+  },
+  "headers": {
+    "evalPages": {
+      "cacheControl": "public,max-age=0",
+      "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-hashes' 'sha256-ZzT+F1TC4hRMjYkMSNZ/GeRWBiHOjeioWsdWcYKFllg='; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+      "xContentTypeOptions": "nosniff"
+    },
+    "engineRelease": {
+      "cacheControl": "public,max-age=31536000,immutable",
+      "accessControlAllowOrigin": "*",
+      "xContentTypeOptions": "nosniff"
+    }
+  },
+  "rootAtObservation": "Under construction marker still present; this PASS authorizes its subsequent removal.",
+  "productionGate": "pass"
+}

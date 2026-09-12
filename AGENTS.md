@@ -71,7 +71,10 @@ surface. This repo is public; the global commit/push hook scans added lines unde
   `docs/eval-engine-contract.md` define immutable, content-addressed releases under
   `static/eval/engine/releases/`. `cell-v1` is frozen compatibility behavior;
   `claim-v1` adds scalar-exact, structured-field, and explicit-fragment assertions
-  without mutating it. Run `./run.sh e`; never overwrite a released path.
+  without mutating it. Run `./run.sh e`; never overwrite a released path. The root
+  construction marker was retired only after the production browser gate recorded in
+  `dev/eval/receipts/20260912T143700-production-gate.json`; keep that current-tense
+  promise tied to the receipt.
 - **SICM reading edition**: `/eval/sicm/` publishes the pinned English Preface and
   Chapter 1 beside a Korean reading translation under CC BY-NC-SA 3.0. Exact Org,
   segment hashes, original images, balanced rendering repairs, build-time MathML,

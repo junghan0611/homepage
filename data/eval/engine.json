@@ -6,6 +6,7 @@
   "licenseUrl": "/eval/licenses/GPL-3.0.txt",
   "runtimeManifest": "/eval/runtime/manifest.json",
   "security": "Arbitrary Scittle evaluation is not a sandbox; assertion semantics do not add isolation.",
+  "productionBrowserReceipt": "dev/eval/receipts/20260912T143700-production-gate.json",
   "modules": [
     {
       "id": "cell-v1",

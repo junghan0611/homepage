@@ -123,7 +123,8 @@ Node verifier covers all three modes, nested and array paths, a simulated Clojur
 keyword map, and negative controls. This is evaluator/assertion evidence only.
 
 Homepage's candidate-browser receipt is
-`dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json`. The first real-map
+`dev/eval/engine/receipts/20260912T140550-claim-v1-chromium.json`; the deployed gate is
+`dev/eval/receipts/20260912T143700-production-gate.json`. The first real-map
 observation retired a pre-release assumption that `cljs.core` was exported globally;
 the released module instead uses the map-compatible `get`/`forEach` surface actually
 observed on Scittle's returned ClojureScript collection.
