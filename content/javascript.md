@@ -4,7 +4,6 @@ description: "License, source, and component receipts for the Eval browser runti
 type: eval
 layout: license
 url: /javascript/
-noindex: true
 comments: false
 toc: false
 sidebar:

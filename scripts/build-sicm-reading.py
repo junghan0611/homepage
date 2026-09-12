@@ -281,7 +281,6 @@ type: eval
 translationKey: "sicm-{page.stem.replace('chapter-1', 'ch1')}"
 weight: {page.weight}
 math: true
-noindex: true
 comments: false
 toc: false
 sidebar:
