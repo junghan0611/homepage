@@ -3,7 +3,99 @@
 Disposable handoff. Read at session start. `AGENTS.md` holds durable facts; this holds the
 live plan and the next concrete move.
 
-## NOW — 기술 하네스 글쓰기의 첫 판본
+# RAIL — 현재 좌표
+
+Eval 엔진 — 두 번째 릴리즈 생애주기 (이 세션의 workstream). 글쓰기 stem은 바꾸지 않는다.
+
+- [x] **1. v2026.9.12 production** — 불변 릴리즈 1개 · claim-v1 3-mode · fixture 12-case · production receipt
+- [x] **2. Phase 0 NEXT 레인**
+- [ ] **3. Phase 1 버전 하드코딩 → 파생** ← CURRENT: verifier·푸터·content 링크를 `data/eval/engine.json`에서 도출
+- [ ] **4. Phase 2 발견면(`/eval/engine/releases.json`) + 캐시 도메인**
+- [ ] **5. Phase 3 문서 입구** — 계약 정본은 `docs/eval-engine-contract.md`만. README는 입구. AGENTS는 겹치면 안 건드림.
+
+현재 좌표: 1–2 완료 → 3 진행 → 4–5 대기
+
+# NOW — Eval 엔진, 두 번째 릴리즈를 낼 자리
+
+- Stem: 홈페이지를 다시 글이 쌓이는 대문으로 만든다 (아래 글쓰기 절). 이 세션은 그 stem을 바꾸지 않는다.
+- Detour: Eval 엔진에 "두 번째 릴리즈를 낼 자리"를 만든다. 소비자 사이트 요구와 무관 — 우리 리포를 위해 한다.
+- Next: (1) Phase 1 파생 → (2) Phase 2 발견면+rehearsal fixture → (3) Phase 3 문서 입구. 각 단계 끝 `./run.sh v` + `commit` 스킬. 푸시·태그 없음.
+- Return: Phase 3 커밋 후 GLG가 다음을 정한다. 글쓰기 stem으로 복귀.
+- Blocker: 없음
+- Read: `docs/eval-engine-contract.md`, `data/eval/engine.json`, `static/_headers`, `scripts/build-eval-engine.mjs`
+- Do not touch: `static/eval/engine/releases/2026.9.12/` 모든 바이트; `dev/eval/**/receipts/*.json`·`*.png`; `CHANGELOG.md` 과거 항목; untracked `content/blog/20260804T094556.md`·`.ko.md`; `git push`; 태그
+
+## Eval 엔진 — 두 번째 릴리즈 생애주기
+
+어제(2026-09-12) `v2026.9.12`를 production에 올렸고, **두 번째 릴리즈를 낼 자리**가 없다.
+의미는 멀쩡하다. 빈 것은 전부 "두 번째"다. 계약 정본은 `docs/eval-engine-contract.md`.
+여기에는 작업·rehearsal·발행 후 확인만 적는다.
+
+### 지금 하는 작업
+
+1. Phase 0 — 이 레인 (닫힘).
+2. Phase 1 — 파생: verifier, 공통 푸터, content 릴리즈 링크 목록. SSOT는
+   `data/eval/engine.json` (단수, 그대로). 버전 문자열이 content에 남으면 실패.
+   KO 라벨 유지. 의미 회귀는 module id에 묶는다. content→shortcode가 rendered-HTML
+   needle과 충돌하면 중개 id에 보고하고 혼자 정하지 말 것.
+3. Phase 2 — `/eval/engine/releases.json` 발견면 + `_headers`에 `max-age=0`·CORS·nosniff
+   명시. `releases/index.json` 금지(immutable 와일드카드). 피드 = 릴리즈 디렉터리의
+   mutable projection. 별도 원장 금지. `latest`는 알림일 뿐 호환성 약속 아님.
+4. Phase 3 — `docs/eval-engine-contract.md`에 discovery ≠ compatibility 절만 정본으로.
+   README는 `docs/` 입구. AGENTS는 세 문서와 겹치면 **건드리지 않는다.**
+   계약 문서의 기존 `2026.9.12`는 역사/예시일 수 있으니 기계 치환하지 말고, 남긴 이유를
+   보고에 한 줄.
+
+각 단계 끝: `./run.sh v` 통과 후 그 단계만 `commit` 스킬. 푸시·태그 없음.
+
+### 다음 릴리즈 rehearsal (Phase 2 완료 조건)
+
+실릴리즈가 하나뿐이면 피드·정렬·열거는 "한 건이 보인다"만 증명한다.
+**`static/` 아래에 가짜 릴리즈를 만들지 말 것.** `dev/` 또는 임시 디렉터리 fixture로
+최소 두 릴리즈를 구성한다:
+
+- `2026.9.2` 와 `2026.9.12` — 숫자 컴포넌트 정렬. `latest` = `2026.9.12` (사전순이면 실패).
+- 각 `manifestSha256`이 실제 바이트와 일치.
+- 허용 문법 `YYYY.M.D` 밖 디렉터리 → 조용히 넘기지 말고 **실패**.
+
+이 테스트가 없으면 Phase 2는 미완.
+
+### 발행 후 확인할 것 (코드로 닫지 말 것)
+
+푸시 이후에만 가능하다. 로컬 게이트가 대체하지 않는다.
+
+```bash
+curl -sI https://junghanacs.com/eval/engine/releases.json
+# Cache-Control: public, max-age=0
+# Access-Control-Allow-Origin: *
+# X-Content-Type-Options: nosniff
+```
+
+불변 트리 대조: `releases/2026.9.12/manifest.json` 은 계속 `max-age=31536000,immutable` + CORS.
+
+### 검수 체크리스트 (Phase 1–2가 닫을 것)
+
+- [ ] feed deterministic generation + `--check`가 byte-exact drift를 잡음
+- [ ] 모든 release manifest 전수 파싱
+- [ ] 디렉터리 이름 ↔ `manifest.release` / `basePath` 일치
+- [ ] `manifestSha256` ↔ 실제 manifest 바이트
+- [ ] module·conformance artifact 존재와 SHA
+- [ ] `SHA256SUMS` 검증
+- [ ] current source ↔ current release byte equality
+- [ ] 기존 `2026.9.12` 디렉터리 바이트 불변 (작업 전후)
+- [ ] production feed cache·CORS 실측 ← 발행 후. 위 절.
+
+### 가드레일
+
+- `static/eval/engine/releases/2026.9.12/` 모든 바이트. 추가·수정·삭제 금지.
+- `dev/eval/**/receipts/*.json`, `*.png`. 버전이 박혀 있는 게 정상.
+- `CHANGELOG.md` 과거 항목.
+- untracked `content/blog/20260804T094556.md`·`.ko.md`.
+- `git push` 금지. 태그 금지.
+
+---
+
+## Stem (paused) — 기술 하네스 글쓰기의 첫 판본
 
 **Stem:** 홈페이지를 다시 글이 쌓이는 대문으로 만든다. 초반 연재는 이직 시장에서도
 GLG를 정확히 소개할 수 있도록, 삶 일반론보다 **직접 만든 AI 기술 하네스와 그 설계 판단**을
@@ -43,6 +135,7 @@ SSOT는 `docs/semantic-jsonld.md`. 남은 후속:
 git remote -v                       # origin=homepage, oldorg=junghanacs.github.io
 hugo --gc --minify                  # local prod build sanity
 curl -sI https://junghanacs.com | grep -i server       # Netlify serving (apex canonical, www→301)
+./run.sh v                          # Eval source/runtime + Hugo + rendered URL/source/CSP
 ```
 
 ## Blockers / open decisions
