@@ -33,11 +33,28 @@ These boundaries are versioned independently. `claim-v1` does not mutate `cell-v
 - corresponding source is the unminified artifact itself;
 - verify the artifact SHA-256 before import;
 - pin the runtime manifest named by the engine manifest;
-- do not infer compatibility from an unversioned page URL.
+- do not infer compatibility from an unversioned page URL or from the discovery feed.
 
 The build refuses to overwrite a mismatching release artifact. `SHA256SUMS` covers the
 modules and conformance fixture. The release manifest is deterministic and protected by
 the repository commit that publishes it.
+
+## Discovery is not compatibility
+
+`/eval/engine/releases.json` lists published releases. It is a mutable projection of the
+release-directory ledger, kept outside `/eval/engine/releases/*` so it does not receive
+the immutable cache. `latest` is a convenience for humans and watchers. It is not a
+compatibility promise and not an instruction to auto-adopt.
+
+The feed guarantees discovery and manifest-byte correspondence: the listed ids exist, and
+each `manifestSha256` matches the bytes at that release's manifest path. It does not
+guarantee compatibility between releases, that a consumer should run `latest`, or that a
+consumer's rendering matches Homepage's observation.
+
+Adoption still closes on an exact manifest path, artifact hashes, the runtime pin named
+by that manifest, and a vendored conformance fixture. The prohibition on inferring
+compatibility from an unversioned page URL forbids compatibility inference. It does not
+forbid using the feed to find a published id.
 
 ## `cell-v1` frozen behavior
 

@@ -16,7 +16,7 @@
 | SSG | [Hugo](https://gohugo.io) `0.156.0` (extended) |
 | Theme | [hextra](https://github.com/imfing/hextra) `v0.12.3` (Hugo module), locally styled with Catppuccin Mocha |
 | Languages | bilingual — `en` (default) / `ko`, in-tree i18n |
-| Eval | Hugo content with a self-hosted, hash-pinned browser runtime; source, licenses, SBOM, and CSP travel with it |
+| Eval | Homepage-owned engine: Hugo content plus hash-pinned runtime; immutable releases under `static/eval/engine/releases/`; consumers adopt an exact release. Contract: `docs/eval-engine-contract.md` |
 | Comments | [remark42](https://remark42.com) (self-hosted) |
 | Analytics | [Umami](https://umami.is) (self-hosted; omitted from Eval) |
 | Host | Netlify → `junghanacs.com` (apex canonical) |
@@ -39,9 +39,12 @@ pinned binary for an exact release check when necessary.
 
 ```
 content/        about · blog · cv · docs · eval · meta · projects · talks   (en + .ko in-tree)
-data/eval/      reviewed browser-cell, runtime, rail, and license declarations
+data/eval/      reviewed browser-cell, runtime, rail, engine spec, and license declarations
 assets/         shared Catppuccin/GLG Mono CSS and the evaluator source
 static/eval/    self-hosted runtime bundles, notices, manifest, and SBOM
+static/eval/engine/releases/  immutable content-addressed engine releases
+docs/           public contracts (eval engine, SICM reading, JSON-LD)
+dev/            receipts and translation working surface; not public HTML
 scripts/        runtime and rendered-output verification gates
 hugo.yaml       site config (baseURL, languages, modules, menus)
 netlify.toml    build command + HUGO_VERSION / NODE_VERSION
@@ -56,6 +59,9 @@ go.mod / go.sum hextra module pin
 | `NEXT.md` | disposable session handoff — next concrete move |
 | `ROADMAP.md` | future direction (manual) |
 | `CHANGELOG.md` | past — what closed, CalVer snapshots |
+| `docs/eval-engine-contract.md` | engine ownership, immutable releases, discovery vs compatibility |
+| `docs/sicm-reading-contract.md` | SICM reading edition |
+| `docs/semantic-jsonld.md` | JSON-LD identity layer |
 
 ## Deploy
 
