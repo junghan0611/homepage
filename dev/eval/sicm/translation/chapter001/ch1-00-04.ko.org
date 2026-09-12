@@ -618,9 +618,11 @@ z) t) 2)))
       (make-path t0 q0 t1 q1 minimizing-qs))))
     #+end_src
 
-   절차 multidimensional-minimize는 최소화할 함수(이 경우 작용)를 계산하는 절차
-   (이 경우 parametric-path-action 호출의 값)와 매개변수의 초기 추측값을 받는다. 여기서는 linear-interpolants로 계산한 두 끝점 사이 직선 위의 등간격
-   점들을 초기 추측값으로 선택한다.
+   절차 multidimensional-minimize는 최소화할 함수(이 경우 작용)를
+   계산하는 절차(이 경우 parametric-path-action 호출의 값)와 매개변수의 초기
+   추측값을 받는다.
+   여기서는 linear-interpolants로 계산한 두 끝점 사이 직선 위의 등간격 점들을
+   초기 추측값으로 선택한다.
 
    이 전략의 사용을 예시하기 위해 라그랑지언이[fn:44]
 
