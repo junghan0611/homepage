@@ -2,7 +2,6 @@
 title: "Clay — Notebook Authoring Rail"
 description: "The JVM-side notebook source and its explicit publication boundary."
 type: eval
-noindex: true
 comments: false
 toc: false
 sidebar:

@@ -3,7 +3,6 @@ title: "SICM — 실행되는 읽기판"
 description: "서문과 제1장 영어 원문·한국어 번역, 고정된 소스와 계산에서 다시 그린 뷰."
 type: eval
 translationKey: "sicm-index"
-noindex: true
 comments: false
 toc: false
 sidebar:

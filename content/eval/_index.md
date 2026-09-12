@@ -2,7 +2,6 @@
 title: "Eval — Executing Texts"
 description: "Executable writing, computational books, and browser experiments."
 type: eval
-noindex: true
 comments: false
 toc: false
 sidebar:

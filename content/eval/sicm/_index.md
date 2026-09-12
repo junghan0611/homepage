@@ -3,7 +3,6 @@ title: "SICM — An Executable Reading Edition"
 description: "The preface and first chapter in English and Korean, with pinned sources and computation-derived views."
 type: eval
 translationKey: "sicm-index"
-noindex: true
 comments: false
 toc: false
 sidebar:

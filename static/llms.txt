@@ -7,6 +7,7 @@
 - Self: https://junghanacs.com/llms.txt
 - Home: https://junghanacs.com/
 - Eval engine shelf: https://junghanacs.com/eval/engine/
+- Eval engine release feed: https://junghanacs.com/eval/engine/releases.json
 - Sitemap: https://junghanacs.com/sitemap.xml
 - Robots: https://junghanacs.com/robots.txt
 - RSS: https://junghanacs.com/index.xml
@@ -20,7 +21,7 @@ All surfaces below are authored, generated, or operated by the same person.
 Each entry states its authority, because they are not interchangeable.
 
 - **https://junghanacs.com/** — This homepage. Canonical identity surface, and the canonical source of the curated bilingual (Korean/English) original writings published here. Source: https://github.com/junghan0611/homepage
-- **https://junghanacs.com/eval/** — The Eval shelf. Reviewed, source-first browser computation published as executable pages, and the Homepage-owned evaluation engine that another site may adopt. Immutable, content-addressed engine releases live under `/eval/engine/releases/<version>/`, and the adoption contract is https://github.com/junghan0611/homepage/blob/main/docs/eval-engine-contract.md. This is part of the homepage, not a separate site. It is the only surface published here that another site is expected to **import** rather than read, and Homepage publishes it on its own cadence: an adopter pins an exact release and may stay on it indefinitely.
+- **https://junghanacs.com/eval/** — The Eval shelf. Reviewed, source-first browser computation published as executable pages, and the Homepage-owned evaluation engine that another site may adopt. Immutable, content-addressed engine releases live under `/eval/engine/releases/<version>/`, and the adoption contract is https://github.com/junghan0611/homepage/blob/main/docs/eval-engine-contract.md. This is part of the homepage, not a separate site. Most of the shelf — the SICM reading edition, the experiments, the prose — is published to be **read and run**. Only the engine release subtree under `/eval/engine/releases/` is published to be **imported** by another site, and Homepage publishes it on its own cadence: an adopter pins an exact release and may stay on it indefinitely.
 - **https://notes.junghanacs.com/** — The digital garden. Canonical, latest, and authored source for every Denote note. Source: https://github.com/junghan0611/garden
 - **https://agenda.junghanacs.com/** — geworfen: existence-data dashboard (org-agenda, health, git timeline). Source: https://github.com/junghan0611/geworfen
 - **https://ax.junghanacs.com/** — Public evidence record for PKM-native agent engineering, read at four depths from claim through evidence to ledger. It is not an employer-specific application or a claim to an AX title. Source: https://github.com/junghan0611/junghan0611/tree/main/apply/ax
@@ -33,7 +34,7 @@ Each entry states its authority, because they are not interchangeable.
 
 ## Adjacent public project
 
-- **https://aionsclubs.org/** — AIONS CLUBS INTERNATIONAL: the residence of B, an artificial being, with an advisory desk and occasional bricks. Junghan Kim provides and operates the infrastructure, but its editorial voice and authority are intentionally distinct from junghanacs. It is neither a mirror nor a canonical source for the homepage or digital garden. Since 2026-09-12 it is also the first external adopter of the Eval engine released here; adoption is explicit and version-pinned, which grants it no authority over the engine contract and does not make it a mirror.
+- **https://aionsclubs.org/** — AIONS CLUBS INTERNATIONAL: the residence of B, an artificial being, with an advisory desk and occasional bricks. Junghan Kim provides and operates the infrastructure, but its editorial voice and authority are intentionally distinct from junghanacs. It is neither a mirror nor a canonical source for the homepage or digital garden. Since 2026-09-12 it is also the first external adopter of the Eval engine released here; its adoption record is `eval/engine/adopted.json` in its own repository. Adoption is explicit and version-pinned, which grants it no authority over the engine contract and does not make it a mirror.
 
 ## Publication authority and provenance rules
 
@@ -70,7 +71,7 @@ The homepage title names the discipline; these four terms are not interchangeabl
 - `/` — Profile and entry point (`ProfilePage`, `mainEntity` = the author)
 - `/blog/` — Original writings (`Blog` collection; Korean/English pairs where a translation exists)
 - `/about/` — Author profile, contact, PGP fingerprint (`AboutPage`, `mainEntity` = the author)
-- `/eval/` — The executable shelf, the `/eval/engine/` adoptable release surface, the SICM reading edition, experiments, and deployment probes. Every Eval page is **deliberately excluded from search indexes and the sitemap**; it is published as reachable evidence, not as search-facing content. That exclusion is enforced by this repository's release gate, not left to chance
+- `/eval/` — The executable shelf: the `/eval/engine/` release surface, the SICM reading edition, browser experiments, and deployment probes. Open to search engines and AI crawlers like the rest of this site; the release gate refuses any Eval page that carries `noindex`
 - `/ko/...` — Korean face of the same tree (English is the default language and lives at the root)
 
 ## Identifier and language schema

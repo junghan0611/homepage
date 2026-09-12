@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 Sitemap: {{ "sitemap.xml" | absURL }}
+
+# AI Crawlers — explicitly welcome
+# Google (Gemini): Googlebot, Google-Extended
+# OpenAI (ChatGPT): OAI-SearchBot, ChatGPT-User, GPTBot
+# Anthropic: anthropic-ai, ClaudeBot
+# Meta: FacebookBot, meta-externalagent
+
+# Content-Signal (Cloudflare proposal, 2024-09):
+#   search=yes   — traditional search indexing welcome
+#   ai-input=yes — inference-time context use (RAG/citation) welcome
+#   ai-train=yes — training-time weight inclusion welcome
+#   Rationale: this site is an invitation, not an exhibit. The Eval shelf in
+#   particular is published to be read, run, and adopted. Citation with
+#   attribution preferred, but anonymous weight diffusion is also accepted.
+
+# LLM context: {{ "llms.txt" | absURL }}
+# Digital garden: https://notes.junghanacs.com/llms.txt

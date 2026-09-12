@@ -138,7 +138,9 @@ const contentPaths = ["content/eval/_index.md", "content/eval/proto.md", "conten
 const referencedCells = new Set();
 for (const path of [...contentPaths, "content/javascript.md", "layouts/_partials/eval/sicm-viewer.html"]) {
 	const source = await read(path);
-	if (!path.startsWith("layouts/")) for (const marker of ["type: eval", "noindex: true", "comments: false", "toc: false"]) if (!source.includes(marker)) fail(`${path} is missing Eval publication front matter: ${marker}`);
+	if (!path.startsWith("layouts/")) for (const marker of ["type: eval", "comments: false", "toc: false"]) if (!source.includes(marker)) fail(`${path} is missing Eval publication front matter: ${marker}`);
+	/* Eval is an invitation, not a closed exhibit: no Eval page may carry noindex. */
+	if (!path.startsWith("layouts/") && source.includes("noindex")) fail(`${path} carries noindex; Eval pages are published for search and AI crawlers`);
 	for (const match of source.matchAll(/eval-cell id="([^"]+)"/g)) referencedCells.add(match[1]);
 	for (const match of source.matchAll(/"ID" "([^"]+)"/g)) referencedCells.add(match[1]);
 }

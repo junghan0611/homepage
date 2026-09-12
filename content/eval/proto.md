@@ -2,7 +2,6 @@
 title: "Proto — Browser Experiment"
 description: "The smallest contract for editable browser evaluation cells."
 type: eval
-noindex: true
 comments: false
 toc: false
 sidebar:

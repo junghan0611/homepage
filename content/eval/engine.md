@@ -4,7 +4,6 @@ description: "Immutable evaluator and assertion contracts that another site can 
 type: eval
 translationKey: eval-engine
 weight: 5
-noindex: true
 comments: false
 toc: false
 runtime: true

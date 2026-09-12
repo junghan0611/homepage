@@ -4,7 +4,6 @@ description: "다른 사이트가 Homepage를 기다리지 않고 채택할 수 
 type: eval
 translationKey: eval-engine
 weight: 5
-noindex: true
 comments: false
 toc: false
 runtime: true

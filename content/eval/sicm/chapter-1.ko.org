@@ -5,7 +5,6 @@ type: eval
 translationKey: "sicm-ch1"
 weight: 20
 math: true
-noindex: true
 comments: false
 toc: false
 sidebar:

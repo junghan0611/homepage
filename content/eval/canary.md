@@ -2,7 +2,6 @@
 title: "Runtime Canary — Notation Becomes a Value"
 description: "A deployment probe for the pinned, self-hosted browser runtime."
 type: eval
-noindex: true
 comments: false
 toc: false
 sidebar:
