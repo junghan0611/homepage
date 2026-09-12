@@ -1,6 +1,8 @@
 {{ define "main" }}
 {{- $runtime := site.Data.eval.runtime.runtime -}}
 {{- $cellsLicense := site.Data.eval.cells_license -}}
+{{- $engine := site.Data.eval.engine -}}
+{{- $claim := index $engine.modules 1 -}}
 {{- $scittle := strings.TrimPrefix "static" $runtime.scittle.file -}}
 {{- $emmy := strings.TrimPrefix "static" $runtime.emmy.file -}}
 {{- $evalJSOriginal := resources.Get "js/eval.js" -}}
@@ -9,6 +11,9 @@
 {{- $sicmJSOriginal := resources.Get "js/eval-sicm.js" -}}
 {{- $sicmJS := $sicmJSOriginal | minify | fingerprint "sha384" -}}
 {{- $sicmSource := resources.Copy "eval/source/eval-sicm.js" $sicmJSOriginal -}}
+{{- $engineViewOriginal := resources.Get "js/eval-engine-conformance.js" -}}
+{{- $engineView := $engineViewOriginal | minify | fingerprint "sha384" -}}
+{{- $engineViewSource := resources.Copy "eval/source/eval-engine-conformance.js" $engineViewOriginal -}}
 {{- $cellSource := resources.FromString "eval/source/cells.json" (readFile "data/eval/cells.json") -}}
 {{- $cellLicense := resources.FromString "eval/source/cells-license.json" (readFile "data/eval/cells_license.json") -}}
 <div class="eval-page">
@@ -25,6 +30,8 @@
           <tr><td><a href="{{ $emmy }}">scittle.emmy.js</a></td><td><a href="/eval/licenses/GPL-3.0.txt">GPL-3.0-only</a></td><td><a href="https://github.com/mentat-collective/emmy/tree/v0.32.0">Emmy v0.32.0</a> and <a href="{{ $runtime.kitchenPluginTemplates }}">kitchen build input</a></td></tr>
           <tr><td><a href="{{ $evalJS.RelPermalink }}">eval.js</a></td><td><a href="/eval/licenses/GPL-3.0.txt">GPL-3.0-only</a></td><td><a href="{{ $evalSource.RelPermalink }}">assets/js/eval.js</a></td></tr>
           <tr><td><a href="{{ $sicmJS.RelPermalink }}">eval-sicm.js</a></td><td><a href="/eval/licenses/GPL-3.0.txt">GPL-3.0-only</a></td><td><a href="{{ $sicmSource.RelPermalink }}">assets/js/eval-sicm.js</a></td></tr>
+          <tr><td><a href="{{ $engine.basePath }}{{ $claim.artifact }}">claim-v1.js</a></td><td><a href="{{ $engine.licenseUrl }}">{{ $engine.license }}</a></td><td><a href="{{ $engine.basePath }}{{ $claim.artifact }}">unminified artifact is corresponding source</a> · <a href="{{ $engine.basePath }}manifest.json">release manifest</a></td></tr>
+          <tr><td><a href="{{ $engineView.RelPermalink }}">eval-engine-conformance.js</a></td><td><a href="/eval/licenses/GPL-3.0.txt">GPL-3.0-only</a></td><td><a href="{{ $engineViewSource.RelPermalink }}">assets/js/eval-engine-conformance.js</a></td></tr>
           <tr><td><a href="{{ $cellSource.RelPermalink }}">Embedded Eval cell programs</a></td><td><a href="{{ $cellsLicense.licenseUrl }}">{{ $cellsLicense.spdx }}</a></td><td><a href="{{ $cellSource.RelPermalink }}">{{ $cellsLicense.sourcePath }}</a> · <a href="{{ $cellLicense.RelPermalink }}">license declaration</a></td></tr>
         </tbody>
       </table>

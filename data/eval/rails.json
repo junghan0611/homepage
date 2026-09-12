@@ -36,6 +36,13 @@
     "authority": "Clojure notebook"
   },
   {
+    "id": "engine",
+    "title": "Engine Releases",
+    "route": "/eval/engine/",
+    "subtitle": "Immutable cell and claim contracts for explicit adoption",
+    "authority": "Content-addressed source and conformance fixtures"
+  },
+  {
     "id": "canary",
     "title": "Runtime Canary",
     "route": "/eval/canary/",

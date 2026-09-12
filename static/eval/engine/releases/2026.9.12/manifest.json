@@ -1,0 +1,56 @@
+{
+  "format": 1,
+  "release": "2026.9.12",
+  "basePath": "/eval/engine/releases/2026.9.12/",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "/eval/licenses/GPL-3.0.txt",
+  "security": "Arbitrary Scittle evaluation is not a sandbox; assertion semantics do not add isolation.",
+  "runtime": {
+    "manifest": "/eval/runtime/manifest.json",
+    "package": "scittle-kitchen@0.8.33-105",
+    "npmIntegrity": "sha512-091BkX2J6/VWT7uqFqgd3clWvYE/7TBGswsdtBvz9D0ehSa0VEM4liM7UUZV2x6BbqeVBapRQ1a8bu6lRX5aqQ==",
+    "files": [
+      {
+        "path": "/eval/runtime/scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js",
+        "sha256": "d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6"
+      },
+      {
+        "path": "/eval/runtime/scittle.emmy.427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c.js",
+        "sha256": "427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "id": "cell-v1",
+      "path": "/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js",
+      "sha256": "33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6",
+      "global": null,
+      "status": "frozen compatibility module",
+      "semantics": [
+        "page-lifetime shared Scittle state",
+        "String(value) rendering",
+        "implicit substring assertion when data-expected is present",
+        "visible expected-error state"
+      ],
+      "correspondingSource": "/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js"
+    },
+    {
+      "id": "claim-v1",
+      "path": "/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js",
+      "sha256": "52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1",
+      "global": "HomepageEvalClaimV1",
+      "status": "assertion semantics module; evaluator and renderer independent",
+      "modes": [
+        "scalar-exact",
+        "field",
+        "fragment"
+      ],
+      "correspondingSource": "/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js"
+    }
+  ],
+  "conformance": {
+    "path": "/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json",
+    "sha256": "1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603"
+  }
+}

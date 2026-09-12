@@ -66,6 +66,12 @@ surface. This repo is public; the global commit/push hook scans added lines unde
 - **Presentation**: local Catppuccin Mocha tokens in `assets/css/custom.css` are shared
   by normal Hugo chrome and `assets/css/eval.css`. The custom footer already names
   Hugo + Hextra in its publication stack, so `footer.displayPoweredBy` stays false.
+- **Eval engine releases**: Homepage owns and publishes the engine; other sites are
+  explicit consumers, never a shared mutable source. `data/eval/engine.json` and
+  `docs/eval-engine-contract.md` define immutable, content-addressed releases under
+  `static/eval/engine/releases/`. `cell-v1` is frozen compatibility behavior;
+  `claim-v1` adds scalar-exact, structured-field, and explicit-fragment assertions
+  without mutating it. Run `./run.sh e`; never overwrite a released path.
 - **SICM reading edition**: `/eval/sicm/` publishes the pinned English Preface and
   Chapter 1 beside a Korean reading translation under CC BY-NC-SA 3.0. Exact Org,
   segment hashes, original images, balanced rendering repairs, build-time MathML,

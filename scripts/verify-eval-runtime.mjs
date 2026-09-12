@@ -16,6 +16,16 @@ if (generated.status !== 0) {
 	process.stderr.write(generated.stderr || generated.stdout);
 	fail("generated runtime receipts are missing or stale");
 }
+const engineGenerated = spawnSync(process.execPath, ["scripts/build-eval-engine.mjs", "--check"], { cwd: root, encoding: "utf8" });
+if (engineGenerated.status !== 0) {
+	process.stderr.write(engineGenerated.stderr || engineGenerated.stdout);
+	fail("immutable Eval engine release is missing or stale");
+}
+const claimConformance = spawnSync(process.execPath, ["scripts/verify-eval-claim-v1.mjs"], { cwd: root, encoding: "utf8" });
+if (claimConformance.status !== 0) {
+	process.stderr.write(claimConformance.stderr || claimConformance.stdout);
+	fail("claim-v1 conformance failed");
+}
 const sicmTranslation = spawnSync("python3", ["scripts/build-sicm-translation.py", "--check"], { cwd: root, encoding: "utf8" });
 if (sicmTranslation.status !== 0) {
 	process.stderr.write(sicmTranslation.stderr || sicmTranslation.stdout);
@@ -60,14 +70,16 @@ for (const name of await readdir(resolve(root, "static/eval/runtime"))) {
 }
 
 const requiredFiles = [
-	"content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md",
-	"data/eval/runtime.json", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json",
+	"content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/engine.md", "content/eval/engine.ko.md", "content/eval/canary.md", "content/javascript.md",
+	"data/eval/runtime.json", "data/eval/engine.json", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json",
 	"layouts/eval/list.html", "layouts/eval/single.html", "layouts/eval/license.html",
 	"layouts/shortcodes/eval-cell.html", "layouts/shortcodes/eval-rails.html", "layouts/shortcodes/eval-attribution.html", "layouts/shortcodes/sicm-math.html",
-	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/cell.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html",
+	"layouts/_partials/eval/page.html", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/cell.html", "assets/js/eval-claim-v1.js", "assets/js/eval-engine-conformance.js", "layouts/_partials/eval/engine-conformance.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html",
 	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js", "assets/js/eval-sicm.js",
 	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
-	"scripts/build-eval-runtime.mjs", "scripts/build-sicm-reading.py", "scripts/build-sicm-translation.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
+	"scripts/build-eval-runtime.mjs", "scripts/build-eval-engine.mjs", "scripts/verify-eval-claim-v1.mjs", "scripts/build-sicm-reading.py", "scripts/build-sicm-translation.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
+	"dev/eval/engine/conformance-v1.json", "docs/eval-engine-contract.md",
+	"static/eval/engine/releases/2026.9.12/manifest.json", "static/eval/engine/releases/2026.9.12/SHA256SUMS", "static/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js", "static/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js", "static/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json",
 	"dev/eval/sicm/translation/manifest.json", "dev/eval/sicm/translation/REVIEW.md", "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.json", "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.png", "dev/eval/sicm/translation/chapter001/ch1-00-04.ko.org", "dev/eval/sicm/translation/chapter001/ch1-05.ko.org", "dev/eval/sicm/translation/chapter001/ch1-06.ko.org", "dev/eval/sicm/translation/chapter001/ch1-07-09.ko.org", "dev/eval/sicm/translation/chapter001/ch1-10-12.ko.org",
 	"static/eval/source/sicm/LICENSE", "static/eval/source/sicm/en/preface.org", "static/eval/source/sicm/en/chapter001.org", "static/eval/source/sicm/ko/preface.ko.org", "static/eval/source/sicm/ko/chapter001.ko.org",
 	"static/eval/licenses/GPL-3.0.txt", "static/eval/licenses/EPL-1.0.txt", "static/eval/licenses/Apache-2.0.txt", "static/eval/licenses/MIT-fraction.js.txt", "static/eval/licenses/BSD-2-Clause-odex.txt",
@@ -85,7 +97,7 @@ for (const obsolete of [
 
 const requiredCells = ["hub-canary", "proto-arithmetic", "proto-definition", "proto-shared-state", "proto-error-state", "proto-emmy", "sicm-harmonic", "sicm-figure-1-1", "clay-emmy", "runtime-canary"];
 if (Object.keys(cells).length !== requiredCells.length || requiredCells.some((id) => !cells[id]?.source || !cells[id]?.label)) fail("Eval cell inventory is incomplete");
-if (rails.length !== 4 || ["proto", "sicm", "clay", "canary"].some((id) => !rails.some((rail) => rail.id === id && rail.route === `/eval/${id}/`))) fail("Eval rail inventory is incomplete");
+if (rails.length !== 5 || ["proto", "sicm", "clay", "engine", "canary"].some((id) => !rails.some((rail) => rail.id === id && rail.route === `/eval/${id}/`))) fail("Eval rail inventory is incomplete");
 if (cellsLicense.spdx !== "GPL-3.0-only" || cellsLicense.sourcePath !== "data/eval/cells.json" || cellsLicense.correspondingSourceUrl !== "/eval/source/cells.json" || cellsLicense.declarationUrl !== "/eval/source/cells-license.json" || cellsLicense.licenseUrl !== "/eval/licenses/GPL-3.0.txt") fail("Eval cell corresponding-source declaration is incomplete");
 const sicmAttribution = rails.find((rail) => rail.id === "sicm")?.attribution;
 for (const field of ["work", "edition", "authors", "publisher", "copyright", "license", "licenseUrl", "canonicalOriginalUrl", "exactSourceUrl", "orgSourceUrl", "sourceChain", "adaptation", "noEndorsement"]) if (!sicmAttribution?.[field] || (Array.isArray(sicmAttribution[field]) && !sicmAttribution[field].length)) fail(`SICM attribution field missing: ${field}`);
@@ -104,7 +116,7 @@ for (const [name, expected] of Object.entries(sicm.images.files)) {
 	if (sha256(await readFile(resolve(root, path))) !== expected) fail(`SICM image hash mismatch: ${path}`);
 }
 
-const contentPaths = ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/canary.md"];
+const contentPaths = ["content/eval/_index.md", "content/eval/proto.md", "content/eval/engine.md", "content/eval/engine.ko.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/canary.md"];
 const referencedCells = new Set();
 for (const path of [...contentPaths, "content/javascript.md", "layouts/_partials/eval/sicm-viewer.html"]) {
 	const source = await read(path);
@@ -125,6 +137,8 @@ for (const asset of [runtime.scittle, runtime.emmy]) {
 	if (headers.indexOf("/eval/*") > headers.indexOf(publicPath)) fail(`generic Eval cache rule must precede immutable runtime override: ${publicPath}`);
 }
 if (!headers.includes("/eval/*\n  Cache-Control: public, max-age=0\n  Content-Security-Policy:")) fail("Eval HTML revalidation/CSP header rule is missing");
+if (!headers.includes("/eval/engine/releases/*\n  Cache-Control: public, max-age=31536000, immutable\n  Access-Control-Allow-Origin: *")) fail("immutable cross-origin engine release header is missing");
+if (headers.indexOf("/eval/*") > headers.indexOf("/eval/engine/releases/*")) fail("generic Eval cache rule must precede immutable engine override");
 const evalHeaderBlock = headers.slice(headers.indexOf("/eval/*"), headers.indexOf("/javascript/*"));
 if (evalHeaderBlock.includes("script-src 'self' 'unsafe-inline'")) fail("Eval CSP permits unnecessary inline scripts");
 if (!headers.includes("/javascript/*") || !headers.slice(headers.indexOf("/javascript/*")).includes("Content-Security-Policy:")) fail("JavaScript license CSP header rule is missing");
@@ -137,14 +151,14 @@ for (const [path, notice] of [
 	["static/eval/licenses/BSD-2-Clause-odex.txt", "Copyright (c) 2016, Colin Smith"],
 ]) if (!(await read(path)).includes(notice)) fail(`invalid license notice: ${path}`);
 
-const authoredPaths = [...contentPaths, "content/javascript.md", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json", "assets/js/eval.js", "assets/js/eval-sicm.js", "assets/css/eval.css", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html", "layouts/shortcodes/sicm-math.html", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj"];
+const authoredPaths = [...contentPaths, "content/javascript.md", "docs/eval-engine-contract.md", "data/eval/engine.json", "dev/eval/engine/conformance-v1.json", "data/eval/cells.json", "data/eval/cells_license.json", "data/eval/rails.json", "data/eval/sicm.json", "assets/js/eval.js", "assets/js/eval-claim-v1.js", "assets/js/eval-engine-conformance.js", "assets/js/eval-sicm.js", "assets/css/eval.css", "layouts/_partials/eval/scripts.html", "layouts/_partials/eval/engine-conformance.html", "layouts/_partials/eval/sicm-source.html", "layouts/_partials/eval/sicm-viewer.html", "layouts/shortcodes/sicm-math.html", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj"];
 for (const path of authoredPaths) {
 	const source = await read(path);
 	for (const forbidden of ["cdn.jsdelivr.net", "unpkg.com", "daslu.github.io", "/home/", "~/", "dev/eval-stack/"]) {
 		if (source.includes(forbidden)) fail(`${path} contains forbidden publication dependency or private path: ${forbidden}`);
 	}
 }
-for (const path of ["assets/js/eval.js", "assets/js/eval-sicm.js"]) if (!(await read(path)).includes("SPDX-License-Identifier: GPL-3.0-only")) fail(`Eval JavaScript license marker is missing: ${path}`);
+for (const path of ["assets/js/eval.js", "assets/js/eval-claim-v1.js", "assets/js/eval-engine-conformance.js", "assets/js/eval-sicm.js"]) if (!(await read(path)).includes("SPDX-License-Identifier: GPL-3.0-only")) fail(`Eval JavaScript license marker is missing: ${path}`);
 if (!(await read("layouts/_partials/components/analytics/analytics.html")).includes('(ne .Type "eval")')) fail("Eval analytics suppression is missing");
 
 console.log("eval verified: Hugo sources, cells, runtime hashes, SBOM, licenses, CSP, and publication boundaries are current");

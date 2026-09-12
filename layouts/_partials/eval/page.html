@@ -2,6 +2,7 @@
 {{- $cellLicense := resources.FromString "eval/source/cells-license.json" (readFile "data/eval/cells_license.json") -}}
 {{- $evalSource := resources.Copy "eval/source/eval.js" (resources.Get "js/eval.js") -}}
 {{- $sicmEvalSource := resources.Copy "eval/source/eval-sicm.js" (resources.Get "js/eval-sicm.js") -}}
+{{- $engineViewSource := resources.Copy "eval/source/eval-engine-conformance.js" (resources.Get "js/eval-engine-conformance.js") -}}
 <div class="eval-page">
   <main id="content" class="eval-shell">
     {{- $langPrefix := cond (eq .Language.Lang "ko") "/ko" "" -}}
@@ -11,19 +12,28 @@
       <a href="/eval/proto/">Proto</a><span aria-hidden="true">/</span>
       <a href="{{ $langPrefix }}/eval/sicm/">SICM Book</a><span aria-hidden="true">/</span>
       <a href="/eval/clay/">Clay</a><span aria-hidden="true">/</span>
+      <a href="{{ $langPrefix }}/eval/engine/">Engine</a><span aria-hidden="true">/</span>
       <a href="/eval/canary/">Canary</a>
     </nav>
     <article class="eval-content">
       <h1>{{ .Title }}</h1>
       {{ with .Params.sicmSource }}{{ partial "eval/sicm-source.html" $ }}{{ end }}
       {{ with .Params.sicmViewer }}{{ partial "eval/sicm-viewer.html" $ }}{{ end }}
+      {{ if .Params.engineConformance }}{{ partial "eval/engine-conformance.html" . }}{{ end }}
       {{ .Content }}
     </article>
     {{ with .File }}
       <aside class="source-receipt">
         <strong>Document source</strong><br>
         <a href="https://github.com/junghan0611/homepage/blob/main/content/{{ .Path }}">content/{{ .Path }}</a>
-        {{ if $.Params.runtime }}
+        {{ if $.Params.engineConformance }}
+          {{- $engine := site.Data.eval.engine -}}
+          {{- $claim := index (where $engine.modules "id" "claim-v1") 0 -}}
+          <br><strong>Engine source</strong><br>
+          <a href="{{ $engine.basePath }}{{ $claim.artifact }}">claim-v1 unminified source</a>
+          · <a href="{{ $engineViewSource.RelPermalink }}">browser conformance view source</a>
+          · <a href="{{ $engine.basePath }}manifest.json">release manifest</a>
+        {{ else if $.Params.runtime }}
           <br><strong>Executable cell source</strong><br>
           <a href="{{ $cellSource.RelPermalink }}">{{ site.Data.eval.cells_license.sourcePath }}</a>
           · <a href="{{ site.Data.eval.cells_license.licenseUrl }}">{{ site.Data.eval.cells_license.spdx }}</a>
@@ -38,6 +48,7 @@
       <a href="/javascript/" rel="jslicense">JavaScript license information and corresponding source</a>
       <span aria-hidden="true"> · </span><a href="/eval/runtime/sbom.json">SBOM</a>
       <span aria-hidden="true"> · </span><a href="/eval/runtime/manifest.json">runtime manifest</a>
+      <span aria-hidden="true"> · </span><a href="/eval/engine/releases/2026.9.12/manifest.json">engine release</a>
     </footer>
   </main>
 </div>

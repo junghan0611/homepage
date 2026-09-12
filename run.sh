@@ -21,9 +21,10 @@ usage() {
 	cat <<EOF
 homepage — 하나의 Hugo 공개면
 
-Usage: ./run.sh [1|s|v|h|0]
+Usage: ./run.sh [1|e|s|v|h|0]
 
   1  전체 사이트를 빌드하며 보기  http://localhost:${PORT}/
+  e  Eval 엔진 릴리즈 조립 + conformance 검증
   s  SICM 번역 조립 + 읽기 페이지 갱신
   v  Netlify 계약 검증 + production Hugo build
   h  도움말
@@ -42,6 +43,13 @@ port_pid() {
 verify_sources() {
 	info "Eval 원본·런타임·라이선스 검증"
 	node scripts/verify-eval-runtime.mjs
+}
+
+build_engine() {
+	info "Eval 엔진 불변 릴리즈 조립·검증"
+	node scripts/build-eval-engine.mjs
+	node scripts/verify-eval-claim-v1.mjs
+	success "Eval 엔진 릴리즈 갱신"
 }
 
 build_sicm() {
@@ -94,6 +102,7 @@ menu() {
 	echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	echo ""
 	echo "    1) 빌드해서 보기  localhost:${PORT}"
+	echo "    e) Eval 엔진 릴리즈 갱신"
 	echo "    s) SICM 읽기판 갱신"
 	echo "    v) verify"
 	echo "    h) help"
@@ -105,6 +114,7 @@ menu() {
 run() {
 	case "$1" in
 		1) serve ;;
+		e) build_engine ;;
 		s) build_sicm ;;
 		v) verify ;;
 		h) usage ;;

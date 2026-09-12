@@ -1,0 +1,91 @@
+{
+  "format": 1,
+  "contract": "claim-v1",
+  "license": "GPL-3.0-only",
+  "cases": [
+    {
+      "id": "scalar-exact-number",
+      "value": 0,
+      "claim": {"mode": "scalar-exact", "expected": "0"},
+      "pass": true,
+      "code": "pass"
+    },
+    {
+      "id": "scalar-exact-rejects-prefix",
+      "value": 10,
+      "claim": {"mode": "scalar-exact", "expected": "0"},
+      "pass": false,
+      "code": "mismatch"
+    },
+    {
+      "id": "scalar-exact-normalizes-space-and-unicode",
+      "value": "  café  ",
+      "claim": {"mode": "scalar-exact", "expected": "café"},
+      "pass": true,
+      "code": "pass"
+    },
+    {
+      "id": "scalar-exact-rejects-collection",
+      "value": {"answer": 0},
+      "claim": {"mode": "scalar-exact", "expected": "0"},
+      "pass": false,
+      "code": "invalid-claim"
+    },
+    {
+      "id": "field-exact",
+      "value": {"minutes-per-waking": 48},
+      "claim": {"mode": "field", "path": ["minutes-per-waking"], "predicate": {"op": "exact", "expected": 48}},
+      "pass": true,
+      "code": "pass"
+    },
+    {
+      "id": "field-exact-rejects-containing-number",
+      "value": {"minutes-per-waking": 480},
+      "claim": {"mode": "field", "path": ["minutes-per-waking"], "predicate": {"op": "exact", "expected": 48}},
+      "pass": false,
+      "code": "mismatch"
+    },
+    {
+      "id": "field-nested-less-than",
+      "value": {"figure": {"maximum-error": 0.00016772069029036274}},
+      "claim": {"mode": "field", "path": ["figure", "maximum-error"], "predicate": {"op": "lt", "expected": 0.00017}},
+      "pass": true,
+      "code": "pass"
+    },
+    {
+      "id": "field-array-index-within",
+      "value": {"samples": [98.9, 11.14]},
+      "claim": {"mode": "field", "path": ["samples", 0], "predicate": {"op": "within", "expected": 98.91, "tolerance": 0.02}},
+      "pass": true,
+      "code": "pass"
+    },
+    {
+      "id": "field-missing-path",
+      "value": {"answer": 48},
+      "claim": {"mode": "field", "path": ["minutes-per-waking"], "predicate": {"op": "exact", "expected": 48}},
+      "pass": false,
+      "code": "invalid-claim"
+    },
+    {
+      "id": "fragment-explicit-pass",
+      "value": "{:minutes-per-waking 48, :days 11.14}",
+      "claim": {"mode": "fragment", "expected": ":days 11.14"},
+      "pass": true,
+      "code": "pass"
+    },
+    {
+      "id": "fragment-explicit-negative-control",
+      "value": "{:minutes-per-waking 480}",
+      "claim": {"mode": "fragment", "expected": ":minutes-per-waking 48,"},
+      "pass": false,
+      "code": "mismatch"
+    },
+    {
+      "id": "fragment-empty-is-invalid",
+      "value": "anything",
+      "claim": {"mode": "fragment", "expected": ""},
+      "pass": false,
+      "code": "invalid-claim"
+    }
+  ]
+}

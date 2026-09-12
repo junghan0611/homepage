@@ -1,11 +1,19 @@
 {{- $runtime := site.Data.eval.runtime.runtime -}}
 {{- $scittle := strings.TrimPrefix "static" $runtime.scittle.file -}}
 {{- $emmy := strings.TrimPrefix "static" $runtime.emmy.file -}}
-{{- $evalJS := resources.Get "js/eval.js" | minify | fingerprint "sha384" -}}
 <script src="{{ $scittle }}" data-sha256="{{ $runtime.scittle.sha256 }}"></script>
+{{- if .Params.engineConformance }}
+{{- $engine := site.Data.eval.engine -}}
+{{- $claim := index (where $engine.modules "id" "claim-v1") 0 -}}
+{{- $viewJS := resources.Get "js/eval-engine-conformance.js" | minify | fingerprint "sha384" -}}
+<script src="{{ $engine.basePath }}{{ $claim.artifact }}" data-sha256="{{ $claim.sha256 }}"></script>
+<script src="{{ $viewJS.RelPermalink }}" integrity="{{ $viewJS.Data.Integrity }}"></script>
+{{- else }}
+{{- $evalJS := resources.Get "js/eval.js" | minify | fingerprint "sha384" -}}
 <script src="{{ $emmy }}" data-sha256="{{ $runtime.emmy.sha256 }}"></script>
 <script src="{{ $evalJS.RelPermalink }}" integrity="{{ $evalJS.Data.Integrity }}"></script>
 {{- with .Params.sicmViewer }}
 {{- $sicmJS := resources.Get "js/eval-sicm.js" | minify | fingerprint "sha384" -}}
 <script src="{{ $sicmJS.RelPermalink }}" integrity="{{ $sicmJS.Data.Integrity }}"></script>
+{{- end }}
 {{- end }}

@@ -7,12 +7,13 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const fail = (message) => { console.error(`Eval Hugo output verification failed: ${message}`); process.exit(1); };
 const required = [
 	"public/_headers",
-	"public/eval/index.html", "public/eval/proto/index.html", "public/eval/sicm/index.html", "public/eval/sicm/preface/index.html", "public/eval/sicm/chapter-1/index.html", "public/ko/eval/sicm/index.html", "public/ko/eval/sicm/preface/index.html", "public/ko/eval/sicm/chapter-1/index.html", "public/eval/clay/index.html", "public/eval/canary/index.html",
+	"public/eval/index.html", "public/eval/proto/index.html", "public/eval/sicm/index.html", "public/eval/sicm/preface/index.html", "public/eval/sicm/chapter-1/index.html", "public/ko/eval/sicm/index.html", "public/ko/eval/sicm/preface/index.html", "public/ko/eval/sicm/chapter-1/index.html", "public/eval/clay/index.html", "public/eval/engine/index.html", "public/ko/eval/engine/index.html", "public/eval/canary/index.html",
 	"public/eval/runtime/manifest.json", "public/eval/runtime/sbom.json",
+	"public/eval/engine/releases/2026.9.12/manifest.json", "public/eval/engine/releases/2026.9.12/SHA256SUMS", "public/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js", "public/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js", "public/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json",
 	"public/eval/source/sicm/LICENSE", "public/eval/source/sicm/en/preface.org", "public/eval/source/sicm/en/chapter001.org", "public/eval/source/sicm/ko/preface.ko.org", "public/eval/source/sicm/ko/chapter001.ko.org", "public/eval/source/sicm/images/Art_P19.jpg",
 	"public/eval/runtime/scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js",
 	"public/eval/runtime/scittle.emmy.427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c.js",
-	"public/eval/source/cells.json", "public/eval/source/cells-license.json", "public/eval/source/eval.js", "public/eval/source/eval-sicm.js",
+	"public/eval/source/cells.json", "public/eval/source/cells-license.json", "public/eval/source/eval.js", "public/eval/source/eval-sicm.js", "public/eval/source/eval-engine-conformance.js",
 	"public/javascript/index.html",
 ];
 for (const path of required) {
@@ -23,6 +24,10 @@ for (const [source, published] of [
 	["data/eval/cells_license.json", "public/eval/source/cells-license.json"],
 	["assets/js/eval.js", "public/eval/source/eval.js"],
 	["assets/js/eval-sicm.js", "public/eval/source/eval-sicm.js"],
+	["assets/js/eval-engine-conformance.js", "public/eval/source/eval-engine-conformance.js"],
+	["assets/js/eval.js", "public/eval/engine/releases/2026.9.12/cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js"],
+	["assets/js/eval-claim-v1.js", "public/eval/engine/releases/2026.9.12/claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js"],
+	["dev/eval/engine/conformance-v1.json", "public/eval/engine/releases/2026.9.12/conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json"],
 	["static/eval/source/sicm/LICENSE", "public/eval/source/sicm/LICENSE"],
 	["static/eval/source/sicm/en/preface.org", "public/eval/source/sicm/en/preface.org"],
 	["static/eval/source/sicm/en/chapter001.org", "public/eval/source/sicm/en/chapter001.org"],
@@ -42,6 +47,7 @@ const outputPages = new Map([
 	["public/eval/sicm/chapter-1/index.html", "/eval/sicm/chapter-1/"], ["public/ko/eval/sicm/index.html", "/ko/eval/sicm/"],
 	["public/ko/eval/sicm/preface/index.html", "/ko/eval/sicm/preface/"], ["public/ko/eval/sicm/chapter-1/index.html", "/ko/eval/sicm/chapter-1/"],
 	["public/eval/clay/index.html", "/eval/clay/"],
+	["public/eval/engine/index.html", "/eval/engine/"], ["public/ko/eval/engine/index.html", "/ko/eval/engine/"],
 	["public/eval/canary/index.html", "/eval/canary/"], ["public/javascript/index.html", "/javascript/"],
 ]);
 let localURLCount = 0;
@@ -81,12 +87,18 @@ for (const [file, route] of outputPages) {
 		}
 	}
 }
-for (const path of ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/canary.md", "content/javascript.md", "data/eval/rails.json", "data/eval/runtime.json", "data/eval/sicm.json", "layouts/_partials/eval/page.html", "layouts/eval/license.html"]) {
+for (const path of ["content/eval/_index.md", "content/eval/proto.md", "content/eval/sicm/_index.md", "content/eval/sicm/_index.ko.md", "content/eval/sicm/preface.org", "content/eval/sicm/preface.ko.org", "content/eval/sicm/chapter-1.org", "content/eval/sicm/chapter-1.ko.org", "content/eval/clay.md", "content/eval/engine.md", "content/eval/engine.ko.md", "content/eval/canary.md", "content/javascript.md", "data/eval/rails.json", "data/eval/runtime.json", "data/eval/engine.json", "data/eval/sicm.json", "layouts/_partials/eval/page.html", "layouts/eval/license.html"]) {
 	if (/https?:\/\/[^"'\s>]*netlify\.app|deploy-preview/i.test(await readFile(resolve(root, path), "utf8"))) fail(`${path} hardcodes a Netlify preview URL`);
 }
 
 const license = await readFile(resolve(root, "public/javascript/index.html"), "utf8");
-for (const needle of ["jslicense-labels1", "/eval/source/cells.json", "/eval/source/cells-license.json", "/eval/source/eval.js", "/eval/source/eval-sicm.js", "/eval/runtime/sbom.json"]) if (!license.includes(needle)) fail(`/javascript/ missing ${needle}`);
+for (const needle of ["jslicense-labels1", "/eval/source/cells.json", "/eval/source/cells-license.json", "/eval/source/eval.js", "/eval/source/eval-sicm.js", "/eval/source/eval-engine-conformance.js", "/eval/engine/releases/2026.9.12/claim-v1.", "/eval/runtime/sbom.json"]) if (!license.includes(needle)) fail(`/javascript/ missing ${needle}`);
+const engineManifest = JSON.parse(await readFile(resolve(root, "public/eval/engine/releases/2026.9.12/manifest.json"), "utf8"));
+if (engineManifest.release !== "2026.9.12" || engineManifest.modules?.find((module) => module.id === "cell-v1")?.status !== "frozen compatibility module" || JSON.stringify(engineManifest.modules?.find((module) => module.id === "claim-v1")?.modes) !== JSON.stringify(["scalar-exact", "field", "fragment"])) fail("published Eval engine manifest contract drifted");
+for (const route of ["public/eval/engine/index.html", "public/ko/eval/engine/index.html"]) {
+	const html = await readFile(resolve(root, route), "utf8");
+	for (const needle of ["scalar-exact", "structured", "fragment", "claim-v1", "cell-v1", "unobserved", "data-engine-conformance", "eval-engine-conformance.min."]) if (!html.toLowerCase().includes(needle)) fail(`${route} missing ${needle}`);
+}
 const sicm = await readFile(resolve(root, "public/eval/sicm/index.html"), "utf8");
 for (const needle of ["sicm_edition_2.zip", "tgvaughan.github.io/sicm/", "mentat-collective/sicm-book/tree/4088864", "No endorsement"]) if (!sicm.includes(needle)) fail(`/eval/sicm/ missing ${needle}`);
 const sicmChapter = await readFile(resolve(root, "public/eval/sicm/chapter-1/index.html"), "utf8");

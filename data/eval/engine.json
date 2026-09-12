@@ -1,0 +1,39 @@
+{
+  "format": 1,
+  "release": "2026.9.12",
+  "basePath": "/eval/engine/releases/2026.9.12/",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "/eval/licenses/GPL-3.0.txt",
+  "runtimeManifest": "/eval/runtime/manifest.json",
+  "security": "Arbitrary Scittle evaluation is not a sandbox; assertion semantics do not add isolation.",
+  "modules": [
+    {
+      "id": "cell-v1",
+      "source": "assets/js/eval.js",
+      "sha256": "33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6",
+      "artifact": "cell-v1.33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6.js",
+      "global": null,
+      "semantics": [
+        "page-lifetime shared Scittle state",
+        "String(value) rendering",
+        "implicit substring assertion when data-expected is present",
+        "visible expected-error state"
+      ],
+      "status": "frozen compatibility module"
+    },
+    {
+      "id": "claim-v1",
+      "source": "assets/js/eval-claim-v1.js",
+      "sha256": "52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1",
+      "artifact": "claim-v1.52803ba04b0bd6239e4a80ed2d51d53029cfb4c36a8ddae84e4de2f27e5227f1.js",
+      "global": "HomepageEvalClaimV1",
+      "modes": ["scalar-exact", "field", "fragment"],
+      "status": "assertion semantics module; evaluator and renderer independent"
+    }
+  ],
+  "conformance": {
+    "source": "dev/eval/engine/conformance-v1.json",
+    "sha256": "1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603",
+    "artifact": "conformance-v1.1b1967a47deec8388daeb71f35e463fcac79e8cc16477ad068fb6d20efaba603.json"
+  }
+}
