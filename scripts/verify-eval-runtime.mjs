@@ -36,6 +36,7 @@ const spec = JSON.parse(await read("data/eval/runtime.json"));
 const cells = JSON.parse(await read("data/eval/cells.json"));
 const rails = JSON.parse(await read("data/eval/rails.json"));
 const sicm = JSON.parse(await read("data/eval/sicm.json"));
+const sicmBrowserReceipt = JSON.parse(await read("dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.json"));
 const cellsLicense = JSON.parse(await read("data/eval/cells_license.json"));
 const runtime = spec.runtime;
 const manifest = JSON.parse(await read("static/eval/runtime/manifest.json"));
@@ -66,11 +67,14 @@ const requiredFiles = [
 	"layouts/_partials/components/analytics/analytics.html", "assets/css/eval.css", "assets/js/eval.js", "assets/js/eval-sicm.js",
 	"dev/eval/clay/deps.edn", "dev/eval/clay/notebooks/preface.clj", "dev/eval/clay/render.clj",
 	"scripts/build-eval-runtime.mjs", "scripts/build-sicm-reading.py", "scripts/build-sicm-translation.py", "scripts/verify-eval-sicm-viewer.mjs", "scripts/verify-eval-runtime.mjs", "scripts/verify-eval-output.mjs",
-	"dev/eval/sicm/translation/manifest.json", "dev/eval/sicm/translation/chapter001/ch1-00-04.ko.org", "dev/eval/sicm/translation/chapter001/ch1-05.ko.org", "dev/eval/sicm/translation/chapter001/ch1-06.ko.org", "dev/eval/sicm/translation/chapter001/ch1-07-09.ko.org", "dev/eval/sicm/translation/chapter001/ch1-10-12.ko.org",
+	"dev/eval/sicm/translation/manifest.json", "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.json", "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.png", "dev/eval/sicm/translation/chapter001/ch1-00-04.ko.org", "dev/eval/sicm/translation/chapter001/ch1-05.ko.org", "dev/eval/sicm/translation/chapter001/ch1-06.ko.org", "dev/eval/sicm/translation/chapter001/ch1-07-09.ko.org", "dev/eval/sicm/translation/chapter001/ch1-10-12.ko.org",
 	"static/eval/source/sicm/LICENSE", "static/eval/source/sicm/en/preface.org", "static/eval/source/sicm/en/chapter001.org", "static/eval/source/sicm/ko/preface.ko.org", "static/eval/source/sicm/ko/chapter001.ko.org",
 	"static/eval/licenses/GPL-3.0.txt", "static/eval/licenses/EPL-1.0.txt", "static/eval/licenses/Apache-2.0.txt", "static/eval/licenses/MIT-fraction.js.txt", "static/eval/licenses/BSD-2-Clause-odex.txt",
 ];
 for (const path of requiredFiles) if (!(await exists(path))) fail(`required source or notice missing: ${path}`);
+const sicmScreenshot = await readFile(resolve(root, sicmBrowserReceipt.artifacts.screenshot));
+if (sha256(sicmScreenshot) !== sicmBrowserReceipt.artifacts.screenshotSha256) fail("SICM browser screenshot hash mismatch");
+if (sicmBrowserReceipt.scope !== "local candidate browser observation; not a production receipt" || sicmBrowserReceipt.observations.cellState !== "pass" || sicmBrowserReceipt.observations.svgPathCommands < 80 || sicmBrowserReceipt.observations.externalScriptElements !== 0 || !sicmBrowserReceipt.observations.cellOutput.includes("book-bound=true")) fail("SICM browser receipt is incomplete or overclaims its scope");
 
 for (const obsolete of [
 	"static/eval/index.html", "static/eval/proto", "static/eval/sicm", "static/eval/clay", "static/eval/canary",

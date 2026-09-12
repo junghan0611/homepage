@@ -63,6 +63,8 @@
       "cell": "sicm-figure-1-1",
       "method": "Emmy find-path with three intermediate points; SVG samples q3(t) - cos(t)",
       "acceptance": "computed maximum error < 0.00017; cell output must include book-bound=true",
+      "candidateBrowserReceipt": "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.json",
+      "productionBrowserReceipt": null,
       "status": "computational adaptation, not a replacement source image"
     }
   }

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "scope": "local candidate browser observation; not a production receipt",
+  "observedAt": "2026-09-12T13:39:00+09:00",
+  "candidateCommit": "2f23bde3b482ac4d6e6f56adc162b9e6973b373f",
+  "browser": "Chromium 142.0.7444.175 headless",
+  "url": "http://127.0.0.1:1313/eval/sicm/chapter-1/",
+  "observations": {
+    "cell": "sicm-figure-1-1",
+    "cellState": "pass",
+    "cellOutput": "0.00016772069029036274 | book-bound=true",
+    "bookBound": "maximum error < 0.00017",
+    "svgPathCommands": 80,
+    "svgPathSha256": "fddf53ef76e17007d6de77e58adda9358c6b662f824de949cd2166a2d3206934",
+    "mathElements": 512,
+    "externalScriptElements": 0
+  },
+  "runtime": {
+    "scittleSha256": "d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6",
+    "scittleEmmySha256": "427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c",
+    "evalSourceSha256": "33595f963be56964bb8544401eec19b7d65c5193816826c2da6f372a6c9234f6",
+    "sicmViewerSourceSha256": "57b32c15d22f67bb44f2be76bbaa12c2d8c5f7b8657438ce7c7000d4ffbff4ca"
+  },
+  "artifacts": {
+    "screenshot": "dev/eval/sicm/receipts/20260912T133900-figure-1-1-chromium.png",
+    "screenshotSha256": "5391c44062129e8ac3a846a32fb971d86e08b7a82d2b2705de1fb99338baf7c0",
+    "dumpedDomSha256": "70cff332417a3f6d09c5fb4b8730eeffbaaeeab71911aed768af8853dad6893f"
+  },
+  "limitations": [
+    "The observation is against a local Hugo candidate, not the deployed Netlify site.",
+    "Hugo's development server does not apply static/_headers; CSP is covered separately by source and rendered-output verification.",
+    "A production browser receipt remains required before removing the root construction mark."
+  ]
+}
