@@ -3,7 +3,7 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { FEED_RELATIVE, RELEASES_RELATIVE, buildFeed, serializeFeed, sha256 } from "./eval-engine-feed.mjs";
+import { FEED_RELATIVE, RELEASES_RELATIVE, assertAppendOnly, buildFeed, serializeFeed, sha256 } from "./eval-engine-feed.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const mode = process.argv[2] || "write";
@@ -95,7 +95,11 @@ if (mode === "--check") {
 		if (!actual) await writeFile(path, expected);
 	}
 	if (unexpected.length) throw new Error(`unexpected files in immutable release: ${unexpected.join(", ")}`);
-	const expectedFeed = serializeFeed(await buildFeed(releasesRoot));
+	const nextFeed = await buildFeed(releasesRoot);
+	let previousFeed = null;
+	try { previousFeed = JSON.parse((await readFile(feedPath)).toString("utf8")); } catch {}
+	if (previousFeed) assertAppendOnly(previousFeed, nextFeed);
+	const expectedFeed = serializeFeed(nextFeed);
 	await writeFile(feedPath, expectedFeed);
 	console.log(`wrote Eval engine ${spec.release} immutable release`);
 	console.log(`wrote Eval engine discovery feed ${FEED_RELATIVE}`);

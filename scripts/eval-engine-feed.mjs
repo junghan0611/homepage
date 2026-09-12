@@ -168,4 +168,18 @@ export const buildFeed = async (releasesRoot) => {
 	};
 };
 
+export const assertAppendOnly = (previous, next) => {
+	if (!previous?.releases || !next?.releases) throw new Error("discovery feed is missing releases");
+	const prevById = new Map(previous.releases.map((entry) => [entry.release, entry]));
+	const nextById = new Map(next.releases.map((entry) => [entry.release, entry]));
+	for (const [id, prev] of prevById) {
+		const cur = nextById.get(id);
+		if (!cur) throw new Error(`discovery feed removed release ${id}`);
+		if (JSON.stringify(cur) !== JSON.stringify(prev)) throw new Error(`discovery feed mutated release ${id}`);
+	}
+	const prevOrder = previous.releases.map((entry) => entry.release);
+	const nextExisting = next.releases.map((entry) => entry.release).filter((id) => prevById.has(id));
+	if (nextExisting.join("\0") !== prevOrder.join("\0")) throw new Error("discovery feed reordered existing releases");
+};
+
 export const serializeFeed = (feed) => Buffer.from(`${JSON.stringify(feed, null, 2)}\n`);

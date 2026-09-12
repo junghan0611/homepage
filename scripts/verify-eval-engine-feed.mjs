@@ -3,7 +3,7 @@
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { buildFeed, compareReleaseIds, parseReleaseId, serializeFeed, sha256 } from "./eval-engine-feed.mjs";
+import { assertAppendOnly, buildFeed, compareReleaseIds, parseReleaseId, serializeFeed, sha256 } from "./eval-engine-feed.mjs";
 
 const fail = (message) => { console.error(`Eval engine feed rehearsal failed: ${message}`); process.exit(1); };
 
@@ -86,6 +86,23 @@ try {
 	const withDocs = await buildFeed(root);
 	if (withDocs.latest !== "2026.9.12-docs.2") fail(`day-serial follow-up did not become latest: ${withDocs.latest}`);
 	if (withDocs.releases.map((entry) => entry.release).join(",") !== "2026.9.2,2026.9.12,2026.9.12-fix.1,2026.9.12-docs.2") fail(`day-serial order drifted: ${withDocs.releases.map((entry) => entry.release).join(",")}`);
+	assertAppendOnly(feed, feed);
+	assertAppendOnly(feed, withDocs);
+	try {
+		const mutated = JSON.parse(JSON.stringify(withDocs));
+		mutated.releases[1].manifestSha256 = "0".repeat(64);
+		assertAppendOnly(feed, mutated);
+		fail("mutated historical manifestSha256 was accepted");
+	} catch (error) {
+		if (!String(error.message).includes("mutated")) fail(`historical mutation failed with the wrong error: ${error.message}`);
+	}
+	try {
+		const dropped = { ...withDocs, releases: withDocs.releases.filter((entry) => entry.release !== "2026.9.12") };
+		assertAppendOnly(feed, dropped);
+		fail("deleted historical release was accepted");
+	} catch (error) {
+		if (!String(error.message).includes("removed")) fail(`historical deletion failed with the wrong error: ${error.message}`);
+	}
 	const expectFeedFailure = async (ids, needle, label) => {
 		const bad = await mkdtemp(join(tmpdir(), "eval-engine-feed-bad-"));
 		try {
