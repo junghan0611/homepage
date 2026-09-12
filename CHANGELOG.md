@@ -5,6 +5,42 @@ CalVer snapshots (`vYYYY.M.D[-suffix]`) of the homepage repo. Past tense — wha
 
 ## Unreleased
 
+## v2026.9.12 — SICM reading edition and immutable Eval engine
+
+### Features
+
+- Published complete English and Korean reading editions of the SICM Preface and
+  Chapter 1 from pinned `sicm-book@4088864` source, with exact Org source, license,
+  translation provenance, anchors, equations, Scheme blocks, footnotes, and all eleven
+  original chapter images preserved as separate evidence layers.
+- Rendered the full mathematical layer to build-time MathML and added an Emmy-derived
+  Figure 1.1 view whose browser cell computes the path, checks a strict book-bound error,
+  and draws the accepted 80-point SVG rather than copying an output image.
+- Published the Homepage-owned Eval engine at immutable release path
+  `/eval/engine/releases/2026.9.12/`: frozen `cell-v1`, separately versioned `claim-v1`,
+  conformance fixtures, exact hashes, runtime pins, license, CORS, and immutable caching.
+- Opened bilingual engine documentation and browser conformance pages while keeping
+  explicit consumers autonomous and free to remain on older immutable releases.
+
+### Fixes
+
+- Repaired upstream Org rendering scars only in generated Hugo pages while leaving the
+  pinned source bytes authoritative, and normalized the independently reviewed Korean
+  translation without weakening source-structure preservation.
+- Replaced fragile substring-only claim checks with explicit scalar, structured-field,
+  and fragment assertion modes without changing frozen `cell-v1` compatibility semantics.
+
+### Verification
+
+- Recorded independent bilingual review for every translation segment and real Chromium
+  candidate receipts for the computed SICM figure and Scittle keyword-map assertions.
+- Passed the production browser gate on English and Korean routes: engine conformance
+  PASS, 512 Chapter 1 MathML elements per language, Figure 1.1 maximum error
+  `0.00016772069029036274`, 80 SVG points, `book-bound=true`, exact release bytes,
+  restricted CSP, CORS, and immutable cache headers.
+- Retired the root construction marker only after the production receipt passed, replacing
+  a future promise with a current source/runtime/browser-receipt statement.
+
 ## v2026.9.11 — Authology and Eval source-first pages
 
 ### Features
