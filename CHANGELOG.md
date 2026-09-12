@@ -5,9 +5,26 @@ CalVer snapshots (`vYYYY.M.D[-suffix]`) of the homepage repo. Past tense — wha
 
 ## Unreleased
 
-- Declared `releases[]` array order as the normative publication order in the engine
-  discovery feed, so a consumer can detect a newer release from position alone without
-  reimplementing the release-id grammar.
+## v2026.9.13-fix.1 — Feed order is a promise, not an inference
+
+Widening release ids to `-<label>.<n>` on the same day handed every consumer a parsing
+job the contract never acknowledged. The first external adopter hit it within the hour:
+`"2026.9.12-fix.1".split(".").map(Number)` yields `[2026,9,NaN,1]`, and the comparison
+returns false without throwing — a watcher that reports "nothing newer" in silence, which
+is the failure mode this repository forbids by design.
+
+- Declared `releases[]` array order normative in the discovery feed's guarantee paragraph:
+  publication order, oldest first, `latest` always the last element, and a previously
+  observed position never displaced by an insertion in front of it. A consumer answers
+  "is anything newer than what I adopted" from array position alone; the release-id sort
+  rules are how the publisher builds that order, not a procedure a consumer must follow.
+- Verified the claim against the bytes a consumer actually reads. `assertFeedOrder` runs
+  in the builder, in the rehearsal fixture, and over `public/eval/engine/releases.json`,
+  with reversed-order and displaced-`latest` feeds as negative controls. The schema is
+  unchanged — no index field — so a consumer already reading the feed is unaffected.
+- Pointed the adoption receipt in `llms.txt` and the garden's registry at
+  https://aionsclubs.org/eval/engine/adopted.json, measured 200 from both sides, so a
+  public claim about an adopter carries a readable receipt.
 
 ## v2026.9.13 — Second-release lifecycle and public authority
 

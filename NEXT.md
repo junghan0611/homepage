@@ -19,12 +19,6 @@ GLG의 첫 연재 글이 공개된다.** GLG가 발행/보류를 정하고, 어�
 - **P2 — `inspectRelease`의 symlink**: named entry를 `lstat`으로 regular file인지 보지 않아
   safe leaf symlink가 릴리즈 루트 밖을 가리킬 수 있다. trusted git source라 `v2026.9.13`
   blocker는 아니었다 (Sol 판정). 다음에 엔진을 손댈 때 닫는다.
-- **피드 배열 순서를 규범으로 선언** (진행 중): 계약의 보증 문단이 id 존재와
-  `manifestSha256`만 열거하고 `releases[]` 순서를 약속하지 않는다. 그래서 소비자가 4단 정렬과
-  접미사 문법을 재구현해야 하고, 첫 채택자가 실제로 그걸 틀렸다 —
-  `"2026.9.12-fix.1".split(".").map(Number)` → `[2026,9,NaN,1]` → 조용히 "nothing newer".
-  **`-<label>.<n>`을 켜면서 파싱 부담을 소비자에게 같이 넘긴 것**이 원인. 배열 순서는 이미
-  빌더 정렬 + strict-prefix append-only로 사실상 규범이니, 선언 비용이 0이다.
 
 ## 연재 계획 — 기술 하네스 글쓰기
 
