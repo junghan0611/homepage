@@ -101,7 +101,58 @@ try {
 		}
 	};
 	await expectFeedFailure(["2026.9.12", "2026.9.12-fix.1", "2026.9.12-docs.1"], "consecutive n", "duplicate n");
-	await expectFeedFailure(["2026.9.12-fix.1", "2026.9.12-docs.3"], "consecutive n", "gapped n");
+	await expectFeedFailure(["2026.9.12", "2026.9.12-fix.1", "2026.9.12-docs.3"], "consecutive n", "gapped n");
+	await expectFeedFailure(["2026.9.12-fix.1"], "bare release", "suffix without bare");
+	for (const name of ["2026.2.30", "2025.2.29"]) {
+		try {
+			parseReleaseId(name);
+			fail(`accepted non-Gregorian id ${name}`);
+		} catch (error) {
+			if (!String(error.message).includes("Gregorian")) fail(`non-Gregorian id ${name} failed with the wrong error: ${error.message}`);
+		}
+	}
+	const expectMutationFailure = async (label, needle, mutate) => {
+		const bad = await mkdtemp(join(tmpdir(), "eval-engine-feed-mut-"));
+		try {
+			await mutate(bad);
+			try {
+				await buildFeed(bad);
+				fail(`${label} was accepted`);
+			} catch (error) {
+				if (!String(error.message).includes(needle)) fail(`${label} failed with the wrong error: ${error.message}`);
+			}
+		} finally {
+			await rm(bad, { recursive: true, force: true });
+		}
+	};
+	await expectMutationFailure("rogue file", "directory entries", async (bad) => {
+		await writeRelease(bad, "2026.9.12", [["cell-v1", "cell"], ["claim-v1", "claim"], ["conformance-v1", "{}"]]);
+		await writeFile(join(bad, "2026.9.12", "rogue.txt"), "no");
+	});
+	await expectMutationFailure("path escape", "leaf filename", async (bad) => {
+		const id = "2026.9.12";
+		const dir = join(bad, id);
+		await mkdir(dir);
+		const conf = Buffer.from("{}");
+		await writeFile(join(dir, "conformance-v1.json"), conf);
+		const escaped = "../outside.js";
+		const fake = sha256(Buffer.from("escaped"));
+		const manifest = Buffer.from(`${JSON.stringify({
+			format: 1,
+			release: id,
+			basePath: `/eval/engine/releases/${id}/`,
+			modules: [{ id: "cell-v1", path: `/eval/engine/releases/${id}/${escaped}`, sha256: fake }],
+			conformance: { path: `/eval/engine/releases/${id}/conformance-v1.json`, sha256: sha256(conf) },
+		}, null, 2)}\n`);
+		await writeFile(join(dir, "manifest.json"), manifest);
+		await writeFile(join(dir, "SHA256SUMS"), Buffer.from(`${fake}  ${escaped}\n${sha256(conf)}  conformance-v1.json\n`));
+	});
+	await expectMutationFailure("duplicate SHA256SUMS name", "repeats", async (bad) => {
+		const written = await writeRelease(bad, "2026.9.12", [["cell-v1", "cell"], ["claim-v1", "claim"], ["conformance-v1", "{}"]]);
+		const dir = join(bad, "2026.9.12");
+		const first = written.modules[0];
+		await writeFile(join(dir, "SHA256SUMS"), Buffer.from(`${first.sha256}  cell-v1.${first.sha256}.js\n${first.sha256}  cell-v1.${first.sha256}.js\n`));
+	});
 	await mkdir(join(root, "2026.9.12-fix"));
 	try {
 		await buildFeed(root);
