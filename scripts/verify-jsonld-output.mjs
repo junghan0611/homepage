@@ -53,6 +53,7 @@ const pick = (graph, type) => graph.find((node) => node["@type"] === type);
 /* Locked in docs/semantic-jsonld.md: the same alternateName set the garden's Person node
    carries. The two nodes declare one person through sameAs, so the sets must not drift. */
 const ALTERNATE_NAMES = ["GLG", "GLGMAN", "힣", "힣맨", "정한"];
+const CONTENT_LICENSE = "https://creativecommons.org/licenses/by-nc-sa/4.0/";
 
 const pages = [
 	{ path: "public/index.html", permalink: `${origin}/`, lang: "en", pageType: "ProfilePage", fragment: "profilepage" },
@@ -79,6 +80,12 @@ for (const page of pages) {
 
 	const website = pick(graph, "WebSite");
 	if (website?.["@id"] !== `${origin}/#website`) fail(`${page.path} WebSite @id drifted`);
+
+	/* The original-writing layer states its own terms; the engine and the SICM reading
+	   edition answer to different licenses and must not inherit this one. */
+	const blog = pick(graph, "Blog");
+	if (blog?.["@id"] !== `${origin}/#blog`) fail(`${page.path} Blog @id drifted`);
+	else if (blog.license !== CONTENT_LICENSE) fail(`${page.path} Blog license is ${blog.license}, expected ${CONTENT_LICENSE}`);
 
 	const node = pick(graph, page.pageType);
 	if (!node) {

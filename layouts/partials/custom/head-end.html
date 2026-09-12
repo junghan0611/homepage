@@ -53,12 +53,15 @@
     "publisher" (dict "@id" $personId)
   }}
 
-  {{/* 공통 노드 3 — Blog (원작 글 컬렉션의 안정 노드) */}}
+  {{/* 공통 노드 3 — Blog (원작 글 컬렉션의 안정 노드)
+       license: 원작 글 층의 조건. 엔진(GPL-3.0-only)·SICM 읽기판(CC BY-NC-SA 3.0)은
+       다른 층이라 여기 상속되지 않는다. SSOT는 README License 표와 /llms.txt. */}}
   {{ $blog := dict
     "@type" "Blog"
     "@id" $blogId
     "name" "Authology"
     "url" (printf "%s/blog/" $origin)
+    "license" "https://creativecommons.org/licenses/by-nc-sa/4.0/"
     "inLanguage" (slice "en" "ko")
     "isPartOf" (dict "@id" $websiteId)
     "publisher" (dict "@id" $personId)

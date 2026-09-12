@@ -26,7 +26,7 @@ AI/검색엔진이 이 사이트를 (1) 누가 쓴 글인지(신원), (2) 한 �
 |---|---|---|
 | 전 페이지 공통 | `Person` `#person` | alternateName `[GLG, GLGMAN, 힣, 힣맨, 정한]`(가든 Person 노드와 동일 집합), `knowsAbout`, `knowsLanguage [ko,en]`, 프로필 이미지, **`sameAs`** |
 | 전 페이지 공통 | `WebSite` `#website` | `publisher → #person`, `inLanguage ['en','ko']` 고정 |
-| 전 페이지 공통 | `Blog` `#blog` | 원작 글 컬렉션의 안정 노드, `isPartOf → #website`, `publisher → #person` |
+| 전 페이지 공통 | `Blog` `#blog` | 원작 글 컬렉션의 안정 노드, `isPartOf → #website`, `publisher → #person`, `license` CC BY-NC-SA 4.0 — **원작 글 층만**. 엔진(GPL-3.0-only)·SICM(CC BY-NC-SA 3.0)은 다른 층이라 상속되지 않는다 |
 | 홈(slug=index) | `ProfilePage` | `@id <permalink>#profilepage`, `mainEntity → #person`, `about → #person`, `isPartOf → #website`, `description`, `primaryImageOfPage`(ImageObject 640×640) |
 | `/about/` | `AboutPage` | `@id <permalink>#aboutpage`, `mainEntity → #person`, `about → #person`, `isPartOf → #website`, `description`. 리프 번들이라 `.Section`이 비어 논리 경로 `.Path == "/about"`로 집는다 |
 | `/blog/` 목록면 | `CollectionPage` | `@id <permalink>#collectionpage`, `mainEntity → #blog` |

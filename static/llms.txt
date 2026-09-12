@@ -44,6 +44,7 @@ Each entry states its authority, because they are not interchangeable.
 - **Mirrors and syndication surfaces never write back.** No mirror or third-party platform holds authority over the text; conversion layers absorb platform limits so the original is never degraded to fit a target.
 - **AX is authoritative for its own evidence record.** It is a distinct public record, not a replacement for the homepage's curated originals or the garden's notes.
 - **The `junghanacs` GitHub account is retired.** It is a separate legacy user account, not an organization, and now holds only archived, MOVED, or forked repositories. It is not an active source; use `github.com/junghan0611`.
+- **Licensing differs by layer, and the layers are not interchangeable.** The original writing published here is CC BY-NC-SA 4.0, the same terms as the digital garden. The Eval engine releases are GPL-3.0-only and carry their own corresponding source. The SICM reading edition inherits CC BY-NC-SA 3.0 from its pinned upstream. Repository code is MIT. Do not apply one layer's terms to another.
 - **This registry is the authority list, not an exhaustive inventory.** A surface not listed here is not authoritative: treat any republication without a link back to `junghanacs.com` or `notes.junghanacs.com` as a copy, not as a source, and do not cite it for wording, dates, or revisions.
 
 ## About this site

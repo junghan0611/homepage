@@ -105,7 +105,8 @@ The machine-readable version of this list, with the authority of each surface st
 
 | Layer | License |
 |---|---|
-| Repository code | MIT — see [`LICENSE`](LICENSE) |
+| Original writing (`/blog/`, `/about/`, and the curated pages) | CC BY-NC-SA 4.0 — same terms as the digital garden |
+| Repository code | MIT — see [`LICENSE`](LICENSE); the hextra starter scaffolding's notice is retained beside this site's own |
 | Eval engine releases | GPL-3.0-only — the unminified artifact is its own corresponding source ([`/eval/licenses/GPL-3.0.txt`](https://junghanacs.com/eval/licenses/GPL-3.0.txt)) |
 | SICM reading edition | CC BY-NC-SA 3.0, inherited from the pinned upstream source |
 | Bundled runtime components | Apache-2.0 · BSD-2-Clause · EPL-1.0 · MIT — receipts at [`/javascript/`](https://junghanacs.com/javascript/) and [`/eval/runtime/sbom.json`](https://junghanacs.com/eval/runtime/sbom.json) |
