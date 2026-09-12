@@ -16,10 +16,10 @@
   "translation": {
     "language": "ko",
     "license": "CC BY-NC-SA 3.0 Unported",
-    "status": "reading translation draft",
+    "status": "first reading translation; independently cross-reviewed by source segment",
     "files": {
       "preface.ko.org": "daee6ddfadd2dd7d29b29b7de8d82c44ff882dac613a6333d0da081a63316404",
-      "chapter001.ko.org": "a4855196e66ac758f5bc9cc654b7d725c5d55e4e33fe98cabed3c2bf9eed3c03"
+      "chapter001.ko.org": "ccee8f8d0e51c6888a3116e3a316254b0a2042e3f771db3695aa589ee6db4e92"
     },
     "noEndorsement": "The original authors, upstream editors, and publisher have not reviewed or endorsed this translation."
   },

@@ -4,51 +4,81 @@
     "commit": "4088864745715d8afa923162155e63795d43a375",
     "sha256": "efc987664d30dd3bfd399933797c2e799842ecf92d831e6ce9fb50ffabd11c2e"
   },
-  "status": "first Korean reading translation; structural review complete, full independent bilingual review pending",
+  "status": "first Korean reading translation; complete independent bilingual cross-review by segment",
   "segments": [
     {
       "id": "00-04",
-      "sourceLines": [1, 815],
+      "sourceLines": [
+        1,
+        815
+      ],
       "sourceSha256": "14567b6b7eb5acdf3e40cb9e04306788520cd634a0d4716972bb4101df81daf9",
       "translationPath": "dev/eval/sicm/translation/chapter001/ch1-00-04.ko.org",
-      "translationSha256": "0a7dcd7005ba22e63ee1346ddd72e79a1efb4fbedf73aa015dc7059e1140a9e6",
-      "draftedBy": "openai-codex/gpt-5.6-terra"
+      "translationSha256": "fd152b87046339e60c651d5c80d8de6c264febc1796ff2544cbb68dcff6bbf1f",
+      "draftedBy": "openai-codex/gpt-5.6-terra",
+      "reviewedBy": "claude-code/claude-opus-5",
+      "reviewResult": "10 prose corrections plus terminology normalization",
+      "reviewedAt": "2026-09-12"
     },
     {
       "id": "05",
-      "sourceLines": [815, 1539],
+      "sourceLines": [
+        815,
+        1539
+      ],
       "sourceSha256": "0224e42c06d15a84070cd87f4cebb0871dcdac957c8e7a2f1ee20495b4c6e017",
       "translationPath": "dev/eval/sicm/translation/chapter001/ch1-05.ko.org",
-      "translationSha256": "1d2e3f9c5b06425683fee9d985e685fd6583cf4c1179effc15aeaaeee3dfe004",
-      "draftedBy": "claude-code/claude-opus-5"
+      "translationSha256": "eb777f58c2fc0d7bd3e091864526b1462c41a5242ae815c184caf2d1867e73b5",
+      "draftedBy": "claude-code/claude-opus-5",
+      "reviewedBy": "openai-codex/gpt-5.6-terra",
+      "reviewResult": "PASS; no meaning defect found",
+      "reviewedAt": "2026-09-12"
     },
     {
       "id": "06",
-      "sourceLines": [1539, 3244],
+      "sourceLines": [
+        1539,
+        3244
+      ],
       "sourceSha256": "1cae4ab1ede23da726e3bef81218caab86b3c1390a2ce706ceda94d5751cdc84",
       "translationPath": "dev/eval/sicm/translation/chapter001/ch1-06.ko.org",
-      "translationSha256": "91206b21985bb669c6381f3761adf6e14c731f915aa094911ea959c0a7652244",
-      "draftedBy": "zai/glm-5.3"
+      "translationSha256": "7bb31525165cc423e596a1523f21668228f47f04c49cfb140d80d3c7f8562970",
+      "draftedBy": "zai/glm-5.3",
+      "reviewedBy": "xai/grok-4.6",
+      "reviewResult": "5 meaning or direction corrections",
+      "reviewedAt": "2026-09-12"
     },
     {
       "id": "07-09",
-      "sourceLines": [3244, 4748],
+      "sourceLines": [
+        3244,
+        4748
+      ],
       "sourceSha256": "d7fd4dc57879fa404879cac6b2f9e40fbe8bfe36a815021382a5928afad9187e",
       "translationPath": "dev/eval/sicm/translation/chapter001/ch1-07-09.ko.org",
-      "translationSha256": "3d8ecf90144b384e3fd13c2e34801d4bee0dca2c68cc0bd160ec4547e056182e",
+      "translationSha256": "5b8112ce1fd0f5a15ee911c4c162d9a0556fd8c492a4f661cd232b581bf74b56",
       "draftedBy": "xai/grok-4.6",
       "retiredDraft": {
         "sha256": "1bfa1b4cdb2d00c0f25d3af24be4eae9a90116fa83d8ea2741c5b9464e0cec1f",
         "receipt": "Rejected before assembly: 75 f또는, 24 co또는, 59 broken Lagrangi tokens, and 44 English sentence starts"
-      }
+      },
+      "reviewedBy": "zai/glm-5.3",
+      "reviewResult": "cross-reviewed together with 10-12; terminology normalization",
+      "reviewedAt": "2026-09-12"
     },
     {
       "id": "10-12",
-      "sourceLines": [4748, 6379],
+      "sourceLines": [
+        4748,
+        6379
+      ],
       "sourceSha256": "3eed377b54171a2a9bc58963214c30333ffcda02eb4e00909d0f3b178419e845",
       "translationPath": "dev/eval/sicm/translation/chapter001/ch1-10-12.ko.org",
-      "translationSha256": "f42e8e25478c45c3a8b3a9278e87bb70e6d69364134899b6744a2a96b4e4210d",
-      "draftedBy": "xai/grok-4.6"
+      "translationSha256": "6a7c814d3d108224e9c413265ac064b301d2f792896d8e3166bca58efcfa5bd9",
+      "draftedBy": "xai/grok-4.6",
+      "reviewedBy": "zai/glm-5.3",
+      "reviewResult": "2 clarity corrections plus terminology normalization",
+      "reviewedAt": "2026-09-12"
     }
   ],
   "checks": {
@@ -63,7 +93,11 @@
       "array displays",
       "source, example, and export blocks after known source-block repair"
     ],
-    "orderIndependent": ["single-line dollar-delimited math tokens"],
-    "manual": "Sampled Korean prose review across all five segments; not a substitute for full independent bilingual review"
-  }
+    "orderIndependent": [
+      "single-line dollar-delimited math tokens"
+    ],
+    "manual": "Complete independent bilingual prose review by source segment; see dev/eval/sicm/translation/REVIEW.md"
+  },
+  "reviewReceipt": "dev/eval/sicm/translation/REVIEW.md",
+  "reviewReceiptSha256": "ac47a4e1931f764b946683eaa718a771369b80448741ce9ebeaae795950dfbec"
 }
