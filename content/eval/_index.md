@@ -4,8 +4,6 @@ description: "Executable writing, computational books, and browser experiments."
 type: eval
 comments: false
 toc: false
-sidebar:
-  exclude: true
 runtime: true
 eyebrow: "junghanacs.com / eval"
 ---

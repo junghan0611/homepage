@@ -80,19 +80,22 @@ menu:
     #   name: Talks
     #   pageRef: /talks
       # weight: 4
-    - identifier: about
-      name: About
-      pageRef: /about
-      weight: 4
     - name: Notes ↗
-      weight: 5
+      weight: 4
       url: "https://notes.junghanacs.com"
+    - name: Agenda ↗
+      weight: 5
+      url: "https://agenda.junghanacs.com"
     - name: AX ↗
       weight: 6
       url: "https://ax.junghanacs.com"
-    - name: Agenda ↗
+    - name: AIONS ↗
       weight: 7
-      url: "https://agenda.junghanacs.com"
+      url: "https://aionsclubs.org"
+    - identifier: about
+      name: About
+      pageRef: /about
+      weight: 8
    # - name: Search
    #   weight: 7
    #   params:
@@ -137,15 +140,7 @@ menu:
     #   params:
     #     icon: x-twitter
 
-  sidebar:
-      - identifier: more
-        name: More
-        params:
-          type: separator
-        weight: 1
-      - name: Notes ↗
-        weight: 2
-        url: "https://notes.junghanacs.com"
+  sidebar: []
      # - name: All Links ↗
      #   weight: 8
      #   url: "https://allmylinks.com/junghanacs"

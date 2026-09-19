@@ -3,8 +3,6 @@ title: "Projects"
 description: "junghan0611의 오픈소스 프로젝트"
 toc: false
 layout: wide
-sidebar:
-  exclude: true
 ---
 
 <div class="hx-mt-4"></div>
@@ -19,6 +17,6 @@ junghan0611의 오픈소스 도구들 — 가든-네이티브, 에이전트 주�
         link="/projects/entwurf"
         title="entwurf"
         icon="share"
-        subtitle="가든-시민 디스패치 기반 — Claude Code, Copilot, Codex, Antigravity, OMP, pi가 garden id로 서로를 부를 수 있게 하는 얇은 다리." >}}
+        subtitle="Herdr와 tmux의 형제 AI 세션: pi, Claude Code, Codex, Copilot, OMP, Antigravity가 각자의 인증·도구·트랜스크립트를 유지한 채 서로 메시지를 보내고 형제를 열 수 있습니다." >}}
 
 {{< /cards >}}

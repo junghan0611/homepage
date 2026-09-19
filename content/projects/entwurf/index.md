@@ -25,7 +25,7 @@ A thin bridge that lets independent **pi**, **Claude Code**, **Codex**, **Copilo
 auth, tools, or transcript.
 {{< /hextra/hero-subtitle >}}
 
-<div class="hx-mt-10 hx-mb-10">
+<div style="margin: 2.5rem 0;">
 {{< hextra/hero-button text="Start in Herdr" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#install" >}}
 {{< hextra/hero-button text="View on GitHub" link="https://github.com/junghan0611/entwurf" >}}
 </div>
@@ -114,7 +114,7 @@ Not a decorative synonym for session id, worker, delegate, or subagent. Each har
 its own identity and transcript; entwurf supplies a narrow addressable surface between
 siblings.
 
-<div class="hx-mt-10 hx-mb-10">
+<div style="margin: 2.5rem 0;">
 {{< hextra/hero-button text="Read the Entwurf README" link="https://github.com/junghan0611/entwurf#readme" >}}
 {{< hextra/hero-button text="Read the Herdr plugin guide" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md" >}}
 </div>

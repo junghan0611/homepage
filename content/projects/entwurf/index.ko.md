@@ -25,7 +25,7 @@ entwurf
 얇은 다리(bridge)입니다.
 {{< /hextra/hero-subtitle >}}
 
-<div class="hx-mt-10 hx-mb-10">
+<div style="margin: 2.5rem 0;">
 {{< hextra/hero-button text="Herdr에서 시작하기" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#install" >}}
 {{< hextra/hero-button text="GitHub에서 보기" link="https://github.com/junghan0611/entwurf" >}}
 </div>
@@ -109,7 +109,7 @@ session id, worker, delegate, subagent의 장식적 동의어가 아닙니다. �
 정체성과 트랜스크립트를 그대로 유지하며, entwurf는 형제 세션들 사이에 좁은 주소 표면 하나만
 제공합니다.
 
-<div class="hx-mt-10 hx-mb-10">
+<div style="margin: 2.5rem 0;">
 {{< hextra/hero-button text="Entwurf README 읽기" link="https://github.com/junghan0611/entwurf#readme" >}}
 {{< hextra/hero-button text="Herdr 플러그인 안내 읽기" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md" >}}
 </div>
