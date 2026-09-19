@@ -20,8 +20,9 @@ entwurf
 <div class="hx-mt-6"></div>
 
 {{< hextra/hero-subtitle >}}
-A thin bridge that lets already-existing agent harnesses address one another by **garden id** —
-without pretending to own each other's transcript, auth, or runtime.
+A thin bridge that lets independent **pi**, **Claude Code**, **Codex**, **Copilot**, **OMP**, and
+**Antigravity** sessions address one another by **garden id** — without taking over each other's
+auth, tools, or transcript.
 {{< /hextra/hero-subtitle >}}
 
 <div class="hx-mt-6 hx-mb-6">
@@ -59,15 +60,23 @@ entwurf check-bridge
   >}}
 {{< /hextra/feature-grid >}}
 
-### Five harnesses, one address space
+### Six harnesses, one address space
 
 {{< hextra/feature-grid cols="3" >}}
-  {{< hextra/feature-card icon="claude" title="Claude Code" subtitle="Mailbox-backed self-fetch meta-session, registered by a SessionStart hook." >}}
-  {{< hextra/feature-card icon="chip" title="Copilot CLI" subtitle="Self-fetch rail with a first-prompt birth hook and an extension-armed receiver." >}}
-  {{< hextra/feature-card icon="lightning-bolt" title="Antigravity" subtitle="Native-push citizen with automatic PreInvocation birth and live gRPC delivery." >}}
-  {{< hextra/feature-card icon="collection" title="OMP" subtitle="Self-fetch citizen opened under the visible-fresh contract." >}}
-  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="Adapter that hosts the ACP plugin and the live control-socket surface." >}}
+  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="Garden-native sessions with a live control-socket surface." >}}
+  {{< hextra/feature-card icon="claude" title="Claude Code" subtitle="An independent session, connected without absorbing its auth, tools, or transcript." >}}
+  {{< hextra/feature-card icon="chip" title="Codex" subtitle="Its own harness session, addressable alongside the other garden citizens." >}}
+  {{< hextra/feature-card icon="chip" title="Copilot CLI" subtitle="An independent session, connected without absorbing its auth, tools, or transcript." >}}
+  {{< hextra/feature-card icon="collection" title="OMP" subtitle="A visible sibling session with its own runtime boundary." >}}
+  {{< hextra/feature-card icon="lightning-bolt" title="Antigravity" subtitle="An independent session with live native-push delivery." >}}
 {{< /hextra/feature-grid >}}
+
+### Herdr is an integration, not the boundary
+
+Entwurf also has a Herdr workbench integration: it activates the **pi** and **Claude Code**
+sessions that Herdr has integrated and provides a state pane showing their visible placement.
+Herdr owns the workbench; Entwurf remains the independent garden-address and delivery layer for
+all six harnesses.
 
 ### Garden id is deliberate vocabulary
 
