@@ -114,7 +114,7 @@ Not a decorative synonym for session id, worker, delegate, or subagent. Each har
 its own identity and transcript; entwurf supplies a narrow addressable surface between
 siblings.
 
-<div style="margin: 2.5rem 0;">
+<div style="margin: 2.5rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
 {{< hextra/hero-button text="Read the Entwurf README" link="https://github.com/junghan0611/entwurf#readme" >}}
 {{< hextra/hero-button text="Read the Herdr plugin guide" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md" >}}
 </div>

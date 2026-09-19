@@ -109,7 +109,7 @@ session id, worker, delegate, subagent의 장식적 동의어가 아닙니다. �
 정체성과 트랜스크립트를 그대로 유지하며, entwurf는 형제 세션들 사이에 좁은 주소 표면 하나만
 제공합니다.
 
-<div style="margin: 2.5rem 0;">
+<div style="margin: 2.5rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
 {{< hextra/hero-button text="Entwurf README 읽기" link="https://github.com/junghan0611/entwurf#readme" >}}
 {{< hextra/hero-button text="Herdr 플러그인 안내 읽기" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md" >}}
 </div>
