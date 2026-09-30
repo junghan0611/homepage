@@ -21,7 +21,9 @@ SSOT: [homepage#3 — Cloudflare Workers 배포](https://github.com/junghan0611/
 - 브랜치 `cloudflare-workers`: `wrangler.jsonc`, `scripts/build-site.sh`(빌드), `scripts/verify-deployed.mjs`(응답 gate), `docs/deploy-cloudflare.md`(계약), `_headers` 재구조(겹치는 규칙에 같은 헤더 이름 금지, `/ko/eval/*` CSP 추가, llms charset). Sol 교차검토 2회 반영.
 - 측정: workers.dev에서 `verify-deployed.mjs` 통과. Netlify production은 `/ko/eval/` CSP 누락으로 실패(이전 전부터 있던 결함 — 전환하면 닫힌다).
 - Hugo: GLG 결정으로 0.163.3(로컬 nix와 같음). Workers Builds 빌드 변수 `HUGO_VERSION=0.163.3`, `GO_VERSION`은 1.26.x로 명시해 로그 확인.
-- Next: (1) Workers Builds 연결(`cf builds` — 트리거·빌드 변수, production 브랜치는 처음엔 `cloudflare-workers`) → 빌드 로그로 Hugo·Go·wrangler 확인 → gate. (2) **apex 전환** — Netlify 구독을 오늘 해지하므로 그 전에. apex CNAME 제거 → Worker custom domain, www는 proxied + Single Redirect 301, `verify-deployed.mjs https://junghanacs.com` + HSTS. DNS는 nixos-config 소관이라 결과를 알린다. GLG 승인 대기.
+- **apex 전환 완료 2026-09-30 12:33 KST** (Version `a46804b7`, 커밋 `84ed799`): apex = Worker custom domain, www = AAAA 100:: proxied + 301 rule, `always_use_https` on. 엣지 측정 정상. 기록·되돌리기는 `docs/deploy-cloudflare.md`.
+- **남은 수렴**: 1.1.1.1·8.8.8.8 일부 노드가 옛 Netlify NS(`dns*.p06.nsone.net`)에 붙어 Netlify를 본다 — Netlify DNS zone 삭제가 해법(GLG, DM 358). 그 뒤 `node scripts/verify-deployed.mjs https://junghanacs.com` 녹색이 관문.
+- Next: Workers Builds(Git 연동) — 자격은 GLG 결정 대기(nixos-config 권고 (c) 대시보드 Git 연결 → 자동 빌드 토큰). 연결되면 `cf builds triggers environment-variables upsert`로 `HUGO_VERSION=0.163.3`·`GO_VERSION`, 빌드 로그로 Hugo·Go·wrangler·빌드 시간 측정(garden 이전의 선례). production 브랜치는 main 머지 전까지 `cloudflare-workers`.
 - **garden 위험**: `notes.junghanacs.com`도 Netlify(`notes-junghanacs.netlify.app`). 구독 해지 시 사이트가 계속 서빙되는지 미확인 — 사이트·팀·DNS zone은 지우지 않는다.
 - 호출: `CLOUDFLARE_API_TOKEN=$(<~/.cf-token-glg) wrangler …` / `cf …` — 전역 export 금지, 토큰 prefix 없이 `cf`를 부르면 GLG OAuth(전권). `cf`는 cwd에 `.cloudflare/`를 쓴다(gitignore됨). 사용법 SSOT는 agent-config `cloudflare` 스킬. 토큰 범위는 정책 원문 기준으로 custom domain·route·Access 모두 있음.
 - Do not touch:

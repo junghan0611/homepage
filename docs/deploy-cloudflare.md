@@ -82,3 +82,14 @@ canonical 호스트면 X-Robots-Tag 없음. 본문은 비교하지 않으므로 
   인증서를 만든다. 같은 이름의 CNAME이 있으면 만들 수 없으므로 전환 때 Netlify CNAME을 먼저 지웠다.
 - www는 Worker에 붙이지 않는다. proxied `AAAA 100::`(originless placeholder) + Single Redirect `www → apex` 301,
   쿼리 보존. zone 규칙이라 nixos-config#11 소관이다.
+
+## 전환 기록과 되돌리기 (2026-09-30)
+
+- 12:33 KST apex CNAME(→`junghanacs.netlify.app`) 삭제 → `wrangler deploy`(커밋 `84ed799`)가 custom domain과
+  Worker 소유 `AAAA 100::`(proxied, read-only)·인증서(Google Trust Services)를 만들었다.
+- 12:35 www CNAME 삭제 → `AAAA 100::` proxied + zone 리다이렉트 규칙 `www → apex` 301(쿼리 보존).
+  zone 설정 `always_use_https`를 켰다(http://가 200이었다).
+- 되돌리기 순서: Worker custom domain 해제와 www 리다이렉트 규칙 비활성을 **먼저** 하고 CNAME을 복원한다.
+  CNAME만 다시 만들면 Worker 소유 레코드와 충돌하거나 리다이렉트가 남는다. `wrangler.jsonc`의 `routes`가
+  남아 있으면 다음 배포(Workers Builds 포함)가 apex를 다시 붙이므로 함께 되돌린다. Netlify 사이트와 도메인
+  연결이 살아 있어야 되돌릴 곳이 있다.
