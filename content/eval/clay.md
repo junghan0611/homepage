@@ -10,7 +10,7 @@ runtime: true
 eyebrow: "Eval / Clay"
 ---
 
-Clay is the JVM-side authoring path. Its notebook stays Clojure source; Netlify does not
+Clay is the JVM-side authoring path. Its notebook stays Clojure source; the site build does not
 run Clojure and this release does not commit Clay-rendered document HTML.
 
 ## A split receipt

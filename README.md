@@ -1,4 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/03636ee7-adf3-4993-af03-75907d1f5d14/deploy-status)](https://app.netlify.com/projects/junghanacs/deploys)
 
 # homepage — junghanacs.com
 
@@ -13,13 +12,13 @@
 
 | Layer | Choice |
 |---|---|
-| SSG | [Hugo](https://gohugo.io) `0.156.0` (extended) |
-| Theme | [hextra](https://github.com/imfing/hextra) `v0.12.3` (Hugo module), locally styled with Catppuccin Mocha |
+| SSG | [Hugo](https://gohugo.io) `0.163.3` (extended) |
+| Theme | [hextra](https://github.com/imfing/hextra) `v0.13.0` (Hugo module), locally styled with Catppuccin Mocha |
 | Languages | bilingual — `en` (default) / `ko`, in-tree i18n |
 | Eval | Homepage-owned engine: Hugo content plus hash-pinned runtime; immutable releases under `static/eval/engine/releases/`; consumers adopt an exact release. Contract: `docs/eval-engine-contract.md` |
 | Comments | [remark42](https://remark42.com) (self-hosted) |
 | Analytics | [Umami](https://umami.is) (self-hosted; omitted from Eval) |
-| Host | Netlify → `junghanacs.com` (apex canonical) |
+| Host | Cloudflare Workers static assets → `junghanacs.com` (apex canonical, `www` 301) |
 
 ## Develop
 
@@ -29,11 +28,10 @@
 hugo mod get -u            # update the Hugo module deliberately
 ```
 
-Hugo is pinned to `0.156.0` in `netlify.toml` (matches hextra's recommended version).
-`./run.sh v` is the deployment contract: it verifies the self-hosted Eval runtime,
+Hugo is pinned to `extended_0.163.3` by the Workers Builds variable `HUGO_VERSION`, and
+`scripts/build-site.sh` stops if the installed Hugo differs. `./run.sh v` is the local release gate: it verifies the self-hosted Eval runtime,
 corresponding source, URL graph, CSP boundary, and rendered Hugo output. The local
-Nix-provided Hugo may differ; hextra `theme.toml` `min_version` is `0.146.0`. Use the
-pinned binary for an exact release check when necessary.
+Nix-provided Hugo is the same `0.163.3`; hextra's `min_version` is `0.146.0`.
 
 ## Structure
 
@@ -45,9 +43,11 @@ static/eval/    self-hosted runtime bundles, notices, manifest, and SBOM
 static/eval/engine/releases/  immutable content-addressed engine releases
 docs/           public contracts (eval engine, SICM reading, JSON-LD)
 dev/            receipts and translation working surface; not public HTML
-scripts/        runtime and rendered-output verification gates
+scripts/        build (build-site.sh), runtime/rendered-output gates, deployed-response gate
 hugo.yaml       site config (baseURL, languages, modules, menus)
-netlify.toml    build command + HUGO_VERSION / NODE_VERSION
+wrangler.jsonc  Cloudflare Worker: static assets, apex custom domain
+.node-version   Node for Workers Builds
+netlify.toml    retired Netlify build (kept until the Netlify site is removed)
 go.mod / go.sum hextra module pin
 ```
 
@@ -62,12 +62,16 @@ go.mod / go.sum hextra module pin
 | `docs/eval-engine-contract.md` | engine ownership, immutable releases, discovery vs compatibility |
 | `docs/sicm-reading-contract.md` | SICM reading edition |
 | `docs/semantic-jsonld.md` | JSON-LD identity layer |
+| `docs/deploy-cloudflare.md` | Cloudflare Workers build, headers, domain, deployed gate |
 
 ## Deploy
 
 Pushes to `main` on [`junghan0611/homepage`](https://github.com/junghan0611/homepage)
-trigger Netlify's source/runtime verification → Hugo build → rendered-output verification
-pipeline, serving `junghanacs.com`. No GitHub Actions — deploy is Netlify-only.
+trigger Cloudflare Workers Builds: `scripts/build-site.sh` (source/runtime verification →
+Hugo build → rendered-output verification) → `wrangler deploy`, serving `junghanacs.com`.
+Every page footer names the commit it was built from. `node scripts/verify-deployed.mjs
+https://junghanacs.com <commit>` checks the live responses. No GitHub Actions. Contract:
+`docs/deploy-cloudflare.md`.
 
 ## Links
 
