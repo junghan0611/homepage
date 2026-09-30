@@ -23,6 +23,7 @@ build caching off(첫 빌드 기준 시간을 재기 위해), preview builds off
 
 
 - 빌드 명령 `./scripts/build-site.sh`
+- 빌드 감시 제외(path excludes): `NEXT.md`, `NEXT--*.md`, `ROADMAP.md`, `CHANGELOG.md`, `AGENTS.md`, `README.md`, `docs/**` — 사이트 산출물에 들어가지 않는 파일만 바뀐 push는 빌드하지 않는다
 - 배포 명령: production `npx wrangler@4.144.0 deploy` — package.json이 없어 버전을 명령에 고정한다(고정 전 `npx`는
   매번 최신을 받았다). 올릴 때는 빌드 로그의 wrangler 버전을 보고 이 명령과 이 문서를 같이 바꾼다. 비production
   브랜치 빌드는 꺼져 있다(preview builds off — 검증된 것이 아니라 쓰지 않는 것이다)
