@@ -16,7 +16,11 @@ homepage를 Cloudflare Workers의 **정적 자산**으로 서빙하기 위한 �
 | `static/_headers` | 응답 헤더. 전환 전까지 Netlify와 Cloudflare가 같은 파일을 읽는다 |
 | `scripts/verify-deployed.mjs` | 배포된 호스트의 **응답**을 검증하는 관문 |
 
-Workers Builds 설정(대시보드 또는 `cf builds`):
+Workers Builds 설정 — 2026-09-30 GLG가 대시보드에서 연결, `cf builds workers get <script-tag>`로 확인:
+repo `junghan0611/homepage`, production branch `main`, 빌드 토큰은 Cloudflare가 자동 생성(좁은 범위),
+build caching off(첫 빌드 기준 시간을 재기 위해), preview builds off(GLG는 main push 흐름. 미리보기는
+`wrangler versions upload`로 버전 URL을 만든다). **main push = production 배포**다.
+
 
 - 빌드 명령 `./scripts/build-site.sh`
 - 배포 명령: production `npx wrangler deploy`, 비production 브랜치는 Cloudflare 기본값 `npx wrangler preview`
