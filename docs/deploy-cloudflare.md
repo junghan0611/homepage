@@ -32,6 +32,21 @@ build caching off(첫 빌드 기준 시간을 재기 위해), preview builds off
   hugo·node·go 버전을 찍는다. `WORKERS_CI=1`인데 `HUGO_VERSION`이 없으면 멈춘다
 - `SITE_BASE_URL`이 있으면 Hugo `-b`와 두 산출물 verifier의 origin으로 쓴다. 없으면 apex다
 
+### Workers Builds 측정 (2026-09-30, garden 이전의 선례)
+
+| 빌드 | 커밋 | 결과 | 시간(running→stopped) | 메모 |
+|---|---|---|---|---|
+| `7ce6d0b3` | `2ab31e3` | 실패 | 27s | `HUGO_VERSION=0.163.3` → 일반판 Hugo 설치, 버전 검사가 멈춤 |
+| `dd4d18be` | `0af73e5` | 실패 | 25s | extended 설치됨, 공식 문자열 `v0.163.3-<commit>+extended`를 검사가 거부 |
+| `8d4e1f3e` | `50bc9b6` | 성공 | 63s | Hugo 9.6s, modules 1.5s, 업로드 112 files, wrangler 4.144.0 |
+| `bc027caf` | `dcb28d6` | 성공 | 65s | build caching on — "No build output / No dependencies detected to cache. Skipping." |
+
+- 빌드 이미지 설치(Node·Go·Hugo)와 컨테이너 기동이 시간의 대부분이다. Hugo 자체는 10초 안팎(로컬 3초대).
+- **build caching은 package manager 의존성과 프레임워크 산출물만 캐시한다.** Hugo·Go 모듈은 인식하지 않아
+  homepage에는 효과가 없어 껐다. package.json·node_modules가 있는 리포(garden의 Quartz)는 효과가 있을 것이다 — 거기서 측정한다.
+- `npx wrangler deploy`는 package.json 고정이 없어 매번 최신 wrangler를 받는다(측정 4.144.0).
+- 빌드 변수 `WRANGLER_SEND_METRICS=false`로 wrangler 텔레메트리를 끈다(nixos-config의 기기 설정과 같은 선택).
+
 ## `_headers` — 두 호스트가 같은 파일을 읽는다
 
 한 경로에 맞는 규칙이 여럿이고 **같은 헤더 이름**이 겹치면, Netlify는 나중 규칙의 값을 쓰고 **Cloudflare는
