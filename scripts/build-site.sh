@@ -14,8 +14,10 @@ if [[ "${WORKERS_CI:-}" == 1 && -z "${HUGO_VERSION:-}" ]]; then
 	exit 1
 fi
 hugo_version="$(hugo version)"
-if [[ -n "${HUGO_VERSION:-}" ]] && ! grep -qF "v${HUGO_VERSION#extended_}+extended" <<<"$hugo_version"; then
-	echo "build-site: expected hugo extended v${HUGO_VERSION#extended_} (set HUGO_VERSION=extended_<version>), got: ${hugo_version}" >&2
+# 공식 바이너리는 `v0.163.3-<commit>+extended`, nixpkgs는 `v0.163.3+extended+withdeploy`로 찍힌다.
+want="${HUGO_VERSION#extended_}"
+if [[ -n "${HUGO_VERSION:-}" ]] && ! grep -qE "^hugo v${want//./[.]}(-[0-9a-f]+)?\+extended([+ ]|$)" <<<"$hugo_version"; then
+	echo "build-site: expected hugo extended v${want} (set HUGO_VERSION=extended_<version>), got: ${hugo_version}" >&2
 	exit 1
 fi
 echo "$hugo_version"
