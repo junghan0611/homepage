@@ -15,10 +15,16 @@ if [[ "${WORKERS_CI:-}" == 1 && -z "${HUGO_VERSION:-}" ]]; then
 fi
 hugo_version="$(hugo version)"
 # 공식 바이너리는 `v0.163.3-<commit>+extended`, nixpkgs는 `v0.163.3+extended+withdeploy`로 찍힌다.
-want="${HUGO_VERSION#extended_}"
-if [[ -n "${HUGO_VERSION:-}" ]] && ! grep -qE "^hugo v${want//./[.]}(-[0-9a-f]+)?\+extended([+ ]|$)" <<<"$hugo_version"; then
-	echo "build-site: expected hugo extended v${want} (set HUGO_VERSION=extended_<version>), got: ${hugo_version}" >&2
-	exit 1
+if [[ -n "${HUGO_VERSION:-}" ]]; then
+	if [[ ! "$HUGO_VERSION" =~ ^(extended_)?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+		echo "build-site: HUGO_VERSION must look like extended_0.163.3, got: ${HUGO_VERSION}" >&2
+		exit 1
+	fi
+	want="${HUGO_VERSION#extended_}"
+	if ! grep -qE "^hugo v${want//./[.]}(-[0-9a-f]+)?\+extended([+ ]|$)" <<<"$hugo_version"; then
+		echo "build-site: expected hugo extended v${want} (set HUGO_VERSION=extended_<version>), got: ${hugo_version}" >&2
+		exit 1
+	fi
 fi
 echo "$hugo_version"
 echo "node $(node --version)"
