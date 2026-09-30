@@ -1,5 +1,16 @@
+# Response headers, read by Netlify and Cloudflare Workers static assets alike.
+# When overlapping rules set the same header name, Cloudflare joins the values (Netlify keeps
+# the later one), so a header name must live in only one of any two overlapping rules. Cache-Control is
+# therefore set only on the specific rules; the generic Eval rules rely on the platform
+# default (public, max-age=0, must-revalidate). Contract: docs/deploy-cloudflare.md.
+
 /eval/*
-  Cache-Control: public, max-age=0
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-hashes' 'sha256-ZzT+F1TC4hRMjYkMSNZ/GeRWBiHOjeioWsdWcYKFllg='; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/ko/eval/*
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-hashes' 'sha256-ZzT+F1TC4hRMjYkMSNZ/GeRWBiHOjeioWsdWcYKFllg='; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
@@ -8,20 +19,16 @@
 /eval/engine/releases.json
   Cache-Control: public, max-age=0
   Access-Control-Allow-Origin: *
-  X-Content-Type-Options: nosniff
 
 /eval/engine/releases/*
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
-  X-Content-Type-Options: nosniff
 
 /eval/runtime/scittle.d16f6ed9b4f83be00e3ddebd848db1a8e397a3f9389e0ba3402c62f5193439e6.js
   Cache-Control: public, max-age=31536000, immutable
-  X-Content-Type-Options: nosniff
 
 /eval/runtime/scittle.emmy.427b3b750a79853fe0ee90b3036a40894f514995e3f4301776b593f8f449447c.js
   Cache-Control: public, max-age=31536000, immutable
-  X-Content-Type-Options: nosniff
 
 /javascript/*
   Cache-Control: public, max-age=0
@@ -29,3 +36,6 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
   Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8

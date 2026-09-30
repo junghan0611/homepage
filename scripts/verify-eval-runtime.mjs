@@ -151,19 +151,43 @@ const licenseSurface = await read("layouts/eval/license.html");
 for (const surface of [sourceReceipt, licenseSurface]) if (!surface.includes("cellSource") || !surface.includes("evalSource")) fail("Eval corresponding-source links are missing from a public surface");
 
 const headers = await read("static/_headers");
+/* Netlify lets the later matching rule win for a header name; Cloudflare joins the values of every
+   matching rule. One file serves both, so a header name may appear in only one of two overlapping rules. */
+const headerBlocks = headers.split(/\n\s*\n/).map((block) => block.split("\n").filter((line) => line && !line.startsWith("#"))).filter((lines) => lines.length);
+const headerRules = new Map();
+for (const [path, ...lines] of headerBlocks) {
+	/* Only exact paths and one trailing prefix splat are overlap-checked below; anything else needs review. */
+	if (!/^\/[^*:]*$/.test(path) && !/^\/[^*:]*\/\*$/.test(path)) fail(`unsupported _headers pattern ${path}; only /exact and /prefix/* are overlap-checked`);
+	if (headerRules.has(path)) fail(`duplicate _headers rule ${path}`);
+	const names = lines.map((line) => line.trim().slice(0, line.trim().indexOf(":")).toLowerCase());
+	const repeated = names.filter((name, index) => names.indexOf(name) !== index);
+	if (repeated.length) fail(`_headers rule ${path} repeats ${repeated.join(", ")}`);
+	headerRules.set(path, lines.map((line) => line.trim()));
+}
+const ruleNames = (path) => (headerRules.get(path) ?? []).map((line) => line.slice(0, line.indexOf(":")).toLowerCase());
+const covers = (general, specific) => general.endsWith("/*") && specific.startsWith(general.slice(0, -1)) && specific !== general;
+for (const general of headerRules.keys()) for (const specific of headerRules.keys()) {
+	if (!covers(general, specific)) continue;
+	const shared = ruleNames(general).filter((name) => ruleNames(specific).includes(name));
+	if (shared.length) fail(`overlapping _headers rules ${general} and ${specific} both set ${shared.join(", ")}; Cloudflare would join the values`);
+}
+/* The Eval CSP is checked directive by directive: a prefix match would pass 'unsafe-inline' or a
+   dropped boundary directive. */
+const cspDirectives = (policy) => new Map(policy.split(";").map((part) => part.trim().split(/\s+/)).filter(([name]) => name).map(([name, ...values]) => [name, values]));
+const evalCspLine = headerRules.get("/eval/*")?.find((line) => line.startsWith("Content-Security-Policy:"));
+if (!evalCspLine) fail("Eval CSP header rule is missing");
+const evalCsp = cspDirectives(evalCspLine?.slice("Content-Security-Policy:".length) ?? "");
+const expectEvalCsp = { "default-src": ["'self'"], "script-src": ["'self'", "'unsafe-eval'"], "font-src": ["'self'"], "img-src": ["'self'", "data:"], "connect-src": ["'none'"], "object-src": ["'none'"], "base-uri": ["'none'"], "form-action": ["'none'"], "frame-ancestors": ["'none'"] };
+for (const [name, values] of Object.entries(expectEvalCsp)) if (JSON.stringify(evalCsp.get(name)) !== JSON.stringify(values)) fail(`Eval CSP ${name} is ${evalCsp.get(name)?.join(" ") ?? "missing"}, expected ${values.join(" ")}`);
+if ((evalCsp.get("style-src") ?? []).includes("'unsafe-inline'")) fail("Eval CSP permits inline styles");
+for (const localized of ["/ko/eval/*"]) if (JSON.stringify(headerRules.get(localized)) !== JSON.stringify(headerRules.get("/eval/*"))) fail(`${localized} does not carry the same headers as /eval/*`);
 for (const asset of [runtime.scittle, runtime.emmy]) {
 	const publicPath = asset.file.replace(/^static/, "");
 	if (!headers.includes(`${publicPath}\n  Cache-Control: public, max-age=31536000, immutable`)) fail(`immutable runtime header missing: ${publicPath}`);
-	if (headers.indexOf("/eval/*") > headers.indexOf(publicPath)) fail(`generic Eval cache rule must precede immutable runtime override: ${publicPath}`);
 }
-if (!headers.includes("/eval/*\n  Cache-Control: public, max-age=0\n  Content-Security-Policy:")) fail("Eval HTML revalidation/CSP header rule is missing");
 if (!headers.includes("/eval/engine/releases/*\n  Cache-Control: public, max-age=31536000, immutable\n  Access-Control-Allow-Origin: *")) fail("immutable cross-origin engine release header is missing");
-if (!headers.includes("/eval/engine/releases.json\n  Cache-Control: public, max-age=0\n  Access-Control-Allow-Origin: *\n  X-Content-Type-Options: nosniff")) fail("mutable engine discovery feed header is missing");
-if (headers.indexOf("/eval/*") > headers.indexOf("/eval/engine/releases/*")) fail("generic Eval cache rule must precede immutable engine override");
-if (headers.indexOf("/eval/*") > headers.indexOf("/eval/engine/releases.json")) fail("generic Eval cache rule must precede the discovery feed override");
-const evalHeaderBlock = headers.slice(headers.indexOf("/eval/*"), headers.indexOf("/javascript/*"));
-if (evalHeaderBlock.includes("script-src 'self' 'unsafe-inline'")) fail("Eval CSP permits unnecessary inline scripts");
-if (!headers.includes("/javascript/*") || !headers.slice(headers.indexOf("/javascript/*")).includes("Content-Security-Policy:")) fail("JavaScript license CSP header rule is missing");
+if (!headers.includes("/eval/engine/releases.json\n  Cache-Control: public, max-age=0\n  Access-Control-Allow-Origin: *")) fail("mutable engine discovery feed header is missing");
+if (!headerRules.get("/javascript/*")?.some((line) => line.startsWith("Content-Security-Policy:"))) fail("JavaScript license CSP header rule is missing");
 
 for (const [path, notice] of [
 	["static/eval/licenses/GPL-3.0.txt", "GNU GENERAL PUBLIC LICENSE"],
