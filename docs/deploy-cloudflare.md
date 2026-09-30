@@ -23,8 +23,9 @@ build caching off(첫 빌드 기준 시간을 재기 위해), preview builds off
 
 
 - 빌드 명령 `./scripts/build-site.sh`
-- 배포 명령: production `npx wrangler deploy`, 비production 브랜치는 Cloudflare 기본값 `npx wrangler preview`
-  (configuration 문서, 2026-09 기준). package.json이 없어 wrangler 버전은 고정되지 않는다 — 빌드 로그에서 확인한다
+- 배포 명령: production `npx wrangler@4.144.0 deploy` — package.json이 없어 버전을 명령에 고정한다(고정 전 `npx`는
+  매번 최신을 받았다). 올릴 때는 빌드 로그의 wrangler 버전을 보고 이 명령과 이 문서를 같이 바꾼다. 비production
+  브랜치 빌드는 꺼져 있다(preview builds off — 검증된 것이 아니라 쓰지 않는 것이다)
 - 빌드 변수 `HUGO_VERSION=extended_0.163.3` — `extended_` 접두사가 있어야 extended판이 설치된다(`0.163.3`만 쓰면 일반판, 첫 빌드 `7ce6d0b3`에서 측정). `build-site.sh`가 설치된 Hugo가 이 버전의 extended인지 확인하고, 아니면 멈춘다. 로컬 nix Hugo와 같은 버전이다(Netlify는 0.156.0에 고정했었다)
 - 빌드 변수 `GO_VERSION` — go.mod가 `go 1.26`이고 빌드 이미지 기본은 1.24.3이다. `GOTOOLCHAIN=auto`가
   1.26을 받아 올 수도 있지만 측정하지 않았다. 검증한 1.26.x를 명시하고 로그로 확인한다
@@ -44,8 +45,13 @@ build caching off(첫 빌드 기준 시간을 재기 위해), preview builds off
 - 빌드 이미지 설치(Node·Go·Hugo)와 컨테이너 기동이 시간의 대부분이다. Hugo 자체는 10초 안팎(로컬 3초대).
 - **build caching은 package manager 의존성과 프레임워크 산출물만 캐시한다.** Hugo·Go 모듈은 인식하지 않아
   homepage에는 효과가 없어 껐다. package.json·node_modules가 있는 리포(garden의 Quartz)는 효과가 있을 것이다 — 거기서 측정한다.
-- `npx wrangler deploy`는 package.json 고정이 없어 매번 최신 wrangler를 받는다(측정 4.144.0).
+- 고정 전 `npx wrangler deploy`는 최신 wrangler를 받았다(측정 4.144.0) → 배포 명령을 `npx wrangler@4.144.0 deploy`로 고정했다.
 - 빌드 변수 `WRANGLER_SEND_METRICS=false`로 wrangler 텔레메트리를 끈다(nixos-config의 기기 설정과 같은 선택).
+  `bc027caf` 로그에서 텔레메트리 안내 줄이 사라진 것으로 확인했다.
+- **빌드 성공 ≠ 라이브 gate**: CI는 배포 전 산출물 verifier까지 돈다. 배포된 응답은
+  `node scripts/verify-deployed.mjs https://junghanacs.com`을 오라클에서 따로 돌려 확인한다(노트북은 DNS가 가로채진다).
+- 배포 증거: 빌드 로그 안에서 commit SHA와 `Current Version ID`가 이어진다. Worker version metadata에는 commit
+  SHA가 없다. 더 단단히 하려면 산출물에 `build-info.json`(commit·도구 버전)을 넣고 gate가 기대 SHA를 확인한다 — 후속.
 
 ## `_headers` — 두 호스트가 같은 파일을 읽는다
 
