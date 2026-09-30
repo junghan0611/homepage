@@ -89,7 +89,8 @@ const attribute = (tag, name) => {
 	return match?.[1] ?? match?.[2] ?? match?.[3];
 };
 const isPreview = ["deploy-preview", "branch-deploy"].includes(process.env.CONTEXT);
-const expectedOrigin = new URL(isPreview && process.env.DEPLOY_PRIME_URL || "https://junghanacs.com").origin;
+/* SITE_BASE_URL: the -b a non-Netlify build passed to Hugo (scripts/build-site.sh). */
+const expectedOrigin = new URL(process.env.SITE_BASE_URL || isPreview && process.env.DEPLOY_PRIME_URL || "https://junghanacs.com").origin;
 const outputPages = new Map([
 	["public/eval/index.html", "/eval/"], ["public/ko/eval/index.html", "/ko/eval/"], ["public/eval/proto/index.html", "/eval/proto/"],
 	["public/eval/sicm/index.html", "/eval/sicm/"], ["public/eval/sicm/preface/index.html", "/eval/sicm/preface/"],

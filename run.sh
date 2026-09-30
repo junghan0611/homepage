@@ -26,7 +26,7 @@ Usage: ./run.sh [1|e|s|v|h|0]
   1  전체 사이트를 빌드하며 보기  http://localhost:${PORT}/
   e  Eval 엔진 릴리즈 조립 + conformance 검증
   s  SICM 번역 조립 + 읽기 페이지 갱신
-  v  Netlify 계약 검증 + production Hugo build
+  v  원본·산출물 계약 검증 + production Hugo build
   h  도움말
   0  종료
 

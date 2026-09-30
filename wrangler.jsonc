@@ -1,0 +1,12 @@
+// homepage를 Cloudflare Workers 정적 자산으로 서빙한다. Worker 코드는 없다.
+// 빌드: scripts/build-site.sh (Workers Builds 빌드 명령). 계약: docs/deploy-cloudflare.md
+{
+	"name": "junghanacs-homepage",
+	"compatibility_date": "2026-09-30",
+	"workers_dev": true,
+	"preview_urls": true,
+	"assets": {
+		"directory": "./public",
+		"not_found_handling": "404-page"
+	}
+}

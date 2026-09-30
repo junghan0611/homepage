@@ -15,3 +15,7 @@ temp
 
 .claude
 .direnv
+
+# Cloudflare CLI state (cf: account id/email cache, wrangler: local dev state)
+.cloudflare/
+.wrangler/
