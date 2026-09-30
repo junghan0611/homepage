@@ -7,14 +7,15 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 echo "build-site: workers_ci=${WORKERS_CI:-0} commit=${WORKERS_CI_COMMIT_SHA:-local} branch=${WORKERS_CI_BRANCH:-local} base=${SITE_BASE_URL:-https://junghanacs.com/}"
 
 # HUGO_VERSION은 Workers Builds 빌드 변수가 설치할 버전이다. CI에서는 반드시 있어야 하고,
-# 설치된 hugo가 그 버전의 extended가 아니면 멈춘다.
+# 설치된 hugo가 그 버전의 extended가 아니면 멈춘다. 빌드 이미지는 `extended_0.163.3`처럼
+# 접두사를 붙여야 extended를 설치한다(`0.163.3`만 쓰면 일반판 — 2026-09-30 첫 빌드에서 측정).
 if [[ "${WORKERS_CI:-}" == 1 && -z "${HUGO_VERSION:-}" ]]; then
 	echo "build-site: HUGO_VERSION build variable is required on Workers Builds" >&2
 	exit 1
 fi
 hugo_version="$(hugo version)"
-if [[ -n "${HUGO_VERSION:-}" ]] && ! grep -qF "v${HUGO_VERSION}+extended" <<<"$hugo_version"; then
-	echo "build-site: expected hugo extended v${HUGO_VERSION}, got: ${hugo_version}" >&2
+if [[ -n "${HUGO_VERSION:-}" ]] && ! grep -qF "v${HUGO_VERSION#extended_}+extended" <<<"$hugo_version"; then
+	echo "build-site: expected hugo extended v${HUGO_VERSION#extended_} (set HUGO_VERSION=extended_<version>), got: ${hugo_version}" >&2
 	exit 1
 fi
 echo "$hugo_version"

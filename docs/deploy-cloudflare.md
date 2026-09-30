@@ -25,7 +25,7 @@ build caching off(첫 빌드 기준 시간을 재기 위해), preview builds off
 - 빌드 명령 `./scripts/build-site.sh`
 - 배포 명령: production `npx wrangler deploy`, 비production 브랜치는 Cloudflare 기본값 `npx wrangler preview`
   (configuration 문서, 2026-09 기준). package.json이 없어 wrangler 버전은 고정되지 않는다 — 빌드 로그에서 확인한다
-- 빌드 변수 `HUGO_VERSION=0.163.3` (로컬 nix Hugo와 같은 버전. Netlify는 0.156.0에 고정했었다) — `build-site.sh`가 설치된 Hugo가 이 버전의 extended인지 확인하고, 아니면 멈춘다
+- 빌드 변수 `HUGO_VERSION=extended_0.163.3` — `extended_` 접두사가 있어야 extended판이 설치된다(`0.163.3`만 쓰면 일반판, 첫 빌드 `7ce6d0b3`에서 측정). `build-site.sh`가 설치된 Hugo가 이 버전의 extended인지 확인하고, 아니면 멈춘다. 로컬 nix Hugo와 같은 버전이다(Netlify는 0.156.0에 고정했었다)
 - 빌드 변수 `GO_VERSION` — go.mod가 `go 1.26`이고 빌드 이미지 기본은 1.24.3이다. `GOTOOLCHAIN=auto`가
   1.26을 받아 올 수도 있지만 측정하지 않았다. 검증한 1.26.x를 명시하고 로그로 확인한다
 - `build-site.sh` 첫 줄에 `WORKERS_CI`·`WORKERS_CI_COMMIT_SHA`·`WORKERS_CI_BRANCH`·base URL을, 이어서
