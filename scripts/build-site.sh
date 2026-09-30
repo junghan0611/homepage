@@ -30,12 +30,16 @@ echo "$hugo_version"
 echo "node $(node --version)"
 if command -v go >/dev/null; then echo "$(go version) GOTOOLCHAIN=$(go env GOTOOLCHAIN)"; fi
 
-# 푸터에 찍을 빌드 커밋. CI는 Workers Builds가 준 SHA, 로컬은 git HEAD(워킹트리가 더러우면 -dirty).
+# 푸터에 찍을 빌드 커밋. CI는 Workers Builds가 준 SHA(깨끗한 checkout), 로컬은 git HEAD —
+# 수정·untracked 파일이 있으면 Hugo가 그것까지 읽으므로 `+ local changes`를 붙인다(ignored 파일은 제외).
+# 이 스크립트가 세 값의 유일한 출처다: 호출한 셸에서 물려받은 값은 지운다. DIRTY는 unset/true만 쓴다
+# (Hugo는 환경변수 "false"를 문자열로 읽고, 템플릿의 `with`는 그것을 참으로 본다).
+unset HUGO_PARAMS_BUILDCOMMIT HUGO_PARAMS_BUILDDATE HUGO_PARAMS_BUILDDIRTY
 commit="${WORKERS_CI_COMMIT_SHA:-$(git rev-parse HEAD 2>/dev/null || true)}"
 if [[ -n "$commit" ]]; then
 	export HUGO_PARAMS_BUILDCOMMIT="$commit"
 	export HUGO_PARAMS_BUILDDATE="$(git log -1 --format=%cs "$commit" 2>/dev/null || true)"
-	if [[ -z "${WORKERS_CI_COMMIT_SHA:-}" && -n "$(git status --porcelain --untracked-files=no 2>/dev/null)" ]]; then
+	if [[ -z "${WORKERS_CI_COMMIT_SHA:-}" && -n "$(git status --porcelain 2>/dev/null)" ]]; then
 		export HUGO_PARAMS_BUILDDIRTY=true
 	fi
 	echo "build-site: footer commit=${commit} date=${HUGO_PARAMS_BUILDDATE:-?}${HUGO_PARAMS_BUILDDIRTY:+ dirty}"

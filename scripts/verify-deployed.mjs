@@ -40,16 +40,23 @@ const checks = [
 	{ path: "/verify-deployed-missing/", status: 404 },
 ];
 
-/* One response per path, every assertion on that response. */
+/* One response per path, every assertion on that response — including the footer commit below. */
+const bodies = new Map();
 for (const check of checks) {
-	let response;
-	try {
-		response = await fetch(`${origin}${check.path}`, { redirect: "manual", signal: AbortSignal.timeout(15000) });
-		await response.arrayBuffer();
-	} catch (error) { fail(`${check.path} fetch failed: ${error.message}`); continue; }
+	let response, body, lastError;
+	/* One retry on a network exception only (a dropped connection is not an answer); any HTTP status counts. */
+	for (let attempt = 0; attempt < 2 && !response; attempt++) {
+		try {
+			const candidate = await fetch(`${origin}${check.path}`, { redirect: "manual", signal: AbortSignal.timeout(15000) });
+			body = await candidate.text();
+			response = candidate;
+		} catch (error) { lastError = error; }
+	}
+	if (!response) { fail(`${check.path} fetch failed: ${lastError.cause?.code ?? lastError.message}`); continue; }
 	const header = (name) => response.headers.get(name);
 	const where = check.path;
 	if (response.status !== (check.status ?? 200)) { fail(`${where} answered ${response.status}`); continue; }
+	bodies.set(check.path, body);
 	/* fetch joins repeated header lines with ", ": a Cache-Control directive named twice means two rules matched. */
 	const cacheNames = (header("cache-control") ?? "").split(",").map((part) => part.trim().split("=")[0].toLowerCase()).filter(Boolean);
 	if (new Set(cacheNames).size !== cacheNames.length) fail(`${where} cache-control repeats a directive: ${header("cache-control")}`);
@@ -64,16 +71,30 @@ for (const check of checks) {
 	if (!indexable && !robots.includes("noindex")) fail(`${where} is indexable on a workers.dev host`);
 }
 
-/* The footer names the build commit on every page; two languages keep one stale cache from passing alone. */
+/* The publication footer names the build commit. Read from the same 200 responses checked above,
+   so a stale or failing second fetch cannot vouch for the deploy. Only the footer anchor counts: one
+   <p class=site-build>, whose data-build-commit is exactly 40 hex and matches its own commit href. */
+const footerCommit = (html) => {
+	const footers = html.match(/<p class=["']?site-build["']?>[\s\S]*?<\/p>/g) ?? [];
+	if (footers.length !== 1) return { error: `${footers.length} build footers` };
+	const anchor = footers[0].match(/<a href=["']?https:\/\/github\.com\/junghan0611\/homepage\/commit\/([0-9a-f]{40})["']?\s[^>]*\bdata-build-commit=["']?([0-9a-f]{40})(?=["'\s>])/);
+	if (!anchor) return { error: "no commit anchor in the build footer" };
+	if (anchor[1] !== anchor[2]) return { error: `footer href ${anchor[1]} and data-build-commit ${anchor[2]} disagree` };
+	return { commit: anchor[1] };
+};
 let deployedCommit;
-if (expectCommit) for (const path of ["/", "/ko/"]) {
-	try {
-		const html = await (await fetch(`${origin}${path}`, { signal: AbortSignal.timeout(15000), headers: { "cache-control": "no-cache" } })).text();
-		const commit = html.match(/data-build-commit=["']?([0-9a-f]{40})/)?.[1];
-		if (!commit) fail(`${path} footer names no build commit`);
+if (expectCommit) {
+	const seen = new Map();
+	for (const path of ["/", "/ko/", "/eval/"]) {
+		if (!bodies.has(path)) continue; // already failed on status or fetch
+		const { commit, error } = footerCommit(bodies.get(path));
+		if (error) fail(`${path} ${error}`);
 		else if (!commit.startsWith(expectCommit)) fail(`${path} was built from ${commit}, expected ${expectCommit}`);
-		else deployedCommit = commit;
-	} catch (error) { fail(`${path} fetch failed: ${error.message}`); }
+		else seen.set(path, commit);
+	}
+	/* A short expected prefix could match two different full commits; the pages must agree. */
+	if (new Set(seen.values()).size > 1) fail(`pages were built from different commits: ${[...seen].map(([path, commit]) => `${path} ${commit.slice(0, 12)}`).join(", ")}`);
+	else deployedCommit = [...seen.values()][0];
 }
 
 if (failures.length) {
