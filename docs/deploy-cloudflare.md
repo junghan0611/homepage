@@ -52,7 +52,9 @@ build caching off(첫 빌드 기준 시간을 재기 위해), preview builds off
 - **빌드 성공 ≠ 라이브 gate**: CI는 배포 전 산출물 verifier까지 돈다. 배포된 응답은
   `node scripts/verify-deployed.mjs https://junghanacs.com`을 오라클에서 따로 돌려 확인한다(노트북은 DNS가 가로채진다).
 - 배포 증거: 빌드 로그 안에서 commit SHA와 `Current Version ID`가 이어진다. Worker version metadata에는 commit
-  SHA가 없다. 더 단단히 하려면 산출물에 `build-info.json`(commit·도구 버전)을 넣고 gate가 기대 SHA를 확인한다 — 후속.
+  SHA가 없다. 그래서 `build-site.sh`가 커밋을 Hugo에 넘겨(`HUGO_PARAMS_BUILDCOMMIT`, `…BUILDDATE`) **모든 페이지
+  푸터**에 `Built from <sha7> · <커밋 날짜>`와 `data-build-commit`을 찍는다. `verify-deployed.mjs <origin> <commit>`이
+  `/`와 `/ko/`의 푸터가 그 커밋인지 확인한다. 로컬 빌드는 git HEAD를 쓰고, 워킹트리가 더러우면 `+ local changes`를 붙인다.
 
 ## `_headers` — 두 호스트가 같은 파일을 읽는다
 
@@ -83,7 +85,7 @@ apex를 연결한 뒤에도 workers.dev 주소는 남으므로 이 규칙을 유
 ```bash
 ./scripts/build-site.sh                                   # 로컬: 빌드 + 산출물 검증
 node scripts/verify-deployed.mjs https://junghanacs-homepage.junghanacs.workers.dev
-node scripts/verify-deployed.mjs https://junghanacs.com   # 전환 뒤 canonical 호스트
+node scripts/verify-deployed.mjs https://junghanacs.com "$(git rev-parse HEAD)"   # canonical 호스트 + 배포 커밋
 ```
 
 `verify-deployed.mjs`는 **헤더와 상태 코드의 관문**이다. 경로마다 응답 하나를 받아 모든 판정을 그 응답에 한다:

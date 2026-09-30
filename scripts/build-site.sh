@@ -30,6 +30,17 @@ echo "$hugo_version"
 echo "node $(node --version)"
 if command -v go >/dev/null; then echo "$(go version) GOTOOLCHAIN=$(go env GOTOOLCHAIN)"; fi
 
+# 푸터에 찍을 빌드 커밋. CI는 Workers Builds가 준 SHA, 로컬은 git HEAD(워킹트리가 더러우면 -dirty).
+commit="${WORKERS_CI_COMMIT_SHA:-$(git rev-parse HEAD 2>/dev/null || true)}"
+if [[ -n "$commit" ]]; then
+	export HUGO_PARAMS_BUILDCOMMIT="$commit"
+	export HUGO_PARAMS_BUILDDATE="$(git log -1 --format=%cs "$commit" 2>/dev/null || true)"
+	if [[ -z "${WORKERS_CI_COMMIT_SHA:-}" && -n "$(git status --porcelain --untracked-files=no 2>/dev/null)" ]]; then
+		export HUGO_PARAMS_BUILDDIRTY=true
+	fi
+	echo "build-site: footer commit=${commit} date=${HUGO_PARAMS_BUILDDATE:-?}${HUGO_PARAMS_BUILDDIRTY:+ dirty}"
+fi
+
 node scripts/verify-eval-runtime.mjs
 rm -rf public
 hugo --gc --minify ${SITE_BASE_URL:+-b "$SITE_BASE_URL"}

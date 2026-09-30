@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 /** Header and status gate for a deployed homepage: the responses, not the files that should produce them.
- * Usage: node scripts/verify-deployed.mjs <origin>   e.g. https://junghanacs.com
+ * Usage: node scripts/verify-deployed.mjs <origin> [<commit>]   e.g. https://junghanacs.com 3ead173
+ * With <commit>, the page footers (`data-build-commit`) must name that commit: the only link here
+ * from the deployed bytes back to the source, since a Worker version carries no commit.
  * Contract SSOT: docs/deploy-cloudflare.md. static/_headers existing proves nothing about what a host
- * sends; Cloudflare joins overlapping rules and Netlify does not. This gate does not prove which commit
- * is deployed — bodies are not compared.
+ * sends; Cloudflare joins overlapping rules and Netlify does not.
  */
 import { readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const origin = process.argv[2]?.replace(/\/$/, "");
-if (!origin) { console.error("usage: node scripts/verify-deployed.mjs <origin>"); process.exit(2); }
+if (!origin) { console.error("usage: node scripts/verify-deployed.mjs <origin> [<commit>]"); process.exit(2); }
+const expectCommit = process.argv[3]?.toLowerCase();
+if (expectCommit && !/^[0-9a-f]{7,40}$/.test(expectCommit)) { console.error(`not a commit: ${expectCommit}`); process.exit(2); }
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const { runtime } = JSON.parse(await readFile(resolve(root, "data/eval/runtime.json"), "utf8"));
 const engine = JSON.parse(await readFile(resolve(root, "data/eval/engine.json"), "utf8"));
@@ -61,8 +64,20 @@ for (const check of checks) {
 	if (!indexable && !robots.includes("noindex")) fail(`${where} is indexable on a workers.dev host`);
 }
 
+/* The footer names the build commit on every page; two languages keep one stale cache from passing alone. */
+let deployedCommit;
+if (expectCommit) for (const path of ["/", "/ko/"]) {
+	try {
+		const html = await (await fetch(`${origin}${path}`, { signal: AbortSignal.timeout(15000), headers: { "cache-control": "no-cache" } })).text();
+		const commit = html.match(/data-build-commit=["']?([0-9a-f]{40})/)?.[1];
+		if (!commit) fail(`${path} footer names no build commit`);
+		else if (!commit.startsWith(expectCommit)) fail(`${path} was built from ${commit}, expected ${expectCommit}`);
+		else deployedCommit = commit;
+	} catch (error) { fail(`${path} fetch failed: ${error.message}`); }
+}
+
 if (failures.length) {
 	console.error(`deployed verification failed for ${origin}:\n  - ${failures.join("\n  - ")}`);
 	process.exit(1);
 }
-console.log(`deployed verified: ${origin} — ${checks.length} paths; status, Cache-Control directives, exact Eval CSP (en/ko), immutable engine release + runtime, CORS, llms charset, ${indexable ? "HSTS, no X-Robots-Tag (canonical host)" : "noindex (workers.dev host)"}`);
+console.log(`deployed verified: ${origin}${deployedCommit ? ` @ ${deployedCommit.slice(0, 7)}` : ""} — ${checks.length} paths; status, Cache-Control directives, exact Eval CSP (en/ko), immutable engine release + runtime, CORS, llms charset, ${indexable ? "HSTS, no X-Robots-Tag (canonical host)" : "noindex (workers.dev host)"}`);
