@@ -73,4 +73,12 @@ canonical 호스트면 X-Robots-Tag 없음. 본문은 비교하지 않으므로 
   301이 필요하면 경로를 `_redirects`에 하나씩 적는다. `/* /:splat/ 301`은 JS·JSON까지 걸려 쓰지 않는다.
 - 대소문자를 구분한다. 대문자가 든 파일을 대소문자가 다른 URL로 부르면 404다(Netlify는 200).
 - 없는 `/ko/…` 경로는 한국어 404를 준다(Netlify는 영어 404).
-- HSTS는 Netlify가 기본으로 붙였다. apex를 연결할 때 zone 설정으로 확인한다(nixos-config#11).
+- HSTS는 Netlify가 기본으로 붙였다(`max-age=31536000`). Cloudflare에서는 `build-site.sh`가 산출물에
+  `https://junghanacs.com/*` 규칙으로 같은 값을 붙이고, `verify-deployed.mjs`가 canonical 호스트에서 확인한다.
+
+## 도메인
+
+- apex `junghanacs.com`은 `wrangler.jsonc`의 `routes`에 `custom_domain: true`로 선언한다. 배포가 proxied DNS 레코드와
+  인증서를 만든다. 같은 이름의 CNAME이 있으면 만들 수 없으므로 전환 때 Netlify CNAME을 먼저 지웠다.
+- www는 Worker에 붙이지 않는다. proxied `AAAA 100::`(originless placeholder) + Single Redirect `www → apex` 301,
+  쿼리 보존. zone 규칙이라 nixos-config#11 소관이다.

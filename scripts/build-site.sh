@@ -27,10 +27,14 @@ hugo --gc --minify ${SITE_BASE_URL:+-b "$SITE_BASE_URL"}
 node scripts/verify-eval-output.mjs
 node scripts/verify-jsonld-output.mjs
 
-# workers.dev의 production·preview 주소는 정본이 아니다. Cloudflare만 읽는 절대 URL 규칙이라
-# 공유 static/_headers가 아니라 이 산출물에만 붙인다.
+# Cloudflare만 읽는 절대 URL 규칙이라 공유 static/_headers가 아니라 이 산출물에만 붙인다.
+# workers.dev의 production·preview 주소는 정본이 아니다(noindex). canonical 호스트는 Netlify가
+# 기본으로 보내던 HSTS를 이어받는다.
 cat >> public/_headers <<'HEADERS'
 
 https://:host.junghanacs.workers.dev/*
   X-Robots-Tag: noindex
+
+https://junghanacs.com/*
+  Strict-Transport-Security: max-age=31536000
 HEADERS

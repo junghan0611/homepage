@@ -5,6 +5,8 @@
 	"compatibility_date": "2026-09-30",
 	"workers_dev": true,
 	"preview_urls": true,
+	// apex만 Worker에 붙인다. www는 proxied AAAA 100:: + Single Redirect 301 (zone 규칙, nixos-config#11).
+	"routes": [{ "pattern": "junghanacs.com", "custom_domain": true }],
 	"assets": {
 		"directory": "./public",
 		"not_found_handling": "404-page"

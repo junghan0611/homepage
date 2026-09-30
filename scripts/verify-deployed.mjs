@@ -56,6 +56,7 @@ for (const check of checks) {
 	if (check.cors && header("access-control-allow-origin") !== "*") fail(`${where} access-control-allow-origin is ${header("access-control-allow-origin")}`);
 	if (check.charset && !/;\s*charset=utf-8$/i.test(header("content-type") ?? "")) fail(`${where} content-type has no utf-8 charset: ${header("content-type")}`);
 	const robots = (header("x-robots-tag") ?? "").split(",").map((token) => token.trim().toLowerCase()).filter(Boolean);
+	if (indexable && header("strict-transport-security")?.replace(/\s/g, "") !== "max-age=31536000") fail(`${where} strict-transport-security is ${header("strict-transport-security")}`);
 	if (indexable && robots.length) fail(`${where} carries X-Robots-Tag on the canonical host: ${header("x-robots-tag")}`);
 	if (!indexable && !robots.includes("noindex")) fail(`${where} is indexable on a workers.dev host`);
 }
@@ -64,4 +65,4 @@ if (failures.length) {
 	console.error(`deployed verification failed for ${origin}:\n  - ${failures.join("\n  - ")}`);
 	process.exit(1);
 }
-console.log(`deployed verified: ${origin} — ${checks.length} paths; status, Cache-Control directives, exact Eval CSP (en/ko), immutable engine release + runtime, CORS, llms charset, ${indexable ? "no X-Robots-Tag (canonical host)" : "noindex (workers.dev host)"}`);
+console.log(`deployed verified: ${origin} — ${checks.length} paths; status, Cache-Control directives, exact Eval CSP (en/ko), immutable engine release + runtime, CORS, llms charset, ${indexable ? "HSTS, no X-Robots-Tag (canonical host)" : "noindex (workers.dev host)"}`);
