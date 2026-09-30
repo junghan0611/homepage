@@ -94,8 +94,8 @@ The homepage title names the discipline; these four terms are not interchangeabl
 
 ## Technical stack
 
-- **Build**: Hugo + Hextra theme (bilingual, in-tree i18n), built by Cloudflare Workers Builds on every push to `main`
-- **Hosting**: Cloudflare Workers static assets (apex `junghanacs.com` canonical; `www` redirects 301). Every page footer names the commit it was built from (`data-build-commit`), linking to the source
+- **Build**: Hugo + Hextra theme (bilingual, in-tree i18n), built by Cloudflare Workers Builds on every site-affecting push to `main`
+- **Hosting**: Cloudflare Workers static assets (apex `junghanacs.com` canonical; `www` redirects 301). The footer of every published content page names the commit it was built from (`data-build-commit`), linking to the source
 - **Executable content**: self-hosted, hash-pinned Scittle/Emmy runtime with corresponding source, licenses, SBOM and a strict CSP. Assertion semantics are versioned separately from the evaluator (`claim-v1` beside a frozen `cell-v1`). Evaluation happens in the page and is **not a sandbox**
 - **Structured data**: schema.org JSON-LD `@graph` with stable `@id` — spec at https://github.com/junghan0611/homepage/blob/main/docs/semantic-jsonld.md
 - **Analytics**: Umami (self-hosted)

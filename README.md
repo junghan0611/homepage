@@ -69,7 +69,7 @@ go.mod / go.sum hextra module pin
 Pushes to `main` on [`junghan0611/homepage`](https://github.com/junghan0611/homepage)
 trigger Cloudflare Workers Builds: `scripts/build-site.sh` (source/runtime verification →
 Hugo build → rendered-output verification) → `wrangler deploy`, serving `junghanacs.com`.
-Every page footer names the commit it was built from. `node scripts/verify-deployed.mjs
+The footer of every published page names the commit it was built from. `node scripts/verify-deployed.mjs
 https://junghanacs.com <commit>` checks the live responses. No GitHub Actions. Contract:
 `docs/deploy-cloudflare.md`.
 

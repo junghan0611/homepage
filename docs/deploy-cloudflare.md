@@ -3,8 +3,8 @@
 homepage를 Cloudflare Workers의 **정적 자산**으로 서빙하기 위한 계약이다. Worker 코드는 없다.
 큰 틀(계정·토큰·DNS·터널·Netlify 해지)은 nixos-config#11, 이 리포의 이전은 homepage#3.
 
-상태(2026-09-30): apex는 아직 Netlify가 서빙한다. Worker `junghanacs-homepage`는 workers.dev에서
-실측 중이고, 이 문서의 계약은 `cloudflare-workers` 브랜치에서 만들어졌다.
+상태(2026-09-30): apex `junghanacs.com`을 Worker `junghanacs-homepage`가 서빙한다(12:33 KST 전환). main에
+push하면 Workers Builds가 빌드·배포한다(아래 빌드 감시 제외 파일만 바뀐 push는 빌드하지 않는다).
 
 ## 구성
 
@@ -54,7 +54,9 @@ build caching off(첫 빌드 기준 시간을 재기 위해), preview builds off
 - 배포 증거: 빌드 로그 안에서 commit SHA와 `Current Version ID`가 이어진다. Worker version metadata에는 commit
   SHA가 없다. 그래서 `build-site.sh`가 커밋을 Hugo에 넘겨(`HUGO_PARAMS_BUILDCOMMIT`, `…BUILDDATE`) **모든 페이지
   푸터**에 `Built from <sha7> · <커밋 날짜>`와 `data-build-commit`을 찍는다. `verify-deployed.mjs <origin> <commit>`이
-  `/`와 `/ko/`의 푸터가 그 커밋인지 확인한다. 로컬 빌드는 git HEAD를 쓰고, 워킹트리가 더러우면 `+ local changes`를 붙인다.
+  `/`·`/ko/`·`/eval/`의 푸터가 그 커밋인지 확인한다. 로컬 빌드는 git HEAD를 쓰고, 수정 파일이나 untracked 파일이
+있으면(Hugo가 그것도 읽는다) `+ local changes`를 붙인다. `./run.sh`·`hugo server`는 이 스크립트를 거치지 않아 푸터에
+빌드 줄이 없다. 푸터는 정상 콘텐츠 페이지에만 있다(404·alias·`llms.txt`에는 없음). 날짜는 빌드 시각이 아니라 커밋 날짜다.
 
 ## `_headers` — 두 호스트가 같은 파일을 읽는다
 
@@ -85,14 +87,19 @@ apex를 연결한 뒤에도 workers.dev 주소는 남으므로 이 규칙을 유
 ```bash
 ./scripts/build-site.sh                                   # 로컬: 빌드 + 산출물 검증
 node scripts/verify-deployed.mjs https://junghanacs-homepage.junghanacs.workers.dev
-node scripts/verify-deployed.mjs https://junghanacs.com "$(git rev-parse HEAD)"   # canonical 호스트 + 배포 커밋
+node scripts/verify-deployed.mjs https://junghanacs.com <마지막 성공 빌드의 commit>   # canonical 호스트 + 배포 커밋
+# 문서만 바뀐 커밋은 빌드되지 않으므로 HEAD가 아니라 빌드 로그의 commit을 쓴다
 ```
 
-`verify-deployed.mjs`는 **헤더와 상태 코드의 관문**이다. 경로마다 응답 하나를 받아 모든 판정을 그 응답에 한다:
+`verify-deployed.mjs`는 **헤더와 상태 코드의 관문**이고, 커밋 인자를 주면 **배포 커밋의 관문**도 된다. 경로마다
+응답 하나를 받아 모든 판정을 그 응답에 한다:
 주요 경로 200, Cache-Control directive 중복 없음, Eval 페이지(en/ko)·엔진 릴리즈·런타임의 CSP가
 `static/_headers`의 `/eval/*` 값과 정확히 같음, nosniff, 엔진 릴리즈 파일 전부와 런타임 JS의 immutable,
 `releases.json`의 max-age=0, 릴리즈의 CORS, `/llms.txt` charset, 없는 경로 404, workers.dev면 noindex·
-canonical 호스트면 X-Robots-Tag 없음. 본문은 비교하지 않으므로 **어느 커밋이 배포됐는지는 증명하지 않는다**.
+canonical 호스트면 X-Robots-Tag 없음. 커밋 인자가 있으면 `/`·`/ko/`·`/eval/`의 같은 200 응답에서 푸터 앵커
+하나(`<p class=site-build>`, href와 `data-build-commit`이 같은 40자리)를 읽어 기대 커밋과 대조하고, 세 페이지가
+같은 전체 SHA인지 본다. 다른 경로의 세대까지 증명하지는 않는다. 푸터는 자기 보고이므로 빌드 로그의
+commit→Version ID 기록과 함께 운영 영수증으로 쓴다.
 
 ## 알려진 차이 (Netlify → Workers)
 
