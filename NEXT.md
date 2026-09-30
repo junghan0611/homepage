@@ -3,12 +3,36 @@
 Disposable handoff. Read at session start. `AGENTS.md` holds durable facts; this holds the
 live plan and the next concrete move.
 
-# NOW — 기술 하네스 글쓰기의 첫 판본
+# RAIL — 현재 좌표
+
+SSOT: [homepage#3 — Cloudflare Workers 배포](https://github.com/junghan0611/homepage/issues/3). 큰 틀(계정·토큰·DNS·터널·Netlify 해지)은 [nixos-config#11](https://github.com/junghan0611/nixos-config/issues/11) 소관 — 2026-09-30 homepage#2에서 이관.
+
+- [x] 1·2. DNS·Registrar → Cloudflare (nixos-config#11, 2026-09-29)
+- [x] **선행 (nixos-config)**: 토큰 `~/.cf-token-glg`, wrangler 4.143.0, GitHub App 연결(GLG 말, 미측정) — 2026-09-30 11:37 인계
+- [ ] **실측** `workers.dev` → `docs/` 배포 계약
+- [ ] **리포 설정** `wrangler.jsonc`, 빌드 명령, Hugo `0.156.0` 고정
+- [ ] **검증** `./run.sh v`, custom hostname
+- [ ] **전환 관문** 신·구 비교 → apex 연결 → Netlify 도메인 해제
+
+역할(2026-09-30 GLG): 오라클 = 상시 배포 플랫폼, 노트북 = 켜져 있을 때의 빌드 검수대. nixos-config가 토큰을 준비하면 homepage가 설정·실배포·검증한다.
+
+# NOW — Cloudflare Workers 배포 (#3)
+
+- 브랜치 `cloudflare-workers`: `wrangler.jsonc`, `scripts/build-site.sh`(빌드), `scripts/verify-deployed.mjs`(응답 gate), `docs/deploy-cloudflare.md`(계약), `_headers` 재구조(겹치는 규칙에 같은 헤더 이름 금지, `/ko/eval/*` CSP 추가, llms charset). Sol 교차검토 2회 반영.
+- 측정: workers.dev에서 `verify-deployed.mjs` 통과. Netlify production은 `/ko/eval/` CSP 누락으로 실패(이전 전부터 있던 결함 — 전환하면 닫힌다).
+- Hugo: GLG 결정으로 0.163.3(로컬 nix와 같음). Workers Builds 빌드 변수 `HUGO_VERSION=0.163.3`, `GO_VERSION`은 1.26.x로 명시해 로그 확인.
+- Next: (1) Workers Builds 연결(`cf builds` — 트리거·빌드 변수, production 브랜치는 처음엔 `cloudflare-workers`) → 빌드 로그로 Hugo·Go·wrangler 확인 → gate. (2) **apex 전환** — Netlify 구독을 오늘 해지하므로 그 전에. apex CNAME 제거 → Worker custom domain, www는 proxied + Single Redirect 301, `verify-deployed.mjs https://junghanacs.com` + HSTS. DNS는 nixos-config 소관이라 결과를 알린다. GLG 승인 대기.
+- **garden 위험**: `notes.junghanacs.com`도 Netlify(`notes-junghanacs.netlify.app`). 구독 해지 시 사이트가 계속 서빙되는지 미확인 — 사이트·팀·DNS zone은 지우지 않는다.
+- 호출: `CLOUDFLARE_API_TOKEN=$(<~/.cf-token-glg) wrangler …` / `cf …` — 전역 export 금지, 토큰 prefix 없이 `cf`를 부르면 GLG OAuth(전권). `cf`는 cwd에 `.cloudflare/`를 쓴다(gitignore됨). 사용법 SSOT는 agent-config `cloudflare` 스킬. 토큰 범위는 정책 원문 기준으로 custom domain·route·Access 모두 있음.
+- Do not touch:
+  - 커밋 기준으로만 빌드·업로드 — untracked 초안(`draft: false`)이 섞여 공개된다.
+  - 공유 `static/_headers`에 Cloudflare 전용 문법(`!`, 절대 URL)을 넣지 않는다 — 산출물에서만(`build-site.sh`).
+
+# 연재 — 기술 하네스 글쓰기 (웹 이전 뒤로 보류된 stem)
 
 Eval 엔진의 "두 번째 릴리즈 생애주기" detour는 `v2026.9.13`으로 닫혔다 (CHANGELOG 참조).
-stem으로 복귀한다. 아래 글쓰기 절이 지금의 작업이다.
 
-**바로 다음 한 수**: `content/blog/20260804T094556.md`·`.ko.md`가 워킹트리에 untracked로
+**걸려 있는 한 수**: `content/blog/20260804T094556.md`·`.ko.md`가 워킹트리에 untracked로
 떠 있고 front matter가 `draft: false`다. 그런데 Org 정본
 (`~/sync/org/posts/20260804T094556--…org`)은 아직 `#+hugo_draft: t`다. 세 신호가 어긋나 있다:
 정본은 초안, export는 발행, 이 문서는 "아직 export 안 함". **누군가 `git add -A` 한 번이면
@@ -56,7 +80,8 @@ Netlify 세 context 모두). KO description 다국어와 `/about/` 커버리지�
 ```bash
 git remote -v                       # origin=homepage, oldorg=junghanacs.github.io
 hugo --gc --minify                  # local prod build sanity
-curl -sI https://junghanacs.com | grep -i server       # Netlify serving (apex canonical, www→301)
+curl -sI https://junghanacs.com | grep -i server       # Netlify serving until #3 전환 관문 (apex canonical, www→301)
+whois junghanacs.com | grep -iE 'Registrar:|Expiry'    # Cloudflare, Inc. / 2028-03-25
 ./run.sh v                          # Eval source/runtime + Hugo + rendered URL/source/CSP
 ```
 
