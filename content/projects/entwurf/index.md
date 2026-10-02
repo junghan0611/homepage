@@ -30,7 +30,16 @@ auth, tools, or transcript.
 {{< hextra/hero-button text="View on GitHub" link="https://github.com/junghan0611/entwurf" >}}
 </div>
 
-## Start here: Herdr
+## 0.30.0 — Pi 1.0
+
+{{< callout type="info" >}}
+**[v0.30.0](https://github.com/junghan0611/entwurf/releases/tag/v0.30.0) (2026-10-02) admits Pi 1.0.**
+pi must be in `>=1.0.0 <1.1`. Pi now carries MCP in its core, so a pi citizen reaches the **same
+`entwurf-bridge`** every other harness does, through Pi's built-in MCP — the pi-only tools are gone.
+Get 0.30.0 through the **direct setup** below for now; the Herdr plugin route is not yet connected to 0.30.0.
+{{< /callout >}}
+
+## Start in Herdr
 
 {{< callout type="important" >}}
 **Already using Herdr? Install Entwurf with one command.** The plugin acquires and activates
@@ -46,7 +55,8 @@ herdr plugin install junghan0611/entwurf/plugins/herdr --yes
 pi --entwurf-control
 ```
 
-This is the short path for an existing Herdr setup — it still requires Herdr ≥0.9.0, Node ≥24,
+This is the short path for an existing Herdr setup. Connecting the Herdr plugin to 0.30.0 is still a
+follow-up; if you need 0.30.0's Pi 1.0 path, use the direct setup below. The Herdr path still requires Herdr ≥0.9.0, Node ≥24,
 npm, git, network access, and a first run plus Herdr integration for each harness. The plugin
 does not install a harness, subscription, or login. The [Herdr plugin README](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md)
 covers those one-time steps and the optional status pane.
@@ -57,6 +67,7 @@ Need **Codex**, **Copilot**, **OMP**, **Antigravity**, or **ACP** setup, or are 
 outside Herdr? Use the direct route:
 
 ```bash
+npm install -g "@earendil-works/pi-coding-agent@>=1.0.0 <1.1"   # only if you use pi
 npm install -g @junghanacs/entwurf
 
 entwurf setup /path/to/your-project
@@ -93,7 +104,7 @@ install.
 ### Six harnesses, one address space
 
 {{< hextra/feature-grid cols="3" >}}
-  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="Garden-native sessions with a live control-socket surface." >}}
+  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="Garden-native sessions with a live control-socket surface, calling the same bridge through Pi 1.0's built-in MCP." >}}
   {{< hextra/feature-card icon="claude" title="Claude Code" subtitle="An independent session, connected without absorbing its auth, tools, or transcript." >}}
   {{< hextra/feature-card icon="chip" title="Codex" subtitle="Its own harness session, addressable alongside the other garden citizens." >}}
   {{< hextra/feature-card icon="chip" title="Copilot CLI" subtitle="An independent session, connected without absorbing its auth, tools, or transcript." >}}

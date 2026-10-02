@@ -30,7 +30,16 @@ entwurf
 {{< hextra/hero-button text="GitHub에서 보기" link="https://github.com/junghan0611/entwurf" >}}
 </div>
 
-## 먼저 Herdr에서 시작하세요
+## 0.30.0 — Pi 1.0
+
+{{< callout type="info" >}}
+**[v0.30.0](https://github.com/junghan0611/entwurf/releases/tag/v0.30.0) (2026-10-02)은 Pi 1.0을 받아들입니다.**
+pi는 `>=1.0.0 <1.1` 범위가 필요합니다. Pi가 MCP를 core에 들였기 때문에, 이제 pi 시민도 다른 모든
+하네스와 **같은 `entwurf-bridge`** 를 Pi의 built-in MCP로 부릅니다. pi만을 위한 별도 도구는 걷어냈습니다.
+지금 0.30.0은 아래의 **직접 설치** 경로로 받으세요. Herdr 플러그인 경로는 아직 0.30.0과 연결하지 않았습니다.
+{{< /callout >}}
+
+## Herdr에서 시작하기
 
 {{< callout type="important" >}}
 **이미 Herdr를 쓰고 있나요? 한 명령으로 Entwurf를 설치하세요.** 플러그인이 Herdr가 이미
@@ -46,7 +55,8 @@ herdr plugin install junghan0611/entwurf/plugins/herdr --yes
 pi --entwurf-control
 ```
 
-이는 이미 Herdr를 갖춘 경우의 짧은 경로입니다. Herdr ≥0.9.0, Node ≥24, npm, git, 네트워크와
+이는 이미 Herdr를 갖춘 경우의 짧은 경로입니다. 다만 Herdr 플러그인의 0.30.0 연결은 아직 후속 작업입니다.
+0.30.0의 Pi 1.0 경로가 필요하면 아래 직접 설치를 쓰세요. Herdr ≥0.9.0, Node ≥24, npm, git, 네트워크와
 각 하네스의 첫 실행·Herdr 통합은 여전히 필요합니다. 이 플러그인은 하네스·구독·로그인을
 설치하지 않습니다. 한 번만 하면 되는 과정과 선택적인 상태 pane은 [Herdr 플러그인 README](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md)에서 다룹니다.
 
@@ -56,6 +66,7 @@ pi --entwurf-control
 직접 설치 경로를 사용하세요.
 
 ```bash
+npm install -g "@earendil-works/pi-coding-agent@>=1.0.0 <1.1"   # pi를 쓸 때만
 npm install -g @junghanacs/entwurf
 
 entwurf setup /path/to/your-project
@@ -88,7 +99,7 @@ ACP, Codex, Copilot, OMP, Antigravity 또는 Herdr 밖 작업면은 Entwurf 직�
 ### 여섯 하네스, 하나의 주소 공간
 
 {{< hextra/feature-grid cols="3" >}}
-  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="살아있는 control-socket 표면을 갖는 가든 네이티브 세션." >}}
+  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="살아있는 control-socket 표면을 갖고, Pi 1.0 built-in MCP로 같은 bridge를 부르는 가든 네이티브 세션." >}}
   {{< hextra/feature-card icon="claude" title="Claude Code" subtitle="자신의 인증·도구·트랜스크립트를 유지한 채 이어지는 독립 세션." >}}
   {{< hextra/feature-card icon="chip" title="Codex" subtitle="다른 가든 시민과 나란히 주소를 갖는 자신의 하네스 세션." >}}
   {{< hextra/feature-card icon="chip" title="Copilot CLI" subtitle="자신의 인증·도구·트랜스크립트를 유지한 채 이어지는 독립 세션." >}}
