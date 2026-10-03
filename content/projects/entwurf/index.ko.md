@@ -26,7 +26,7 @@ entwurf
 {{< /hextra/hero-subtitle >}}
 
 <div style="margin: 2.5rem 0;">
-{{< hextra/hero-button text="Herdr에서 시작하기" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#install" >}}
+{{< hextra/hero-button text="Herdr에서 시작하기" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#quick-start" >}}
 {{< hextra/hero-button text="GitHub에서 보기" link="https://github.com/junghan0611/entwurf" >}}
 </div>
 
@@ -36,7 +36,9 @@ entwurf
 **[v0.30.0](https://github.com/junghan0611/entwurf/releases/tag/v0.30.0) (2026-10-02)은 Pi 1.0을 받아들입니다.**
 pi는 `>=1.0.0 <1.1` 범위가 필요합니다. Pi가 MCP를 core에 들였기 때문에, 이제 pi 시민도 다른 모든
 하네스와 **같은 `entwurf-bridge`** 를 Pi의 built-in MCP로 부릅니다. pi만을 위한 별도 도구는 걷어냈습니다.
-지금 0.30.0은 아래의 **직접 설치** 경로로 받으세요. Herdr 플러그인 경로는 아직 0.30.0과 연결하지 않았습니다.
+현재 `main`의 Herdr 플러그인도 같은 npm **0.30.0** 런타임을 설치하며, 플러그인 버전도
+**0.30.0**으로 맞췄습니다. 이 [Herdr 후속 정합](https://github.com/junghan0611/entwurf/issues/126)은
+10월 2일의 런타임 릴리즈와 별도 작업입니다.
 {{< /callout >}}
 
 ## Herdr에서 시작하기
@@ -55,15 +57,16 @@ herdr plugin install junghan0611/entwurf/plugins/herdr --yes
 pi --entwurf-control
 ```
 
-이는 이미 Herdr를 갖춘 경우의 짧은 경로입니다. 다만 Herdr 플러그인의 0.30.0 연결은 아직 후속 작업입니다.
-0.30.0의 Pi 1.0 경로가 필요하면 아래 직접 설치를 쓰세요. Herdr ≥0.9.0, Node ≥24, npm, git, 네트워크와
-각 하네스의 첫 실행·Herdr 통합은 여전히 필요합니다. 이 플러그인은 하네스·구독·로그인을
+이는 이미 Herdr를 갖춘 경우의 짧은 경로이며, 0.30.0의 Pi 1.0 경로도 포함합니다.
+플러그인을 측정한 Herdr 본체는 **0.9.3**이고, 입학 하한은 **Herdr ≥0.9.0**으로 유지합니다.
+Node ≥24, npm, git, 네트워크와 각 하네스의 첫 실행·Herdr 통합은 여전히 필요합니다.
+이 플러그인은 하네스·구독·로그인을
 설치하지 않습니다. 한 번만 하면 되는 과정과 선택적인 상태 pane은 [Herdr 플러그인 README](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md)에서 다룹니다.
 
 ## 직접 설치 — 더 넓은 표면
 
-**Codex**, **Copilot**, **OMP**, **Antigravity**, **ACP**가 필요하거나 Herdr 밖에서 작업한다면
-직접 설치 경로를 사용하세요.
+네이티브 **Codex**, **Copilot**, **OMP**, **Antigravity** 구성이 필요하거나 Herdr 밖에서
+작업한다면 직접 설치 경로를 사용하세요.
 
 ```bash
 npm install -g "@earendil-works/pi-coding-agent@>=1.0.0 <1.1"   # pi를 쓸 때만
@@ -77,7 +80,7 @@ entwurf check-bridge
 `setup` 한 번이면 호스트에 있는 모든 하네스를 찾아 구성하고 각각을 PASS / SKIP / FAIL 로 보고합니다.
 `entwurf pi`는 pi를 control-socket 가든 시민으로 시작합니다. Herdr 통합은 현재 의도적으로
 좁습니다. Herdr에 이미 통합된 pi와 Claude Code만 활성화합니다.
-ACP, Codex, Copilot, OMP, Antigravity 또는 Herdr 밖 작업면은 Entwurf 직접 설치를 사용하세요.
+나머지 네이티브 하네스 또는 Herdr 밖 작업면은 Entwurf 직접 설치를 사용하세요.
 
 ### 디스패치 방식
 
@@ -89,11 +92,11 @@ ACP, Codex, Copilot, OMP, Antigravity 또는 Herdr 밖 작업면은 Entwurf 직�
   {{< hextra/feature-card
         icon="sparkles"
         title="entwurf_fresh_call"
-        subtitle="운영자의 tmux 안에 새 분신 세션을 열고, 그 콜백으로부터 garden id를 알아냅니다." >}}
+        subtitle="Herdr 안에서는 호출자의 워크스페이스에 새 pi·Claude Code 형제를, 밖에서는 tmux에 새 형제를 엽니다. 콜백으로 garden id를 알아냅니다." >}}
   {{< hextra/feature-card
         icon="refresh"
         title="entwurf_resume_call"
-        subtitle="숨은 턴을 실행하지 않고, 잠든 시민을 자신의 garden id로 보이는 창에서 다시 엽니다." >}}
+        subtitle="숨은 턴을 실행하지 않고, 잠든 pi 시민을 자신의 garden id로 보이는 tmux 창에서 다시 엽니다." >}}
 {{< /hextra/feature-grid >}}
 
 ### 여섯 하네스, 하나의 주소 공간

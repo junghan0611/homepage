@@ -26,7 +26,7 @@ auth, tools, or transcript.
 {{< /hextra/hero-subtitle >}}
 
 <div style="margin: 2.5rem 0;">
-{{< hextra/hero-button text="Start in Herdr" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#install" >}}
+{{< hextra/hero-button text="Start in Herdr" link="https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#quick-start" >}}
 {{< hextra/hero-button text="View on GitHub" link="https://github.com/junghan0611/entwurf" >}}
 </div>
 
@@ -36,7 +36,9 @@ auth, tools, or transcript.
 **[v0.30.0](https://github.com/junghan0611/entwurf/releases/tag/v0.30.0) (2026-10-02) admits Pi 1.0.**
 pi must be in `>=1.0.0 <1.1`. Pi now carries MCP in its core, so a pi citizen reaches the **same
 `entwurf-bridge`** every other harness does, through Pi's built-in MCP — the pi-only tools are gone.
-Get 0.30.0 through the **direct setup** below for now; the Herdr plugin route is not yet connected to 0.30.0.
+The Herdr plugin on current `main` now installs that same npm **0.30.0** runtime; its plugin
+version is also **0.30.0**. This [Herdr follow-up](https://github.com/junghan0611/entwurf/issues/126)
+is separate from the October 2 runtime release.
 {{< /callout >}}
 
 ## Start in Herdr
@@ -55,15 +57,16 @@ herdr plugin install junghan0611/entwurf/plugins/herdr --yes
 pi --entwurf-control
 ```
 
-This is the short path for an existing Herdr setup. Connecting the Herdr plugin to 0.30.0 is still a
-follow-up; if you need 0.30.0's Pi 1.0 path, use the direct setup below. The Herdr path still requires Herdr ≥0.9.0, Node ≥24,
-npm, git, network access, and a first run plus Herdr integration for each harness. The plugin
+This is the short path for an existing Herdr setup, including 0.30.0's Pi 1.0 path.
+The plugin is measured with **Herdr 0.9.3**; its admission floor remains **Herdr ≥0.9.0**.
+Node ≥24, npm, git, network access, and a first run plus Herdr integration for each harness
+are still required. The plugin
 does not install a harness, subscription, or login. The [Herdr plugin README](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md)
 covers those one-time steps and the optional status pane.
 
 ## Direct setup — the broader surface
 
-Need **Codex**, **Copilot**, **OMP**, **Antigravity**, or **ACP** setup, or are you working
+Need native **Codex**, **Copilot**, **OMP**, or **Antigravity** setup, or are you working
 outside Herdr? Use the direct route:
 
 ```bash
@@ -78,8 +81,7 @@ entwurf check-bridge
 `setup` composes every harness it finds on the host and reports each one PASS / SKIP / FAIL.
 `entwurf pi` starts pi as a control-socket garden citizen. Herdr integration is deliberately narrow
 today: it activates only Herdr-integrated pi and Claude
-Code. For ACP, Codex, Copilot, OMP, Antigravity, or a non-Herdr workspace, use Entwurf’s direct
-install.
+Code. For the other native harnesses or a non-Herdr workspace, use Entwurf’s direct install.
 
 ### How it dispatches
 
@@ -92,12 +94,12 @@ install.
   {{< hextra/feature-card
         icon="sparkles"
         title="entwurf_fresh_call"
-        subtitle="Opens a NEW sibling session in the operator's tmux and learns its garden id from the callback it makes."
+        subtitle="Opens a NEW visible sibling in the caller's Herdr workspace (pi or Claude Code), or in tmux outside Herdr; learns its garden id from its callback."
   >}}
   {{< hextra/feature-card
         icon="refresh"
         title="entwurf_resume_call"
-        subtitle="Reopens a DORMANT citizen under its own garden id in a visible window, without running a hidden turn."
+        subtitle="Reopens a DORMANT pi citizen under its own garden id in a visible tmux window, without running a hidden turn."
   >}}
 {{< /hextra/feature-grid >}}
 
