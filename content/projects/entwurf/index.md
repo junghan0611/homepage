@@ -20,8 +20,8 @@ entwurf
 <div class="hx-mt-6"></div>
 
 {{< hextra/hero-subtitle >}}
-A thin bridge that lets independent **pi**, **Claude Code**, **Codex**, **Copilot**, **OMP**, and
-**Antigravity** sessions address one another by **garden id** — without taking over each other's
+A thin bridge that lets independent **pi**, **pi-durable**, **Claude Code**, **Codex**, **Copilot**,
+**OMP**, and **Antigravity** sessions address one another by **garden id** — without taking over each other's
 auth, tools, or transcript.
 {{< /hextra/hero-subtitle >}}
 
@@ -30,15 +30,19 @@ auth, tools, or transcript.
 {{< hextra/hero-button text="View on GitHub" link="https://github.com/junghan0611/entwurf" >}}
 </div>
 
-## 0.30.0 — Pi 1.0
+## 0.34.0 — native durable, a matching Herdr plugin
 
 {{< callout type="info" >}}
-**[v0.30.0](https://github.com/junghan0611/entwurf/releases/tag/v0.30.0) (2026-10-02) admits Pi 1.0.**
-pi must be in `>=1.0.0 <1.1`. Pi now carries MCP in its core, so a pi citizen reaches the **same
-`entwurf-bridge`** every other harness does, through Pi's built-in MCP — the pi-only tools are gone.
-The Herdr plugin on current `main` now installs that same npm **0.30.0** runtime; its plugin
-version is also **0.30.0**. This [Herdr follow-up](https://github.com/junghan0611/entwurf/issues/126)
-is separate from the October 2 runtime release.
+**[Core v0.34.0](https://github.com/junghan0611/entwurf/releases/tag/v0.34.0) and the
+[Herdr plugin snapshot](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.9-herdr.0.34.0)
+are published (2026-10-09).** The plugin acquires the existing npm **0.34.0** artifact with a
+registry integrity pin; its independent plugin version is **0.34.0**. The snapshot is not a
+second npm release, and the core release stays Latest.
+
+Ordinary Pi is optional, supported in `>=1.1.0 <1.2`, and calls the same `entwurf-bridge` through
+built-in MCP. The direct **pi-durable** route carries the pinned upstream app/TUI and nine exact
+Pi **1.1.0** SDK members; no separate runtime checkout or ordinary Pi CLI is needed. Core 0.34.0
+adds the live background-task footer and an explicit native-module directory entry.
 {{< /callout >}}
 
 ## Start in Herdr
@@ -51,27 +55,34 @@ read-only pane showing which citizens are visible in the workbench.
 
 ```bash
 # From an existing Herdr workspace, after integrating pi and/or Claude Code
-herdr plugin install junghan0611/entwurf/plugins/herdr --yes
+herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.9-herdr.0.34.0 --yes
 
 # Start pi as an Entwurf citizen in a Herdr pane
 pi --entwurf-control
 ```
 
-This is the short path for an existing Herdr setup, including 0.30.0's Pi 1.0 path.
+This is the short path for an existing Herdr setup, now pinned to the published plugin snapshot.
+The public npm-install journey passed on `main` at **8ed4d1a**, the snapshot's commit;
+installing with the tag itself as `--ref` remains **unmeasured**, not an additional claimed PASS.
 The plugin is measured with **Herdr 0.9.3**; its admission floor remains **Herdr ≥0.9.0**.
 Node ≥24, npm, git, network access, and a first run plus Herdr integration for each harness
 are still required. The plugin
 does not install a harness, subscription, or login. The [Herdr plugin README](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md)
 covers those one-time steps and the optional status pane.
 
+Upgrading a 0.30.1 checkout-carrier installation requires an explicit certified deactivate first;
+the plugin adds no `entwurf` bin to `PATH`. Follow the guide's
+[absolute installed-bin inverse](https://github.com/junghan0611/entwurf/blob/v2026.10.9-herdr.0.34.0/plugins/herdr/README.md#remove-it).
+Uncertified older state is refused, not permission for blind cleanup or migration.
+
 ## Direct setup — the broader surface
 
-Need native **Codex**, **Copilot**, **OMP**, or **Antigravity** setup, or are you working
-outside Herdr? Use the direct route:
+Need managed **pi-durable**, native **Codex**, **Copilot**, **OMP**, or **Antigravity** setup,
+or are you working outside Herdr? Use the direct route:
 
 ```bash
-npm install -g "@earendil-works/pi-coding-agent@>=1.0.0 <1.1"   # only if you use pi
-npm install -g @junghanacs/entwurf
+npm install -g "@earendil-works/pi-coding-agent@>=1.1.0 <1.2"   # only if you use ordinary pi
+npm install -g @junghanacs/entwurf@0.34.0
 
 entwurf setup /path/to/your-project
 entwurf pi
@@ -80,8 +91,18 @@ entwurf check-bridge
 
 `setup` composes every harness it finds on the host and reports each one PASS / SKIP / FAIL.
 `entwurf pi` starts pi as a control-socket garden citizen. Herdr integration is deliberately narrow
-today: it activates only Herdr-integrated pi and Claude
-Code. For the other native harnesses or a non-Herdr workspace, use Entwurf’s direct install.
+today: it activates only Herdr-integrated pi and Claude Code.
+
+`entwurf pi-durable` opens the supplied native durable app. Optional `--native-module <absolute file>`
+or `--native-module-dir <absolute directory>` loads explicitly named native extensions, not a classic
+Pi API shim. Runtime, auth, queues, SQLite, transcripts and recovery remain upstream-owned.
+
+Direct fresh-call supports six backends: **pi**, **Claude Code**, **Copilot**, **OMP**, **Codex**, and
+managed **pi-durable**. Herdr fresh-call and plugin wiring remain **pi / Claude Code** only;
+a bare `--kind` cannot carry `entwurf pi-durable …`. The
+[durable-on-Herdr pilot](https://github.com/junghan0611/entwurf/issues/132) is still unmeasured:
+manual native record/self-fetch, then Herdr detection, then GLG's judgment — no wrapper or fallback.
+Antigravity's existing native-push delivery does not imply fresh-call support.
 
 ### How it dispatches
 
@@ -103,10 +124,11 @@ Code. For the other native harnesses or a non-Herdr workspace, use Entwurf’s d
   >}}
 {{< /hextra/feature-grid >}}
 
-### Six harnesses, one address space
+### Independent harnesses, one address space
 
 {{< hextra/feature-grid cols="3" >}}
-  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="Garden-native sessions with a live control-socket surface, calling the same bridge through Pi 1.0's built-in MCP." >}}
+  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="Garden-native sessions with a live control-socket surface, calling the same bridge through Pi 1.1's built-in MCP." >}}
+  {{< hextra/feature-card icon="puzzle" title="pi-durable" subtitle="The supplied native durable app/TUI, with garden identity and explicit two-way self-fetch; its runtime and storage remain upstream-owned." >}}
   {{< hextra/feature-card icon="claude" title="Claude Code" subtitle="An independent session, connected without absorbing its auth, tools, or transcript." >}}
   {{< hextra/feature-card icon="chip" title="Codex" subtitle="Its own harness session, addressable alongside the other garden citizens." >}}
   {{< hextra/feature-card icon="chip" title="Copilot CLI" subtitle="An independent session, connected without absorbing its auth, tools, or transcript." >}}
@@ -118,7 +140,7 @@ Code. For the other native harnesses or a non-Herdr workspace, use Entwurf’s d
 
 Inside Herdr, Entwurf activates the integrated **pi** and **Claude Code** sessions, and its
 optional read-only status pane shows their visible placement. Herdr owns the workbench; Entwurf
-remains the independent garden-address and delivery layer for all six harnesses — not a Herdr-only
+remains the independent garden-address and delivery layer across these harnesses — not a Herdr-only
 plugin.
 
 ### Garden id is deliberate vocabulary
