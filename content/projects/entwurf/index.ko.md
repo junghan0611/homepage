@@ -30,20 +30,36 @@ entwurf
 {{< hextra/hero-button text="GitHub에서 보기" link="https://github.com/junghan0611/entwurf" >}}
 </div>
 
-## 0.34.0 — 네이티브 durable과 정합한 Herdr 플러그인
+## 0.35.0 — 형제의 협업을 보여 주고, 검증의 경계를 지킨 릴리즈
 
 {{< callout type="info" >}}
-**[Core v0.34.0](https://github.com/junghan0611/entwurf/releases/tag/v0.34.0)과
-[Herdr 플러그인 스냅샷](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.9-herdr.0.34.0)이
-발행됐습니다(2026-10-09).** 플러그인은 레지스트리 무결성 pin으로 기존 npm **0.34.0** 아티팩트를
-받으며, 독립된 플러그인 버전도 **0.34.0**입니다. 스냅샷은 두 번째 npm 릴리즈가 아니며,
+**[Core v0.35.0](https://github.com/junghan0611/entwurf/releases/tag/v0.35.0)과
+[Herdr 플러그인 0.35.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.12-herdr.0.35.0)이
+발행됐습니다(2026-10-12).** 플러그인은 실제 발행된 npm **0.35.0** 아티팩트를 측정한
+레지스트리 무결성 pin으로 받습니다. 별도 플러그인 스냅샷이지 두 번째 npm 릴리즈가 아니며,
 core 릴리즈의 Latest도 그대로입니다.
 
-일반 Pi는 선택 사항이고 지원 범위는 `>=1.1.0 <1.2`입니다. built-in MCP로 다른 하네스와 같은
-`entwurf-bridge`를 부릅니다. 직접 설치의 **pi-durable** 경로는 고정한 업스트림 앱/TUI와 exact
-Pi **1.1.0** SDK 아홉 종을 싣습니다. 별도 런타임 checkout이나 일반 Pi CLI가 필요하지 않습니다.
-Core 0.34.0에는 살아있는 background-task footer와 명시적인 native-module 디렉터리 입구가 더해졌습니다.
+새 데모와 소스 도구를 함께 정리하고, 설치·교체·중단 복구까지 실제 npm 바이트로 확인했습니다.
+플러그인 버전만 올리는 변경이 약 95분의 전체 qualification을 다시 돌리던 낭비도 줄였습니다.
+[#137의 보수적인 TOML-only 판단](https://github.com/junghan0611/entwurf/issues/137)은 코드·게이트·mutant
+변경을 면제하지 않습니다. 이번 실제 플러그인 푸시에서 **CI 4개 성공 / BODY 자동 생략**을 관측했고,
+BODY 없는 SHA를 릴리즈 오라클이 여전히 거부하는 것도 확인했습니다.
 {{< /callout >}}
+
+### 실제 Herdr 안에서, Pi ↔ 네이티브 Claude Code
+
+`pi-shell-acp`에서 `entwurf`로 이름을 바꾼 0.12.0 이후 처음 새로 기록한 협업 데모입니다.
+각자 자신의 하네스와 트랜스크립트를 유지한 두 형제가 garden id와 공식 Entwurf 동사로 만납니다.
+이 GIF는 승인된 원본 그대로이며, 홈페이지용 재촬영이나 재렌더가 아닙니다.
+
+<img src="/projects/entwurf/entwurf-demo.gif" width="1126" height="764" alt="실제 Herdr 작업면에서 Pi와 네이티브 Claude Code가 Entwurf로 협업하는 원본 데모" loading="lazy" style="max-width: 100%; height: auto; border-radius: 0.75rem;">
+
+[데모 원본과 재현 경계](https://github.com/junghan0611/entwurf/blob/v0.35.0/demo/README.md) ·
+[별도 플러그인 설치·복구 수용 기록](https://github.com/junghan0611/entwurf/issues/137#issuecomment-6113846203)
+
+**보여 준 것과 아직 측정하지 않은 것을 구분합니다.** 이 컷의 core 전체 940-claim qualification
+BODY와 native Codex LIVE는 명시적인 **미측정 예외**입니다. 플러그인 BODY 생략이나 기존 영수증이
+그 축의 PASS를 대신하지 않습니다. headless 설치 검증도 실제 Herdr pane의 시민 행을 그린 관측과는 다릅니다.
 
 ## Herdr에서 시작하기
 
@@ -55,23 +71,27 @@ Core 0.34.0에는 살아있는 background-task footer와 명시적인 native-mod
 
 ```bash
 # 기존 Herdr 워크벤치에서 pi 및/또는 Claude Code를 통합한 뒤
-herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.9-herdr.0.34.0 --yes
+herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.12-herdr.0.35.0 --yes
 
 # Herdr pane에서 pi를 Entwurf 시민으로 시작
 pi --entwurf-control
 ```
 
 이미 Herdr를 갖춘 경우의 짧은 경로이며, 이제 발행한 플러그인 스냅샷에 고정합니다.
-실제 공개 npm 설치 여정은 `main`이 스냅샷과 같은 **8ed4d1a**일 때 통과했습니다.
+실제 공개 npm 설치 여정은 `main`이 스냅샷과 같은 **4c5455b**일 때 통과했습니다.
+실제 npm 획득·compiled bridge·세 실행 bin·여덟 동사, 모델 턴 없는 Pi의 입학과 상태 읽기,
+비활성화 뒤 설치 상태 파일 0개·재설치를 확인했습니다. 별도의 실제 npm 0.34.2→0.35.0
+교체·하니스가 심은 중단 지점에서의 제품 복구도 통과했습니다.
 태그 자체를 `--ref`로 사용한 설치는 아직 **미측정**이며 별도의 PASS로 주장하지 않습니다.
 플러그인을 측정한 Herdr 본체는 **0.9.3**이고, 입학 하한은 **Herdr ≥0.9.0**으로 유지합니다.
 Node ≥24, npm, git, 네트워크와 각 하네스의 첫 실행·Herdr 통합은 여전히 필요합니다.
 이 플러그인은 하네스·구독·로그인을
 설치하지 않습니다. 한 번만 하면 되는 과정과 선택적인 상태 pane은 [Herdr 플러그인 README](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md)에서 다룹니다.
 
-0.30.1 checkout-carrier 설치에서 올라오려면 먼저 명시적인 certified deactivate가 필요합니다.
+`herdr-checkout` 후보 설치에서 npm으로 소스를 바꾸려면 먼저 명시적인 certified deactivate가
+필요합니다. 정상적으로 정착한 같은 npm 소스의 설치는 README의 소유권 조건에 따라 갱신할 수 있습니다.
 플러그인은 `PATH`에 `entwurf` bin을 더하지 않으므로 가이드의
-[설치된 절대 bin 경로로 제거](https://github.com/junghan0611/entwurf/blob/v2026.10.9-herdr.0.34.0/plugins/herdr/README.md#remove-it)를 따르세요.
+[설치된 절대 bin 경로로 제거](https://github.com/junghan0611/entwurf/blob/v2026.10.12-herdr.0.35.0/plugins/herdr/README.md#remove-it)를 따르세요.
 인증되지 않은 옛 상태의 거부는 무조건 삭제하거나 마이그레이션해도 된다는 뜻이 아닙니다.
 
 ## 직접 설치 — 더 넓은 표면
@@ -81,7 +101,7 @@ Herdr 밖에서 작업한다면 직접 설치 경로를 사용하세요.
 
 ```bash
 npm install -g "@earendil-works/pi-coding-agent@>=1.1.0 <1.2"   # 일반 pi를 쓸 때만
-npm install -g @junghanacs/entwurf@0.34.0
+npm install -g @junghanacs/entwurf@0.35.0
 
 entwurf setup /path/to/your-project
 entwurf pi
@@ -91,6 +111,11 @@ entwurf check-bridge
 `setup` 한 번이면 호스트에 있는 모든 하네스를 찾아 구성하고 각각을 PASS / SKIP / FAIL 로 보고합니다.
 `entwurf pi`는 pi를 control-socket 가든 시민으로 시작합니다. Herdr 통합은 현재 의도적으로
 좁습니다. Herdr에 이미 통합된 pi와 Claude Code만 활성화합니다.
+
+일반 Pi는 선택 사항이며 지원 범위는 `>=1.1.0 <1.2`입니다. Pi 1.1 built-in MCP로
+다른 하네스와 같은 bridge를 부릅니다. 직접 설치의 **pi-durable** 경로는 고정한 업스트림
+앱/TUI와 exact Pi **1.1.0** SDK 아홉 종을 싣습니다. 별도 런타임 checkout이나 일반 Pi CLI는
+durable의 필수 설치가 아닙니다.
 
 `entwurf pi-durable`은 패키지에 실린 네이티브 durable 앱을 엽니다. 선택적인
 `--native-module <absolute file>` 또는 `--native-module-dir <absolute directory>`는 명시한

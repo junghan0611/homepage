@@ -30,20 +30,37 @@ auth, tools, or transcript.
 {{< hextra/hero-button text="View on GitHub" link="https://github.com/junghan0611/entwurf" >}}
 </div>
 
-## 0.34.0 — native durable, a matching Herdr plugin
+## 0.35.0 — visible sibling collaboration, honest verification boundaries
 
 {{< callout type="info" >}}
-**[Core v0.34.0](https://github.com/junghan0611/entwurf/releases/tag/v0.34.0) and the
-[Herdr plugin snapshot](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.9-herdr.0.34.0)
-are published (2026-10-09).** The plugin acquires the existing npm **0.34.0** artifact with a
-registry integrity pin; its independent plugin version is **0.34.0**. The snapshot is not a
-second npm release, and the core release stays Latest.
+**[Core v0.35.0](https://github.com/junghan0611/entwurf/releases/tag/v0.35.0) and
+[Herdr plugin 0.35.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.12-herdr.0.35.0)
+are published (2026-10-12).** The plugin acquires the actually published npm **0.35.0** artifact
+with its measured registry integrity pin. This is a separate plugin snapshot, not a second npm
+release; the core release stays Latest.
 
-Ordinary Pi is optional, supported in `>=1.1.0 <1.2`, and calls the same `entwurf-bridge` through
-built-in MCP. The direct **pi-durable** route carries the pinned upstream app/TUI and nine exact
-Pi **1.1.0** SDK members; no separate runtime checkout or ordinary Pi CLI is needed. Core 0.34.0
-adds the live background-task footer and an explicit native-module directory entry.
+The renewed demo comes with restored source tooling and real npm install, swap, and recovery
+proofs. Plugin version-only changes no longer waste another roughly 95-minute whole qualification
+run. [#137's conservative TOML-only decision](https://github.com/junghan0611/entwurf/issues/137)
+does not exempt code, gate, or mutant changes. The actual plugin push produced **four successful
+CI jobs / an automatically skipped BODY**; the release oracle still refused that body-less SHA.
 {{< /callout >}}
+
+### Inside real Herdr: Pi ↔ native Claude Code
+
+The first newly recorded collaboration demo since the 0.12.0 rename from `pi-shell-acp` to `entwurf`.
+Two siblings keep their own harnesses and transcripts, meeting through garden ids and official
+Entwurf verbs. This is the approved original GIF, not a homepage retake or re-render.
+
+<img src="/projects/entwurf/entwurf-demo.gif" width="1126" height="764" alt="Original demo of Pi and native Claude Code collaborating through Entwurf in the real Herdr workbench" loading="lazy" style="max-width: 100%; height: auto; border-radius: 0.75rem;">
+
+[Original demo and reproducibility boundaries](https://github.com/junghan0611/entwurf/blob/v0.35.0/demo/README.md) ·
+[Separate plugin install and recovery acceptance](https://github.com/junghan0611/entwurf/issues/137#issuecomment-6113846203)
+
+**What was observed is not what remains unmeasured.** This cut's whole core 940-claim qualification
+BODY and native Codex LIVE remain explicit **unmeasured exceptions**. A skipped plugin BODY or an
+older receipt cannot stand in for their PASS. Headless install evidence also does not certify a
+citizen rendered as a row in a real Herdr pane.
 
 ## Start in Herdr
 
@@ -55,24 +72,28 @@ read-only pane showing which citizens are visible in the workbench.
 
 ```bash
 # From an existing Herdr workspace, after integrating pi and/or Claude Code
-herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.9-herdr.0.34.0 --yes
+herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.12-herdr.0.35.0 --yes
 
 # Start pi as an Entwurf citizen in a Herdr pane
 pi --entwurf-control
 ```
 
 This is the short path for an existing Herdr setup, now pinned to the published plugin snapshot.
-The public npm-install journey passed on `main` at **8ed4d1a**, the snapshot's commit;
-installing with the tag itself as `--ref` remains **unmeasured**, not an additional claimed PASS.
+The public npm-install journey passed on `main` at **4c5455b**, the snapshot's commit:
+real registry acquisition, compiled bridge, three executable bins, eight verbs, zero-turn Pi
+admission and status reads, deactivation with zero install-state files, and reinstall. Separate
+real-npm 0.34.2→0.35.0 swap and product recovery from a harness-seeded torn window also passed.
+Installing with the tag itself as `--ref` remains **unmeasured**, not an additional claimed PASS.
 The plugin is measured with **Herdr 0.9.3**; its admission floor remains **Herdr ≥0.9.0**.
 Node ≥24, npm, git, network access, and a first run plus Herdr integration for each harness
 are still required. The plugin
 does not install a harness, subscription, or login. The [Herdr plugin README](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md)
 covers those one-time steps and the optional status pane.
 
-Upgrading a 0.30.1 checkout-carrier installation requires an explicit certified deactivate first;
-the plugin adds no `entwurf` bin to `PATH`. Follow the guide's
-[absolute installed-bin inverse](https://github.com/junghan0611/entwurf/blob/v2026.10.9-herdr.0.34.0/plugins/herdr/README.md#remove-it).
+Switching from a `herdr-checkout` candidate to npm requires an explicit certified deactivate first.
+A settled same-source npm installation may update under the README's ownership conditions.
+The plugin adds no `entwurf` bin to `PATH`. Follow the guide's
+[absolute installed-bin inverse](https://github.com/junghan0611/entwurf/blob/v2026.10.12-herdr.0.35.0/plugins/herdr/README.md#remove-it).
 Uncertified older state is refused, not permission for blind cleanup or migration.
 
 ## Direct setup — the broader surface
@@ -82,7 +103,7 @@ or are you working outside Herdr? Use the direct route:
 
 ```bash
 npm install -g "@earendil-works/pi-coding-agent@>=1.1.0 <1.2"   # only if you use ordinary pi
-npm install -g @junghanacs/entwurf@0.34.0
+npm install -g @junghanacs/entwurf@0.35.0
 
 entwurf setup /path/to/your-project
 entwurf pi
@@ -92,6 +113,11 @@ entwurf check-bridge
 `setup` composes every harness it finds on the host and reports each one PASS / SKIP / FAIL.
 `entwurf pi` starts pi as a control-socket garden citizen. Herdr integration is deliberately narrow
 today: it activates only Herdr-integrated pi and Claude Code.
+
+Ordinary Pi is optional, supported in `>=1.1.0 <1.2`, and calls the same bridge through
+Pi 1.1 built-in MCP. The direct **pi-durable** route carries the pinned upstream app/TUI and
+nine exact Pi **1.1.0** SDK members; a separate runtime checkout or ordinary Pi CLI is not
+required for durable.
 
 `entwurf pi-durable` opens the supplied native durable app. Optional `--native-module <absolute file>`
 or `--native-module-dir <absolute directory>` loads explicitly named native extensions, not a classic
