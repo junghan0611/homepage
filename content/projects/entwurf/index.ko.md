@@ -30,20 +30,20 @@ entwurf
 {{< hextra/hero-button text="GitHub에서 보기" link="https://github.com/junghan0611/entwurf" >}}
 </div>
 
-## 0.35.1 — ACP 레일의 Claude 5.5, 프롬프트 전에 되읽기
+## 0.36.0 — Entwurf가 소유한 소스와 Pi 1.2 위의 pi-durable
 
 {{< callout type="info" >}}
-**[Core v0.35.1](https://github.com/junghan0611/entwurf/releases/tag/v0.35.1)과
-[Herdr 플러그인 0.35.1](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.13-herdr.0.35.1)이
-발행됐습니다(2026-10-13).** 큐레이션한 Claude ACP 행이 **Opus 5.5**와 **Sonnet 5.5**(그리고 Fable 5.1)로
-옮겨 갔고, Entwurf는 이제 요청을 믿는 대신 드라이버의 set-model 응답을 프롬프트 전에 되읽습니다.
-Entwurf가 만드는 실행은 은퇴한 정확한 Claude 5 id를 pane이 열리기 전에 거절합니다. pi-durable은 읽은 뒤 낡은 inbox 알림을 거둬들이고(#140),
-소스 checkout 메뉴는 이제 영어로 묻습니다. 플러그인은 실제 발행된 npm **0.35.1** 아티팩트를 측정한
-레지스트리 무결성 pin으로 받습니다. 별도 스냅샷이며 core 릴리즈의 Latest도 그대로입니다.
+**[Core v0.36.0](https://github.com/junghan0611/entwurf/releases/tag/v0.36.0)(2026-10-13)과
+[Herdr 플러그인 0.36.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.14-herdr.0.36.0)(2026-10-14)이
+발행됐습니다.** pi-durable의 앱/TUI는 이제 Entwurf가 소유한 소스에서 carrier로 내보내며, 발행된 Pi **1.2.0**
+SDK 아홉 종 위에서 돕니다. 실행·인증·저장·트랜스크립트·복구는 여전히 업스트림 SDK 소유입니다. 일반 Pi
+지원 범위는 `>=1.2.0 <1.3`으로 옮겨 갔습니다. 플러그인은 실제 발행된 npm **0.36.0** 아티팩트를 측정한
+레지스트리 무결성 pin으로 받고, **Herdr 0.9.4**에서 측정했습니다. 별도 스냅샷이며 core 릴리즈의 Latest도 그대로입니다.
 
-core 전체 qualification BODY는 릴리즈 SHA에서 돌았습니다(956/956 claim kill). LIVE 릴리즈 게이트는
-MUST 23 PASS / 0 FAIL이었고, native Codex는 이번 컷에서 이름 붙은 SKIP 하나로 제외했습니다.
-그래서 표준 `--cut` 판정은 BLOCKED로 남았고, 이 컷 한정 예외는 운영자가 승인했습니다.
+core 릴리즈 CI는 네 job과 전체 qualification BODY(971/971 claim kill)를 통과했고, LIVE 릴리즈 게이트는
+MUST 24 PASS / 0 FAIL / 0 SKIP으로 `--cut`을 통과했습니다. 공식 exact-SHA 오라클은 그 CI 실행의 낡은
+step 메타데이터를 거부했고, 운영자가 이 컷 한정 예외 하나를 승인했습니다. 오라클 PASS가 아닙니다.
+플러그인 스냅샷 자신의 CI는 공식 오라클을 통과했고, Herdr 0.9.4 위의 Herdr 샌드박스 게이트와 971/971도 다시 통과했습니다.
 {{< /callout >}}
 
 ### 실제 Herdr 안에서, Pi ↔ 네이티브 Claude Code
@@ -55,12 +55,13 @@ MUST 23 PASS / 0 FAIL이었고, native Codex는 이번 컷에서 이름 붙은 S
 <img src="/projects/entwurf/entwurf-demo.gif" width="1126" height="764" alt="실제 Herdr 작업면에서 Pi와 네이티브 Claude Code가 Entwurf로 협업하는 원본 데모" loading="lazy" style="max-width: 100%; height: auto; border-radius: 0.75rem;">
 
 [데모 원본과 재현 경계](https://github.com/junghan0611/entwurf/blob/v0.35.0/demo/README.md) ·
-[플러그인 0.35.1 설치·복구 수용 기록](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.13-herdr.0.35.1)
+[플러그인 0.36.0 설치·교차 ref 재설치·생존 수용 기록](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.14-herdr.0.36.0)
 
-**보여 준 것과 아직 측정하지 않은 것을 구분합니다.** native Codex LIVE는 이번 컷의 명시적인
-**미측정 예외**이며 PASS가 아닙니다. Sonnet 5.5는 게이트에서 실제 프롬프트 턴을 돌았고, Opus 5.5는 턴 없는
-소켓 시민으로만 돌았으며, Fable 5.1은 프롬프트 턴 증거가 없습니다. 플러그인 BODY 생략이나 기존 영수증이
-PASS를 대신하지 않습니다. headless 설치 검증도 실제 Herdr pane의 시민 행을 그린 관측과는 다릅니다.
+**보여 준 것과 아직 측정하지 않은 것을 구분합니다.** 재설치 여정은 실행 중인 Pi 세션이 버전이 바뀌는 재설치를
+지나도 프로세스·garden id·control socket을 유지한다는 것을 보여 줄 뿐, 그 세션의 MCP·모델·도구 작업이
+이어진다는 뜻은 아닙니다. `pi update self`, 호스트 Pi·Herdr 업그레이드, 새 커밋을 찾는 `plugin update`,
+새 태그를 `--ref`로 쓴 설치는 미측정입니다. 기존 영수증이 PASS를 대신하지 않으며, headless 설치 검증도
+실제 Herdr pane의 시민 행을 그린 관측과는 다릅니다.
 
 ## Herdr에서 시작하기
 
@@ -72,19 +73,23 @@ PASS를 대신하지 않습니다. headless 설치 검증도 실제 Herdr pane�
 
 ```bash
 # 기존 Herdr 워크벤치에서 pi 및/또는 Claude Code를 통합한 뒤
-herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.13-herdr.0.35.1 --yes
+herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.14-herdr.0.36.0 --yes
 
 # Herdr pane에서 pi를 Entwurf 시민으로 시작
 pi --entwurf-control
 ```
 
 이미 Herdr를 갖춘 경우의 짧은 경로이며, 이제 발행한 플러그인 스냅샷에 고정합니다.
-실제 공개 npm 설치 여정은 `main`이 스냅샷과 같은 **d0bc556**일 때 통과했습니다.
+**Herdr 0.9.4**에서 실제 공개 npm 설치 여정은 `main`이 스냅샷과 같은 **9f33dd1**일 때 통과했습니다.
 실제 npm 획득·compiled bridge·세 실행 bin·여덟 동사, 모델 턴 없는 Pi의 입학과 상태 읽기,
-비활성화 뒤 설치 상태 파일 0개·재설치를 확인했습니다. 별도의 실제 npm 0.35.0→0.35.1
-교체·하니스가 심은 중단 지점에서의 제품 복구도 통과했습니다.
+비활성화 뒤 설치 상태 파일 0개·재설치를 확인했습니다. 버전이 바뀌는 교차 ref 재설치도 통과했습니다.
+`v2026.10.13-herdr.0.35.1` 설치 위에 `herdr plugin install … --ref main`(9f33dd1)을 실행했고,
+`herdr plugin update`는 이미 최신인 no-op로만 측정했습니다.
+0.35.1은 Pi `>=1.1.0 <1.2`, 0.36.0은 `>=1.2.0 <1.3`을 받으므로 이 재설치는 Pi 업그레이드를 지납니다.
+wiring은 그대로였고, 실행 중인 Pi 세션은 프로세스·garden id·control socket을 유지했으며, 비활성화 뒤
+소유한 런타임·캐시·ledger는 남지 않았습니다.
 태그 자체를 `--ref`로 사용한 설치는 아직 **미측정**이며 별도의 PASS로 주장하지 않습니다.
-플러그인을 측정한 Herdr 본체는 **0.9.3**이고, 입학 하한은 **Herdr ≥0.9.0**으로 유지합니다.
+플러그인을 측정한 Herdr 본체는 **0.9.4**이고, 입학 하한은 **Herdr ≥0.9.0**으로 유지합니다.
 Node ≥24, npm, git, 네트워크와 각 하네스의 첫 실행·Herdr 통합은 여전히 필요합니다.
 이 플러그인은 하네스·구독·로그인을
 설치하지 않습니다. 한 번만 하면 되는 과정과 선택적인 상태 pane은 [Herdr 플러그인 README](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md)에서 다룹니다.
@@ -92,7 +97,7 @@ Node ≥24, npm, git, 네트워크와 각 하네스의 첫 실행·Herdr 통합�
 `herdr-checkout` 후보 설치에서 npm으로 소스를 바꾸려면 먼저 명시적인 certified deactivate가
 필요합니다. 정상적으로 정착한 같은 npm 소스의 설치는 README의 소유권 조건에 따라 갱신할 수 있습니다.
 플러그인은 `PATH`에 `entwurf` bin을 더하지 않으므로 가이드의
-[설치된 절대 bin 경로로 제거](https://github.com/junghan0611/entwurf/blob/v2026.10.13-herdr.0.35.1/plugins/herdr/README.md#remove-it)를 따르세요.
+[설치된 절대 bin 경로로 제거](https://github.com/junghan0611/entwurf/blob/v2026.10.14-herdr.0.36.0/plugins/herdr/README.md#remove-it)를 따르세요.
 인증되지 않은 옛 상태의 거부는 무조건 삭제하거나 마이그레이션해도 된다는 뜻이 아닙니다.
 
 ## 직접 설치 — 더 넓은 표면
@@ -101,8 +106,8 @@ managed **pi-durable**, 네이티브 **Codex**, **Copilot**, **OMP**, **Antigrav
 Herdr 밖에서 작업한다면 직접 설치 경로를 사용하세요.
 
 ```bash
-npm install -g "@earendil-works/pi-coding-agent@>=1.1.0 <1.2"   # 일반 pi를 쓸 때만
-npm install -g @junghanacs/entwurf@0.35.1
+npm install -g "@earendil-works/pi-coding-agent@>=1.2.0 <1.3"   # 일반 pi를 쓸 때만
+npm install -g @junghanacs/entwurf@0.36.0
 
 entwurf setup /path/to/your-project
 entwurf pi
@@ -113,9 +118,9 @@ entwurf check-bridge
 `entwurf pi`는 pi를 control-socket 가든 시민으로 시작합니다. Herdr 통합은 현재 의도적으로
 좁습니다. Herdr에 이미 통합된 pi와 Claude Code만 활성화합니다.
 
-일반 Pi는 선택 사항이며 지원 범위는 `>=1.1.0 <1.2`입니다. Pi 1.1 built-in MCP로
-다른 하네스와 같은 bridge를 부릅니다. 직접 설치의 **pi-durable** 경로는 고정한 업스트림
-앱/TUI와 exact Pi **1.1.0** SDK 아홉 종을 싣습니다. 별도 런타임 checkout이나 일반 Pi CLI는
+일반 Pi는 선택 사항이며 지원 범위는 `>=1.2.0 <1.3`입니다. Pi built-in MCP로
+다른 하네스와 같은 bridge를 부릅니다. 직접 설치의 **pi-durable** 경로는 Entwurf가 소유한
+앱/TUI carrier와 exact Pi **1.2.0** SDK 아홉 종을 싣습니다. 별도 런타임 checkout이나 일반 Pi CLI는
 durable의 필수 설치가 아닙니다.
 
 `entwurf pi-durable`은 패키지에 실린 네이티브 durable 앱을 엽니다. 선택적인
@@ -150,8 +155,8 @@ Antigravity의 기존 native-push delivery가 fresh-call 지원을 뜻하지는 
 ### 독립된 하네스들, 하나의 주소 공간
 
 {{< hextra/feature-grid cols="3" >}}
-  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="살아있는 control-socket 표면을 갖고, Pi 1.1 built-in MCP로 같은 bridge를 부르는 가든 네이티브 세션." >}}
-  {{< hextra/feature-card icon="puzzle" title="pi-durable" subtitle="garden identity와 명시적인 양방향 self-fetch를 더한 네이티브 durable 앱/TUI. 런타임과 저장소는 업스트림 소유로 남습니다." >}}
+  {{< hextra/feature-card icon="puzzle" title="pi" subtitle="살아있는 control-socket 표면을 갖고, Pi built-in MCP로 같은 bridge를 부르는 가든 네이티브 세션." >}}
+  {{< hextra/feature-card icon="puzzle" title="pi-durable" subtitle="업스트림 SDK 위에 Entwurf가 소유한 durable 앱/TUI. garden identity와 명시적인 양방향 self-fetch를 더하며, 실행 엔진과 저장소는 업스트림 소유로 남습니다." >}}
   {{< hextra/feature-card icon="claude" title="Claude Code" subtitle="자신의 인증·도구·트랜스크립트를 유지한 채 이어지는 독립 세션." >}}
   {{< hextra/feature-card icon="chip" title="Codex" subtitle="tmux에 보이게 열거나, native-push로 자신의 살아있는 스레드에서 닿는 자기 하네스 세션." >}}
   {{< hextra/feature-card icon="chip" title="Copilot CLI" subtitle="자신의 인증·도구·트랜스크립트를 유지한 채 이어지는 독립 세션." >}}
