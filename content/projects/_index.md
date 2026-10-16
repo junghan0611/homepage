@@ -20,4 +20,18 @@ Open source tools from junghan0611 — built for garden-native, agent-driven wor
         subtitle="Herdr and tmux sibling AI sessions: pi, Claude Code, Codex, Copilot, OMP and Antigravity can message and spawn each other while keeping their own auth, tools and transcripts."
   >}}
 
+  {{< card
+        link="/projects/andenken"
+        title="andenken"
+        icon="collection"
+        subtitle="Let past conversations gain meaning again. Recover decisions and continuity from conversations, a public garden and bot records, with files as authority and the timeline as compass."
+  >}}
+
+  {{< card
+        link="/projects/agent-config"
+        title="agent-config"
+        icon="puzzle"
+        subtitle="One person's identity and working agreements across AI harnesses. The skills source of truth and lived proving ground—not another harness."
+  >}}
+
 {{< /cards >}}

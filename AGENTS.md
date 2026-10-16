@@ -85,6 +85,13 @@ surface. This repo is public; the global commit/push hook scans added lines unde
   receipts, builds with Hugo, and verifies rendered URL/source/CSP boundaries. Netlify
   runs the same gate with pinned Hugo `0.156.0`.
 
+## 웹 문단 작성
+
+- 산문은 **문단 하나를 소스 한 줄로** 쓰고, 문단 사이는 빈 줄 하나로 구분한다.
+- `fill-column: 80` 같은 고정 폭으로 강제 개행하지 않는다. 화면 폭에 따른 줄바꿈은 브라우저가 맡는다.
+- 배치를 맞추려고 `<br>`를 넣거나 문장마다 별도 문단으로 쪼개지 않는다. 제목·목록·표·코드·shortcode의 구조적 줄바꿈은 유지한다.
+- `hextra-home`의 긴 본문은 로컬 `layouts/hextra-home.html`의 `.content.hextra-home-prose`로 타이포그래피를 복구한다. hero·카드·버튼의 `not-prose` 색상 예외와 한국어 어절 줄바꿈은 `custom.css`의 해당 범위에만 둔다. 테마 업그레이드 시 상류 hook과 재대조하고, 실제 브라우저에서 문단 간격·제목·색·넘침을 확인한다. 빌드 성공이나 HTML 태그 수는 시각 검수의 대체물이 아니다.
+
 ## Deploy
 
 - **Netlify only.** Push to `main` → the source/runtime verifier + Hugo production
