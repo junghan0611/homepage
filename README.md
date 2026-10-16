@@ -76,7 +76,7 @@ https://junghanacs.com <commit>` checks the live responses. No GitHub Actions. C
 ## Links
 
 - **Homepage**: https://junghanacs.com — this site (`www` redirects to the apex)
-- **Projects**: https://junghanacs.com/projects/ — Entwurf, agent-config, and Andenken ([한국어](https://junghanacs.com/ko/projects/))
+- **Projects**: https://junghanacs.com/projects/ — Entwurf, agent-config, Andenken, doomemacs-config, and nixos-config ([한국어](https://junghanacs.com/ko/projects/))
 - **Digital Garden**: https://notes.junghanacs.com
 - **Dashboard**: https://agenda.junghanacs.com — geworfen, existence-data
 - **AX Record**: https://ax.junghanacs.com

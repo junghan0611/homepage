@@ -16,6 +16,13 @@ SSOT: [homepage#3 — Cloudflare Workers 배포](https://github.com/junghan0611/
 
 역할(2026-09-30 GLG): 오라클 = 상시 배포 플랫폼, 노트북 = 켜져 있을 때의 빌드 검수대. nixos-config가 토큰을 준비하면 homepage가 설정·실배포·검증한다.
 
+## Project content publication — doomemacs-config / nixos-config (2026-10-16)
+
+- GLG directly reviewed and approved both introductions, README update and commit + push in homepage session `20261016T103933-96efd0`. Four new bilingual leaves and two shared project indexes are the publication scope; README now names all five houses. Existing unpublished blog drafts remain excluded and untouched.
+- Isolated gate #252 passed: `/tmp/homepage-two-houses.CcDpZP/receipt.json` and `verify.log`. Hugo/Eval/JSON-LD, bilingual project cards, new page metadata/prose wrappers, and all six before/candidate/after hashes passed. This is source/rendered-output evidence, not an automated visual review. GLG's direct review is the acceptance evidence.
+- Source stewards reported published releases: [doomemacs-config v2026.10.16](https://github.com/junghan0611/doomemacs-config/releases/tag/v2026.10.16), commit `67fe2f1`; [nixos-config v2026.10.16](https://github.com/junghan0611/nixos-config/releases/tag/v2026.10.16), commit `cb732eb`. Those source releases are not homepage deployment receipts.
+- Next after push: verify production against the new homepage commit. Earlier homepage publication `18485d9` was confirmed deployed by GLG directly; no independent production SHA gate was run here.
+
 ## Project content handoff — agent-config / final joint gate (2026-10-16)
 
 - **Current publication decision:** GLG directly accepted the rendered result and authorized commit + push in homepage durable session `20261016T103933-96efd0` on 2026-10-16; also approved a README Projects link. This supersedes the historical approval-pending wording below. Publish only the four new leaves, two shared indexes, scoped layout/CSS, AGENTS/NEXT and README; exclude both untracked blog drafts. Next: verify the production response against the pushed commit; build success alone is not a live receipt.

@@ -31,4 +31,16 @@ junghan0611의 오픈소스 도구들 — 가든-네이티브, 에이전트 주�
         icon="puzzle"
         subtitle="하네스가 바뀌어도 같은 사람의 맥락과 작업의 자세를 잇도록. 스킬 정본과 정체성·작업 원칙을 펼치는 정렬축이자 실사용 시험소입니다." >}}
 
+  {{< card
+        link="/ko/projects/doomemacs-config/"
+        title="doomemacs-config"
+        icon="pencil"
+        subtitle="사람이 쓰고, 생각하고, 다시 돌아오는 집. Doom Emacs·Denote의 같은 Org 기록에서 사람과 에이전트의 작업이 만나 디지털 가든으로 이어집니다." >}}
+
+  {{< card
+        link="/ko/projects/nixos-config/"
+        title="nixos-config"
+        icon="collection"
+        subtitle="사람과 AI가 함께 설 수 있는, 읽고 고칠 수 있는 운영 기반. NixOS·home-manager 선언으로 패키지 출처와 운영·복구의 경계를 남깁니다." >}}
+
 {{< /cards >}}

@@ -34,4 +34,18 @@ Open source tools from junghan0611 — built for garden-native, agent-driven wor
         subtitle="One person's identity and working agreements across AI harnesses. The skills source of truth and lived proving ground—not another harness."
   >}}
 
+  {{< card
+        link="/projects/doomemacs-config/"
+        title="doomemacs-config"
+        icon="pencil"
+        subtitle="A house to write, think, and return to. Human editing and agent work meet in shared Org records, from Doom Emacs and Denote to the digital garden."
+  >}}
+
+  {{< card
+        link="/projects/nixos-config/"
+        title="nixos-config"
+        icon="collection"
+        subtitle="Readable, repairable ground for people and AI. NixOS and home-manager declarations keep package origins, operations, and recovery boundaries explicit."
+  >}}
+
 {{< /cards >}}
