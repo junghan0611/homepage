@@ -25,7 +25,7 @@ entwurf
 
 <div style="margin: 2.5rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
 {{< hextra/hero-button text="코드와 사용법" link="https://github.com/junghan0611/entwurf#readme" >}}
-{{< hextra/hero-button text="담당자의 기록" link="https://notes.junghanacs.com/botlog/20260302T191200" >}}
+{{< hextra/hero-button text="담당자의 기록" link="https://notes.junghanacs.com/botlog/20260520T052051" >}}
 </div>
 
 ## 형제를 부르되, 하네스를 빼앗지 않기
@@ -62,25 +62,27 @@ Entwurf는 **각자 실행 중인 하네스 사이에 좁은 연결을 놓는 �
 
 ```bash
 # Pi 1.3과 Herdr의 pi / Claude Code 통합을 먼저 준비한 뒤
-herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.16-herdr.0.38.0 --yes
+herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.19-herdr.0.39.0 --yes
 pi --entwurf-control
 ```
 
-**Herdr 밖에서는** 직접 설치와 tmux를 사용합니다. fresh-call은 Pi·pi-durable·Claude Code·Codex·Copilot·OMP 여섯 backend를 지원합니다. Antigravity는 기존 살아 있는 대화로의 native-push 경로이며 fresh-call 대상은 아닙니다. 설치는 [README](https://github.com/junghan0611/entwurf#readme), 플러그인의 준비·갱신·제거는 [Herdr 가이드](https://github.com/junghan0611/entwurf/blob/v2026.10.16-herdr.0.38.0/plugins/herdr/README.md)를 따릅니다.
+**Herdr 밖에서는** 직접 설치와 tmux를 사용합니다. fresh-call은 Pi·pi-durable·Claude Code·Codex·Copilot·OMP 여섯 backend를 지원합니다. Antigravity는 기존 살아 있는 대화로의 native-push 경로이며 fresh-call 대상은 아닙니다. 설치는 [README](https://github.com/junghan0611/entwurf#readme), 플러그인의 준비·갱신·제거는 [Herdr 가이드](https://github.com/junghan0611/entwurf/blob/v2026.10.19-herdr.0.39.0/plugins/herdr/README.md)를 따릅니다.
 
-## 현재의 자리 — 0.38.0
+## 현재의 자리 — 0.39.0
 
-**[Core v0.38.0](https://github.com/junghan0611/entwurf/releases/tag/v0.38.0)과 [Herdr 플러그인 0.38.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.16-herdr.0.38.0)이 2026년 10월 16일 발행됐습니다.** 일반 Pi 지원 범위는 `>=1.3.0 <1.4`이며, 패키지는 발행된 Pi SDK1.3.0 아홉 종을 exact pin으로 싣습니다. 플러그인도 발행된 npm0.38.0 바이트를 무결성 pin으로 받습니다. 기존 Pi1.2 사용자는 플러그인 활성화 전에 Pi를1.3으로 올려야 합니다.
+**2026년 10월 19일 현재 [Core v0.39.0](https://github.com/junghan0611/entwurf/releases/tag/v0.39.0)은 npm에 공개됐고, [Herdr 플러그인 0.39.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.19-herdr.0.39.0)도 별도 스냅샷으로 발행됐습니다.** 일반 Pi 지원 범위는 `>=1.3.0 <1.4`이며, 패키지는 발행된 Pi SDK1.3.0 아홉 종을 exact pin으로 싣습니다. 플러그인도 발행된 npm0.39.0 바이트를 무결성 pin으로 받습니다. 기존 Pi1.2 사용자는 플러그인 활성화 전에 Pi를1.3으로 올려야 합니다.
+
+이번 컷은 **Windows 네이티브 Pi의 제한된 프리뷰**를 엽니다. GitHub Windows x64 러너의 Node24.18.1·Pi1.3.0에서 실제 설치된 Pi 두 세션의 시민 등록과 named pipe 메시지 전송까지 확인했습니다. 모델만 오프라인 대역을 썼으며, Windows 여덟 검사와 Linux 소비자가 수용한 동일한 패키지 파일이 npm에 발행됐습니다. 이는 실제 공급자 모델의 이해력, 물리 Windows 기기, 다른 네이티브 하네스나 Windows의 Herdr·tmux·fresh/resume 지원을 뜻하지 않습니다. 앞선 WSL2 증거도 게스트 설치·Pi 등록·주소 조회까지이며 메시지 전송 증거와 구분합니다. 정확한 범위는 [지원·검증 기록](https://github.com/junghan0611/entwurf/blob/v2026.10.19-herdr.0.39.0/BASELINE.md)에 둡니다.
 
 pi-durable은 Entwurf가 소유한 앱/TUI를 업스트림 SDK 위에 얹습니다. 실행 엔진·인증·queue·SQLite·트랜스크립트·복구는 SDK 소유로 남고, 선택적인 native module은 운영자가 명시한 절대경로에서만 불러옵니다. 일반 Pi CLI나 별도 런타임 checkout은 이 직접 durable 경로의 필수 조건이 아닙니다.
 
-현재 플러그인은 Herdr0.9.5·Pi1.3.0에서 공개 `main` ref의 설치·사용·비활성화·재설치를 확인했습니다. 태그 자체를 ref로 다시 설치한 별도 관측이나, 그 과정의 실제 모델 작업·실행 중 세션 생존까지 같은 증거로 주장하지 않습니다. 소스 CI, 레지스트리·설치 증거와 한계는 [릴리즈 수용 기록](https://github.com/junghan0611/entwurf/issues/145#issuecomment-6209375125)에 나눠 남겼습니다.
+현재 플러그인은 Herdr0.9.5·Pi1.3.0의 깨끗한 비-root Linux 컨테이너에서 공개 `main` ref의 설치·사용·비활성화·재설치를 확인했습니다. 태그 자체를 ref로 다시 설치한 별도 관측이나, 그 과정의 실제 pane·모델 작업·실행 중 세션 생존까지 같은 증거로 주장하지 않습니다. 정확한 소스 SHA의 필수 CI 네 job과 이 공개 설치 증거도 별개입니다. 소스·레지스트리·설치 증거와 한계는 [릴리즈 수용 기록](https://github.com/junghan0611/entwurf/issues/78#issuecomment-6255741480)에 나눠 남겼습니다.
 
 ## 같다고 포장하지 않는 경계
 
 | 자리 | 현재 연결 방식과 경계 |
 |---|---|
-| Pi | control socket으로 전송하며, 잠든 세션을 같은 id로 여는 경로는 Pi·tmux에 한정합니다. |
+| Pi | 비-Windows에서는 Unix control socket, 제한된 Windows 프리뷰에서는 named pipe로 전송합니다. 잠든 세션을 같은 id로 여는 경로는 Pi·tmux에 한정하며 Windows 프리뷰에 포함하지 않습니다. |
 | pi-durable·Claude Code·Copilot·OMP | 각자의 self-fetch 경로로 메시지를 받습니다. Pi의 same-id resume 지원을 그대로 적용하지 않습니다. |
 | Codex·Antigravity | 살아 있는 native 대화로 push합니다. mailbox나 자동 재개를 뜻하지 않습니다. |
 | Herdr 플러그인 | Pi·Claude Code만 활성화하고 새로 엽니다. pi-durable의 Herdr 연결은 별도 [pilot](https://github.com/junghan0611/entwurf/issues/132)입니다. |
@@ -93,4 +95,4 @@ pi-durable은 Entwurf가 소유한 앱/TUI를 업스트림 SDK 위에 얹습니�
 - **[andenken](/ko/projects/andenken/)** — 지나간 대화와 공개 가든에서 이전 판단을 찾는 기억축. 검색과 회수는 실행 중 세션을 되살렸다는 증거가 아닙니다.
 - **각 하네스** — 자신의 인증·실행·도구·대화를 소유합니다. 서로 다른 능력을 한 표면의 동등성으로 바꾸지 않습니다.
 
-이 페이지는 처음 찾아온 사람을 위한 프로젝트의 대문입니다. 설치와 실행 계약은 [저장소](https://github.com/junghan0611/entwurf#readme)에, 날짜가 있는 판단과 경계는 [담당자 문서](https://notes.junghanacs.com/botlog/20260302T191200)에 둡니다. 운영 로그와 검증 장부를 대문에 복제하지 않고, 각 기록이 살아 있는 자리로 연결합니다.
+이 페이지는 처음 찾아온 사람을 위한 프로젝트의 대문입니다. 설치와 실행 계약은 [저장소](https://github.com/junghan0611/entwurf#readme)에, 날짜가 있는 판단과 경계는 [담당자 문서](https://notes.junghanacs.com/botlog/20260520T052051)에 둡니다. 운영 로그와 검증 장부를 대문에 복제하지 않고, 각 기록이 살아 있는 자리로 연결합니다.

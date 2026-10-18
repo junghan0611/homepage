@@ -25,7 +25,7 @@ entwurf
 
 <div style="margin: 2.5rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
 {{< hextra/hero-button text="Code and usage" link="https://github.com/junghan0611/entwurf#readme" >}}
-{{< hextra/hero-button text="The resident's record" link="https://notes.junghanacs.com/botlog/20260302T191200" >}}
+{{< hextra/hero-button text="The resident's record" link="https://notes.junghanacs.com/botlog/20260520T052051" >}}
 </div>
 
 ## Call a sibling, not a replacement harness
@@ -62,25 +62,27 @@ Two siblings keep their own harnesses and transcripts, meeting through garden id
 
 ```bash
 # First prepare Pi 1.3 and Herdr's pi / Claude Code integration
-herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.16-herdr.0.38.0 --yes
+herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.19-herdr.0.39.0 --yes
 pi --entwurf-control
 ```
 
-**Outside Herdr**, use the direct installation and tmux. Fresh-call supports six backends: Pi, pi-durable, Claude Code, Codex, Copilot and OMP. Antigravity has native-push delivery into an existing live conversation, not fresh-call support. Follow the [README](https://github.com/junghan0611/entwurf#readme) for installation and the [Herdr guide](https://github.com/junghan0611/entwurf/blob/v2026.10.16-herdr.0.38.0/plugins/herdr/README.md) for prerequisites, updates and removal.
+**Outside Herdr**, use the direct installation and tmux. Fresh-call supports six backends: Pi, pi-durable, Claude Code, Codex, Copilot and OMP. Antigravity has native-push delivery into an existing live conversation, not fresh-call support. Follow the [README](https://github.com/junghan0611/entwurf#readme) for installation and the [Herdr guide](https://github.com/junghan0611/entwurf/blob/v2026.10.19-herdr.0.39.0/plugins/herdr/README.md) for prerequisites, updates and removal.
 
-## Where it stands — 0.38.0
+## Where it stands — 0.39.0
 
-**[Core v0.38.0](https://github.com/junghan0611/entwurf/releases/tag/v0.38.0) and [Herdr plugin 0.38.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.16-herdr.0.38.0) were published on October 16, 2026.** Ordinary Pi is supported in `>=1.3.0 <1.4`; the package carries nine exactly pinned published Pi SDK 1.3.0 members. The plugin acquires the published npm 0.38.0 bytes with its integrity pin. Existing Pi 1.2 users must upgrade Pi to 1.3 before activating this plugin.
+**As of October 19, 2026, [Core v0.39.0](https://github.com/junghan0611/entwurf/releases/tag/v0.39.0) is published on npm, with [Herdr plugin 0.39.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.19-herdr.0.39.0) available as a separate snapshot.** Ordinary Pi is supported in `>=1.3.0 <1.4`; the package carries nine exactly pinned published Pi SDK 1.3.0 members. The plugin acquires the published npm 0.39.0 bytes with its integrity pin. Existing Pi 1.2 users must upgrade Pi to 1.3 before activating this plugin.
+
+This cut opens a **bounded native-Windows Pi preview**. On GitHub's Windows x64 runner with Node 24.18.1 and Pi 1.3.0, two actually installed Pi sessions demonstrated citizen registration and named-pipe message delivery. Only the model was an offline stand-in; the same package file accepted by the eight Windows checks and a Linux consumer was published to npm. This does not establish vendor-model comprehension, physical Windows hardware, other native harnesses, or Herdr, tmux, fresh-call or resume support on Windows. Earlier WSL2 evidence covers guest installation, Pi registration and peer-fact lookup, not delivery. Exact scope stays in the [support and verification record](https://github.com/junghan0611/entwurf/blob/v2026.10.19-herdr.0.39.0/BASELINE.md).
 
 For pi-durable, Entwurf owns the app/TUI composition on the upstream SDK. The SDK still owns the execution engine, authentication, queues, SQLite, transcripts and recovery. Optional native modules load only from absolute paths explicitly named by the operator. This direct durable route requires neither a separate runtime checkout nor the ordinary Pi CLI.
 
-The current plugin's public-`main` install/use/deactivate/reinstall journey was observed on Herdr 0.9.5 and Pi 1.3.0. It does not certify a separate tag-ref reinstall, real model work during that journey, or survival of an already running session. Source CI, registry and installed evidence, with their limits, are kept separately in the [release acceptance record](https://github.com/junghan0611/entwurf/issues/145#issuecomment-6209375125).
+The current plugin's public-`main` install/use/deactivate/reinstall journey was observed with Herdr 0.9.5 and Pi 1.3.0 in a clean, non-root Linux container. It does not certify a separate tag-ref reinstall, a real pane or model work during that journey, or survival of an already running session. The four required CI jobs at the exact source SHA are separate from this public-install proof. Source, registry and installed evidence, with their limits, are kept separately in the [release acceptance record](https://github.com/junghan0611/entwurf/issues/78#issuecomment-6255741480).
 
 ## Boundaries that stay visible
 
 | Surface | Current connection and boundary |
 |---|---|
-| Pi | Control-socket delivery; reopening a dormant session under the same id is limited to Pi in tmux. |
+| Pi | Unix control sockets on non-Windows; named pipes in the bounded Windows preview. Same-id dormant reopening is limited to Pi in tmux and is not included in the Windows preview. |
 | pi-durable, Claude Code, Copilot, OMP | Each receives messages through its own self-fetch rail. Pi's same-id resume support does not carry over. |
 | Codex, Antigravity | Native push into a live conversation, not a mailbox or automatic resumption. |
 | Herdr plugin | Activates and opens Pi and Claude Code only. Durable-on-Herdr remains a separate [pilot](https://github.com/junghan0611/entwurf/issues/132). |
@@ -93,4 +95,4 @@ The current plugin's public-`main` install/use/deactivate/reinstall journey was 
 - **[andenken](/projects/andenken/)** — The memory axis for recovering decisions from past conversations and the public garden. Retrieval is not proof that a running session was restored.
 - **Each harness** — Its own authentication, execution, tools and conversation. Different capabilities are not disguised as one uniform surface.
 
-This page is the project's front door for a first-time visitor. The [repository](https://github.com/junghan0611/entwurf#readme) owns installation and execution contracts; the [resident's note](https://notes.junghanacs.com/botlog/20260302T191200) keeps dated judgments and boundaries. Operational logs and verification ledgers stay at their sources rather than being copied into the homepage.
+This page is the project's front door for a first-time visitor. The [repository](https://github.com/junghan0611/entwurf#readme) owns installation and execution contracts; the [resident's note](https://notes.junghanacs.com/botlog/20260520T052051) keeps dated judgments and boundaries. Operational logs and verification ledgers stay at their sources rather than being copied into the homepage.
