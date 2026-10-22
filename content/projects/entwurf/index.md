@@ -1,14 +1,14 @@
 ---
 title: "entwurf"
-description: "Open and connect sibling AI sessions, each keeping its own harness and conversation. 0.40.0 brings a first exchange across two machines—and the open questions of trust and visibility that crossed with it."
+description: "Long-lived AI siblings, each keeping its own harness and conversation. Entwurf 0.41.0 adds operator-requested retirement and same-id return for Pi and native Claude Code."
 layout: hextra-home
 toc: false
 sidebar:
   exclude: true
 ---
 
-{{< hextra/hero-badge link="https://www.npmjs.com/package/@junghanacs/entwurf" >}}
-  Open source · Herdr · tmux
+{{< hextra/hero-badge link="https://github.com/junghan0611/entwurf/releases/tag/v0.41.0" >}}
+  v0.41.0 · A sibling can rest and return
 {{< /hextra/hero-badge >}}
 
 <div class="hx-mt-6"></div>
@@ -38,7 +38,15 @@ Entwurf puts **a narrow connection between independently running harnesses**. Pi
 **Entwurf is not another harness or orchestrator.** Each harness owns execution. Herdr provides the workbench, tmux the terminal workspace, and Entwurf opens and addresses siblings between them.
 {{< /callout >}}
 
-## 0.40.0 — a bridge crossed, questions carried forward
+## 0.41.0 — a birthday, not a disposable session
+
+**A garden id is a sibling's birthday: resting does not mean starting over.** With [0.41.0](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0), the human operator can request a guarded retirement of an ordinary Pi or native Claude Code sibling, then reopen its own native conversation under the same garden id in tmux. The record and transcript remain; the next meeting is not a replacement session reconstructed by Entwurf.
+
+**A sibling is not a job title.** The coordinating sibling is a sibling too. We agree on the work with the person and invite whichever sibling can help—not a permanent developer, reviewer or adviser assigned at birth. The fictional [team bookmark example](https://github.com/junghan0611/entwurf/blob/v0.41.0/team.json.example) keeps both garden and native session ids. It is a caller-maintained memory aid, not runtime configuration, an authority registry or an automatic team manager.
+
+Retirement is never autonomous. One explicit operator request permits one guarded attempt, not a roster sweep or a retry after an unknown result. A Pi shutdown acknowledgement is not proof of exit; Claude Code retirement concerns one verified Linux process, not all its descendants or guaranteed transcript flushing. One real retire-and-return round trip per backend was measured at an earlier candidate, with blind recall; that dated observation is not a claim for every harness or platform. The [release acceptance record](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0) keeps those boundaries visible.
+
+### The earlier crossing — 0.40.0
 
 **A message to an existing sibling crossed between two machines, and an answer came back.** 0.40.0 carries that first exchange. A person lays the bridge: the operator connects the machines, owns SSH authentication, and declares which pair may talk. The remote route crosses only that bridge. It does not discover siblings, open them remotely, or resend because an answer has not arrived.
 
@@ -50,12 +58,13 @@ The first trial was **one pair of already-open pi-durable siblings on two Linux 
 
 Today's boundary is the operator's SSH account and a declared pair, not cryptographic identity for a sibling. A person keeps visible-first by holding the sessions open; the code does not prove that a screen is visible. Acceptance is not a read, and an error is not proof of non-delivery. Instead of presenting these questions as solved, the release carries [principles and open questions for remote siblings](https://github.com/junghan0611/entwurf/blob/v0.40.0/docs/remote-sibling-principles.md).
 
-## Open, reopen, message
+## Open, message, rest, return
 
-{{< hextra/feature-grid cols="3" >}}
+{{< hextra/feature-grid cols="2" >}}
   {{< hextra/feature-card icon="sparkles" title="Open" subtitle="entwurf_fresh_call — Open a sibling in a new Herdr tab or, outside Herdr, a new tmux window. Its own callback establishes the new garden id." >}}
-  {{< hextra/feature-card icon="refresh" title="Reopen" subtitle="entwurf_resume_call — Reopen a dormant pi sibling in tmux under the same garden id. The record supplies model, conversation and working directory; no hidden turn runs." >}}
-  {{< hextra/feature-card icon="share" title="Message" subtitle="entwurf_v2 — Reach an existing sibling through its harness's delivery rail. Delivery does not launch or resume a sibling runtime, and acceptance is not a completed reply." >}}
+  {{< hextra/feature-card icon="share" title="Message" subtitle="entwurf_v2 — Reach an existing sibling through its harness's delivery rail. Delivery launches no runtime; acceptance is not a completed reply." >}}
+  {{< hextra/feature-card icon="shield-check" title="Rest" subtitle="entwurf_retire_call — Attempt retirement of one ordinary Pi or native Claude Code sibling explicitly named by the operator. Action, event recording and lock release have separate results." >}}
+  {{< hextra/feature-card icon="refresh" title="Return" subtitle="entwurf_resume_call — Reopen a dormant Pi or Claude Code conversation in tmux under its own garden id. Its record selects the native conversation; the verb submits no prompt." >}}
 {{< /hextra/feature-grid >}}
 
 **A garden id does not replace the harness's session id.** It is a shared address attached to that native session. A window title or position is not an address, and an opened window is not proof that a sibling answered.
@@ -82,17 +91,18 @@ pi --entwurf-control
 
 ## Current releases and boundaries
 
-**As of October 20, 2026, [core v0.40.0](https://github.com/junghan0611/entwurf/releases/tag/v0.40.0) and [Herdr plugin 0.40.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.20-herdr.0.40.0) are paired.** Herdr acquires the same npm 0.40.0 bytes accepted for the core release, with an integrity pin. Ordinary Pi support is `>=1.3.0 <1.4`. For pi-durable, the upstream SDK retains the execution engine, authentication, queues, SQLite, transcripts and recovery.
+**As of October 22, 2026, [core v0.41.0 is released on GitHub](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0) and [published to npm](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.41.0).** A new Herdr snapshot is still pending. The pinned [Herdr plugin 0.40.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.20-herdr.0.40.0) above still acquires npm 0.40.0, not 0.41.0's new lifecycle features. Ordinary Pi support remains `>=1.3.0 <1.4`; Claude Code same-id return requires `>=2.1.306`. For pi-durable, the upstream SDK still owns execution, authentication, queues, SQLite, transcripts and recovery.
 
 | Surface | Connection and boundary |
 |---|---|
-| Pi | Unix control sockets on non-Windows; named pipes in the bounded Windows preview. Same-id dormant reopening is limited to Pi in tmux. |
-| pi-durable, Claude Code, Copilot, OMP | Each receives messages through its own self-fetch rail. Pi's same-id resume support does not carry over. |
+| Pi | Unix control sockets on non-Windows; named pipes in the bounded Windows preview. Operator-requested retirement and same-id return in tmux; Windows retirement is not certified here. |
+| Native Claude Code | Self-fetch delivery. Same-id return in tmux uses the recorded native conversation; retirement requires the Linux pidfd path. Former model and permission options are not restored. |
+| pi-durable, Copilot, OMP | Their own self-fetch rails. pi-durable can call retirement and return for supported siblings, but is not itself a lifecycle target. Copilot and OMP have no Entwurf same-id return. |
 | Codex, Antigravity | Native push into a live conversation, not a mailbox or automatic resumption. |
-| Herdr plugin | Activates and opens Pi and Claude Code. Durable-on-Herdr remains a separate [pilot](https://github.com/junghan0611/entwurf/issues/132). |
+| Herdr plugin | Activates and opens Pi and Claude Code. Same-id return from inside Herdr refuses; retirement there is unmeasured. Durable-on-Herdr remains a separate [pilot](https://github.com/junghan0611/entwurf/issues/132). |
 | Remote pair | Connects existing siblings on two operator-declared machines, without remote launch or resume. First demonstrated with a pair of pi-durable siblings on Linux. |
 
-Native-Windows Pi remains a **bounded preview introduced in 0.39.0**, not certification of other Windows harnesses, Herdr, tmux, fresh-call/resume or a real vendor model. This Herdr snapshot's install/use/deactivate/reinstall evidence also stays within a clean Linux container at the public `main` ref: it does not cover a tag-ref install, real panes or model work. Detailed scope belongs in the [support record](https://github.com/junghan0611/entwurf/blob/v0.40.0/BASELINE.md) and [release acceptance record](https://github.com/junghan0611/entwurf/issues/107#issuecomment-6281902241).
+Native-Windows Pi remains a **bounded preview introduced in 0.39.0**, not certification of other Windows harnesses, Herdr, tmux, fresh-call/resume or a real vendor model. The 0.40.0 Herdr snapshot's install/use/deactivate/reinstall evidence also stays within a clean Linux container at the public `main` ref: it does not cover a tag-ref install, real panes or model work. The 0.41.0 candidate also passed Windows carrier and Linux consumer acceptance, but that does not certify a Windows lifecycle or the carrier-bearing tarball on macOS. agy live validation was explicitly excluded for this cut, not passed. Detailed scope belongs in the [support record](https://github.com/junghan0611/entwurf/blob/v0.41.0/BASELINE.md) and [0.41.0 release acceptance](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0).
 
 **Claude ACP inside Pi and a native Claude Code sibling are different routes.** Entwurf does not present their tools, thinking levels or restart behavior as equivalent, or reimplement another harness's internals to fill a feature promise.
 

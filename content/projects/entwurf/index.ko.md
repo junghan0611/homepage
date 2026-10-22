@@ -1,14 +1,14 @@
 ---
 title: "entwurf"
-description: "각자의 하네스와 대화를 지닌 AI 형제를 열고 잇습니다. 0.40.0은 사람이 놓은 다리로 두 기계를 건넌 첫 대화와, 신뢰·가시성의 열린 질문을 함께 내놓습니다."
+description: "각자의 하네스와 대화를 지닌 형제들과 장기 세션으로 함께합니다. Entwurf 0.41.0은 운영자가 지명한 퇴근과 Pi·네이티브 Claude Code의 같은 ID 복귀를 담습니다."
 layout: hextra-home
 toc: false
 sidebar:
   exclude: true
 ---
 
-{{< hextra/hero-badge link="https://www.npmjs.com/package/@junghanacs/entwurf" >}}
-  Open source · Herdr · tmux
+{{< hextra/hero-badge link="https://github.com/junghan0611/entwurf/releases/tag/v0.41.0" >}}
+  v0.41.0 · 쉬었다가 돌아오는 형제
 {{< /hextra/hero-badge >}}
 
 <div class="hx-mt-6"></div>
@@ -38,7 +38,15 @@ Entwurf는 **각자 실행 중인 하네스 사이에 좁은 연결을 놓는 �
 **Entwurf는 또 하나의 하네스나 오케스트레이터가 아닙니다.** 실행은 각 하네스가 맡습니다. Herdr는 워크벤치를, tmux는 터미널 자리를 제공하고, Entwurf는 그 사이에서 형제를 열고 주소를 잇습니다.
 {{< /callout >}}
 
-## 0.40.0 — 다리는 건넜고, 질문은 함께 남겼다
+## 0.41.0 — 일회용 세션이 아니라, 생일을 가진 형제
+
+**가든 ID는 형제의 생일입니다. 쉰다고 처음부터 다시 시작하지 않습니다.** [0.41.0](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0)에서는 운영자가 일반 Pi나 네이티브 Claude Code 형제를 지명해 퇴근을 요청하고, tmux에서 같은 가든 ID와 원래 대화로 다시 만날 수 있습니다. 기록과 트랜스크립트는 남습니다. Entwurf가 내용을 재구성해 만든 대체 세션으로 바꾸는 일이 아닙니다.
+
+**형제는 직책이 아닙니다.** 코디도 형제입니다. 태어날 때 개발자·리뷰어·자문자를 정해 두지 않고, 사람과 작업을 논의하며 필요한 형제를 부릅니다. 가짜 ID로 만든 [팀 책갈피 예시](https://github.com/junghan0611/entwurf/blob/v0.41.0/team.json.example)는 가든 ID와 native 세션 ID를 함께 기억합니다. 아직 실행 규약이나 권한 대장, 자동 팀 관리자가 아니라 호출자가 돌보는 작은 주소록입니다.
+
+퇴근은 자율 정리가 아닙니다. 운영자의 명시적 요청 하나가 그 대상에 대한 시도 한 번을 허용할 뿐, 명부 전체의 정리나 결과 미상의 재시도를 허용하지 않습니다. Pi의 종료 요청 접수는 실제 종료 증명이 아니고, Claude Code의 퇴근은 검증된 Linux 프로세스 하나에 관한 결과이지 모든 자식 프로세스의 종료나 기록 flush 보장이 아닙니다. 실제 Pi·Claude Code에서 각 한 번의 퇴근·복귀와 blind recall을 이전 후보에서 확인했지만, 이를 모든 하네스·플랫폼의 증거로 확대하지 않습니다. [릴리즈 수용 기록](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0)에 그 경계를 함께 남겼습니다.
+
+### 그전에 건넌 다리 — 0.40.0
 
 **이미 있는 형제에게 보낸 말이 두 기계 사이를 건너고, 답이 돌아왔습니다.** 0.40.0은 이 첫 왕복을 담은 릴리즈입니다. 다리는 사람이 놓습니다. 운영자가 두 기계를 잇고 SSH 인증을 소유하며, 서로 말할 한 쌍을 선언합니다. 원격 경로는 그 길만 건넙니다. 형제를 찾아다니거나, 원격에서 새 형제를 열거나, 답이 없다고 다시 보내지 않습니다.
 
@@ -50,12 +58,13 @@ Entwurf는 **각자 실행 중인 하네스 사이에 좁은 연결을 놓는 �
 
 지금의 신뢰 경계는 운영자의 SSH 계정과 선언된 한 쌍이지, 형제의 암호학적 신원이 아닙니다. 보이는 형제끼리 말한다는 원칙도 사람이 세션을 열어 두는 것으로 지키며, 코드가 화면을 자동으로 증명하지는 않습니다. 접수는 읽음이 아니고 오류도 미전달의 증거가 아닙니다. 해결하지 못한 것을 해결했다고 쓰는 대신, [원격 형제의 원칙과 열린 질문](https://github.com/junghan0611/entwurf/blob/v0.40.0/docs/remote-sibling-principles.md)을 함께 내놓았습니다.
 
-## 열기, 다시 열기, 메시지
+## 열고, 말하고, 쉬고, 돌아오기
 
-{{< hextra/feature-grid cols="3" >}}
+{{< hextra/feature-grid cols="2" >}}
   {{< hextra/feature-card icon="sparkles" title="열기" subtitle="entwurf_fresh_call — Herdr 안에서는 새 tab, 밖에서는 tmux의 새 창에 형제를 엽니다. 새 garden id는 형제 자신의 콜백으로 확인합니다." >}}
-  {{< hextra/feature-card icon="refresh" title="다시 열기" subtitle="entwurf_resume_call — 잠든 pi 형제를 tmux에서 같은 garden id로 다시 엽니다. 기록이 모델·대화·작업 경로를 정하며, 숨은 턴은 돌리지 않습니다." >}}
-  {{< hextra/feature-card icon="share" title="메시지" subtitle="entwurf_v2 — 이미 있는 형제에게 그 하네스의 레일로 닿습니다. 전달은 형제 런타임을 자동으로 열거나 재개하지 않으며, 접수 영수증은 답변 완료와 다릅니다." >}}
+  {{< hextra/feature-card icon="share" title="메시지" subtitle="entwurf_v2 — 이미 있는 형제에게 그 하네스의 레일로 닿습니다. 전달은 런타임을 열지 않으며, 접수는 답변 완료와 다릅니다." >}}
+  {{< hextra/feature-card icon="shield-check" title="쉬기" subtitle="entwurf_retire_call — 운영자가 명시한 일반 Pi·네이티브 Claude Code 형제 하나의 퇴근을 시도합니다. 실행·기록·잠금 해제 결과는 각각 구분합니다." >}}
+  {{< hextra/feature-card icon="refresh" title="돌아오기" subtitle="entwurf_resume_call — 잠든 Pi·Claude Code 대화를 tmux에서 같은 가든 ID로 다시 엽니다. record가 native 대화를 고르며, 이 동사는 프롬프트를 넣지 않습니다." >}}
 {{< /hextra/feature-grid >}}
 
 **garden id는 하네스의 세션 id를 대체하는 이름이 아닙니다.** 각 하네스의 native 세션과 연결된 공통 주소입니다. 창 제목이나 화면 위치를 주소로 추측하지 않고, 창이 열렸다는 사실과 형제가 응답했다는 사실도 구분합니다.
@@ -82,17 +91,18 @@ pi --entwurf-control
 
 ## 현재 배포와 지원 경계
 
-**2026년 10월 20일, [core v0.40.0](https://github.com/junghan0611/entwurf/releases/tag/v0.40.0)과 [Herdr plugin 0.40.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.20-herdr.0.40.0)의 버전쌍을 맞췄습니다.** Herdr는 수용된 core와 동일한 npm 0.40.0 바이트를 무결성 pin으로 받습니다. 일반 Pi 지원 범위는 `>=1.3.0 <1.4`이며, pi-durable의 실행 엔진·인증·queue·SQLite·트랜스크립트·복구는 업스트림 SDK 소유로 남습니다.
+**2026년 10월 22일, [core v0.41.0을 GitHub Release로 공개하고](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0) [npm에도 게시했습니다](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.41.0).** 새 Herdr 스냅샷은 아직 대기 중입니다. 위에 고정한 [Herdr plugin 0.40.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.20-herdr.0.40.0)은 여전히 npm 0.40.0을 받으며, 0.41.0의 새 출퇴근 기능을 받는 경로가 아닙니다. 일반 Pi 지원 범위는 `>=1.3.0 <1.4`이며, Claude Code의 같은 ID 복귀에는 `>=2.1.306`이 필요합니다. pi-durable의 실행 엔진·인증·queue·SQLite·트랜스크립트·복구는 업스트림 SDK 소유로 남습니다.
 
 | 자리 | 연결 방식과 경계 |
 |---|---|
-| Pi | 비-Windows에서는 Unix control socket, 제한된 Windows 프리뷰에서는 named pipe를 씁니다. 같은 id로 잠든 세션을 다시 여는 경로는 Pi·tmux에 한정합니다. |
-| pi-durable·Claude Code·Copilot·OMP | 각자의 self-fetch 경로로 메시지를 받습니다. Pi의 same-id resume 지원을 그대로 적용하지 않습니다. |
+| Pi | 비-Windows의 Unix control socket, 한정 Windows 프리뷰의 named pipe를 씁니다. 운영자가 지명한 퇴근과 tmux의 같은 ID 복귀를 지원하며, 여기서 Windows 퇴근을 인증한 것은 아닙니다. |
+| 네이티브 Claude Code | self-fetch로 전달합니다. tmux에서 기록된 native 대화로 복귀하며 퇴근은 Linux pidfd 경로가 필요합니다. 이전 모델·권한 옵션은 복원하지 않습니다. |
+| pi-durable·Copilot·OMP | 각자의 self-fetch 경로입니다. pi-durable은 지원되는 형제의 출퇴근을 호출할 수 있지만 자신은 출퇴근 대상이 아닙니다. Copilot·OMP에는 Entwurf의 같은 ID 복귀가 없습니다. |
 | Codex·Antigravity | 살아 있는 native 대화로 push합니다. mailbox나 자동 재개가 아닙니다. |
-| Herdr 플러그인 | Pi·Claude Code를 활성화하고 새로 엽니다. pi-durable의 Herdr 연결은 별도 [pilot](https://github.com/junghan0611/entwurf/issues/132)입니다. |
+| Herdr 플러그인 | Pi·Claude Code를 활성화하고 새로 엽니다. Herdr 안에서의 같은 ID 복귀는 거절하며 퇴근은 미측정입니다. pi-durable의 Herdr 연결은 별도 [pilot](https://github.com/junghan0611/entwurf/issues/132)입니다. |
 | 원격 한 쌍 | 운영자가 선언한 두 기계의 기존 형제를 잇습니다. 원격 열기·재개는 포함하지 않습니다. 첫 실증은 Linux의 pi-durable 한 쌍입니다. |
 
-Windows 네이티브 Pi는 0.39.0부터의 **한정 프리뷰**입니다. Windows의 다른 하네스·Herdr·tmux·fresh/resume이나 실제 공급자 모델까지 검증했다는 뜻이 아닙니다. Herdr의 이번 설치·사용·비활성화·재설치 증거도 깨끗한 Linux 컨테이너의 공개 `main` ref에 한정하며, 태그 ref·실제 pane·모델 작업을 같은 증거로 주장하지 않습니다. 자세한 범위는 [지원 기록](https://github.com/junghan0611/entwurf/blob/v0.40.0/BASELINE.md)과 [릴리즈 수용 기록](https://github.com/junghan0611/entwurf/issues/107#issuecomment-6281902241)에 둡니다.
+Windows 네이티브 Pi는 0.39.0부터의 **한정 프리뷰**입니다. Windows의 다른 하네스·Herdr·tmux·fresh/resume이나 실제 공급자 모델까지 검증했다는 뜻이 아닙니다. Herdr 0.40.0 스냅샷의 설치·사용·비활성화·재설치 증거도 깨끗한 Linux 컨테이너의 공개 `main` ref에 한정하며, 태그 ref·실제 pane·모델 작업을 같은 증거로 주장하지 않습니다. 0.41.0 후보도 Windows carrier와 Linux 소비자 수용을 통과했지만, Windows 출퇴근이나 carrier를 포함한 tarball의 macOS 설치를 인증한 것은 아닙니다. agy 실검증은 이번 컷에서 명시 제외했으며 PASS가 아닙니다. 자세한 범위는 [지원 기록](https://github.com/junghan0611/entwurf/blob/v0.41.0/BASELINE.md)과 [0.41.0 릴리즈 수용 기록](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0)에 둡니다.
 
 **Pi 안의 Claude ACP와 네이티브 Claude Code 형제는 다른 경로입니다.** 도구·생각 수준·재시작 의미가 모두 동등하다고 포장하지 않으며, 새 기능 약속을 채우기 위해 다른 하네스의 내부 실행을 대신 만들지 않습니다.
 

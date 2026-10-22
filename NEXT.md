@@ -16,6 +16,14 @@ SSOT: [homepage#3 — Cloudflare Workers 배포](https://github.com/junghan0611/
 
 역할(2026-09-30 GLG): 오라클 = 상시 배포 플랫폼, 노트북 = 켜져 있을 때의 빌드 검수대. nixos-config가 토큰을 준비하면 homepage가 설정·실배포·검증한다.
 
+## Project content publication — entwurf 0.41.0 (2026-10-22)
+
+- GLG requested a steward update and homepage publication after the 0.41.0 GitHub Release. The scoped content is `content/projects/entwurf/index.md` and `index.ko.md`: long-lived siblings, operator-requested retirement, Pi/Claude Code same-id return in tmux, and a non-authoritative team bookmark. No permanent developer/reviewer identity is assigned.
+- The registry was read directly: npm `latest` is 0.41.0, published 2026-10-22 13:37 KST; its integrity matches the preserved accepted candidate. The last Herdr snapshot remains 0.40.0 and does not acquire the new lifecycle features. GitHub release, npm publication and Herdr pin remain separate facts. This observation is not registry-installed native acceptance.
+- Existing Org records were updated through Emacs APIs: homepage-linked chronicle `20260520T052051` and a short status link in ledger steward `20260302T191200`. A dated follow-up corrects the earlier inherited npm-pending statement. Org source updates are not a garden export/deployment receipt; no note identity or ledger assignment changed.
+- Opus1's read-only product-fact review of both current leaves is B0/D0. Final isolated gate #19620 passed at `/tmp/homepage-entwurf-041-r2.zK5axa`: Hugo/Eval/JSON-LD plus both canonical URLs, language switches, prose wrappers, npm/release/bookmark links and four lifecycle cards. The tracked-source archive contains exactly the two leaf overlays, sandboxed HOME/XDG, and equal before/after leaf and excluded-draft hashes. The two pre-existing unpublished blog drafts stay outside build/commit/publication. Local rendered-output evidence is not visual browser acceptance: no usable local browser/CDP was observed, and no other device was contacted.
+- Current: the final candidate is reviewed and verified; GLG authorized homepage publication. Commit only the two leaves plus this handoff, fast-forward main and publish through the existing main-push deployment. Next after push: run `verify-deployed.mjs` against the expected full homepage SHA and inspect both Entwurf URLs. Do not infer live deployment from build success. This does not authorize npm re-publication, Herdr re-pin or a device rollout.
+
 ## Project content publication — doomemacs-config / nixos-config (2026-10-16)
 
 - GLG directly reviewed and approved both introductions, README update and commit + push in homepage session `20261016T103933-96efd0`. Four new bilingual leaves and two shared project indexes are the publication scope; README now names all five houses. Existing unpublished blog drafts remain excluded and untouched.
