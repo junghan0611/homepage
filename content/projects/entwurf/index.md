@@ -82,16 +82,16 @@ Two siblings keep their own harnesses and transcripts, meeting through garden id
 **Already using Herdr?** The plugin activates Entwurf for integrated Pi and Claude Code sessions and opens siblings in new tabs in the caller's workspace. An optional read-only pane shows the citizens' visible placement. The plugin does not install a harness, subscription or login.
 
 ```bash
-# First prepare Pi 1.3 and Herdr's pi / Claude Code integration
-herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.20-herdr.0.40.0 --yes
+# First prepare Pi 1.3, Claude Code >=2.1.306 and Herdr's pi / Claude Code integration
+herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.22-herdr.0.41.0 --yes
 pi --entwurf-control
 ```
 
-**Outside Herdr**, use the direct installation and tmux. Fresh-call supports six backends: Pi, pi-durable, Claude Code, Codex, Copilot and OMP. Antigravity has native-push delivery into an existing live conversation, not fresh-call support. Follow the [README](https://github.com/junghan0611/entwurf#readme) for installation and the [Herdr guide](https://github.com/junghan0611/entwurf/blob/v2026.10.20-herdr.0.40.0/plugins/herdr/README.md) for prerequisites, updates and removal.
+**Outside Herdr**, use the direct installation and tmux. Fresh-call supports six backends: Pi, pi-durable, Claude Code, Codex, Copilot and OMP. Antigravity has native-push delivery into an existing live conversation, not fresh-call support. Follow the [README](https://github.com/junghan0611/entwurf#readme) for installation and the [Herdr guide](https://github.com/junghan0611/entwurf/blob/v2026.10.22-herdr.0.41.0/plugins/herdr/README.md) for prerequisites, updates and removal.
 
 ## Current releases and boundaries
 
-**As of October 22, 2026, [core v0.41.0 is released on GitHub](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0) and [published to npm](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.41.0).** A new Herdr snapshot is still pending. The pinned [Herdr plugin 0.40.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.20-herdr.0.40.0) above still acquires npm 0.40.0, not 0.41.0's new lifecycle features. Ordinary Pi support remains `>=1.3.0 <1.4`; Claude Code same-id return requires `>=2.1.306`. For pi-durable, the upstream SDK still owns execution, authentication, queues, SQLite, transcripts and recovery.
+**As of October 22, 2026, [core v0.41.0 is released on GitHub](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0) and [published to npm](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.41.0).** The pinned [Herdr plugin 0.41.0 snapshot](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.22-herdr.0.41.0) above acquires exactly npm 0.41.0. Ordinary Pi support remains `>=1.3.0 <1.4`; Claude Code needs its supported floor `>=2.1.306`, which its managed hook lifecycle and same-id return require. For pi-durable, the upstream SDK still owns execution, authentication, queues, SQLite, transcripts and recovery.
 
 | Surface | Connection and boundary |
 |---|---|
@@ -102,7 +102,7 @@ pi --entwurf-control
 | Herdr plugin | Activates and opens Pi and Claude Code. Same-id return from inside Herdr refuses; retirement there is unmeasured. Durable-on-Herdr remains a separate [pilot](https://github.com/junghan0611/entwurf/issues/132). |
 | Remote pair | Connects existing siblings on two operator-declared machines, without remote launch or resume. First demonstrated with a pair of pi-durable siblings on Linux. |
 
-Native-Windows Pi remains a **bounded preview introduced in 0.39.0**, not certification of other Windows harnesses, Herdr, tmux, fresh-call/resume or a real vendor model. The 0.40.0 Herdr snapshot's install/use/deactivate/reinstall evidence also stays within a clean Linux container at the public `main` ref: it does not cover a tag-ref install, real panes or model work. The 0.41.0 candidate also passed Windows carrier and Linux consumer acceptance, but that does not certify a Windows lifecycle or the carrier-bearing tarball on macOS. agy live validation was explicitly excluded for this cut, not passed. Detailed scope belongs in the [support record](https://github.com/junghan0611/entwurf/blob/v0.41.0/BASELINE.md) and [0.41.0 release acceptance](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0).
+Native-Windows Pi remains a **bounded preview introduced in 0.39.0**, not certification of other Windows harnesses, Herdr, tmux, fresh-call/resume or a real vendor model. The [0.41.0 Herdr snapshot's](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.22-herdr.0.41.0) install/use/deactivate/reinstall evidence also stays within a clean Linux container at the public `main` ref: it does not cover a tag-ref install, real panes or model work. The 0.41.0 candidate also passed Windows carrier and Linux consumer acceptance, but that does not certify a Windows lifecycle or the carrier-bearing tarball on macOS. agy live validation was explicitly excluded for this cut, not passed. Detailed scope belongs in the [support record](https://github.com/junghan0611/entwurf/blob/v0.41.0/BASELINE.md) and [0.41.0 release acceptance](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0).
 
 **Claude ACP inside Pi and a native Claude Code sibling are different routes.** Entwurf does not present their tools, thinking levels or restart behavior as equivalent, or reimplement another harness's internals to fill a feature promise.
 
