@@ -1,14 +1,14 @@
 ---
 title: "entwurf"
-description: "각자의 하네스와 대화를 지닌 형제들과 장기 세션으로 함께합니다. Entwurf 0.41.0은 운영자가 지명한 퇴근과 Pi·네이티브 Claude Code의 같은 ID 복귀를 담습니다."
+description: "각자의 하네스와 대화를 지닌 형제들과 장기 세션으로 함께합니다. Entwurf 0.41.1은 pi-durable의 얇은 참조 앱을 Pi 1.4 SDK로 옮겼고, 0.41.0은 운영자가 지명한 퇴근과 같은 ID 복귀를 담았습니다."
 layout: hextra-home
 toc: false
 sidebar:
   exclude: true
 ---
 
-{{< hextra/hero-badge link="https://github.com/junghan0611/entwurf/releases/tag/v0.41.0" >}}
-  v0.41.0 · 쉬었다가 돌아오는 형제
+{{< hextra/hero-badge link="https://github.com/junghan0611/entwurf/releases/tag/v0.41.1" >}}
+  v0.41.1 · Pi 1.4, 얇은 참조 앱
 {{< /hextra/hero-badge >}}
 
 <div class="hx-mt-6"></div>
@@ -36,6 +36,16 @@ Entwurf는 **각자 실행 중인 하네스 사이에 좁은 연결을 놓는 �
 
 {{< callout type="info" >}}
 **Entwurf는 또 하나의 하네스나 오케스트레이터가 아닙니다.** 실행은 각 하네스가 맡습니다. Herdr는 워크벤치를, tmux는 터미널 자리를 제공하고, Entwurf는 그 사이에서 형제를 열고 주소를 잇습니다.
+{{< /callout >}}
+
+## 0.41.1 — 같은 얇은 앱, 이제 Pi 1.4 위에서
+
+**Entwurf가 싣는 pi-durable의 얇은 참조 앱을 Pi 1.4 SDK로 옮겼습니다. 엔진은 여전히 SDK의 것입니다.** [0.41.1](https://github.com/junghan0611/entwurf/releases/tag/v0.41.1)은 고정한 Pi SDK 아홉 종을 1.3.0에서 1.4.0으로 함께 옮깁니다. Entwurf는 그 앱/TUI 조립만 소유하고, 실행·저장소·queue·compaction·복구는 SDK가 맡습니다. 작업 패널에는 잠든 작업과 깨어날 현지 시각, SDK가 알려 준 차단 사유가 그대로 보입니다. 취소는 여전히 재시도가 아니며, 재시도 명령을 새로 만들지 않았습니다.
+
+**저장소는 한 방향으로만 넘어갑니다.** 기존 durable 세션을 SDK 1.4로 처음 열면 저장소가 schema 2로 바뀌고, 그 뒤로는 0.41.0(SDK 1.3)이 그 세션을 열지 못합니다. 옛 패키지를 다시 설치한다고 되돌아가지 않습니다. 백업을 되돌리면 대화와 작업 DB만 그 시점으로 돌아가고, 그사이 보낸 메시지나 도구가 남긴 효과는 되감기지 않습니다. 그래서 먼저 세션 파일 세트 전체를 백업하고, 옛 프로세스가 실제로 끝났는지 확인하고, `--resume` 목록에서 세션을 직접 고릅니다. 자세한 순서는 [이관 안내](https://github.com/junghan0611/entwurf/blob/v2026.10.23-herdr.0.41.1/docs/setup-clean-host.md#moving-durable-sessions-from-the-pi-13-sdk-to-14)에 있습니다.
+
+{{< callout type="info" >}}
+**사람이 닫고, 같은 대화로 다시 열었습니다.** Entwurf를 운영하는 사람이 실제 코디 형제를 정상 종료했습니다. 옮기기 전에 프로세스 종료를 확인하고 세션을 백업했습니다. 코디는 같은 가든 ID와 원래 대화로 돌아왔고, 실제 모델 턴에서 이전 합의를 다시 말했습니다. 이 한 번의 관측이 모든 트랜스크립트나 중단된 작업의 복구를 증명하지는 않습니다.
 {{< /callout >}}
 
 ## 0.41.0 — 일회용 세션이 아니라, 생일을 가진 형제
@@ -82,16 +92,16 @@ Entwurf는 **각자 실행 중인 하네스 사이에 좁은 연결을 놓는 �
 **Herdr를 이미 쓰고 있다면** 플러그인이 통합된 Pi·Claude Code 세션에 Entwurf를 활성화하고, 형제를 호출자 워크스페이스의 새 tab으로 엽니다. 선택적인 읽기 전용 pane은 시민들의 보이는 위치를 보여 줍니다. 하네스 설치·구독·로그인은 플러그인이 대신하지 않습니다.
 
 ```bash
-# Pi 1.3, Claude Code >=2.1.306, Herdr의 pi / Claude Code 통합을 먼저 준비한 뒤
-herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.22-herdr.0.41.0 --yes
+# Pi 1.4, Claude Code >=2.1.306, Herdr의 pi / Claude Code 통합을 먼저 준비한 뒤
+herdr plugin install junghan0611/entwurf/plugins/herdr --ref v2026.10.23-herdr.0.41.1 --yes
 pi --entwurf-control
 ```
 
-**Herdr 밖에서는** 직접 설치와 tmux를 사용합니다. fresh-call은 Pi·pi-durable·Claude Code·Codex·Copilot·OMP 여섯 backend를 지원합니다. Antigravity는 기존 살아 있는 대화로의 native-push 경로이며 fresh-call 대상은 아닙니다. 설치는 [README](https://github.com/junghan0611/entwurf#readme), 준비·갱신·제거는 [Herdr 가이드](https://github.com/junghan0611/entwurf/blob/v2026.10.22-herdr.0.41.0/plugins/herdr/README.md)를 따릅니다.
+**Herdr 밖에서는** 직접 설치와 tmux를 사용합니다. fresh-call은 Pi·pi-durable·Claude Code·Codex·Copilot·OMP 여섯 backend를 지원합니다. Antigravity는 기존 살아 있는 대화로의 native-push 경로이며 fresh-call 대상은 아닙니다. 설치는 [README](https://github.com/junghan0611/entwurf#readme), 준비·갱신·제거는 [Herdr 가이드](https://github.com/junghan0611/entwurf/blob/v2026.10.23-herdr.0.41.1/plugins/herdr/README.md)를 따릅니다.
 
 ## 현재 배포와 지원 경계
 
-**2026년 10월 22일, [core v0.41.0을 GitHub Release로 공개하고](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0) [npm에도 게시했습니다](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.41.0).** 위에 고정한 [Herdr plugin 0.41.0 스냅샷](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.22-herdr.0.41.0)은 npm 0.41.0을 정확히 받습니다. 일반 Pi 지원 범위는 `>=1.3.0 <1.4`이며, Claude Code는 지원 하한 `>=2.1.306`이 필요합니다. 관리되는 hook 수명주기와 같은 ID 복귀가 이 하한을 요구합니다. pi-durable의 실행 엔진·인증·queue·SQLite·트랜스크립트·복구는 업스트림 SDK 소유로 남습니다.
+**2026년 10월 23일, [core v0.41.1을 GitHub Release로 공개하고](https://github.com/junghan0611/entwurf/releases/tag/v0.41.1) [npm에도 게시했습니다](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.41.1).** 위에 고정한 [Herdr plugin 0.41.1 스냅샷](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.23-herdr.0.41.1)은 npm 0.41.1을 정확히 받습니다. 일반 Pi 지원 범위는 이제 `>=1.4.0 <1.5`입니다. 플러그인을 활성화할 때 Pi 1.3 호스트는 이름 붙은 거절을 받으므로, Pi를 먼저 1.4로 올립니다. Pi를 먼저 1.4로 올리면, 정착된 npm 0.41.0 설치는 Herdr 가이드의 소유 조건 아래 같은 npm source로 rebind할 수 있습니다. checkout 후보를 설치했던 호스트는 먼저 명시적으로 비활성화합니다. Pi 1.3.x에는 이전 [core 0.41.0](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0)과 [Herdr 0.41.0 스냅샷](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.22-herdr.0.41.0)이 짝으로 남습니다. Claude Code는 지원 하한 `>=2.1.306`이 필요합니다. 관리되는 hook 수명주기와 같은 ID 복귀가 이 하한을 요구합니다. pi-durable의 실행 엔진·인증·queue·SQLite·트랜스크립트·복구는 업스트림 SDK 소유로 남습니다.
 
 | 자리 | 연결 방식과 경계 |
 |---|---|
@@ -102,7 +112,7 @@ pi --entwurf-control
 | Herdr 플러그인 | Pi·Claude Code를 활성화하고 새로 엽니다. Herdr 안에서의 같은 ID 복귀는 거절하며 퇴근은 미측정입니다. pi-durable의 Herdr 연결은 별도 [pilot](https://github.com/junghan0611/entwurf/issues/132)입니다. |
 | 원격 한 쌍 | 운영자가 선언한 두 기계의 기존 형제를 잇습니다. 원격 열기·재개는 포함하지 않습니다. 첫 실증은 Linux의 pi-durable 한 쌍입니다. |
 
-Windows 네이티브 Pi는 0.39.0부터의 **한정 프리뷰**입니다. Windows의 다른 하네스·Herdr·tmux·fresh/resume이나 실제 공급자 모델까지 검증했다는 뜻이 아닙니다. [Herdr 0.41.0 스냅샷](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.22-herdr.0.41.0)의 설치·사용·비활성화·재설치 증거도 깨끗한 Linux 컨테이너의 공개 `main` ref에 한정하며, 태그 ref·실제 pane·모델 작업을 같은 증거로 주장하지 않습니다. 0.41.0 후보도 Windows carrier와 Linux 소비자 수용을 통과했지만, Windows 출퇴근이나 carrier를 포함한 tarball의 macOS 설치를 인증한 것은 아닙니다. agy 실검증은 이번 컷에서 명시 제외했으며 PASS가 아닙니다. 자세한 범위는 [지원 기록](https://github.com/junghan0611/entwurf/blob/v0.41.0/BASELINE.md)과 [0.41.0 릴리즈 수용 기록](https://github.com/junghan0611/entwurf/releases/tag/v0.41.0)에 둡니다.
+Windows 네이티브 Pi는 0.39.0부터의 **한정 프리뷰**입니다. Windows의 다른 하네스·Herdr·tmux·fresh/resume이나 실제 공급자 모델까지 검증했다는 뜻이 아닙니다. [Herdr 0.41.1 스냅샷](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.23-herdr.0.41.1)의 설치·사용·비활성화·재설치 증거도 깨끗한 Linux 컨테이너의 공개 `main` ref에 한정하며, 태그 ref·실제 pane·모델 작업을 같은 증거로 주장하지 않습니다. 0.41.1 아티팩트는 Windows carrier와 Linux 소비자 수용을 통과했고 npm에 올라간 파일도 그 수용 파일과 바이트까지 같습니다. 그래도 Windows 출퇴근이나 carrier를 포함한 tarball의 macOS 설치를 인증한 것은 아닙니다. 0.41.0 컷에서는 agy 실검증을 명시 제외했으며 PASS가 아닙니다. 자세한 범위는 [지원 기록](https://github.com/junghan0611/entwurf/blob/v0.41.1/BASELINE.md)과 [0.41.1 릴리즈 기록](https://github.com/junghan0611/entwurf/releases/tag/v0.41.1)에 둡니다.
 
 **Pi 안의 Claude ACP와 네이티브 Claude Code 형제는 다른 경로입니다.** 도구·생각 수준·재시작 의미가 모두 동등하다고 포장하지 않으며, 새 기능 약속을 채우기 위해 다른 하네스의 내부 실행을 대신 만들지 않습니다.
 

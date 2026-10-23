@@ -94,16 +94,13 @@ surface. This repo is public; the global commit/push hook scans added lines unde
 
 ## Deploy
 
-- **Netlify only.** Push to `main` → the source/runtime verifier + Hugo production
-  build + rendered-output verifier → serves apex `junghanacs.com` (`www` redirects).
-  Netlify site id `03636ee7-adf3-4993-af03-75907d1f5d14`, under the `junghanacs`
-  Netlify team.
-- **Moving to Cloudflare Workers (homepage#3, in progress).** Until the apex cutover, Netlify
-  above is the production fact. The Worker `junghanacs-homepage` (static assets, no code) is
-  measured on workers.dev; contract in `docs/deploy-cloudflare.md` — build `scripts/build-site.sh`,
-  response gate `node scripts/verify-deployed.mjs <origin>`. `static/_headers` is read by both
-  hosts: a header name may appear in only one of two overlapping rules. Update this section
-  when the apex moves.
+- **Cloudflare Workers.** Since 2026-09-30 the Worker `junghanacs-homepage` (static assets,
+  no code) serves apex `junghanacs.com`; push to `main` = Workers Builds production deploy.
+  Contract in `docs/deploy-cloudflare.md` — build `scripts/build-site.sh`, response gate
+  `node scripts/verify-deployed.mjs <origin> [<commit>]`; pass the exact commit when checking a
+  deploy. Build success is not a live receipt.
+- `netlify.toml` and the shared `static/_headers` rule (a header name in only one of two
+  overlapping rules) remain in the repo; Netlify's current role is not recorded here.
 - **No GitHub Actions.** The old `pages.yaml` Pages workflow was removed — never re-add a
   CI build/deploy here; it only causes duplicate (failing) runs.
 - The Netlify site's source repo was relinked from `junghanacs.github.io` → this repo, so
