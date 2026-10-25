@@ -52,7 +52,9 @@ The Git history begins with the base configuration and cloud and local host setu
 
 Keeping services running widened this house's responsibility. It does not reimplement OpenClaw; it owns the host-side disk, container, upgrade, and recovery boundaries around that runtime. In October 2026, [update checks were hardened to fail closed](https://github.com/junghan0611/nixos-config/commit/99487b2): failure to verify must not become permission to proceed as though a check passed.
 
-Returning to an earlier operating-system generation does not also roll back an external database or a conversation record. A living process is not proof that a user received a reply. **Distinguishing declarations, deployed state, and observed use** is part of the operational craft accumulated here.
+In [that month's operations record](https://github.com/junghan0611/nixos-config/releases/tag/v2026.10.26), a schema-changing upgrade began by checking in isolation that a recovery copy could be accepted by the previous runtime. We rehearsed the migration on a separate copy, then migrated the original state through its supported procedure rather than overwriting it with the rehearsal state. Reclaiming space followed the same discipline: distinguish original data from regenerable material, then retire only reviewed and approved candidates rather than delete by name or age.
+
+Returning to an earlier operating-system generation does not also roll back an external database or a conversation record. A living process is not proof that a user received a reply. Even after a disabled scheduled task was re-enabled and its failure counter returned to zero, we did not count its recovery as verified until the next scheduled run finished and its result reached the person. **Distinguishing declarations, deployed state, and observed use** is part of the operational craft accumulated here.
 
 {{< callout type="info" >}}
 **Public configuration and private live state are different things.** Service definitions and operational lessons can be public; credentials, conversations, and personal workspaces are not material for this page or the public repository. A published file is not itself evidence of what is currently running.
@@ -62,7 +64,7 @@ Returning to an earlier operating-system generation does not also roll back an e
 
 | House | Responsibility |
 |---|---|
-| **nixos-config** | NixOS hosts, user environments, package origins, and the ground for operations and recovery |
+| **nixos-config** | NixOS hosts, user environments, package origins, and the ground for operations, recovery, and data retirement |
 | [doomemacs-config](https://github.com/junghan0611/doomemacs-config) | How reading, writing, and thinking happen inside the editor |
 | [agent-config]({{< relref "/projects/agent-config" >}}) | Shared skills, profiles, and the posture of collaboration |
 | [entwurf]({{< relref "/projects/entwurf" >}}) | Visible sibling sessions and connections between harnesses |
