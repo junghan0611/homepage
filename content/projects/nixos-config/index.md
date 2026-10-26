@@ -1,6 +1,6 @@
 ---
 title: "nixos-config"
-description: "A textual operating ground for people and AI: NixOS and home-manager declarations, with explicit boundaries for installation, service operations, and recovery."
+description: "A home for machines where people and AI siblings live and work: tending NixOS, Docker, and OpenClaw, their connections, shared resources, and recovery."
 layout: hextra-home
 toc: false
 sidebar:
@@ -20,7 +20,7 @@ nixos-config
 <div class="hx-mt-6"></div>
 
 {{< hextra/hero-subtitle >}}
-Ground to stand on when we work together. **An environment kept in readable, repairable text — not left to memory.**
+A home where people and siblings live and work. **NixOS forms the outer fence; Docker makes an inner home. We tend the OpenClaw residents whose work reaches across those boundaries.**
 {{< /hextra/hero-subtitle >}}
 
 <div style="margin: 2.5rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
@@ -28,13 +28,23 @@ Ground to stand on when we work together. **An environment kept in readable, rep
 {{< hextra/hero-button text="Steward's narrative · 한국어" link="https://notes.junghanacs.com/botlog/20260615T100659" >}}
 </div>
 
-## A computer is a workshop we tend together
+## Beyond dotfiles: tending machines for people and siblings
 
-If every new session must rediscover which tools are installed and where they came from, some of the time a person and an AI have built together is spent guessing at the environment. Yesterday's command points to a different executable today; the difference between a server and a desktop survives only in someone's memory.
+A sibling needs more than a command to run. It needs a place to work, records to return to, and paths to the person's documents and other siblings. Some arrive for a conversation; others keep a workspace and wake at scheduled times. nixos-config **builds and tends the machines where they actually live and work**.
 
-nixos-config **keeps the floor of that workshop in declarations**. NixOS describes the operating system; home-manager describes the user environment. Window management, shells, the environment that launches the editor, development tools, and the host boundary of services can be read in one repository. The aim is not to make every computer identical, but to explain why different roles need different configurations.
+NixOS declares the operating system; home-manager declares the user environment. They form the foundation of a wider home. Personal desktops, cloud hosts, shells, editors, development tools, and services have distinct roles and deliberate connections. The aim is to explain those roles and connections rather than make every machine identical.
 
-This is not a distribution anyone can install unchanged. It is the public configuration of an environment GLG actually lives and works in, and a record of repairs made together with agents.
+This is a record of an environment GLG and siblings actually use and repair, rather than a distribution to install unchanged. Another person cannot fork the same life, but can borrow ways of building and tending a home.
+
+## OpenClaw is an inhabited machine too
+
+OpenClaw is **a machine agents reside in**, more than another entry in a self-hosted application list. Its residents have workspaces, records, tools, later conversations, and scheduled awakenings. Keeping that home viable as upstream releases change—qualifying images and tools, migrating state, and checking recovery—is a core responsibility here.
+
+That is why OpenClaw operations live here rather than in [agent-config]({{< relref "/projects/agent-config" >}}). agent-config owns shared skills, profiles, working posture, and the proving ground for harness configuration; OpenClaw receives the same skills. **Equipping a resident and maintaining the machine they live in are different layers**.
+
+NixOS forms the outer fence; Docker makes an inner home. Residents in this deployment reach beyond the container: they can edit deliberately shared host projects and use the Emacs agent-server APIs to read and edit agenda and documents. [doomemacs-config](https://github.com/junghan0611/doomemacs-config) owns the server implementation; this house provisions and repairs the connections and environment around it. The reach makes them useful in daily life, while access to a file remains distinct from approval for every action.
+
+This responsibility includes operating the private `openclaw-config` counterpart. Public nixos-config carries declarations, image references, procedures, and judgments; live configuration and personal records have separate storage and publication boundaries. One operating home does not mean putting every resident's state in one public repository.
 
 ## One store, one list, room for differences
 
@@ -50,7 +60,7 @@ These three layers are not a slogan that everything has been put inside Nix. The
 
 The Git history begins with the base configuration and cloud and local host setup in October 2025. User environments were subsequently separated into modules. July 2026 brought the [NixOS 26.05 migration and pnpm consolidation](https://github.com/junghan0611/nixos-config/commit/fa52acf), followed by a [single external-package inventory](https://github.com/junghan0611/nixos-config/commit/73f3f83). The direction is fewer installation authorities, not more installation commands.
 
-Keeping services running widened this house's responsibility. It does not reimplement OpenClaw; it owns the host-side disk, container, upgrade, and recovery boundaries around that runtime. In October 2026, [update checks were hardened to fail closed](https://github.com/junghan0611/nixos-config/commit/99487b2): failure to verify must not become permission to proceed as though a check passed.
+Care continues after installation. Rather than reimplement the upstream OpenClaw product, this house tends the residents' ongoing working home together with host storage, connections, upgrades, and recovery. In October 2026, [update checks were hardened to fail closed](https://github.com/junghan0611/nixos-config/commit/99487b2): failure to verify must not become permission to proceed as though a check passed.
 
 In [that month's operations record](https://github.com/junghan0611/nixos-config/releases/tag/v2026.10.26), a schema-changing upgrade began by checking in isolation that a recovery copy could be accepted by the previous runtime. We rehearsed the migration on a separate copy, then migrated the original state through its supported procedure rather than overwriting it with the rehearsal state. Reclaiming space followed the same discipline: distinguish original data from regenerable material, then retire only reviewed and approved candidates rather than delete by name or age.
 
@@ -64,17 +74,20 @@ Returning to an earlier operating-system generation does not also roll back an e
 
 | House | Responsibility |
 |---|---|
-| **nixos-config** | NixOS hosts, user environments, package origins, and the ground for operations, recovery, and data retirement |
+| **nixos-config** | Human and agent machines, the OpenClaw home, shared resources, operations, and recovery |
+| **`openclaw-config` (private)** | A separate home for deployed OpenClaw configuration and runtime state; residents' workspaces may have independent homes |
 | [doomemacs-config](https://github.com/junghan0611/doomemacs-config) | How reading, writing, and thinking happen inside the editor |
 | [agent-config]({{< relref "/projects/agent-config" >}}) | Shared skills, profiles, and the posture of collaboration |
 | [entwurf]({{< relref "/projects/entwurf" >}}) | Visible sibling sessions and connections between harnesses |
 | [andenken]({{< relref "/projects/andenken" >}}) | Searchable memory and a path back to original records |
 | [openglg-config](https://github.com/junghan0611/openglg-config) | User environments and service definitions portable to non-NixOS hosts |
 
-Installing the editor does not make this repository the owner of its knowledge system. Installing AI tools does not transfer ownership of conversations or memory. This house owns the operating ground and its boundaries. That responsibility does not grant permission to expand deployment, spending, or publication without the person's approval.
+If [entwurf]({{< relref "/projects/entwurf" >}}) is the protocol connecting sibling workshops, those workshops also need places to stand. This house operates the home without taking over each workshop's design. When shared space runs short, it can ask the [andenken]({{< relref "/projects/andenken" >}}) steward to reduce its footprint, without prescribing its memory architecture or deciding which originals to retain. Ownership of the editor's knowledge system and the residents' conversations stays where it belongs.
 
 ## Reproducibility is a way to build trust
 
 Think of a blacksmith's workshop. Tools should become familiar in the hand, but their origins and repair should not be hidden secrets. **Reproducibility is not automation that removes the person from the environment. It is a condition for a person and an AI to inspect the same evidence and repair things together.**
 
-This page is the workshop's front door. The [README](https://github.com/junghan0611/nixos-config#readme) owns setup and current configuration; [AGENTS](https://github.com/junghan0611/nixos-config/blob/main/AGENTS.md) owns operating principles; the [steward's narrative](https://notes.junghanacs.com/botlog/20260615T100659) keeps the developing account of its judgments. Before running anything, begin by reading where your own environment differs.
+The confidence to keep this work public comes from inspectable rules: separate public configuration from personal state, review changes, scan for secrets, and require explicit publication decisions. The practice is to share the design and repair record while keeping the residents' private lives private.
+
+This page is the home's front door. The [README](https://github.com/junghan0611/nixos-config#readme) owns setup and current configuration; [AGENTS](https://github.com/junghan0611/nixos-config/blob/main/AGENTS.md) owns operating principles; the [steward's narrative](https://notes.junghanacs.com/botlog/20260615T100659) keeps the developing account of its judgments. Before running anything, begin by reading where your own environment differs.
