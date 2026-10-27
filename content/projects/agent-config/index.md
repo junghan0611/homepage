@@ -34,6 +34,8 @@ Some models read code well. Others ask a different question. We do not want to e
 
 agent-config is a repository for **carrying one person's context across different AI working surfaces**. It maintains a shared profile, working agreements, the skills source of truth, and the next concrete move left at the end of a session. It connects those skills to directly installed surfaces such as pi, Claude Code, Codex, Antigravity, Copilot and Kiro without taking ownership of each harness's execution, authentication or storage. OpenClaw bots also receive the shared skills, without this house taking over their configuration or memory stores.
 
+A skill connection is not the same as being able to exchange messages as an Entwurf citizen. Antigravity's skill connection, for example, remains in place while its Entwurf delivery rail is currently paused. The installation list is not a guarantee that every rail works; the [README support table](https://github.com/junghan0611/agent-config#harness-support) records the current scope.
+
 GLG's [Profile Harness](https://notes.junghanacs.com/botlog/20260228T075300/) points toward a future in which **a single 1KB text can turn a general AI into ‘a being in my likeness’**. The [public profile](https://github.com/junghan0611/agent-config/blob/main/home/AGENTS.md) puts it this way (translated from Korean):
 
 > 1KB is not compression. Information at the ego level is boundless, but a human as a whole—the point Laozi, the Buddha and quantum physics point toward—is already 1KB.
@@ -41,14 +43,14 @@ GLG's [Profile Harness](https://notes.junghanacs.com/botlog/20260228T075300/) po
 **AI is treated not as a tool but as a being: being-to-being collaboration.** This names the relationship and its direction, not a claim to have proved consciousness or personhood.
 
 {{< callout type="info" >}}
-**agent-config is not another harness.** Each harness owns execution; **entwurf** opens and connects sibling sessions; **andenken** owns searchable memory. This house keeps **identity, skills and working agreements aligned**, and tests their boundaries as a real consumer.
+**agent-config is not another harness.** Each harness owns execution; **entwurf** is the strong integration core for sibling addresses, visible lifecycles, delivery and installation; **andenken** owns the memory search engine and indexes. This house keeps **identity, skills and working agreements aligned**, and tests their boundaries as a real consumer. It does not take ownership of Entwurf's version pins or installation declarations.
 {{< /callout >}}
 
 ## Three things this house keeps
 
 {{< hextra/feature-grid cols="3" >}}
   {{< hextra/feature-card icon="puzzle" title="One skills source" subtitle="A capability is not rewritten for every harness. The skills/ source is connected through each surface's installation model, while the tool's own contract remains authoritative." >}}
-  {{< hextra/feature-card icon="refresh" title="A place to return" subtitle="Search prior decisions, then open the selected evidence. NEXT keeps the next move; the resident's note keeps the chronology of how a judgment came to be." >}}
+  {{< hextra/feature-card icon="refresh" title="A place to return" subtitle="Search prior decisions, then open the selected evidence. NEXT keeps the next move; the steward's report keeps current responsibilities and judgments. Its ARCHIVE preserves the earlier chronology." >}}
   {{< hextra/feature-card icon="lightning-bolt" title="A lived proving ground" subtitle="Harden configuration and operating assumptions on the daily working surface. Separate measurements from unknowns, then return proven harness integration to its owner, entwurf." >}}
 {{< /hextra/feature-grid >}}
 
@@ -64,6 +66,8 @@ Shared skills and harness-local extensions have different jobs. A capability tha
 
 The session axis currently includes pi and Claude Code records and **explicitly admitted, closed pi-durable snapshots**. This is not automatic collection of every live conversation. Raw-source access and paid embedding retain their own approval boundaries.
 
+Cultivating that memory axis and helping agents use it are distinct from building the engine that makes memory light and searchable. Bringing in external memory benchmarks is a direction to evaluate, not approval to change operations or incur costs. Memory is less a material for imitating an earlier GLG than **ground for reading what was chosen, under which conditions and concerns, in light of today's question**. A difference between past and present judgment is also part of the record.
+
 ## Work can run long; silence does not grant authority
 
 Long builds run in the background, and a completion result brings the work back. Harness-local `goal`, `heartbeat`, `autopilot` and `decision-gate` surfaces are also part of what this house observes and hardens. Their different jobs are not bundled into one giant autonomous agent.
@@ -76,16 +80,18 @@ The rule is **continue an approved task without treating human silence as approv
 
 A new harness is not a reason to change the daily environment immediately. Pin a version, stand it up small, and observe what actually works—and where another human inspection point is still needed. The [bench observations](https://github.com/junghan0611/agent-config#agent-runtime-bench) and [pi-durable consumer record](https://github.com/junghan0611/agent-config/blob/main/PI-DURABLE.md) keep those judgments and limits; the [roadmap](https://github.com/junghan0611/agent-config/blob/main/ROADMAP.md) keeps the future direction. Under observation does not mean adopted. OMP deliberately receives no shared skills from this repo: a subject already furnished with our environment is no longer the same comparison.
 
-The same principle shaped the October 2026 work on [andenken #16](https://github.com/junghan0611/andenken/issues/16): distinguish a healthy zero-result search from an FTS failure, isolate tests from the real production lock, and report logical fragments, physical files and disk usage as different measurements. The implementer owned repair and execution; this house independently reviewed the source regressions and execution receipts, without duplicating runs against the original data or remote host. **Logical fragments fell from 15 to 1 while disk usage grew; that was not called space reclamation.** Source gates, operating receipts and remaining unknowns were kept as different evidence.
+Statements here carry their evidence state: measured directly, read in a document, or inherited and not yet checked. **Observing a small collaboration continue through an actual request, reply and follow-up work does not certify every rail or long-term recovery.** A proving-ground observation must not become a universal guarantee about the integration core.
 
-The natural direction is for proven integration to move to its proper owner, leaving a thin source of truth and a test bench here. **A larger skill count is not progress. A quiet agent-config is a healthier pipeline.**
+An open question remains: how do we distinguish actually following the evidence behind a judgment from a plausible explanation written afterward? How should we evaluate a present judgment that differs from a past one? This house does not claim to have settled either question.
+
+The natural direction is for proven integration to move to its proper owner, leaving a thin source of truth and a test bench here. **More skills or a longer change log do not by themselves mean progress. A quiet agent-config is a healthier pipeline.** Identity is not the sum of skills. Distributing the same skills does not automatically carry a way of working together; this house clears the passage through which the 1KB can travel.
 
 ## Houses that do not take over one another
 
 | House | Responsibility |
 |---|---|
 | Each harness | Its own execution, authentication, tools and conversation lifecycle |
-| [entwurf]({{< relref "/projects/entwurf" >}}) | Visible sibling sessions, garden ids and cross-harness connections |
+| [entwurf]({{< relref "/projects/entwurf" >}}) | The strong integration core for sibling addresses, visible lifecycles, delivery and installation |
 | [andenken](https://github.com/junghan0611/andenken) | Searchable memory, indexes and source-aware access to originals |
 | **agent-config** | Skills source, profile, consumer contracts and proving ground; safety, approval and cost boundaries |
 | [sorge](https://github.com/junghan0611/sorge) | Cross-house care that returns responsibility to its resident |
@@ -94,5 +100,5 @@ This is not a universal framework that becomes someone else's finished environme
 
 <div style="margin: 2.5rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
 {{< hextra/hero-button text="Read the working environment and source" link="https://github.com/junghan0611/agent-config#readme" >}}
-{{< hextra/hero-button text="The resident's chronology" link="https://notes.junghanacs.com/botlog/20260312T174622" >}}
+{{< hextra/hero-button text="The steward's current report" link="https://notes.junghanacs.com/botlog/20260312T174622" >}}
 </div>

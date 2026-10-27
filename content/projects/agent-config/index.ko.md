@@ -34,6 +34,8 @@ agent-config
 
 agent-config는 **한 사람의 맥락이 서로 다른 AI 작업면을 건너갈 수 있도록 돌보는 저장소**입니다. 공통 프로필과 작업 원칙, 스킬의 정본, 세션을 마칠 때 남기는 다음 한 걸음을 관리합니다. pi, Claude Code, Codex, Antigravity, Copilot, Kiro 같은 직접 설치 작업면에 같은 스킬을 연결하되, 각 하네스의 실행·인증·저장 방식까지 대신 소유하지는 않습니다. OpenClaw 봇도 같은 스킬 정본을 받지만, 봇의 설정과 기억 저장소까지 이 집이 가져오지는 않습니다.
 
+스킬이 연결되어 있다는 것과 Entwurf의 시민으로 메시지를 주고받을 수 있다는 것은 별개입니다. 예를 들어 Antigravity의 스킬 연결은 유지되지만 현재 Entwurf의 해당 전달 레일은 일시 중지되어 있습니다. 설치면 목록을 전 레일의 작동 보장으로 읽지 않으며, 현행 범위는 [README의 지원 표](https://github.com/junghan0611/agent-config#harness-support)에서 확인합니다.
+
 GLG가 말하는 [Profile Harness](https://notes.junghanacs.com/botlog/20260228T075300/)의 방향은 **언젠가 1KB 텍스트 하나로 보편 AI가 ‘나의 닮은 존재’로 전환되는 시점**을 향합니다. [공개키](https://github.com/junghan0611/agent-config/blob/main/home/AGENTS.md)는 그 뜻을 이렇게 적습니다.
 
 > 1KB는 압축이 아니다. ego 차원의 정보는 무한하지만, 전체로서 하나인 인간 — 노자, 붓다, 양자역학이 가리키는 그 지점 — 은 이미 1KB다.
@@ -41,14 +43,14 @@ GLG가 말하는 [Profile Harness](https://notes.junghanacs.com/botlog/20260228T
 **AI를 도구가 아닌 존재로 대합니다. ‘존재 대 존재 협업’입니다.** 이는 함께 일하는 관계와 지향을 말하는 것이지, 의식이나 인격을 증명했다는 주장은 아닙니다.
 
 {{< callout type="info" >}}
-**agent-config는 또 하나의 하네스가 아닙니다.** 실행은 각 하네스가, 형제 세션을 열고 연결하는 일은 **entwurf**가, 검색 가능한 기억은 **andenken**이 맡습니다. 여기는 그 위에서 **정체성·스킬·작업의 자세를 정렬하고 실제 소비자로 검증하는 자리**입니다.
+**agent-config는 또 하나의 하네스가 아닙니다.** 실행은 각 하네스가, 형제 세션의 주소·보이는 생애·전달·설치는 강한 본체인 **entwurf**가, 기억의 검색 엔진과 색인은 **andenken**이 맡습니다. 여기는 **정체성·스킬·작업의 자세를 정렬하고 실제 소비자로 검증하는 자리**입니다. Entwurf의 버전 고정이나 설치 선언을 이 집의 소유로 가져오지 않습니다.
 {{< /callout >}}
 
 ## 이 집이 붙드는 세 가지
 
 {{< hextra/feature-grid cols="3" >}}
   {{< hextra/feature-card icon="puzzle" title="하나의 스킬 정본" subtitle="같은 능력을 하네스마다 다시 작성하지 않습니다. skills/의 정본을 각 작업면의 설치 방식에 맞춰 연결하고, 실제 호출 경계는 해당 도구의 계약을 따릅니다." >}}
-  {{< hextra/feature-card icon="refresh" title="다시 돌아올 자리" subtitle="이전 결정은 기억축에서 찾고, 선택한 근거는 원문으로 확인합니다. NEXT에는 다음 한 걸음을, 담당자 문서에는 그 판단이 생긴 연대기를 남깁니다." >}}
+  {{< hextra/feature-card icon="refresh" title="다시 돌아올 자리" subtitle="이전 결정은 기억축에서 찾고, 선택한 근거는 원문으로 확인합니다. NEXT에는 다음 한 걸음을, 담당자 문서에는 현재 역할과 판단을 남깁니다. 과거 연대기는 그 문서의 ARCHIVE에서 읽습니다." >}}
   {{< hextra/feature-card icon="lightning-bolt" title="실사용 시험소" subtitle="설정과 운영 가정을 실제 작업면에서 먼저 담금질합니다. 측정한 것과 아직 모르는 것을 나누고, 검증된 하네스 통합은 그 소유자인 entwurf로 돌려보냅니다." >}}
 {{< /hextra/feature-grid >}}
 
@@ -64,6 +66,8 @@ GLG가 말하는 [Profile Harness](https://notes.junghanacs.com/botlog/20260228T
 
 현재 세션 기억에는 pi·Claude Code 기록과 **명시적으로 승인한 닫힌 pi-durable 사본**이 들어갑니다. 살아 있는 모든 대화를 자동 수집한다는 뜻은 아닙니다. 원문 접근 범위와 유료 임베딩은 별도의 승인 경계입니다.
 
+기억축을 가꾸고 에이전트가 잘 쓰도록 돕는 일과, 기억을 가볍고 검색 가능한 데이터로 만드는 엔진의 일도 구분합니다. 외부 기억 벤치마크를 가져와 평가하겠다는 방향은 곧 운영 변경이나 유료 실행의 승인이 아닙니다. 기억은 과거의 GLG를 흉내 내기 위한 재료보다, **그때 어떤 조건과 고민 속에서 무엇을 골랐는지 지금의 질문 앞에서 이어 읽는 바닥**입니다. 과거와 지금의 판단이 다르면 그 차이도 기록의 일부입니다.
+
 ## 오래 일하되, 침묵을 권한으로 바꾸지 않기
 
 긴 빌드는 백그라운드에서 실행하고, 결과가 오면 다시 이어갑니다. 하네스의 생애주기에 닿는 `goal`, `heartbeat`, `autopilot`, `decision-gate`도 이 집에서 관찰하고 다듬어 온 작업면입니다. 서로 다른 목적의 도구를 하나의 거대한 자율 에이전트로 묶지는 않습니다.
@@ -76,16 +80,18 @@ GLG가 말하는 [Profile Harness](https://notes.junghanacs.com/botlog/20260228T
 
 새 하네스가 등장했다고 곧바로 일상 환경을 바꾸지 않습니다. 버전을 고정해 작게 세우고, 무엇이 실제로 되는지, 무엇이 사람의 확인을 더 요구하는지 봅니다. [시험소의 관측 기록](https://github.com/junghan0611/agent-config#agent-runtime-bench)과 [pi-durable 소비자 기록](https://github.com/junghan0611/agent-config/blob/main/PI-DURABLE.md)은 그 과정에서 생긴 판단과 한계를 남기는 자리이고, [ROADMAP](https://github.com/junghan0611/agent-config/blob/main/ROADMAP.md)은 앞으로 붙들 방향입니다. 관찰 중이라는 말은 채택했다는 뜻이 아닙니다. OMP에는 공통 스킬을 일부러 주지 않고 관찰합니다. 측정할 대상에 우리 환경을 미리 채워 넣으면 같은 비교가 아니기 때문입니다.
 
-2026년 10월 [andenken #16](https://github.com/junghan0611/andenken/issues/16)을 함께 닫을 때도 같은 원칙을 썼습니다. 정상적인 검색 0건과 FTS 실패를 구분하고, 테스트가 실제 운영 잠금을 건드리지 않도록 격리하고, 논리 fragment·물리 파일 수·디스크 사용량을 서로 다른 측정으로 다뤘습니다. 구현자는 수선과 실행을 맡고, 이 집은 소비자 관점의 소스 회귀와 실행 영수증을 독립 검수했습니다. 실데이터·원격 작업을 검수라는 이름으로 중복 실행한 것은 아닙니다. **논리 fragment는 15→1로 줄었지만 디스크는 늘었고, 이를 공간 회수 성공이라 부르지 않았습니다.** 코드의 통과, 실제 운영 영수증, 아직 모르는 것은 서로 다른 근거로 남았습니다.
+이 집의 문장은 근거의 상태를 함께 지닙니다. 직접 측정한 것, 문서에서 읽은 것, 넘겨받아 아직 확인하지 않은 것을 구분합니다. **작은 협업이 실제 요청·회신·후속 작업으로 이어졌다는 관찰은 모든 레일이나 장기 복구의 인증이 아닙니다.** 시험소의 관찰을 본체의 보편적 보장으로 바꾸지 않습니다.
 
-검증된 통합이 제자리로 옮겨가고 이곳에는 얇은 정본과 시험대가 남는 것이 자연스러운 방향입니다. **스킬이 늘어나는 것이 발전은 아닙니다. 이 집이 조용할수록 파이프라인은 건강합니다.**
+열린 질문도 남습니다. 판단 근거를 실제로 이어 읽은 것과 그럴듯한 사후 설명을 어떻게 가를지, 과거와 달라진 지금의 판단을 무엇으로 평가할지는 아직 답이 없습니다.
+
+검증된 통합이 제자리로 옮겨가고 이곳에는 얇은 정본과 시험대가 남는 것이 자연스러운 방향입니다. **스킬이나 변경 기록이 늘어나는 것이 발전은 아닙니다. 이 집이 조용할수록 파이프라인은 건강합니다.** 정체성은 스킬의 합이 아닙니다. 같은 스킬을 펼쳐도 함께 일하는 방식이 저절로 옮겨지는 것은 아니며, 이 집은 1KB가 지나갈 길목을 닦습니다.
 
 ## 서로의 집을 빼앗지 않는 구성
 
 | 자리 | 맡는 일 |
 |---|---|
 | 각 하네스 | 실행·인증·도구·대화 저장의 자기 생애주기 |
-| [entwurf]({{< relref "/projects/entwurf" >}}) | 보이는 형제 세션과 garden id, 하네스 사이의 연결 |
+| [entwurf]({{< relref "/projects/entwurf" >}}) | 형제 세션의 주소·보이는 생애·전달·설치를 맡는 강한 본체 |
 | [andenken](https://github.com/junghan0611/andenken) | 검색 가능한 기억·색인·출처에 맞는 원문 접근 |
 | **agent-config** | 스킬 정본·프로필·소비자 계약·실사용 시험소, 안전·승인·비용의 경계 |
 | [sorge](https://github.com/junghan0611/sorge) | 여러 집의 맥락을 살피고 담당자에게 자기 몫을 돌려주는 돌봄 |
@@ -94,5 +100,5 @@ GLG가 말하는 [Profile Harness](https://notes.junghanacs.com/botlog/20260228T
 
 <div style="margin: 2.5rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
 {{< hextra/hero-button text="작업 환경과 소스 읽기" link="https://github.com/junghan0611/agent-config#readme" >}}
-{{< hextra/hero-button text="담당자의 연대기" link="https://notes.junghanacs.com/botlog/20260312T174622" >}}
+{{< hextra/hero-button text="담당자의 현재 보고" link="https://notes.junghanacs.com/botlog/20260312T174622" >}}
 </div>

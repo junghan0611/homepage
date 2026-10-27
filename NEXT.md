@@ -16,6 +16,13 @@ SSOT: [homepage#3 — Cloudflare Workers 배포](https://github.com/junghan0611/
 
 역할(2026-09-30 GLG): 오라클 = 상시 배포 플랫폼, 노트북 = 켜져 있을 때의 빌드 검수대. nixos-config가 토큰을 준비하면 homepage가 설정·실배포·검증한다.
 
+## Project content publication — agent-config current report (2026-10-27)
+
+- GLG directly confirmed viewing the page and authorized commit + push. Scope: only `content/projects/agent-config/index{,.ko}.md` and this handoff. Existing Oracle-authored work and both unpublished blog drafts are preserved.
+- Source read: current report Denote `20260312T174622` (lastmod 2026-10-27 11:02), agent-config README SHA256 `a89170e92acabc1497583c2094446f0eb2e7e4917fd7cb1448bce8ad390ba272`, native-module README `c4beccdb71a56b4cf1adbb1fdfc03ed758c08a9885fa61b8d1a394b2b1a68933`. The source coordinator reviewed the first preparation's broad framing. Roles, current report versus ARCHIVE, memory and evidence boundaries replace the detailed incident narrative; skill access remains distinct from citizen delivery.
+- Isolated gate #458 PASS at base HEAD `73b28cd`: `/tmp/homepage-agent-config-refresh.ghg75I/{receipt.json,verify.log}`. Full Hugo/Eval/JSON-LD, bilingual metadata/navigation/links/prose wrappers and equal before/candidate/after leaf hashes; blog drafts excluded. Separate headless Chrome captures (#491, 1280×1600 dark) were inspected for the visible upper portion in both languages; not a whole-page/mobile/light acceptance. GLG subsequently reported direct viewing and approved publication.
+- Next: verify the production response against the pushed commit. Source push, live deployment and garden note export remain separate evidence.
+
 ## Project content publication — entwurf 0.41.0 (2026-10-22)
 
 - GLG requested a steward update and homepage publication after the 0.41.0 GitHub Release. The scoped content is `content/projects/entwurf/index.md` and `index.ko.md`: long-lived siblings, operator-requested retirement, Pi/Claude Code same-id return in tmux, and a non-authoritative team bookmark. No permanent developer/reviewer identity is assigned.
