@@ -8,13 +8,15 @@ live plan and the next concrete move.
 - [x] **1. 공동 교열 요청 인수** — GLG 직접 지시, 2026-11-03 저널 공통 메시지.
 - [x] **2. 각 집 원고·현재 보고 취합** — 네 집 동결 인수·통합 교열·담당자 제품 사실 재대조 완료.
 - [x] **3. 한영 정합·격리 빌드·실화면 검증** — 전체 gate·제품 사실 대조·Chrome 검수·5Org 최종 해시 확인 완료.
-- [ ] **4. GLG 검수·출하 및 후속 논의** ← CURRENT: GLG가 직접 확인 후 커밋·푸시 승인(2026-11-03). 승인된 홈페이지 파일만 발행하고 production SHA 확인. 완료 DM(messageId=920)은 중복 발송하지 않는다. 가든 export는 별도 경계.
+- [x] **4. GLG 검수·홈페이지 출하** — `8fe86e2` 정상 commit/push·agenda 완료, 기본 21경로와 프로젝트 10페이지 production SHA 확인 PASS. 완료 DM(messageId=920)은 중복 발송하지 않는다.
+- [ ] **5. 후속 논의·가든 반영** ← CURRENT: GLG와 SICM·에너지/Eval 방향 논의. 담당자 Org의 가든 export는 인간 소유 단계로 별도 요청·직접 실행 대기.
 
 # NOW — 프로젝트 대문·담당자 보고 공동 교열 (2026-11-03)
 
 - Source: GLG가 직접 붙여준 저널 `20261102T000000`, 2026-11-03 08:36 공통 확인 메시지. 최근 사건은 각 집 전체의 핵심을 대체하지 않는다. 현재 역할·판단·이웃 경계가 하나의 흐름으로 읽히도록 고친다.
 - Owners: 각 집의 기존 Opus가 자기 한영 프로젝트 글과 기존 담당자 botlog를 쓰고 교열한다. 홈페이지 Opus는 전체 문체·연결을 검토하고, 홈페이지 코디는 인계·사실 대조·검증·git을 맡는다. 각 집 원고 소유권과 botlog ARCHIVE를 보존한다. Org 작성은 각 집이 맡고, 가든 export/git은 개별 실행하지 않는다. 공동 교열 후 확정 note ID만 단일 export 레인에 배정하며 홈페이지와 가든의 검증·발행 증거를 분리한다.
-- Next: GLG가 검수본을 직접 확인하고 커밋·푸시를 승인했다. 승인 범위인 프로젝트 10파일과 NEXT만 발행 → production 응답을 새 커밋 SHA와 대조한다. 미발행 블로그를 포함하는 원본 `run.sh` 대신 정확한 gate 산출물만 검수 서버로 제공했다. Org 정본 갱신과 가든 공개 반영은 별도이며 이번 홈페이지 푸시가 가든 export를 승인하지 않는다.
+- Published: GLG 직접 검수·승인 후 프로젝트 10파일과 NEXT만 `8fe86e2f64c6a5afe2db7fbe925429392feb8bb1`로 정상 commit/push, agenda 기록 완료. Production gate #1448은 21경로 통과; #1471은 한영 프로젝트 목록2면+수정8leaf 모두 200·동일 exact footer SHA 확인(`/tmp/homepage-20261103-production.json`). 미발행 초안과 Nix leaf는 제외·보존.
+- Next: GLG와 SICM·에너지/Eval 및 대문 방향을 논의한다. Org 정본 갱신과 가든 공개 반영은 별도이며 이번 홈페이지 푸시가 가든 export를 승인하지 않는다. 배포 영수증 마감은 GLG의 별도 NEXT 커밋·푸시 요청으로 정리한다. 문서 전용 푸시는 사이트 빌드 감시 제외 규칙과 구분하므로 공개 콘텐츠의 확인된 SHA는 `8fe86e2`다.
 - Preview: default tmux `homepage-editorial-preview`, `127.0.0.1:2341`, root `/tmp/homepage-20261103-gate.oJP16r/public`; HTTP 200 확인. 사용자 검수를 위해 서버 유지.
 - Visual: Opus의 별도 폐기 Chrome에서 목록2면+4집 한영8면을 1280/390 폭 dark로 검사, 대표 KO Entwurf/Andenken desktop light 확인. 가로 넘침·숏코드 누출 없음. 코디는 index desktop과 Entwurf narrow warning/table 이미지를 직접 확인했다. `/tmp/homepage-editorial-visual.eAjo/measure.json` 및 `v2-*.png`; 실제 GLG 브라우저·다른 엔진·모든 폭·production은 미검증.
 - Remaining observations (not blockers for text acceptance): 목록 카드 3줄 말줄임이 새 문구에서도 발생(일부 늘어남), 카드 범위 KO 어절 나눔, 강제 light에서 어두운 배경/밝은 컴포넌트 혼합(default dark, toggle hidden), Entwurf 일부 행 첫 가운뎃점. CSS/theme 수선은 이번 범위가 아니며 GLG와 후속 논의.
