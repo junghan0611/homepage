@@ -25,7 +25,7 @@ doomemacs-config
 
 <div style="margin: 2.5rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
 {{< hextra/hero-button text="코드와 사용법" link="https://github.com/junghan0611/doomemacs-config#readme" >}}
-{{< hextra/hero-button text="담당자 문서" link="https://notes.junghanacs.com/botlog/20260227t120800" >}}
+{{< hextra/hero-button text="담당자 문서" link="https://notes.junghanacs.com/botlog/20260227T120800" >}}
 </div>
 
 ## 에이전트가 대신 쓰는 것과 내가 쓰기 편한 것은 다릅니다
@@ -33,6 +33,8 @@ doomemacs-config
 메모를 연결하고, 책을 읽고, 한글을 쓰고, 수식을 입력하는 일. 에이전트가 문서를 만들어 줄 수 있어도 사람이 직접 생각을 이어 가는 손의 편안함은 별개의 문제입니다. 이 설정의 중심에는 여전히 사람이 사용하는 편집기가 있습니다.
 
 [Doom Emacs](https://github.com/doomemacs/doomemacs) 위에 Org-mode와 Denote를 놓고, 한글 입력·Evil 키바인딩·검색·인용·터미널을 일상 작업에 맞춥니다. GUI와 TTY를 함께 쓰되, 원격 클립보드나 이미지처럼 환경마다 달라지는 경계를 같다고 포장하지 않습니다. 개인 설정인 만큼 그대로 복제하는 배포판보다는, 오래 사용하며 고친 접점들의 공개 사례에 가깝습니다.
+
+GLG에게 이 집은 하루 종일 손이 머무는 커맨드센터입니다. 여러 프로젝트의 담당자에게 전할 말도 먼저 이곳 저널에 헤딩 하나로 적고, 복사해 붙여 넣어 건넵니다. 그 헤딩을 키 하나로 보내는 코드를 만들 수도 있지만, 지금은 복사 붙여넣기로 충분해서 굳이 만들지 않습니다. 자동화를 늘리는 것 자체가 목적은 아닙니다. 이 집이 지키려는 것은 손으로 적은 것이 사람에게도 에이전트에게도 같은 규칙으로 읽히는 일입니다.
 
 ## 사람과 에이전트가 하나의 시간축에 남기는 것
 
@@ -58,11 +60,17 @@ Org · Denote → ox-hugo Markdown 내보내기 → Quartz 디지털 가든
 
 같은 어젠다를 브라우저로 보여 주는 곳은 [geworfen](https://github.com/junghan0611/geworfen)의 [공개 시간축](https://agenda.junghanacs.com)입니다. 이 리포가 웹사이트나 기억 검색 엔진까지 모두 소유하지는 않습니다.
 
+## 적은 것을 에이전트가 읽을 수 있어야 복기가 됩니다
+
+Org와 Denote 곁에 [Andrew Hyatt](https://github.com/ahyatt)의 [EKG](https://github.com/ahyatt/ekg)를 다시 들였습니다. 2023년부터 써 보다가 글쓰기의 중심을 Denote에 내주었던 도구입니다. 이번에는 가든을 옮기려는 것이 아니라, 질문을 따로 받아 두는 작업대로 둡니다. 태그는 `과학`과 `무엇`처럼 떨어진 실마리로 두고, 둘을 함께 가진 기록을 교집합으로 찾습니다. 지식을 어떻게 층위로 쌓을 수 있는가에 대해 GLG는 아직 답이 없다고 말합니다. EKG는 그 물음에 대한 Emacs다운 해석 하나이고, 이 집은 그것을 완성된 체계가 아니라 오늘의 주소로 둡니다.
+
+사람이 적은 것을 에이전트가 읽지 못하면 그 기록을 함께 놓고 복기할 수 없습니다. EKG는 SQLite 데이터베이스라서 에이전트가 Org 파일처럼 열어 볼 수 없습니다. 그래서 에이전트 RPC 데몬에 조회 문 세 개를 두었습니다. 태그 조합으로 목록을 받고, 노트 하나의 원문을 읽고, 태그마다 몇 편이 있는지 봅니다. 저장 형식을 따로 해석하지 않고 EKG의 공식 라이브러리로 읽으며, 노트를 고치거나 태그를 바꾸는 문은 두지 않았습니다. 첫 독자는 늘 켜 있는 돌봄 봇입니다. 저널을 읽듯 EKG의 기록도 읽고 삶과 배움의 맥락에서 대화하게 하려는 것이었습니다. GLG가 전해 준 응답에서 봇은 두 태그를 함께 조회해 노트 원문을 근거로 답했다고 보고했습니다. 다만 이 문이 데몬 전체를 가두는 울타리는 아니며, 에이전트가 기록을 늘 읽고 있다는 뜻도 아닙니다. 조회 계약과 경계는 [README](https://github.com/junghan0611/doomemacs-config#agent-read-api--agent-ekg-)와 [#12](https://github.com/junghan0611/doomemacs-config/issues/12)에 있습니다.
+
 ## 옆집들과 나누는 몫
 
-- **[agent-config](/ko/projects/agent-config/)** — 하네스가 바뀌어도 이어지는 스킬과 작업 원칙. 이 집은 그 스킬이 호출할 Emacs 쪽 함수를 제공합니다.
-- **[Entwurf](/ko/projects/entwurf/)** — 독립된 형제 세션을 열고 garden id로 메시지를 보냅니다. 이 집의 ghostel·tmux 작업면은 그 세션을 담을 수 있지만, 인증·트랜스크립트·딜리버리를 대신 소유하지 않습니다.
-- **[andenken](/ko/projects/andenken/)** — 대화와 공개 가든에서 이전 판단을 찾습니다. 이 집은 Org 원문과 가든 내보내기를 맡고, 검색 인덱스는 기억의 주인이 되지 않습니다.
+- **[agent-config]({{< relref "/projects/agent-config" >}})** — 하네스가 바뀌어도 이어지는 스킬과 작업 원칙. 이 집은 그 스킬이 호출할 Emacs 쪽 함수를 제공합니다.
+- **[Entwurf]({{< relref "/projects/entwurf" >}})** — 독립된 형제 세션을 열고 가든 ID로 메시지를 보냅니다. 이 집의 ghostel·tmux 작업면은 그 세션을 담을 수 있지만, 인증·트랜스크립트·딜리버리를 대신 소유하지 않습니다.
+- **[andenken]({{< relref "/projects/andenken" >}})** — 대화와 공개 가든에서 이전 판단을 찾습니다. 이 집은 Org 원문과 가든 내보내기를 맡고, 검색 인덱스는 기억의 주인이 되지 않습니다.
 
 Emacs 안에서도 gptel-agent, Pi의 RPC 클라이언트인 pilish, ACP 클라이언트인 agent-shell을 사용할 수 있습니다. 그렇다고 모든 형제를 Emacs 안으로 옮기지는 않습니다. ghostel 안에서 tmux에 붙으면 Emacs와 독립적으로 실행되는 터미널 세션에 돌아갈 수 있습니다.
 
@@ -72,4 +80,4 @@ Emacs 안에서도 gptel-agent, Pi의 RPC 클라이언트인 pilish, ACP 클라�
 
 Neomacs의 현재 검수와 우회책은 별도 [neomacs-config](https://github.com/junghan0611/neomacs-config)가 맡습니다. 여기에는 GNU Emacs와 같은 조건으로 비교하는 최소 프로필과 재현 프로브가 남습니다.
 
-이 페이지는 집의 대문입니다. 설치·명령·현재 구현은 [README](https://github.com/junghan0611/doomemacs-config#readme)에, 날짜가 있는 판단과 경계는 [담당자 문서](https://notes.junghanacs.com/botlog/20260227t120800)에 둡니다. 작업 로그를 대문에 복제하지 않고, 각 기록이 살아 있는 자리로 연결합니다.
+이 페이지는 집의 대문입니다. 설치·명령·현재 구현은 [README](https://github.com/junghan0611/doomemacs-config#readme)에, 날짜가 있는 판단과 경계는 [담당자 문서](https://notes.junghanacs.com/botlog/20260227T120800)에 둡니다. 작업 로그를 대문에 복제하지 않고, 각 기록이 살아 있는 자리로 연결합니다.

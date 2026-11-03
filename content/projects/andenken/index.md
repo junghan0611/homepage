@@ -25,7 +25,7 @@ Let past conversations gain meaning in the present. **Files are the authority. T
 
 <div style="margin: 2.5rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
 {{< hextra/hero-button text="Code and usage" link="https://github.com/junghan0611/andenken#readme" >}}
-{{< hextra/hero-button text="Steward's report · 한국어" link="https://notes.junghanacs.com/botlog/20260319T110800.html" >}}
+{{< hextra/hero-button text="Steward's note · 한국어" link="https://notes.junghanacs.com/botlog/20260319T110800" >}}
 </div>
 
 ## Find it so you can continue
@@ -75,7 +75,11 @@ Question → choose surface and filters → vector + BM25 → fusion / diversity
 
 Conversations and garden notes currently use **Qwen3-Embedding-8B / 4096d**, stored in **LanceDB**. Vectors find related expressions; BM25 finds concrete words. Candidates are fused and re-ranked for diversity. Recent-first conversation lookup has its own stored-signal path; ordinary relevance does not decay a memory out of reach merely because it is old.
 
+**Meaning crosses languages.** GLG writes in Korean, while the question that looks for those records may arrive as an English term or an agent's English summary. Word matching alone is not enough to cross that wall, so conversations and notes live in a multilingual embedding space where the same meaning, written in another language, can still land nearby. This is the direction of the design, not a promise of cross-lingual quality; personal vocabulary and morphology stay with their own tools.
+
 Records outlive the index. The session corpus merges admitted files across devices, append-only, with a checksum manifest and roster preserving provenance. The sessions query replica receives **index, manifests and corpus** together. Neither one machine's storage nor one model's context window should become the owner of memory.
+
+**Small enough to keep.** An index that grows toward ten gigabytes per checkout cannot be carried for a lifetime, so size now comes before retrieval polish. The sessions index is built under a pinned selection policy: lifecycle notices injected by the harness and sibling-mail doorbell envelopes are dropped before embedding, and messages containing credential-shaped strings are held rather than sent. Only the searchable trace is selected; no original conversation is deleted. A freshly built store came out far smaller; the dropped rows explain only a small part of that, and most of the reduction appears to come from rewriting accumulated storage — the [change history](https://github.com/junghan0611/andenken/blob/main/CHANGELOG.md) keeps the measured scope.
 
 ## From time to meaning, and back
 
@@ -94,13 +98,21 @@ Question → start with a few candidates → check sources → open selected ori
 
 The first screen helps you choose a record instead of flooding context with chunks. Narrow conversations by source, project and time window; return to public notes through titles and Denote IDs. Use structural lookup to establish that a particular note exists, and the timeline to establish when an event happened. With `source=all`, a sparse conversation search may append a few public-note results, labelled as supplementary sources.
 
+When a result looks wrong, or two traces disagree, return to the original conversation before tuning the index. An excerpt command reads the lines around a hit directly from the source file. A trace points the way to the original; it never stands in for it.
+
 The same distinction matters for pi-durable: **the embedded selection is not the whole conversation**. Reading a closed snapshot has its own path; embedding follows an explicit admission policy and checkpoints. andenken neither silently opens a live conversation database nor claims to remember every latest turn.
 
 ## Who owns the memory?
 
 {{< callout type="info" >}}
-**Files are canonical, and a human decides when memory is committed to coherence.** The index does not become the owner of the record. Corpus, manifests and index stay coherent; changed inputs are handled incrementally. Full re-embedding and global publication require separate decisions. This project does not run automatic dreaming or overnight consolidation by default.
+**Files are canonical, and a human decides when memory is committed to coherence.** The index is a derived, searchable trace; it does not become the owner of the record. The records belong to the person who left them.
 {{< /callout >}}
+
+Session originals live in a separate, private git-annex archive: [agent-config]({{< relref "/projects/agent-config" >}}), the harness configuration repository, owns its storage method, version retrieval and ledger/commit rules, while andenken implements its own gathering, admission, manifests, replication and reader, and builds the derived index. Implementing a reader is neither unlimited permission to read nor a certificate that what it reads is true.
+
+Global publication checkpoints that archive before indexing and checks its source receipt before the index ships. Corpus, manifests and index stay coherent; changed inputs are handled incrementally. This project does not run automatic dreaming or overnight consolidation by default.
+
+**When in doubt, go back to the originals.** Because the session originals are preserved, the sessions search index can be rebuilt from them; if that store ever drifts into something strange, re-embedding from the originals is a real way out. That is a strategic option, not a standing permission: a full re-embedding is paid work and, like global publication, still needs its own human decision.
 
 Depending on the configured provider, embedding uses an external API. **Public source code does not make personal conversation corpora public.** Operators must decide what to collect, what to send to a provider, and what spending to authorize.
 
@@ -108,8 +120,9 @@ Depending on the configured provider, embedding uses an external API. **Public s
 
 ## The direction we keep
 
-- **Refine acceptance around timeline-grounded work:** evaluate evidence rank, provenance, diversity and freshness gaps in real tasks, beyond keyword hits, and ask whether retrieval helped the next decision.
-- **Codify conversation admission:** make the selection of meaningful human–agent exchanges clearer through dry runs and evidence.
+- **Keep the trace small enough to carry:** prefer a store that can last for years over improvements that cannot be sustained. Improvements are tried within that size; if the sessions store starts to look wrong, the way out is a fresh embedding from the preserved originals, decided by a human.
+- **Keep conversation admission explicit:** the sessions index follows a pinned selection policy. Changing what counts as a meaningful human–agent exchange stays a deliberate decision, backed by dry runs and evidence.
+- **Let quality follow real work:** perfect retrieval is not today's gate. When quality returns to the front, judge it by timeline-grounded tasks — evidence rank, provenance, diversity and freshness gaps — rather than keyword hits, and ask whether retrieval helped the next decision.
 - **Reduce calling-surface gaps:** expose the differences between CLI and Pi reach, and treat tool access for surfaces such as OpenClaw as separate follow-up work. Leave pre-reply recall orchestration, session transport, time coordinates, structural navigation and vocabulary to their owners.
 - **Explore source structure:** the disabled Org track remains upstream research. Reactivation or further vocabulary/structure integration requires its own demonstrated need and verification.
 
@@ -117,6 +130,6 @@ These are directions, not completed features or release promises. Repository doc
 
 ## Beside the house that calls siblings
 
-[Entwurf](/projects/entwurf/) opens and addresses independent sibling sessions. Once their **Pi and Claude Code transcripts, and explicitly admitted pi-durable snapshots**, reach the corpus, andenken helps recover **what was decided, and why**, after those sessions have passed. Retrieval is not proof of session resumption or restored identity.
+[Entwurf]({{< relref "/projects/entwurf" >}}) opens and addresses independent sibling sessions. Once their **Pi and Claude Code transcripts, and explicitly admitted pi-durable snapshots**, reach the corpus, andenken helps recover **what was decided, and why**, after those sessions have passed. Retrieval is not proof of session resumption or restored identity.
 
-This page is the project's front door. The [steward's report](https://notes.junghanacs.com/botlog/20260319T110800.html) (in Korean) keeps dated design judgments and boundaries; the [repository](https://github.com/junghan0611/andenken) owns code and reproducible usage. The three surfaces link to one another without copying operational logs or private conversations onto the homepage.
+This page is the project's front door. The [steward's note](https://notes.junghanacs.com/botlog/20260319T110800) (in Korean) keeps dated design judgments and boundaries; the [repository](https://github.com/junghan0611/andenken) owns code and reproducible usage. The three surfaces link to one another without copying operational logs or private conversations onto the homepage.

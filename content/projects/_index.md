@@ -8,37 +8,37 @@ layout: wide
 <div class="hx-mt-4"></div>
 
 <p class="hx-mb-12 hx-text-center hx-text-lg hx-text-gray-500 dark:hx-text-gray-400">
-Open source tools from junghan0611 — built for garden-native, agent-driven work.
+Five houses of the working environment GLG tends together with AI agents. Each keeps its own share and leaves its neighbors theirs—so that what we leave can be read again, with an original to return to when things blur.
 </p>
 
 {{< cards >}}
 
   {{< card
-        link="/projects/entwurf"
+        link="/projects/entwurf/"
         title="entwurf"
         icon="share"
-        subtitle="Herdr and tmux sibling AI sessions: pi, Claude Code, Codex, Copilot, OMP and Antigravity can message and spawn each other while keeping their own auth, tools and transcripts."
+        subtitle="Connects AI siblings that keep their own harnesses and conversations, without taking over their homes. Open visible sessions, address them by garden id, and bring a dormant sibling back under the same id."
   >}}
 
   {{< card
-        link="/projects/andenken"
+        link="/projects/andenken/"
         title="andenken"
         icon="collection"
-        subtitle="Let past conversations gain meaning again. Recover decisions and continuity from conversations, a public garden and bot records, with files as authority and the timeline as compass."
+        subtitle="Let past conversations gain meaning again. A recollective memory that finds the traces of decisions in conversations, a public garden and bot records, and leads back to the originals."
   >}}
 
   {{< card
-        link="/projects/agent-config"
+        link="/projects/agent-config/"
         title="agent-config"
         icon="puzzle"
-        subtitle="One person's identity and working agreements across AI harnesses. The skills source of truth and lived proving ground—not another harness."
+        subtitle="Keep one person's context and working agreements across AI harnesses. The skills source of truth, a lived proving ground, and the keeper of a way back to conversation originals."
   >}}
 
   {{< card
         link="/projects/doomemacs-config/"
         title="doomemacs-config"
         icon="pencil"
-        subtitle="A house to write, think, and return to. Human editing and agent work meet in shared Org records, from Doom Emacs and Denote to the digital garden."
+        subtitle="A house to write, think, and return to. What a person writes is read by agents under the same rules, so the two can revisit it together, from Org in Doom Emacs and Denote to the digital garden."
   >}}
 
   {{< card

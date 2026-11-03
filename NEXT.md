@@ -5,6 +5,30 @@ live plan and the next concrete move.
 
 # RAIL — 현재 좌표
 
+- [x] **1. 공동 교열 요청 인수** — GLG 직접 지시, 2026-11-03 저널 공통 메시지.
+- [x] **2. 각 집 원고·현재 보고 취합** — 네 집 동결 인수·통합 교열·담당자 제품 사실 재대조 완료.
+- [x] **3. 한영 정합·격리 빌드·실화면 검증** — 전체 gate·제품 사실 대조·Chrome 검수·5Org 최종 해시 확인 완료.
+- [ ] **4. GLG 검수·출하 및 후속 논의** ← CURRENT: GLG가 직접 확인 후 커밋·푸시 승인(2026-11-03). 승인된 홈페이지 파일만 발행하고 production SHA 확인. 완료 DM(messageId=920)은 중복 발송하지 않는다. 가든 export는 별도 경계.
+
+# NOW — 프로젝트 대문·담당자 보고 공동 교열 (2026-11-03)
+
+- Source: GLG가 직접 붙여준 저널 `20261102T000000`, 2026-11-03 08:36 공통 확인 메시지. 최근 사건은 각 집 전체의 핵심을 대체하지 않는다. 현재 역할·판단·이웃 경계가 하나의 흐름으로 읽히도록 고친다.
+- Owners: 각 집의 기존 Opus가 자기 한영 프로젝트 글과 기존 담당자 botlog를 쓰고 교열한다. 홈페이지 Opus는 전체 문체·연결을 검토하고, 홈페이지 코디는 인계·사실 대조·검증·git을 맡는다. 각 집 원고 소유권과 botlog ARCHIVE를 보존한다. Org 작성은 각 집이 맡고, 가든 export/git은 개별 실행하지 않는다. 공동 교열 후 확정 note ID만 단일 export 레인에 배정하며 홈페이지와 가든의 검증·발행 증거를 분리한다.
+- Next: GLG가 검수본을 직접 확인하고 커밋·푸시를 승인했다. 승인 범위인 프로젝트 10파일과 NEXT만 발행 → production 응답을 새 커밋 SHA와 대조한다. 미발행 블로그를 포함하는 원본 `run.sh` 대신 정확한 gate 산출물만 검수 서버로 제공했다. Org 정본 갱신과 가든 공개 반영은 별도이며 이번 홈페이지 푸시가 가든 export를 승인하지 않는다.
+- Preview: default tmux `homepage-editorial-preview`, `127.0.0.1:2341`, root `/tmp/homepage-20261103-gate.oJP16r/public`; HTTP 200 확인. 사용자 검수를 위해 서버 유지.
+- Visual: Opus의 별도 폐기 Chrome에서 목록2면+4집 한영8면을 1280/390 폭 dark로 검사, 대표 KO Entwurf/Andenken desktop light 확인. 가로 넘침·숏코드 누출 없음. 코디는 index desktop과 Entwurf narrow warning/table 이미지를 직접 확인했다. `/tmp/homepage-editorial-visual.eAjo/measure.json` 및 `v2-*.png`; 실제 GLG 브라우저·다른 엔진·모든 폭·production은 미검증.
+- Remaining observations (not blockers for text acceptance): 목록 카드 3줄 말줄임이 새 문구에서도 발생(일부 늘어남), 카드 범위 KO 어절 나눔, 강제 light에서 어두운 배경/밝은 컴포넌트 혼합(default dark, toggle hidden), Entwurf 일부 행 첫 가운뎃점. CSS/theme 수선은 이번 범위가 아니며 GLG와 후속 논의.
+- Org freeze: `/tmp/homepage-20261103-org-freeze.json`에 5개 최종 경로·SHA·lastmod 대조 PASS. IDs: agent-config `20260312T174622`, Andenken `20260319T110800`, Entwurf `20260520T052051`, Doom `20260227T120800`, homepage `20260911T182047`. 각 원작가가 기록·ARCHIVE를 보존했고, 공동 교열 후 agent-config/Doom에 대문 연결 추가. 공개 가든은 아직 이전 판일 수 있다.
+- Gate: `/tmp/homepage-20261103-gate.oJP16r/receipt.json` (#1268 PASS). HEAD `b76f2f5` 위 정확한 10개 프로젝트 파일로 Hugo/Eval/JSON-LD·한영 카드/메타데이터/언어 전환·담당자 링크 통과, 전후 해시 동일. Nix 두 leaf와 미발행 블로그 두 파일 불변. `/tmp/homepage-20261103-editorial-handoff.md`에 교열 인계와 최종 SHA, patch가 있다.
+- Garden export boundary: 가든 `AGENTS.md`는 Org export·실화면 확인을 인간 소유 단계로 명시한다. 이번에는 각 집 Org 정본 갱신까지 완료하고, 개별·전체 export나 garden git은 실행하지 않는다. 확정 ID의 단일 export 실행은 GLG의 별도 명시 요청 또는 직접 실행 후 이어간다. 홈페이지 검수와 가든 공개 반영을 같은 완료로 보고하지 않는다.
+- Do not touch: 미발행 `content/blog/20260804T094556{,.ko}.md`, 기존 다른 작업, 테마·배포·런타임 설정. 새 임베딩·운영 실험은 이번 교열 범위가 아니다.
+
+## 후속 — GLG와 Eval·홈페이지 방향 논의
+
+이번 공동 교열을 마친 뒤 GLG와 SICM·에너지·라그랑주/해밀턴 역학을 출발점으로 Eval 및 홈페이지 전체 개선 방향을 논의한다. GLG의 주말 공부와 ‘에너지’에 관한 문제의식을 인수한 것이며, 구현 사양을 먼저 만들거나 Eval 런타임·출판 계약을 바꾸라는 지시는 아니다.
+
+# LEDGER — 이전 작업 기록 (아래 과거 상태는 현재 좌표가 아님)
+
 SSOT: [homepage#3 — Cloudflare Workers 배포](https://github.com/junghan0611/homepage/issues/3). 큰 틀(계정·토큰·DNS·터널·Netlify 해지)은 [nixos-config#11](https://github.com/junghan0611/nixos-config/issues/11) 소관 — 2026-09-30 homepage#2에서 이관.
 
 - [x] 1·2. DNS·Registrar → Cloudflare (nixos-config#11, 2026-09-29)
@@ -61,7 +85,7 @@ SSOT: [homepage#3 — Cloudflare Workers 배포](https://github.com/junghan0611/
 - Text review passed with blockers zero. Reflow gate #5001 proved source/HTML properties, not visual repair: GLG's Chrome exposed missing prose styling in the layout. Agent-config owns the scoped `hextra-home` layout/CSS fix and Korean keep-all rule; its Opus a98cac reported actual Chrome reload/probe:false checks on six project pages at 688px and a final KO-three-page recheck at 10:26:26, blockers zero/no overflow. This lane inherits that observation, not an independent browser run; wide desktop/light/other browsers are unmeasured. Final regression #5181 passed Hugo/Eval/output/JSON-LD, metadata/nav/cards, six prose wrappers and ten equal before/candidate/after hashes. The andenken steward directly read its receipt and matched the CSS/layout/leaf hashes; receipt SHA256 `20127bb2bf7a20d4a275d6a544d83055ef947e1b07b12373d231005c32cd1098`. Theme head hreflang remains absent, not a claimed PASS. Old untracked blog drafts were excluded and untouched.
 - GLG's one-line prose/single blank-line/no forced hero-break request is complete. Normalized words, metadata, lists, shortcodes and fenced code were preserved apart from intentional `<br>` removal; the final gate above covers these new bytes. No further review/build is queued. Agent-config owns shared indexes and the required scoped layout/CSS fix; andenken owns its unchanged leaves. Any approved homepage publication must include the presentation fix, not just the Markdown. New commit/push/deployment still await GLG: homepage first, then source-document links and Org export (or a coordinated window). Do not sweep in the old blog drafts. This content task does not reopen the deployment workstream below.
 
-# NOW — Cloudflare Workers 배포 (#3)
+## Historical checkpoint — Cloudflare Workers 배포 (#3)
 
 - 브랜치 `cloudflare-workers`: `wrangler.jsonc`, `scripts/build-site.sh`(빌드), `scripts/verify-deployed.mjs`(응답 gate), `docs/deploy-cloudflare.md`(계약), `_headers` 재구조(겹치는 규칙에 같은 헤더 이름 금지, `/ko/eval/*` CSP 추가, llms charset). Sol 교차검토 2회 반영.
 - 측정: workers.dev에서 `verify-deployed.mjs` 통과. Netlify production은 `/ko/eval/` CSP 누락으로 실패(이전 전부터 있던 결함 — 전환하면 닫힌다).

@@ -8,7 +8,7 @@ layout: wide
 <div class="hx-mt-4"></div>
 
 <p class="hx-mb-12 hx-text-center hx-text-lg hx-text-gray-500 dark:hx-text-gray-400">
-junghan0611의 오픈소스 도구들 — 가든-네이티브, 에이전트 주도 작업을 위해 만들었습니다.
+GLG가 에이전트들과 함께 가꾸는 작업 환경의 다섯 집입니다. 각 집은 자기 몫을 맡고 이웃의 몫을 빼앗지 않습니다. 남긴 기록이 다시 읽히고, 헷갈릴 때 돌아갈 원문이 있도록.
 </p>
 
 {{< cards >}}
@@ -17,25 +17,25 @@ junghan0611의 오픈소스 도구들 — 가든-네이티브, 에이전트 주�
         link="/ko/projects/entwurf/"
         title="entwurf"
         icon="share"
-        subtitle="Herdr와 tmux의 형제 AI 세션: pi, Claude Code, Codex, Copilot, OMP, Antigravity가 각자의 인증·도구·트랜스크립트를 유지한 채 서로 메시지를 보내고 형제를 열 수 있습니다." >}}
+        subtitle="각자의 하네스와 대화를 지닌 AI 형제들을, 서로의 자리를 빼앗지 않고 잇습니다. 보이는 세션을 열고, 가든 ID로 말을 건네고, 잠든 형제를 같은 ID로 다시 부릅니다." >}}
 
   {{< card
         link="/ko/projects/andenken/"
         title="andenken"
         icon="collection"
-        subtitle="지나간 대화가 지금 다시 뜻을 얻도록. 대화·공개 가든·봇의 기록에서 판단과 이어갈 실마리를 찾는 뜻새김 기억축입니다." >}}
+        subtitle="지나간 대화가 지금 다시 뜻을 얻도록. 대화·공개 가든·봇의 기록에서 판단의 흔적을 찾아 원문으로 돌아가게 하는 뜻새김 기억축입니다." >}}
 
   {{< card
         link="/ko/projects/agent-config/"
         title="agent-config"
         icon="puzzle"
-        subtitle="하네스가 바뀌어도 같은 사람의 맥락과 작업의 자세를 잇도록. 스킬 정본과 정체성·작업 원칙을 펼치는 정렬축이자 실사용 시험소입니다." >}}
+        subtitle="하네스가 바뀌어도 같은 사람의 맥락과 작업의 자세를 잇도록. 스킬의 정본이자 실사용 시험소이고, 대화의 원문으로 돌아가는 길을 지킵니다." >}}
 
   {{< card
         link="/ko/projects/doomemacs-config/"
         title="doomemacs-config"
         icon="pencil"
-        subtitle="사람이 쓰고, 생각하고, 다시 돌아오는 집. Doom Emacs·Denote의 같은 Org 기록에서 사람과 에이전트의 작업이 만나 디지털 가든으로 이어집니다." >}}
+        subtitle="사람이 쓰고, 생각하고, 다시 돌아오는 집. 사람이 적은 기록을 에이전트도 같은 규칙으로 읽어 함께 복기하고, Doom Emacs·Denote의 Org에서 디지털 가든으로 잇습니다." >}}
 
   {{< card
         link="/ko/projects/nixos-config/"
