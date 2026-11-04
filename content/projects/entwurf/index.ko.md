@@ -7,8 +7,8 @@ sidebar:
   exclude: true
 ---
 
-{{< hextra/hero-badge link="https://github.com/junghan0611/entwurf/releases/tag/v0.50.0" >}}
-  v0.50.0 · 설명할 수 있어야 고칠 수 있다
+{{< hextra/hero-badge link="https://github.com/junghan0611/entwurf/releases/tag/v0.51.0" >}}
+  v0.51.0 · Pi 1.5 SDK 위의 같은 형제들
 {{< /hextra/hero-badge >}}
 
 <div class="hx-mt-6"></div>
@@ -39,6 +39,13 @@ Entwurf는 **각자 실행 중인 하네스 사이에 좁은 연결을 놓는 �
 {{< callout type="info" >}}
 **Entwurf는 또 하나의 하네스나 오케스트레이터가 아닙니다.** 실행은 각 하네스가 맡습니다. Herdr는 워크벤치를, tmux는 터미널 자리를 제공하고, Entwurf는 그 사이에서 형제를 열고 주소를 잇습니다.
 {{< /callout >}}
+
+## 0.51.0 — Pi 1.5 SDK 위의 같은 형제들
+
+**0.51.0은 Entwurf를 Pi 1.5.0 SDK 묶음으로 옮깁니다. MCP 도구와 새 권한은 더하지 않았습니다.** 고정한 SDK 패키지 열 개가 함께 정확히 1.5.0으로 올라가고, 일반 Pi는 이제 `>=1.5.0 <1.6`를 받습니다. Entwurf의 얇은 pi-durable 참조 앱은 1.5 durable API를 따르며, SDK의 최근 창만이 아니라 활성 대화 전체를 보여 줍니다. durable 세션에 1.5가 처음 쓴 내용은 SDK 1.4가 읽지 못합니다. 그 경계는 아래 지원 경계 절의 경고에 있습니다.
+
+- **설치 준비는 설치 완료가 아닙니다.** 이번 업그레이드 중 다른 개발 기기 하나가 새 소스를 이미 받아 두었지만, 의존성은 아직 SDK 1.4였고 설치 창은 운영자의 승인을 기다리고 있었습니다. launcher는 섞인 묶음으로 세션을 여는 대신 이름 붙은 이유로 거절했습니다. 실패한 기동에서 기존 세션에 쓰지 않았다는 보고이며, 명시 승인 뒤 설치가 실행되고 같은 ID로 복귀했다고 그 기기가 보고했습니다(여기서 다시 재지 않음). 교훈은 인계에 있습니다. 설치기가 실제로 실행됐는지를 분명히 말하고, 설치 성공 기록과 SDK 정합 확인이 있은 뒤에만 다시 열 준비가 됐다고 안내합니다([0.51.0 릴리즈 기록](https://github.com/junghan0611/entwurf/releases/tag/v0.51.0)).
+- **Herdr는 main에서 따라옵니다.** 플러그인의 `main`은 npm에 게시된 0.51.0 런타임을 고정합니다([`ce5a720`](https://github.com/junghan0611/entwurf/commit/ce5a720)). 이를 담은 스냅샷 태그는 아직 없고, 공개 ref에서 설치하는 여정도 측정하지 않았습니다.
 
 ## 0.50.0 — 다 아는 사람에게도 친절이 필요했던 이유
 
@@ -75,24 +82,24 @@ Entwurf는 **각자 실행 중인 하네스 사이에 좁은 연결을 놓는 �
 
 ## 두 작업면, 같은 주소
 
-**Herdr를 이미 쓰고 있다면** 플러그인이 통합된 Pi·Claude Code 세션에 Entwurf를 활성화합니다. 형제는 호출자 워크스페이스의 새 tab으로 열리고, 0.50.0 런타임에서는 잠든 형제도 새 tab에서 같은 ID로 돌아옵니다. 선택적인 읽기 전용 pane은 형제들의 보이는 위치를 보여 줍니다. 하네스 설치·구독·로그인은 플러그인이 대신하지 않습니다.
+**Herdr를 이미 쓰고 있다면** 플러그인이 통합된 Pi·Claude Code 세션에 Entwurf를 활성화합니다. 형제는 호출자 워크스페이스의 새 tab으로 열리고, 0.50.0 런타임부터는 잠든 형제도 새 tab에서 같은 ID로 돌아옵니다. 선택적인 읽기 전용 pane은 형제들의 보이는 위치를 보여 줍니다. 하네스 설치·구독·로그인은 플러그인이 대신하지 않습니다.
 
 ```bash
-# Pi 1.4, Claude Code >=2.1.306, Herdr의 pi / Claude Code 통합을 먼저 준비한 뒤
+# Pi 1.5, Claude Code >=2.1.306, Herdr의 pi / Claude Code 통합을 먼저 준비한 뒤
 herdr plugin install junghan0611/entwurf/plugins/herdr --yes
 pi --entwurf-control
 ```
 
-ref 없이 설치하면 main의 lock을 따르고, 지금 main은 공개 npm 0.50.0을 고정합니다. 이 짝을 고정한 Herdr 스냅샷 태그는 아직 없습니다. 태그로 고정된 마지막 짝 [v2026.10.27-herdr.0.45.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.27-herdr.0.45.0)은 npm 0.45.0을 받으며, 그 런타임에는 Herdr 안의 같은 ID 복귀가 없습니다. ref마다 어떤 런타임을 받는지와 준비·갱신·제거는 [Herdr 가이드](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#from-a-raw-linux-box-in-nine-steps)가 소유합니다.
+ref 없이 설치하면 main의 lock을 따르고, 지금 main은 Pi 1.5용 공개 npm 0.51.0을 고정합니다([`ce5a720`](https://github.com/junghan0611/entwurf/commit/ce5a720)). 이 짝을 고정한 Herdr 스냅샷 태그는 아직 없고, 공개 ref에서 설치하는 여정도 측정하지 않았습니다. 태그로 고정된 마지막 짝 [v2026.10.27-herdr.0.45.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.27-herdr.0.45.0)은 npm 0.45.0을 받으며, 그 런타임에는 Herdr 안의 같은 ID 복귀가 없습니다. ref마다 어떤 런타임을 받는지와 준비·갱신·제거는 [Herdr 가이드](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#from-a-raw-linux-box-in-nine-steps)가 소유합니다.
 
 **Herdr 밖에서는** 직접 설치와 tmux를 사용합니다. 새로 열기는 Pi·pi-durable·Claude Code·Codex·Copilot·OMP 여섯 backend를, 같은 ID 복귀는 Pi·pi-durable·Claude Code를 지원합니다. Antigravity는 fresh-call 대상이 아니며, native-push 경로도 현재 일시 중지되어 있습니다. 설치는 [README](https://github.com/junghan0611/entwurf#readme)를 따릅니다.
 
 ## 현재 배포와 지원 경계
 
-**2026년 11월 3일 기준, [core v0.50.0이 GitHub Release](https://github.com/junghan0611/entwurf/releases/tag/v0.50.0)와 [npm](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.50.0)에 올라 있습니다.** registry에서 받은 파일은 Windows carrier를 포함해 수용한 후보 파일과 바이트까지 같습니다. 0.50.0은 Pi SDK 1.4.0 위에 있으며, 일반 Pi는 `>=1.4.0 <1.5`를 받습니다. Pi 1.5 대응은 별도 작업입니다([#155](https://github.com/junghan0611/entwurf/issues/155)). 지원하는 하네스 버전과 설치·갱신 순서는 [설치 안내의 요구 사항](https://github.com/junghan0611/entwurf/blob/v0.50.0/docs/setup-clean-host.md#requirements)과 [0.50.0 릴리즈 기록](https://github.com/junghan0611/entwurf/releases/tag/v0.50.0)이 소유합니다. 새 바이트를 갱신하는 일과 새 프로세스를 띄우는 일은 별개이며, 이미 떠 있는 bridge는 스스로 다시 읽지 않습니다([실행 중인 호스트에 새 소스 적용하기](https://github.com/junghan0611/entwurf/blob/v0.50.0/docs/setup-clean-host.md#applying-new-source-to-a-running-host)). pi-durable의 실행 엔진·인증·queue·SQLite·트랜스크립트·복구는 업스트림 SDK 소유로 남습니다.
+**2026년 11월 4일 기준, [core v0.51.0이 GitHub Release](https://github.com/junghan0611/entwurf/releases/tag/v0.51.0)와 [npm](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.51.0)에 올라 있습니다.** registry에서 받은 파일은 Windows carrier를 포함해 수용한 후보 파일과 바이트까지 같습니다. 0.51.0은 Pi SDK 1.5.0 위에 있으며, 일반 Pi는 `>=1.5.0 <1.6`를 받습니다. Pi 1.4에 머무는 호스트는 [core 0.50.0](https://github.com/junghan0611/entwurf/releases/tag/v0.50.0)과 그 게시 안내를 따릅니다. 지원하는 하네스 버전과 설치·갱신 순서는 [설치 안내의 요구 사항](https://github.com/junghan0611/entwurf/blob/v0.51.0/docs/setup-clean-host.md#requirements)과 [0.51.0 릴리즈 기록](https://github.com/junghan0611/entwurf/releases/tag/v0.51.0)이 소유합니다. 새 바이트를 갱신하는 일과 새 프로세스를 띄우는 일은 별개이며, 이미 떠 있는 bridge는 스스로 다시 읽지 않습니다([실행 중인 호스트에 새 소스 적용하기](https://github.com/junghan0611/entwurf/blob/v0.51.0/docs/setup-clean-host.md#applying-new-source-to-a-running-host)). pi-durable의 실행 엔진·인증·queue·SQLite·트랜스크립트·복구는 업스트림 SDK 소유로 남습니다.
 
 {{< callout type="warning" >}}
-**Pi 1.3 SDK의 durable 세션을 옮겨 올 때, 저장소는 한 방향으로만 넘어갑니다.** SDK 1.4로 처음 연 세션은 schema 2로 바뀌어 0.41.0(SDK 1.3)이 다시 열지 못하고, 옛 패키지를 다시 설치해도 되돌아가지 않습니다. 백업을 되돌려도 그사이 보낸 메시지나 도구가 남긴 효과는 되감기지 않습니다. 먼저 세션 파일 세트 전체를 백업하고 옛 프로세스가 실제로 끝났는지 확인합니다. 순서는 [이관 안내](https://github.com/junghan0611/entwurf/blob/v2026.10.23-herdr.0.41.1/docs/setup-clean-host.md#moving-durable-sessions-from-the-pi-13-sdk-to-14)에 있습니다.
+**durable 세션에 Pi 1.5 SDK가 처음 쓰는 순간, 저장소는 한 방향으로만 넘어갑니다.** SDK 1.5는 SQLite schema를 2로 유지하지만 live 문서를 SDK 1.4가 거절하는 버전으로 씁니다. 그래서 그 뒤의 세션은 0.50.0에서 다시 열리지 않고, 옛 패키지를 다시 설치해도 되돌아가지 않습니다. 옛 owner를 정상 종료하고 실제로 끝났는지 확인한 뒤, 처음 1.5로 열기 전에 `-wal`/`-shm`을 포함한 세션 파일 세트 전체를 한 묶음으로 일관되게 백업합니다. 세션을 SDK 1.4로 되돌리는 것은 그 백업뿐이며, 1.5로 연 뒤에 한 작업은 그 백업에 없습니다. SDK 1.4로 쓴 합성 세션 두 개를 fixture에서 1.5로 열었지만, 그것은 그 두 파일의 증거이지 운영 데이터의 호환·복구 보장이 아닙니다. 나머지 순서는 [업그레이드 범위](https://github.com/junghan0611/entwurf/blob/v0.51.0/docs/setup-clean-host.md#default-radius-for-a-requested-pi-sdk-upgrade)에 있습니다. 앞서 Pi 1.3 SDK에서 옮겨 올 때도 같은 뜻으로 한 방향이었습니다([그때의 이관 안내](https://github.com/junghan0611/entwurf/blob/v2026.10.23-herdr.0.41.1/docs/setup-clean-host.md#moving-durable-sessions-from-the-pi-13-sdk-to-14)).
 {{< /callout >}}
 
 | 자리 | 연결 방식과 경계 |
@@ -105,7 +112,7 @@ ref 없이 설치하면 main의 lock을 따르고, 지금 main은 공개 npm 0.5
 | Herdr 플러그인 | 통합된 Pi·Claude Code를 활성화합니다. Herdr 안에서는 Pi·pi-durable·Claude Code를 새 tab으로 열고 다시 엽니다. 같은 ID 복귀는 날짜 있는 소수의 관측까지이고, 이를 덮는 이름 붙은 LIVE·릴리즈 게이트는 아직 없습니다. 퇴근은 측정하지 않았습니다. |
 | 원격 다리 | 운영자가 선언한 정확한 송신–수신 경로만 건넙니다. 0.41.2부터 한 파일에 여러 경로를 담고, 원격 열기·재개는 하지 않습니다. 신뢰의 근거는 운영자의 SSH 계정과 선언된 경로이지 형제의 암호학적 신원이 아니며, 접수는 읽음이 아니고 오류도 미전달의 증거가 아닙니다. 첫 왕복은 0.40 시기 Linux pi-durable 한 쌍이며, 0.41.2 릴리즈 기록은 새 파일 형식 위의 실제 왕복을 측정하지 않았다고 적습니다([원격 형제의 원칙과 열린 질문](https://github.com/junghan0611/entwurf/blob/v0.40.0/docs/remote-sibling-principles.md)). |
 
-Windows 네이티브 Pi는 0.39.0부터의 **한정 프리뷰**입니다. Windows의 다른 하네스·Herdr·tmux·fresh/resume이나 실제 공급자 모델까지 검증했다는 뜻이 아닙니다. npm의 0.50.0 파일은 Windows carrier와 Linux 소비자 수용을 통과한 파일과 바이트까지 같습니다. 그래도 Windows 출퇴근이나 carrier를 포함한 tarball의 macOS 설치를 인증한 것은 아닙니다. main에서 npm 0.50.0을 고정한 Herdr lock은 push CI를 통과했지만, 0.45.0 스냅샷의 공개 ref 설치 여정을 그 증거로 빌려 쓰지 않습니다. 출하 SHA에서 검증 게이트의 검출력을 다시 재지는 않았습니다. 자세한 범위는 [지원 기록](https://github.com/junghan0611/entwurf/blob/v0.50.0/BASELINE.md)과 [0.50.0 릴리즈 기록](https://github.com/junghan0611/entwurf/releases/tag/v0.50.0)에 둡니다.
+Windows 네이티브 Pi는 0.39.0부터의 **한정 프리뷰**입니다. Windows의 다른 하네스·Herdr·tmux·fresh/resume이나 실제 공급자 모델까지 검증했다는 뜻이 아닙니다. npm의 0.51.0 파일은 Windows carrier 워크플로가 만들고 Linux가 재포장 없이 수용한 파일과 바이트까지 같습니다. 그래도 Windows 출퇴근이나 carrier를 포함한 tarball의 macOS 설치를 인증한 것은 아닙니다. main에서 npm 0.51.0을 고정한 Herdr lock(ce5a720)은 push CI를 통과했지만, 0.45.0 스냅샷의 공개 ref 설치 여정을 그 증거로 빌려 쓰지 않습니다. 출하 SHA에서 검증 게이트의 검출력을 다시 재지는 않았습니다. 자세한 범위는 [지원 기록](https://github.com/junghan0611/entwurf/blob/v0.51.0/BASELINE.md)과 [0.51.0 릴리즈 기록](https://github.com/junghan0611/entwurf/releases/tag/v0.51.0)에 둡니다.
 
 **Pi 안의 Claude ACP와 네이티브 Claude Code 형제는 다른 경로입니다.** 도구·생각 수준·재시작 의미가 모두 동등하다고 포장하지 않으며, 새 기능 약속을 채우기 위해 다른 하네스의 내부 실행을 대신 만들지 않습니다.
 

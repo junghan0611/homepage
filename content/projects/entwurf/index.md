@@ -7,8 +7,8 @@ sidebar:
   exclude: true
 ---
 
-{{< hextra/hero-badge link="https://github.com/junghan0611/entwurf/releases/tag/v0.50.0" >}}
-  v0.50.0 · explain it to improve it
+{{< hextra/hero-badge link="https://github.com/junghan0611/entwurf/releases/tag/v0.51.0" >}}
+  v0.51.0 · the same siblings on the Pi 1.5 SDK
 {{< /hextra/hero-badge >}}
 
 <div class="hx-mt-6"></div>
@@ -39,6 +39,13 @@ Entwurf puts **a narrow connection between independently running harnesses**. Pi
 {{< callout type="info" >}}
 **Entwurf is not another harness or orchestrator.** Each harness owns execution. Herdr provides the workbench, tmux the terminal workspace, and Entwurf opens and addresses siblings between them.
 {{< /callout >}}
+
+## 0.51.0 — the same siblings on the Pi 1.5 SDK
+
+**0.51.0 moves Entwurf to the Pi 1.5.0 SDK set; it adds no MCP tool and no new authority.** All ten pinned SDK packages move to exactly 1.5.0 together, and ordinary Pi is now accepted at `>=1.5.0 <1.6`. Entwurf's thin pi-durable reference app follows the 1.5 durable API and shows the SDK's whole active transcript rather than only its latest window. A durable session's first 1.5 write cannot be read by SDK 1.4; that boundary is the warning in the boundaries section below.
+
+- **Prepared is not installed.** During this upgrade, a second development machine had already pulled the new source while its dependencies were still on SDK 1.4 and its installation window was waiting for the operator's approval. The launcher refused the mixed set by name instead of opening the session. Those refused starts were reported not to have written the existing session; after explicit authorization the installation ran and the same identity returned, as that machine reported (not re-measured here). The lesson is about the handoff: say plainly whether the installer has actually run, and call reopening ready only after a recorded successful installation and a coherent SDK check ([0.51.0 release record](https://github.com/junghan0611/entwurf/releases/tag/v0.51.0)).
+- **Herdr follows on main.** The plugin's `main` pins the published npm 0.51.0 runtime ([`ce5a720`](https://github.com/junghan0611/entwurf/commit/ce5a720)). No snapshot tag carries it yet, and an install journey from a public ref has not been measured for it.
 
 ## 0.50.0 — why even the maker needed a kinder entrance
 
@@ -75,24 +82,24 @@ Two siblings keep their own harnesses and transcripts, meeting through garden id
 
 ## Two workspaces, one address
 
-**Already using Herdr?** The plugin activates Entwurf for integrated Pi and Claude Code sessions. Siblings open in new tabs in the caller's workspace, and with the 0.50.0 runtime a dormant sibling also returns in a new tab under its own id. An optional read-only pane shows the siblings' visible placement. The plugin does not install a harness, subscription or login.
+**Already using Herdr?** The plugin activates Entwurf for integrated Pi and Claude Code sessions. Siblings open in new tabs in the caller's workspace, and since the 0.50.0 runtime a dormant sibling also returns in a new tab under its own id. An optional read-only pane shows the siblings' visible placement. The plugin does not install a harness, subscription or login.
 
 ```bash
-# First prepare Pi 1.4, Claude Code >=2.1.306 and Herdr's pi / Claude Code integration
+# First prepare Pi 1.5, Claude Code >=2.1.306 and Herdr's pi / Claude Code integration
 herdr plugin install junghan0611/entwurf/plugins/herdr --yes
 pi --entwurf-control
 ```
 
-Installed without a ref, the plugin follows the lock on main, which now pins the published npm 0.50.0. No Herdr snapshot tag pins that pair yet. The last tagged pair, [v2026.10.27-herdr.0.45.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.27-herdr.0.45.0), acquires npm 0.45.0, whose runtime has no same-id return inside Herdr. The [Herdr guide](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#from-a-raw-linux-box-in-nine-steps) owns which runtime each ref installs, along with prerequisites, updates and removal.
+Installed without a ref, the plugin follows the lock on main, which now pins the published npm 0.51.0 for Pi 1.5 ([`ce5a720`](https://github.com/junghan0611/entwurf/commit/ce5a720)). No Herdr snapshot tag pins that pair yet, and an install journey from a public ref has not been measured for it. The last tagged pair, [v2026.10.27-herdr.0.45.0](https://github.com/junghan0611/entwurf/releases/tag/v2026.10.27-herdr.0.45.0), acquires npm 0.45.0, whose runtime has no same-id return inside Herdr. The [Herdr guide](https://github.com/junghan0611/entwurf/blob/main/plugins/herdr/README.md#from-a-raw-linux-box-in-nine-steps) owns which runtime each ref installs, along with prerequisites, updates and removal.
 
 **Outside Herdr**, use the direct installation and tmux. Fresh-call supports six backends (Pi, pi-durable, Claude Code, Codex, Copilot and OMP), and same-id return supports Pi, pi-durable and Claude Code. Antigravity is not a fresh-call target, and its native-push rail is currently paused. Follow the [README](https://github.com/junghan0611/entwurf#readme) for installation.
 
 ## Current releases and boundaries
 
-**As of November 3, 2026, [core v0.50.0 is released on GitHub](https://github.com/junghan0611/entwurf/releases/tag/v0.50.0) and [published to npm](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.50.0).** The registry download is byte-identical to the accepted Windows-carrier artifact. 0.50.0 sits on the Pi 1.4.0 SDK and accepts ordinary Pi `>=1.4.0 <1.5`; Pi 1.5 support is separate work ([#155](https://github.com/junghan0611/entwurf/issues/155)). Supported harness versions and the install and upgrade steps belong to the [setup requirements](https://github.com/junghan0611/entwurf/blob/v0.50.0/docs/setup-clean-host.md#requirements) and the [0.50.0 release record](https://github.com/junghan0611/entwurf/releases/tag/v0.50.0). Refreshing the bytes and starting a new process are separate steps, and an already-running bridge does not reload by itself ([applying new source to a running host](https://github.com/junghan0611/entwurf/blob/v0.50.0/docs/setup-clean-host.md#applying-new-source-to-a-running-host)). For pi-durable, the upstream SDK still owns execution, authentication, queues, SQLite, transcripts and recovery.
+**As of November 4, 2026, [core v0.51.0 is released on GitHub](https://github.com/junghan0611/entwurf/releases/tag/v0.51.0) and [published to npm](https://www.npmjs.com/package/@junghanacs/entwurf/v/0.51.0).** The registry download is byte-identical to the accepted Windows-carrier artifact. 0.51.0 sits on the Pi 1.5.0 SDK and accepts ordinary Pi `>=1.5.0 <1.6`; a host that stays on Pi 1.4 keeps [core 0.50.0](https://github.com/junghan0611/entwurf/releases/tag/v0.50.0) and its published instructions. Supported harness versions and the install and upgrade steps belong to the [setup requirements](https://github.com/junghan0611/entwurf/blob/v0.51.0/docs/setup-clean-host.md#requirements) and the [0.51.0 release record](https://github.com/junghan0611/entwurf/releases/tag/v0.51.0). Refreshing the bytes and starting a new process are separate steps, and an already-running bridge does not reload by itself ([applying new source to a running host](https://github.com/junghan0611/entwurf/blob/v0.51.0/docs/setup-clean-host.md#applying-new-source-to-a-running-host)). For pi-durable, the upstream SDK still owns execution, authentication, queues, SQLite, transcripts and recovery.
 
 {{< callout type="warning" >}}
-**Moving a durable session from the Pi 1.3 SDK is one-way.** The first SDK 1.4 open migrates its storage to schema 2, 0.41.0 (SDK 1.3) then refuses that session, and reinstalling the older package is not a rollback. Restoring a backup does not undo messages sent or tool effects in between. Back up the whole session file set first and prove the old process has exited; the [upgrade steps](https://github.com/junghan0611/entwurf/blob/v2026.10.23-herdr.0.41.1/docs/setup-clean-host.md#moving-durable-sessions-from-the-pi-13-sdk-to-14) spell out the rest.
+**A durable session's first Pi 1.5 SDK write is one-way.** SDK 1.5 keeps the SQLite schema at version 2 but writes its live document at a version SDK 1.4 refuses, so after that write the session no longer opens on 0.50.0, and reinstalling the older package is not a rollback. Close the old owner normally and prove it exited, then back up the whole session file set, including `-wal`/`-shm`, as one consistent set before the first 1.5 open; only that backup returns the session to SDK 1.4, and work done after that open is not in it. Two synthetic SDK 1.4 sessions were opened by 1.5 in fixtures; that is evidence for those two files, not a compatibility or recovery guarantee for operating data. The [upgrade radius](https://github.com/junghan0611/entwurf/blob/v0.51.0/docs/setup-clean-host.md#default-radius-for-a-requested-pi-sdk-upgrade) spells out the rest. The earlier move from the Pi 1.3 SDK was one-way in the same sense ([its steps](https://github.com/junghan0611/entwurf/blob/v2026.10.23-herdr.0.41.1/docs/setup-clean-host.md#moving-durable-sessions-from-the-pi-13-sdk-to-14)).
 {{< /callout >}}
 
 | Surface | Connection and boundary |
@@ -105,7 +112,7 @@ Installed without a ref, the plugin follows the lock on main, which now pins the
 | Herdr plugin | Activates integrated Pi and Claude Code. Inside Herdr, Pi, pi-durable and Claude Code open and return in new tabs. Same-id return rests on dated, limited observations, with no named LIVE or release gate yet; retirement there is unmeasured. |
 | Remote bridges | Cross only the exact sender–target routes the operator declared; since 0.41.2 one file holds several routes. No remote launch or resume. Trust rests on the operator's SSH account and the declared routes, not on cryptographic identity for a sibling; acceptance is not a read, and an error is not proof of non-delivery. The first exchange was a Linux pi-durable pair in the 0.40 period; the 0.41.2 release record states that a real exchange over the new file format was not measured ([principles and open questions for remote siblings](https://github.com/junghan0611/entwurf/blob/v0.40.0/docs/remote-sibling-principles.md)). |
 
-Native-Windows Pi remains a **bounded preview introduced in 0.39.0**, not certification of other Windows harnesses, Herdr, tmux, fresh-call/resume or a real vendor model. The npm 0.50.0 bytes equal the file that passed Windows carrier and Linux consumer acceptance; that still does not certify a Windows lifecycle or the carrier-bearing tarball on macOS. The Herdr lock that pins npm 0.50.0 on main passed its push CI, but the 0.45.0 snapshot's public-ref install journey is not borrowed as its evidence. The verification gates' detection power was not re-measured at the shipped SHA. Detailed scope belongs in the [support record](https://github.com/junghan0611/entwurf/blob/v0.50.0/BASELINE.md) and the [0.50.0 release record](https://github.com/junghan0611/entwurf/releases/tag/v0.50.0).
+Native-Windows Pi remains a **bounded preview introduced in 0.39.0**, not certification of other Windows harnesses, Herdr, tmux, fresh-call/resume or a real vendor model. The npm 0.51.0 bytes equal the file the Windows carrier workflow produced and Linux accepted unchanged; that still does not certify a Windows lifecycle or the carrier-bearing tarball on macOS. The Herdr lock that pins npm 0.51.0 on main (ce5a720) passed its push CI, but the 0.45.0 snapshot's public-ref install journey is not borrowed as its evidence. The verification gates' detection power was not re-measured at the shipped SHA. Detailed scope belongs in the [support record](https://github.com/junghan0611/entwurf/blob/v0.51.0/BASELINE.md) and the [0.51.0 release record](https://github.com/junghan0611/entwurf/releases/tag/v0.51.0).
 
 **Claude ACP inside Pi and a native Claude Code sibling are different routes.** Entwurf does not present their tools, thinking levels or restart behavior as equivalent, or reimplement another harness's internals to fill a feature promise.
 
