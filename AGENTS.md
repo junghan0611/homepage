@@ -99,6 +99,10 @@ surface. This repo is public; the global commit/push hook scans added lines unde
   Contract in `docs/deploy-cloudflare.md` — build `scripts/build-site.sh`, response gate
   `node scripts/verify-deployed.mjs <origin> [<commit>]`; pass the exact commit when checking a
   deploy. Build success is not a live receipt.
+- **IndexNow is manual and operator-run.** After a verified deploy, the operator selects canonical URLs and runs
+  `node scripts/indexnow.mjs check|send --target <sha> --key-file <dir>/<key>.txt <urls>`. Never in a build, CI, hook or
+  cron; there is no site-wide baseline. Google Search Console sitemap submission is a separate manual step. Contract:
+  `docs/deploy-cloudflare.md` ("IndexNow 수동 통지").
 - `netlify.toml` and the shared `static/_headers` rule (a header name in only one of two
   overlapping rules) remain in the repo; Netlify's current role is not recorded here.
 - **No GitHub Actions.** The old `pages.yaml` Pages workflow was removed — never re-add a

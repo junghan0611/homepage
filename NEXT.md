@@ -5,13 +5,26 @@ live plan and the next concrete move.
 
 # RAIL — 현재 좌표
 
-- [x] **1. 공동 교열 요청 인수** — GLG 직접 지시, 2026-11-03 저널 공통 메시지.
-- [x] **2. 각 집 원고·현재 보고 취합** — 네 집 동결 인수·통합 교열·담당자 제품 사실 재대조 완료.
-- [x] **3. 한영 정합·격리 빌드·실화면 검증** — 전체 gate·제품 사실 대조·Chrome 검수·5Org 최종 해시 확인 완료.
-- [x] **4. GLG 검수·홈페이지 출하** — `8fe86e2` 정상 commit/push·agenda 완료, 기본 21경로와 프로젝트 10페이지 production SHA 확인 PASS. 완료 DM(messageId=920)은 중복 발송하지 않는다.
-- [ ] **5. 후속 논의·가든 반영** ← CURRENT: GLG와 SICM·에너지/Eval 방향 논의. 담당자 Org의 가든 export는 인간 소유 단계로 별도 요청·직접 실행 대기.
+- [x] **1. 수동 배포 후 통지 요청 인수** — GLG 직접 지시, 가든은 참조이며 홈페이지 규칙을 따로 설계한다.
+- [x] **2. 홈페이지 사례·설계 논의** — sitemap 정본 목록에서 운영자 명시 선택, 배치별 수신 기록만; 전역 완료 baseline 없음.
+- [x] **3. 최소 구현·격리 검수** — Opus `d2304a` 구현·수선, `2731f4` 독립 영향 검토, 코디 43/43·격리 전체 gate PASS.
+- [ ] **4. 승인된 첫 운영 실행** ← CURRENT: GLG ‘가든 코디와 논의 후 진행’ 승인·자문 완료. 전용 key+정상 commit/push·배포 확인 후 프로젝트 12 URL을 제출한다. SC는 www 속성만 확인돼 apex 제출 보류.
 
-# NOW — 프로젝트 대문·담당자 보고 공동 교열 (2026-11-03)
+# NOW — 홈페이지 수동 IndexNow·Google SC (2026-11-04)
+
+- Source: GLG 직접 요청 ‘자동은 안할거야 … 우리게 맞게’. 가든의 IndexNow 178 URL HTTP 200 수신 및 Google SC 재제출 성공은 사용자/가든 코디 보고이지 홈페이지 제출 승인이 아니다.
+- Reference: garden `bc75d6d847ed701aa359a3ccb72a3bbc9d249876`의 notifier/tests/output gate/배포 계약. Quartz slug·host·key·초기 URL 집합은 복사하지 않는다. HTTP 200 수신은 크롤링·색인 증거가 아니다.
+- Next: 홈페이지 전용 공개 key 추가와 코드 정상 commit/push → 실제 정본 배포·key 정확 본문 → `/tmp/homepage-indexnow-first-selection.txt`의 프로젝트 목록 한영2+다섯 집 한영10=12 URL check → send를 별도 한 번 실행 → receipt/status readback. 12개는 첫 수동 큐레이션이며 미통지 확정 집합이나 diff 후보라는 뜻이 아니다. 실패 행을 빼서 자동 부분 제출하지 않는다.
+- Approval: GLG가 제안한 key 추가·commit/push·12 URL·SC 별도 제출 범위에 ‘가든 코디랑 논의 한번 하고 진행하자’고 직접 지시. garden 코디 `c4be4b` 운영 자문 인수 완료. 가든 SC 성공 경로는 Oracle이 아니라 이 노트북이었다는 정정을 받아 기존 personal 인증으로 여기서 조회했다.
+- GSC blocker (2026-11-04): `gog gsc sites list -a <personal> --client personal`은 성공했지만 홈페이지 관련 결과는 `https://www.junghanacs.com/` siteOwner만. apex URL-prefix나 `sc-domain:junghanacs.com`이 없어 apex sitemap 제출 자격으로 간주하지 않고 중단. 속성 추가·인증 변경·SC 제출은 하지 않았다. 비공개 원시 출력은 `/tmp/homepage-search-submit-current`가 가리키는 디렉터리에만 보관.
+- Evidence: 구현자 `20261104T145801-d2304a`, 독립 검토 `2731f4`. `/tmp/homepage-indexnow-handoff-receipt-2.txt`에 최종 SHA, `/tmp/homepage-indexnow-final-gate.8fBXiz/receipt.json`(#1795)에 43/43+Hugo/Eval/JSON-LD 전체 gate·미발행 초안 제외·입력 전후 동일 증거. 마지막 문서-only 수선은 별도 SHA 대조 PASS; 실행 코드는 gate 이후 불변. direct API/production 상태 분리·cooldown 시각·미해결 intent·short write·robots 속성순서 반례를 수선했고 실제 제출 경로 전체는 아직 미검증.
+- Limits: rehearsal fetch의 가짜 여부는 코드가 증명하지 못하므로 network-deny/loopback 모의응답 전용 운영 규칙. host-local 기록은 다른 기기의 전송을 알지 못한다. 결과 outcome enum 검증의 낮은 관측은 미수선 상태로 남겼다. GSC는 노트북 OAuth client 파일이 없어 API 전 config error였으며 인증 변경은 하지 않았다.
+- Agreed MVP: `candidates`(live sitemap 정본 목록), `check`(명시한 URL·target·key 파일 사전검사), `send`(검사를 새로 하고 POST 1회), `status`(이 기기 수신 기록). 후보/check는 POST·운영 state 쓰기 없음. 기존 HTML footer SHA·canonical·sitemap·키 정확 본문과 Git 조상관계를 대조한다. 원격 hook/새 stamp/manifest/두 revision 빌드 비교는 첫 버전에 넣지 않는다.
+- No whole-site baseline: 운영자가 일부만 선택하므로 배포 SHA 전체를 통지 완료로 전진시키지 않는다. URL 집합·target별 receipt와 cooldown/lock만 둔다. 삭제는 이 기기의 accepted updated 이력+현재 sitemap 부재+404를 확인한 경우만. namespace가 분리된 rehearsal은 production 기록을 만들 수 없어야 한다.
+- Separate reads: GSC 속성 목록 1회는 비공개 보관/판정만 보고하도록 승인, Google 제출은 아직 없음. sitemap lastmod 균일 원인은 build 로그 1개 범위에서 확인하되 shallow clone 가설을 미리 사실로 쓰지 않는다. sitemap 날짜는 변경 URL 판정에 쓰지 않는다.
+- Do not touch: 기존 미발행 `content/blog/20260804T094556{,.ko}.md`(stage/build/제출/삭제/stash 금지), 타 리포 운영 설정·원시 private 영수증. 실제 제출·원격 변경·권한 확대·commit/push·자동화는 이번 논의로 승인하지 않는다.
+
+# RECENT — 프로젝트 대문·담당자 보고 공동 교열 (2026-11-03, 완료)
 
 - Source: GLG가 직접 붙여준 저널 `20261102T000000`, 2026-11-03 08:36 공통 확인 메시지. 최근 사건은 각 집 전체의 핵심을 대체하지 않는다. 현재 역할·판단·이웃 경계가 하나의 흐름으로 읽히도록 고친다.
 - Owners: 각 집의 기존 Opus가 자기 한영 프로젝트 글과 기존 담당자 botlog를 쓰고 교열한다. 홈페이지 Opus는 전체 문체·연결을 검토하고, 홈페이지 코디는 인계·사실 대조·검증·git을 맡는다. 각 집 원고 소유권과 botlog ARCHIVE를 보존한다. Org 작성은 각 집이 맡고, 가든 export/git은 개별 실행하지 않는다. 공동 교열 후 확정 note ID만 단일 export 레인에 배정하며 홈페이지와 가든의 검증·발행 증거를 분리한다.

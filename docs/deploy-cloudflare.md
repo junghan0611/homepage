@@ -15,6 +15,8 @@ push하면 Workers Builds가 빌드·배포한다(아래 빌드 감시 제외 �
 | `.node-version` | Node 22 (Netlify와 같은 줄) |
 | `static/_headers` | 응답 헤더. 전환 전까지 Netlify와 Cloudflare가 같은 파일을 읽는다 |
 | `scripts/verify-deployed.mjs` | 배포된 호스트의 **응답**을 검증하는 관문 |
+| `scripts/build-footer.mjs` | 푸터 빌드 커밋 판독(`footerCommit`) — verify-deployed와 indexnow가 같이 쓴다 |
+| `scripts/indexnow.mjs` | 운영자가 고른 정본 URL의 IndexNow 수동 통지. 아래 "IndexNow 수동 통지". 테스트 `scripts/indexnow.test.mjs` |
 
 Workers Builds 설정 — 2026-09-30 GLG가 대시보드에서 연결, `cf builds workers get <script-tag>`로 확인:
 repo `junghan0611/homepage`, production branch `main`, 빌드 토큰은 Cloudflare가 자동 생성(좁은 범위),
@@ -100,6 +102,61 @@ canonical 호스트면 X-Robots-Tag 없음. 커밋 인자가 있으면 `/`·`/ko
 하나(`<p class=site-build>`, href와 `data-build-commit`이 같은 40자리)를 읽어 기대 커밋과 대조하고, 세 페이지가
 같은 전체 SHA인지 본다. 다른 경로의 세대까지 증명하지는 않는다. 푸터는 자기 보고이므로 빌드 로그의
 commit→Version ID 기록과 함께 운영 영수증으로 쓴다.
+
+## IndexNow 수동 통지 (운영자 실행)
+
+GLG 결정(2026-11-04): 자동으로 하지 않는다. 빌드·CI·hook·cron 어디에도 붙이지 않는다. 운영자가 정본 URL을 고르면, `scripts/indexnow.mjs`가 그 URL들이 production에서 지정한 커밋으로 서빙되는지 증명하고 `send`일 때만 POST를 한 번 보낸다. 가든(`notes.junghanacs.com`)의 notifier를 참조했지만 host·key·상태·URL 집합은 공유하지 않는다.
+
+- **전역 baseline은 없다.** receipt는 그 batch에서 고른 URL만 기록한다. 고르지 않은 URL은 통지된 것이 아니고, `status`는 이 기기의 기록일 뿐 사이트 전체 통지 상태가 아니다. 다른 기기에서 보낸 기록은 여기 보이지 않는다. IndexNow의 HTTP 200은 수신이지 크롤링·색인이 아니며, 정확히 한 번 전달된다고 주장하지 않는다.
+- **명령:**
+  - `node scripts/indexnow.mjs candidates [--prefix /projects/]` — 라이브 sitemap URL 목록. GET만, 아무것도 쓰지 않는다.
+  - `node scripts/indexnow.mjs check --target <40자리 SHA> --key-file <dir>/<key>.txt /projects/entwurf/ /ko/projects/entwurf/` — 전체 검사. POST·state·log·lock 쓰기 0.
+  - `send` (같은 인자) — 검사를 처음부터 다시 하고 POST 1회.
+  - `status` — 이 기기의 receipt. 미해결 intent(`unresolved`)와 202·unknown(`maybe_received`)은 정확한 target·URL 집합·request hash로 보여 준다.
+  - URL은 인자, `--removed <url>`, 또는 `--urls-file`(한 줄에 `<url>` 또는 `removed <url>`, `#` 주석)로 준다.
+- **target:** 운영자가 전체 SHA를 명시한다. 라이브에서 자동으로 채택하지 않는다. 로컬에 있는 commit이면서 `refs/remotes/origin/main`의 조상이어야 한다(자동 fetch 없음). origin/main tip과 같을 필요는 없다. 문서 전용 push는 빌드되지 않으므로 tip이 서빙 SHA보다 앞설 수 있고, 그 차이는 receipt의 `main_tip`·`target_is_main_tip`에 남긴다.
+- **입력 URL:** `https://junghanacs.com/…/`만 허용한다. 원문이 그 자체로 WHATWG 직렬화여야 하므로 정규화해서 받아 주지 않는다. www·workers.dev·다른 host·scheme·port·userinfo·query·fragment·끝 `/` 없음·`//`·dot segment·`%2f`/`%5c`/`%2e`·백슬래시·공백은 거부한다. `/path/` 축약은 origin만 붙인다. 중복은 제거하고 개수를 기록하며, 순서와 관계없이 같은 집합은 같은 해시다.
+- **검사(하나라도 실패하면 POST 0, 실패한 행만 빼고 보내는 일은 없다):**
+  - `verify-deployed.mjs <origin> <target>` exit 0
+  - 라이브 sitemap(`/sitemap.xml` index → `/<lang>/sitemap.xml` 자식): 같은 origin, 자식 10개 이하, 중복·순환 없음, XML content-type과 root element, 본문 2MiB 이하, 모든 loc가 정본 형식, loc 중복 없음
+  - updated 행: sitemap에 정확히 있고, redirect 미추종 GET 200 `text/html`, 단일 푸터의 `data-build-commit` = target, `+ local changes` 아님, canonical link 정확히 1개 = 그 URL, robots meta·`X-Robots-Tag`에 `noindex`/`none` 없음(대소문자 무관), meta refresh 없음. `<meta>`/`<link>`는 문서 전체에서 읽는다. 속성 순서·대소문자·따옴표 유무와 관계없이 읽고 entity도 해석한다. 중복 속성은 첫 값을 쓰고, meta name은 `robots`와 `*bot`을 본다. 범용 HTML parser는 아니며, 주석·raw text를 모델링하지 않아서 생기는 오차는 거부를 늘리는 쪽으로만 나온다.
+  - 라이브 `/<key>.txt`: 200 `text/plain`, 본문이 정확히 key 또는 key+`\n`(SPA·redirect·옛 key 본문 거부)
+  - POST 직전 `/` 푸터 재확인
+  - POST 뒤에는 첫 updated URL(없으면 `/`)을 다시 읽어 `deploy_after`에 따로 남긴다. 이 재확인이 실패해도 endpoint 응답을 덮어쓰지 않는다. 읽기 사이·POST 중에 배포가 끼어드는 경우는 좁힐 뿐 배제하지 못한다.
+- **삭제(removed):** 세 조건을 모두 만족해야 한다. 이 기기에서 이전에 updated로 accepted된 URL이고, 라이브 sitemap에 없고, `Location` 없는 404여야 한다. 제약: 이 기기가 보낸 적 없는 옛 URL은 보내지 않는다(재크롤에 맡기며, 그것을 전송 완료로 표시하지 않는다). 410·alias·3xx로 옮긴 옛 URL은 v1에서 보내지 않는다. 202(received-pending)나 unknown으로 끝난 updated는 삭제 근거가 되지 않는다. 삭제만 있는 batch의 target 증거는 verify-deployed 관문(`/`·`/ko/`·`/eval/` 푸터)과 POST 직전 `/` 푸터다.
+- **응답:**
+  - 200 `accepted`
+  - 202 `received-pending`(key 검증 대기, 수신됐을 수 있음)
+  - 429 `rate-limited`
+  - 3xx·4xx `rejected`
+  - 5xx·timeout·전송 오류 `unknown`(수신됐을 수 있음)
+  - 실행 안에서 재전송하지 않는다.
+- **cooldown(host 단위, 집합 단위 아님):** 마지막으로 응답이 기록된 시도가 202·unknown이면 endpoint가 답한(또는 전송이 실패한) 시각 `received_at`에서 10분, 429면 `Retry-After`(초 또는 HTTP-date, 형식이 틀리면 10분)를 [10분, 24시간]으로 제한해 기다린다. 같은 target에 같은 집합이 이미 accepted면 거부한다. 부분적으로 겹치는 집합은 고른 그대로 보내고, 겹친 URL을 `overlap_with_accepted`와 stderr로 알린다.
+- **기록:** production 경로는 `${XDG_STATE_HOME:-~/.local/state}/homepage-indexnow/` 하나뿐이다. 이 디렉토리(0700)에 `junghanacs.com.receipts.jsonl`(0600)과 `junghanacs.com.lock`(O_EXCL)을 둔다. `--state-dir`·`HOMEPAGE_INDEXNOW_STATE_DIR`은 없으며, 주면 usage로 거부한다. 다른 디렉토리로 cooldown·accepted 이력을 우회하지 못하게 하기 위해서다. 경로를 옮기는 일은 옵션이 아니라 운영자의 이관 판단이다. 모든 stdout receipt에 `receipts_file`을 적는다. HOME·XDG 변조나 사용자가 기록을 지우는 경우까지 막는 보안 경계는 아니다.
+  - lock은 기록 읽기부터 intent·POST·result까지 감싼다. 남은 lock은 자동으로 지우지 않는다. lock 파일을 만든 뒤 내용을 쓰지 못하면 `lock-write-failed`(exit 24)로 멈추고 lock은 남긴다.
+  - POST 전에 `intent`를 append+fsync한다. intent에는 검증된 updated/removed 목록과 실제 POST 본문의 `request_sha256`이 들어간다(key 자체는 저장하지 않는다). 쓰지 못하면 보내지 않는다(exit 24). 모든 줄은 byte 단위로 전부 쓰고 fsync한 뒤에야 다음으로 넘어간다. short write는 실패로 본다. 파일을 처음 만들 때는 디렉토리도 fsync한다. 기존 파일의 mode는 쓰기 전에 검사한다. 중간에 끊겨 남은 반쪽 줄은 다음 읽기에서 멈춘다.
+  - 시각 필드: `at`는 검사 시작, `sent_at`는 intent 시각, `received_at`는 응답 완료나 전송 실패 시각, `recorded_at`는 줄을 쓴 시각이다.
+  - POST 뒤에 `result`를 쓴다. 쓰지 못하면 결과는 그대로 두고 exit 24이며, stdout receipt가 1차 증거다.
+  - 결과 없는 intent는 미해결(수신됐을 수 있음)이다. 그 뒤의 모든 `check`·`send`는 precondition으로 멈추고, 그 attempt의 target·URL 집합을 오류에 보여 준다. 시간이 지나도 자동 재전송하지 않는다. 운영자가 그 attempt의 stdout과 기록을 검토하고, 어떻게 복구할지는 그 사건 때 GLG가 정한다. 코드가 알 수 없는 상태를 accepted로 수선하는 일은 없고, reconcile 명령도 없다. result의 target·집합·hash가 intent와 다르면 읽기를 멈춘다.
+  - lock을 잡은 뒤 멈춘 send는 `refused` 한 줄을 남긴다(인자·key 파일 오류는 lock 전이라 줄이 없다).
+  - 손상됐거나 다른 namespace·host의 줄이 있으면 건너뛰지 않고 멈춘다. key는 기록·출력에 남기지 않는다(`<key>`, `key_sha256` 앞 16자리).
+- **production/rehearsal:** production은 CLI(`main`)만 고를 수 있다. export된 `run()`은 무엇을 넘겨받든 rehearsal이다. fetch, 관문, production이 아닌 임시 state 디렉토리를 모두 명시해야 하며 `….rehearsal.*` 파일만 읽고 쓴다. 코드는 넘겨받은 fetch가 가짜인지 판별하지 못한다. 거부하는 것은 전역 fetch identity 하나뿐이다. 실제 fetch를 감싼 wrapper를 넘기면 live POST가 나가고 그 기록은 rehearsal 쪽에 남는다. 그래서 rehearsal fixture는 network deny나 loopback 모의 응답으로만 쓰고, 실제 fetch wrapper는 쓰지 않는다. 이것은 운영 규칙이지 코드가 보장하는 것이 아니다. 두 namespace의 분리는 이 계약을 지킬 때만 성립한다. rehearsal이 production 기록을 바꾸지 않는다는 것도, rehearsal이 실제 전송을 하지 않는다는 것도 그 이상으로 보장하지 않는다. fetch identity로는 production을 판정하지 않는다. import 전에 전역 fetch를 바꾸거나 dispatcher mock을 쓰면 identity가 그대로 유지되기 때문이다. 이것은 라이브 CLI와 테스트 fixture를 가르는 계약이지 sandbox가 아니다. 프로세스에 미리 로드된 코드는 무엇이든 할 수 있다. CLI에는 origin·endpoint override가 없다.
+- **key:** `--key-file`로 명시 주입한다. 파일명 stem이 key(8~128자 `A-Za-z0-9-`)이고 본문은 정확히 그 key다. 홈페이지 전용 공개 key 파일은 GLG 승인으로 `static/<key>.txt`에 추가했다. 실제 제출은 해당 커밋 배포 뒤 key 응답의 정확한 본문을 확인한 다음에만 한다. 이 검증 key는 공개 파일이며 Cloudflare API 자격증명이 아니다.
+- **cap 30:** 고른 send batch에만 적용하는 정책값이다. 품질 기준이나 프로토콜 한도(요청당 10,000)가 아니다. 그보다 크면 거부하므로 검토한 뒤 `--cap`을 준다.
+- **exit:**
+  - 0 accepted/verified
+  - 2 usage
+  - 10 not-ready(관문·푸터 SHA·GET 전송 오류)
+  - 11 precondition(형식·sitemap·key·git·cap·lock·기록)
+  - 12 cooldown
+  - 20 received-pending
+  - 21 rate-limited
+  - 22 rejected
+  - 23 unknown
+  - 24 로컬 기록 실패
+  - 25 accepted이지만 POST 뒤 재확인이 target과 다르거나 실패
+- **Google Search Console은 별도 수동 단계다.** `gog gsc sitemaps submit <property> https://junghanacs.com/sitemap.xml`(sitemap index 하나)를 쓰고, property는 `gog gsc sites list`가 보여 주는 실제 값을 쓴다(meta 검증 태그로 property 형태를 추론하지 않는다). IndexNow와 묶지 않으며 영수증도 따로다. 관측(2026-11-04): production sitemap의 lastmod가 전부 배포 커밋 시각이었고 로컬 전체 이력 빌드와 달랐다. 원인(shallow clone 추정)은 미확정이다.
+- **테스트:** `node --test scripts/indexnow.test.mjs` — 주입 fetch, 임시 git repo, 임시 state. 네트워크·실제 key·production state 0.
 
 ## 알려진 차이 (Netlify → Workers)
 
