@@ -8,21 +8,26 @@ live plan and the next concrete move.
 - [x] **1. 수동 배포 후 통지 요청 인수** — GLG 직접 지시, 가든은 참조이며 홈페이지 규칙을 따로 설계한다.
 - [x] **2. 홈페이지 사례·설계 논의** — sitemap 정본 목록에서 운영자 명시 선택, 배치별 수신 기록만; 전역 완료 baseline 없음.
 - [x] **3. 최소 구현·격리 검수** — Opus `d2304a` 구현·수선, `2731f4` 독립 영향 검토, 코디 43/43·격리 전체 gate PASS.
-- [ ] **4. 승인된 첫 운영 실행** ← CURRENT: GLG ‘가든 코디와 논의 후 진행’ 승인·자문 완료. 전용 key+정상 commit/push·배포 확인 후 프로젝트 12 URL을 제출한다. SC는 www 속성만 확인돼 apex 제출 보류.
+- [x] **4. 승인된 첫 운영 실행** — `ad1863e` 정상 push·배포/키/12페이지 확인, IndexNow 단일 POST → HTTP 202(키 검증 대기), receipt/status 확인. 재전송 없음.
+- [x] **5. 첫 운영 갈무리** ← CURRENT: GLG가 SC sitemap.xml 직접 등록을 알렸고 ‘일단 패스’ 지시. 추가 제출·재시도 없이 종료한다. IndexNow는 HTTP 202 대기 상태를 유지한다.
 
 # NOW — 홈페이지 수동 IndexNow·Google SC (2026-11-04)
 
 - Source: GLG 직접 요청 ‘자동은 안할거야 … 우리게 맞게’. 가든의 IndexNow 178 URL HTTP 200 수신 및 Google SC 재제출 성공은 사용자/가든 코디 보고이지 홈페이지 제출 승인이 아니다.
 - Reference: garden `bc75d6d847ed701aa359a3ccb72a3bbc9d249876`의 notifier/tests/output gate/배포 계약. Quartz slug·host·key·초기 URL 집합은 복사하지 않는다. HTTP 200 수신은 크롤링·색인 증거가 아니다.
-- Next: 홈페이지 전용 공개 key 추가와 코드 정상 commit/push → 실제 정본 배포·key 정확 본문 → `/tmp/homepage-indexnow-first-selection.txt`의 프로젝트 목록 한영2+다섯 집 한영10=12 URL check → send를 별도 한 번 실행 → receipt/status readback. 12개는 첫 수동 큐레이션이며 미통지 확정 집합이나 diff 후보라는 뜻이 아니다. 실패 행을 빼서 자동 부분 제출하지 않는다.
+- Published: `ad1863e6a5eb4084665d1180985fe8c8d6d47c1b` 정상 commit/push·agenda 완료. 전용 공개 key는 해당 배포에서 200 text/plain·정확 본문, 기본 production gate 21경로와 선택 12페이지의 canonical/footer/noindex 검사 통과. 미발행 블로그2 제외·보존.
+- First notice: `/tmp/homepage-indexnow-first-selection.txt`의 프로젝트 목록 한영2+다섯 집 한영10=12 URL을 한 번 제출. 2026-11-04T06:54:34.324Z HTTP **202 received-pending**(629ms), exit20은 이 상태를 표현하며 실패 재실행 지시로 취급하지 않는다. 200 수락·크롤링·색인은 미확인. intent/result 기록·status readback에서 attempts1/accepted0/unresolved0/maybe_received1(12 URL), 전후 배포 SHA 동일, record/lock 오류 없음. 자동 재시도·예약 없음. 이후 재제출은 cooldown 이후에도 GLG의 별도 수동 판단 대상.
+- Receipt: `/tmp/homepage-search-submit.ZizVRE/{indexnow-check,indexnow-send,indexnow-status}.json`; 지속 기록 `~/.local/state/homepage-indexnow/junghanacs.com.receipts.jsonl`. URL 집합 SHA256 `a49a37c2f0cf0ec55ead454defa0fae8d033eeb46e93e4fe4852ca5c1c188cfb`, 요청 본문 SHA256 `d6ef464b5fe34623a336fadd03327319bc54390c4405ef7b34ad82bcc046f7b6`. 12개는 첫 수동 큐레이션이며 미통지 확정 집합이나 diff 후보가 아니다.
+- Next: 현재 추가 행동 없음. GLG가 ‘sitemap.xml을 내가 등록했다’고 직접 보고했으며, 코디는 중복 제출·추가 조회 없이 종료한다. SC 처리·수집·색인은 API로 재검증하지 않았고 사용자 보고와 구분한다. IndexNow 202 후속과 sitemap lastmod 정확성은 별도 요청 때 다시 판단한다.
+- Google file: GLG 제공 `~/Downloads/google0614204ad1c0f945.html`을 바이트 그대로 `static/`에 복사, 파일 단독 `5e9c5dd` 정상 push·agenda 및 격리 전체 gate 통과. 실배포 21경로 gate PASS. Node fetch로 `.html` 요청은 Cloudflare가 동일 호스트의 확장자 없는 경로로 307 이동하고 최종 200·본문 바이트 동일함을 측정했다. 이후 GLG가 SC 사이트맵 직접 등록을 보고했지만 Google 소유권·수집 상태를 API로 재검증하지 않았으며, 파일 응답도 redirect 없는 직접 200이라고 보고하지 않는다. 초기 Python urllib 검사는 403이었고 Node 재관측으로 위 동작을 구분했다. 경로/호스팅 설정은 변경하지 않았다.
 - Approval: GLG가 제안한 key 추가·commit/push·12 URL·SC 별도 제출 범위에 ‘가든 코디랑 논의 한번 하고 진행하자’고 직접 지시. garden 코디 `c4be4b` 운영 자문 인수 완료. 가든 SC 성공 경로는 Oracle이 아니라 이 노트북이었다는 정정을 받아 기존 personal 인증으로 여기서 조회했다.
-- GSC blocker (2026-11-04): `gog gsc sites list -a <personal> --client personal`은 성공했지만 홈페이지 관련 결과는 `https://www.junghanacs.com/` siteOwner만. apex URL-prefix나 `sc-domain:junghanacs.com`이 없어 apex sitemap 제출 자격으로 간주하지 않고 중단. 속성 추가·인증 변경·SC 제출은 하지 않았다. 비공개 원시 출력은 `/tmp/homepage-search-submit-current`가 가리키는 디렉터리에만 보관.
-- Evidence: 구현자 `20261104T145801-d2304a`, 독립 검토 `2731f4`. `/tmp/homepage-indexnow-handoff-receipt-2.txt`에 최종 SHA, `/tmp/homepage-indexnow-final-gate.8fBXiz/receipt.json`(#1795)에 43/43+Hugo/Eval/JSON-LD 전체 gate·미발행 초안 제외·입력 전후 동일 증거. 마지막 문서-only 수선은 별도 SHA 대조 PASS; 실행 코드는 gate 이후 불변. direct API/production 상태 분리·cooldown 시각·미해결 intent·short write·robots 속성순서 반례를 수선했고 실제 제출 경로 전체는 아직 미검증.
-- Limits: rehearsal fetch의 가짜 여부는 코드가 증명하지 못하므로 network-deny/loopback 모의응답 전용 운영 규칙. host-local 기록은 다른 기기의 전송을 알지 못한다. 결과 outcome enum 검증의 낮은 관측은 미수선 상태로 남겼다. GSC는 노트북 OAuth client 파일이 없어 API 전 config error였으며 인증 변경은 하지 않았다.
+- GSC initial observation (2026-11-04, GLG 직접 등록 전): `gog gsc sites list -a <personal> --client personal`은 성공했지만 홈페이지 관련 결과는 `https://www.junghanacs.com/` siteOwner만. apex URL-prefix나 `sc-domain:junghanacs.com`이 없어 apex sitemap 제출 자격으로 간주하지 않고 중단. 코디는 속성 추가·인증 변경·SC 제출을 하지 않았다. 이후 GLG가 직접 apex 등록 절차와 사이트맵 제출을 진행했으므로 이 최초 관측을 현재 blocker로 유지하지 않는다. 비공개 원시 출력은 `/tmp/homepage-search-submit-current`가 가리키는 디렉터리에만 보관.
+- Evidence: 구현자 `20261104T145801-d2304a`, 독립 검토 `2731f4`. #1795(`/tmp/homepage-indexnow-final-gate.8fBXiz/receipt.json`)의 43/43+전체 gate 후, 공개 key 포함 #1898(`/tmp/homepage-indexnow-key-gate.9DLKXt/receipt.json`)도 통과. 정상 훅이 테스트 더미 2개를 generic-api-key로 차단해 GLG 승인으로 실행 시 UUID 더미만 생성하도록 수선했고, `/tmp/homepage-indexnow-handoff-receipt-3.txt`의 test SHA와 코디 43/43 재통과를 확인한 뒤 정상 commit/push했다. 훅 우회·allowlist 변경 없음. 실제 production 경로는 이번 12 URL·HTTP 202 수신까지 확인, 실 200 및 기타 응답의 운영 관측은 아직 없다.
+- Limits: rehearsal fetch의 가짜 여부는 코드가 증명하지 못하므로 network-deny/loopback 모의응답 전용 운영 규칙. host-local 기록은 다른 기기의 전송을 알지 못한다. 결과 outcome enum 검증의 낮은 관측은 미수선 상태로 남겼다. GSC 첫 호출의 config error는 기존 personal client를 명시해 해소됐고, 최초 조회에서 www만 확인됐으나 이후 GLG의 직접 사이트맵 등록 보고를 받았다. 인증 변경은 하지 않았다.
 - Agreed MVP: `candidates`(live sitemap 정본 목록), `check`(명시한 URL·target·key 파일 사전검사), `send`(검사를 새로 하고 POST 1회), `status`(이 기기 수신 기록). 후보/check는 POST·운영 state 쓰기 없음. 기존 HTML footer SHA·canonical·sitemap·키 정확 본문과 Git 조상관계를 대조한다. 원격 hook/새 stamp/manifest/두 revision 빌드 비교는 첫 버전에 넣지 않는다.
 - No whole-site baseline: 운영자가 일부만 선택하므로 배포 SHA 전체를 통지 완료로 전진시키지 않는다. URL 집합·target별 receipt와 cooldown/lock만 둔다. 삭제는 이 기기의 accepted updated 이력+현재 sitemap 부재+404를 확인한 경우만. namespace가 분리된 rehearsal은 production 기록을 만들 수 없어야 한다.
-- Separate reads: GSC 속성 목록 1회는 비공개 보관/판정만 보고하도록 승인, Google 제출은 아직 없음. sitemap lastmod 균일 원인은 build 로그 1개 범위에서 확인하되 shallow clone 가설을 미리 사실로 쓰지 않는다. sitemap 날짜는 변경 URL 판정에 쓰지 않는다.
-- Do not touch: 기존 미발행 `content/blog/20260804T094556{,.ko}.md`(stage/build/제출/삭제/stash 금지), 타 리포 운영 설정·원시 private 영수증. 실제 제출·원격 변경·권한 확대·commit/push·자동화는 이번 논의로 승인하지 않는다.
+- Separate reads: GSC 속성 목록 조회는 비공개 보관/판정만 보고. Google 사이트맵은 GLG가 직접 등록했고 코디의 추가 제출은 없다. sitemap lastmod 균일 원인은 build 로그 1개 범위에서 확인하되 shallow clone 가설을 미리 사실로 쓰지 않는다. sitemap 날짜는 변경 URL 판정에 쓰지 않는다.
+- Do not touch: 기존 미발행 `content/blog/20260804T094556{,.ko}.md`(stage/build/제출/삭제/stash 금지), 타 리포 운영 설정·원시 private 영수증. 이번 승인 범위의 12 URL 제출·정상 push 이외 추가 제출·원격 설정·권한 확대·속성 추가·자동화는 별도 승인 없이 하지 않는다.
 
 # RECENT — 프로젝트 대문·담당자 보고 공동 교열 (2026-11-03, 완료)
 
